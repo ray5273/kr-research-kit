@@ -64,6 +64,7 @@ node skills/kr-stock-analysis/scripts/fetch-kr-chart.js --ticker 066970 --range 
 node skills/kr-stock-analysis/scripts/portfolio-snapshot.js --input examples/kr/portfolio-sample.json
 node skills/kr-stock-dart-analysis/scripts/normalize-browser-dart-export.js --input examples/kr-stock-dart-analysis/dart-browser-export-sample.json --output dart-text.txt
 OPENDART_API_KEY=<key> node skills/kr-stock-dart-analysis/scripts/fetch-opendart.js --ticker 010950 --year 2025 --report-code 11011 --output analysis-example/kr/S-Oil/
+node skills/kr-stock-dart-analysis/scripts/fetch-nps-holdings.js --lookback-days 90 --output /tmp/nps-holdings/   # reads OPENDART_API_KEY from .env or env
 node skills/kr-stock-analysis/scripts/valuation-chart.js --input examples/kr-stock-analysis/valuation-band-sample.json --png-out valuation.png
 node skills/kr-naver-browse/scripts/browse-naver.js --test
 node skills/kr-naver-blogger/scripts/build-query-set.js --company "엘앤에프" --ticker 066970 --output /tmp/queries.json
@@ -104,6 +105,7 @@ All scripts accept JSON via `--input` and output Markdown or PNG. They use only 
 | `portfolio-snapshot.js` | SMA20 deviation + RSI14 snapshot table across multiple KRX positions from JSON (kr only, MCP fallback) |
 | `normalize-browser-dart-export.js` | Convert a Chrome extension DART viewer export into plain text for section parsing |
 | `fetch-opendart.js` | OpenDART API alternative to the Chrome extension. Resolves `--ticker` to corp_code, downloads the latest 정기공시 `document.xml` ZIP + structured endpoints (majorshareholder, alotMatter, tesstkAcqsDspsSttus, irdsSttus, cpndlhCmpsBoardCo, fnlttSinglAcntAll), produces the same `dart-browser-export.json` schema. Requires `OPENDART_API_KEY` env var. Caches to `.tmp/opendart-cache/`. |
+| `fetch-nps-holdings.js` | Sweep 지분공시 (pblntf_ty=D) via OpenDART `list.json` over a lookback window (default 90d, chunked into ≤80d slices to satisfy the 3-month range cap), filter to filings where `flr_nm` contains "국민연금", then enrich with `majorstock.json` (5%룰) and `elestock.json` (임원·주요주주) keyed by `rcept_no`. Writes `nps-holdings.json` + `nps-holdings.md`. Auto-loads `OPENDART_API_KEY` from repo-root `.env`. |
 | `opendart-zip.py` | Python3 stdlib helper for `fetch-opendart.js`: ZIP extraction (preserves cp949 Korean filenames) + `dart4.xsd` XML pre-processing into HTML so the generic HTMLParser can extract narrative text |
 | `browse-naver.js` | Naver search + blog navigation helpers via gstack `browse` binary (required by other Naver skills) |
 | `build-query-set.js` | Build dynamic search queries from Naver News trends and DART product keywords for blogger discovery |
