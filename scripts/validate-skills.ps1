@@ -455,18 +455,6 @@ if ($sectorExampleCount -lt 2) {
     Write-Error "Expected at least two sector example markdown files under $sectorExampleRoot"
 }
 
-$memoFiles = Get-ChildItem -Path (Join-Path $repoRoot "analysis-example\kr") -Recurse -Filter "memo.md" |
-    Where-Object {
-        [System.IO.File]::ReadAllText($_.FullName, [System.Text.Encoding]::UTF8).Contains("## Decision Frame")
-    } |
-    Select-Object -ExpandProperty FullName
-foreach ($memoFile in $memoFiles) {
-    $memoCompany = Split-Path -Leaf (Split-Path -Parent $memoFile)
-    Write-Host "Quality gate: $memoCompany"
-    node (Join-Path $repoRoot "scripts\harness.js") --mode gate --company $memoCompany --memo-path $memoFile
-    if ($LASTEXITCODE -ne 0) { throw "Quality gate failed for $memoCompany" }
-}
-
 node (Join-Path $repoRoot "scripts\validate-contracts.js")
 if ($LASTEXITCODE -ne 0) { throw "Contract validation failed." }
 

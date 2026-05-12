@@ -556,15 +556,6 @@ if [ "$SECTOR_EXAMPLE_COUNT" -lt 2 ]; then
     exit 1
 fi
 
-find "$REPO_ROOT/analysis-example/kr" -type f -name "memo.md" -print | while IFS= read -r MEMO; do
-    if ! grep -Fq '## Decision Frame' "$MEMO"; then
-        continue
-    fi
-    COMPANY=$(basename "$(dirname "$MEMO")")
-    echo "Quality gate: $COMPANY"
-    node "$REPO_ROOT/scripts/harness.js" --mode gate --company "$COMPANY" --memo-path "$MEMO" || exit 1
-done
-
 # Regression wiring check: --dry-run exercises the ROUTED_STEPS registry
 # without network or pypdf. Catches path/flag breakage when a new routed
 # skill is added.

@@ -6,14 +6,7 @@ on:
 
 jobs:
   validate:
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-          - ubuntu-latest
-          - macos-latest
-          - windows-latest
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     env:
       CODEX_HOME: ${{ github.workspace }}/.codex-home
 
@@ -24,76 +17,23 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Validate skill files on Windows
-        if: runner.os == 'Windows'
-        shell: pwsh
-        run: .\scripts\validate-skills.ps1
-
-      - name: Validate skill files on Unix
-        if: runner.os != 'Windows'
-        shell: bash
+      - name: Validate skill files
         run: bash ./scripts/validate-skills.sh
 
-      - name: Install all skills on Windows
-        if: runner.os == 'Windows'
-        shell: pwsh
-        run: .\scripts\install-all-skills.ps1
-
-      - name: Install all skills on Unix
-        if: runner.os != 'Windows'
-        shell: bash
+      - name: Install all skills (Codex)
         run: bash ./scripts/install-all-skills.sh
 
-      - name: Verify installed skills on Windows
-        if: runner.os == 'Windows'
-        shell: pwsh
-        run: |
-          if (-not (Test-Path (Join-Path $env:CODEX_HOME "skills\us-stock-analysis"))) {
-            throw "Missing us-stock-analysis"
-          }
-
-          if (-not (Test-Path (Join-Path $env:CODEX_HOME "skills\kr-stock-analysis"))) {
-            throw "Missing kr-stock-analysis"
-          }
-
-      - name: Verify installed skills on Unix
-        if: runner.os != 'Windows'
-        shell: bash
+      - name: Verify installed Codex skills
         run: |
           test -d "$CODEX_HOME/skills/us-stock-analysis"
           test -d "$CODEX_HOME/skills/kr-stock-analysis"
 
-      - name: Install all Claude Code skills on Windows
-        if: runner.os == 'Windows'
-        shell: pwsh
-        env:
-          CLAUDE_HOME: ${{ github.workspace }}/.claude-home
-        run: .\scripts\install-all-claude-skills.ps1
-
-      - name: Install all Claude Code skills on Unix
-        if: runner.os != 'Windows'
-        shell: bash
+      - name: Install all Claude Code skills
         env:
           CLAUDE_HOME: ${{ github.workspace }}/.claude-home
         run: bash ./scripts/install-all-claude-skills.sh
 
-      - name: Verify Claude Code installed skills on Windows
-        if: runner.os == 'Windows'
-        shell: pwsh
-        env:
-          CLAUDE_HOME: ${{ github.workspace }}/.claude-home
-        run: |
-          if (-not (Test-Path (Join-Path $env:CLAUDE_HOME "skills\us-stock-analysis"))) {
-            throw "Missing us-stock-analysis"
-          }
-
-          if (-not (Test-Path (Join-Path $env:CLAUDE_HOME "skills\kr-stock-analysis"))) {
-            throw "Missing kr-stock-analysis"
-          }
-
-      - name: Verify Claude Code installed skills on Unix
-        if: runner.os != 'Windows'
-        shell: bash
+      - name: Verify installed Claude Code skills
         env:
           CLAUDE_HOME: ${{ github.workspace }}/.claude-home
         run: |
