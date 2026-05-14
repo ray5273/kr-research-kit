@@ -151,10 +151,11 @@ function usage() {
     "  - The input JSON must include bars with date and close.",
     "  - high and low are required for Bollinger and Ichimoku overlays to be fully useful.",
     "  - volume is optional but recommended for volume panel and participation read.",
-    "  - When --png-out is set, the script writes the main trend chart to that path and sibling overlay, momentum, and structure charts to *-overlay.png, *-momentum.png, and *-structure.png.",
+    "  - When --png-out is set, the script writes the main trend chart to that path and sibling overlay, momentum, structure, and pattern charts to *-overlay.png, *-momentum.png, *-structure.png, and *-pattern.png.",
     "  - The structure chart pairs candles with a horizontal volume-by-price gutter (POC highlighted) and ATR-tolerance clustered horizontal support/resistance zones (max 3 each, within ±30% of current price).",
     "  - A sibling *-structure-zones.csv lists every zone including broken/distance-filtered ones (type, zone_low, zone_high, center_price, touch_count, last_touch_date, score, status).",
-    "  - The markdown output prints all four image snippets plus a Support / Resistance Zones table when PNG output is enabled.",
+    "  - The pattern chart overlays recent swing-pivot wave candidates and Fibonacci retracement/extension levels, with a sibling *-pattern-waves.csv for candidate/confidence details.",
+    "  - The markdown output prints all five image snippets plus Support / Resistance Zones and Pattern / Wave Candidate tables when PNG output is enabled.",
   ].join("\n");
 }
 
@@ -638,6 +639,30 @@ function drawLine(buffer, width, height, x0, y0, x1, y1, color, thickness = 1) {
   }
 }
 
+function drawDashedLine(buffer, width, height, x0, y0, x1, y1, color, thickness = 1, dashLength = 10, gapLength = 7) {
+  const dx = x1 - x0;
+  const dy = y1 - y0;
+  const length = Math.max(Math.sqrt(dx * dx + dy * dy), 1);
+  const ux = dx / length;
+  const uy = dy / length;
+  let cursor = 0;
+  while (cursor < length) {
+    const segmentEnd = Math.min(cursor + dashLength, length);
+    drawLine(
+      buffer,
+      width,
+      height,
+      x0 + ux * cursor,
+      y0 + uy * cursor,
+      x0 + ux * segmentEnd,
+      y0 + uy * segmentEnd,
+      color,
+      thickness,
+    );
+    cursor += dashLength + gapLength;
+  }
+}
+
 function drawSeries(buffer, width, height, points, color, thickness = 2) {
   let previous = null;
   for (const point of points) {
@@ -932,6 +957,434 @@ function writeZonesCSV(filePath, zones) {
   fs.writeFileSync(filePath, csv);
 }
 
+function buildAlternatingPivots(pivots, bars, minSwing) {
+  const merged = [
+    ...pivots.highs.map((pivot) => ({ ...pivot, type: "high", date: bars[pivot.index]?.date || "" })),
+    ...pivots.lows.map((pivot) => ({ ...pivot, type: "low", date: bars[pivot.index]?.date || "" })),
+  ]
+    .filter((pivot) => Number.isFinite(pivot.index) && Number.isFinite(pivot.price))
+    .sort((a, b) => (a.index === b.index ? a.type.localeCompare(b.type) : a.index - b.index));
+
+  const alternating = [];
+  for (const pivot of merged) {
+    const last = alternating[alternating.length - 1];
+    if (!last) {
+      alternating.push(pivot);
+      continue;
+    }
+    if (pivot.type === last.type) {
+      const moreExtreme =
+        (pivot.type === "high" && pivot.price > last.price) ||
+        (pivot.type === "low" && pivot.price < last.price);
+      if (moreExtreme) {
+        alternating[alternating.length - 1] = pivot;
+      }
+      continue;
+    }
+    if (Number.isFinite(minSwing) && minSwing > 0 && Math.abs(pivot.price - last.price) < minSwing) {
+      continue;
+    }
+    alternating.push(pivot);
+  }
+  return alternating;
+}
+
+function scoreImpulseCandidate(points, direction, barsLength, minSwing) {
+  const legs = [];
+  for (let index = 1; index < points.length; index += 1) {
+    legs.push(Math.abs(points[index].price - points[index - 1].price));
+  }
+  const alternatingScore = points.every((point, index) => index === 0 || point.type !== points[index - 1].type) ? 1 : 0;
+  const minSwingScore = legs.every((leg) => leg >= minSwing) ? 1 : Math.max(0, legs.filter((leg) => leg >= minSwing).length / Math.max(legs.length, 1));
+  const wave3Score = legs[2] >= legs[0] * 0.9 ? 1 : Math.max(0, legs[2] / Math.max(legs[0], 1));
+  let wave4Score = 1;
+  if (direction === "bullish" && points[4].price < points[1].price) {
+    wave4Score = Math.max(0, 1 - (points[1].price - points[4].price) / Math.max(legs[0], 1));
+  } else if (direction === "bearish" && points[4].price > points[1].price) {
+    wave4Score = Math.max(0, 1 - (points[4].price - points[1].price) / Math.max(legs[0], 1));
+  }
+  const latestDistance = barsLength - 1 - points[points.length - 1].index;
+  const recencyScore = Math.max(0, 1 - latestDistance / 60);
+
+  return clamp(
+    0.25 * alternatingScore +
+      0.20 * minSwingScore +
+      0.25 * wave3Score +
+      0.20 * wave4Score +
+      0.10 * recencyScore,
+    0,
+    1,
+  );
+}
+
+function scoreCorrectiveCandidate(points, barsLength, minSwing) {
+  const legs = [
+    Math.abs(points[1].price - points[0].price),
+    Math.abs(points[2].price - points[1].price),
+  ];
+  const alternatingScore = points[0].type !== points[1].type && points[1].type !== points[2].type ? 1 : 0;
+  const minSwingScore = legs.every((leg) => leg >= minSwing) ? 1 : Math.max(0, legs.filter((leg) => leg >= minSwing).length / 2);
+  const balanceRatio = Math.min(legs[0], legs[1]) / Math.max(legs[0], legs[1], 1);
+  const latestDistance = barsLength - 1 - points[2].index;
+  const recencyScore = Math.max(0, 1 - latestDistance / 45);
+  return clamp(0.30 * alternatingScore + 0.25 * minSwingScore + 0.25 * balanceRatio + 0.20 * recencyScore, 0, 1);
+}
+
+function impulseDirectionFromPivotTypes(types) {
+  if (types === "low-high-low-high-low-high") {
+    return "bullish";
+  }
+  if (types === "high-low-high-low-high-low") {
+    return "bearish";
+  }
+  return null;
+}
+
+function detectWaveCandidates(bars, currentPrice) {
+  const recentBars = bars.slice(-Math.min(120, bars.length));
+  const baseIndex = bars.length - recentBars.length;
+  const atr = computeATR14(recentBars);
+  const minSwing = Math.max(atr || 0, Number.isFinite(currentPrice) ? currentPrice * 0.01 : 0);
+  const rawPivots = detectSwingPivots(recentBars, 5);
+  const shiftedPivots = {
+    highs: rawPivots.highs.map((pivot) => ({ ...pivot, index: pivot.index + baseIndex })),
+    lows: rawPivots.lows.map((pivot) => ({ ...pivot, index: pivot.index + baseIndex })),
+  };
+  const pivots = buildAlternatingPivots(shiftedPivots, bars, minSwing);
+  const candidates = [];
+
+  for (let index = 0; index <= pivots.length - 6; index += 1) {
+    const points = pivots.slice(index, index + 6);
+    const types = points.map((point) => point.type).join("-");
+    const direction = impulseDirectionFromPivotTypes(types);
+    if (direction) {
+      const confidence = scoreImpulseCandidate(points, direction, bars.length, minSwing);
+      candidates.push({
+        kind: "impulse",
+        direction,
+        status: confidence >= 0.55 ? "drawable" : "candidate-only",
+        confidence,
+        labels: ["", "1", "2", "3", "4", "5"],
+        points,
+      });
+    }
+  }
+
+  for (let index = 6; index <= pivots.length - 3; index += 1) {
+    const previousTypes = pivots.slice(index - 6, index).map((point) => point.type).join("-");
+    const impulseDirection = impulseDirectionFromPivotTypes(previousTypes);
+    if (!impulseDirection) {
+      continue;
+    }
+    const points = pivots.slice(index, index + 3);
+    const types = points.map((point) => point.type).join("-");
+    const expectedTypes = impulseDirection === "bullish" ? "low-high-low" : "high-low-high";
+    if (types === expectedTypes) {
+      const direction = impulseDirection === "bullish" ? "bearish-correction" : "bullish-correction";
+      const confidence = scoreCorrectiveCandidate(points, bars.length, minSwing);
+      candidates.push({
+        kind: "corrective",
+        direction,
+        status: confidence >= 0.55 ? "drawable" : "candidate-only",
+        confidence,
+        labels: ["A", "B", "C"],
+        points,
+      });
+    }
+  }
+
+  candidates.sort((a, b) => {
+    if (b.confidence !== a.confidence) return b.confidence - a.confidence;
+    return b.points[b.points.length - 1].index - a.points[a.points.length - 1].index;
+  });
+
+  return {
+    pivots,
+    candidates,
+    selected: candidates.find((candidate) => candidate.confidence >= 0.55) || null,
+    minSwing,
+    atr,
+  };
+}
+
+function buildFibonacciLevels(candidate) {
+  if (!candidate || !Array.isArray(candidate.points) || candidate.points.length < 2) {
+    return [];
+  }
+  const start = candidate.points[0].price;
+  const end = candidate.points[candidate.points.length - 1].price;
+  const delta = end - start;
+  if (!Number.isFinite(delta) || delta === 0) {
+    return [];
+  }
+  const retracements = [0.382, 0.5, 0.618].map((ratio) => ({
+    kind: "retracement",
+    label: `${(ratio * 100).toFixed(1)}%`,
+    price: end - delta * ratio,
+  }));
+  const extensions = [1, 1.618].map((ratio) => ({
+    kind: "extension",
+    label: `${(ratio * 100).toFixed(ratio === 1 ? 0 : 1)}%`,
+    price: start + delta * ratio,
+  }));
+  return [...retracements, ...extensions].filter((level) => Number.isFinite(level.price));
+}
+
+function buildPatternInterpretationLines(candidate, fibLevels, currentPrice) {
+  if (!candidate) {
+    return [
+      "해석: 충분한 파동 후보 없음",
+      "현재: 피벗 수/폭 부족으로 라벨 보류",
+      "확인: 더 큰 swing 형성 후 재판정",
+      "주의: 확정 신호 아님",
+    ];
+  }
+
+  const lastPoint = candidate.points[candidate.points.length - 1];
+  const previousPoint = candidate.points[candidate.points.length - 2];
+  const directionKo = candidate.direction.includes("bullish") ? "상승" : "하락";
+  const kindKo = candidate.kind === "impulse" ? "1-5 impulse" : "A-B-C correction";
+  const retracements = fibLevels
+    .filter((level) => level.kind === "retracement")
+    .sort((a, b) => a.price - b.price);
+  const nearestFib = retracements
+    .map((level) => ({ ...level, distance: Math.abs(level.price - currentPrice) }))
+    .sort((a, b) => a.distance - b.distance)[0];
+  const invalidationPrice = previousPoint && Number.isFinite(previousPoint.price) ? previousPoint.price : null;
+  const lastPrice = lastPoint && Number.isFinite(lastPoint.price) ? lastPoint.price : null;
+  const currentVsLast = Number.isFinite(lastPrice) && Number.isFinite(currentPrice)
+    ? currentPrice >= lastPrice
+      ? "마지막 피벗 돌파/연장 확인"
+      : "마지막 피벗 이후 되돌림 확인"
+    : "현재 위치 확인 필요";
+
+  const supportOrResistance = nearestFib
+    ? `관찰: Fib ${nearestFib.label} ${formatAxisNumber(nearestFib.price)} 부근 반응`
+    : "관찰: Fib 기준선 부족";
+  const invalidation = Number.isFinite(invalidationPrice)
+    ? `약화: 직전 피벗 ${formatAxisNumber(invalidationPrice)} 이탈/돌파`
+    : "약화: 직전 피벗 확인 필요";
+
+  return [
+    `해석: ${directionKo} ${kindKo} 후보 ${candidate.confidence.toFixed(2)}`,
+    `현재: ${currentVsLast}`,
+    supportOrResistance,
+    invalidation,
+    "주의: 엘리엇 확정 카운트 아님",
+  ];
+}
+
+function formatPctDistance(fromValue, toValue) {
+  if (!Number.isFinite(fromValue) || !Number.isFinite(toValue) || fromValue === 0) {
+    return "n/a";
+  }
+  const pct = ((toValue - fromValue) / fromValue) * 100;
+  const sign = pct > 0 ? "+" : "";
+  return `${sign}${pct.toFixed(1)}%`;
+}
+
+function formatPriceWithDistance(price, currentPrice) {
+  if (!Number.isFinite(price)) {
+    return "n/a";
+  }
+  return `${formatAxisNumber(price)} (${formatPctDistance(currentPrice, price)})`;
+}
+
+function maPositionLabel(close, maValues) {
+  const labels = [
+    ["MA20", maValues.ma20],
+    ["MA60", maValues.ma60],
+    ["MA120", maValues.ma120],
+  ].map(([label, value]) => {
+    if (!Number.isFinite(close) || !Number.isFinite(value)) {
+      return `${label} n/a`;
+    }
+    return `${label} ${close >= value ? "위" : "아래"}`;
+  });
+  return labels.join(" / ");
+}
+
+function movingAverageStructureKo(state) {
+  if (state === "strong-bullish") return "정배열 강화";
+  if (state === "bullish") return "상승 우위";
+  if (state === "strong-bearish") return "역배열 부담";
+  if (state === "bearish") return "하락 우위";
+  if (state === "rebound-inside-downtrend") return "하락 추세 내 반등";
+  if (state === "pullback-inside-uptrend") return "상승 추세 내 조정";
+  if (state === "mixed") return "혼조";
+  return "자료 부족";
+}
+
+function volumeRegimeKo(state) {
+  if (state === "heavy") return "20일 평균 대비 증가";
+  if (state === "light") return "20일 평균 대비 감소";
+  if (state === "normal") return "20일 평균 부근";
+  return "비교 부족";
+}
+
+function bollingerStateKo(state) {
+  if (state === "above-upper-band") return "상단 밴드 위";
+  if (state === "below-lower-band") return "하단 밴드 아래";
+  if (state === "upper-half") return "밴드 상단부";
+  if (state === "lower-half") return "밴드 하단부";
+  if (state === "mid-band") return "중심선 부근";
+  if (state === "inside-bands") return "밴드 내부";
+  return "자료 부족";
+}
+
+function bandwidthRegimeKo(state) {
+  if (state === "expanding") return "변동성 확대";
+  if (state === "contracting") return "변동성 축소";
+  if (state === "normal") return "변동성 보통";
+  return "변동성 자료 부족";
+}
+
+function cloudPositionKo(state) {
+  if (state === "above-cloud") return "구름 위";
+  if (state === "below-cloud") return "구름 아래";
+  if (state === "inside-cloud") return "구름 내부";
+  return "구름 자료 부족";
+}
+
+function tkCrossKo(state) {
+  if (state === "bullish") return "전환선>기준선";
+  if (state === "bearish") return "전환선<기준선";
+  if (state === "flat") return "전환선=기준선";
+  return "전환/기준 자료 부족";
+}
+
+function rsiStateKo(state) {
+  if (state === "overbought") return "과열권";
+  if (state === "oversold") return "침체권";
+  if (state === "neutral") return "중립권";
+  return "자료 부족";
+}
+
+function macdCrossKo(state) {
+  if (state === "bullish-cross") return "상향 돌파";
+  if (state === "bearish-cross") return "하향 이탈";
+  if (state === "bullish") return "MACD>Signal";
+  if (state === "bearish") return "MACD<Signal";
+  if (state === "flat") return "MACD=Signal";
+  return "자료 부족";
+}
+
+function histogramStateKo(state) {
+  if (state === "expanding") return "히스토그램 확대";
+  if (state === "contracting") return "히스토그램 축소";
+  if (state === "stable") return "히스토그램 보합";
+  return "히스토그램 자료 부족";
+}
+
+function adxStrengthKo(state) {
+  if (state === "strong-trend") return "강한 추세";
+  if (state === "building-trend") return "추세 형성";
+  if (state === "weak-trend") return "약한 추세";
+  return "강도 자료 부족";
+}
+
+function dmiDirectionKo(state) {
+  if (state === "bullish") return "+DI 우위";
+  if (state === "bearish") return "-DI 우위";
+  if (state === "flat") return "DI 중립";
+  return "DI 자료 부족";
+}
+
+function buildMainInterpretationLines(metrics) {
+  return [
+    `해석: ${movingAverageStructureKo(metrics.movingAverageStructure)}`,
+    `현재: ${maPositionLabel(metrics.latestClose, {
+      ma20: metrics.ma20Value,
+      ma60: metrics.ma60Value,
+      ma120: metrics.ma120Value,
+    })}`,
+    `거래량: ${volumeRegimeKo(metrics.volumeRegime)} (${formatPercentRatio(metrics.volumeRatio, 1)})`,
+    `확인: 20D 돌파 ${formatAxisNumber(metrics.breakoutLevel)} / 이탈 ${formatAxisNumber(metrics.breakdownLevel)}`,
+    "주의: 이동평균은 후행 지표",
+  ];
+}
+
+function buildOverlayInterpretationLines(metrics) {
+  return [
+    `해석: ${bollingerStateKo(metrics.bollinger.state)} / ${bandwidthRegimeKo(metrics.bollinger.bandwidthRegime)}`,
+    `일목: ${cloudPositionKo(metrics.ichimoku.cloudPosition)} / ${tkCrossKo(metrics.ichimoku.tkCross)}`,
+    `RSI: ${formatNumber(metrics.rsi14Value, 1)} (${rsiStateKo(metrics.rsiState)})`,
+    `확인: 상단 ${formatAxisNumber(metrics.bollinger.upper)} / 하단 ${formatAxisNumber(metrics.bollinger.lower)} 반응`,
+    "주의: 과열/침체는 반전 확정 아님",
+  ];
+}
+
+function buildMomentumInterpretationLines(metrics) {
+  return [
+    `해석: ${macdCrossKo(metrics.macd.crossState)} / ${histogramStateKo(metrics.macd.histogramState)}`,
+    `MACD: ${formatNumber(metrics.macd.macdValue, 1)} vs Signal ${formatNumber(metrics.macd.signalValue, 1)}`,
+    `ADX: ${formatNumber(metrics.adx.adxValue, 1)} (${adxStrengthKo(metrics.adx.strengthState)})`,
+    `DMI: ${dmiDirectionKo(metrics.adx.directionState)} (+${formatNumber(metrics.adx.plusDiValue, 1)} / -${formatNumber(metrics.adx.minusDiValue, 1)})`,
+    "주의: 모멘텀 둔화 시 가격 확인 필요",
+  ];
+}
+
+function buildStructureInterpretationLines(drawnZones, profile, currentPrice) {
+  const supports = drawnZones
+    .filter((zone) => zone.type === "support")
+    .sort((a, b) => Math.abs(a.center - currentPrice) - Math.abs(b.center - currentPrice));
+  const resistances = drawnZones
+    .filter((zone) => zone.type === "resistance")
+    .sort((a, b) => Math.abs(a.center - currentPrice) - Math.abs(b.center - currentPrice));
+  const nearestSupport = supports[0] || null;
+  const nearestResistance = resistances[0] || null;
+  const pocBin = profile && profile.bins && Number.isInteger(profile.pocIndex) ? profile.bins[profile.pocIndex] : null;
+  const pocPrice = pocBin ? (pocBin.priceLow + pocBin.priceHigh) / 2 : null;
+
+  return [
+    `해석: 가까운 지지 ${nearestSupport ? formatPriceWithDistance(nearestSupport.center, currentPrice) : "n/a"}`,
+    `저항: ${nearestResistance ? formatPriceWithDistance(nearestResistance.center, currentPrice) : "n/a"}`,
+    `POC: ${Number.isFinite(pocPrice) ? formatPriceWithDistance(pocPrice, currentPrice) : "n/a"}`,
+    "확인: zone 재진입/돌파 후 종가 유지",
+    "주의: zone 이탈 시 구조 재평가",
+  ];
+}
+
+function writeWaveCSV(filePath, waveAnalysis) {
+  const header = "candidate_id,kind,direction,status,confidence,label,date,index,type,price,min_swing";
+  const rows = [];
+  const candidates = waveAnalysis.candidates.length > 0
+    ? waveAnalysis.candidates
+    : [{
+      kind: "none",
+      direction: "insufficient wave candidate",
+      status: "insufficient wave candidate",
+      confidence: 0,
+      labels: [],
+      points: [],
+    }];
+  candidates.forEach((candidate, candidateIndex) => {
+    if (!candidate.points.length) {
+      rows.push(`${candidateIndex + 1},${candidate.kind},${candidate.direction},${candidate.status},${candidate.confidence.toFixed(4)},,,,,,${Math.round(waveAnalysis.minSwing || 0)}`);
+      return;
+    }
+    candidate.points.forEach((point, pointIndex) => {
+      const label = candidate.labels[pointIndex] || "";
+      rows.push([
+        candidateIndex + 1,
+        candidate.kind,
+        candidate.direction,
+        candidate.status,
+        candidate.confidence.toFixed(4),
+        label,
+        point.date || "",
+        point.index,
+        point.type,
+        Math.round(point.price),
+        Math.round(waveAnalysis.minSwing || 0),
+      ].join(","));
+    });
+  });
+  const csv = [header, ...rows].join("\n") + "\n";
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, csv);
+}
+
 function glyphWidth() {
   return 5;
 }
@@ -1139,6 +1592,22 @@ function drawValueCallout(buffer, width, height, rightEdge, y, label, theme, pan
   drawLine(buffer, width, height, boxLeft, boxTop, boxLeft, boxTop + boxHeight, theme.border, 1);
   drawLine(buffer, width, height, boxLeft + boxWidth, boxTop, boxLeft + boxWidth, boxTop + boxHeight, theme.border, 1);
   drawText(buffer, width, height, boxLeft + paddingX, boxTop + 4, label, theme.close, 2);
+}
+
+function drawTextBox(buffer, width, height, x, y, boxWidth, lines, theme) {
+  const paddingX = 12;
+  const paddingY = 10;
+  const lineHeight = 22;
+  const boxHeight = paddingY * 2 + lines.length * lineHeight;
+  fillRect(buffer, width, height, x, y, boxWidth, boxHeight, [255, 255, 255, 232]);
+  drawLine(buffer, width, height, x, y, x + boxWidth, y, theme.border, 1);
+  drawLine(buffer, width, height, x, y + boxHeight, x + boxWidth, y + boxHeight, theme.border, 1);
+  drawLine(buffer, width, height, x, y, x, y + boxHeight, theme.border, 1);
+  drawLine(buffer, width, height, x + boxWidth, y, x + boxWidth, y + boxHeight, theme.border, 1);
+  lines.forEach((line, index) => {
+    const color = index === 0 ? theme.text : theme.muted;
+    drawText(buffer, width, height, x + paddingX, y + paddingY + index * lineHeight, line, color, 2);
+  });
 }
 
 function drawCandlesticks(buffer, width, height, bars, xForSlot, minValue, maxValue, top, panelHeight, theme) {
@@ -1363,6 +1832,10 @@ function buildChartPngs(data, bars, metrics, options) {
     zoneFlipped: [155, 89, 182, 46],
     volumeProfileBar: [148, 163, 184, 200],
     volumeProfilePoc: [249, 115, 22, 230],
+    waveLine: [14, 116, 144, 255],
+    wavePoint: [8, 145, 178, 255],
+    fibRetracement: [100, 116, 139, 200],
+    fibExtension: [124, 58, 237, 200],
   };
 
   const margin = { left: 100, right: 120, top: 84, bottom: 78 };
@@ -1522,6 +1995,7 @@ function buildChartPngs(data, bars, metrics, options) {
     overlayOutput: path.resolve(appendSuffixToPath(options.pngOut, "overlay")),
     momentumOutput: path.resolve(appendSuffixToPath(options.pngOut, "momentum")),
     structureOutput: path.resolve(appendSuffixToPath(options.pngOut, "structure")),
+    patternOutput: path.resolve(appendSuffixToPath(options.pngOut, "pattern")),
     mainImagePath: options.imagePath || path.basename(options.pngOut),
     overlayImagePath: options.imagePath
       ? appendSuffixToPath(options.imagePath, "overlay")
@@ -1532,6 +2006,9 @@ function buildChartPngs(data, bars, metrics, options) {
     structureImagePath: options.imagePath
       ? appendSuffixToPath(options.imagePath, "structure")
       : appendSuffixToPath(path.basename(options.pngOut), "structure"),
+    patternImagePath: options.imagePath
+      ? appendSuffixToPath(options.imagePath, "pattern")
+      : appendSuffixToPath(path.basename(options.pngOut), "pattern"),
   };
 
   const buildMomentumChart = () => {
@@ -1660,6 +2137,17 @@ function buildChartPngs(data, bars, metrics, options) {
       fillRect(buffer, width, height, latestAdxPoint.x - 4, latestAdxPoint.y - 4, 8, 8, theme.adx);
     }
 
+    drawTextBox(
+      buffer,
+      width,
+      height,
+      margin.left + 16,
+      macdTop + 16,
+      Math.min(620, plotWidth - 32),
+      buildMomentumInterpretationLines(metrics),
+      theme,
+    );
+
     writePng(chartPaths.momentumOutput, buffer);
   };
 
@@ -1766,6 +2254,17 @@ function buildChartPngs(data, bars, metrics, options) {
       const barHeight = Math.max(2, Math.round((bar.volume / volumeMax) * (mainVolumeHeight - 4)));
       fillRect(buffer, width, height, x - volumeBarWidth / 2, volumeTop + mainVolumeHeight - barHeight, volumeBarWidth, barHeight, color);
     });
+
+    drawTextBox(
+      buffer,
+      width,
+      height,
+      margin.left + 16,
+      priceTop + 16,
+      Math.min(620, plotWidth - 32),
+      buildMainInterpretationLines(metrics),
+      theme,
+    );
 
     writePng(chartPaths.mainOutput, buffer);
   };
@@ -1910,6 +2409,17 @@ function buildChartPngs(data, bars, metrics, options) {
       fillRect(buffer, width, height, latestRsiPoint.x - 4, latestRsiPoint.y - 4, 8, 8, theme.rsi);
     }
 
+    drawTextBox(
+      buffer,
+      width,
+      height,
+      margin.left + 16,
+      priceTop + 16,
+      Math.min(620, plotWidth - 32),
+      buildOverlayInterpretationLines(metrics),
+      theme,
+    );
+
     writePng(chartPaths.overlayOutput, buffer);
   };
 
@@ -2045,6 +2555,17 @@ function buildChartPngs(data, bars, metrics, options) {
       );
     }
 
+    drawTextBox(
+      buffer,
+      width,
+      height,
+      margin.left + 16,
+      priceTop + 16,
+      Math.min(620, candleAreaWidth - 32),
+      buildStructureInterpretationLines(drawnZones, profile, currentPrice),
+      theme,
+    );
+
     writePng(chartPaths.structureOutput, buffer);
 
     const drawnSet = new Set(drawnZones);
@@ -2073,10 +2594,155 @@ function buildChartPngs(data, bars, metrics, options) {
     return { drawnZones, allZones: csvZones, csvPath };
   };
 
+  const buildPatternChart = () => {
+    const buffer = createRgbaBuffer(width, height, theme.background);
+    const totalSlotsForPattern = barsWindow.length;
+    const chartTitle = String(data.name || data.ticker || "UNKNOWN");
+    const xForSlot = (slot) => {
+      if (totalSlotsForPattern <= 1) {
+        return margin.left + plotWidth / 2;
+      }
+      return margin.left + (plotWidth * slot) / (totalSlotsForPattern - 1);
+    };
+
+    const priceTop = margin.top + headerHeight;
+    const patternPriceHeight = basePlotHeight;
+    const lastBar = barsWindow[barsWindow.length - 1];
+    const currentPrice = Number.isFinite(lastBar.close) ? lastBar.close : metrics.latestClose;
+    const waveAnalysis = detectWaveCandidates(barsWindow, currentPrice);
+    const selected = waveAnalysis.selected;
+    const fibLevels = buildFibonacciLevels(selected);
+    const interpretationLines = buildPatternInterpretationLines(selected, fibLevels, currentPrice);
+    const priceRange = buildPriceRange([
+      priceSeries.close,
+      fibLevels.map((level) => level.price),
+      waveAnalysis.pivots.map((pivot) => pivot.price),
+    ]);
+
+    fillRect(buffer, width, height, margin.left, priceTop, plotWidth, patternPriceHeight, theme.panel);
+    drawLine(buffer, width, height, margin.left, priceTop, margin.left + plotWidth, priceTop, theme.border, 1);
+    drawLine(buffer, width, height, margin.left, priceTop + patternPriceHeight, margin.left + plotWidth, priceTop + patternPriceHeight, theme.border, 1);
+    drawLine(buffer, width, height, margin.left, priceTop, margin.left, priceTop + patternPriceHeight, theme.border, 1);
+    drawLine(buffer, width, height, margin.left + plotWidth, priceTop, margin.left + plotWidth, priceTop + patternPriceHeight, theme.border, 1);
+
+    drawText(buffer, width, height, margin.left, margin.top + 4, chartTitle, theme.text, 3);
+    drawText(buffer, width, height, margin.left, margin.top + 34, `${data.ticker || "UNKNOWN"} 패턴/파동 분석 (Wave + Fibonacci)`, theme.muted, 2);
+    drawText(buffer, width, height, margin.left + plotWidth, margin.top + 10, `기준일 ${metrics.latest.date}`, theme.muted, 2, "right");
+
+    const legendY = margin.top + 56;
+    let legendX = margin.left;
+    legendX = drawLegendItem(buffer, width, height, legendX, legendY, theme.candleUpFill, "캔들");
+    legendX = drawLegendItem(buffer, width, height, legendX, legendY, theme.waveLine, "wave candidate");
+    legendX = drawLegendItem(buffer, width, height, legendX, legendY, theme.fibRetracement, "Fib retrace");
+    drawLegendItem(buffer, width, height, legendX, legendY, theme.fibExtension, "Fib extension");
+
+    drawText(buffer, width, height, margin.left - 54, priceTop + 6, "주가", theme.muted, 2);
+    drawPriceAxis(buffer, priceTop, patternPriceHeight, priceRange.min, priceRange.max);
+    drawDateTicks(buffer, xForSlot, priceTop + patternPriceHeight, priceTop + patternPriceHeight + 14, totalSlotsForPattern);
+    drawText(buffer, width, height, margin.left + plotWidth / 2, priceTop + patternPriceHeight + 42, "날짜", theme.muted, 2, "center");
+
+    drawCandlesticks(buffer, width, height, barsWindow, xForSlot, priceRange.min, priceRange.max, priceTop, patternPriceHeight, theme);
+
+    for (const level of fibLevels) {
+      if (level.price < priceRange.min || level.price > priceRange.max) {
+        continue;
+      }
+      const y = valueToY(level.price, priceRange.min, priceRange.max, priceTop, patternPriceHeight);
+      const color = level.kind === "extension" ? theme.fibExtension : theme.fibRetracement;
+      drawDashedLine(buffer, width, height, margin.left, y, margin.left + plotWidth, y, color, 1, 12, 8);
+      drawText(
+        buffer,
+        width,
+        height,
+        margin.left + plotWidth - 8,
+        y - 8,
+        `${level.label} ${formatAxisNumber(level.price)}`,
+        color,
+        2,
+        "right",
+      );
+    }
+
+    drawTextBox(
+      buffer,
+      width,
+      height,
+      margin.left + 16,
+      priceTop + 16,
+      Math.min(560, plotWidth - 32),
+      interpretationLines,
+      theme,
+    );
+
+    if (selected) {
+      const candidatePoints = selected.points.map((point) => ({
+        x: xForSlot(point.index),
+        y: valueToY(point.price, priceRange.min, priceRange.max, priceTop, patternPriceHeight),
+        pivot: point,
+      }));
+      for (let index = 1; index < candidatePoints.length; index += 1) {
+        drawLine(
+          buffer,
+          width,
+          height,
+          candidatePoints[index - 1].x,
+          candidatePoints[index - 1].y,
+          candidatePoints[index].x,
+          candidatePoints[index].y,
+          theme.waveLine,
+          3,
+        );
+      }
+      candidatePoints.forEach((point, index) => {
+        fillRect(buffer, width, height, point.x - 5, point.y - 5, 10, 10, theme.wavePoint);
+        const label = selected.labels[index] || "";
+        if (label) {
+          const offsetY = point.pivot.type === "high" ? -26 : 14;
+          drawText(buffer, width, height, point.x, point.y + offsetY, label, theme.waveLine, 3, "center");
+        }
+      });
+      drawText(
+        buffer,
+        width,
+        height,
+        margin.left + plotWidth,
+        margin.top + 34,
+        `${selected.kind} ${selected.direction} candidate ${selected.confidence.toFixed(2)}`,
+        theme.waveLine,
+        2,
+        "right",
+      );
+    } else {
+      drawText(
+        buffer,
+        width,
+        height,
+        margin.left + plotWidth / 2,
+        priceTop + patternPriceHeight / 2 - 10,
+        "insufficient wave candidate",
+        theme.muted,
+        2,
+        "center",
+      );
+    }
+
+    const csvPath = chartPaths.patternOutput.replace(/\.png$/, "-waves.csv");
+    writeWaveCSV(csvPath, waveAnalysis);
+    writePng(chartPaths.patternOutput, buffer);
+
+    console.error("[pattern-chart] self-check");
+    console.error(`  candidate count: ${waveAnalysis.candidates.length}`);
+    console.error(`  selected candidate: ${selected ? `${selected.kind}/${selected.direction}/${selected.confidence.toFixed(2)}` : "none"}`);
+    console.error(`  CSV columns: 11`);
+
+    return { waveAnalysis, selected, csvPath };
+  };
+
   buildMainTrendChart();
   buildOverlayChart();
   buildMomentumChart();
   const structureResult = buildStructureChart();
+  const patternResult = buildPatternChart();
 
   return {
     imagePaths: {
@@ -2084,11 +2750,15 @@ function buildChartPngs(data, bars, metrics, options) {
       overlay: chartPaths.overlayImagePath,
       momentum: chartPaths.momentumImagePath,
       structure: chartPaths.structureImagePath,
+      pattern: chartPaths.patternImagePath,
     },
     chartBarsUsed: barsWindow.length,
     leadBarsUsed: leadSlots,
     structureZones: structureResult ? structureResult.drawnZones : [],
     structureCsvPath: structureResult ? structureResult.csvPath : null,
+    patternCandidates: patternResult ? patternResult.waveAnalysis.candidates : [],
+    patternSelected: patternResult ? patternResult.selected : null,
+    patternCsvPath: patternResult ? patternResult.csvPath : null,
   };
 }
 
@@ -2354,8 +3024,10 @@ function main() {
     console.log("");
     console.log(`![${data.name || data.ticker || "Chart"} structure chart](${pngInfo.imagePaths.structure})`);
     console.log("");
+    console.log(`![${data.name || data.ticker || "Chart"} pattern wave chart](${pngInfo.imagePaths.pattern})`);
+    console.log("");
     console.log(
-      `The main chart uses OHLC candlesticks with upper and lower wicks, plus MA5, MA20, MA60, MA120, and volume. The overlay chart separates Bollinger Bands, Ichimoku cloud lines, and RSI14, and reserves ${pngInfo.leadBarsUsed} forward slots for the projected cloud. The momentum chart focuses on MACD, signal, histogram, and ADX/DMI so crossovers, momentum acceleration, and trend strength are easier to see. The structure chart pairs candles with a horizontal volume-by-price gutter (POC highlighted) and ATR-tolerance clustered support/resistance zones drawn as horizontal price bands (up to 3 each, within ±30% of current price). The full zone roster — including broken or distance-filtered zones — is exported to a sibling \`-zones.csv\`.`,
+      `The main chart uses OHLC candlesticks with upper and lower wicks, plus MA5, MA20, MA60, MA120, and volume. The overlay chart separates Bollinger Bands, Ichimoku cloud lines, and RSI14, and reserves ${pngInfo.leadBarsUsed} forward slots for the projected cloud. The momentum chart focuses on MACD, signal, histogram, and ADX/DMI so crossovers, momentum acceleration, and trend strength are easier to see. The structure chart pairs candles with a horizontal volume-by-price gutter (POC highlighted) and ATR-tolerance clustered support/resistance zones drawn as horizontal price bands (up to 3 each, within ±30% of current price). The pattern chart adds recent swing-pivot wave candidates and Fibonacci retracement/extension levels; labels are drawn only for candidates with confidence >= 0.55, while all candidates are exported to a sibling \`-waves.csv\`. The full zone roster — including broken or distance-filtered zones — is exported to a sibling \`-zones.csv\`.`,
     );
     console.log("");
 
@@ -2378,6 +3050,31 @@ function main() {
         console.log("");
       }
     }
+
+    console.log("## Pattern / Wave Candidates");
+    console.log("");
+    if (pngInfo.patternSelected) {
+      const candidate = pngInfo.patternSelected;
+      console.log(`Selected drawable candidate: ${candidate.kind} / ${candidate.direction} / confidence ${candidate.confidence.toFixed(3)}.`);
+    } else {
+      console.log("Selected drawable candidate: insufficient wave candidate.");
+    }
+    if (Array.isArray(pngInfo.patternCandidates) && pngInfo.patternCandidates.length > 0) {
+      console.log("");
+      console.log("| Kind | Direction | Status | Confidence | Points |");
+      console.log("| --- | --- | --- | --- | --- |");
+      for (const candidate of pngInfo.patternCandidates.slice(0, 5)) {
+        const points = candidate.points
+          .map((point, index) => `${candidate.labels[index] || "start"}:${point.date || point.index}@${formatAxisNumber(point.price)}`)
+          .join(" → ");
+        console.log(`| ${candidate.kind} | ${candidate.direction} | ${candidate.status} | ${candidate.confidence.toFixed(3)} | ${points} |`);
+      }
+    }
+    if (pngInfo.patternCsvPath) {
+      console.log("");
+      console.log(`Full wave roster: \`${path.basename(pngInfo.patternCsvPath)}\``);
+    }
+    console.log("");
   }
 
   console.log("## Indicators");
