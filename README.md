@@ -7,6 +7,51 @@ Language docs:
 - English: [README.md](README.md)
 - Korean: [README-kr.md](README-kr.md)
 
+## What You Get
+
+This repo turns a ticker or sector question into dated research artifacts on disk, not just a chat answer. For Korean equities, the strongest workflow is:
+
+```text
+one stock question
+  -> DART filing checks
+  -> KRX chart package
+  -> sell-side / Naver / foreign-IB outside views
+  -> analysis-example/kr/<company>/memo.md
+```
+
+한국 주식 리서치를 할 때 특히 강합니다. DART 원문, 차트, 밸류에이션, 증권사/블로그/외국계 관점을 한 파일에 모아 `Decision Frame`, `DART Recheck`, `Street / Alternative Views`, `Structured Stance`까지 남깁니다.
+
+Representative outputs:
+
+| Output | Why it is worth opening |
+| --- | --- |
+| [HD현대중공업 full decision memo](<analysis-example/kr/HD현대중공업/memo.md>) | Shows the full KRX memo shape: decision frame, DART recheck, valuation snapshot, five chart panels, rule screen, and follow-up prompts. |
+| [리가켐바이오 platform memo](<analysis-example/kr/리가켐바이오/memo.md>) | Shows how the skill handles a loss-making biotech where pipeline value, cash burn, DART facts, and independent views have to be separated. |
+| [엘앤에프 chart analysis](<analysis-example/kr/엘앤에프/chart-analysis.md>) | Shows the chart-only output with moving averages, structure zones, pattern/wave sidecars, and reusable PNG artifacts. |
+| [국내 데이터센터 sector report](analysis-example/kr-sector/국내%20데이터센터.md) | Shows the sector workflow for policy, value chain, listed exposure, constraints, and source-dated market structure. |
+
+### Result Preview
+
+From the HD현대중공업 memo, the output starts with the decision question instead of a generic company description:
+
+> 무엇이 투자판단을 가장 크게 바꾸나? 2026년 하반기에도 1Q26의 15%대 OPM이 유지되는지, 그리고 고선가/엔진/해양/특수선 옵션이 실제 이익으로 이어지는지가 핵심이다.
+
+The same memo keeps thesis-critical facts honest with a DART recheck table, for example distinguishing `confirmed`, `partially supported`, and `not separately disclosed` claims before moving to valuation and stance.
+
+Chart artifacts are saved alongside the memo so the writeup and visuals stay in sync:
+
+![HD현대중공업 main trend chart](analysis-example/kr/HD현대중공업/assets/HD현대중공업-chart.png)
+
+![HD현대중공업 momentum chart](analysis-example/kr/HD현대중공업/assets/HD현대중공업-chart-momentum.png)
+
+![엘앤에프 pattern wave chart](analysis-example/kr/assets/엘앤에프-chart-pattern.png)
+
+Try it from Codex:
+
+```text
+Use $kr-stock-plan as the entry point for HD현대중공업. First ask what I actually need, scope it into a 12-24 month full decision memo, run $kr-stock-chart if chart work is required, route through $kr-stock-dart-analysis if filing precision matters, gather sell-side and outside-view inputs when available, then finish with $kr-stock-analysis and write the memo file.
+```
+
 ## Install
 
 ### Codex
@@ -78,24 +123,25 @@ CLAUDE_HOME=/tmp/claude-home bash ./scripts/install-all-claude-skills.sh
 
 ## Included Skills
 
-Korean stock workflow shorthand: `kr-stock-plan -> kr-stock-dart-analysis -> kr-stock-data-pack -> kr-stock-analysis`
+Korean stock workflow shorthand: `kr-stock-plan -> kr-stock-chart -> kr-stock-dart-analysis -> kr-stock-data-pack -> kr-stock-analysis`
 
 `kr-stock-plan` should act as the entry-point orchestrator: if the user starts there and did not explicitly ask for `plan only`, it should ask a short needs check, build the brief, decide whether this is a fresh memo, follow-up, or dated update, and continue through the downstream skills automatically.
 
 Suggested handoff prompt:
 
 ```text
-Use $kr-stock-plan as the entry point for Korean stock work. Have it first ask what the user actually needs, scope the request, treat my main question as the priority lens, route through $kr-stock-dart-analysis when filing precision matters, then build the dated fact base with $kr-stock-data-pack, and finish with $kr-stock-analysis unless the user explicitly asks to stop after planning.
+Use $kr-stock-plan as the entry point for Korean stock work. Have it first ask what the user actually needs, scope the request, treat my main question as the priority lens, route through $kr-stock-chart when chart work is needed, route through $kr-stock-dart-analysis when filing precision matters, then build the dated fact base with $kr-stock-data-pack, and finish with $kr-stock-analysis unless the user explicitly asks to stop after planning.
 ```
 
 Concrete example:
 
 ```text
-Use $kr-stock-plan as the entry point for LG CNS. First ask what the user actually needs, scope it into a 12-24 month full decision memo, route through $kr-stock-dart-analysis if the latest filing basis, segment detail, backlog, or contract disclosures are important, then use $kr-stock-data-pack to assemble dated price, governance, valuation, chart, and outside-view inputs, and finish with $kr-stock-analysis for the final memo.
+Use $kr-stock-plan as the entry point for LG CNS. First ask what the user actually needs, scope it into a 12-24 month full decision memo, run $kr-stock-chart if chart work is required, route through $kr-stock-dart-analysis if the latest filing basis, segment detail, backlog, or contract disclosures are important, then use $kr-stock-data-pack to assemble dated price, governance, valuation, chart, and outside-view inputs, and finish with $kr-stock-analysis for the final memo.
 ```
 
 - `us-stock-analysis` for U.S. stocks and U.S.-listed ETFs
 - `kr-stock-plan` for scoping Korean stock research into an execution-ready brief and acting as the default entry-point orchestrator for fresh memos, follow-up questions, and dated updates
+- `kr-stock-chart` for chart-only KRX output and reusable chart artifacts including `chart-data.json`, `chart-analysis.md`, five PNG panels, CSV sidecars, and optional rule-screen outputs
 - `kr-stock-dart-analysis` for precise DART filing extraction before broader Korean stock interpretation
 - `kr-stock-data-pack` for gathering structured company fact packs before drafting, including optional outside-view inputs
 - `kr-stock-analysis` for Korean stock quick views, full decision memos, event notes, pair compares, archetype-specific uncomfortable questions, decision-changing issues, structured stance, and follow-up research prompts
@@ -164,14 +210,14 @@ Primary instructions:
 Current behavior:
 
 1. `kr-stock-plan` now starts with a short user-needs check, converts a vague Korean stock request into a clear security definition, output mode, key questions, and a recommended workflow, classifies the task as fresh memo versus follow-up versus dated update, and should continue into the downstream skills automatically unless the user asked for planning only.
-2. `kr-stock-dart-analysis` acts as the filing-precision stage when the work depends on exact DART-backed result, segment, customer, backlog, contract, or disclosure wording detail, and should first ask a short filing-needs check when the target slice is still unclear.
+2. `kr-stock-chart` owns KRX chart generation. It fetches about 2 years of daily bars by default, writes `chart-data.json` and `chart-analysis.md`, renders the five PNG chart panels plus CSV sidecars, and can add a rule-screen block when requested. The technical read now surfaces today's `MA5 / 20 / 60 / 120 / 200` price levels explicitly.
+3. `kr-stock-dart-analysis` acts as the filing-precision stage when the work depends on exact DART-backed result, segment, customer, backlog, contract, or disclosure wording detail, and should first ask a short filing-needs check when the target slice is still unclear.
    For long annual filings, it should also keep a `dart-reference.md` digest and `dart-cache.json` coverage cache so later updates can reuse section-level verification instead of re-reading the entire filing blindly.
    When the filing supports a broader stock memo, it should also run a DART recheck loop for thesis-critical claims instead of treating deep verification as optional.
-3. `kr-stock-data-pack` collects dated price context, filings, results, governance facts, valuation inputs, chart inputs, and optional outside-view inputs before drafting, and should first confirm which pack blocks the user actually wants when that is not already defined.
-4. `kr-stock-analysis` writes the final output as a `quick view`, `full memo`, `pre-earnings note`, `post-earnings note`, or `pair compare` for KRX-listed companies, and should first confirm the final decision frame or section priorities when they are still ambiguous.
+4. `kr-stock-data-pack` collects dated price context, filings, results, governance facts, valuation inputs, chart inputs, and optional outside-view inputs before drafting, and should ingest `kr-stock-chart` artifacts rather than rebuilding them.
+5. `kr-stock-analysis` writes the final output as a `quick view`, `full memo`, `pre-earnings note`, `post-earnings note`, or `pair compare` for KRX-listed companies, and should first confirm the final decision frame or section priorities when they are still ambiguous.
    Full memos now behave like decision memos: they lead with `Decision Frame`, then surface `Uncomfortable Questions`, `Decision-Changing Issues`, `Structured Stance`, and `Follow-up Research Prompts` as fixed headers.
-5. `kr-stock-update` preserves the original memo date, refreshes `최근 업데이트일`, and appends or replaces dated follow-up blocks under `## Update Log`.
-6. `kr-stock-analysis` chart output now defaults to a three-chart view so price action is easier to read: one main PNG for `OHLC candlesticks + close line + MA5/20/60/120 + volume`, one overlay PNG for `Bollinger + Ichimoku + RSI14`, and one momentum PNG for `MACD + signal + histogram + ADX/DMI`.
+6. `kr-stock-update` preserves the original memo date, refreshes `최근 업데이트일`, and appends or replaces dated follow-up blocks under `## Update Log`.
 
 Recommended pipeline:
 
@@ -179,6 +225,7 @@ Recommended pipeline:
 kr-stock-plan
   -> ask user needs, then lock security, mode, must-answer questions, and the user's priority question
   -> decide fresh memo vs follow-up vs dated update
+  -> if chart work matters: kr-stock-chart
   -> if filing precision matters: kr-stock-dart-analysis
   -> if sell-side consensus matters: kr-analyst-report-discover -> kr-analyst-report-fetch -> kr-analyst-report-insight
   -> if foreign-IB views matter: kr-foreign-analyst
@@ -198,19 +245,20 @@ Analyst-report pipeline details:
 Routing guide:
 
 - Start with `kr-stock-plan` when the request is still ambiguous on ticker, share class, horizon, compare mode, deliverable shape, or whether the user wants a fresh memo versus a follow-up. If the user started there for actual analysis work, continue automatically after the brief instead of waiting for another manual skill call.
+- Insert `kr-stock-chart` when the user wants chart-only output or when the memo should ingest reusable chart artifacts.
 - Insert `kr-stock-dart-analysis` when the conclusion depends on exact DART wording, standalone-quarter derivation, segment detail, customer concentration, backlog, or contract disclosures.
 - Use `kr-stock-data-pack` to assemble the dated fact base around price, governance, valuation, chart, and outside-view inputs.
 - Finish with `kr-stock-analysis` for the final memo, event note, quick view, or pair compare. For full memos, keep `analysis-example/kr/<company>/memo.md` as the canonical state artifact for later follow-up work.
 
 Bundled helpers:
 
-- `scripts/fetch-kr-chart.js` for current KRX daily bars
-- `scripts/chart-basics.js` for technical reads plus three-part PNG chart output that separates the main trend view, the heavier overlays, and momentum panels for `MACD` and `ADX/DMI`
-- `scripts/chart-basics.js` now draws KR main charts with candlesticks, a close line, and a current-price guide, and uses Korean chart labels through `KR_STOCK_CHART_FONT`, then the bundled `skills/kr-stock-analysis/assets/fonts/NotoSansKR-Regular.ttf`, then OS font discovery
-- `scripts/chart-basics.js` writes the requested `--png-out` path as the main trend chart and writes sibling `*-overlay.png` and `*-momentum.png` files for the heavier indicator and momentum views
+- `skills/kr-stock-chart/scripts/fetch-kr-chart.js` for current KRX daily bars with a default `2y` range
+- `skills/kr-stock-chart/scripts/chart-basics.js` for technical reads plus five-part PNG chart output that separates the main trend view, heavier overlays, momentum panels for `MACD` and `ADX/DMI`, structure zones with volume-by-price, and candidate wave/Fibonacci context
+- `skills/kr-stock-chart/scripts/chart-basics.js` now draws KR main charts with candlesticks, a close line, a current-price guide, `MA5/20/60/120/200`, and an explicit latest moving-average summary in the markdown interpretation
+- `skills/kr-stock-chart/scripts/chart-basics.js` writes the requested `--png-out` path as the main trend chart and writes sibling `*-overlay.png`, `*-momentum.png`, `*-structure.png`, and `*-pattern.png` files, plus `*-structure-zones.csv` and `*-pattern-waves.csv` sidecars
 - `scripts/valuation-chart.js` uses the same bundled Korean font path for P/E, P/B, and EV/EBITDA PNG labels. The bundled Noto Korean Regular font comes from the official `notofonts/noto-cjk` distribution and is included with `LICENSE-NotoSansKR.txt` under the SIL Open Font License.
-- `scripts/build-kr-universe-rs-cache.js` for integrated `KOSPI + KOSDAQ` relative-strength percentile cache files under `.tmp/kr-rs-cache/<YYYY-MM-DD>.json`
-- `scripts/kr-trend-rules.js` for `Minervini Trend Template` pass/fail plus `KRX 52주 신고가 리더십 점수` markdown blocks that can be embedded in the memo's `Chart and Positioning` section
+- `skills/kr-stock-chart/scripts/build-kr-universe-rs-cache.js` for integrated `KOSPI + KOSDAQ` relative-strength percentile cache files under `.tmp/kr-rs-cache/<YYYY-MM-DD>.json`
+- `skills/kr-stock-chart/scripts/kr-trend-rules.js` for `Minervini Trend Template` pass/fail plus `KRX 52주 신고가 리더십 점수` markdown blocks that can be embedded in the memo's `Chart and Positioning` section
 - `scripts/valuation-bands.js` for 3-5 year valuation band summaries
 - `scripts/peer-valuation.js` for comparable-company valuation tables
 - `skills/kr-stock-dart-analysis/scripts/extract-dart-sections.js` for building a section index from a text export of a DART filing
@@ -444,21 +492,24 @@ node skills/kr-stock-dart-analysis/scripts/build-dart-reference.js --sections an
 
 ## Analysis Examples
 
-The list below is kept to audited golden examples and reusable fixtures so the links stay in sync with validation.
+The links below are grouped by the question each artifact answers. They are kept to audited golden examples and reusable fixtures so validation can keep them in sync.
 
-**Full decision memos:**
+**Full decision memos: start here if you want to see the end product**
 
-- [KR - 리가켐바이오 Memo](<analysis-example/kr/리가켐바이오/memo.md>)
-- [KR - LG CNS Memo](<analysis-example/kr/LG CNS/memo.md>)
-- [KR - 대양전기공업 Memo](<analysis-example/kr/대양전기공업/memo.md>)
-- [KR - LIG넥스원 Memo](<analysis-example/kr/LIG넥스원/memo.md>)
-- [KR - 삼성SDS Memo](<analysis-example/kr/삼성SDS/memo.md>)
-- [KR - 엘앤에프 Memo](<analysis-example/kr/엘앤에프/memo.md>)
-- [KR - 현대오토에버 Memo](<analysis-example/kr/현대오토에버/memo.md>)
-- [KR - HMM Memo](<analysis-example/kr/HMM/memo.md>)
-- [KR - HD현대 Memo](<analysis-example/kr/HD현대/memo.md>)
+- [KR - HD현대중공업 Memo](<analysis-example/kr/HD현대중공업/memo.md>) for a full shipbuilding-cycle decision memo with DART recheck, valuation bands, five chart panels, and rule screen.
+- [KR - 리가켐바이오 Memo](<analysis-example/kr/리가켐바이오/memo.md>) for a biotech platform memo that separates disclosed facts, pipeline option value, burn rate, and independent views.
+- [KR - 한화오션 Memo](<analysis-example/kr/한화오션/memo.md>) for a shipbuilding memo with sell-side consensus and alternative-view inputs.
+- [KR - HMM Memo](<analysis-example/kr/HMM/memo.md>) for a cyclical shipping memo backed by data pack, DART work, and analyst-report insight.
+- [KR - 엘앤에프 Memo](<analysis-example/kr/엘앤에프/memo.md>) for a battery-materials memo with chart package and sell-side insight.
+- [KR - LG CNS Memo](<analysis-example/kr/LG CNS/memo.md>) for an IT services / cloud example with DART references and contract-oriented context.
+- [KR - 삼성SDS Memo](<analysis-example/kr/삼성SDS/memo.md>) for an enterprise IT example with valuation history and Naver outside views.
+- [KR - 현대오토에버 Memo](<analysis-example/kr/현대오토에버/memo.md>) for an auto software / IT services example with valuation chart artifacts.
+- [KR - LIG넥스원 Memo](<analysis-example/kr/LIG넥스원/memo.md>) for a defense-stock memo with filing-backed context.
+- [KR - 대양전기공업 Memo](<analysis-example/kr/대양전기공업/memo.md>) for a smaller KRX company example.
+- [KR - 삼성전자 Sell-Side Count Memo](<analysis-example/kr/삼성전자/memo.md>) and [KR - SK하이닉스 Sell-Side Count Memo](<analysis-example/kr/SK하이닉스/memo.md>) for semiconductor examples focused on sell-side coverage count and market framing.
+- [KR - HD현대 Memo](<analysis-example/kr/HD현대/memo.md>) for an OpenDART-backed holding-company example.
 
-**Research briefs, data packs, and DART references:**
+**DART filing extraction and data packs: check how raw filings become memo-ready evidence**
 
 - [KR - 리가켐바이오 리서치 브리프](<analysis-example/kr/리가켐바이오/리서치브리프.md>)
 - [KR - 리가켐바이오 DART 분석](<analysis-example/kr/리가켐바이오/dart-analysis.md>)
@@ -469,19 +520,26 @@ The list below is kept to audited golden examples and reusable fixtures so the l
 - [KR - HMM Data Pack](<analysis-example/kr/HMM/data-pack.md>)
 - [KR - HMM DART 분석](<analysis-example/kr/HMM/dart-analysis.md>)
 - [KR - HMM Analyst Report Insight](<analysis-example/kr/HMM/analyst-report-insight.md>)
+- [KR - 한화오션 Analyst Report Insight](<analysis-example/kr/한화오션/analyst-report-insight.md>)
 - [KR - HD현대 DART Reference (OpenDART)](<analysis-example/kr/HD현대/dart-reference.md>)
 - [KR - HD현대 DART Coverage](<analysis-example/kr/HD현대/dart-coverage.json>)
+
+**Chart package: see the reusable KRX chart artifacts**
+
+- [KR - 엘앤에프 Chart Analysis](<analysis-example/kr/엘앤에프/chart-analysis.md>) for the markdown technical read.
+- [KR - 엘앤에프 Pattern/Wave Chart PNG](<analysis-example/kr/assets/엘앤에프-chart-pattern.png>) and [Pattern/Wave CSV](<analysis-example/kr/assets/엘앤에프-chart-pattern-waves.csv>) for the wave/Fibonacci sidecar output.
+- [KR - HD현대중공업 Main Chart PNG](<analysis-example/kr/HD현대중공업/assets/HD현대중공업-chart.png>), [Overlay](<analysis-example/kr/HD현대중공업/assets/HD현대중공업-chart-overlay.png>), [Momentum](<analysis-example/kr/HD현대중공업/assets/HD현대중공업-chart-momentum.png>), [Structure](<analysis-example/kr/HD현대중공업/assets/HD현대중공업-chart-structure.png>), and [Pattern](<analysis-example/kr/HD현대중공업/assets/HD현대중공업-chart-pattern.png>) for the full five-panel chart package.
 - [KR - HD현대 Chart PNG](<analysis-example/kr/assets/HD현대-chart.png>)
 - [KR - HD현대 Overlay Chart PNG](<analysis-example/kr/assets/HD현대-chart-overlay.png>)
 - [KR - HD현대 Momentum Chart PNG](<analysis-example/kr/assets/HD현대-chart-momentum.png>)
 
-**Contract and backlog analysis (수주):**
+**Contract and backlog analysis: inspect disclosed order and supply-contract work**
 
 - [KR - 두산에너빌리티 수주통합분석](<analysis-example/kr/두산에너빌리티/수주통합분석.md>)
 - [KR - 한미글로벌 수주계약리스트](<analysis-example/kr/한미글로벌/수주계약리스트.md>)
 - [KR - 한전KPS 수주계약리스트](<analysis-example/kr/한전KPS/수주계약리스트.md>)
 
-**Naver blogger insights (Street / Alternative Views):**
+**Street / Alternative Views: compare filings against outside narratives**
 
 - [KR - 삼성SDS Naver Insights](<analysis-example/kr/삼성SDS/naver-insights.md>)
 - [KR - 엘앤에프 Naver Insights](<analysis-example/kr/엘앤에프/naver-insights.md>)
@@ -492,6 +550,11 @@ The list below is kept to audited golden examples and reusable fixtures so the l
 - [KR - 리가켐바이오 Naver Posts](<analysis-example/kr/리가켐바이오/naver-posts.json>)
 - [KR - 리가켐바이오 Naver Blogger Candidates](<analysis-example/kr/리가켐바이오/naver-bloggers.json>)
 - [KR - 삼성SDS Naver Blogger Candidates](<analysis-example/kr/삼성SDS/naver-bloggers.json>)
+
+**Sector research: see the same dated-source discipline applied outside single stocks**
+
+- [KR Sector - 국내 데이터센터](analysis-example/kr-sector/국내%20데이터센터.md) for a full Korea sector report with policy, value chain, listed-company exposure, and constraints.
+- [KR Sector - 국내 데이터센터 리서치 브리프](analysis-example/kr-sector/국내%20데이터센터-리서치브리프.md) for the scoped planning artifact.
 
 **Known issue: Naver browse in sandbox**
 
@@ -508,11 +571,6 @@ The list below is kept to audited golden examples and reusable fixtures so the l
   `bunx playwright install-deps chromium` before installing Chromium. Set
   `SKILL_INSTALL_SKIP_LINUX_DEPS=1` to skip automatic system dependency
   installation.
-
-**Sector research:**
-
-- [KR Sector - 국내 데이터센터](analysis-example/kr-sector/국내%20데이터센터.md)
-- [KR Sector - 국내 데이터센터 리서치 브리프](analysis-example/kr-sector/국내%20데이터센터-리서치브리프.md)
 
 **Fixtures:**
 
