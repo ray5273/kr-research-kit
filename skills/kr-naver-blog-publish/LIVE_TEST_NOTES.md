@@ -1,6 +1,7 @@
 # kr-naver-blog-publish live test notes
 
 Date: 2026-06-21
+Updated: 2026-06-22
 
 Scope:
 
@@ -38,10 +39,15 @@ What did not work reliably:
 
 Implementation follow-ups:
 
-1. Persist the working UTF-8 HTML clipboard path in `scripts/publisher.js`.
-2. Replace generic `click` calls with a SmartEditor-specific focus/selection helper and DOM-click fallback.
-3. Add exact tests for heading/separator HTML generation.
-4. Investigate SmartEditor image insertion by watching the real toolbar-created file input and the editor's upload events.
-5. Keep `publish` blocked unless title, body, source, disclaimer, and exact image count all validate.
-6. Add a cleanup/start-fresh guard so repeated prepare attempts cannot stack duplicate title/body content.
+Resolved in `scripts/publisher.js`:
 
+1. Persisted a UTF-8-safe clipboard path that sends both `text/plain` and `text/html`, with base64 payloads decoded through `TextDecoder`.
+2. Added SmartEditor-specific focus/selection before paste and DOM-click fallback for timed-out editor/save/publish button clicks.
+3. Added deterministic HTML generation for large bold `##` headings, medium `###` headings, and section separators.
+4. Added a start-fresh guard so repeated prepare attempts do not stack duplicate title/body content; different existing draft content now blocks prepare.
+5. Kept `publish` blocked unless title, body, source, disclaimer, and exact image count all validate.
+
+Remaining live investigation:
+
+1. Chart image upload is still unresolved. If the toolbar-created file input is processed but SmartEditor image nodes are not inserted, `prepare` must fail with an image-count mismatch.
+2. Investigate SmartEditor image insertion by watching the real toolbar-created file input, upload events, and any post-upload editor insert pipeline.
