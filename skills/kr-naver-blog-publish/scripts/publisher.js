@@ -84,21 +84,135 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;");
 }
 
+const OPINION_STRONG_PATTERN = /중립적 관찰|매수 전환 검토|둘 다 맞고|스탠스|판단|검토|관찰|쪽이다|해석/;
+const NEGATIVE_STRONG_PATTERN = /별풍선.*역성장|역성장|마진 압축|치지직|글로벌 미입증|가치 함정|감익|하락|리스크|악화|미실현|부정|약화|촉매 부재|점유율 상실|성장 엔진은 식었다|제한적|과소추정|잘못 본다|그칠 것|낮은 수수료|확산이 없다면|크지 않다/;
+const POSITIVE_STRONG_PATTERN = /저평가|순현금|배당수익률|배당|자사주 소각|반전|촉매|강한 하방|딥밸류|싸다|하방 보강|긍정|의미가 커진다|부가가치|리레이팅|확산 레퍼런스|손익계산서에 보일 수 있는 규모|구축\/운영|반복 판매/;
+const NEGATIVE_AUTO_PHRASES = [
+  "역성장과 마진 압축 리스크",
+  "성장 엔진은 식었다",
+  "글로벌 미입증",
+  "점유율 상실",
+  "촉매 부재",
+  "낮은 수수료",
+  "마진 압축",
+  "가치 함정",
+  "별풍선 역성장",
+  "역성장",
+  "과소추정",
+  "치지직",
+  "감익",
+  "하락",
+  "리스크",
+  "악화",
+  "미실현",
+  "부정",
+  "약화",
+  "제한적",
+  "크지 않다",
+  "그칠 것",
+  "확산이 없다면",
+  "잘못 본다",
+];
+const POSITIVE_AUTO_PHRASES = [
+  "손익계산서에 보일 수 있는 규모",
+  "순현금과 배당수익률",
+  "외부 고객 반복 판매",
+  "확산 레퍼런스",
+  "자사주 소각",
+  "강한 하방",
+  "하방 보강",
+  "배당수익률",
+  "구축/운영",
+  "부가가치",
+  "리레이팅",
+  "저평가",
+  "순현금",
+  "배당",
+  "반전",
+  "촉매",
+  "딥밸류",
+  "싸다",
+  "긍정",
+  "의미가 커진다",
+  "반복 판매",
+];
+const AUTO_HIGHLIGHT_PHRASES = [
+  ...POSITIVE_AUTO_PHRASES.map(phrase => ({ phrase, tone: "positive" })),
+  ...NEGATIVE_AUTO_PHRASES.map(phrase => ({ phrase, tone: "negative" })),
+].sort((a, b) => b.phrase.length - a.phrase.length);
+
 function semanticStrongHtml(value) {
-  const opinion = /중립적 관찰|매수 전환 검토|둘 다 맞고|스탠스|판단|검토|관찰|쪽이다|해석/.test(value);
-  const negative = /별풍선.*역성장|역성장|마진 압축|치지직|글로벌 미입증|가치 함정|감익|하락|리스크|악화|미실현|부정|약화|촉매 부재|점유율 상실|성장 엔진은 식었다|제한적|과소추정|잘못 본다|그칠 것|낮은 수수료|확산이 없다면|크지 않다/.test(value);
-  const positive = /저평가|순현금|배당수익률|배당|자사주 소각|반전|촉매|강한 하방|딥밸류|싸다|하방 보강|긍정|의미가 커진다|부가가치|리레이팅|확산 레퍼런스|손익계산서에 보일 수 있는 규모|구축\/운영|반복 판매/.test(value);
+  const opinion = OPINION_STRONG_PATTERN.test(value);
+  const negative = NEGATIVE_STRONG_PATTERN.test(value);
+  const positive = POSITIVE_STRONG_PATTERN.test(value);
   if (opinion) return `<span style="color:#8a5a2b;font-weight:700;">${value}</span>`;
   if (negative) return `<span style="color:#1a73e8;font-weight:700;">${value}</span>`;
   if (positive) return `<span style="color:#d93025;font-weight:700;">${value}</span>`;
   return `<strong>${value}</strong>`;
 }
 
+function phraseTone(value) {
+  const negative = NEGATIVE_STRONG_PATTERN.test(value);
+  const positive = POSITIVE_STRONG_PATTERN.test(value);
+  if (positive && !negative) return "positive";
+  if (negative && !positive) return "negative";
+  return null;
+}
+
+function autoStrongHtml(value, tone) {
+  const color = tone === "positive" ? "#d93025" : "#1a73e8";
+  return `<span style="color:${color};font-weight:700;">${escapeHtml(value)}</span>`;
+}
+
+function autoHighlightPlainText(value) {
+  const text = String(value);
+  const tone = phraseTone(text);
+  if (!tone) return escapeHtml(text);
+  const ranges = [];
+  for (const { phrase, tone: phraseToneValue } of AUTO_HIGHLIGHT_PHRASES) {
+    if (phraseToneValue !== tone) continue;
+    let start = 0;
+    while (start < text.length) {
+      const index = text.indexOf(phrase, start);
+      if (index < 0) break;
+      const end = index + phrase.length;
+      if (!ranges.some(range => index < range.end && end > range.start)) ranges.push({ start: index, end, tone });
+      start = end;
+    }
+  }
+  if (!ranges.length) return escapeHtml(text);
+  ranges.sort((a, b) => a.start - b.start || b.end - a.end);
+  let cursor = 0;
+  let html = "";
+  for (const range of ranges) {
+    if (range.start < cursor) continue;
+    html += escapeHtml(text.slice(cursor, range.start));
+    html += autoStrongHtml(text.slice(range.start, range.end), range.tone);
+    cursor = range.end;
+  }
+  html += escapeHtml(text.slice(cursor));
+  return html;
+}
+
 function inlineHtml(value) {
-  return escapeHtml(value)
-    .replace(/\*\*([^*]+)\*\*/g, (_match, content) => semanticStrongHtml(content))
-    .replace(/`([^`]+)`/g, "<code>$1</code>")
-    .replace(/\[([^\]]+)]\((https?:\/\/[^)]+)\)/g, "$1 <span>($2)</span>");
+  const text = String(value);
+  const tokenPattern = /(\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+]\(https?:\/\/[^)]+\))/g;
+  let cursor = 0;
+  let html = "";
+  let match;
+  while ((match = tokenPattern.exec(text)) !== null) {
+    html += autoHighlightPlainText(text.slice(cursor, match.index));
+    const token = match[0];
+    const strong = token.match(/^\*\*([^*]+)\*\*$/);
+    const code = token.match(/^`([^`]+)`$/);
+    const link = token.match(/^\[([^\]]+)]\((https?:\/\/[^)]+)\)$/);
+    if (strong) html += semanticStrongHtml(escapeHtml(strong[1]));
+    else if (code) html += `<code>${escapeHtml(code[1])}</code>`;
+    else if (link) html += `${escapeHtml(link[1])} <span>(${escapeHtml(link[2])})</span>`;
+    cursor = match.index + token.length;
+  }
+  html += autoHighlightPlainText(text.slice(cursor));
+  return html;
 }
 
 function tableCellText(value) {

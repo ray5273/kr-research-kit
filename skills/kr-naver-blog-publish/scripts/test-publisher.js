@@ -107,6 +107,43 @@ assert.strictEqual((editorHtml("> line 1\n> line 2\n> ✓ item").match(/<p\b/g) 
   assert(html.includes("font-size:28px"));
 }
 {
+  const html = editorHtml("# 제목\n\n## 결론\n\n순현금과 배당수익률\n\n역성장과 마진 압축 리스크");
+  assert(html.includes('<span style="color:#d93025;font-weight:700;">순현금과 배당수익률</span>'));
+  assert(html.includes('<span style="color:#1a73e8;font-weight:700;">역성장과 마진 압축 리스크</span>'));
+}
+{
+  const html = editorHtml([
+    "# 제목",
+    "",
+    "## 토큰 보호",
+    "",
+    "`순현금` [배당수익률](https://example.com/positive) **역성장과 마진 압축 리스크** 순현금과 리스크",
+  ].join("\n"));
+  assert(html.includes("<code>순현금</code>"));
+  assert(html.includes("배당수익률 <span>(https://example.com/positive)</span>"));
+  assert(html.includes('<span style="color:#1a73e8;font-weight:700;">역성장과 마진 압축 리스크</span>'));
+  assert(!html.includes('<code><span style="color:#d93025;font-weight:700;">순현금</span></code>'));
+  assert(!html.includes('<span style="color:#d93025;font-weight:700;">배당수익률</span> <span>(https://example.com/positive)</span>'));
+  assert(html.includes("순현금과 리스크"));
+  assert(!html.includes('<span style="color:#d93025;font-weight:700;">순현금</span>과 <span style="color:#1a73e8;font-weight:700;">리스크</span>'));
+}
+{
+  const tableMarkdown = [
+    "# 제목",
+    "",
+    "## 표 자동 강조",
+    "",
+    "| 항목 | 내용 |",
+    "| --- | --- |",
+    "| 긍정 | 순현금과 배당수익률 |",
+    "| 부정 | 역성장과 마진 압축 리스크 |",
+  ].join("\n");
+  const html = editorHtml(tableMarkdown);
+  assert(html.includes('<span style="color:#d93025;font-weight:700;">순현금과 배당수익률</span>'));
+  assert(html.includes('<span style="color:#1a73e8;font-weight:700;">역성장과 마진 압축 리스크</span>'));
+  assert(editorBody(tableMarkdown).includes("긍정\t순현금과 배당수익률\n부정\t역성장과 마진 압축 리스크"));
+}
+{
   const text = "한글 clipboard UTF-8 검증";
   const payload = Buffer.from(text, "utf8").toString("base64");
   const decoded = new TextDecoder().decode(Uint8Array.from(Buffer.from(payload, "base64")));
