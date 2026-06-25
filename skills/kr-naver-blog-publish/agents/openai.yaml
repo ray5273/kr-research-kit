@@ -1,0 +1,7 @@
+interface:
+  display_name: "KR Naver Blog Publish"
+  short_description: "Prepare and safely publish Korean stock research to Naver."
+  default_prompt: "Use $kr-naver-blog-publish to convert a Korean stock memo, prepare a verified Naver Blog draft, and publish only after my explicit approval."
+
+policy:
+  allow_implicit_invocation: true
