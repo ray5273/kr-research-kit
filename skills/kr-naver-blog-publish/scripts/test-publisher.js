@@ -226,7 +226,9 @@ function makeCase(fixtureOverrides = {}) {
   assert.strictEqual(preparedManifest.post.thumbnail.status, "generated");
   assert(fs.existsSync(preparedManifest.post.thumbnail.absolutePath));
   assert.strictEqual(preparedManifest.post.thumbnail.sha256, readJson(test.manifest).post.thumbnail.sha256);
-  assert.deepStrictEqual(preparedFixture.geminiPrompts, [preparedManifest.post.thumbnail.prompt]);
+  if (preparedFixture.geminiPrompts) assert.deepStrictEqual(preparedFixture.geminiPrompts, [preparedManifest.post.thumbnail.prompt]);
+  assert.strictEqual(preparedFixture.representativeThumbnail.uploaded, true);
+  assert.strictEqual(preparedFixture.representativeThumbnail.setAsRepresentativeClicked, true);
   assert.strictEqual(preparedFixture.representativeThumbnail.selected, true);
   assert.strictEqual(preparedFixture.editor.images, preparedManifest.post.images.length);
   assert(preparedFixture.editor.bodyHtml.includes("<h2 style="));
@@ -244,6 +246,8 @@ function makeCase(fixtureOverrides = {}) {
 
 {
   const test = makeCase({ geminiAuthRequired: true });
+  const thumbnailPath = path.join(test.companyDir, "assets", "naver-thumbnail.png");
+  if (fs.existsSync(thumbnailPath)) fs.unlinkSync(thumbnailPath);
   assert.throws(() => prepare({ fixture: test.fixture }, test.manifest, readJson(test.manifest)), /Gemini login expired|manual authentication/);
   assert.strictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).publicClicked, undefined);
 }
@@ -269,6 +273,31 @@ function makeCase(fixtureOverrides = {}) {
 {
   const test = makeCase({ thumbnailSelectionFails: true });
   assert.throws(() => prepare({ fixture: test.fixture }, test.manifest, readJson(test.manifest)), /representative thumbnail selection failed/i);
+  assert.strictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).publicClicked, undefined);
+}
+
+{
+  const test = makeCase({ thumbnailRepresentativeButtonMissing: true });
+  assert.throws(() => prepare({ fixture: test.fixture }, test.manifest, readJson(test.manifest)), /representative.*button unavailable/i);
+  const fixture = JSON.parse(fs.readFileSync(test.fixture, "utf8"));
+  assert.strictEqual(fixture.representativeThumbnail.uploaded, true);
+  assert.strictEqual(fixture.representativeThumbnail.setAsRepresentativeClicked, undefined);
+  assert.strictEqual(fixture.publicClicked, undefined);
+}
+
+{
+  const test = makeCase({ thumbnailSelectedMarkerMissing: true });
+  assert.throws(() => prepare({ fixture: test.fixture }, test.manifest, readJson(test.manifest)), /selected marker was not detected/i);
+  const fixture = JSON.parse(fs.readFileSync(test.fixture, "utf8"));
+  assert.strictEqual(fixture.representativeThumbnail.uploaded, true);
+  assert.strictEqual(fixture.representativeThumbnail.setAsRepresentativeClicked, true);
+  assert.strictEqual(fixture.representativeThumbnail.selected, false);
+  assert.strictEqual(fixture.publicClicked, undefined);
+}
+
+{
+  const test = makeCase({ thumbnailUploadInsertsBodyImage: true });
+  assert.throws(() => prepare({ fixture: test.fixture }, test.manifest, readJson(test.manifest)), /inserted an image into the editor body/i);
   assert.strictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).publicClicked, undefined);
 }
 

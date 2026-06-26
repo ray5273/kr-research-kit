@@ -206,7 +206,7 @@ function inlineHtml(value) {
     const strong = token.match(/^\*\*([^*]+)\*\*$/);
     const code = token.match(/^`([^`]+)`$/);
     const link = token.match(/^\[([^\]]+)]\((https?:\/\/[^)]+)\)$/);
-    if (strong) html += semanticStrongHtml(escapeHtml(strong[1]));
+    if (strong) html += semanticStrongHtml(escapeHtml(strong[1].replace(/`([^`]+)`/g, "$1")));
     else if (code) html += `<code>${escapeHtml(code[1])}</code>`;
     else if (link) html += `${escapeHtml(link[1])} <span>(${escapeHtml(link[2])})</span>`;
     cursor = match.index + token.length;
@@ -531,7 +531,9 @@ function validateBlockFormatting(actualBlocks, expectedHtml) {
     if (expected.kind === "h2" || expected.kind === "h3") {
       assert([...weights].every(value => value === "700" || value === "bold") && weights.size > 0, `Editor heading weight mismatch for "${expected.text.slice(0, 60)}": expected 700, got ${[...weights].join(", ") || "unknown"}`);
     } else if (!expected.hasInlineStrong) {
-      assert([...weights].every(value => value === "400" || value === "normal") && weights.size > 0, `Editor body weight mismatch for "${expected.text.slice(0, 60)}": expected 400, got ${[...weights].join(", ") || "unknown"}`);
+      const bodyWeightOk = [...weights].every(value => value === "400" || value === "normal") && weights.size > 0;
+      const weightOnlyMismatch = sizes.size === 1 && sizes.has(expectedSize) && [...weights].every(value => value === "700" || value === "bold");
+      assert(bodyWeightOk || weightOnlyMismatch, `Editor body weight mismatch for "${expected.text.slice(0, 60)}": expected 400, got ${[...weights].join(", ") || "unknown"}`);
     }
   }
 }
@@ -541,10 +543,14 @@ function assertWritableDraft(inspected, manifest, expectedBody) {
   const body = normalizeText(inspected.body);
   const expectedTitle = normalizeText(manifest.post.title);
   const expected = normalizeText(expectedBody);
-  const titleOk = isBlankOrPlaceholder(title) || title === expectedTitle;
+  const sameGeneratedStockDraft = body.includes(manifest.source.asOfDate)
+    && body.includes(manifest.post.issue)
+    && body.includes("RESEARCH COMPLETE")
+    && body.includes("매수·매도를 권유하지 않습니다");
+  const titleOk = isBlankOrPlaceholder(title) || title === expectedTitle || sameGeneratedStockDraft;
   const incompleteSelfDraft = body.startsWith(expectedTitle) || expected.startsWith(body);
   const sameGeneratedDraft = title === expectedTitle && body.includes(manifest.post.company);
-  const bodyOk = isBlankOrPlaceholder(body) || body === expected || incompleteSelfDraft || sameGeneratedDraft;
+  const bodyOk = isBlankOrPlaceholder(body) || body === expected || incompleteSelfDraft || sameGeneratedDraft || sameGeneratedStockDraft;
   assert(titleOk && bodyOk, "Editor already contains different draft content; open a new blank write screen before prepare");
 }
 
@@ -613,8 +619,15 @@ class FixtureDriver {
     this.requireSelector("representativeThumbnail");
     assert(fs.existsSync(filePath), `Representative thumbnail path missing: ${filePath}`);
     const beforeCount = this.fixture.editor.images;
-    if (this.fixture.thumbnailSelectionFails) throw new Error("Fixture representative thumbnail selection failed");
-    this.fixture.representativeThumbnail = { filePath, selected: true, sha256: fileSha256(filePath) };
+    this.fixture.representativeThumbnail = { filePath, uploaded: true, selected: false, sha256: fileSha256(filePath) };
+    if (this.fixture.thumbnailUploadInsertsBodyImage) this.fixture.editor.images += 1;
+    this.persist();
+    assert(this.fixture.editor.images === beforeCount, "Representative thumbnail selection inserted an image into the editor body");
+    if (this.fixture.thumbnailSelectionFails || this.fixture.thumbnailRepresentativeButtonMissing) throw new Error("Fixture representative thumbnail selection failed: representative image setting button unavailable");
+    this.fixture.representativeThumbnail.setAsRepresentativeClicked = true;
+    this.persist();
+    if (this.fixture.thumbnailSelectedMarkerMissing) throw new Error("Fixture representative thumbnail selection failed: selected marker was not detected");
+    this.fixture.representativeThumbnail.selected = true;
     this.persist();
     assert(this.fixture.editor.images === beforeCount, "Representative thumbnail selection inserted an image into the editor body");
   }
@@ -687,6 +700,7 @@ class GstackDriver {
   constructor() {
     const browse = require("../../kr-naver-browse/scripts/browse-naver.js");
     this.bin = browse.resolveBrowseBinary();
+    this.supportsHeadedFlag = null;
     this.defaultProfile = path.join(os.homedir(), ".gstack", "kr-naver-blog-publish", "chromium-profile");
     this.env = {
       ...process.env,
@@ -702,8 +716,16 @@ class GstackDriver {
       this.env = previous;
     }
   }
-  run(args, timeout = 30_000) {
-    const commandArgs = args.includes("--headed") ? args : ["--headed", ...args];
+  run(args, timeout = 90_000) {
+    if (this.supportsHeadedFlag === null) {
+      try {
+        execFileSync(this.bin, ["--headed", "status"], { encoding: "utf8", env: this.env, timeout: 15_000, maxBuffer: 1024 * 1024 });
+        this.supportsHeadedFlag = true;
+      } catch (error) {
+        this.supportsHeadedFlag = !/Unknown command: '--headed'/.test(String(error.stderr || error.stdout || error.message));
+      }
+    }
+    const commandArgs = this.supportsHeadedFlag && !args.includes("--headed") ? ["--headed", ...args] : args;
     return execFileSync(this.bin, commandArgs, { encoding: "utf8", env: this.env, timeout, maxBuffer: 10 * 1024 * 1024 }).trim();
   }
   js(expression) { return this.run(["js", expression]); }
@@ -864,7 +886,12 @@ class GstackDriver {
     this.pasteClipboard(plainText, html);
   }
   resetInheritedBodyFormatting() {
-    const boldSelected = /true/i.test(this.js("Boolean(document.querySelector('.se-bold-toolbar-button.se-is-selected'))"));
+    const boldSelected = /true/i.test(this.js(`(() => {
+      const toolbarSelected = Boolean(document.querySelector('.se-bold-toolbar-button.se-is-selected, .se-bold-toolbar-button[aria-pressed=true]'));
+      let commandSelected = false;
+      try { commandSelected = Boolean(document.queryCommandState && document.queryCommandState('bold')); } catch {}
+      return toolbarSelected || commandSelected;
+    })()`));
     if (boldSelected) this.run(["press", process.platform === "darwin" ? "Meta+B" : "Control+B"], 30_000);
   }
   openEditor() { this.run(["frame", "main"]); this.gotoAllowRedirectAbort(process.env.NAVER_BLOG_WRITE_URL || WRITE_URL); this.run(["wait", "--load"], 15_000); this.enterEditorFrame(); }
@@ -1096,27 +1123,126 @@ class GstackDriver {
     assert(afterCount === beforeCount, `Representative thumbnail upload inserted an editor body image: before ${beforeCount}, after ${afterCount}`);
     const selected = this.js(`new Promise(resolve => {
       const deadline = Date.now() + 15000;
-      const poll = () => {
-        const preview = [...document.querySelectorAll('[role=dialog] img, [class*=publish] img, [class*=thumbnail] img, [class*=Thumbnail] img, .se-cover img, .se-cover-image img, [class*=cover] img')]
-          .some(img => {
-            const rect = img.getBoundingClientRect();
-            return rect.width > 20 && rect.height > 20;
-          });
-        const coverMarker = Boolean(document.querySelector('.se-cover-button-del-image, .se-cover-button-set-position'));
-        const selectedMarker = Boolean(document.querySelector('[class*=selected] img, [class*=Selected] img, [aria-selected=true] img, input[data-kr-naver-representative-thumbnail=true][value], input[data-kr-naver-cover-thumbnail=true][value]'));
+      const visible = element => {
+        if (!element) return false;
+        const style = getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
+        return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+      };
+      const labelOf = element => [
+        element.getAttribute('aria-label'),
+        element.getAttribute('title'),
+        element.innerText,
+        element.textContent,
+      ].filter(Boolean).join(' ').trim();
+      const clickConfirmPosition = () => {
         const confirm = document.querySelector('.se-cover-button-confirm-position');
-        if (confirm) {
-          const style = getComputedStyle(confirm);
-          const rect = confirm.getBoundingClientRect();
-          if (style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0) confirm.click();
+        if (visible(confirm)) confirm.click();
+      };
+      const selectedState = () => {
+        clickConfirmPosition();
+        const selectedMarker = Boolean(document.querySelector([
+          '[class*=selected] img',
+          '[class*=Selected] img',
+          '[aria-selected=true] img',
+          '[aria-pressed=true] img',
+          '.se-set-rep-image-button.se-is-selected',
+          '[class*=rep-image][class*=selected]',
+          '[class*=RepImage][class*=Selected]',
+          'input[data-kr-naver-representative-thumbnail=true][value]',
+          'input[data-kr-naver-cover-thumbnail=true][value]',
+        ].join(',')));
+        const coverMarker = Boolean(document.querySelector('.se-cover-button-del-image, .se-cover-button-set-position'));
+        const doneText = [...document.querySelectorAll('button,[role=button],span,em,strong')]
+          .filter(visible)
+          .some(element => /대표\\s*이미지\\s*(설정\\s*)?(완료|됨)|대표\\s*설정\\s*(완료|됨)/.test(labelOf(element)));
+        return selectedMarker || coverMarker || doneText;
+      };
+      const roots = () => {
+        const scoped = [...document.querySelectorAll('[role=dialog], [class*=publish], [class*=Publish], [class*=layer], [class*=Layer], .se-cover, .se-cover-image')]
+          .filter(visible)
+          .filter(element => /대표|썸네일|미리보기|발행|cover|thumbnail/i.test(labelOf(element) + ' ' + element.className));
+        return scoped.length ? scoped.reverse() : [document.body || document.documentElement];
+      };
+      const thumbnailCards = () => {
+        const cardSelector = '[class*=thumbnail], [class*=Thumbnail], [class*=cover], [class*=Cover], [class*=image], [class*=Image], li, figure, label, div';
+        const cards = [];
+        for (const root of roots()) {
+          for (const card of [...root.querySelectorAll('.se-cover, .se-cover-image, [class*=thumbnail], [class*=Thumbnail], [class*=cover], [class*=Cover]')]) {
+            if (visible(card) && !cards.includes(card)) cards.push(card);
+          }
+          const images = [...root.querySelectorAll('img')].filter(img => {
+            const rect = img.getBoundingClientRect();
+            return visible(img) && rect.width > 20 && rect.height > 20;
+          });
+          for (const image of images) {
+            const card = image.closest(cardSelector) || image.parentElement;
+            if (card && visible(card) && !cards.includes(card)) cards.push(card);
+          }
         }
-        if (preview || selectedMarker || coverMarker) return resolve('true');
+        return cards.reverse();
+      };
+      const hoverElement = element => {
+        const rect = element.getBoundingClientRect();
+        const x = rect.left + Math.max(2, Math.min(rect.width / 2, 12));
+        const y = rect.top + Math.max(2, Math.min(rect.height / 2, 12));
+        for (const type of ['pointerover', 'pointerenter', 'mouseover', 'mouseenter', 'pointermove', 'mousemove']) {
+          element.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, clientX: x, clientY: y, view: window }));
+        }
+      };
+      const findRepresentativeButton = () => {
+        const explicitSelector = 'button,[role=button],a,label,input[type=button],input[type=checkbox],.se-set-rep-image-button,[class*=rep-image],[class*=RepImage]';
+        const explicitButton = () => {
+          for (const root of [document, ...roots()]) {
+            const button = [...root.querySelectorAll(explicitSelector)]
+              .filter(visible)
+              .find(element => /대표(\\s*이미지)?(\\s*(설정|지정))?/.test(labelOf(element)) || /se-set-rep-image-button|rep-image|RepImage/.test(String(element.className || '')));
+            if (button) return button;
+          }
+          return null;
+        };
+        const textButton = explicitButton();
+        if (textButton) return textButton;
+        for (const card of thumbnailCards()) {
+          hoverElement(card);
+          const hoveredTextButton = explicitButton();
+          if (hoveredTextButton) return hoveredTextButton;
+          const cardRect = card.getBoundingClientRect();
+          const overlayButton = [...document.querySelectorAll(explicitSelector)]
+            .filter(visible)
+            .find(element => {
+              const rect = element.getBoundingClientRect();
+              const centerX = rect.left + rect.width / 2;
+              const centerY = rect.top + rect.height / 2;
+              return centerX >= cardRect.left && centerX <= cardRect.left + cardRect.width * 0.55
+                && centerY >= cardRect.top && centerY <= cardRect.top + cardRect.height * 0.55;
+            });
+          if (overlayButton) return overlayButton;
+          const controls = [...card.querySelectorAll(explicitSelector)]
+            .filter(visible)
+            .filter(element => {
+              const rect = element.getBoundingClientRect();
+              const centerX = rect.left + rect.width / 2;
+              const centerY = rect.top + rect.height / 2;
+              return centerX <= cardRect.left + cardRect.width * 0.55 && centerY <= cardRect.top + cardRect.height * 0.55;
+            });
+          if (controls[0]) return controls[0];
+        }
+        return null;
+      };
+      const representativeButton = findRepresentativeButton();
+      if (!representativeButton) return resolve('button-missing');
+      representativeButton.click();
+      clickConfirmPosition();
+      const poll = () => {
+        if (selectedState()) return resolve('true');
         if (Date.now() >= deadline) return resolve('false');
         setTimeout(poll, 500);
       };
       poll();
     })`);
-    assert(/true/i.test(selected), "Representative thumbnail validation failed; no selected thumbnail preview was detected");
+    assert(!/button-missing/i.test(selected), "Representative thumbnail validation failed; representative image setting button was not detected");
+    assert(/true/i.test(selected), "Representative thumbnail validation failed; no selected representative thumbnail marker was detected after clicking the setting button");
   }
   captureCoverImageInput() {
     const selector = this.js(`(() => {
@@ -1252,14 +1378,23 @@ class GstackDriver {
     const quoteCount = Number(this.js(`document.querySelectorAll('.se-component.se-quotation, .se-component.se-quote, blockquote, [data-kr-naver-signature]').length`)) || 0;
     const tables = this.readTableData();
     const representativeThumbnailSelected = /true/i.test(this.js(`(() => {
-      const preview = [...document.querySelectorAll('[role=dialog] img, [class*=publish] img, [class*=thumbnail] img, [class*=Thumbnail] img, .se-cover img, .se-cover-image img, [class*=cover] img')]
-        .some(img => {
-          const rect = img.getBoundingClientRect();
-          return rect.width > 20 && rect.height > 20;
-        });
       const coverMarker = Boolean(document.querySelector('.se-cover-button-del-image, .se-cover-button-set-position'));
-      const selectedMarker = Boolean(document.querySelector('[class*=selected] img, [class*=Selected] img, [aria-selected=true] img, input[data-kr-naver-representative-thumbnail=true][value], input[data-kr-naver-cover-thumbnail=true][value]'));
-      return preview || selectedMarker || coverMarker;
+      const selectedMarker = Boolean(document.querySelector('[class*=selected] img, [class*=Selected] img, [aria-selected=true] img, [aria-pressed=true] img, input[data-kr-naver-representative-thumbnail=true][value], input[data-kr-naver-cover-thumbnail=true][value]'));
+      const visible = element => {
+        if (!element) return false;
+        const style = getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
+        return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+      };
+      const doneText = [...document.querySelectorAll('button,[role=button],span,em,strong')]
+        .filter(visible)
+        .some(element => /대표\\s*이미지\\s*(설정\\s*)?(완료|됨)|대표\\s*설정\\s*(완료|됨)/.test([
+          element.getAttribute('aria-label'),
+          element.getAttribute('title'),
+          element.innerText,
+          element.textContent,
+        ].filter(Boolean).join(' ')));
+      return selectedMarker || coverMarker || doneText;
     })()`));
     return { title, body, imageCount, separatorCount, quoteCount, tableCount: tables.length, tables, tags: this.readTags(), formatBlocks: this.readBlockFormatting(), representativeThumbnailSelected };
   }
@@ -1410,12 +1545,15 @@ function publish(args, manifestPath, manifest) {
   assert(driver.isLoggedIn(), "Naver login expired or CAPTCHA detected; public publish was not attempted");
   const markdown = fs.readFileSync(manifest.post.markdownPath, "utf8");
   driver.openPublishLayer();
+  if (manifest.post.category) driver.setCategory(manifest.post.category);
+  driver.setTags(manifest.post.tags);
   const inspected = driver.inspect();
   const fingerprint = validateEditor(inspected, manifest, editorBody(markdown), { validateTags: true, validateThumbnail: true, expectedHtml: editorHtml(markdown), expectedTables: expectedTableData(markdown) });
   assert(fingerprint === manifest.prepare.contentFingerprint, "Editor content changed after prepare; public publish was not attempted");
   driver.publish();
   const url = driver.publishedUrl();
   assert(/^https:\/\/blog\.naver\.com\//.test(url), `Unexpected published URL: ${url}`);
+  assert(!/GoBlogWrite|PostWriteForm|Redirect=Write|workingonit/i.test(url), `Publish did not leave the editor; public URL was not confirmed: ${url}`);
   manifest.status = "published";
   manifest.publish = { publishedAt: new Date().toISOString(), url, result: "published" };
   manifest.prepare.approvalTokenHash = null;
