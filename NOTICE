@@ -1,0 +1,65 @@
+stock-analysis-skill
+Copyright (c) 2026 Sanghyeok Park
+
+This product is released under the MIT License (see LICENSE).
+
+================================================================================
+Third-party components redistributed in this repository
+================================================================================
+
+1. Noto Sans KR (Regular)
+   - Path:    skills/kr-stock-chart/assets/fonts/NotoSansKR-Regular.ttf
+   - License: SIL Open Font License, Version 1.1
+   - License text: skills/kr-stock-chart/assets/fonts/LICENSE-NotoSansKR.txt
+   - Upstream: https://github.com/notofonts/noto-cjk
+
+================================================================================
+Third-party components installed at runtime (not redistributed in this tree)
+================================================================================
+
+The following components are fetched or installed locally during skill setup
+(`scripts/install-*.sh`, per-skill `scripts/post-install.sh`). Their licenses
+apply when they are present on a user's machine. They are NOT distributed by
+this repository.
+
+2. gstack browse binary
+   - Used by: kr-naver-browse, kr-naver-blogger, kr-naver-insight,
+     kr-naver-blog-publish, kr-web-browse, kr-analyst-report-* skills
+   - Fetched into: skills/kr-naver-browse/vendor/gstack/ at install time
+   - License: MIT
+   - Upstream: https://github.com/garrytan/gstack
+
+3. pypdf (Python package)
+   - Used by: skills/kr-stock-dart-analysis/scripts/extract-pdf-text.py
+     (also reused by kr-analyst-report-fetch)
+   - Install: python3 -m pip install pypdf
+   - License: BSD-3-Clause
+   - Upstream: https://github.com/py-pdf/pypdf
+
+4. Pillow (PIL fork, Python package)
+   - Used by: chart text rendering on macOS/Linux in
+     skills/kr-stock-chart/scripts/chart-basics.js and
+     skills/kr-stock-analysis/scripts/valuation-chart.js (via Python helper)
+   - Install: python3 -m pip install pillow
+   - License: HPND (PIL Software License)
+   - Upstream: https://github.com/python-pillow/Pillow
+
+5. Bun (JavaScript runtime)
+   - Used by: kr-naver-browse post-install to build the gstack browse binary
+   - Install: handled by skills/kr-naver-browse/scripts/post-install.sh
+   - License: MIT
+   - Upstream: https://github.com/oven-sh/bun
+
+================================================================================
+Data sources accessed at runtime
+================================================================================
+
+Skills in this repository call third-party HTTP endpoints. Users are responsible
+for complying with each provider's terms of service and rate limits.
+
+- OpenDART (dart.fss.or.kr) — requires OPENDART_API_KEY
+- Yahoo Finance (query2.finance.yahoo.com) — used by fetch-kr-chart.js
+- Hankyung Consensus (consensus.hankyung.com) — used by kr-analyst-report-discover
+- Naver Pay Research (finance.naver.com/research) — fallback in kr-analyst-report-discover
+- Naver Search / Naver Blog / Naver News — used by kr-naver-* and kr-foreign-analyst
+- Naver SmartEditor (blog.naver.com) — used by kr-naver-blog-publish (browser automation)

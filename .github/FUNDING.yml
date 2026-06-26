@@ -1,0 +1,14 @@
+# GitHub Sponsors + 한국 결제 채널 (토스 / 카카오페이)
+#
+# `github:` enables the "Sponsor" button on the repo header once the user has
+# enabled GitHub Sponsors on their account. The `custom:` list is rendered as
+# additional links under the same button. Replace the placeholder Toss/Kakao
+# URL below with the actual hosted-payment URL before publishing v0.1.0.
+#
+# Validation: GitHub renders this file at
+#   https://github.com/ray5273/stock-analysis-skill/?tab=readme-ov-file#funding
+
+github: ray5273
+
+custom:
+  - "https://qr.kakaopay.com/Ej9J3WNTG"

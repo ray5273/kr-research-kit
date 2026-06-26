@@ -1,0 +1,66 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "kr-research-kit-marketplace",
+  "description": "Self-hosted marketplace for the KrResearchKit Korean equity research skill pack. Add with: /plugin marketplace add ray5273/stock-analysis-skill",
+  "owner": {
+    "name": "Sanghyeok Park",
+    "email": "ray5273@naver.com"
+  },
+  "plugins": [
+    {
+      "name": "kr-research-kit",
+      "displayName": "KrResearchKit — Korean Equity Research",
+      "description": "AI-native Korean equity research — DART filings, sell-side consensus, foreign-IB coverage, 5-panel charts, and Naver-blog publishing in one skill pack. KR-first, primary-source-only.",
+      "author": {
+        "name": "Sanghyeok Park",
+        "email": "ray5273@naver.com"
+      },
+      "category": "finance",
+      "homepage": "https://github.com/ray5273/stock-analysis-skill",
+      "version": "0.1.0",
+      "tags": [
+        "korean-market",
+        "equity-research",
+        "krx",
+        "dart",
+        "naver-blog"
+      ],
+      "keywords": [
+        "korean-stock",
+        "kospi",
+        "kosdaq",
+        "opendart",
+        "sell-side-consensus",
+        "foreign-ib",
+        "hankyung-consensus",
+        "naver-smarteditor"
+      ],
+      "source": ".",
+      "skills": [
+        "skills/kr-stock-plan",
+        "skills/kr-stock-analysis",
+        "skills/kr-stock-chart",
+        "skills/kr-stock-data-pack",
+        "skills/kr-stock-dart-analysis",
+        "skills/kr-stock-update",
+        "skills/kr-market-leaders",
+        "skills/kr-sector-plan",
+        "skills/kr-sector-analysis",
+        "skills/kr-sector-data-pack",
+        "skills/kr-sector-compare",
+        "skills/kr-sector-audit",
+        "skills/kr-sector-update",
+        "skills/kr-analyst-report-discover",
+        "skills/kr-analyst-report-fetch",
+        "skills/kr-analyst-report-insight",
+        "skills/kr-foreign-analyst",
+        "skills/kr-naver-browse",
+        "skills/kr-naver-blogger",
+        "skills/kr-naver-insight",
+        "skills/kr-naver-blog-publish",
+        "skills/kr-web-browse",
+        "skills/kr-portfolio-monitor"
+      ]
+    }
+  ]
+}

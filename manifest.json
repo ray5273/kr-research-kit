@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "KrResearchKit",
+  "version": "0.1.0",
+  "description": "AI-native Korean equity research skill pack — DART filings, sell-side consensus, foreign-IB coverage, 5-panel charts, and Naver-blog publishing in one package. Native to Codex CLI and Claude Code.",
+  "homepage": "https://github.com/ray5273/stock-analysis-skill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ray5273/stock-analysis-skill.git"
+  },
+  "author": {
+    "name": "Sanghyeok Park",
+    "email": "ray5273@naver.com"
+  },
+  "license": "MIT",
+  "categories": [
+    "finance",
+    "korean-market",
+    "equity-research",
+    "research-automation"
+  ],
+  "runtimes": [
+    "codex",
+    "claude-code"
+  ],
+  "requires": {
+    "node": ">=18",
+    "python3": {
+      "optional": true,
+      "purpose": "PDF text extraction (pypdf) for DART filings and analyst reports; chart text rendering (Pillow) on macOS/Linux."
+    },
+    "bun": {
+      "optional": true,
+      "purpose": "Required only by Naver browser-automation skills (kr-naver-* and kr-analyst-report-*) to build the gstack browse binary."
+    }
+  },
+  "install": {
+    "codex": "bash ./scripts/install-all-skills.sh",
+    "claude-code": "bash ./scripts/install-all-claude-skills.sh",
+    "windows-powershell": ".\\scripts\\install-all-skills.ps1"
+  },
+  "marketplace": {
+    "featured": [
+      "kr-stock-plan",
+      "kr-sector-plan"
+    ],
+    "standalone": [
+      "kr-stock-chart",
+      "kr-stock-dart-analysis",
+      "kr-naver-blog-publish",
+      "kr-foreign-analyst",
+      "kr-market-leaders"
+    ],
+    "bundle": [
+      "kr-stock-analysis",
+      "kr-stock-data-pack",
+      "kr-stock-update",
+      "kr-sector-analysis",
+      "kr-sector-data-pack",
+      "kr-sector-compare",
+      "kr-sector-audit",
+      "kr-sector-update",
+      "kr-analyst-report-discover",
+      "kr-analyst-report-fetch",
+      "kr-analyst-report-insight",
+      "kr-naver-browse",
+      "kr-naver-blogger",
+      "kr-naver-insight",
+      "kr-web-browse",
+      "kr-portfolio-monitor"
+    ]
+  },
+  "skills": [
+    {
+      "name": "kr-stock-plan",
+      "tier": "featured",
+      "tagline": "Scope a Korean stock research request before drafting — company, share class, horizon, comparison set, output mode.",
+      "entry": "skills/kr-stock-plan/SKILL.md"
+    },
+    {
+      "name": "kr-sector-plan",
+      "tier": "featured",
+      "tagline": "Scope a Korea-focused sector or industry research project — boundary, horizon, decomposition axes, deliverable mode.",
+      "entry": "skills/kr-sector-plan/SKILL.md"
+    },
+    {
+      "name": "kr-stock-chart",
+      "tier": "standalone",
+      "tagline": "Generate KRX stock chart artifacts — 5 PNG panels (trend, overlay, momentum, structure, pattern), structure-zone CSV, pattern-wave CSV — from daily OHLCV.",
+      "entry": "skills/kr-stock-chart/SKILL.md"
+    },
+    {
+      "name": "kr-stock-dart-analysis",
+      "tier": "standalone",
+      "tagline": "Extract source-mapped evidence from Korean DART filings — quarterly results, segment, customer concentration, capex, related-party disclosures.",
+      "entry": "skills/kr-stock-dart-analysis/SKILL.md"
+    },
+    {
+      "name": "kr-naver-blog-publish",
+      "tier": "standalone",
+      "tagline": "Convert a memo.md into a Naver Blog post with charts, draft saving, validation, preview screenshot, and explicit-approval publish gate.",
+      "entry": "skills/kr-naver-blog-publish/SKILL.md"
+    },
+    {
+      "name": "kr-foreign-analyst",
+      "tier": "standalone",
+      "tagline": "Collect foreign-IB coverage of KRX-listed companies from Korean news (Morgan Stanley, Goldman, JPMorgan, Nomura, etc.) as a Street / Alternative Views Markdown block.",
+      "entry": "skills/kr-foreign-analyst/SKILL.md"
+    },
+    {
+      "name": "kr-market-leaders",
+      "tier": "standalone",
+      "tagline": "Screen the integrated KOSPI + KOSDAQ universe for market leadership across short-term, intermediate, and structural technical lenses.",
+      "entry": "skills/kr-market-leaders/SKILL.md"
+    },
+    {
+      "name": "kr-stock-analysis",
+      "tier": "bundle",
+      "tagline": "Build dated, source-backed memos for KRX-listed companies — quick view, full decision memo, pre/post-earnings note, pair compare.",
+      "entry": "skills/kr-stock-analysis/SKILL.md"
+    },
+    {
+      "name": "kr-stock-data-pack",
+      "tier": "bundle",
+      "tagline": "Gather structured, source-dated fact packs for Korean stock research — price, filings, results, mix, balance sheet, governance, valuation.",
+      "entry": "skills/kr-stock-data-pack/SKILL.md"
+    },
+    {
+      "name": "kr-stock-update",
+      "tier": "bundle",
+      "tagline": "Incrementally update an existing Korean stock memo using only material disclosures published after the memo date.",
+      "entry": "skills/kr-stock-update/SKILL.md"
+    },
+    {
+      "name": "kr-sector-analysis",
+      "tier": "bundle",
+      "tagline": "Write Korea-focused sector and industry research in Korean — market landscape, drivers, value chain, regulation, public-company mapping.",
+      "entry": "skills/kr-sector-analysis/SKILL.md"
+    },
+    {
+      "name": "kr-sector-data-pack",
+      "tier": "bundle",
+      "tagline": "Gather structured fact packs for Korea-focused sector research — market metrics, policy events, value-chain maps, listed-company candidates.",
+      "entry": "skills/kr-sector-data-pack/SKILL.md"
+    },
+    {
+      "name": "kr-sector-compare",
+      "tier": "bundle",
+      "tagline": "Compare Korea-focused sectors or themes on a common date basis — structure, policy tailwinds, listed exposure, near-term positioning.",
+      "entry": "skills/kr-sector-compare/SKILL.md"
+    },
+    {
+      "name": "kr-sector-audit",
+      "tier": "bundle",
+      "tagline": "Audit an existing Korea sector memo for source quality, date consistency, missing sections, number conflicts, overreach, unsupported claims.",
+      "entry": "skills/kr-sector-audit/SKILL.md"
+    },
+    {
+      "name": "kr-sector-update",
+      "tier": "bundle",
+      "tagline": "Incrementally update an existing Korea sector memo using only material changes after the memo date.",
+      "entry": "skills/kr-sector-update/SKILL.md"
+    },
+    {
+      "name": "kr-analyst-report-discover",
+      "tier": "bundle",
+      "tagline": "Discover recent sell-side analyst reports for a KRX company from Hankyung Consensus (primary) + Naver Pay Research (fallback).",
+      "entry": "skills/kr-analyst-report-discover/SKILL.md"
+    },
+    {
+      "name": "kr-analyst-report-fetch",
+      "tier": "bundle",
+      "tagline": "Download analyst-report PDFs from the discover index and extract plain text via pypdf with per-report caching.",
+      "entry": "skills/kr-analyst-report-fetch/SKILL.md"
+    },
+    {
+      "name": "kr-analyst-report-insight",
+      "tier": "bundle",
+      "tagline": "Render a 7-section Markdown digest of Korean sell-side coverage — consensus, broker table, recent reports with verbatim bullets, divergences, TP trajectory.",
+      "entry": "skills/kr-analyst-report-insight/SKILL.md"
+    },
+    {
+      "name": "kr-naver-browse",
+      "tier": "bundle",
+      "tagline": "Headless browser wrapper for Naver blog/search navigation. Required by kr-naver-* and kr-web-browse skills.",
+      "entry": "skills/kr-naver-browse/SKILL.md"
+    },
+    {
+      "name": "kr-naver-blogger",
+      "tier": "bundle",
+      "tagline": "Discover Naver bloggers who consistently cover a specific KRX-listed company — ranked candidates for the Street / Alternative Views section.",
+      "entry": "skills/kr-naver-blogger/SKILL.md"
+    },
+    {
+      "name": "kr-naver-insight",
+      "tier": "bundle",
+      "tagline": "Fetch and summarize Naver blog posts from a ranked blogger list — Markdown insights digest grouped by blogger.",
+      "entry": "skills/kr-naver-insight/SKILL.md"
+    },
+    {
+      "name": "kr-web-browse",
+      "tier": "bundle",
+      "tagline": "Headless browser wrapper for generic (non-Naver) Korean-facing web pages — text/links extraction and PDF download.",
+      "entry": "skills/kr-web-browse/SKILL.md"
+    },
+    {
+      "name": "kr-portfolio-monitor",
+      "tier": "bundle",
+      "tagline": "Scan a Korean domestic stock portfolio — SMA20 deviation, RSI14, dated Markdown snapshot with flagged positions and next-step recommendations.",
+      "entry": "skills/kr-portfolio-monitor/SKILL.md"
+    }
+  ],
+  "datasources": [
+    "OpenDART (dart.fss.or.kr) — requires OPENDART_API_KEY env",
+    "Yahoo Finance (query2.finance.yahoo.com)",
+    "Hankyung Consensus (consensus.hankyung.com)",
+    "Naver Pay Research (finance.naver.com/research)",
+    "Naver Search / Blog / News",
+    "Naver SmartEditor (blog.naver.com) — browser automation, user-driven, explicit-approval publish gate"
+  ],
+  "demoCommands": [
+    "bash ./scripts/install-all-claude-skills.sh",
+    "bash ./scripts/install-all-skills.sh",
+    "node scripts/harness.js --mode all --ticker 066970 --company \"엘앤에프\" --with-blog --with-analyst"
+  ]
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "KRX Market Leaders"
+  short_description: "Screen KOSPI and KOSDAQ common stocks for short-term, 30/60-day, and structural technical market leadership."
+  default_prompt: "Use $kr-market-leaders to screen the integrated KOSPI + KOSDAQ common-stock universe across short-term, intermediate, and structural leadership lenses. Write both Markdown and JSON artifacts under analysis-example/kr-market/ when the workspace is writable, and keep the output clearly labeled as a technical market-leadership screen, not a buy recommendation."
+
+policy:
+  allow_implicit_invocation: true

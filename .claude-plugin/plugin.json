@@ -1,0 +1,27 @@
+{
+  "name": "kr-research-kit",
+  "description": "AI-native Korean equity research skill pack — DART filings (OpenDART API), sell-side consensus, foreign-IB coverage, 5-panel charts, and Naver-blog publishing. KR-first, primary-source-only.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Sanghyeok Park",
+    "email": "ray5273@naver.com",
+    "url": "https://github.com/ray5273"
+  },
+  "homepage": "https://github.com/ray5273/stock-analysis-skill",
+  "repository": "https://github.com/ray5273/stock-analysis-skill",
+  "license": "MIT",
+  "keywords": [
+    "korean-stock",
+    "krx",
+    "kospi",
+    "kosdaq",
+    "dart",
+    "opendart",
+    "equity-research",
+    "naver-blog",
+    "naver-smarteditor",
+    "sell-side-consensus",
+    "foreign-ib",
+    "hankyung-consensus"
+  ]
+}
