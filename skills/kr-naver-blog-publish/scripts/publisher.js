@@ -71,6 +71,7 @@ function editorBody(markdown) {
     .replace(/^#{2,6}\s+(.+?)[ \t]*$/gm, "$1")
     .replace(/^---+[ \t]*$/gm, "────────")
     .replace(/^>\s?/gm, "")
+    .replace(/\[(?:red|blue|brown):\s*([^\]]+)\]/g, "$1")
     .replace(/\*\*([^*]+)\*\*/g, "$1")
     .replace(/`([^`]+)`/g, "$1")
     .replace(/\[([^\]]+)]\((https?:\/\/[^)]+)\)/g, "$1 ($2)"));
@@ -84,140 +85,39 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;");
 }
 
-const OPINION_STRONG_PATTERN = /중립적 관찰|매수 전환 검토|둘 다 맞고|스탠스|판단|검토|관찰|쪽이다|해석/;
-const NEGATIVE_STRONG_PATTERN = /별풍선.*역성장|역성장|마진 압축|치지직|글로벌 미입증|가치 함정|감익|하락|리스크|악화|미실현|부정|약화|촉매 부재|점유율 상실|성장 엔진은 식었다|제한적|과소추정|잘못 본다|그칠 것|낮은 수수료|확산이 없다면|크지 않다/;
-const POSITIVE_STRONG_PATTERN = /저평가|순현금|배당수익률|배당|자사주 소각|반전|촉매|강한 하방|딥밸류|싸다|하방 보강|긍정|의미가 커진다|부가가치|리레이팅|확산 레퍼런스|손익계산서에 보일 수 있는 규모|구축\/운영|반복 판매/;
-const NEGATIVE_AUTO_PHRASES = [
-  "역성장과 마진 압축 리스크",
-  "성장 엔진은 식었다",
-  "글로벌 미입증",
-  "점유율 상실",
-  "촉매 부재",
-  "낮은 수수료",
-  "마진 압축",
-  "가치 함정",
-  "별풍선 역성장",
-  "역성장",
-  "과소추정",
-  "치지직",
-  "감익",
-  "하락",
-  "리스크",
-  "악화",
-  "미실현",
-  "부정",
-  "약화",
-  "제한적",
-  "크지 않다",
-  "그칠 것",
-  "확산이 없다면",
-  "잘못 본다",
-];
-const POSITIVE_AUTO_PHRASES = [
-  "손익계산서에 보일 수 있는 규모",
-  "순현금과 배당수익률",
-  "외부 고객 반복 판매",
-  "확산 레퍼런스",
-  "자사주 소각",
-  "강한 하방",
-  "하방 보강",
-  "배당수익률",
-  "구축/운영",
-  "부가가치",
-  "리레이팅",
-  "저평가",
-  "순현금",
-  "배당",
-  "반전",
-  "촉매",
-  "딥밸류",
-  "싸다",
-  "긍정",
-  "의미가 커진다",
-  "반복 판매",
-];
-const AUTO_HIGHLIGHT_PHRASES = [
-  ...POSITIVE_AUTO_PHRASES.map(phrase => ({ phrase, tone: "positive" })),
-  ...NEGATIVE_AUTO_PHRASES.map(phrase => ({ phrase, tone: "negative" })),
-].sort((a, b) => b.phrase.length - a.phrase.length);
+const COLOR_PALETTE = { red: "#d93025", blue: "#1a73e8", brown: "#8a5a2b" };
 
-function semanticStrongHtml(value) {
-  const opinion = OPINION_STRONG_PATTERN.test(value);
-  const negative = NEGATIVE_STRONG_PATTERN.test(value);
-  const positive = POSITIVE_STRONG_PATTERN.test(value);
-  if (opinion) return `<span style="color:#8a5a2b;font-weight:700;">${value}</span>`;
-  if (negative) return `<span style="color:#1a73e8;font-weight:700;">${value}</span>`;
-  if (positive) return `<span style="color:#d93025;font-weight:700;">${value}</span>`;
-  return `<strong>${value}</strong>`;
-}
-
-function phraseTone(value) {
-  const negative = NEGATIVE_STRONG_PATTERN.test(value);
-  const positive = POSITIVE_STRONG_PATTERN.test(value);
-  if (positive && !negative) return "positive";
-  if (negative && !positive) return "negative";
-  return null;
-}
-
-function autoStrongHtml(value, tone) {
-  const color = tone === "positive" ? "#d93025" : "#1a73e8";
-  return `<span style="color:${color};font-weight:700;">${escapeHtml(value)}</span>`;
-}
-
-function autoHighlightPlainText(value) {
-  const text = String(value);
-  const tone = phraseTone(text);
-  if (!tone) return escapeHtml(text);
-  const ranges = [];
-  for (const { phrase, tone: phraseToneValue } of AUTO_HIGHLIGHT_PHRASES) {
-    if (phraseToneValue !== tone) continue;
-    let start = 0;
-    while (start < text.length) {
-      const index = text.indexOf(phrase, start);
-      if (index < 0) break;
-      const end = index + phrase.length;
-      if (!ranges.some(range => index < range.end && end > range.start)) ranges.push({ start: index, end, tone });
-      start = end;
-    }
-  }
-  if (!ranges.length) return escapeHtml(text);
-  ranges.sort((a, b) => a.start - b.start || b.end - a.end);
-  let cursor = 0;
-  let html = "";
-  for (const range of ranges) {
-    if (range.start < cursor) continue;
-    html += escapeHtml(text.slice(cursor, range.start));
-    html += autoStrongHtml(text.slice(range.start, range.end), range.tone);
-    cursor = range.end;
-  }
-  html += escapeHtml(text.slice(cursor));
-  return html;
+function colorMarkerHtml(color, value) {
+  return `<span style="color:${COLOR_PALETTE[color]};font-weight:700;">${escapeHtml(value)}</span>`;
 }
 
 function inlineHtml(value) {
   const text = String(value);
-  const tokenPattern = /(\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+]\(https?:\/\/[^)]+\))/g;
+  const tokenPattern = /(\[(?:red|blue|brown):[^\]]+\]|\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+]\(https?:\/\/[^)]+\))/g;
   let cursor = 0;
   let html = "";
   let match;
   while ((match = tokenPattern.exec(text)) !== null) {
-    html += autoHighlightPlainText(text.slice(cursor, match.index));
+    html += escapeHtml(text.slice(cursor, match.index));
     const token = match[0];
+    const color = token.match(/^\[(red|blue|brown):\s*([^\]]+)\]$/);
     const strong = token.match(/^\*\*([^*]+)\*\*$/);
     const code = token.match(/^`([^`]+)`$/);
     const link = token.match(/^\[([^\]]+)]\((https?:\/\/[^)]+)\)$/);
-    if (strong) html += semanticStrongHtml(escapeHtml(strong[1].replace(/`([^`]+)`/g, "$1")));
+    if (color) html += colorMarkerHtml(color[1], color[2].trim());
+    else if (strong) html += `<strong>${escapeHtml(strong[1].replace(/`([^`]+)`/g, "$1"))}</strong>`;
     else if (code) html += `<code>${escapeHtml(code[1])}</code>`;
     else if (link) html += `${escapeHtml(link[1])} <span>(${escapeHtml(link[2])})</span>`;
     cursor = match.index + token.length;
   }
-  html += autoHighlightPlainText(text.slice(cursor));
+  html += escapeHtml(text.slice(cursor));
   return html;
 }
 
 function tableCellText(value) {
   return String(value)
     .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/\[(?:red|blue|brown):\s*([^\]]+)\]/g, "$1")
     .replace(/\*\*([^*]+)\*\*/g, "$1")
     .replace(/`([^`]+)`/g, "$1")
     .replace(/\[([^\]]+)]\((https?:\/\/[^)]+)\)/g, "$1 ($2)");
@@ -229,7 +129,7 @@ function tableCellHtml(value) {
 
 function renderExcelTableHtml(table) {
   const tableStyle = "border-collapse:collapse;table-layout:auto;margin:0;";
-  const baseCellStyle = "border:1px solid #d9d9d9;padding:6px 8px;font-size:14px;line-height:1.45;white-space:pre-wrap;vertical-align:top;";
+  const baseCellStyle = "border:1px solid #d9d9d9;padding:6px 8px;font-size:14px;line-height:1.45;white-space:pre-wrap;vertical-align:top;color:#222;";
   const alignStyle = (index) => `text-align:${table.alignments?.[index] || "left"};`;
   const header = `<tr>${table.headers.map((cell, index) => `<th style="${baseCellStyle}font-weight:700;background:#f3f4f6;${alignStyle(index)}">${tableCellHtml(cell)}</th>`).join("")}</tr>`;
   const body = table.rows.map(row => `<tr>${table.headers.map((_header, index) => `<td style="${baseCellStyle}${alignStyle(index)}">${tableCellHtml(row[index] || "")}</td>`).join("")}</tr>`).join("");
@@ -260,9 +160,9 @@ function editorHtml(markdown) {
   const blocks = [];
   let paragraph = [];
   let quotation = [];
-  const bodyStyle = "font-size:15px;font-weight:400;line-height:1.7;margin:0;";
-  const bodyTextStyle = "font-size:15px;font-weight:400;line-height:1.7;";
-  const quoteStyle = "font-size:15px;font-weight:400;line-height:1.7;margin:0;padding:14px 18px;border-left:4px solid #03c75a;background:#f6f8f7;";
+  const bodyStyle = "font-size:15px;font-weight:400;line-height:1.7;margin:0;color:#222;";
+  const bodyTextStyle = "font-size:15px;font-weight:400;line-height:1.7;color:#222;";
+  const quoteStyle = "font-size:15px;font-weight:400;line-height:1.7;margin:0;padding:14px 18px;border-left:4px solid #03c75a;background:#f6f8f7;color:#222;";
   const spacer = `<p data-kr-naver-spacer="true" style="${bodyStyle}"><span style="${bodyTextStyle}"><br></span></p>`;
   const bodyBlock = (content) => `<p style="${bodyStyle}"><span style="${bodyTextStyle}">${content}</span></p>`;
   const pushBlock = (html) => {
@@ -305,13 +205,13 @@ function editorHtml(markdown) {
     if (h2) {
       flushParagraph();
       if (blocks.length) blocks.push("<hr>");
-      pushBlock(`<h2 style="font-size:28px;font-weight:700;line-height:1.45;margin:0;"><strong style="font-size:28px;font-weight:700;line-height:1.45;">${inlineHtml(h2[1])}</strong></h2>`);
+      pushBlock(`<h2 style="font-size:28px;font-weight:700;line-height:1.45;margin:0;color:#222;"><strong style="font-size:28px;font-weight:700;line-height:1.45;color:#222;">${inlineHtml(h2[1])}</strong></h2>`);
       continue;
     }
     const h3 = trimmed.match(/^###\s+(.+?)\s*$/);
     if (h3) {
       flushParagraph();
-      pushBlock(`<h3 style="font-size:24px;font-weight:700;line-height:1.45;margin:0;"><strong style="font-size:24px;font-weight:700;line-height:1.45;">${inlineHtml(h3[1])}</strong></h3>`);
+      pushBlock(`<h3 style="font-size:24px;font-weight:700;line-height:1.45;margin:0;color:#222;"><strong style="font-size:24px;font-weight:700;line-height:1.45;color:#222;">${inlineHtml(h3[1])}</strong></h3>`);
       continue;
     }
     if (/^---+\s*$/.test(trimmed)) {
@@ -382,6 +282,25 @@ function normalizeEditorText(value) {
     .replace(/(?:^|\n)────────(?:\n|$)/g, "\n"));
 }
 
+function compactEditorText(value) {
+  return normalizeEditorText(value).replace(/\s+/g, "");
+}
+
+function manifestLinkCards(manifest) {
+  if (!isDailyMarketManifest(manifest)) return [];
+  return (manifest.post?.linkCards || []).filter(url => /^https?:\/\//.test(String(url || ""))).slice(0, 5);
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function stripLinkCardUrls(value, urls) {
+  let text = String(value || "");
+  for (const url of urls) text = text.replaceAll(url, "");
+  return normalizeText(text);
+}
+
 function plainHtmlText(value) {
   return normalizeText(String(value)
     .replace(/<br\s*\/?\s*>/gi, "\n")
@@ -414,7 +333,8 @@ function verifyThumbnailArtifact(manifest) {
   const thumbnail = manifest.post.thumbnail;
   assert(thumbnail, "Manifest thumbnail metadata missing; run prepare again");
   assert(thumbnail.status === "generated", `Thumbnail is not generated: ${thumbnail.status || "unknown"}`);
-  assert(thumbnail.source === "gemini-web", `Unsupported thumbnail source: ${thumbnail.source || "unknown"}`);
+  const allowedSource = thumbnail.source === "gemini-web" || (isDailyMarketManifest(manifest) && thumbnail.source === "imagegen-local");
+  assert(allowedSource, `Unsupported thumbnail source: ${thumbnail.source || "unknown"}`);
   assert(thumbnail.prompt === thumbnailPrompt(manifest), "Thumbnail prompt does not match the generated blog title; run prepare again");
   assert(fs.existsSync(thumbnail.absolutePath), `Thumbnail missing: ${thumbnail.relativePath || thumbnail.absolutePath}`);
   assert(isSupportedImage(thumbnail.absolutePath), `Thumbnail is not a supported non-empty PNG/JPG/WebP image: ${thumbnail.relativePath || thumbnail.absolutePath}`);
@@ -547,18 +467,66 @@ function assertWritableDraft(inspected, manifest, expectedBody) {
     && body.includes(manifest.post.issue)
     && body.includes("RESEARCH COMPLETE")
     && body.includes("매수·매도를 권유하지 않습니다");
-  const titleOk = isBlankOrPlaceholder(title) || title === expectedTitle || sameGeneratedStockDraft;
+  const sameGeneratedDailyDraft = isDailyMarketManifest(manifest)
+    && title === expectedTitle
+    && body.includes(manifest.source.asOfDate)
+    && body.includes("시장 주요 요약")
+    && body.includes("매수·매도를 권유하지 않습니다");
+  const titleOk = isBlankOrPlaceholder(title) || title === expectedTitle || sameGeneratedStockDraft || sameGeneratedDailyDraft;
   const incompleteSelfDraft = body.startsWith(expectedTitle) || expected.startsWith(body);
   const sameGeneratedDraft = title === expectedTitle && body.includes(manifest.post.company);
-  const bodyOk = isBlankOrPlaceholder(body) || body === expected || incompleteSelfDraft || sameGeneratedDraft || sameGeneratedStockDraft;
+  const bodyOk = isBlankOrPlaceholder(body) || body === expected || incompleteSelfDraft || sameGeneratedDraft || sameGeneratedStockDraft || sameGeneratedDailyDraft;
   assert(titleOk && bodyOk, "Editor already contains different draft content; open a new blank write screen before prepare");
+}
+
+function manifestSourcePath(manifest) {
+  return manifest.source?.memoPath || manifest.source?.reportPath;
+}
+
+function manifestSourceSha256(manifest) {
+  return manifest.source?.memoSha256 || manifest.source?.reportSha256;
+}
+
+function isDailyMarketManifest(manifest) {
+  return manifest.contentType === "daily-market-news";
+}
+
+function assertScheduledPublishAllowed(args, manifest) {
+  assert(args.scheduled === "yes", "Scheduled publish requires --scheduled yes");
+  assert(isDailyMarketManifest(manifest), "Scheduled publish is only allowed for daily market-news manifests");
+  assert(manifest.automation?.scheduledPublishAllowed === true, "Manifest does not allow scheduled public publishing");
+}
+
+function sameDayPublishedManifest(manifestPath, manifest) {
+  if (!isDailyMarketManifest(manifest)) return null;
+  const duplicateDate = manifest.automation?.duplicateDate || manifest.post?.publicationDate || manifest.source?.asOfDate;
+  if (!duplicateDate) return null;
+  const currentPath = path.resolve(manifestPath);
+  const dir = path.dirname(currentPath);
+  if (!fs.existsSync(dir)) return null;
+  for (const entry of fs.readdirSync(dir)) {
+    if (!/\.json$/i.test(entry)) continue;
+    const candidatePath = path.resolve(dir, entry);
+    if (candidatePath === currentPath) continue;
+    let candidate;
+    try { candidate = readJson(candidatePath); } catch { continue; }
+    if (candidate.contentType !== "daily-market-news") continue;
+    const candidateDate = candidate.automation?.duplicateDate || candidate.post?.publicationDate || candidate.source?.asOfDate;
+    if (candidateDate !== duplicateDate) continue;
+    if (candidate.status === "published" || candidate.publish?.url) return { path: candidatePath, manifest: candidate };
+  }
+  return null;
 }
 
 function verifyArtifacts(manifest) {
   assert(manifest.schemaVersion === 1, "Unsupported manifest schemaVersion");
   assert(manifest.status !== "published", "Manifest is already published; duplicate publish blocked");
-  assert(fs.existsSync(manifest.source.memoPath), `Source memo missing: ${manifest.source.memoPath}`);
-  assert(fileSha256(manifest.source.memoPath) === manifest.source.memoSha256, "Source memo changed after conversion; reconvert before preparing");
+  const sourcePath = manifestSourcePath(manifest);
+  const sourceSha256 = manifestSourceSha256(manifest);
+  assert(sourcePath, "Manifest source path missing");
+  assert(sourceSha256, "Manifest source sha256 missing");
+  assert(fs.existsSync(sourcePath), `Source document missing: ${sourcePath}`);
+  assert(fileSha256(sourcePath) === sourceSha256, "Source document changed after conversion; reconvert before preparing");
   assert(fs.existsSync(manifest.post.markdownPath), `Post markdown missing: ${manifest.post.markdownPath}`);
   assert(fileSha256(manifest.post.markdownPath) === manifest.post.markdownSha256, "Post markdown changed after conversion; reconvert before preparing");
   for (const image of manifest.post.images) {
@@ -584,6 +552,21 @@ class FixtureDriver {
     this.requireSelector("body");
     this.fixture.editor.body = normalizeText([this.fixture.editor.body, value].filter(Boolean).join("\n\n"));
     this.fixture.editor.bodyHtml = [this.fixture.editor.bodyHtml, html].filter(Boolean).join("\n");
+    this.persist();
+    this.dismissPastePopups();
+  }
+  pasteLinkCard(url) {
+    this.requireSelector("body");
+    this.fixture.linkCardPasteCalls ||= [];
+    this.fixture.linkCardPasteCalls.push(url);
+    this.fixture.linkCardEnterCalls ||= [];
+    this.fixture.linkCardEnterCalls.push(url);
+    this.fixture.editor.linkCards ||= [];
+    this.fixture.editor.linkCards.push(url);
+    this.fixture.editor.body = normalizeText([this.fixture.editor.body, url].filter(Boolean).join("\n\n"));
+    const style = "font-size:15px;font-weight:400;line-height:1.7;margin:0;color:#222;";
+    const spanStyle = "font-size:15px;font-weight:400;line-height:1.7;color:#222;";
+    this.fixture.editor.bodyHtml = [this.fixture.editor.bodyHtml, `<p style="${style}"><span style="${spanStyle}">${escapeHtml(url)}</span></p>`].filter(Boolean).join("\n");
     this.persist();
     this.dismissPastePopups();
   }
@@ -633,6 +616,7 @@ class FixtureDriver {
   }
   setCategory(value) { this.requireSelector("category"); this.fixture.editor.category = value; this.persist(); }
   setTags(values) { this.requireSelector("tags"); this.fixture.editor.tags = values; this.persist(); }
+  pruneTags(values) { this.fixture.editor.tags = (this.fixture.editor.tags || []).filter(tag => values.includes(tag)); this.persist(); }
   recordClick(role) {
     this.requireSelector(role);
     if ((this.fixture.clickTimeoutRoles || []).includes(role)) {
@@ -677,7 +661,7 @@ class FixtureDriver {
     const quoteCount = (this.fixture.editor.bodyHtml?.match(/<blockquote\b/g) || []).length;
     const tables = this.fixture.editor.tables || extractTablesFromHtml(this.fixture.editor.bodyHtml);
     const formatBlocks = this.fixture.editor.formatBlocks || formatBlocksFromHtml(this.fixture.editor.bodyHtml);
-    return { title: this.fixture.editor.title, body: this.fixture.editor.body, imageCount: this.fixture.editor.images, tags: this.fixture.editor.tags || [], separatorCount, quoteCount, tableCount: tables.length, tables, formatBlocks, representativeThumbnailSelected: Boolean(this.fixture.representativeThumbnail?.selected) };
+    return { title: this.fixture.editor.title, body: this.fixture.editor.body, imageCount: this.fixture.editor.images, tags: this.fixture.editor.tags || [], separatorCount, quoteCount, tableCount: tables.length, tables, formatBlocks, linkCardUrls: this.fixture.editor.linkCards || [], representativeThumbnailSelected: Boolean(this.fixture.representativeThumbnail?.selected) };
   }
   screenshot(filePath) { fs.writeFileSync(filePath, Buffer.from("fixture preview\n", "utf8")); }
   editorUrl() { return this.fixture.editorUrl || "https://blog.naver.com/GoBlogWrite.naver?fixtureDraft=1"; }
@@ -893,6 +877,11 @@ class GstackDriver {
       return toolbarSelected || commandSelected;
     })()`));
     if (boldSelected) this.run(["press", process.platform === "darwin" ? "Meta+B" : "Control+B"], 30_000);
+    this.js(`(() => {
+      try { document.execCommand('foreColor', false, '#222222'); } catch {}
+      try { document.execCommand('hiliteColor', false, 'transparent'); } catch {}
+      return 'reset';
+    })()`);
   }
   openEditor() { this.run(["frame", "main"]); this.gotoAllowRedirectAbort(process.env.NAVER_BLOG_WRITE_URL || WRITE_URL); this.run(["wait", "--load"], 15_000); this.enterEditorFrame(); }
   openPreparedDraft(url) { assert(url, "Prepared draft URL is missing"); this.run(["frame", "main"]); this.gotoAllowRedirectAbort(url); this.run(["wait", "--load"], 15_000); this.enterEditorFrame(); }
@@ -917,6 +906,13 @@ class GstackDriver {
   appendBody(value, html) {
     const selector = this.findSelector("body");
     this.replaceEditorText(selector, value, html, { selectAll: false, resetBodyFormatting: true });
+  }
+  pasteLinkCard(url) {
+    const selector = this.findSelector("body");
+    this.clickOrDomClick(selector);
+    this.focusEditable(selector, { selectAll: false });
+    this.pasteClipboard(`\n${url}`, escapeHtml(url));
+    this.run(["press", "Enter"], 30_000);
   }
   imageNodeCount() {
     return Number(this.js(`document.querySelectorAll('.se-main-container .se-module-image img, .se-content .se-image-resource').length`)) || 0;
@@ -1118,7 +1114,11 @@ class GstackDriver {
       throw new Error(`Required Naver representative thumbnail upload control unavailable; publish blocked. Page text: ${diagnostic}`);
     }
     this.run(["upload", selector, filePath], 60_000);
-    this.run(["wait", "--networkidle"], 20_000);
+    try {
+      this.run(["wait", "--networkidle"], 20_000);
+    } catch {
+      try { this.run(["wait", "--load"], 10_000); } catch {}
+    }
     const afterCount = this.imageNodeCount();
     assert(afterCount === beforeCount, `Representative thumbnail upload inserted an editor body image: before ${beforeCount}, after ${afterCount}`);
     const selected = this.js(`new Promise(resolve => {
@@ -1230,6 +1230,7 @@ class GstackDriver {
         }
         return null;
       };
+      if (selectedState()) return resolve('true');
       const representativeButton = findRepresentativeButton();
       if (!representativeButton) return resolve('button-missing');
       representativeButton.click();
@@ -1283,23 +1284,95 @@ class GstackDriver {
   setTags(values) {
     const selector = this.findSelector("tags");
     this.clickOrDomClick(selector);
-    const existingCount = Number(this.js("document.querySelectorAll('[id^=tag-item-][aria-label]').length")) || 0;
-    for (let index = 0; index < existingCount; index += 1) this.run(["press", "Backspace"], 30_000);
+    this.js(`(() => {
+      const input = document.querySelector(${JSON.stringify(selector)});
+      if (input) {
+        input.focus();
+        if ('value' in input) input.value = '';
+      }
+      return 'focused';
+    })()`);
+    for (let index = 0; index < 40; index += 1) {
+      const tagSelector = this.js(`(() => {
+        document.querySelectorAll('[data-kr-naver-clear-tag]').forEach(element => element.removeAttribute('data-kr-naver-clear-tag'));
+        const tag = document.querySelector('[id^=tag-item-][aria-label]');
+        if (!tag) return '';
+        tag.setAttribute('data-kr-naver-clear-tag', 'true');
+        return '[data-kr-naver-clear-tag=true]';
+      })()`).replace(/^"|"$/g, "");
+      if (!tagSelector) break;
+      this.clickOrDomClick(tagSelector);
+      this.run(["press", "Backspace"], 30_000);
+    }
     for (const value of values) {
       this.run(["fill", selector, value], 30_000);
       this.run(["press", "Enter"], 30_000);
     }
+    this.pruneTags(values);
+  }
+  pruneTags(values) {
+    const expectedValues = values.map(String);
+    for (let index = 0; index < 40; index += 1) {
+      const tagSelector = this.js(`(() => {
+        const expected = new Set(${JSON.stringify(expectedValues)});
+        document.querySelectorAll('[data-kr-naver-prune-tag]').forEach(element => element.removeAttribute('data-kr-naver-prune-tag'));
+        const tag = [...document.querySelectorAll('[id^=tag-item-][aria-label]')]
+          .find(element => !expected.has(element.getAttribute('aria-label') || ''));
+        if (!tag) return '';
+        tag.setAttribute('data-kr-naver-prune-tag', 'true');
+        return '[data-kr-naver-prune-tag=true]';
+      })()`).replace(/^"|"$/g, "");
+      if (!tagSelector) break;
+      this.clickOrDomClick(tagSelector);
+      this.run(["press", "Backspace"], 30_000);
+    }
   }
   saveDraft() {
     const selector = this.markButtonByText("saveDraft", ["저장"]) || this.findSelector("saveDraft");
-    this.clickOrDomClick(selector); this.run(["wait", "--networkidle"], 20_000);
+    this.clickOrDomClick(selector);
+    try {
+      this.run(["wait", "--networkidle"], 20_000);
+    } catch {
+      try { this.run(["wait", "--load"], 10_000); } catch {}
+    }
   }
   readElement(selector) {
     return this.js(`(() => { const e=document.querySelector(${JSON.stringify(selector)}); return e ? (e.value ?? e.innerText ?? e.textContent ?? '') : ''; })()`).replace(/^"|"$/g, "");
   }
   readBodyText() {
     const result = this.js(`JSON.stringify((() => {
-      const textOf = e => (e.value ?? e.innerText ?? e.textContent ?? '').trim();
+      const textOf = e => {
+        const clone = e.cloneNode(true);
+        clone.querySelectorAll([
+          'button',
+          'input',
+          'textarea',
+          'select',
+          '[role=button]',
+          '[contenteditable=false]',
+          '[class*=toolbar]',
+          '[class*=Toolbar]',
+          '[class*=resize]',
+          '[class*=Resize]',
+          '[class*=control]',
+          '[class*=Control]',
+          '[class*=guide]',
+          '[class*=Guide]',
+          '[class*=placeholder]',
+          '[class*=Placeholder]',
+          '.se-table-context-menu',
+          '.se-table-control',
+          '.se-module-image-option',
+          '.se-caption',
+          '.se-source'
+        ].join(',')).forEach(node => node.remove());
+        return (clone.value ?? clone.innerText ?? clone.textContent ?? '')
+          .split('\\n')
+          .map(line => line.trim())
+          .filter(line => line && line !== '출처 입력' && line !== '사진 설명을 입력하세요')
+          .join('\\n')
+          .trim();
+      };
       const tableText = table => [...table.querySelectorAll('tr')]
         .map(row => [...row.querySelectorAll('th,td')].map(cell => textOf(cell)).join('\\t'))
         .join('\\n');
@@ -1363,8 +1436,13 @@ class GstackDriver {
   readTableData() {
     const result = this.js(`JSON.stringify((() => {
       const root = document.querySelector('.se-main-container, .se-content') || document;
+      const cellText = cell => {
+        const clone = cell.cloneNode(true);
+        clone.querySelectorAll('button,input,textarea,select,[role=button],[contenteditable=false],[class*=toolbar],[class*=Toolbar],[class*=resize],[class*=Resize],[class*=control],[class*=Control],[class*=guide],[class*=Guide]').forEach(node => node.remove());
+        return (clone.innerText || clone.textContent || '').trim();
+      };
       return [...root.querySelectorAll('table')].map(table => {
-        const rows = [...table.querySelectorAll('tr')].map(row => [...row.querySelectorAll('th,td')].map(cell => (cell.innerText || cell.textContent || '').trim()));
+        const rows = [...table.querySelectorAll('tr')].map(row => [...row.querySelectorAll('th,td')].map(cellText));
         return { rows, rowCount: rows.length, columnCount: Math.max(0, ...rows.map(row => row.length)) };
       }).filter(table => table.rowCount > 0);
     })())`);
@@ -1396,13 +1474,20 @@ class GstackDriver {
         ].filter(Boolean).join(' ')));
       return selectedMarker || coverMarker || doneText;
     })()`));
-    return { title, body, imageCount, separatorCount, quoteCount, tableCount: tables.length, tables, tags: this.readTags(), formatBlocks: this.readBlockFormatting(), representativeThumbnailSelected };
+    const linkCardUrls = (() => {
+      try {
+        return JSON.parse(this.js(`JSON.stringify([...new Set([...document.querySelectorAll('a[href^="http"]')].map(a => a.href))])`));
+      } catch {
+        return [];
+      }
+    })();
+    return { title, body, imageCount, separatorCount, quoteCount, tableCount: tables.length, tables, tags: this.readTags(), formatBlocks: this.readBlockFormatting(), linkCardUrls, representativeThumbnailSelected };
   }
   screenshot(filePath) { this.run(["screenshot", filePath], 60_000); }
   editorUrl() { return this.js("location.href").replace(/^"|"$/g, ""); }
   openPublishLayer() {
     const selector = this.markButtonByText("publishOpen", ["발행"]) || this.findSelector("publishOpen");
-    this.clickOrDomClick(selector);
+    this.clickOrDomClick(selector, 90_000);
   }
   closePublishLayer() {
     const selector = this.js(`(() => {
@@ -1419,7 +1504,12 @@ class GstackDriver {
   }
   publish() {
     const selector = this.markButtonByText("publishConfirm", ["발행"]) || this.findSelector("publishConfirm");
-    this.clickOrDomClick(selector); this.run(["wait", "--networkidle"], 30_000);
+    this.clickOrDomClick(selector, 90_000);
+    try {
+      this.run(["wait", "--networkidle"], 60_000);
+    } catch {
+      try { this.run(["wait", "--load"], 30_000); } catch {}
+    }
   }
   publishedUrl() { return this.js("location.href").replace(/^"|"$/g, ""); }
 }
@@ -1428,7 +1518,12 @@ function createDriver(args) { return args.fixture ? new FixtureDriver(path.resol
 
 function validateEditor(inspected, manifest, expectedBody, options = {}) {
   assert(normalizeText(inspected.title) === normalizeText(manifest.post.title), "Editor title does not match manifest");
-  assert(normalizeEditorText(inspected.body) === normalizeEditorText(expectedBody), "Editor body does not match generated post");
+  const linkCards = manifestLinkCards(manifest);
+  assert(compactEditorText(stripLinkCardUrls(inspected.body, linkCards)) === compactEditorText(stripLinkCardUrls(expectedBody, linkCards)), "Editor body does not match generated post");
+  for (const url of linkCards) {
+    const found = String(inspected.body || "").includes(url) || (inspected.linkCardUrls || []).includes(url);
+    assert(found, `Daily market-news link card URL missing from editor: ${url}`);
+  }
   assert(Number(inspected.imageCount) === manifest.post.images.length, `Editor image count mismatch: expected ${manifest.post.images.length}, got ${inspected.imageCount}; file input was processed but SmartEditor image nodes were not created`);
   if (options.validateThumbnail) {
     verifyThumbnailArtifact(manifest);
@@ -1436,7 +1531,7 @@ function validateEditor(inspected, manifest, expectedBody, options = {}) {
   }
   if (options.expectedTables) validateTables(inspected.tables || [], options.expectedTables);
   if (expectedBody.includes("────────")) assert(Number(inspected.separatorCount) > 0, "Editor section separators are missing");
-  if (/stock research skill/i.test(expectedBody)) assert(Number(inspected.quoteCount) > 0, "Editor research-skill signature quotation is missing");
+  if (/krresearchkit/i.test(expectedBody)) assert(Number(inspected.quoteCount) > 0, "Editor KrResearchKit signature quotation is missing");
   if (options.validateTags) {
     const actualTags = new Set((inspected.tags || []).map(tag => normalizeText(tag).replace(/^#/, "")));
     const expectedTags = new Set(manifest.post.tags.map(tag => normalizeText(tag).replace(/^#/, "")));
@@ -1484,8 +1579,22 @@ function setBodyAndInlineImages(driver, markdown, manifest) {
   assert(imageIndex === manifest.post.images.length, "Manifest image count does not match generated post image markers");
 }
 
+function setBodyWithDailyLinkCards(driver, markdown, manifest) {
+  const linkCards = manifestLinkCards(manifest);
+  assert(linkCards.length, "Daily market-news link card list is empty");
+  assert(!manifest.post.images.length, "Daily market-news link-card placement does not support inline body images");
+  for (const url of linkCards) {
+    const linePattern = new RegExp(`(^|\\r?\\n)${escapeRegExp(url)}(?=\\r?\\n|$)`);
+    assert(linePattern.test(markdown), `Daily market-news raw URL is missing from generated post body: ${url}`);
+  }
+  driver.setBody(editorBody(markdown), editorHtml(markdown));
+}
+
 function prepare(args, manifestPath, manifest) {
+  if (args.scheduled) assertScheduledPublishAllowed(args, manifest);
   verifyArtifacts(manifest);
+  const duplicate = args.scheduled ? sameDayPublishedManifest(manifestPath, manifest) : null;
+  if (duplicate) throw new Error(`Duplicate same-day daily market-news publication blocked: ${duplicate.path}`);
   const driver = createDriver(args);
   ensureThumbnailArtifact(manifest, driver);
   writeJsonAtomic(manifestPath, manifest);
@@ -1499,18 +1608,22 @@ function prepare(args, manifestPath, manifest) {
   const startupInspected = driver.inspect();
   assertWritableDraft(startupInspected, manifest, body);
   driver.setTitle(manifest.post.title);
-  setBodyAndInlineImages(driver, markdown, manifest);
+  if (manifestLinkCards(manifest).length) setBodyWithDailyLinkCards(driver, markdown, manifest);
+  else setBodyAndInlineImages(driver, markdown, manifest);
   driver.saveDraft();
   const editorUrl = driver.editorUrl();
   driver.openPublishLayer();
   if (manifest.post.category) driver.setCategory(manifest.post.category);
-  driver.setTags(manifest.post.tags);
+  if (!isDailyMarketManifest(manifest)) driver.setTags(manifest.post.tags);
   driver.selectRepresentativeThumbnail(manifest.post.thumbnail.absolutePath);
+  if (!isDailyMarketManifest(manifest) && typeof driver.pruneTags === "function") driver.pruneTags(manifest.post.tags);
   driver.closePublishLayer();
   driver.saveDraft();
   driver.openPublishLayer();
+  if (!isDailyMarketManifest(manifest) && typeof driver.pruneTags === "function") driver.pruneTags(manifest.post.tags);
   const inspected = driver.inspect();
-  const fingerprint = validateEditor(inspected, manifest, body, { validateTags: true, validateThumbnail: true, expectedHtml: html, expectedTables: expectedTableData(markdown) });
+  const validateTags = !isDailyMarketManifest(manifest);
+  const fingerprint = validateEditor(inspected, manifest, body, { validateTags, validateThumbnail: true, expectedHtml: html, expectedTables: expectedTableData(markdown) });
   const screenshotPath = path.resolve(args.screenshot || path.join(path.dirname(manifest.post.markdownPath), "naver-preview.png"));
   driver.screenshot(screenshotPath);
   const token = crypto.randomBytes(24).toString("base64url");
@@ -1522,8 +1635,8 @@ function prepare(args, manifestPath, manifest) {
     screenshotPath,
     editorUrl,
     contentFingerprint: fingerprint,
-    approvalTokenHash: sha256(`${token}:${manifest.source.memoSha256}:${manifest.post.markdownSha256}:${fingerprint}`),
-    validation: { title: true, body: true, imageCount: true, sources: true, disclaimer: true, tags: true, thumbnail: true, separators: true, formatting: true, signatureQuotation: true },
+    approvalTokenHash: sha256(`${token}:${manifestSourceSha256(manifest)}:${manifest.post.markdownSha256}:${fingerprint}`),
+    validation: { title: true, body: true, imageCount: true, sources: true, disclaimer: true, tags: validateTags, thumbnail: true, separators: true, formatting: true, signatureQuotation: true },
   };
   writeJsonAtomic(manifestPath, manifest);
   return { status: "prepared", manifestPath, screenshotPath, approvalToken: token, expiresAt };
@@ -1532,11 +1645,14 @@ function prepare(args, manifestPath, manifest) {
 function publish(args, manifestPath, manifest) {
   assert(manifest.status !== "published", "Manifest is already published; duplicate publish blocked");
   assert(manifest.status === "prepared" && manifest.prepare, "Prepare must complete before publish");
+  if (args.scheduled) assertScheduledPublishAllowed(args, manifest);
   assert(args.token, "Publish requires --token from the latest prepare result");
   assert(args["confirm-public"] === "yes", "Publish requires --confirm-public yes after explicit user approval");
+  const duplicate = sameDayPublishedManifest(manifestPath, manifest);
+  if (duplicate) throw new Error(`Duplicate same-day daily market-news publication blocked: ${duplicate.path}`);
   assert(Date.now() <= Date.parse(manifest.prepare.expiresAt), "Approval token expired; run prepare again");
   verifyArtifacts(manifest);
-  const expectedHash = sha256(`${args.token}:${manifest.source.memoSha256}:${manifest.post.markdownSha256}:${manifest.prepare.contentFingerprint}`);
+  const expectedHash = sha256(`${args.token}:${manifestSourceSha256(manifest)}:${manifest.post.markdownSha256}:${manifest.prepare.contentFingerprint}`);
   const actual = Buffer.from(expectedHash, "hex");
   const stored = Buffer.from(manifest.prepare.approvalTokenHash, "hex");
   assert(actual.length === stored.length && crypto.timingSafeEqual(actual, stored), "Approval token does not match the prepared draft");
@@ -1544,11 +1660,36 @@ function publish(args, manifestPath, manifest) {
   driver.openPreparedDraft(manifest.prepare.editorUrl);
   assert(driver.isLoggedIn(), "Naver login expired or CAPTCHA detected; public publish was not attempted");
   const markdown = fs.readFileSync(manifest.post.markdownPath, "utf8");
+  const body = editorBody(markdown);
+  const html = editorHtml(markdown);
+  let restored;
+  try {
+    restored = driver.inspect();
+  } catch (error) {
+    if (!/selector unavailable: title/i.test(error.message)) throw error;
+    driver.openEditor();
+    assert(driver.isLoggedIn(), "Naver login expired or CAPTCHA detected; public publish was not attempted");
+    if (typeof driver.dismissStartupPopups === "function") driver.dismissStartupPopups();
+    restored = driver.inspect();
+  }
+  const restoredMatches = normalizeText(restored.title) === normalizeText(manifest.post.title)
+    && compactEditorText(stripLinkCardUrls(restored.body, manifestLinkCards(manifest))) === compactEditorText(stripLinkCardUrls(body, manifestLinkCards(manifest)))
+    && Number(restored.imageCount) === manifest.post.images.length;
+  if (!restoredMatches) {
+    assertWritableDraft(restored, manifest, body);
+    driver.setTitle(manifest.post.title);
+    if (manifestLinkCards(manifest).length) setBodyWithDailyLinkCards(driver, markdown, manifest);
+    else setBodyAndInlineImages(driver, markdown, manifest);
+    driver.saveDraft();
+  }
   driver.openPublishLayer();
   if (manifest.post.category) driver.setCategory(manifest.post.category);
-  driver.setTags(manifest.post.tags);
+  if (!isDailyMarketManifest(manifest)) driver.setTags(manifest.post.tags);
+  driver.selectRepresentativeThumbnail(manifest.post.thumbnail.absolutePath);
+  if (!isDailyMarketManifest(manifest) && typeof driver.pruneTags === "function") driver.pruneTags(manifest.post.tags);
   const inspected = driver.inspect();
-  const fingerprint = validateEditor(inspected, manifest, editorBody(markdown), { validateTags: true, validateThumbnail: true, expectedHtml: editorHtml(markdown), expectedTables: expectedTableData(markdown) });
+  const validateTags = !isDailyMarketManifest(manifest);
+  const fingerprint = validateEditor(inspected, manifest, body, { validateTags, validateThumbnail: true, expectedHtml: html, expectedTables: expectedTableData(markdown) });
   assert(fingerprint === manifest.prepare.contentFingerprint, "Editor content changed after prepare; public publish was not attempted");
   driver.publish();
   const url = driver.publishedUrl();
@@ -1564,11 +1705,19 @@ function publish(args, manifestPath, manifest) {
 function main() {
   const args = parseArgs(process.argv);
   const action = args._[0];
-  assert(action === "prepare" || action === "publish", "Usage: publisher.js <prepare|publish> --manifest <json> [--fixture <json>] [--token <token> --confirm-public yes]");
+  assert(action === "prepare" || action === "publish" || action === "scheduled-publish", "Usage: publisher.js <prepare|publish|scheduled-publish> --manifest <json> [--fixture <json>] [--token <token> --confirm-public yes] [--scheduled yes]");
   assert(args.manifest, "--manifest is required");
   const manifestPath = path.resolve(args.manifest);
   const manifest = readJson(manifestPath);
-  const result = action === "prepare" ? prepare(args, manifestPath, manifest) : publish(args, manifestPath, manifest);
+  const result = action === "prepare"
+    ? prepare(args, manifestPath, manifest)
+    : action === "scheduled-publish"
+      ? (() => {
+        const prepared = prepare({ ...args, scheduled: "yes" }, manifestPath, manifest);
+        const latest = readJson(manifestPath);
+        return publish({ ...args, scheduled: "yes", token: prepared.approvalToken, "confirm-public": "yes" }, manifestPath, latest);
+      })()
+      : publish(args, manifestPath, manifest);
   process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
 }
 

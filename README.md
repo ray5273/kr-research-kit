@@ -79,6 +79,14 @@ Output: row-by-row contract timeline + maturity distribution + explicit "disclos
 
 Output: `analysis-example/kr-market/leaders-<YYYY-MM-DD>.md` + `.json` cache with prior-day diff. Daily artifact, regenerated each run.
 
+### 5. Codex Desktop daily market-news automation
+
+```text
+Use $kr-daily-market-news to create today's Korean market-wide and sector daily news report for blog publication. Write analysis-example/kr-market/daily-news-YYYY-MM-DD.md and .json, then use $kr-naver-blog-publish in scheduled mode.
+```
+
+Output: `analysis-example/kr-market/daily-news-<YYYY-MM-DD>.md` + `.json` and a dated Naver publish manifest. Example: [daily-news-2026-06-28](analysis-example/kr-market/daily-news-2026-06-28.md), [Naver post](analysis-example/kr-market/naver-post-2026-06-28.md), [publish manifest](analysis-example/kr-market/naver-publish-2026-06-28.json). Sector collection uses the default seed list at [examples/kr/daily-sector-stocks.json](examples/kr/daily-sector-stocks.json).
+
 More scenarios (sector compare, portfolio health, post-earnings update) → [docs/MARKETPLACE.md § Use cases](docs/MARKETPLACE.md). Full prompt catalog for every shipped skill → [docs/USAGE.md](docs/USAGE.md).
 
 ## Outputs Preview
@@ -97,7 +105,7 @@ Full index of 35+ example artifacts (memos, Naver posts, DART references, chart 
 
 ## What's Inside
 
-23 skills. Korean stock pipeline: `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-stock-data-pack → kr-stock-analysis`. U.S. stocks: `us-stock-analysis`. Sector workflow: `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update`.
+24 skills. Korean stock pipeline: `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-stock-data-pack → kr-stock-analysis`. Daily market workflow: `kr-daily-market-news → kr-naver-blog-publish`. U.S. stocks: `us-stock-analysis`. Sector workflow: `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update`.
 
 Full catalog + per-skill behavior + bundled helpers → [docs/SKILLS.md](docs/SKILLS.md).
 

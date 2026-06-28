@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "contentType": "daily-market-news",
+  "status": "published",
+  "source": {
+    "reportPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-market/daily-news-2026-06-28.md",
+    "reportSha256": "a137e4272c9780aa06b291f76920633c8a86de517482afd1fe4cbfcccfff659d",
+    "asOfDate": "2026-06-28"
+  },
+  "post": {
+    "company": "한국 시장",
+    "ticker": "",
+    "title": "2026-06-28 한국 증시 데일리: 반도체 / AI 흐름 체크",
+    "issue": "반도체 호황에…日키옥시아 직원들. 자사주로 100억원 '잭폿'",
+    "category": null,
+    "tags": [
+      "한국증시",
+      "코스피",
+      "코스닥",
+      "시장뉴스",
+      "20260628"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-market/naver-post-2026-06-28.md",
+    "markdownSha256": "8cd2330b0671edc3b29936bf37b456eea93e8168cc3d4cf3930e84963a5f063b",
+    "images": [],
+    "linkCards": [
+      "https://www.yna.co.kr/view/AKR20260628031900073",
+      "https://www.yna.co.kr/view/AKR20260627032000008",
+      "https://www.yna.co.kr/view/AKR20260627030100008",
+      "https://www.yna.co.kr/view/AKR20260627036800008",
+      "https://www.yna.co.kr/view/AKR20260627019800008"
+    ],
+    "thumbnail": {
+      "prompt": "2026-06-28 한국 증시 데일리: 반도체 / AI 흐름 체크 블로그 썸네일 만들어줘",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-market/assets/naver-thumbnail.png",
+      "sha256": "c9dbad41f11107a30d4a7447a5cd1079e7b604eb6e66b780385787c49cad9218",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-06-28T11:42:52.545Z"
+    },
+    "publicationDate": "2026-06-28"
+  },
+  "automation": {
+    "scheduledPublishAllowed": true,
+    "duplicateScope": "daily-market-news",
+    "duplicateDate": "2026-06-28"
+  },
+  "prepare": {
+    "preparedAt": "2026-06-28T12:31:44.115Z",
+    "expiresAt": "2026-06-28T13:01:44.115Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-market/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "27e6aee79b130bf02366559562088a2fea0aef8c041f255b6e4d3def8a1831d5",
+    "approvalTokenHash": null,
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": false,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": {
+    "publishedAt": "2026-06-28T12:36:15.416Z",
+    "url": "https://blog.naver.com/workingonit/224329890055",
+    "result": "published"
+  }
+}

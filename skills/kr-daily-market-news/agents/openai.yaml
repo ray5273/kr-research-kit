@@ -1,0 +1,7 @@
+interface:
+  display_name: "KR Daily Market News"
+  short_description: "Create a Korean daily market-news report and Naver Blog publish manifest."
+  default_prompt: "Use $kr-daily-market-news to create today's Korean daily market-news report from examples/kr/daily-watchlist.json."
+
+policy:
+  allow_implicit_invocation: true

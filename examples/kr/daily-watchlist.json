@@ -1,0 +1,17 @@
+[
+  {
+    "ticker": "005930",
+    "name": "삼성전자",
+    "keywords": ["HBM", "실적", "반도체"]
+  },
+  {
+    "ticker": "000660",
+    "name": "SK하이닉스",
+    "keywords": ["HBM", "DRAM", "AI 메모리"]
+  },
+  {
+    "ticker": "373220",
+    "name": "LG에너지솔루션",
+    "keywords": ["전기차 배터리", "ESS", "수주"]
+  }
+]

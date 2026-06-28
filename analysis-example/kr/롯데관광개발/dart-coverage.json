@@ -1,0 +1,217 @@
+{
+  "verifiedAt": "2026-05-11T16:26:04.983Z",
+  "sourceLineCount": 30945,
+  "tocCount": 18,
+  "parsedCount": 15,
+  "partialCount": 3,
+  "missingCount": 0,
+  "needsReviewCount": 0,
+  "completionRate": 0.8333,
+  "items": [
+    {
+      "title": "I. 회사의 개요",
+      "level": 1,
+      "lineNumber": 10,
+      "status": "parsed",
+      "matchedSectionId": "section-001",
+      "contentLength": 8851,
+      "tableCount": 208,
+      "numericBlockCount": 397,
+      "preview": "[1. 회사의 개요]\n[1. 연결대상 종속회사 개황(연결재무제표를 작성하는 주권상장법인이 사업보고서, 분기ㆍ반기보고서를 제출하는 경우에 한함)연결대상 종속회사 현황(요약)]\n| (단위 : 사) |\n| 구분 | 연결대상회사수 | 주요종속회사수 |\n| 기초 | 증가 | 감소 | 기말 |\n-\n-\n-\n-\n-\n| 상장 |\n4\n-\n-\n4\n1\n| 비상장 |\n4\n-\n-\n4\n1\n| 합계 |\n| ※상세 현황은 '상세표-1. 연결대상 종속회사 현황(상세)' 참조 |\n가-1. 연결대상회사의 변동내용\n[1-1. 연결대상"
+    },
+    {
+      "title": "II. 사업의 내용",
+      "level": 1,
+      "lineNumber": 11,
+      "status": "parsed",
+      "matchedSectionId": "section-002",
+      "contentLength": 21347,
+      "tableCount": 118,
+      "numericBlockCount": 501,
+      "preview": "[1. 사업의 개요]\n당사는 1971년도에 설립된 여행전문업체로 관광개발 및 국내외 여행알선업, 항공권 판매대행업, 전세 운수업을 주요 사업으로 영위해온 대한민국 대표 종합여행기업입니다. 2020년 12월 18일 제주 드림타워 복합리조트가 오픈하면서 당사의 사업 포트폴리오는 호텔과 리테일까지 확장되었습니다. 제주 드림타워 복합리조트는 38층, 169m 높이로 제주에서 가장 높은 롯데시티호텔(89m)보다 2배 가량 높으며, 연면적은 여의도 63빌딩의 1.8배인 30만3,737㎡로 제주도 최대 규모 "
+    },
+    {
+      "title": "III. 재무에 관한 사항",
+      "level": 1,
+      "lineNumber": 12,
+      "status": "parsed",
+      "matchedSectionId": "section-003",
+      "contentLength": 231256,
+      "tableCount": 1526,
+      "numericBlockCount": 9615,
+      "preview": "[1. 요약재무정보]\n당사는 2011년부터 한국채택국제회계기준(K-IFRS)을 도입하였습니다. 연결회사의한국채택국제회계기준으로의 전환일은 2010년 1월 1일이며, 한국채택국제회계기준채택일은 2011년 1월 1일입니다.\n가. 요약 연결재무정보\n| (단위 : 백만원) |\n| 구 분 | 제55기 | 제54기 | 제53기 |\n| [유동자산] | 133,128 | 114,361 | 80,887 |\n| ㆍ현금 및 현금성자산 | 62,128 | 44,328 | 33,640 |\n| ㆍ매출채권 및 기타채권 | "
+    },
+    {
+      "title": "IV. 이사의 경영진단 및 분석의견",
+      "level": 1,
+      "lineNumber": 13,
+      "status": "parsed",
+      "matchedSectionId": "section-004",
+      "contentLength": 6948,
+      "tableCount": 68,
+      "numericBlockCount": 272,
+      "preview": "[1. 예측정보에 대한 주의사항]\n회사가 동 사업보고서에서 미래에 발생할 것으로 예상, 예측한 활동, 사건 또는 현상은 당해 공시서류 작성시점의 사건 및 재무성과에 대하여 회사의 견해를 반영한 것입니다. 동 예측정보는 미래 사업환경과 관련된 다양한 가정에 기초하고 있으며, 동 가정들은 결과적으로 부정확한 것으로 판명될 수도 있습니다. 또한 이러한 가정들에는 예측정보에서 기재한 예상치와 실제 결과 간에 중요한 차이를 초래할 수 있는 위험, 불확실성 및 기타 요인을 포함하고 있습니다. 이러한 중요한 "
+    },
+    {
+      "title": "V. 회계감사인의 감사의견 등",
+      "level": 1,
+      "lineNumber": 14,
+      "status": "parsed",
+      "matchedSectionId": "section-005",
+      "contentLength": 4531,
+      "tableCount": 41,
+      "numericBlockCount": 124,
+      "preview": "[1. 외부감사에 관한 사항]\n가. 회계감사인의 감사의견 등\n(1) 회계감사인의 명칭 및 감사의견\n| 사업연도 | 구분 | 감사인 | 감사의견 | 의견변형사유 | 계속기업 관련중요한 불확실성 | 강조사항 | 핵심감사사항 |\n제55기(당기)\n한울회계법인\n-\n해당사항 없음\n해당사항 없음\n[1. 이연법인세자산의 실현가능성 평가]\n| 감사보고서 | 적정의견 |\n한울회계법인\n-\n해당사항 없음\n해당사항 없음\n[1. 이연법인세자산의 실현가능성 평가]\n| 연결감사보고서 | 적정의견 |\n제54기(전기)\n한울회계법"
+    },
+    {
+      "title": "VI. 이사회 등 회사의 기관에 관한 사항",
+      "level": 1,
+      "lineNumber": 15,
+      "status": "parsed",
+      "matchedSectionId": "section-006",
+      "contentLength": 8702,
+      "tableCount": 59,
+      "numericBlockCount": 267,
+      "preview": "[1. 이사회에 관한 사항]\n가. 이사회의 구성 개요\n(1) 이사의 수 작성기준일 현재 당사의 이사회는 4인의 사내이사, 2인의 사외이사 등 총 6명으로 구성되어 있습니다. 당사 정관 36조에 의거, 이사회의 의장은 이사회에서 정합니다. 다만, 이사회의 소집권자를 이사회에서 따로 정한 경우에는 그 이사를 의장으로 합니다.\n사외이사 및 그 변동현황\n| (단위 : 명) |\n| 이사의 수 | 사외이사 수 | 사외이사 변동현황 |\n| 선임 | 해임 | 중도퇴임 |\n6\n2\n-\n-\n-\n(2) 사외 이사 현황"
+    },
+    {
+      "title": "VII. 주주에 관한 사항",
+      "level": 1,
+      "lineNumber": 16,
+      "status": "parsed",
+      "matchedSectionId": "section-007",
+      "contentLength": 2499,
+      "tableCount": 17,
+      "numericBlockCount": 106,
+      "preview": "가. 최대주주 및 특수관계인의 주식소유 현황\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 주, %) |\n| 성 명 | 관 계 | 주식의종류 | 소유주식수 및 지분율 | 비고 |\n| 기 초 | 기 말 |\n| 주식수 | 지분율 | 주식수 | 지분율 |\n김기병\n본인\n보통주\n18,068,171\n23.84\n18,068,171\n22.72\n-\n신정희\n처\n보통주\n1,408,147\n1.86\n1,408,147\n1.77\n-\n김한성\n자\n보통주\n1,984,734\n2.62\n2,112,065\n2.66\n"
+    },
+    {
+      "title": "VIII. 임원 및 직원 등에 관한 사항",
+      "level": 1,
+      "lineNumber": 17,
+      "status": "parsed",
+      "matchedSectionId": "section-008",
+      "contentLength": 7394,
+      "tableCount": 122,
+      "numericBlockCount": 252,
+      "preview": "[1. 임원 및 직원 등의 현황]\n가. 임원 현황\n| (기준일 : | 2026년 03월 19일 | ) | (단위 : 주) |\n| 성명 | 성별 | 출생년월 | 직위 | 등기임원여부 | 상근여부 | 담당업무 | 주요경력 | 소유주식수 | 최대주주와의관계 | 재직기간 | 임기만료일 |\n| 의결권있는 주식 | 의결권없는 주식 |\n김기병\n대표이사회장\n경영총괄\n서울대학교 행정대학원(주)동화면세점, 동화투자개발(주) 이사\n18,068,171\n-\n최대주주본인\n48년\n| 남 | 1938년 03월 | 사내이사 |"
+    },
+    {
+      "title": "IX. 계열회사 등에 관한 사항",
+      "level": 1,
+      "lineNumber": 18,
+      "status": "parsed",
+      "matchedSectionId": "section-009",
+      "contentLength": 469,
+      "tableCount": 13,
+      "numericBlockCount": 24,
+      "preview": "가. 계열회사 현황\n계열회사 현황(요약)\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 사) |\n| 기업집단의 명칭 | 계열회사의 수 |\n| 상장 | 비상장 | 계 |\nLT (LotteTour)\n-\n8\n8\n| ※상세 현황은 '상세표-2. 계열회사 현황(상세)' 참조 |\n나. 타법인출자 현황\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 백만원) |\n| 출자목적 | 출자회사수 | 총 출자금액 |\n| 상장 | 비상장 | 계 | 기초장부가액 | 증가(감소) | 기"
+    },
+    {
+      "title": "X. 대주주 등과의 거래내용",
+      "level": 1,
+      "lineNumber": 19,
+      "status": "parsed",
+      "matchedSectionId": "section-010",
+      "contentLength": 197,
+      "tableCount": 0,
+      "numericBlockCount": 6,
+      "preview": "[1. 대주주등에 대한 신용공여 등]\n- 해당사항 없음\n[2. 대주주와의 자산양수도 등]\n- 해당사항 없음\n[3. 대주주와의 영업거래]\n- 해당사항 없음\n[4. 특수관계자와의 거래]\n- 기타 특수관계자와의 주요 거래내역, 중요한 자금거래 및 주요경영진에 대한 보상내역 등은 \"Ⅲ. 재무에 관한 사항 - 5. 재무제표 주석 - 31. 특수관계자거래\" 참조"
+    },
+    {
+      "title": "XI. 그 밖에 투자자 보호를 위하여 필요한 사항",
+      "level": 1,
+      "lineNumber": 20,
+      "status": "parsed",
+      "matchedSectionId": "section-011",
+      "contentLength": 2371,
+      "tableCount": 19,
+      "numericBlockCount": 107,
+      "preview": "[1. 공시내용 진행 및 변경사항]\n가. 공시사항의 진행 ·변경상황\n| 신고일자 | 제 목 | 신고내용 | 신고사항의 진행상황 |\n| - | - | - | - |\n[2. 우발부채 등에 관한 사항]\n가. 중요한 소송사건\n○ 채무부존재확인 청구의 소\n| (단위 : 백만원) |\n| 구분 | 소송명 | 청구내용 | 소 제기일 | 소송가액 | 원고 | 피고 | 진행상황 | 소송결과 |\n| 청구 | 채무부존재확인(서울중앙지방법원) | 1. 피고의 원고에 대한 51,696,000,000원 구상금 회생채권에 대"
+    },
+    {
+      "title": "XII. 상세표",
+      "level": 1,
+      "lineNumber": 21,
+      "status": "parsed",
+      "matchedSectionId": "section-012",
+      "contentLength": 1820,
+      "tableCount": 21,
+      "numericBlockCount": 127,
+      "preview": "[1. 연결대상 종속회사 현황(상세)]\n| ☞ 본문 위치로 이동 |\n| (단위 : 백만원) |\n| 상호 | 설립일 | 주소 | 주요사업 | 최근사업연도말자산총액 | 지배관계 근거 | 주요종속회사 여부 |\n(주)엘티크루즈홀리데이\n2009.02.16\n서울시 종로구 세종대로 149\n선표판매대행업\n11\n지분율 100%\n해당없음\n용산역세권개발(주)\n2007.12.18\n서울시 종로구 세종대로 149\n자산관리위탁용역\n234\n지분 50%초과보유\n해당없음\n마이데일리(주)\n2003.09.25\n서울시 중구 을지로11"
+    },
+    {
+      "title": "【Z-1. OpenDART 주주 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 22,
+      "status": "partial",
+      "matchedSectionId": "section-014",
+      "contentLength": 61,
+      "tableCount": 0,
+      "numericBlockCount": 1,
+      "preview": "에러: status=101 잘못된 URL입니다. 확인해주세요(/api/majorshareholder.json)"
+    },
+    {
+      "title": "【Z-2. OpenDART 배당에 관한 사항 (구조화)】",
+      "level": 1,
+      "lineNumber": 23,
+      "status": "parsed",
+      "matchedSectionId": "section-015",
+      "contentLength": 656,
+      "tableCount": 17,
+      "numericBlockCount": 13,
+      "preview": "※ 출처: OpenDART alotMatter.json (15건)\n| 구분 | 주식 종류 | 당기 | 전기 | 전전기 |\n| --- | --- | --- | --- | --- |\n| 주당액면가액(원) | - | 500 | 500 | 500 |\n| (연결)당기순이익(백만원) | - | 27,765 | -116,575 | -202,220 |\n| (별도)당기순이익(백만원) | - | -103,435 | -190,193 | -230,290 |\n| (연결)주당순이익(원) | - | 356 | -1,531 "
+    },
+    {
+      "title": "【Z-3. OpenDART 자기주식 취득 및 처분 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 24,
+      "status": "partial",
+      "matchedSectionId": "section-016",
+      "contentLength": 151,
+      "tableCount": 3,
+      "numericBlockCount": 1,
+      "preview": "※ 출처: OpenDART tesstkAcqsDspsSttus.json (1건)\n| 구분 | 주식종류 | 기초 수량 | 변동 수량 | 기말 수량 | 비고 |\n| --- | --- | --- | --- | --- | --- |\n| - | - | - | - | - | - |"
+    },
+    {
+      "title": "【Z-4. OpenDART 증자 / 감자 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 25,
+      "status": "parsed",
+      "matchedSectionId": "section-017",
+      "contentLength": 3228,
+      "tableCount": 47,
+      "numericBlockCount": 226,
+      "preview": "※ 출처: OpenDART irdsSttus.json (45건)\n| 결의일 | 발행 형태 | 종류 | 수량 | 액면가액 | 발행가액 |\n| --- | --- | --- | --- | --- | --- |\n| 2023.02.01 | 전환권행사 | 보통주 | 19,000 | 500,000,000 | 13,250,000,000 |\n| 2023.08.18 | 전환권행사 | 보통주 | 56,471 | 500,000,000 | 13,250,000,000 |\n| 2023.08.28 | 전환권행사 | 보통주 |"
+    },
+    {
+      "title": "【Z-5. OpenDART 임원 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 26,
+      "status": "partial",
+      "matchedSectionId": "section-018",
+      "contentLength": 62,
+      "tableCount": 0,
+      "numericBlockCount": 1,
+      "preview": "에러: status=101 잘못된 URL입니다. 확인해주세요(/api/cpndlhCmpsBoardCo.json)"
+    },
+    {
+      "title": "【Z-6. OpenDART 단일회사 전체 재무제표 (구조화)】",
+      "level": 1,
+      "lineNumber": 27,
+      "status": "parsed",
+      "matchedSectionId": "section-019",
+      "contentLength": 13833,
+      "tableCount": 226,
+      "numericBlockCount": 672,
+      "preview": "※ 출처: OpenDART fnlttSinglAcntAll.json (CFS 연결, 224건)\n| 재무제표 | 계정 | 당기 | 전기 | 전전기 |\n| --- | --- | --- | --- | --- |\n| 재무상태표 | 자산총계 | 2,167,646,813,807 | 2,166,617,248,668 | 1,764,111,056,273 |\n| 재무상태표 | 유동자산 | 133,128,335,772 | 114,360,872,494 | 80,886,866,125 |\n| 재무상태표 | 미수수익 | 1"
+    }
+  ],
+  "partialSections": [
+    "【Z-1. OpenDART 주주 현황 (구조화)】",
+    "【Z-3. OpenDART 자기주식 취득 및 처분 현황 (구조화)】",
+    "【Z-5. OpenDART 임원 현황 (구조화)】"
+  ],
+  "missingSections": [],
+  "needsReviewSections": []
+}

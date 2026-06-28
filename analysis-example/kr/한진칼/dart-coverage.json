@@ -1,0 +1,216 @@
+{
+  "verifiedAt": "2026-05-21T14:49:55.835Z",
+  "sourceLineCount": 31682,
+  "tocCount": 18,
+  "parsedCount": 16,
+  "partialCount": 2,
+  "missingCount": 0,
+  "needsReviewCount": 0,
+  "completionRate": 0.8889,
+  "items": [
+    {
+      "title": "I. 회사의 개요",
+      "level": 1,
+      "lineNumber": 10,
+      "status": "parsed",
+      "matchedSectionId": "section-001",
+      "contentLength": 13883,
+      "tableCount": 184,
+      "numericBlockCount": 570,
+      "preview": "[1. 회사의 개요]\n[1. 연결대상 종속회사 개황]\n| (단위 : 사) |\n| 구분 | 연결대상회사수 | 주요종속회사수 |\n| 기초 | 증가 | 감소 | 기말 |\n-\n-\n-\n-\n-\n| 상장 |\n4\n-\n-\n4\n2\n| 비상장 |\n4\n-\n-\n4\n2\n| 합계 |\n| ※상세 현황은 '상세표-1. 연결대상 종속회사 현황(상세)' 참조 |\n[1-1. 연결대상회사의 변동내용]\n| 구 분 | 자회사 | 사 유 |\n-\n-\n| 신규연결 |\n-\n-\n-\n-\n| 연결제외 |\n-\n-\n[2. 회사의 법적ㆍ상업적 명칭]\n당사"
+    },
+    {
+      "title": "II. 사업의 내용",
+      "level": 1,
+      "lineNumber": 11,
+      "status": "parsed",
+      "matchedSectionId": "section-002",
+      "contentLength": 57908,
+      "tableCount": 507,
+      "numericBlockCount": 1965,
+      "preview": "[1. 사업의 개요]\n[1. ㈜한진칼]\n당사는 지주회사로서 다른 회사의 주식을 소유한 회사이며 단순히 주식을 소유하는 것만이 아니라, 법적기준 이상으로 해당회사의 주식(의결권)을 보유함으로써 그 회사에 대하여 실질적인 지배권을 취득하는 것을 사업의 목적으로 하는 회사입니다.지주회사의 장점으로는 기업지배구조의 투명성을 증대시켜 시장으로부터 적정한 기업가치를 평가받음으로써 주주의 가치를 높이고, 독립적인 경영 및 객관적인 성과평가를 가능케 함으로써 책임경영을 정착시키며, 사업부문별 특성에 맞는 신속하"
+    },
+    {
+      "title": "III. 재무에 관한 사항",
+      "level": 1,
+      "lineNumber": 12,
+      "status": "parsed",
+      "matchedSectionId": "section-003",
+      "contentLength": 206197,
+      "tableCount": 1325,
+      "numericBlockCount": 8960,
+      "preview": "[1. 요약재무정보]\n가. 요약 연결재무제표\n| (단위 : 백만원) |\n| 구 분 | 2025년 12월말(제13기) | 2024년 12월말(제12기) | 2023년 12월말(제11기) |\n| [유동자산] | 375,830 | 539,972 | 357,038 |\n| ㆍ현금및현금성자산 | 110,930 | 416,871 | 43,968 |\n| ㆍ단기금융상품 | 30,600 | 50,600 | 247,699 |\n| ㆍ매출채권및기타채권 | 40,603 | 42,575 | 33,357 |\n| ㆍ상각후원가 "
+    },
+    {
+      "title": "IV. 이사의 경영진단 및 분석의견",
+      "level": 1,
+      "lineNumber": 13,
+      "status": "parsed",
+      "matchedSectionId": "section-004",
+      "contentLength": 45259,
+      "tableCount": 521,
+      "numericBlockCount": 2116,
+      "preview": "[1. 예측정보에 대한 주의사항]\n당사가 동 사업보고서에서 미래에 발생할 것으로 예상 예측한 활동, 사건 또는 현상은 당해 공시서류 작성시점의 사건 및 재무성과에 대하여 회사의 견해를 반영한 것 입니다. 동 예측정보는 미래 사업환경과 관련된 다양한 가정에 기초하고 있으며, 동 가정들은 결과적으로 부정확한 것으로 판명될 수도 있습니다. 또한, 이러한 가정들에는 예측정보에서 기재한 예상치와 실제 결과 간에 중요한 차이를 초래할 수 있는 위험, 불확실성 및 기타 요인을 포함하고 있습니다. 이러한 중요한"
+    },
+    {
+      "title": "V. 회계감사인의 감사의견 등",
+      "level": 1,
+      "lineNumber": 14,
+      "status": "parsed",
+      "matchedSectionId": "section-005",
+      "contentLength": 5022,
+      "tableCount": 57,
+      "numericBlockCount": 218,
+      "preview": "[1. 외부감사에 관한 사항]\n[1. 회계감사인의 명칭 및 감사의견]\n| 사업연도 | 구분 | 감사인 | 감사의견 | 의견변형사유 | 계속기업 관련중요한 불확실성 | 강조사항 | 핵심감사사항 |\n제13기(당기)\n삼정회계법인\n-\n해당사항 없음\n해당사항 없음\n- 종속기업투자 및 관계기업투자의 손상평가\n| 감사보고서 | 적정의견 |\n삼정회계법인\n-\n해당사항 없음\n해당사항 없음\n- 관계기업투자의 손상평가\n| 연결감사보고서 | 적정의견 |\n제12기(전기)\n삼정회계법인\n-\n해당사항 없음\n해당사항 없음\n- 관"
+    },
+    {
+      "title": "VI. 이사회 등 회사의 기관에 관한 사항",
+      "level": 1,
+      "lineNumber": 15,
+      "status": "parsed",
+      "matchedSectionId": "section-006",
+      "contentLength": 23171,
+      "tableCount": 264,
+      "numericBlockCount": 562,
+      "preview": "[1. 이사회에 관한 사항]\n[1. 이사회 구성 개요]\n작성 기준일 현재 당사 이사회는 사내이사 3명, 사외이사 8명으로 구성되어있습니다\n| (2025.12.31 기준) |\n| 구분 | 성명 | 현직 | 최근 선임일 | 비고 |\n| 사내이사 | 조원태 | ㈜한진칼 대표이사 회장 | 2023.03.22 | 대표이사 |\n| 류경표 | ㈜한진칼 대표이사 부회장 | 2025.03.26 | 대표이사 |\n| 하은용 | ㈜한진칼 부사장 | 2023.03.22 | - |\n| 사외이사 | 김석동 | 법무법인 지평"
+    },
+    {
+      "title": "VII. 주주에 관한 사항",
+      "level": 1,
+      "lineNumber": 16,
+      "status": "parsed",
+      "matchedSectionId": "section-007",
+      "contentLength": 5910,
+      "tableCount": 52,
+      "numericBlockCount": 391,
+      "preview": "[1. 최대주주 및 특수관계인의 주식소유 현황]\n[1. 최대주주 및 특수관계인의 주식소유 현황]\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 주, %) |\n| 성 명 | 관 계 | 주식의종류 | 소유주식수 및 지분율 | 비고 |\n| 기 초 | 기 말 |\n| 주식수 | 지분율 | 주식수 | 지분율 |\n조원태\n본인\n보통주\n3,856,002\n5.78\n3,856,002\n5.78\n-\n조원태\n본인\n우선주\n2,867\n0.53\n2,867\n0.53\n-\n조승연\n친족\n보통주\n117,015\n0.1"
+    },
+    {
+      "title": "VIII. 임원 및 직원 등에 관한 사항",
+      "level": 1,
+      "lineNumber": 17,
+      "status": "parsed",
+      "matchedSectionId": "section-008",
+      "contentLength": 8010,
+      "tableCount": 112,
+      "numericBlockCount": 247,
+      "preview": "[1. 임원 및 직원 등의 현황]\n[1. 임원 현황]\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 주) |\n| 성명 | 성별 | 출생년월 | 직위 | 등기임원여부 | 상근여부 | 담당업무 | 주요경력 | 소유주식수 | 최대주주와의관계 | 재직기간 | 임기만료일 |\n| 의결권있는 주식 | 의결권없는 주식 |\n조원태\n회장\n대표이사회장\n○ 인하대 경영학○ USC MBA○ 現. ㈜대한항공 대표이사 회장○ 現. 한진정보통신 회장○ 現. 진에어 회장\n3,856,002\n2,867\n본인\n2"
+    },
+    {
+      "title": "IX. 계열회사 등에 관한 사항",
+      "level": 1,
+      "lineNumber": 18,
+      "status": "parsed",
+      "matchedSectionId": "section-009",
+      "contentLength": 3633,
+      "tableCount": 63,
+      "numericBlockCount": 181,
+      "preview": "[1. 계열회사 현황]\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 사) |\n| 기업집단의 명칭 | 계열회사의 수 |\n| 상장 | 비상장 | 계 |\n한진\n8\n35\n43\n| ※상세 현황은 '상세표-2. 계열회사 현황(상세)' 참조 |\n[2. 소속회사의 명칭]\n'상세표-2. 계열회사 현황(상세)'를 참조하여 주시기 바랍니다.\n[3. 계열회사간의 지배ㆍ종속 및 출자 현황]\n| (단위 : 주,%) |\n| 구분 | 한진칼 | 대한항공 | 한진 | 진에어 | 한국공항 | 정석기업 | 한"
+    },
+    {
+      "title": "X. 대주주 등과의 거래내용",
+      "level": 1,
+      "lineNumber": 19,
+      "status": "parsed",
+      "matchedSectionId": "section-010",
+      "contentLength": 1517,
+      "tableCount": 14,
+      "numericBlockCount": 65,
+      "preview": "[1. 대주주에 대한 신용공여 등]\n[1. 가지급금 및 대여금(유가증권 대여 포함)내역]\n| (단위 : 백만원) |\n| 특수관계자명 | 관계 | 종류 | 거래일시 | 통화 | 기초 | 증가 | 감소 | 기말 |\n| ㈜칼호텔네트워크 | 계열회사 | 단기대여금 | 2020.12.28 | KRW | 50,000 | 200,000 | - | 250,000 |\n(주1) 최초 거래일(2020.12.28), 운영자금 20,000백만원을 대여하였고, 2022.03.28,30,000백만원를 추가로 대여하였습니다."
+    },
+    {
+      "title": "XI. 그 밖에 투자자 보호를 위하여 필요한 사항",
+      "level": 1,
+      "lineNumber": 20,
+      "status": "parsed",
+      "matchedSectionId": "section-011",
+      "contentLength": 10586,
+      "tableCount": 63,
+      "numericBlockCount": 515,
+      "preview": "[1. 공시내용 진행 및 변경사항]\n| 신고일자 | 제목 | 신고내용 | 신고사항의 진행사항 |\n| 2020.02.07 | 재무구조 개선 및지배구조 투명성 강화 | ○ 칼호텔네트워크 제주 파라다이스호텔 부지 - 기 공시된 한진그룹 중장기비전에 따른 유휴자산 매각 추진 | ○ 매각 추진 준비 중 |\n[2. 우발부채 등에 관한 사항]\n[1. 중요한 소송사건]\n당기말 현재 연결실체의 재무제표에 유의적인 영향을 줄 수 있는 소송 현황은 없습니다.\n[2. 견질 또는 담보용 어음ㆍ수표 현황해당사항 없습니다."
+    },
+    {
+      "title": "XII. 상세표",
+      "level": 1,
+      "lineNumber": 21,
+      "status": "parsed",
+      "matchedSectionId": "section-012",
+      "contentLength": 4609,
+      "tableCount": 59,
+      "numericBlockCount": 171,
+      "preview": "[1. 연결대상 종속회사 현황(상세)]\n| ☞ 본문 위치로 이동 |\n| (단위 : 백만원) |\n| 상호 | 설립일 | 주소 | 주요사업 | 최근사업연도말자산총액 | 지배관계 근거 | 주요종속회사 여부 |\n㈜칼호텔네트워크\n2001.05.16\n인천광역시 중구 영종해안남로 321번길 208 (운서동)\n호텔업, 임대업 및 관광사업\n528,534\n의결권 과반수 보유\n해당(자산총액 750억원 이상)\n정석기업㈜\n1953.07.13\n서울특별시 중구 남대문로 63(남대문로2가)\n부동산 매매 및 임대업과 건물관리 "
+    },
+    {
+      "title": "【Z-1. OpenDART 주주 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 22,
+      "status": "partial",
+      "matchedSectionId": "section-014",
+      "contentLength": 61,
+      "tableCount": 0,
+      "numericBlockCount": 1,
+      "preview": "에러: status=101 잘못된 URL입니다. 확인해주세요(/api/majorshareholder.json)"
+    },
+    {
+      "title": "【Z-2. OpenDART 배당에 관한 사항 (구조화)】",
+      "level": 1,
+      "lineNumber": 23,
+      "status": "parsed",
+      "matchedSectionId": "section-015",
+      "contentLength": 713,
+      "tableCount": 17,
+      "numericBlockCount": 31,
+      "preview": "※ 출처: OpenDART alotMatter.json (15건)\n| 구분 | 주식 종류 | 당기 | 전기 | 전전기 |\n| --- | --- | --- | --- | --- |\n| 주당액면가액(원) | - | 2,500 | 2,500 | 2,500 |\n| (연결)당기순이익(백만원) | - | 496,999 | 385,139 | 683,804 |\n| (별도)당기순이익(백만원) | - | 193,007 | 216,982 | 379,176 |\n| (연결)주당순이익(원) | - | 7,434 | 5,7"
+    },
+    {
+      "title": "【Z-3. OpenDART 자기주식 취득 및 처분 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 24,
+      "status": "parsed",
+      "matchedSectionId": "section-016",
+      "contentLength": 886,
+      "tableCount": 20,
+      "numericBlockCount": 17,
+      "preview": "※ 출처: OpenDART tesstkAcqsDspsSttus.json (18건)\n| 구분 | 주식종류 | 기초 수량 | 변동 수량 | 기말 수량 | 비고 |\n| --- | --- | --- | --- | --- | --- |\n| 배당가능이익범위 이내 취득 | 보통주 | - | - | - | - |\n| 배당가능이익범위 이내 취득 | 우선주 | - | - | - | - |\n| 배당가능이익범위 이내 취득 | 보통주 | 439,989 | - | 439,989 | (주1) |\n| 배당가능이익범위 이내 취"
+    },
+    {
+      "title": "【Z-4. OpenDART 증자 / 감자 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 25,
+      "status": "parsed",
+      "matchedSectionId": "section-017",
+      "contentLength": 492,
+      "tableCount": 9,
+      "numericBlockCount": 36,
+      "preview": "※ 출처: OpenDART irdsSttus.json (7건)\n| 결의일 | 발행 형태 | 종류 | 수량 | 액면가액 | 발행가액 |\n| --- | --- | --- | --- | --- | --- |\n| 2022.01.04 | 신주인수권행사 | 보통주 | 232 | 2,500 | 57,200 |\n| 2022.01.27 | 신주인수권행사 | 보통주 | 22,159 | 2,500 | 57,200 |\n| 2022.07.04 | 신주인수권행사 | 보통주 | 100 | 2,500 | 57,200 |\n| "
+    },
+    {
+      "title": "【Z-5. OpenDART 임원 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 26,
+      "status": "partial",
+      "matchedSectionId": "section-018",
+      "contentLength": 62,
+      "tableCount": 0,
+      "numericBlockCount": 1,
+      "preview": "에러: status=101 잘못된 URL입니다. 확인해주세요(/api/cpndlhCmpsBoardCo.json)"
+    },
+    {
+      "title": "【Z-6. OpenDART 단일회사 전체 재무제표 (구조화)】",
+      "level": 1,
+      "lineNumber": 27,
+      "status": "parsed",
+      "matchedSectionId": "section-019",
+      "contentLength": 23301,
+      "tableCount": 396,
+      "numericBlockCount": 1181,
+      "preview": "※ 출처: OpenDART fnlttSinglAcntAll.json (CFS 연결, 394건)\n| 재무제표 | 계정 | 당기 | 전기 | 전전기 |\n| --- | --- | --- | --- | --- |\n| 재무상태표 | 자산총계 | 4,207,157,981,000 | 3,784,921,894,000 | 3,915,077,622,000 |\n| 재무상태표 | 유동자산 | 539,972,243,000 | 357,038,127,000 | 537,969,467,000 |\n| 재무상태표 | 현금및현금성자"
+    }
+  ],
+  "partialSections": [
+    "【Z-1. OpenDART 주주 현황 (구조화)】",
+    "【Z-5. OpenDART 임원 현황 (구조화)】"
+  ],
+  "missingSections": [],
+  "needsReviewSections": []
+}

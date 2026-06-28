@@ -50,10 +50,37 @@ const CHART_CAPTIONS = [
   "이동평균·밴드·구름을 겹쳐 추세 압력을 확인합니다.",
   "RSI와 MACD로 단기 모멘텀의 방향을 점검합니다.",
   "지지·저항 구간과 구조적 가격대를 확인합니다.",
+  "패턴 관점에서 단기 매수·매도 압력의 변화를 확인합니다.",
 ];
 
+function objectParticle(word) {
+  const last = [...word.trim()].at(-1);
+  if (!last) return "를";
+  const code = last.charCodeAt(0);
+  if (code < 0xac00 || code > 0xd7a3) return "를";
+  return (code - 0xac00) % 28 === 0 ? "를" : "을";
+}
+
+function normalizeHeading(heading) {
+  const cleaned = heading
+    .toLowerCase()
+    .replace(/^\d+(?:\.\d+)*\s*[.)-]?\s*/, "")
+    .replace(/\s+[—-]\s+.*$/, "")
+    .replace(/\s*\([^)]*\)\s*$/, "")
+    .trim();
+  if (cleaned === "summary judgment") return "summary";
+  if (cleaned.startsWith("decision frame")) return "decision frame";
+  if (cleaned.startsWith("valuation snapshot")) return "current valuation snapshot";
+  if (cleaned.startsWith("chart and positioning")) return "chart and positioning";
+  if (cleaned.startsWith("street / alternative views")) return "street / alternative views";
+  if (cleaned.startsWith("dart recheck")) return "dart recheck";
+  if (cleaned.startsWith("출처")) return "sources";
+  if (cleaned.startsWith("무엇을 하는 회사인가")) return "business and thesis";
+  return cleaned;
+}
+
 function researchSignature(selectedSections, images) {
-  const headings = new Set(selectedSections.map(section => section.heading.toLowerCase()));
+  const headings = new Set(selectedSections.map(section => normalizeHeading(section.heading)));
   const completed = [];
   if (["business and thesis", "dart recheck"].some(heading => headings.has(heading))) completed.push("공시·사업");
   if (["revenue mix", "what the latest results say"].some(heading => headings.has(heading))) completed.push("실적·재무");
@@ -63,9 +90,9 @@ function researchSignature(selectedSections, images) {
   if (["catalysts", "risks", "decision-changing issues"].some(heading => headings.has(heading))) completed.push("리스크·촉매");
   return [
     "**RESEARCH COMPLETE · AI-ASSISTED EQUITY INTELLIGENCE**",
-    "Codex (or Claude) × Stock Research Skill · Crafted by **ray5273**",
+    "Codex (or Claude) × KrResearchKit · Crafted by **ray5273**",
     completed.length ? completed.map(label => `✓ ${label}`).join(" · ") : null,
-    "[GitHub](https://github.com/ray5273/stock-analysis-skill) · Open Research Workflow",
+    "[GitHub](https://github.com/ray5273/kr-research-kit) · Open Research Workflow",
   ].filter(Boolean);
 }
 
@@ -233,7 +260,8 @@ function extractSourceLines(markdown) {
   const lines = markdown.split(/\r?\n/);
   const sources = [];
   for (let i = 0; i < lines.length; i += 1) {
-    if (!/^#{2,6}\s+(?:Sources|출처)\s*$/i.test(lines[i].trim())) continue;
+    const heading = lines[i].trim().match(/^#{2,6}\s+(.+?)\s*$/);
+    if (!heading || normalizeHeading(heading[1]) !== "sources") continue;
     i += 1;
     while (i < lines.length && !/^#{2,6}\s+/.test(lines[i])) {
       if (lines[i].trim()) sources.push(lines[i]);
@@ -266,37 +294,40 @@ function generateTags(company, ticker, summary) {
 function buildPost({ markdown, memoPath, category = null }) {
   const metadata = parseMetadata(markdown);
   const companyTitle = markdown.match(/^#\s+(.+?)(?:\s+투자\s+메모)?\s*$/m)?.[1]?.trim();
-  const company = (metadata["대상"] || companyTitle || path.basename(path.dirname(memoPath)))
+  const titleMatch = companyTitle?.match(/^(.+?)\((\d{6})\)/);
+  const company = (metadata["대상"] || titleMatch?.[1] || companyTitle || path.basename(path.dirname(memoPath)))
     .replace(/\s+보통주.*$/, "")
+    .replace(/\s+[—-]\s+.*$/, "")
     .trim();
-  const ticker = metadata["티커"] || "";
+  const ticker = metadata["티커"] || titleMatch?.[2] || "";
   const asOfDate = metadata["기준일"] || "";
   assert(company, "Company name could not be derived from memo");
   assert(/^\d{4}-\d{2}-\d{2}$/.test(asOfDate), "Memo must contain a YYYY-MM-DD 기준일");
 
   const allSections = parseSections(markdown);
-  const selected = allSections.filter((section) => !EXCLUDED_SECTIONS.has(section.heading.toLowerCase()));
-  const summary = stripLeadingMetadataLines(allSections.find((section) => section.heading.toLowerCase() === "summary")?.body || "");
+  const selected = allSections.filter((section) => !EXCLUDED_SECTIONS.has(normalizeHeading(section.heading)));
+  const summary = stripLeadingMetadataLines(allSections.find((section) => normalizeHeading(section.heading) === "summary")?.body || "");
   assert(summary, "Memo must contain a Summary section");
   const issue = deriveIssue(summary);
   const title = `${company} | ${issue} | ${asOfDate}`.slice(0, 100);
   const images = extractImages(markdown, memoPath, selected);
   const signature = researchSignature(selected, images);
-  const hasSelectedSources = selected.some(section => section.heading.toLowerCase() === "sources" || section.heading === "출처");
+  const hasSelectedSources = selected.some(section => normalizeHeading(section.heading) === "sources");
 
   const parts = [
     `# ${title}`,
     "",
-    `이 글은 ${asOfDate} 기준으로 ${company}를 개인 투자자의 관점에서 정리한 리서치입니다. 숫자와 공시를 중심으로 보고, 강세 논리와 반대 논리를 함께 남깁니다.`,
+    `이 글은 ${asOfDate} 기준으로 ${company}${objectParticle(company)} 개인 투자자의 관점에서 정리한 리서치입니다. 숫자와 공시를 중심으로 보고, 강세 논리와 반대 논리를 함께 남깁니다.`,
   ];
   for (const section of selected) {
-    const mapped = HEADING_MAP.get(section.heading.toLowerCase()) || section.heading;
-    let body = convertTables(section.heading.toLowerCase() === "summary" ? stripLeadingMetadataLines(section.body) : section.body);
+    const normalizedHeading = normalizeHeading(section.heading);
+    const mapped = HEADING_MAP.get(normalizedHeading) || section.heading;
+    let body = convertTables(normalizedHeading === "summary" ? stripLeadingMetadataLines(section.body) : section.body);
     body = stripImageLines(body);
     body = cleanInternalLinks(body);
     if (!body) continue;
     parts.push("", `## ${mapped}`, "", body);
-    if (section.heading.toLowerCase() === "summary") {
+    if (normalizedHeading === "summary") {
       const chartSection = chartAnalysisSection(images);
       if (chartSection) parts.push("", `## ${chartSection.heading}`, "", chartSection.body);
     }

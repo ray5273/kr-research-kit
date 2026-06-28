@@ -11,10 +11,13 @@
 ## SmartEditor color emphasis
 
 - Preserve Markdown tables as tables for scenario, comparison, valuation, and checklist content. Do not flatten them into bullets when the row/column structure carries the meaning.
-- Use bold emphasis for investment-significant phrases that should be colored in SmartEditor.
-- Positive or thesis-improving phrases should render as red bold. Examples: 긍정, 저평가, 순현금, 배당, 리레이팅, 부가가치, 의미가 커진다, 반복 판매, 손익계산서에 보일 수 있는 규모.
-- Negative or thesis-weakening phrases should render as blue bold. Examples: 제한적, 리스크, 하락, 악화, 과소추정, 잘못 본다, 그칠 것, 낮은 수수료, 확산이 없다면.
-- Neutral stance phrases should render as brown bold. Examples: 중립적 관찰, 스탠스, 판단, 검토.
+- Wrap **the entire sentence** (not a single keyword) with a color marker when the sentence carries investment-significant tone. The publisher converts the marker into a colored SmartEditor span verbatim — there is no keyword auto-detection.
+- `[red: ...]` for thesis-improving / positive sentences. 예) `[red: 자사주 소각으로 하방이 보강됐다.]`
+- `[blue: ...]` for thesis-weakening / negative / risk sentences. 예) `[blue: 환율 변동성이 마진을 압박할 수 있다.]`
+- `[brown: ...]` for neutral stance, observation, or judgment sentences. 예) `[brown: 현재 스탠스는 중립 관찰이다.]`
+- Use `**bold**` only for plain (uncolored) emphasis. It no longer triggers any color.
+- If a sentence mixes positive and negative tone, split it into two clauses and wrap each in the matching marker, or leave the sentence plain. Do not wrap a single ambiguous sentence in one color.
+- The marker body cannot contain `]`. If a sentence needs `]`, rewrite the sentence.
 
 ## Blog shape
 

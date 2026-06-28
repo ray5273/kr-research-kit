@@ -1,0 +1,19 @@
+{
+  "company": "한진칼",
+  "ticker": "180640",
+  "fetchedAt": "2026-05-22",
+  "queries": [
+    "한진칼 외국계",
+    "한진칼 외국계 리포트",
+    "한진칼 목표주가",
+    "한진칼 모건스탠리 OR 골드만 OR JP모건 OR 노무라 OR 씨티 OR UBS OR HSBC OR 맥쿼리"
+  ],
+  "coverage": [],
+  "meta": {
+    "totalArticlesInspected": 0,
+    "totalCoverageRecords": 0,
+    "fromCache": 0,
+    "errors": [],
+    "generatedBy": "kr-foreign-analyst/fetch-analyst-coverage.js"
+  }
+}

@@ -49,7 +49,8 @@
       "kr-stock-dart-analysis",
       "kr-naver-blog-publish",
       "kr-foreign-analyst",
-      "kr-market-leaders"
+      "kr-market-leaders",
+      "kr-daily-market-news"
     ],
     "bundle": [
       "kr-stock-analysis",
@@ -112,6 +113,12 @@
       "tier": "standalone",
       "tagline": "Screen the integrated KOSPI + KOSDAQ universe for market leadership across short-term, intermediate, and structural technical lenses.",
       "entry": "skills/kr-market-leaders/SKILL.md"
+    },
+    {
+      "name": "kr-daily-market-news",
+      "tier": "standalone",
+      "tagline": "Build a dated Korean daily market-news report from market-wide news plus a watchlist, then emit Markdown/JSON artifacts and a Naver Blog scheduled-publish manifest.",
+      "entry": "skills/kr-daily-market-news/SKILL.md"
     },
     {
       "name": "kr-stock-analysis",
@@ -216,7 +223,7 @@
     "Hankyung Consensus (consensus.hankyung.com)",
     "Naver Pay Research (finance.naver.com/research)",
     "Naver Search / Blog / News",
-    "Naver SmartEditor (blog.naver.com) — browser automation, user-driven, explicit-approval publish gate"
+    "Naver SmartEditor (blog.naver.com) — browser automation, explicit-approval stock publish gate, scheduled daily-market publish gate"
   ],
   "demoCommands": [
     "bash ./scripts/install-all-claude-skills.sh",

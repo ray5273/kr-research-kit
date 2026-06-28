@@ -1,0 +1,150 @@
+{
+  "company": "한진칼",
+  "ticker": "180640",
+  "discoveredAt": "2026-05-22",
+  "bloggers": [
+    {
+      "blogId": "firestnumberone",
+      "displayName": null,
+      "blogTitle": null,
+      "subscriberCount": null,
+      "relevantPostCount": 4,
+      "dedicatedPostCount": 4,
+      "deepTechPostCount": 0,
+      "tradingTitleCount": 0,
+      "listicleTitleCount": 0,
+      "isTradingBlog": false,
+      "searchHitCount": 2,
+      "nicknameHitCount": 0,
+      "nicknameAnchors": [],
+      "roundupMentioned": false,
+      "roundupSources": [],
+      "inBlogPage1Total": 5,
+      "inBlogPaginationPages": 1,
+      "generalPostCount": 10,
+      "stockPostRatio": 1,
+      "bracketedTitleRatio": 0,
+      "formulaicTitleRatio": 0.3,
+      "dedicatedFormulaicRatio": 0.5,
+      "datedPostCount": 4,
+      "staleCoverageRatio": 0.25,
+      "latestRelevantPostDate": "2026-05-15",
+      "latestPostDate": "2026-05-15",
+      "categories": [],
+      "profileSnippet": null
+    },
+    {
+      "blogId": "press02",
+      "displayName": null,
+      "blogTitle": null,
+      "subscriberCount": null,
+      "relevantPostCount": 4,
+      "dedicatedPostCount": 3,
+      "deepTechPostCount": 0,
+      "tradingTitleCount": 1,
+      "listicleTitleCount": 0,
+      "isTradingBlog": false,
+      "searchHitCount": 2,
+      "nicknameHitCount": 0,
+      "nicknameAnchors": [],
+      "roundupMentioned": false,
+      "roundupSources": [],
+      "inBlogPage1Total": 9,
+      "inBlogPaginationPages": 1,
+      "generalPostCount": 7,
+      "stockPostRatio": 0.5714285714285714,
+      "bracketedTitleRatio": 0,
+      "formulaicTitleRatio": 0.2857142857142857,
+      "dedicatedFormulaicRatio": 0.3333333333333333,
+      "datedPostCount": 4,
+      "staleCoverageRatio": 0,
+      "latestRelevantPostDate": "2026-03-03",
+      "latestPostDate": "2026-03-03",
+      "categories": [],
+      "profileSnippet": null
+    },
+    {
+      "blogId": "speconomy",
+      "displayName": null,
+      "blogTitle": null,
+      "subscriberCount": null,
+      "relevantPostCount": 3,
+      "dedicatedPostCount": 3,
+      "deepTechPostCount": 1,
+      "tradingTitleCount": 0,
+      "listicleTitleCount": 0,
+      "isTradingBlog": false,
+      "searchHitCount": 2,
+      "nicknameHitCount": 0,
+      "nicknameAnchors": [],
+      "roundupMentioned": false,
+      "roundupSources": [],
+      "inBlogPage1Total": 10,
+      "inBlogPaginationPages": 11,
+      "generalPostCount": 5,
+      "stockPostRatio": 0,
+      "bracketedTitleRatio": 0,
+      "formulaicTitleRatio": 0,
+      "dedicatedFormulaicRatio": 0.3333333333333333,
+      "datedPostCount": 3,
+      "staleCoverageRatio": 0.3333333333333333,
+      "latestRelevantPostDate": "2026-05-14",
+      "latestPostDate": "2026-05-14",
+      "categories": [],
+      "profileSnippet": null
+    }
+  ],
+  "meta": {
+    "searchQueries": 7,
+    "candidatesFound": 21,
+    "qualified": 3,
+    "skipped": 0,
+    "querySet": {
+      "queries": [
+        {
+          "text": "한진칼 투자 분석",
+          "source": "base"
+        },
+        {
+          "text": "한진칼 실적",
+          "source": "base"
+        },
+        {
+          "text": "한진칼 대한항공",
+          "source": "news-trend"
+        },
+        {
+          "text": "한진칼 회장",
+          "source": "news-trend"
+        },
+        {
+          "text": "한진칼 통합",
+          "source": "news-trend"
+        },
+        {
+          "text": "한진칼 조원태",
+          "source": "news-trend"
+        },
+        {
+          "text": "한진칼 통합 대한항공",
+          "source": "news-trend"
+        }
+      ],
+      "meta": {
+        "newsHeadlinesScanned": 26,
+        "newsListicleDropped": 3,
+        "dartProductsExtracted": 0,
+        "contextFileUsed": null,
+        "generatedBy": "kr-naver-blogger/build-query-set.js"
+      }
+    },
+    "relatedQueries": [],
+    "nicknameQueries": [],
+    "eventQueries": [],
+    "nicknameAnchoredCount": 0,
+    "roundupFetched": [],
+    "deepMode": false,
+    "blogFilterApplied": false,
+    "generatedBy": "kr-naver-blogger/discover-bloggers.js"
+  }
+}

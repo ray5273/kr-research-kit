@@ -1,0 +1,13 @@
+candidate_id,kind,direction,status,confidence,label,date,index,type,price,min_swing
+1,impulse,bullish,drawable,0.7850,,2026-05-12,31,low,106100,9229
+1,impulse,bullish,drawable,0.7850,1,2026-05-26,40,high,123600,9229
+1,impulse,bullish,drawable,0.7850,2,2026-05-28,42,low,103300,9229
+1,impulse,bullish,drawable,0.7850,3,2026-06-04,46,high,125800,9229
+1,impulse,bullish,drawable,0.7850,4,2026-06-08,48,low,103000,9229
+1,impulse,bullish,drawable,0.7850,5,2026-06-15,53,high,134500,9229
+2,impulse,bearish,drawable,0.7767,,2026-04-21,18,high,122000,9229
+2,impulse,bearish,drawable,0.7767,1,2026-05-12,31,low,106100,9229
+2,impulse,bearish,drawable,0.7767,2,2026-05-26,40,high,123600,9229
+2,impulse,bearish,drawable,0.7767,3,2026-05-28,42,low,103300,9229
+2,impulse,bearish,drawable,0.7767,4,2026-06-04,46,high,125800,9229
+2,impulse,bearish,drawable,0.7767,5,2026-06-08,48,low,103000,9229

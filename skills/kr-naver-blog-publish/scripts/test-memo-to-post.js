@@ -99,11 +99,11 @@ assert(result.postMarkdown.includes("2,480억"));
 assert(result.postMarkdown.includes("## 출처"));
 assert(result.postMarkdown.includes("매수·매도를 권유하지 않습니다"));
 assert(result.postMarkdown.includes("> **RESEARCH COMPLETE · AI-ASSISTED EQUITY INTELLIGENCE**"));
-assert(result.postMarkdown.includes("> Codex (or Claude) × Stock Research Skill · Crafted by **ray5273**"));
+assert(result.postMarkdown.includes("> Codex (or Claude) × KrResearchKit · Crafted by **ray5273**"));
 assert(result.postMarkdown.includes("> ✓ 공시·사업 · ✓ 실적·재무 · ✓ 밸류에이션 · ✓ 차트·수급 · ✓ 시장 시각 · ✓ 리스크·촉매"));
-assert(result.postMarkdown.includes("> [GitHub](https://github.com/ray5273/stock-analysis-skill) · Open Research Workflow"));
-assert(result.postMarkdown.indexOf("Stock Research Skill") > result.postMarkdown.indexOf("매수·매도를 권유하지 않습니다"));
-assert(result.postMarkdown.indexOf("Stock Research Skill") > result.postMarkdown.indexOf("## 출처"));
+assert(result.postMarkdown.includes("> [GitHub](https://github.com/ray5273/kr-research-kit) · Open Research Workflow"));
+assert(result.postMarkdown.indexOf("KrResearchKit") > result.postMarkdown.indexOf("매수·매도를 권유하지 않습니다"));
+assert(result.postMarkdown.indexOf("KrResearchKit") > result.postMarkdown.indexOf("## 출처"));
 assert(result.postMarkdown.indexOf("## 차트 분석") > result.postMarkdown.indexOf("## 한눈에 보는 결론"));
 assert(result.postMarkdown.indexOf("## 차트 분석") < result.postMarkdown.indexOf("## 투자 판단의 핵심 축"));
 assert(result.postMarkdown.includes("![SOOP main trend chart](assets/SOOP-chart.png)"));
@@ -159,6 +159,30 @@ assert(thematic.postMarkdown.includes("## 왜 중요한가"));
 assert(thematic.postMarkdown.includes("## 투자 시사점"));
 assert(!thematic.postMarkdown.includes("## Why This Matters"));
 assert(!thematic.postMarkdown.includes("\n> \n"));
+
+const numberedMemo = [
+  "# 한진칼(180640) — 경영권 분쟁 중심 결정 메모",
+  "",
+  "- 기준일: 2026-05-22",
+  "",
+  "## 1. Summary Judgment",
+  "",
+  "**경영권 프리미엄**을 점검합니다.",
+  "",
+  "## 2. Decision Frame — 결정에 가장 직접적으로 영향을 주는 4가지",
+  "",
+  "격차가 좁혀지는지가 핵심입니다.",
+  "",
+  "## 출처 맵 (요약)",
+  "",
+  "- Source: https://example.com/hanjinkal",
+].join("\n");
+const numbered = buildPost({ markdown: numberedMemo, memoPath });
+assert(numbered.postMarkdown.includes("## 한눈에 보는 결론"));
+assert(numbered.postMarkdown.includes("## 투자 판단의 핵심 축"));
+assert(numbered.postMarkdown.includes("## 출처"));
+assert.strictEqual(numbered.manifest.post.company, "한진칼");
+assert.strictEqual(numbered.manifest.post.ticker, "180640");
 
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), "kr-naver-converter-test-"));
 fs.writeFileSync(path.join(temp, "result.txt"), result.postMarkdown);

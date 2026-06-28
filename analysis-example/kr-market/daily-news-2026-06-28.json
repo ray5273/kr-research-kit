@@ -1,0 +1,1048 @@
+{
+  "schemaVersion": 1,
+  "reportType": "kr-daily-market-news",
+  "asOfDate": "2026-06-28",
+  "generatedAt": "2026-06-28T11:42:16.010Z",
+  "sourceMode": "rss-hybrid",
+  "watchlist": [
+    {
+      "ticker": "005930",
+      "name": "삼성전자",
+      "keywords": [
+        "HBM",
+        "실적",
+        "반도체"
+      ],
+      "dartUrl": null,
+      "krxUrl": null,
+      "irUrl": null
+    },
+    {
+      "ticker": "000660",
+      "name": "SK하이닉스",
+      "keywords": [
+        "HBM",
+        "DRAM",
+        "AI 메모리"
+      ],
+      "dartUrl": null,
+      "krxUrl": null,
+      "irUrl": null
+    },
+    {
+      "ticker": "373220",
+      "name": "LG에너지솔루션",
+      "keywords": [
+        "전기차 배터리",
+        "ESS",
+        "수주"
+      ],
+      "dartUrl": null,
+      "krxUrl": null,
+      "irUrl": null
+    }
+  ],
+  "oneLine": "반도체 호황에…日키옥시아 직원들. 자사주로 100억원 '잭폿'",
+  "marketNews": [
+    {
+      "headline": "반도체 호황에…日키옥시아 직원들. 자사주로 100억원 '잭폿'",
+      "title": "반도체 호황에…日키옥시아 직원들. 자사주로 100억원 '잭폿'",
+      "url": "https://www.yna.co.kr/view/AKR20260628031900073",
+      "source": "연합뉴스 마켓+",
+      "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+      "sourceRole": "direct-rss",
+      "description": "(도쿄=연합뉴스) 조성미 특파원 = 반도체 업황 호조로 일본 증시 시가총액 1위에 오른 장기 기억 메모리(낸드플래시) 제조사 키옥시아홀딩스 직원...",
+      "pubDate": "Sun, 28 Jun 2026 14:11:18 +0900",
+      "publishedDate": "2026-06-28"
+    },
+    {
+      "headline": "[코스닥 30년] 동전주·저PBR주 퇴출 내달초 시행…밸류업 시동",
+      "title": "[코스닥 30년] 동전주·저PBR주 퇴출 내달초 시행…밸류업 시동",
+      "url": "https://www.yna.co.kr/view/AKR20260627032000008",
+      "source": "연합뉴스 마켓+",
+      "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+      "sourceRole": "direct-rss",
+      "description": "(서울=연합뉴스) 김유아 기자 = 코스닥 출범 30주년을 맞는 내달부터 코스닥 시장 저평가 해소를 위한 정책이 한층 강화된다.",
+      "pubDate": "Sun, 28 Jun 2026 08:01:09 +0900",
+      "publishedDate": "2026-06-28"
+    },
+    {
+      "headline": "[코스닥 30년] 급등장서 소외된 코스닥…활성화 정책 반등 계기되나",
+      "title": "[코스닥 30년] 급등장서 소외된 코스닥…활성화 정책 반등 계기되나",
+      "url": "https://www.yna.co.kr/view/AKR20260627030100008",
+      "source": "연합뉴스 마켓+",
+      "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+      "sourceRole": "direct-rss",
+      "description": "(서울=연합뉴스) 김유향 기자 = 오는 7월 1일로 출범 30주년을 앞둔 코스닥 시장이 최근 부진한 흐름 속에서 정부의 시장 활성화 정책을 계기...",
+      "pubDate": "Sun, 28 Jun 2026 08:01:07 +0900",
+      "publishedDate": "2026-06-28"
+    },
+    {
+      "headline": "[코스닥 30년] '한국판 나스닥' 표방 출범…시총 66배 커졌다",
+      "title": "[코스닥 30년] '한국판 나스닥' 표방 출범…시총 66배 커졌다",
+      "url": "https://www.yna.co.kr/view/AKR20260627036800008",
+      "source": "연합뉴스 마켓+",
+      "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+      "sourceRole": "direct-rss",
+      "description": "[※ 편집자 주 = 코스닥 시장이 오는 7월 1일로 출범 30주년을 맞습니다. 1996년 7월1일 '한국판 나스닥'을 표방하며 문을 연 코스닥은...",
+      "pubDate": "Sun, 28 Jun 2026 08:01:05 +0900",
+      "publishedDate": "2026-06-28"
+    },
+    {
+      "headline": "6월 한달 내내 출렁인 코스피…실적 시즌 7월에는 다를까",
+      "title": "6월 한달 내내 출렁인 코스피…실적 시즌 7월에는 다를까",
+      "url": "https://www.yna.co.kr/view/AKR20260627019800008",
+      "source": "연합뉴스 마켓+",
+      "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+      "sourceRole": "direct-rss",
+      "description": "(서울=연합뉴스) 임은진 기자 = 현기증이 날 정도로 이달 들어 내내 출렁였던 코스피가 실적 시즌이 시작하는 7월에는 비교적 안정적인 흐름을 보...",
+      "pubDate": "Sun, 28 Jun 2026 07:20:01 +0900",
+      "publishedDate": "2026-06-28"
+    },
+    {
+      "headline": "서학 개미, 스페이스X 팔고 다시 반도체주 대량 매입",
+      "title": "서학 개미, 스페이스X 팔고 다시 반도체주 대량 매입",
+      "url": "https://www.yna.co.kr/view/AKR20260627030400008",
+      "source": "연합뉴스 마켓+",
+      "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+      "sourceRole": "direct-rss",
+      "description": "(서울=연합뉴스) 김태종 기자 = 미국 우주기업 스페이스X 상장과 동시에 주식을 폭풍 매수했던 서학 개미(미 증시에 투자하는 개인 투자자)들이 ...",
+      "pubDate": "Sun, 28 Jun 2026 07:15:01 +0900",
+      "publishedDate": "2026-06-28"
+    },
+    {
+      "headline": "'500조원 시대' ETF, '쪼그라든' 코스닥 시장 넘었다",
+      "title": "'500조원 시대' ETF, '쪼그라든' 코스닥 시장 넘었다",
+      "url": "https://www.yna.co.kr/view/AKR20260627026500008",
+      "source": "연합뉴스 마켓+",
+      "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+      "sourceRole": "direct-rss",
+      "description": "(서울=연합뉴스) 김태종 기자 = 국내 상장지수펀드(ETF) 순자산이 500조원 시대를 여는 등 덩치를 키우면서 마침내 코스닥 시장을 추월했다.",
+      "pubDate": "Sun, 28 Jun 2026 07:10:00 +0900",
+      "publishedDate": "2026-06-28"
+    },
+    {
+      "headline": "이를 어쩌나…증시 변동성 '폭탄' 된 단일종목 레버리지",
+      "title": "이를 어쩌나…증시 변동성 '폭탄' 된 단일종목 레버리지",
+      "url": "https://www.yna.co.kr/view/AKR20260626161100008",
+      "source": "연합뉴스 마켓+",
+      "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+      "sourceRole": "direct-rss",
+      "description": "(서울=연합뉴스) 고은지 기자 = 삼성전자·SK하이닉스 단일종목 레버리지가 국내 증시 변동성을 확대하는 '폭탄'이 됐다.",
+      "pubDate": "Sun, 28 Jun 2026 07:05:01 +0900",
+      "publishedDate": "2026-06-28"
+    },
+    {
+      "headline": "[마켓인사이트] 다시 고개 든 AI 수익성 논란…코스피 향방은?",
+      "title": "[마켓인사이트] 다시 고개 든 AI 수익성 논란…코스피 향방은?",
+      "url": "https://www.yna.co.kr/view/AKR20260627025000008",
+      "source": "연합뉴스 마켓+",
+      "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+      "sourceRole": "direct-rss",
+      "description": "(서울=연합뉴스) 황철환 기자 = 인공지능(AI) 산업 수익성에 대한 의구심과, 반도체 가격 급등에 따른 수요파괴 우려가 고개를 든 가운데 지난...",
+      "pubDate": "Sun, 28 Jun 2026 07:00:12 +0900",
+      "publishedDate": "2026-06-28"
+    },
+    {
+      "headline": "[뉴욕증시-주간전망] 필리 지수, 사흘에 한 번꼴 '급락'…조정 국면 진입하나",
+      "title": "[뉴욕증시-주간전망] 필리 지수, 사흘에 한 번꼴 '급락'…조정 국면 진입하나",
+      "url": "https://www.yna.co.kr/view/AKR20260628006400009",
+      "source": "연합뉴스 마켓+",
+      "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+      "sourceRole": "direct-rss",
+      "description": "(뉴욕=연합뉴스) 진정호 연합인포맥스 특파원 = 이번 주 뉴욕 증시는 미국 독립기념일을 맞아 거래일 수가 단축되는 가운데 인공지능(AI) 및 반...",
+      "pubDate": "Sun, 28 Jun 2026 07:00:00 +0900",
+      "publishedDate": "2026-06-28"
+    },
+    {
+      "headline": "주유소 휘발유값 이번주 1천900원대…\"한주 50원씩 하락할듯\"",
+      "title": "주유소 휘발유값 이번주 1천900원대…\"한주 50원씩 하락할듯\"",
+      "url": "https://www.yna.co.kr/view/AKR20260626027900003",
+      "source": "연합뉴스 마켓+",
+      "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+      "sourceRole": "direct-rss",
+      "description": "(서울=연합뉴스) 김민지 기자 = 정부가 도입 100여일 만에 석유제품 최고가격을 처음으로 인하한 데 따라 2천원대에서 고공비행 중인 국내 유가...",
+      "pubDate": "Sun, 28 Jun 2026 05:55:02 +0900",
+      "publishedDate": "2026-06-28"
+    },
+    {
+      "headline": "코스피 150배·삼전닉스 50배에 뭉칫돈…\"무법지대 도박판\"",
+      "title": "코스피 150배·삼전닉스 50배에 뭉칫돈…\"무법지대 도박판\"",
+      "url": "https://www.yna.co.kr/view/AKR20260625144200002",
+      "source": "연합뉴스 마켓+",
+      "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+      "sourceRole": "direct-rss",
+      "description": "(서울=연합뉴스) 한지훈 박수현 기자 = 세계 최대 가상자산 거래소 바이낸스가 코스피에 최대 150배 레버리지를 걸 수 있는 선물 상품을 팔고 ...",
+      "pubDate": "Sun, 28 Jun 2026 05:47:00 +0900",
+      "publishedDate": "2026-06-28"
+    }
+  ],
+  "marketSummary": [
+    {
+      "rank": 1,
+      "title": "반도체 호황에…日키옥시아 직원들. 자사주로 100억원 '잭폿'",
+      "summary": "2024년 12월 도쿄 주식시장에 이 회사 주식이 상장됐을 당시 공모 가격은 주당 1천455엔(약 1만3천800원)에 불과했다.",
+      "url": "https://www.yna.co.kr/view/AKR20260628031900073",
+      "source": "연합뉴스 마켓+",
+      "summaryBasis": "article-body"
+    },
+    {
+      "rank": 2,
+      "title": "[코스닥 30년] 동전주·저PBR주 퇴출 내달초 시행…밸류업 시동",
+      "summary": "단 이는 주가를 직접적으로 끌어올리기보단 코스닥 '하향평준화' 요소를 소거하는 성격이 좀더 강해, 투자자들의 일부 손실도 불가피하게 동반되는 만큼 주의가 요구된다.",
+      "url": "https://www.yna.co.kr/view/AKR20260627032000008",
+      "source": "연합뉴스 마켓+",
+      "summaryBasis": "article-body"
+    },
+    {
+      "rank": 3,
+      "title": "[코스닥 30년] 급등장서 소외된 코스닥…활성화 정책 반등 계기되나",
+      "summary": "이날 코스피는 전 거래일 대비 519.09포인트(5.81%) 내린 8,411.21에, 코스닥은 36.44포인트(4.10%) 내린 851.37에 장을 마감했다.",
+      "url": "https://www.yna.co.kr/view/AKR20260627030100008",
+      "source": "연합뉴스 마켓+",
+      "summaryBasis": "article-body"
+    },
+    {
+      "rank": 4,
+      "title": "[코스닥 30년] '한국판 나스닥' 표방 출범…시총 66배 커졌다",
+      "summary": "1996년 7월1일 '한국판 나스닥'을 표방하며 문을 연 코스닥은 그동안 수많은 부침 속에서 성장해왔습니다.",
+      "url": "https://www.yna.co.kr/view/AKR20260627036800008",
+      "source": "연합뉴스 마켓+",
+      "summaryBasis": "article-body"
+    },
+    {
+      "rank": 5,
+      "title": "6월 한달 내내 출렁인 코스피…실적 시즌 7월에는 다를까",
+      "summary": "이날 코스피는 전날보다 459.28포인트(5.42%) 오른 8,930.30, 코스닥지수는 21.50포인트(2.36%) 내린 887.81에 마감했다.",
+      "url": "https://www.yna.co.kr/view/AKR20260627019800008",
+      "source": "연합뉴스 마켓+",
+      "summaryBasis": "article-body"
+    }
+  ],
+  "sectorNews": [
+    {
+      "sector": "반도체/AI",
+      "query": "반도체 AI OR 삼성전자 OR SK하이닉스 OR 한미반도체 OR 리노공업 OR LX세미콘 OR 이오테크닉스 OR HBM OR 메모리 OR DRAM 주식 뉴스",
+      "queries": [
+        {
+          "sector": "반도체/AI",
+          "query": "반도체 AI OR 삼성전자 OR SK하이닉스 OR 한미반도체 OR 리노공업 OR LX세미콘 OR 이오테크닉스 OR HBM OR 메모리 OR DRAM 주식 뉴스",
+          "terms": [
+            "반도체 AI",
+            "삼성전자",
+            "SK하이닉스",
+            "한미반도체",
+            "리노공업",
+            "LX세미콘",
+            "이오테크닉스",
+            "HBM",
+            "메모리",
+            "DRAM"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "반도체 호황에…日키옥시아 직원들. 자사주로 100억원 '잭폿'",
+          "title": "반도체 호황에…日키옥시아 직원들. 자사주로 100억원 '잭폿'",
+          "url": "https://www.yna.co.kr/view/AKR20260628031900073",
+          "source": "연합뉴스 마켓+",
+          "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+          "sourceRole": "direct-rss",
+          "description": "(도쿄=연합뉴스) 조성미 특파원 = 반도체 업황 호조로 일본 증시 시가총액 1위에 오른 장기 기억 메모리(낸드플래시) 제조사 키옥시아홀딩스 직원...",
+          "pubDate": "Sun, 28 Jun 2026 14:11:18 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "반도체/AI",
+          "query": "반도체 AI OR 삼성전자 OR SK하이닉스 OR 한미반도체 OR 리노공업 OR LX세미콘 OR 이오테크닉스 OR HBM OR 메모리 OR DRAM 주식 뉴스"
+        },
+        {
+          "headline": "서학 개미, 스페이스X 팔고 다시 반도체주 대량 매입",
+          "title": "서학 개미, 스페이스X 팔고 다시 반도체주 대량 매입",
+          "url": "https://www.yna.co.kr/view/AKR20260627030400008",
+          "source": "연합뉴스 마켓+",
+          "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 김태종 기자 = 미국 우주기업 스페이스X 상장과 동시에 주식을 폭풍 매수했던 서학 개미(미 증시에 투자하는 개인 투자자)들이 ...",
+          "pubDate": "Sun, 28 Jun 2026 07:15:01 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "반도체/AI",
+          "query": "반도체 AI OR 삼성전자 OR SK하이닉스 OR 한미반도체 OR 리노공업 OR LX세미콘 OR 이오테크닉스 OR HBM OR 메모리 OR DRAM 주식 뉴스"
+        },
+        {
+          "headline": "이를 어쩌나…증시 변동성 '폭탄' 된 단일종목 레버리지",
+          "title": "이를 어쩌나…증시 변동성 '폭탄' 된 단일종목 레버리지",
+          "url": "https://www.yna.co.kr/view/AKR20260626161100008",
+          "source": "연합뉴스 마켓+",
+          "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 고은지 기자 = 삼성전자·SK하이닉스 단일종목 레버리지가 국내 증시 변동성을 확대하는 '폭탄'이 됐다.",
+          "pubDate": "Sun, 28 Jun 2026 07:05:01 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "반도체/AI",
+          "query": "반도체 AI OR 삼성전자 OR SK하이닉스 OR 한미반도체 OR 리노공업 OR LX세미콘 OR 이오테크닉스 OR HBM OR 메모리 OR DRAM 주식 뉴스"
+        },
+        {
+          "headline": "[마켓인사이트] 다시 고개 든 AI 수익성 논란…코스피 향방은?",
+          "title": "[마켓인사이트] 다시 고개 든 AI 수익성 논란…코스피 향방은?",
+          "url": "https://www.yna.co.kr/view/AKR20260627025000008",
+          "source": "연합뉴스 마켓+",
+          "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 황철환 기자 = 인공지능(AI) 산업 수익성에 대한 의구심과, 반도체 가격 급등에 따른 수요파괴 우려가 고개를 든 가운데 지난...",
+          "pubDate": "Sun, 28 Jun 2026 07:00:12 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "반도체/AI",
+          "query": "반도체 AI OR 삼성전자 OR SK하이닉스 OR 한미반도체 OR 리노공업 OR LX세미콘 OR 이오테크닉스 OR HBM OR 메모리 OR DRAM 주식 뉴스"
+        },
+        {
+          "headline": "[뉴욕증시-주간전망] 필리 지수, 사흘에 한 번꼴 '급락'…조정 국면 진입하나",
+          "title": "[뉴욕증시-주간전망] 필리 지수, 사흘에 한 번꼴 '급락'…조정 국면 진입하나",
+          "url": "https://www.yna.co.kr/view/AKR20260628006400009",
+          "source": "연합뉴스 마켓+",
+          "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+          "sourceRole": "direct-rss",
+          "description": "(뉴욕=연합뉴스) 진정호 연합인포맥스 특파원 = 이번 주 뉴욕 증시는 미국 독립기념일을 맞아 거래일 수가 단축되는 가운데 인공지능(AI) 및 반...",
+          "pubDate": "Sun, 28 Jun 2026 07:00:00 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "반도체/AI",
+          "query": "반도체 AI OR 삼성전자 OR SK하이닉스 OR 한미반도체 OR 리노공업 OR LX세미콘 OR 이오테크닉스 OR HBM OR 메모리 OR DRAM 주식 뉴스"
+        }
+      ]
+    },
+    {
+      "sector": "이차전지/전기차",
+      "query": "이차전지 전기차 OR LG에너지솔루션 OR 삼성SDI OR 에코프로비엠 OR 에코프로 OR 엘앤에프 OR LG화학 OR 배터리 OR 전기차 OR 양극재 주식 뉴스",
+      "queries": [
+        {
+          "sector": "이차전지/전기차",
+          "query": "이차전지 전기차 OR LG에너지솔루션 OR 삼성SDI OR 에코프로비엠 OR 에코프로 OR 엘앤에프 OR LG화학 OR 배터리 OR 전기차 OR 양극재 주식 뉴스",
+          "terms": [
+            "이차전지 전기차",
+            "LG에너지솔루션",
+            "삼성SDI",
+            "에코프로비엠",
+            "에코프로",
+            "엘앤에프",
+            "LG화학",
+            "배터리",
+            "전기차",
+            "양극재"
+          ]
+        }
+      ],
+      "items": []
+    },
+    {
+      "sector": "자동차/부품",
+      "query": "자동차 부품 OR 현대차 OR 기아 OR 현대모비스 OR 한온시스템 OR HL만도 OR 현대위아 OR 자동차 OR 수출 OR 자동차부품 주식 뉴스",
+      "queries": [
+        {
+          "sector": "자동차/부품",
+          "query": "자동차 부품 OR 현대차 OR 기아 OR 현대모비스 OR 한온시스템 OR HL만도 OR 현대위아 OR 자동차 OR 수출 OR 자동차부품 주식 뉴스",
+          "terms": [
+            "자동차 부품",
+            "현대차",
+            "기아",
+            "현대모비스",
+            "한온시스템",
+            "HL만도",
+            "현대위아",
+            "자동차",
+            "수출",
+            "자동차부품"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "5월 인천 일평균 수출액 2억5천만달러…역대 2위",
+          "title": "5월 인천 일평균 수출액 2억5천만달러…역대 2위",
+          "url": "https://www.yna.co.kr/view/AKR20260626097200065",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(인천=연합뉴스) 김상연 기자 = 올해 5월 인천 지역의 하루 평균 수출액이 역대 2번째로 높은 것으로 나타났다.",
+          "pubDate": "Sun, 28 Jun 2026 11:01:27 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "자동차/부품",
+          "query": "자동차 부품 OR 현대차 OR 기아 OR 현대모비스 OR 한온시스템 OR HL만도 OR 현대위아 OR 자동차 OR 수출 OR 자동차부품 주식 뉴스"
+        },
+        {
+          "headline": "현대硏 \"고용 없는 성장·내수 부진 등 5대 리스크 대비해야\"",
+          "title": "현대硏 \"고용 없는 성장·내수 부진 등 5대 리스크 대비해야\"",
+          "url": "https://www.yna.co.kr/view/AKR20260626170300002",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 임지우 기자 = 반도체 수출 호황이 지속되고 있지만 하반기 우리 경제가 통화정책 긴축 전환과 증시 변동성 확대·건설투자 회복 ...",
+          "pubDate": "Sun, 28 Jun 2026 11:00:31 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "자동차/부품",
+          "query": "자동차 부품 OR 현대차 OR 기아 OR 현대모비스 OR 한온시스템 OR HL만도 OR 현대위아 OR 자동차 OR 수출 OR 자동차부품 주식 뉴스"
+        },
+        {
+          "headline": "무협 \"3분기 수출 개선세 지속…반도체·무선통신기기 등 견인\"",
+          "title": "무협 \"3분기 수출 개선세 지속…반도체·무선통신기기 등 견인\"",
+          "url": "https://www.yna.co.kr/view/AKR20260628013600003",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 장보인 기자 = 반도체 활황으로 3분기에도 한국의 수출 개선세가 이어질 것이란 전망이 나왔다.",
+          "pubDate": "Sun, 28 Jun 2026 11:00:01 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "자동차/부품",
+          "query": "자동차 부품 OR 현대차 OR 기아 OR 현대모비스 OR 한온시스템 OR HL만도 OR 현대위아 OR 자동차 OR 수출 OR 자동차부품 주식 뉴스"
+        },
+        {
+          "headline": "하나금융, 서부티엔디 도시첨단물류단지 개발 금융지원 협약",
+          "title": "하나금융, 서부티엔디 도시첨단물류단지 개발 금융지원 협약",
+          "url": "https://www.yna.co.kr/view/AKR20260627031000002",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 임지우 기자 = 하나금융그룹은 지난 26일 서부티엔디와 도시첨단물류단지 개발사업 협력 강화를 위한 업무협약을 맺었다고 28일 ...",
+          "pubDate": "Sun, 28 Jun 2026 08:30:00 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "자동차/부품",
+          "query": "자동차 부품 OR 현대차 OR 기아 OR 현대모비스 OR 한온시스템 OR HL만도 OR 현대위아 OR 자동차 OR 수출 OR 자동차부품 주식 뉴스"
+        },
+        {
+          "headline": "수은, 조선사 중소 협력업체에 미국 사이버 보안인증 취득 지원",
+          "title": "수은, 조선사 중소 협력업체에 미국 사이버 보안인증 취득 지원",
+          "url": "https://www.yna.co.kr/view/AKR20260627028000002",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 임지우 기자 = 한국수출입은행은 국내 조선사와 함께하는 중소·중견 협력사의 미국 진출을 돕기 위해 현지 사이버 보안인증 취득을...",
+          "pubDate": "Sun, 28 Jun 2026 08:00:02 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "자동차/부품",
+          "query": "자동차 부품 OR 현대차 OR 기아 OR 현대모비스 OR 한온시스템 OR HL만도 OR 현대위아 OR 자동차 OR 수출 OR 자동차부품 주식 뉴스"
+        }
+      ]
+    },
+    {
+      "sector": "조선/방산",
+      "query": "조선 방산 OR HD현대중공업 OR 삼성중공업 OR 한화오션 OR HD한국조선해양 OR HD현대 OR HD현대미포 OR 조선 OR 수주 OR LNG 주식 뉴스",
+      "queries": [
+        {
+          "sector": "조선/방산",
+          "query": "조선 방산 OR HD현대중공업 OR 삼성중공업 OR 한화오션 OR HD한국조선해양 OR HD현대 OR HD현대미포 OR 조선 OR 수주 OR LNG 주식 뉴스",
+          "terms": [
+            "조선 방산",
+            "HD현대중공업",
+            "삼성중공업",
+            "한화오션",
+            "HD한국조선해양",
+            "HD현대",
+            "HD현대미포",
+            "조선",
+            "수주",
+            "LNG"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "5월 인천 일평균 수출액 2억5천만달러…역대 2위",
+          "title": "5월 인천 일평균 수출액 2억5천만달러…역대 2위",
+          "url": "https://www.yna.co.kr/view/AKR20260626097200065",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(인천=연합뉴스) 김상연 기자 = 올해 5월 인천 지역의 하루 평균 수출액이 역대 2번째로 높은 것으로 나타났다.",
+          "pubDate": "Sun, 28 Jun 2026 11:01:27 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "조선/방산",
+          "query": "조선 방산 OR HD현대중공업 OR 삼성중공업 OR 한화오션 OR HD한국조선해양 OR HD현대 OR HD현대미포 OR 조선 OR 수주 OR LNG 주식 뉴스"
+        },
+        {
+          "headline": "현대硏 \"고용 없는 성장·내수 부진 등 5대 리스크 대비해야\"",
+          "title": "현대硏 \"고용 없는 성장·내수 부진 등 5대 리스크 대비해야\"",
+          "url": "https://www.yna.co.kr/view/AKR20260626170300002",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 임지우 기자 = 반도체 수출 호황이 지속되고 있지만 하반기 우리 경제가 통화정책 긴축 전환과 증시 변동성 확대·건설투자 회복 ...",
+          "pubDate": "Sun, 28 Jun 2026 11:00:31 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "조선/방산",
+          "query": "조선 방산 OR HD현대중공업 OR 삼성중공업 OR 한화오션 OR HD한국조선해양 OR HD현대 OR HD현대미포 OR 조선 OR 수주 OR LNG 주식 뉴스"
+        },
+        {
+          "headline": "무협 \"3분기 수출 개선세 지속…반도체·무선통신기기 등 견인\"",
+          "title": "무협 \"3분기 수출 개선세 지속…반도체·무선통신기기 등 견인\"",
+          "url": "https://www.yna.co.kr/view/AKR20260628013600003",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 장보인 기자 = 반도체 활황으로 3분기에도 한국의 수출 개선세가 이어질 것이란 전망이 나왔다.",
+          "pubDate": "Sun, 28 Jun 2026 11:00:01 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "조선/방산",
+          "query": "조선 방산 OR HD현대중공업 OR 삼성중공업 OR 한화오션 OR HD한국조선해양 OR HD현대 OR HD현대미포 OR 조선 OR 수주 OR LNG 주식 뉴스"
+        },
+        {
+          "headline": "티웨이항공, 내달 6일까지 B737 기종 신입 부기장 채용",
+          "title": "티웨이항공, 내달 6일까지 B737 기종 신입 부기장 채용",
+          "url": "https://www.yna.co.kr/view/AKR20260628019500003",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 홍규빈 기자 = 티웨이항공은 B737 기종 신입 부기장을 채용한다고 28일 밝혔다.",
+          "pubDate": "Sun, 28 Jun 2026 10:21:31 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "조선/방산",
+          "query": "조선 방산 OR HD현대중공업 OR 삼성중공업 OR 한화오션 OR HD한국조선해양 OR HD현대 OR HD현대미포 OR 조선 OR 수주 OR LNG 주식 뉴스"
+        },
+        {
+          "headline": "수은, 조선사 중소 협력업체에 미국 사이버 보안인증 취득 지원",
+          "title": "수은, 조선사 중소 협력업체에 미국 사이버 보안인증 취득 지원",
+          "url": "https://www.yna.co.kr/view/AKR20260627028000002",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 임지우 기자 = 한국수출입은행은 국내 조선사와 함께하는 중소·중견 협력사의 미국 진출을 돕기 위해 현지 사이버 보안인증 취득을...",
+          "pubDate": "Sun, 28 Jun 2026 08:00:02 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "조선/방산",
+          "query": "조선 방산 OR HD현대중공업 OR 삼성중공업 OR 한화오션 OR HD한국조선해양 OR HD현대 OR HD현대미포 OR 조선 OR 수주 OR LNG 주식 뉴스"
+        }
+      ]
+    },
+    {
+      "sector": "바이오/헬스케어",
+      "query": "바이오 헬스케어 OR 삼성바이오로직스 OR 셀트리온 OR 한미약품 OR SK바이오사이언스 OR SK바이오팜 OR 리가켐바이오 OR 바이오 OR CDMO OR 바이오시밀러 주식 뉴스",
+      "queries": [
+        {
+          "sector": "바이오/헬스케어",
+          "query": "바이오 헬스케어 OR 삼성바이오로직스 OR 셀트리온 OR 한미약품 OR SK바이오사이언스 OR SK바이오팜 OR 리가켐바이오 OR 바이오 OR CDMO OR 바이오시밀러 주식 뉴스",
+          "terms": [
+            "바이오 헬스케어",
+            "삼성바이오로직스",
+            "셀트리온",
+            "한미약품",
+            "SK바이오사이언스",
+            "SK바이오팜",
+            "리가켐바이오",
+            "바이오",
+            "CDMO",
+            "바이오시밀러"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "\"소비자 95%, 온라인 쇼핑·배달 검색 첫 페이지에서 끝낸다\"",
+          "title": "\"소비자 95%, 온라인 쇼핑·배달 검색 첫 페이지에서 끝낸다\"",
+          "url": "https://www.yna.co.kr/view/AKR20260627000900002",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(세종=연합뉴스) 김수현 기자 = 온라인 쇼핑, 배달, 숙박 예약 등 플랫폼 기반 서비스를 이용하는 소비자들의 절반 이상은 플랫폼이 제시한 검색...",
+          "pubDate": "Sun, 28 Jun 2026 12:00:13 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "바이오/헬스케어",
+          "query": "바이오 헬스케어 OR 삼성바이오로직스 OR 셀트리온 OR 한미약품 OR SK바이오사이언스 OR SK바이오팜 OR 리가켐바이오 OR 바이오 OR CDMO OR 바이오시밀러 주식 뉴스"
+        },
+        {
+          "headline": "신한금융, 책무구조도에 생성형 AI 결합…'SCoRE AI' 구축",
+          "title": "신한금융, 책무구조도에 생성형 AI 결합…'SCoRE AI' 구축",
+          "url": "https://www.yna.co.kr/view/AKR20260626173100002",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 한지훈 기자 = 신한금융그룹은 오는 29일부터 그룹 공동 내부통제 플랫폼인 '신한 책무이행관리시스템'(SCoRE)'에 생성형 ...",
+          "pubDate": "Sun, 28 Jun 2026 09:00:08 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "바이오/헬스케어",
+          "query": "바이오 헬스케어 OR 삼성바이오로직스 OR 셀트리온 OR 한미약품 OR SK바이오사이언스 OR SK바이오팜 OR 리가켐바이오 OR 바이오 OR CDMO OR 바이오시밀러 주식 뉴스"
+        }
+      ]
+    },
+    {
+      "sector": "인터넷/게임/미디어",
+      "query": "인터넷 게임 미디어 OR NAVER OR 카카오 OR 엔씨소프트 OR 넷마블 OR 크래프톤 OR 펄어비스 OR 인터넷 OR AI OR 플랫폼 주식 뉴스",
+      "queries": [
+        {
+          "sector": "인터넷/게임/미디어",
+          "query": "인터넷 게임 미디어 OR NAVER OR 카카오 OR 엔씨소프트 OR 넷마블 OR 크래프톤 OR 펄어비스 OR 인터넷 OR AI OR 플랫폼 주식 뉴스",
+          "terms": [
+            "인터넷 게임 미디어",
+            "NAVER",
+            "카카오",
+            "엔씨소프트",
+            "넷마블",
+            "크래프톤",
+            "펄어비스",
+            "인터넷",
+            "AI",
+            "플랫폼"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "[마켓인사이트] 다시 고개 든 AI 수익성 논란…코스피 향방은?",
+          "title": "[마켓인사이트] 다시 고개 든 AI 수익성 논란…코스피 향방은?",
+          "url": "https://www.yna.co.kr/view/AKR20260627025000008",
+          "source": "연합뉴스 마켓+",
+          "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 황철환 기자 = 인공지능(AI) 산업 수익성에 대한 의구심과, 반도체 가격 급등에 따른 수요파괴 우려가 고개를 든 가운데 지난...",
+          "pubDate": "Sun, 28 Jun 2026 07:00:12 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "인터넷/게임/미디어",
+          "query": "인터넷 게임 미디어 OR NAVER OR 카카오 OR 엔씨소프트 OR 넷마블 OR 크래프톤 OR 펄어비스 OR 인터넷 OR AI OR 플랫폼 주식 뉴스"
+        },
+        {
+          "headline": "[뉴욕증시-주간전망] 필리 지수, 사흘에 한 번꼴 '급락'…조정 국면 진입하나",
+          "title": "[뉴욕증시-주간전망] 필리 지수, 사흘에 한 번꼴 '급락'…조정 국면 진입하나",
+          "url": "https://www.yna.co.kr/view/AKR20260628006400009",
+          "source": "연합뉴스 마켓+",
+          "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+          "sourceRole": "direct-rss",
+          "description": "(뉴욕=연합뉴스) 진정호 연합인포맥스 특파원 = 이번 주 뉴욕 증시는 미국 독립기념일을 맞아 거래일 수가 단축되는 가운데 인공지능(AI) 및 반...",
+          "pubDate": "Sun, 28 Jun 2026 07:00:00 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "인터넷/게임/미디어",
+          "query": "인터넷 게임 미디어 OR NAVER OR 카카오 OR 엔씨소프트 OR 넷마블 OR 크래프톤 OR 펄어비스 OR 인터넷 OR AI OR 플랫폼 주식 뉴스"
+        },
+        {
+          "headline": "충남 사회적경제기업 230곳 제품·서비스 한눈에",
+          "title": "충남 사회적경제기업 230곳 제품·서비스 한눈에",
+          "url": "https://www.yna.co.kr/view/AKR20260628030800063",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(홍성=연합뉴스) 김준범 기자 = 충남도는 도내 사회적경제기업의 제품과 서비스 정보를 담은 '충청남도 사회적경제기업 제품 안내서'를 발간한다고 ...",
+          "pubDate": "Sun, 28 Jun 2026 13:42:10 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "인터넷/게임/미디어",
+          "query": "인터넷 게임 미디어 OR NAVER OR 카카오 OR 엔씨소프트 OR 넷마블 OR 크래프톤 OR 펄어비스 OR 인터넷 OR AI OR 플랫폼 주식 뉴스"
+        },
+        {
+          "headline": "\"소비자 95%, 온라인 쇼핑·배달 검색 첫 페이지에서 끝낸다\"",
+          "title": "\"소비자 95%, 온라인 쇼핑·배달 검색 첫 페이지에서 끝낸다\"",
+          "url": "https://www.yna.co.kr/view/AKR20260627000900002",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(세종=연합뉴스) 김수현 기자 = 온라인 쇼핑, 배달, 숙박 예약 등 플랫폼 기반 서비스를 이용하는 소비자들의 절반 이상은 플랫폼이 제시한 검색...",
+          "pubDate": "Sun, 28 Jun 2026 12:00:13 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "인터넷/게임/미디어",
+          "query": "인터넷 게임 미디어 OR NAVER OR 카카오 OR 엔씨소프트 OR 넷마블 OR 크래프톤 OR 펄어비스 OR 인터넷 OR AI OR 플랫폼 주식 뉴스"
+        },
+        {
+          "headline": "무협 \"3분기 수출 개선세 지속…반도체·무선통신기기 등 견인\"",
+          "title": "무협 \"3분기 수출 개선세 지속…반도체·무선통신기기 등 견인\"",
+          "url": "https://www.yna.co.kr/view/AKR20260628013600003",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 장보인 기자 = 반도체 활황으로 3분기에도 한국의 수출 개선세가 이어질 것이란 전망이 나왔다.",
+          "pubDate": "Sun, 28 Jun 2026 11:00:01 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "인터넷/게임/미디어",
+          "query": "인터넷 게임 미디어 OR NAVER OR 카카오 OR 엔씨소프트 OR 넷마블 OR 크래프톤 OR 펄어비스 OR 인터넷 OR AI OR 플랫폼 주식 뉴스"
+        }
+      ]
+    },
+    {
+      "sector": "금융/증권/보험",
+      "query": "금융 증권 보험 OR 신한지주 OR KB금융 OR 하나금융지주 OR 우리금융지주 OR 기업은행 OR BNK금융지주 OR 금융 OR 은행 주식 뉴스",
+      "queries": [
+        {
+          "sector": "금융/증권/보험",
+          "query": "금융 증권 보험 OR 신한지주 OR KB금융 OR 하나금융지주 OR 우리금융지주 OR 기업은행 OR BNK금융지주 OR 금융 OR 은행 주식 뉴스",
+          "terms": [
+            "금융 증권 보험",
+            "신한지주",
+            "KB금융",
+            "하나금융지주",
+            "우리금융지주",
+            "기업은행",
+            "BNK금융지주",
+            "금융",
+            "은행"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "지난달 개인 신용융자, 예년보다 18조↑…이찬진 빚투 동향 점검",
+          "title": "지난달 개인 신용융자, 예년보다 18조↑…이찬진 빚투 동향 점검",
+          "url": "https://www.yna.co.kr/view/AKR20260627042800002",
+          "source": "연합뉴스 마켓+",
+          "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 배영경 기자 = 최근 '빚투'(빚내서투자) 열풍에 관해 공개적으로 우려를 표했던 이찬진 금융감독원장이 차입 주식매수 관련 동향...",
+          "pubDate": "Sun, 28 Jun 2026 12:00:06 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "금융/증권/보험",
+          "query": "금융 증권 보험 OR 신한지주 OR KB금융 OR 하나금융지주 OR 우리금융지주 OR 기업은행 OR BNK금융지주 OR 금융 OR 은행 주식 뉴스"
+        },
+        {
+          "headline": "유동화회사 채권 1조원 새도약기금 매각…11만명 추심굴레 탈출",
+          "title": "유동화회사 채권 1조원 새도약기금 매각…11만명 추심굴레 탈출",
+          "url": "https://www.yna.co.kr/view/AKR20260627043400002",
+          "source": "연합뉴스 마켓+",
+          "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 김지연 기자 = 금융당국이 유동화회사의 장기연체채권 보유 현황에 대한 전수조사를 마치고 약 1조원 규모 채권을 정부의 채권정리...",
+          "pubDate": "Sun, 28 Jun 2026 12:00:06 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "금융/증권/보험",
+          "query": "금융 증권 보험 OR 신한지주 OR KB금융 OR 하나금융지주 OR 우리금융지주 OR 기업은행 OR BNK금융지주 OR 금융 OR 은행 주식 뉴스"
+        },
+        {
+          "headline": "농협금융, 전북에 '금융허브' 만든다…지역 금융지원 확대",
+          "title": "농협금융, 전북에 '금융허브' 만든다…지역 금융지원 확대",
+          "url": "https://www.yna.co.kr/view/AKR20260626150200002",
+          "source": "연합뉴스 마켓+",
+          "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 임지우 기자 = NH농협금융은 전북 지역에 'NH금융허브'를 만들고 지역 내 농식품 기업 등에 금융지원을 강화한다고 28일 밝...",
+          "pubDate": "Sun, 28 Jun 2026 08:00:02 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "금융/증권/보험",
+          "query": "금융 증권 보험 OR 신한지주 OR KB금융 OR 하나금융지주 OR 우리금융지주 OR 기업은행 OR BNK금융지주 OR 금융 OR 은행 주식 뉴스"
+        },
+        {
+          "headline": "채무조정 신청해도…대부업체 빚은 거절당할 확률 3배",
+          "title": "채무조정 신청해도…대부업체 빚은 거절당할 확률 3배",
+          "url": "https://www.yna.co.kr/view/AKR20260627040000002",
+          "source": "연합뉴스 마켓+",
+          "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 강류나 기자 = 신용회복위원회 채무조정에 대한 대부업권의 부동의율이 금융회사 전체 평균의 3배 가까운 것으로 나타났다.",
+          "pubDate": "Sun, 28 Jun 2026 05:59:00 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "금융/증권/보험",
+          "query": "금융 증권 보험 OR 신한지주 OR KB금융 OR 하나금융지주 OR 우리금융지주 OR 기업은행 OR BNK금융지주 OR 금융 OR 은행 주식 뉴스"
+        },
+        {
+          "headline": "은행권 포용금융 우등생은 서민금융출연금 10% 넘게 감면될 듯",
+          "title": "은행권 포용금융 우등생은 서민금융출연금 10% 넘게 감면될 듯",
+          "url": "https://www.yna.co.kr/view/AKR20260627043100002",
+          "source": "연합뉴스 마켓+",
+          "sourceUrl": "https://www.yna.co.kr/rss/market.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 김지연 기자 = 금융당국이 포용금융 실적이 우수한 은행을 대상으로 서민금융 출연금을 10％ 넘게 깎아주는 방안을 검토 중이다.",
+          "pubDate": "Sun, 28 Jun 2026 05:57:00 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "금융/증권/보험",
+          "query": "금융 증권 보험 OR 신한지주 OR KB금융 OR 하나금융지주 OR 우리금융지주 OR 기업은행 OR BNK금융지주 OR 금융 OR 은행 주식 뉴스"
+        }
+      ]
+    },
+    {
+      "sector": "화학/정유",
+      "query": "화학 정유 OR LG화학 OR 롯데케미칼 OR SK이노베이션 OR S-Oil OR GS OR 한화솔루션 OR 화학 OR 첨단소재 OR 석유화학 주식 뉴스",
+      "queries": [
+        {
+          "sector": "화학/정유",
+          "query": "화학 정유 OR LG화학 OR 롯데케미칼 OR SK이노베이션 OR S-Oil OR GS OR 한화솔루션 OR 화학 OR 첨단소재 OR 석유화학 주식 뉴스",
+          "terms": [
+            "화학 정유",
+            "LG화학",
+            "롯데케미칼",
+            "SK이노베이션",
+            "S-Oil",
+            "GS",
+            "한화솔루션",
+            "화학",
+            "첨단소재",
+            "석유화학"
+          ]
+        }
+      ],
+      "items": []
+    },
+    {
+      "sector": "철강/기계/건설",
+      "query": "철강 기계 건설 OR POSCO홀딩스 OR 현대제철 OR 동국홀딩스 OR KG스틸 OR 세아베스틸지주 OR 세아제강 OR 철강 OR 원자재 OR 봉형강 주식 뉴스",
+      "queries": [
+        {
+          "sector": "철강/기계/건설",
+          "query": "철강 기계 건설 OR POSCO홀딩스 OR 현대제철 OR 동국홀딩스 OR KG스틸 OR 세아베스틸지주 OR 세아제강 OR 철강 OR 원자재 OR 봉형강 주식 뉴스",
+          "terms": [
+            "철강 기계 건설",
+            "POSCO홀딩스",
+            "현대제철",
+            "동국홀딩스",
+            "KG스틸",
+            "세아베스틸지주",
+            "세아제강",
+            "철강",
+            "원자재",
+            "봉형강"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "야간노동자 건강관리 돕는다…안전공단이 사업장점검·건강상담",
+          "title": "야간노동자 건강관리 돕는다…안전공단이 사업장점검·건강상담",
+          "url": "https://www.yna.co.kr/view/AKR20260627018200530",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 한혜원 기자 = 고용노동부와 한국산업안전보건공단은 28일 '야간작업 노동자 건강관리 종합지원사업'을 본격 실시한다고 밝혔다.",
+          "pubDate": "Sun, 28 Jun 2026 12:00:05 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "철강/기계/건설",
+          "query": "철강 기계 건설 OR POSCO홀딩스 OR 현대제철 OR 동국홀딩스 OR KG스틸 OR 세아베스틸지주 OR 세아제강 OR 철강 OR 원자재 OR 봉형강 주식 뉴스"
+        },
+        {
+          "headline": "38년 된 영등포 당산현대3차 최고 46층 734세대로 재건축",
+          "title": "38년 된 영등포 당산현대3차 최고 46층 734세대로 재건축",
+          "url": "https://www.yna.co.kr/view/AKR20260628025800004",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 김동규 기자 = 서울 영등포구 당산현대3차아파트가 최고 46층, 총 734세대 단지로 거듭나고, 중구 을지로2가 일대 정비사업...",
+          "pubDate": "Sun, 28 Jun 2026 11:41:23 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "철강/기계/건설",
+          "query": "철강 기계 건설 OR POSCO홀딩스 OR 현대제철 OR 동국홀딩스 OR KG스틸 OR 세아베스틸지주 OR 세아제강 OR 철강 OR 원자재 OR 봉형강 주식 뉴스"
+        },
+        {
+          "headline": "동해신항 석탄부두 착공…\"국가기간산업 원자재 공급 기반\"",
+          "title": "동해신항 석탄부두 착공…\"국가기간산업 원자재 공급 기반\"",
+          "url": "https://www.yna.co.kr/view/AKR20260626124600051",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(부산=연합뉴스) 이영재 기자 = 동해권 시멘트 제조업과 발전산업에 필요한 석탄 등 국가기간산업 원자재의 안정적 공급 기반을 구축하기 위한 동해...",
+          "pubDate": "Sun, 28 Jun 2026 11:01:27 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "철강/기계/건설",
+          "query": "철강 기계 건설 OR POSCO홀딩스 OR 현대제철 OR 동국홀딩스 OR KG스틸 OR 세아베스틸지주 OR 세아제강 OR 철강 OR 원자재 OR 봉형강 주식 뉴스"
+        },
+        {
+          "headline": "현대硏 \"고용 없는 성장·내수 부진 등 5대 리스크 대비해야\"",
+          "title": "현대硏 \"고용 없는 성장·내수 부진 등 5대 리스크 대비해야\"",
+          "url": "https://www.yna.co.kr/view/AKR20260626170300002",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 임지우 기자 = 반도체 수출 호황이 지속되고 있지만 하반기 우리 경제가 통화정책 긴축 전환과 증시 변동성 확대·건설투자 회복 ...",
+          "pubDate": "Sun, 28 Jun 2026 11:00:31 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "철강/기계/건설",
+          "query": "철강 기계 건설 OR POSCO홀딩스 OR 현대제철 OR 동국홀딩스 OR KG스틸 OR 세아베스틸지주 OR 세아제강 OR 철강 OR 원자재 OR 봉형강 주식 뉴스"
+        },
+        {
+          "headline": "보평역 주택조합 전 조합장 항소심서 가중…징역 6년 선고",
+          "title": "보평역 주택조합 전 조합장 항소심서 가중…징역 6년 선고",
+          "url": "https://www.yna.co.kr/view/AKR20260626119000061",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(수원=연합뉴스) 권준우 기자 = 시공사 등으로부터 20억원대 뒷돈을 받고 공사비 수백억 원을 부풀려준 경기 용인시 보평역 지역주택조합 전 조합...",
+          "pubDate": "Sun, 28 Jun 2026 10:00:02 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "철강/기계/건설",
+          "query": "철강 기계 건설 OR POSCO홀딩스 OR 현대제철 OR 동국홀딩스 OR KG스틸 OR 세아베스틸지주 OR 세아제강 OR 철강 OR 원자재 OR 봉형강 주식 뉴스"
+        }
+      ]
+    },
+    {
+      "sector": "소비재/화장품/유통",
+      "query": "소비재 화장품 유통 OR 아모레퍼시픽 OR LG생활건강 OR 한국콜마 OR 코스맥스 OR 아모레G OR 애경산업 OR 화장품 OR 중국 OR 생활용품 주식 뉴스",
+      "queries": [
+        {
+          "sector": "소비재/화장품/유통",
+          "query": "소비재 화장품 유통 OR 아모레퍼시픽 OR LG생활건강 OR 한국콜마 OR 코스맥스 OR 아모레G OR 애경산업 OR 화장품 OR 중국 OR 생활용품 주식 뉴스",
+          "terms": [
+            "소비재 화장품 유통",
+            "아모레퍼시픽",
+            "LG생활건강",
+            "한국콜마",
+            "코스맥스",
+            "아모레G",
+            "애경산업",
+            "화장품",
+            "중국",
+            "생활용품"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "LG 스마트코티지, 20평대 신제품 2종 출시…상업용 수요 겨냥",
+          "title": "LG 스마트코티지, 20평대 신제품 2종 출시…상업용 수요 겨냥",
+          "url": "https://www.yna.co.kr/view/AKR20260628012200003",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 강태우 기자 = LG전자는 오는 29일 모듈러 주택 'LG 스마트코티지' 신제품 2종을 출시하며 고객 맞춤형 주거 설루션 사업...",
+          "pubDate": "Sun, 28 Jun 2026 10:00:00 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "소비재/화장품/유통",
+          "query": "소비재 화장품 유통 OR 아모레퍼시픽 OR LG생활건강 OR 한국콜마 OR 코스맥스 OR 아모레G OR 애경산업 OR 화장품 OR 중국 OR 생활용품 주식 뉴스"
+        },
+        {
+          "headline": "롯데홈쇼핑, '비에날씬' 해외유통 계약…일본·베트남 판로 개척",
+          "title": "롯데홈쇼핑, '비에날씬' 해외유통 계약…일본·베트남 판로 개척",
+          "url": "https://www.yna.co.kr/view/AKR20260628014000030",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 홍국기 기자 = 롯데홈쇼핑은 에이스바이옴과 건강기능식품 브랜드 '비에날씬'의 해외 사업 유통 협력 계약을 체결했다고 28일 밝...",
+          "pubDate": "Sun, 28 Jun 2026 09:11:14 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "소비재/화장품/유통",
+          "query": "소비재 화장품 유통 OR 아모레퍼시픽 OR LG생활건강 OR 한국콜마 OR 코스맥스 OR 아모레G OR 애경산업 OR 화장품 OR 중국 OR 생활용품 주식 뉴스"
+        },
+        {
+          "headline": "애플도 올렸다…IT기기 '가격 인상' 도미노 시작되나",
+          "title": "애플도 올렸다…IT기기 '가격 인상' 도미노 시작되나",
+          "url": "https://www.yna.co.kr/view/AKR20260626131400017",
+          "source": "연합뉴스 경제",
+          "sourceUrl": "https://www.yna.co.kr/rss/economy.xml",
+          "sourceRole": "direct-rss",
+          "description": "(서울=연합뉴스) 박형빈 기자 = 애플이 맥과 아이패드 가격을 최대 300달러 인상하면서 IT 기기 가격 인상 흐름이 스마트폰과 PC, 게임기 ...",
+          "pubDate": "Sun, 28 Jun 2026 06:13:00 +0900",
+          "publishedDate": "2026-06-28",
+          "sector": "소비재/화장품/유통",
+          "query": "소비재 화장품 유통 OR 아모레퍼시픽 OR LG생활건강 OR 한국콜마 OR 코스맥스 OR 아모레G OR 애경산업 OR 화장품 OR 중국 OR 생활용품 주식 뉴스"
+        }
+      ]
+    }
+  ],
+  "discoveryNews": [
+    {
+      "headline": "日 키옥시아 직원 600명 ‘100억’ 돈벼락… AI 반도체 랠리에 스톡옵션 신화 달성 - IT조선",
+      "title": "日 키옥시아 직원 600명 ‘100억’ 돈벼락… AI 반도체 랠리에 스톡옵션 신화 달성 - IT조선",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBheENCdHpEUFdIYUZnVWM4aWFEcERYYTFYaE1PUnJ4bVNoeWk2QWpON0taLXo2VnUxck1iYVBsZ01yXzdadXpfRldFdldxc2ZRRXM5UlJoTFdBdW95UHlRb09MX2xFSFlWQ3dpUUdqelDSAXRBVV95cUxNemxYX0lDdFVZR1V4OVAxUXdOYnlpUWVUQ1FhNExwTTVYTXhxdlE3T0lDc0ZVM1lqSDdyX09RWENlSEdDTmxIS1BrVUZzdm1VQzZ6Tk9PbFRPaFRBVGpqOGg4REQwbjg4UUtyNjZmdW9iUmpheQ?oc=5",
+      "source": "IT조선",
+      "sourceUrl": "https://it.chosun.com",
+      "sourceRole": "discovery-rss",
+      "description": "日 키옥시아 직원 600명 ‘100억’ 돈벼락… AI 반도체 랠리에 스톡옵션 신화 달성 &nbsp;&nbsp; IT조선",
+      "pubDate": "Sun, 28 Jun 2026 06:56:23 GMT",
+      "publishedDate": "2026-06-28",
+      "query": "반도체 AI OR 삼성전자 OR SK하이닉스 OR 한미반도체 OR 리노공업 OR LX세미콘 OR 이오테크닉스 OR HBM OR 메모리 OR DRAM 주식 뉴스",
+      "discovery": true
+    },
+    {
+      "headline": "S&P500 버리고 '레버리지·AI부품주' 담은 서학개미들 - 한국경제",
+      "title": "S&P500 버리고 '레버리지·AI부품주' 담은 서학개미들 - 한국경제",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE53YjFudlM5c08zdk0tZHVHdF9IU29UeGM2bUg4bXlYa0lsY2o5OEdOWlVyY24tM3NIc1BxV25QVE5iWHJDZi1jWXdnblMzTWo3UTBNMHg3MFB1Z9IBVEFVX3lxTE5FRmFrTVdpRkxTNFVmMXdERXNMTmRDVjVNZWFLZ0I3d3daalllTU5FdDZkejBhY3NjdmtwdkpybkhJWFZfQmJKUEVTbnBTcndZaXdVTg?oc=5",
+      "source": "한국경제",
+      "sourceUrl": "https://www.hankyung.com",
+      "sourceRole": "discovery-rss",
+      "description": "S&P500 버리고 '레버리지·AI부품주' 담은 서학개미들 &nbsp;&nbsp; 한국경제",
+      "pubDate": "Sun, 28 Jun 2026 09:08:03 GMT",
+      "publishedDate": "2026-06-28",
+      "query": "반도체 AI OR 삼성전자 OR SK하이닉스 OR 한미반도체 OR 리노공업 OR LX세미콘 OR 이오테크닉스 OR HBM OR 메모리 OR DRAM 주식 뉴스",
+      "discovery": true
+    },
+    {
+      "headline": "나만 안 샀나…10조 원 몰린 반도체, 그중 1위는 어디? - 위키트리",
+      "title": "나만 안 샀나…10조 원 몰린 반도체, 그중 1위는 어디? - 위키트리",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE01VXVZcURKZmpDZGtrOG1MWXZnZW1RSF9ZQkZDLWZnc3VjbXl2NzBhRmFMc0tDa0hELVAxQjd2azB1aUZQbGJIb1VHVXJhZ1R2WncxVlVR?oc=5",
+      "source": "위키트리",
+      "sourceUrl": "https://www.wikitree.co.kr",
+      "sourceRole": "discovery-rss",
+      "description": "나만 안 샀나…10조 원 몰린 반도체, 그중 1위는 어디? &nbsp;&nbsp; 위키트리",
+      "pubDate": "Sun, 28 Jun 2026 07:54:00 GMT",
+      "publishedDate": "2026-06-28",
+      "query": "반도체 AI OR 삼성전자 OR SK하이닉스 OR 한미반도체 OR 리노공업 OR LX세미콘 OR 이오테크닉스 OR HBM OR 메모리 OR DRAM 주식 뉴스",
+      "discovery": true
+    },
+    {
+      "headline": "순매도 줄인 서학개미…스페이스X·AI반도체로 갈아탔다 - 파이낸셜뉴스",
+      "title": "순매도 줄인 서학개미…스페이스X·AI반도체로 갈아탔다 - 파이낸셜뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9NTGRtLUJDOXpKaWF0M3JRbzFCbkVVaGpKWDY4M3liSmpqUXoyR3VTcVg5VEItM280NWQtM0hoNnR4Q0licFhLWGdjLWJ0dkdEWEtXSnJQdW5CQQ?oc=5",
+      "source": "파이낸셜뉴스",
+      "sourceUrl": "https://www.fnnews.com",
+      "sourceRole": "discovery-rss",
+      "description": "순매도 줄인 서학개미…스페이스X·AI반도체로 갈아탔다 &nbsp;&nbsp; 파이낸셜뉴스",
+      "pubDate": "Sun, 28 Jun 2026 03:53:05 GMT",
+      "publishedDate": "2026-06-28",
+      "query": "반도체 AI OR 삼성전자 OR SK하이닉스 OR 한미반도체 OR 리노공업 OR LX세미콘 OR 이오테크닉스 OR HBM OR 메모리 OR DRAM 주식 뉴스",
+      "discovery": true
+    },
+    {
+      "headline": "\"상장만 되면 인생 바뀝니다\"...3천만원 삼킨 해외 비상장주식 사기 [조선피싱실록] - 파이낸셜뉴스",
+      "title": "\"상장만 되면 인생 바뀝니다\"...3천만원 삼킨 해외 비상장주식 사기 [조선피싱실록] - 파이낸셜뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1sX0hTZmFqaG5OSWhkOHZybEhSUmY2UTdNNlhySVF5cE4tQlFYaHdENEswMVZTbXYxSFpUd09FUE1YMW9EQkp1YlItSU10N1M4QlRiUkhZNGhFUQ?oc=5",
+      "source": "파이낸셜뉴스",
+      "sourceUrl": "https://www.fnnews.com",
+      "sourceRole": "discovery-rss",
+      "description": "\"상장만 되면 인생 바뀝니다\"...3천만원 삼킨 해외 비상장주식 사기 [조선피싱실록] &nbsp;&nbsp; 파이낸셜뉴스",
+      "pubDate": "Sat, 27 Jun 2026 20:00:00 GMT",
+      "publishedDate": "2026-06-28",
+      "query": "조선 방산 OR HD현대중공업 OR 삼성중공업 OR 한화오션 OR HD한국조선해양 OR HD현대 OR HD현대미포 OR 조선 OR 수주 OR LNG 주식 뉴스",
+      "discovery": true
+    },
+    {
+      "headline": "\"주식 레버리지는 미친 짓, 총자산 1% 규모 손실 보면 미련없이 나와야\" - 조선일보",
+      "title": "\"주식 레버리지는 미친 짓, 총자산 1% 규모 손실 보면 미련없이 나와야\" - 조선일보",
+      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPYzh6czBfZzlEbUNNRnZwcHZTQW80M2pPUXZlU3F0ZGF5eUhUVTFtbWtQalB4LWN1TElWXzZOcmRMOFRLMzJTUkd5OVVhMlJWUDFQQk13VlZSem5rVXV6d2xfdXdnOUtUVllGSkxFMzFfT1BqV2RNNVVORHlRaVFrYQ?oc=5",
+      "source": "조선일보",
+      "sourceUrl": "https://www.chosun.com",
+      "sourceRole": "discovery-rss",
+      "description": "\"주식 레버리지는 미친 짓, 총자산 1% 규모 손실 보면 미련없이 나와야\" &nbsp;&nbsp; 조선일보",
+      "pubDate": "Sat, 27 Jun 2026 20:37:28 GMT",
+      "publishedDate": "2026-06-28",
+      "query": "조선 방산 OR HD현대중공업 OR 삼성중공업 OR 한화오션 OR HD한국조선해양 OR HD현대 OR HD현대미포 OR 조선 OR 수주 OR LNG 주식 뉴스",
+      "discovery": true
+    },
+    {
+      "headline": "'주식 팔면 다음날 돈 받는다'…T+1 결제 추진 본격화 - 데일리한국",
+      "title": "'주식 팔면 다음날 돈 받는다'…T+1 결제 추진 본격화 - 데일리한국",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBQU29Pdi1JR1JNR0FIQ3NISXRpMnE2M0hOSGdHbzNqRzJtdTZaTFpiSUctZE5Odndhb0dacWEtOF9PYUdYdFVWV1l1RzB0RlVoeW9tUlB6SzUtVnMzd3pibTByRlFxOWkwUzJnTGJSZ9IBc0FVX3lxTE5kTXdSRC12NElsaXAtMlZfT1dLd21xRGFYcEc2MTRXeDg0YkRvTEx3alRVb3c2NUNVQjA4VnNhZW44V01zV2ladjNjazhBOVQtdU9CaDlZSnBSYVJkbjRxWkhsbll1VXBJYmdQWWg3NllBVkE?oc=5",
+      "source": "데일리한국",
+      "sourceUrl": "https://daily.hankooki.com",
+      "sourceRole": "discovery-rss",
+      "description": "'주식 팔면 다음날 돈 받는다'…T+1 결제 추진 본격화 &nbsp;&nbsp; 데일리한국",
+      "pubDate": "Sun, 28 Jun 2026 00:00:00 GMT",
+      "publishedDate": "2026-06-28",
+      "query": "금융 증권 보험 OR 신한지주 OR KB금융 OR 하나금융지주 OR 우리금융지주 OR 기업은행 OR BNK금융지주 OR 금융 OR 은행 주식 뉴스",
+      "discovery": true
+    }
+  ],
+  "themes": [
+    {
+      "theme": "반도체 / AI",
+      "count": 15,
+      "headlines": [
+        "반도체 호황에…日키옥시아 직원들. 자사주로 100억원 '잭폿'",
+        "서학 개미, 스페이스X 팔고 다시 반도체주 대량 매입",
+        "[마켓인사이트] 다시 고개 든 AI 수익성 논란…코스피 향방은?",
+        "무협 \"3분기 수출 개선세 지속…반도체·무선통신기기 등 견인\"",
+        "신한금융, 책무구조도에 생성형 AI 결합…'SCoRE AI' 구축"
+      ]
+    },
+    {
+      "theme": "금리 / 환율 / 매크로",
+      "count": 2,
+      "headlines": [
+        "5월 인천 일평균 수출액 2억5천만달러…역대 2위"
+      ]
+    },
+    {
+      "theme": "정책 / 지배구조",
+      "count": 3,
+      "headlines": [
+        "반도체 호황에…日키옥시아 직원들. 자사주로 100억원 '잭폿'",
+        "[코스닥 30년] 급등장서 소외된 코스닥…활성화 정책 반등 계기되나"
+      ]
+    }
+  ],
+  "officialSources": [],
+  "sourceSummary": {
+    "marketNewsCount": 12,
+    "sectorNewsCount": 35,
+    "discoveryNewsCount": 7,
+    "officialSourceCount": 0
+  },
+  "warnings": [
+    "Google News RSS discovery 949건은 기준일(2026-06-28) 기사가 아니어서 제외했습니다.",
+    "국내 RSS 기사 117건은 기준일(2026-06-28) 기사가 아니어서 제외했습니다."
+  ]
+}

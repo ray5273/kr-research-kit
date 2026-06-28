@@ -426,6 +426,23 @@ if (!pattern.test(text)) {
         fi
     fi
 
+    if [ "$SKILL_NAME" = "kr-daily-market-news" ]; then
+        node "$SKILL_DIR/scripts/test-daily-market-news.js" >/dev/null
+        if ! grep -Fq 'analysis-example/kr-market/daily-news-YYYY-MM-DD.md' "$SKILL_DIR/SKILL.md"; then
+            echo "Expected kr-daily-market-news to define the dated market-news markdown artifact." >&2
+            exit 1
+        fi
+    fi
+
+    if [ "$SKILL_NAME" = "kr-naver-blog-publish" ]; then
+        node "$SKILL_DIR/scripts/test-memo-to-post.js" >/dev/null
+        node "$SKILL_DIR/scripts/test-publisher.js" >/dev/null
+        if ! grep -Fq 'scheduled-publish' "$SKILL_DIR/SKILL.md"; then
+            echo "Expected kr-naver-blog-publish to document the scheduled daily market-news path." >&2
+            exit 1
+        fi
+    fi
+
     if [ "$SKILL_NAME" = "kr-stock-update" ]; then
         BASELINE_SCRIPT="$SKILL_DIR/scripts/extract-report-baseline.js"
         NORMALIZE_SCRIPT="$SKILL_DIR/scripts/normalize-update-log.js"

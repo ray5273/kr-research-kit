@@ -1,0 +1,199 @@
+{
+  "company": "한진칼",
+  "ticker": "180640",
+  "corpCode": "00983040",
+  "filing": {
+    "rceptNo": "20260318001143",
+    "reportName": "사업보고서 (2025.12)",
+    "rceptDt": "2026-03-18",
+    "fiscalYear": "2025",
+    "period": "제13기 (2025.01.01 ~ 2025.12.31)",
+    "auditor": "삼정회계법인",
+    "auditOpinion": "적정의견",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318001143"
+  },
+  "coverage": {
+    "tocCount": 18,
+    "parsedCount": 16,
+    "partialCount": 2,
+    "missingCount": 0,
+    "completionRate": 0.8889,
+    "verifiedAt": "2026-05-21"
+  },
+  "shareholders": {
+    "asOf": "2025-12-31",
+    "totalCommon": 66762279,
+    "totalPreferred": 536766,
+    "treasuryCommon": 1,
+    "treasuryPreferred": 6469,
+    "fivePctBlocks": [
+      { "name": "조원태 외 특수관계자", "shares": 13728186, "pct": 20.56, "note": "기초 13,441,651주(20.13%) → 기말 13,728,186주(20.56%); 한진칼 사내근로복지기금 440,044주 신규 편입(2025.08.14 출연)" },
+      { "name": "호반건설 외 특수관계자", "shares": 12535600, "pct": 18.78, "note": "기준일 2025.12.31, 5% 이상 주주" },
+      { "name": "Delta Air Lines, Inc.", "shares": 9947508, "pct": 14.90, "note": "기준일 2025.12.31, 5% 이상 주주" },
+      { "name": "한국산업은행(KDB)", "shares": 7062146, "pct": 10.58, "note": "2020.12.03 제3자배정 유상증자로 신규 취득 (납입일 2020.12.02)" },
+      { "name": "국민연금공단", "shares": 3631002, "pct": 5.44, "note": "기준일 2025.12.31, 5% 이상 주주" }
+    ],
+    "familyHoldings": [
+      { "name": "조원태(본인)", "common": 3856002, "commonPct": 5.78, "pref": 2867, "prefPct": 0.53, "change": "변동 없음" },
+      { "name": "조에밀리리(조현민)", "common": 3828727, "commonPct": 5.73, "pref": 2867, "prefPct": 0.53, "change": "변동 없음" },
+      { "name": "이명희", "common": 1319875, "commonPct": 1.98, "pref": 4300, "prefPct": 0.80, "change": "기초 1,397,727주(2.09%) → 기말 1,319,875주(1.98%) 감소" },
+      { "name": "조승연", "common": 4339, "commonPct": 0.01, "pref": 0, "prefPct": 0.00, "change": "기초 117,015주(0.18%) → 기말 4,339주(0.01%) 대폭 감소" },
+      { "name": "정석인하학원(재단)", "common": 1268054, "commonPct": 1.90, "pref": 3349, "prefPct": 0.62, "change": "변동 없음" },
+      { "name": "정석물류학술재단", "common": 674088, "commonPct": 1.01, "pref": 0, "prefPct": 0, "change": "기초 637,118주(0.95%) → 기말 674,088주(1.01%) 증가" },
+      { "name": "일우재단", "common": 92453, "commonPct": 0.14, "pref": 0, "prefPct": 0, "change": "변동 없음" },
+      { "name": "한진칼 사내근로복지기금", "common": 440044, "commonPct": 0.66, "pref": 0, "prefPct": 0, "change": "2025.08.14 자기주식 보통주 440,044주 출연으로 신규 편입" },
+      { "name": "김현모(대한항공임직원 자가보험 간사)", "common": 1516129, "commonPct": 2.27, "pref": 156, "prefPct": 0.03, "change": "변동 없음" },
+      { "name": "대한항공 사우회", "common": 725578, "commonPct": 1.09, "pref": 1362, "prefPct": 0.25, "change": "변동 없음" }
+    ]
+  },
+  "controlContracts": {
+    "asOf": "2025-12-31",
+    "kdbInvestmentAgreement": {
+      "date": "2020-11-17",
+      "parties": ["조원태", "한진칼", "한국산업은행"],
+      "type": "투자합의",
+      "shares": 3856002,
+      "pct": 5.78,
+      "term": "미정 (조건 충족 시 해지)",
+      "obligations": [
+        "조원태는 산은이 추천한 자를 사외이사·감사위원으로 선임하기 위한 의결권 행사 의무 부담",
+        "주식 처분 시 산은의 동의 필요",
+        "위약벌·손해배상 채무 담보를 위해 보유 주식 전부에 산업은행 근질권 설정",
+        "산은은 위약사유 발생 시 처분위임계약에 따른 처분권 또는 Drag-along right 행사 가능"
+      ]
+    },
+    "familyCoHoldingAgreement": {
+      "date": "2020-11-17",
+      "parties": ["조원태", "조에밀리리(조현민)", "이명희"],
+      "type": "공동보유합의",
+      "shares": 3856002,
+      "pct": 5.78,
+      "term": "미정",
+      "note": "총수 일가 의결권 공동행사"
+    },
+    "kdbStockDisposalDelegation": {
+      "date": "2020-12-01",
+      "parties": ["조원태", "한국산업은행"],
+      "type": "주식처분위임계약",
+      "shares": 1525672,
+      "pct": 2.29,
+      "term": "미정"
+    },
+    "kdbDragAlong": {
+      "date": "2020-11-17",
+      "parties": ["조원태", "한국산업은행"],
+      "type": "주식의 처분 등에 관한 계약 (Drag-along right)",
+      "shares": 3856002,
+      "pct": 5.78
+    },
+    "pledgesFor2025_2026": [
+      { "date": "2025-07-16", "counterparty": "농협은행", "shares": 540000, "pct": 0.81, "note": "조원태 담보대출, 만기 2026.07.16" },
+      { "date": "2025-08-04", "counterparty": "우리은행", "shares": 540000, "pct": 0.81, "note": "조원태 담보대출, 만기 2026.08.04" },
+      { "date": "2025-09-05", "counterparty": "하나은행", "shares": 270000, "pct": 0.40, "note": "조원태 담보대출, 만기 2026.09.05" },
+      { "date": "2025-10-17", "counterparty": "하나증권", "shares": 110000, "pct": 0.16, "note": "조원태 담보대출, 만기 2026.04.15" },
+      { "date": "2025-10-17", "counterparty": "하나증권", "shares": 64436, "pct": 0.10, "note": "조원태 담보대출, 만기 2026.04.15" },
+      { "date": "2025-10-17", "counterparty": "하나증권", "shares": 194932, "pct": 0.29, "note": "조원태 담보대출, 만기 2026.04.15" },
+      { "date": "2025-10-17", "counterparty": "하나증권", "shares": 155632, "pct": 0.23, "note": "조원태 담보대출, 만기 2026.04.15" },
+      { "date": "2025-10-17", "counterparty": "하나증권", "shares": 200000, "pct": 0.30, "note": "조원태 담보대출, 만기 2026.04.15" },
+      { "date": "2024-09-30", "counterparty": "반포세무서", "shares": 252090, "pct": 0.38, "note": "조원태 연부연납 담보, 만기 2027.08.16" },
+      { "date": "2024-09-30", "counterparty": "종로세무서", "shares": 3240, "pct": 0.00, "note": "조원태 연부연납 담보" }
+    ]
+  },
+  "board": {
+    "asOf": "2025-12-31",
+    "composition": "사내이사 3명 + 사외이사 8명",
+    "insideDirectors": [
+      { "name": "조원태", "role": "대표이사 회장", "termEnd": "2026-03-26", "lastElected": "2023-03-22" },
+      { "name": "류경표", "role": "대표이사 부회장", "termEnd": "2028-03-25", "lastElected": "2025-03-26", "note": "2025.03.27 이사회에서 대표이사 재선임" },
+      { "name": "하은용", "role": "부사장(CFO)", "termEnd": "2026-03-26", "lastElected": "2023-03-22" }
+    ],
+    "recentDirectorChanges": [
+      { "date": "2025-03-26", "type": "정기주총", "newOutside": ["박성호", "조인영"], "reappointed": ["류경표"], "departed": ["주인기", "주순식"] },
+      { "date": "2024-03-21", "type": "정기주총", "newOutside": ["배성례", "홍동표", "송백훈"], "reappointed": ["박영석(감사위원)"], "departed": ["최방길", "김효권", "한재준"] },
+      { "date": "2023-03-22", "type": "정기주총", "newOutside": ["김석동", "박영석", "최윤희"], "reappointed": ["조원태", "하은용"] }
+    ]
+  },
+  "dividends": {
+    "source": "OpenDART alotMatter.json (구조화)",
+    "history": [
+      { "fy": 2025, "dpsCommon": 360, "dpsPreferred": 385, "totalCashKRWmn": 24080, "consPayoutPct": 4.80, "consNI_KRWmn": 496999, "sepNI_KRWmn": 193007 },
+      { "fy": 2024, "dpsCommon": 300, "dpsPreferred": 325, "totalCashKRWmn": 20069, "consPayoutPct": 5.60, "consNI_KRWmn": 385139, "sepNI_KRWmn": 216982 },
+      { "fy": 2023, "dpsCommon": 170, "dpsPreferred": 195, "totalCashKRWmn": 11419, "consPayoutPct": 1.70, "consNI_KRWmn": 683804, "sepNI_KRWmn": 379176 }
+    ],
+    "cashflowDividendPaid_KRWmn": { "fy2025": 23643, "fy2024": 14992, "fy2023": 2382 },
+    "dividendIncomeReceived_KRWmn": { "fy2025": 87991, "fy2024": 90743, "fy2023": 78787 }
+  },
+  "treasuryAndCapital": {
+    "treasury_asOf_2025_12_31": {
+      "common": 1,
+      "preferred": 6469,
+      "ratioCommonPct": 0.00,
+      "ratioPreferredPct": 1.21,
+      "totalRatioPct": 0.01
+    },
+    "treasuryTrustEvents": [
+      { "date": "2022-09-21", "event": "자기주식취득 신탁계약 체결" },
+      { "date": "2025-08-14", "event": "한진칼 사내근로복지기금에 기 보유 자기주식 보통주 440,044주 출연" }
+    ],
+    "capitalEvents": [
+      { "date": "2020-12-03", "event": "한국산업은행 대상 제3자배정 유상증자(7,062,146주 신규 취득)" },
+      { "date": "2020-12-03", "event": "제4회 교환사채 발행 (Delta·호반과의 지분 경쟁 자금조달 맥락)" },
+      { "date": "2020-07-03", "event": "제3회 신주인수권부사채 발행 (2020.07.07 등기)" },
+      { "date": "2016-06-17", "event": "유상증자(주주배정후 실권주 일반공모)" },
+      { "date": "2014-11-11", "event": "유상증자(현물출자)" }
+    ],
+    "warrantExercises2022_2023": [
+      { "date": "2022-01-04", "type": "신주인수권행사", "shares": 232, "price": 57200 },
+      { "date": "2022-01-27", "type": "신주인수권행사", "shares": 22159, "price": 57200 },
+      { "date": "2022-07-04", "type": "신주인수권행사", "shares": 100, "price": 57200 },
+      { "date": "2022-08-05", "type": "신주인수권행사", "shares": 432, "price": 57200 },
+      { "date": "2023-05-30", "type": "신주인수권행사", "shares": 209, "price": 57200 },
+      { "date": "2023-06-01", "type": "신주인수권행사", "shares": 239, "price": 57200 },
+      { "date": "2023-06-02", "type": "신주인수권행사", "shares": 35, "price": 57200 }
+    ],
+    "noteOnRecentTreasuryAcq": "현금흐름표상 자기주식의 취득 = FY2025 0원, FY2024 9,901백만원, FY2023 7,674백만원 (별도 기준 차이 확인 필요)"
+  },
+  "financialsConsolidated_KRWmn": {
+    "fy2025": { "revenue": 292157, "operatingProfit": 49193, "associateProfitLoss": 412922, "netIncome": 512176, "netIncomeAttributable": 496999, "totalAssets": 4207158, "equityAttributable": 3191222 },
+    "fy2024": { "revenue": 275727, "operatingProfit": 42843, "associateProfitLoss": 295458, "netIncome": 388329, "netIncomeAttributable": 385139, "totalAssets": 3784922, "equityAttributable": 2743664 },
+    "fy2023": { "revenue": 200336, "operatingProfit": 14487, "associateProfitLoss": 414830, "netIncome": 659568, "netIncomeAttributable": 683804, "totalAssets": 3915078, "equityAttributable": 2465956 },
+    "note": "연결 영업수익(매출)은 한진칼 별도 + 칼호텔네트워크/정석기업 등 중심. 대한항공·㈜한진은 관계기업투자손익으로 반영(지분법). FY2025 관계기업투자손익 4,129억원이 순이익의 핵심 동력."
+  },
+  "financialsSeparate_KRWmn": {
+    "fy2025": { "revenueTotal": 135073, "brandRoyalty": 41284, "dividendIncome": 87991, "other": 5798, "netIncome": 193007 },
+    "fy2024": { "revenueTotal": 135573, "brandRoyalty": 40325, "dividendIncome": 90743, "other": 4505, "netIncome": 216982 },
+    "fy2023": { "revenueTotal": 123117, "brandRoyalty": 36484, "dividendIncome": 78787, "other": 2163, "realEstateLease": 5683, "netIncome": 379176 }
+  },
+  "subsidiaries": {
+    "consolidated": ["㈜칼호텔네트워크 (비상장)", "정석기업㈜ (비상장)"],
+    "majorAssociates": ["㈜대한항공 (상장, 지분법)", "㈜한진 (상장, 지분법)"],
+    "salesMixSubsidiariesFY2025_KRWmn": {
+      "칼호텔네트워크": 119834,
+      "정석기업": 45981
+    },
+    "korAirSalesFY2025_KRWbn": {
+      "여객국제": 9374,
+      "여객국내": 470,
+      "화물": 4409,
+      "기타": 1468,
+      "항공우주": 780,
+      "합계": 16502,
+      "operatingProfit": 1539,
+      "note": "별도, 전년 1,903억원 대비 영업이익 364억원 감소"
+    },
+    "subsidiaryEvents": [
+      { "date": "2025-09-22", "subsidiary": "칼호텔네트워크", "event": "이사회 결의 그랜드하얏트인천 웨스트타워 매각 결정" },
+      { "date": "2026-01-06", "subsidiary": "칼호텔네트워크", "event": "그랜드하얏트인천 웨스트타워 매각 완료" },
+      { "date": "FY2025", "subsidiary": "칼호텔네트워크", "event": "산업은행 등 차입 200,000백만원 상환 → 한진칼 자금보충약정 해지" }
+    ]
+  },
+  "auditNote": {
+    "kam": "종속기업투자 및 관계기업투자의 손상평가 (FY2025 핵심감사사항)",
+    "auditor": "삼정회계법인 (제13기 적정)"
+  },
+  "openMattersForMainAgent": [
+    "임원·주요주주(elestock) 5%룰 개별 보고 시계열 — 2024~2025 호반건설·델타·KDB·국민연금 각 보고서의 변동 사유는 사업보고서에 합산 표만 있고 개별 보고는 미수록. dart-reference.md 안의 OpenDART majorshareholder 추출은 partial 상태 (Z-1 partial). KOSCOM/DART 검색에서 별도 5%룰 사이드런 권장.",
+    "주총 안건별 표 대결 결과 (감사위원 선임, 정관 변경 등) — 사업보고서는 임원 변동만 명시. 임시·정기주총 의안 상세는 KIND/DART 임시공시 사이드런 필요.",
+    "OpenDART cpndlhCmpsBoardCo(임원 현황 구조화) 호출이 status=101 오류로 실패 — 임원 정보는 본문 VI/VIII에서만 확인. 별도 보강 필요 시 reportNm='임원·주요주주특정증권등소유상황보고서' 직접 조회 권장."
+  ]
+}

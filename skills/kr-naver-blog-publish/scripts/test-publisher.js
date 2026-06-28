@@ -6,7 +6,7 @@ const os = require("os");
 const path = require("path");
 const { buildPost } = require("./memo-to-post");
 const { editorBody, editorHtml, expectedTableData, prepare, publish, renderExcelTableHtml, validateBlockFormatting } = require("./publisher");
-const { readJson, writeJsonAtomic } = require("./lib");
+const { readJson, sha256, writeJsonAtomic } = require("./lib");
 
 assert(!editorBody("# 제목\n\n## 결론\n\n**강조**\n\n![차트](chart.png)").includes("#"));
 assert(!editorBody("# 제목\n\n본문").includes("제목"));
@@ -72,22 +72,22 @@ assert.strictEqual((editorHtml("> line 1\n> line 2\n> ✓ item").match(/<p\b/g) 
   ].join("\n"));
   assert(html.includes('<h2 style="font-size:28px;font-weight:700;'));
   assert(html.includes('<h3 style="font-size:24px;font-weight:700;'));
-  assert(html.includes('<p style="font-size:15px;font-weight:400;line-height:1.7;margin:0;"><span style="font-size:15px;font-weight:400;line-height:1.7;">첫 문단입니다.</span></p>'));
-  assert(html.includes('<p style="font-size:15px;font-weight:400;line-height:1.7;margin:0;"><span style="font-size:15px;font-weight:400;line-height:1.7;">둘째 문단입니다.</span></p>'));
+  assert(html.includes('<p style="font-size:15px;font-weight:400;line-height:1.7;margin:0;color:#222;"><span style="font-size:15px;font-weight:400;line-height:1.7;color:#222;">첫 문단입니다.</span></p>'));
+  assert(html.includes('<p style="font-size:15px;font-weight:400;line-height:1.7;margin:0;color:#222;"><span style="font-size:15px;font-weight:400;line-height:1.7;color:#222;">둘째 문단입니다.</span></p>'));
   assert(!html.includes("첫 문단입니다.<br>둘째 문단입니다."));
-  assert(html.includes('style="font-size:15px;font-weight:400;line-height:1.7;">- 첫 불릿</span></p>'));
-  assert(html.includes('style="font-size:15px;font-weight:400;line-height:1.7;">- 둘째 불릿</span></p>'));
+  assert(html.includes('style="font-size:15px;font-weight:400;line-height:1.7;color:#222;">- 첫 불릿</span></p>'));
+  assert(html.includes('style="font-size:15px;font-weight:400;line-height:1.7;color:#222;">- 둘째 불릿</span></p>'));
   assert(!html.includes("• 첫 불릿"));
-  assert(html.includes('style="font-size:15px;font-weight:400;line-height:1.7;">1. 첫 번호</span></p>'));
-  assert(html.includes('style="font-size:15px;font-weight:400;line-height:1.7;">2. 둘째 번호</span></p>'));
-  assert(html.includes('data-kr-naver-spacer="true" style="font-size:15px;font-weight:400;line-height:1.7;margin:0;"'));
+  assert(html.includes('style="font-size:15px;font-weight:400;line-height:1.7;color:#222;">1. 첫 번호</span></p>'));
+  assert(html.includes('style="font-size:15px;font-weight:400;line-height:1.7;color:#222;">2. 둘째 번호</span></p>'));
+  assert(html.includes('data-kr-naver-spacer="true" style="font-size:15px;font-weight:400;line-height:1.7;margin:0;color:#222;"'));
   assert.strictEqual((html.match(/data-kr-naver-spacer="true"/g) || []).length, 7);
 }
 {
   const html = editorHtml("## 이미지 뒤 제목\n\n- 일반 목록\n- **선택 강조**가 있는 목록");
   assert(html.includes('<h2 style="font-size:28px;font-weight:700;'));
-  assert(html.includes('style="font-size:15px;font-weight:400;line-height:1.7;">- 일반 목록'));
-  assert(html.includes('style="font-size:15px;font-weight:400;line-height:1.7;">- <strong>선택 강조</strong>가 있는 목록'));
+  assert(html.includes('style="font-size:15px;font-weight:400;line-height:1.7;color:#222;">- 일반 목록'));
+  assert(html.includes('style="font-size:15px;font-weight:400;line-height:1.7;color:#222;">- <strong>선택 강조</strong>가 있는 목록'));
   validateBlockFormatting([
     { text: "이미지 뒤 제목", fontSizes: ["28px"], fontWeights: ["700"] },
     { text: "- 일반 목록", fontSizes: ["15px"], fontWeights: ["400"] },
@@ -100,16 +100,32 @@ assert.strictEqual((editorHtml("> line 1\n> line 2\n> ✓ item").match(/<p\b/g) 
   ], html), /font size mismatch/);
 }
 {
-  const html = editorHtml("# 제목\n\n## 결론\n\n**순현금과 배당수익률**\n\n**별풍선 역성장과 마진 압축**\n\n**중립적 관찰 / 딥밸류 매수 전환 검토**\n\n**외부 고객 반복 판매 시 리레이팅 논리**\n\n**매출과 이익 기여는 제한적**");
-  assert(html.includes("color:#d93025"));
-  assert(html.includes("color:#1a73e8"));
-  assert(html.includes("color:#8a5a2b"));
+  const html = editorHtml([
+    "# 제목",
+    "",
+    "## 결론",
+    "",
+    "[red: 자사주 소각으로 하방이 보강됐다.]",
+    "",
+    "[blue: 환율 리스크가 마진을 압박할 수 있다.]",
+    "",
+    "[brown: 현재 스탠스는 중립 관찰이다.]",
+    "",
+    "**일반 강조** 는 색 없이 굵게만 표시된다.",
+  ].join("\n"));
+  assert(html.includes('<span style="color:#d93025;font-weight:700;">자사주 소각으로 하방이 보강됐다.</span>'));
+  assert(html.includes('<span style="color:#1a73e8;font-weight:700;">환율 리스크가 마진을 압박할 수 있다.</span>'));
+  assert(html.includes('<span style="color:#8a5a2b;font-weight:700;">현재 스탠스는 중립 관찰이다.</span>'));
+  assert(html.includes("<strong>일반 강조</strong>"));
+  assert(!html.includes("<strong>일반 강조</strong>는 색"));
   assert(html.includes("font-size:28px"));
 }
 {
   const html = editorHtml("# 제목\n\n## 결론\n\n순현금과 배당수익률\n\n역성장과 마진 압축 리스크");
-  assert(html.includes('<span style="color:#d93025;font-weight:700;">순현금과 배당수익률</span>'));
-  assert(html.includes('<span style="color:#1a73e8;font-weight:700;">역성장과 마진 압축 리스크</span>'));
+  assert(!html.includes("color:#d93025"));
+  assert(!html.includes("color:#1a73e8"));
+  assert(html.includes("순현금과 배당수익률"));
+  assert(html.includes("역성장과 마진 압축 리스크"));
 }
 {
   const html = editorHtml([
@@ -117,31 +133,32 @@ assert.strictEqual((editorHtml("> line 1\n> line 2\n> ✓ item").match(/<p\b/g) 
     "",
     "## 토큰 보호",
     "",
-    "`순현금` [배당수익률](https://example.com/positive) **역성장과 마진 압축 리스크** 순현금과 리스크",
+    "`순현금` [배당수익률](https://example.com/positive) [blue: 환율 리스크가 마진을 압박할 수 있다.] 순현금과 리스크",
   ].join("\n"));
   assert(html.includes("<code>순현금</code>"));
   assert(html.includes("배당수익률 <span>(https://example.com/positive)</span>"));
-  assert(html.includes('<span style="color:#1a73e8;font-weight:700;">역성장과 마진 압축 리스크</span>'));
-  assert(!html.includes('<code><span style="color:#d93025;font-weight:700;">순현금</span></code>'));
-  assert(!html.includes('<span style="color:#d93025;font-weight:700;">배당수익률</span> <span>(https://example.com/positive)</span>'));
+  assert(html.includes('<span style="color:#1a73e8;font-weight:700;">환율 리스크가 마진을 압박할 수 있다.</span>'));
   assert(html.includes("순현금과 리스크"));
-  assert(!html.includes('<span style="color:#d93025;font-weight:700;">순현금</span>과 <span style="color:#1a73e8;font-weight:700;">리스크</span>'));
+  assert(!html.includes('<span style="color:#d93025;font-weight:700;">순현금</span>'));
+  assert(!html.includes('<span style="color:#1a73e8;font-weight:700;">리스크</span>'));
 }
 {
   const tableMarkdown = [
     "# 제목",
     "",
-    "## 표 자동 강조",
+    "## 표 색 마커",
     "",
     "| 항목 | 내용 |",
     "| --- | --- |",
-    "| 긍정 | 순현금과 배당수익률 |",
-    "| 부정 | 역성장과 마진 압축 리스크 |",
+    "| 긍정 | [red: 순현금과 배당수익률이 받쳐준다.] |",
+    "| 부정 | [blue: 역성장과 마진 압축 리스크가 부각된다.] |",
+    "| 평문 | 순현금과 배당수익률 |",
   ].join("\n");
   const html = editorHtml(tableMarkdown);
-  assert(html.includes('<span style="color:#d93025;font-weight:700;">순현금과 배당수익률</span>'));
-  assert(html.includes('<span style="color:#1a73e8;font-weight:700;">역성장과 마진 압축 리스크</span>'));
-  assert(editorBody(tableMarkdown).includes("긍정\t순현금과 배당수익률\n부정\t역성장과 마진 압축 리스크"));
+  assert(html.includes('<span style="color:#d93025;font-weight:700;">순현금과 배당수익률이 받쳐준다.</span>'));
+  assert(html.includes('<span style="color:#1a73e8;font-weight:700;">역성장과 마진 압축 리스크가 부각된다.</span>'));
+  assert(!html.includes('<span style="color:#d93025;font-weight:700;">순현금과 배당수익률</span>'));
+  assert(editorBody(tableMarkdown).includes("긍정\t순현금과 배당수익률이 받쳐준다.\n부정\t역성장과 마진 압축 리스크가 부각된다.\n평문\t순현금과 배당수익률"));
 }
 {
   const text = "한글 clipboard UTF-8 검증";
@@ -179,7 +196,7 @@ function makeCase(fixtureOverrides = {}) {
     "",
     "## Summary",
     "",
-    "**순현금과 배당수익률**은 긍정 요인입니다.",
+    "[red: 순현금과 배당수익률이 받쳐주는 강한 하방이 있다.]",
     "",
     "## Decision Frame",
     "",
@@ -201,7 +218,7 @@ function makeCase(fixtureOverrides = {}) {
     "",
     "## Risks",
     "",
-    "**별풍선 역성장과 마진 압축**은 부정 요인입니다.",
+    "[blue: 별풍선 역성장과 마진 압축이 단기 실적의 핵심 부담이다.]",
     "",
     "## Sources",
     "",
@@ -213,6 +230,92 @@ function makeCase(fixtureOverrides = {}) {
   converted.manifest.post.markdownPath = post;
   writeJsonAtomic(manifest, converted.manifest);
   return { root, companyDir, memo, post, manifest, fixture };
+}
+
+function makeDailyCase(fixtureOverrides = {}) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "kr-naver-publisher-daily-test-"));
+  const report = path.join(root, "daily-news-2026-06-28.md");
+  const post = path.join(root, "naver-post-2026-06-28.md");
+  const manifest = path.join(root, "naver-publish-2026-06-28.json");
+  const fixture = path.join(root, "fixture.json");
+  const markdown = [
+    "# 한국 시장 데일리 뉴스 (2026-06-28)",
+    "",
+    "## 시장 주요 요약",
+    "",
+    "1. 코스피와 코스닥 시장은 반도체 업종 강세에 상승 마감했습니다.",
+    "2. 환율 하락과 외국인 수급 개선이 시장 흐름을 보탰습니다.",
+    "",
+    "## 시장 주요 뉴스",
+    "",
+    "1. 코스피, 반도체 강세에 상승 마감",
+    "https://news.example.com/market1",
+    "",
+    "2. 환율 하락과 외국인 수급 개선",
+    "https://news.example.com/market2",
+    "",
+    "## 업종/테마별 흐름",
+    "",
+    "| 업종/테마 | 흐름 | 대표 뉴스 |",
+    "| --- | --- | --- |",
+    "| 반도체/AI | 1건 확인 | 삼성전자 HBM 증설 기대 |",
+    "| 이차전지/전기차 | 특이 뉴스 제한적 | 특이 뉴스 제한적 |",
+    "",
+    "## 공식 공시/자료",
+    "",
+    "| 내용 | 링크 |",
+    "| --- | --- |",
+    "| KRX 시장 공지 | [원문](https://kind.krx.co.kr/example) |",
+    "",
+    "## 출처",
+    "",
+    "| 내용 | 링크 |",
+    "| --- | --- |",
+    "| 코스피, 반도체 강세에 상승 마감 | [원문](https://news.example.com/market1) |",
+    "| 환율 하락과 외국인 수급 개선 | [원문](https://news.example.com/market2) |",
+    "| KRX 시장 공지 | [원문](https://kind.krx.co.kr/example) |",
+    "",
+    "---",
+    "",
+    "기준일: 2026-06-28",
+    "",
+    "본 글은 공개된 뉴스와 공시성 자료를 바탕으로 작성한 개인 시장 정리이며, 특정 종목의 매수·매도를 권유하지 않습니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.",
+  ].join("\n");
+  fs.writeFileSync(report, markdown);
+  fs.writeFileSync(post, markdown);
+  writeJsonAtomic(manifest, {
+    schemaVersion: 1,
+    contentType: "daily-market-news",
+    status: "converted",
+    source: {
+      reportPath: report,
+      reportSha256: sha256(markdown),
+      asOfDate: "2026-06-28",
+    },
+    post: {
+      company: "한국 시장",
+      ticker: "",
+      title: "2026-06-28 한국 증시 데일리: 반도체 / AI 흐름 체크",
+      issue: "코스피, 반도체 강세에 상승 마감",
+      category: null,
+      tags: ["한국증시", "코스피", "코스닥", "시장뉴스", "20260628"],
+      markdownPath: post,
+      markdownSha256: sha256(markdown),
+      images: [],
+      linkCards: ["https://news.example.com/market1", "https://news.example.com/market2"],
+      thumbnail: null,
+      publicationDate: "2026-06-28",
+    },
+    automation: {
+      scheduledPublishAllowed: true,
+      duplicateScope: "daily-market-news",
+      duplicateDate: "2026-06-28",
+    },
+    prepare: null,
+    publish: null,
+  });
+  fs.writeFileSync(fixture, `${JSON.stringify({ loggedIn: true, ...fixtureOverrides }, null, 2)}\n`);
+  return { root, report, post, manifest, fixture };
 }
 
 {
@@ -234,7 +337,13 @@ function makeCase(fixtureOverrides = {}) {
   assert(preparedFixture.editor.bodyHtml.includes("<h2 style="));
   assert(preparedFixture.editor.bodyHtml.includes("<table"));
   assert(preparedFixture.editor.body.includes("판단축\t현재 판정\t왜 중요한가"));
+  assert(preparedFixture.editor.body.includes("Codex (or Claude) × KrResearchKit · Crafted by ray5273"));
+  assert(preparedFixture.editor.body.includes("https://github.com/ray5273/kr-research-kit"));
+  assert(!preparedFixture.editor.body.includes("Stock Research Skill"));
+  assert(!preparedFixture.editor.body.includes("https://github.com/ray5273/stock-analysis-skill"));
+  assert(preparedFixture.editor.bodyHtml.includes('data-kr-naver-signature="true"'));
   assert(preparedFixture.editor.bodyHtml.includes("color:#d93025"));
+  assert(preparedFixture.editor.bodyHtml.includes("color:#1a73e8"));
   assert(preparedFixture.editor.body.includes("차트 분석"));
   assert(preparedFixture.editor.body.indexOf("차트 분석") < preparedFixture.editor.body.indexOf("투자 판단의 핵심 축"));
   assert(preparedFixture.editor.body.indexOf("차트 4.") < preparedFixture.editor.body.indexOf("투자 판단의 핵심 축"));
@@ -413,10 +522,61 @@ function makeCase(fixtureOverrides = {}) {
 }
 
 {
+  const test = makeDailyCase();
+  const prepared = prepare({ fixture: test.fixture, scheduled: "yes" }, test.manifest, readJson(test.manifest));
+  assert(prepared.approvalToken);
+  assert.strictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).linkCardPasteCalls, undefined);
+  assert.strictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).linkCardEnterCalls, undefined);
+  assert(JSON.parse(fs.readFileSync(test.fixture, "utf8")).editor.bodyHtml.includes("<table"));
+  assert(JSON.parse(fs.readFileSync(test.fixture, "utf8")).editor.body.includes("내용\t링크"));
+  const dailyBody = JSON.parse(fs.readFileSync(test.fixture, "utf8")).editor.body;
+  assert(!dailyBody.includes("관심종목 뉴스"));
+  assert(!dailyBody.includes("- 기준일"));
+  const marketNewsBody = dailyBody.split("시장 주요 뉴스")[1].split("업종/테마별 흐름")[0];
+  assert(marketNewsBody.indexOf("1. 코스피, 반도체 강세에 상승 마감") < marketNewsBody.indexOf("https://news.example.com/market1"));
+  assert(marketNewsBody.indexOf("https://news.example.com/market1") < marketNewsBody.indexOf("2. 환율 하락과 외국인 수급 개선"));
+  assert(marketNewsBody.indexOf("2. 환율 하락과 외국인 수급 개선") < marketNewsBody.indexOf("https://news.example.com/market2"));
+  const published = publish({ fixture: test.fixture, scheduled: "yes", token: prepared.approvalToken, "confirm-public": "yes" }, test.manifest, readJson(test.manifest));
+  assert.strictEqual(published.status, "published");
+  assert.strictEqual(readJson(test.manifest).contentType, "daily-market-news");
+  assert.strictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).publicClicked, true);
+}
+
+{
+  const test = makeDailyCase();
+  const duplicatePath = path.join(test.root, "already-published.json");
+  writeJsonAtomic(duplicatePath, {
+    schemaVersion: 1,
+    contentType: "daily-market-news",
+    status: "published",
+    source: { reportPath: test.report, reportSha256: sha256(fs.readFileSync(test.report)), asOfDate: "2026-06-28" },
+    post: { publicationDate: "2026-06-28" },
+    automation: { duplicateDate: "2026-06-28" },
+    publish: { url: "https://blog.naver.com/fixture/existing", publishedAt: "2026-06-28T00:00:00.000Z" },
+  });
+  assert.throws(() => prepare({ fixture: test.fixture, scheduled: "yes" }, test.manifest, readJson(test.manifest)), /Duplicate same-day/);
+  assert.strictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).publicClicked, undefined);
+}
+
+{
+  const test = makeCase();
+  const prepared = prepare({ fixture: test.fixture }, test.manifest, readJson(test.manifest));
+  assert.strictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).linkCardPasteCalls, undefined);
+  assert.strictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).linkCardEnterCalls, undefined);
+  publish({ fixture: test.fixture, token: prepared.approvalToken, "confirm-public": "yes" }, test.manifest, readJson(test.manifest));
+  assert.strictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).linkCardPasteCalls, undefined);
+}
+
+{
+  const test = makeCase();
+  assert.throws(() => prepare({ fixture: test.fixture, scheduled: "yes" }, test.manifest, readJson(test.manifest)), /only allowed for daily market-news/);
+}
+
+{
   const test = makeCase();
   const prepared = prepare({ fixture: test.fixture }, test.manifest, readJson(test.manifest));
   fs.appendFileSync(test.memo, "\nsource changed\n");
-  assert.throws(() => publish({ fixture: test.fixture, token: prepared.approvalToken, "confirm-public": "yes" }, test.manifest, readJson(test.manifest)), /Source memo changed/);
+  assert.throws(() => publish({ fixture: test.fixture, token: prepared.approvalToken, "confirm-public": "yes" }, test.manifest, readJson(test.manifest)), /Source document changed/);
   assert.strictEqual(JSON.parse(fs.readFileSync(test.fixture)).publicClicked, undefined);
 }
 

@@ -41,6 +41,10 @@ Use $kr-stock-update to refresh analysis-example/kr/엘앤에프/memo.md with co
 ```
 
 ```text
+Use $kr-daily-market-news to create today's Korean daily market-news report for blog publication. Read watchlist from examples/kr/daily-watchlist.json, use official Korean market/disclosure sources first where available and Naver News second, write analysis-example/kr-market/daily-news-YYYY-MM-DD.md and .json, then use $kr-naver-blog-publish to publish in scheduled mode only if validation passes.
+```
+
+```text
 Use $kr-portfolio-monitor to scan current Kiwoom-supported KRX holdings, compute SMA20 deviation and RSI14, and write the snapshot to analysis-example/kr/portfolio-snapshot.md.
 ```
 
@@ -100,6 +104,10 @@ Use $kr-sector-update to update analysis-example/kr-sector/국내 데이터센�
 
 ```text
 /kr-stock-update update analysis-example/kr/엘앤에프/memo.md with company-specific disclosures, IR materials, and news after the memo date, and append a dated update block to the same file.
+```
+
+```text
+/kr-daily-market-news create today's Korean daily market-news report for blog publication from examples/kr/daily-watchlist.json, then hand the generated analysis-example/kr-market/naver-publish-YYYY-MM-DD.json manifest to /kr-naver-blog-publish scheduled mode.
 ```
 
 ```text

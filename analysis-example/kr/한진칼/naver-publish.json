@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "status": "converted",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/한진칼/fullmemo.md",
+    "memoSha256": "5a5b19378e86b74a6b077cbc531bd101ffe8e5e6389ee25fd2d6bebe8761f809",
+    "asOfDate": "2026-06-28"
+  },
+  "post": {
+    "company": "한진칼",
+    "ticker": "180640",
+    "title": "한진칼 | 호반의 다음 5%룰 보고 또는 KDB EXIT 사인 | 2026-06-28",
+    "issue": "호반의 다음 5%룰 보고 또는 KDB EXIT 사인",
+    "category": null,
+    "tags": [
+      "한진칼",
+      "180640",
+      "주식분석"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/한진칼/naver-post.md",
+    "markdownSha256": "5e957a74b8819ed4cd22ccc6f2e72d4fe63a51c3d50bbe87e4bdee9d5cdbf6f1",
+    "images": [
+      {
+        "order": 1,
+        "alt": "한진칼 3개월 일봉 trend (2026-06-26 기준)",
+        "relativePath": "assets-update/한진칼-chart.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/한진칼/assets-update/한진칼-chart.png",
+        "sha256": "15128424e4c027df3ce571397784e125c6c58f237e2acfd4f666b70c515b66d3",
+        "section": "2. 5주 신규 이벤트 압축 (2026-05-23~06-28)"
+      },
+      {
+        "order": 2,
+        "alt": "한진칼 momentum (RSI·MACD)",
+        "relativePath": "assets-update/한진칼-chart-momentum.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/한진칼/assets-update/한진칼-chart-momentum.png",
+        "sha256": "98e705f5ff9797da80b7ecc85f5d270328e22f59c9408f233b1d86976d8b86ce",
+        "section": "2. 5주 신규 이벤트 압축 (2026-05-23~06-28)"
+      },
+      {
+        "order": 3,
+        "alt": "한진칼 structure (지지·저항대)",
+        "relativePath": "assets-update/한진칼-chart-structure.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/한진칼/assets-update/한진칼-chart-structure.png",
+        "sha256": "0c7023d4ad0c5590af1d01fe946b93f325aba91555aba44c1bd1d1cd8d5d62d6",
+        "section": "2. 5주 신규 이벤트 압축 (2026-05-23~06-28)"
+      },
+      {
+        "order": 4,
+        "alt": "한진칼 pattern (5월 12일~6월 15일 임펄스 식별)",
+        "relativePath": "assets-update/한진칼-chart-pattern.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/한진칼/assets-update/한진칼-chart-pattern.png",
+        "sha256": "6c968ecb1638ff88313a578685f855eb0b6aa41985760c5e2ee0a8ffa34a7af5",
+        "section": "2. 5주 신규 이벤트 압축 (2026-05-23~06-28)"
+      }
+    ],
+    "thumbnail": {
+      "prompt": "한진칼 | 호반의 다음 5%룰 보고 또는 KDB EXIT 사인 | 2026-06-28 블로그 썸네일 만들어줘",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/한진칼/assets/naver-thumbnail.png",
+      "sha256": "79d26ffd69e63fe028c120f429f73bae09ffca885f7212aa31b444bd907fdba6",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-06-28T07:08:54.716Z"
+    }
+  },
+  "prepare": null,
+  "publish": null
+}

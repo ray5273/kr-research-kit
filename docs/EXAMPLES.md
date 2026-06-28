@@ -71,6 +71,12 @@ Audited golden examples and reusable fixtures, grouped by the question each arti
 - [KRX market leaders 2026-06-25](../analysis-example/kr-market/leaders-2026-06-25.md) — integrated KOSPI + KOSDAQ technical leadership screen with short-term, intermediate, structural, and composite lenses.
 - [KRX market leaders 2026-06-26](../analysis-example/kr-market/leaders-2026-06-26.md) — daily full-universe leadership screen with prior-day 신규 진입 comparison across top-20 lenses, RS, volume, and 52-week-high triggers.
 
+## Daily market-news automation
+
+- [KR daily market-news 2026-06-28](../analysis-example/kr-market/daily-news-2026-06-28.md) — market-wide and sector daily report without watchlist stock-news sections.
+- [KR daily market-news Naver post 2026-06-28](../analysis-example/kr-market/naver-post-2026-06-28.md) — SmartEditor-ready post with numbered raw URL link-card inputs and no Markdown bullet lines.
+- [KR daily market-news publish manifest 2026-06-28](../analysis-example/kr-market/naver-publish-2026-06-28.json) — scheduled publish manifest with link-card URL order.
+
 ## Sector research
 
 - [KR Sector — 국내 데이터센터](<../analysis-example/kr-sector/국내 데이터센터.md>) — full Korea sector report with policy, value chain, listed-company exposure, and constraints.
