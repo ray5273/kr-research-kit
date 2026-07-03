@@ -45,6 +45,10 @@ Use $kr-daily-market-news to create today's Korean daily market-news report for 
 ```
 
 ```text
+Use $us-daily-market-news to create today's U.S. daily market-news report for blog publication. Read watchlist from examples/us/daily-watchlist.json for compatibility, use U.S. RSS article URLs plus Google News RSS discovery signals, write analysis-example/us-market/daily-news-YYYY-MM-DD.md and .json, then use $kr-naver-blog-publish to publish in scheduled mode only if validation passes.
+```
+
+```text
 Use $kr-portfolio-monitor to scan current Kiwoom-supported KRX holdings, compute SMA20 deviation and RSI14, and write the snapshot to analysis-example/kr/portfolio-snapshot.md.
 ```
 
@@ -108,6 +112,10 @@ Use $kr-sector-update to update analysis-example/kr-sector/국내 데이터센�
 
 ```text
 /kr-daily-market-news create today's Korean daily market-news report for blog publication from examples/kr/daily-watchlist.json, then hand the generated analysis-example/kr-market/naver-publish-YYYY-MM-DD.json manifest to /kr-naver-blog-publish scheduled mode.
+```
+
+```text
+/us-daily-market-news create today's U.S. daily market-news report for blog publication from examples/us/daily-watchlist.json, then hand the generated analysis-example/us-market/naver-publish-YYYY-MM-DD.json manifest to /kr-naver-blog-publish scheduled mode.
 ```
 
 ```text

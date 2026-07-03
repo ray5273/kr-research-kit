@@ -1,0 +1,7 @@
+interface:
+  display_name: "US Daily Market News"
+  short_description: "Create a U.S. daily market-news report and Naver Blog publish manifest."
+  default_prompt: "Use $us-daily-market-news to create today's U.S. daily market-news report from examples/us/daily-watchlist.json."
+
+policy:
+  allow_implicit_invocation: true

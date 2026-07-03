@@ -1,0 +1,79 @@
+{
+  "Technology/AI": [
+    { "ticker": "NVDA", "name": "NVIDIA", "keywords": ["AI", "GPU"] },
+    { "ticker": "MSFT", "name": "Microsoft", "keywords": ["cloud", "AI"] },
+    { "ticker": "AAPL", "name": "Apple", "keywords": ["services", "iPhone"] },
+    { "ticker": "AVGO", "name": "Broadcom", "keywords": ["AI", "semiconductor"] },
+    { "ticker": "AMD", "name": "AMD", "keywords": ["GPU", "data center"] }
+  ],
+  "Communication Services": [
+    { "ticker": "GOOGL", "name": "Alphabet", "keywords": ["advertising", "search"] },
+    { "ticker": "META", "name": "Meta Platforms", "keywords": ["advertising", "AI"] },
+    { "ticker": "NFLX", "name": "Netflix", "keywords": ["streaming", "media"] },
+    { "ticker": "DIS", "name": "Disney", "keywords": ["streaming", "parks"] },
+    { "ticker": "VZ", "name": "Verizon", "keywords": ["telecom", "wireless"] }
+  ],
+  "Consumer Discretionary": [
+    { "ticker": "AMZN", "name": "Amazon", "keywords": ["e-commerce", "AWS"] },
+    { "ticker": "TSLA", "name": "Tesla", "keywords": ["EV", "autonomous"] },
+    { "ticker": "HD", "name": "Home Depot", "keywords": ["housing", "retail"] },
+    { "ticker": "MCD", "name": "McDonald's", "keywords": ["restaurants", "consumer"] },
+    { "ticker": "BKNG", "name": "Booking Holdings", "keywords": ["travel", "consumer"] }
+  ],
+  "Consumer Staples": [
+    { "ticker": "WMT", "name": "Walmart", "keywords": ["retail", "grocery"] },
+    { "ticker": "COST", "name": "Costco", "keywords": ["retail", "membership"] },
+    { "ticker": "PG", "name": "Procter & Gamble", "keywords": ["household", "consumer"] },
+    { "ticker": "KO", "name": "Coca-Cola", "keywords": ["beverage", "consumer"] },
+    { "ticker": "PEP", "name": "PepsiCo", "keywords": ["beverage", "snacks"] }
+  ],
+  "Financials": [
+    { "ticker": "JPM", "name": "JPMorgan Chase", "keywords": ["bank", "credit"] },
+    { "ticker": "BAC", "name": "Bank of America", "keywords": ["bank", "rates"] },
+    { "ticker": "GS", "name": "Goldman Sachs", "keywords": ["investment banking", "trading"] },
+    { "ticker": "V", "name": "Visa", "keywords": ["payments", "consumer"] },
+    { "ticker": "BRK.B", "name": "Berkshire Hathaway", "keywords": ["insurance", "financials"] }
+  ],
+  "Health Care": [
+    { "ticker": "LLY", "name": "Eli Lilly", "keywords": ["obesity", "diabetes"] },
+    { "ticker": "UNH", "name": "UnitedHealth", "keywords": ["managed care", "Medicare"] },
+    { "ticker": "JNJ", "name": "Johnson & Johnson", "keywords": ["pharma", "medical devices"] },
+    { "ticker": "MRK", "name": "Merck", "keywords": ["oncology", "pharma"] },
+    { "ticker": "ABBV", "name": "AbbVie", "keywords": ["immunology", "pharma"] }
+  ],
+  "Industrials": [
+    { "ticker": "GE", "name": "GE Aerospace", "keywords": ["aerospace", "engines"] },
+    { "ticker": "CAT", "name": "Caterpillar", "keywords": ["machinery", "construction"] },
+    { "ticker": "BA", "name": "Boeing", "keywords": ["aerospace", "aircraft"] },
+    { "ticker": "RTX", "name": "RTX", "keywords": ["defense", "aerospace"] },
+    { "ticker": "UNP", "name": "Union Pacific", "keywords": ["rail", "freight"] }
+  ],
+  "Energy": [
+    { "ticker": "XOM", "name": "Exxon Mobil", "keywords": ["oil", "natural gas"] },
+    { "ticker": "CVX", "name": "Chevron", "keywords": ["oil", "LNG"] },
+    { "ticker": "COP", "name": "ConocoPhillips", "keywords": ["oil", "production"] },
+    { "ticker": "SLB", "name": "SLB", "keywords": ["oilfield services", "drilling"] },
+    { "ticker": "EOG", "name": "EOG Resources", "keywords": ["shale", "oil"] }
+  ],
+  "Materials": [
+    { "ticker": "LIN", "name": "Linde", "keywords": ["industrial gas", "chemicals"] },
+    { "ticker": "FCX", "name": "Freeport-McMoRan", "keywords": ["copper", "mining"] },
+    { "ticker": "NEM", "name": "Newmont", "keywords": ["gold", "mining"] },
+    { "ticker": "DOW", "name": "Dow", "keywords": ["chemicals", "materials"] },
+    { "ticker": "NUE", "name": "Nucor", "keywords": ["steel", "construction"] }
+  ],
+  "Utilities": [
+    { "ticker": "NEE", "name": "NextEra Energy", "keywords": ["utility", "renewables"] },
+    { "ticker": "DUK", "name": "Duke Energy", "keywords": ["utility", "power"] },
+    { "ticker": "SO", "name": "Southern Company", "keywords": ["utility", "electricity"] },
+    { "ticker": "CEG", "name": "Constellation Energy", "keywords": ["nuclear", "power"] },
+    { "ticker": "AEP", "name": "American Electric Power", "keywords": ["utility", "grid"] }
+  ],
+  "Real Estate": [
+    { "ticker": "PLD", "name": "Prologis", "keywords": ["warehouse", "logistics"] },
+    { "ticker": "AMT", "name": "American Tower", "keywords": ["tower", "REIT"] },
+    { "ticker": "EQIX", "name": "Equinix", "keywords": ["data center", "REIT"] },
+    { "ticker": "O", "name": "Realty Income", "keywords": ["retail REIT", "dividend"] },
+    { "ticker": "SPG", "name": "Simon Property Group", "keywords": ["mall", "retail"] }
+  ]
+}

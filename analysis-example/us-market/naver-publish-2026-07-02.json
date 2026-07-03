@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "contentType": "daily-market-news",
+  "status": "prepared",
+  "source": {
+    "reportPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us-market/daily-news-2026-07-02.md",
+    "reportSha256": "7b9a2635c7ba63972d72c7d1ce92fe1a9ee9bd6fbbc6d819f10f71f60b4e2bb6",
+    "asOfDate": "2026-07-02"
+  },
+  "post": {
+    "company": "미국 시장",
+    "ticker": "",
+    "title": "2026-07-02 다우 강세·S&P 500 보합·Nasdaq 약세: AI·반도체와 빅테크 점검",
+    "issue": "지수는 Dow Jones +1.14%, S&P 500 +0.00%, Nasdaq -0.80%; 섹터는 Health Care +2.63% / Technology -2.71%가 대비됐습니다.",
+    "category": null,
+    "tags": [
+      "미국증시",
+      "S&P 500",
+      "Nasdaq",
+      "시장뉴스",
+      "20260702"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us-market/naver-post-2026-07-02.md",
+    "markdownSha256": "8922a181b66fdfbd1d3085fc8b32b8565fdaef0585f2fe7d329ec17c61338c70",
+    "images": [],
+    "linkCards": [
+      "https://www.nasdaq.com/articles/wall-street-finished-mixed-thursday",
+      "https://news.google.com/rss/articles/CBMitwFBVV95cUxQTlFwVWJrckJIdzNsTWh6b1dmSmE1VUJWR0p2NF92VEJUSlJNQnRaYTVLeThNZDNqX2Q1NW9jb2k1a0VJelYxMXloVXFNWG03TnAtcXlnSEZRam5ZazFUWWdnTFBkb0JyQ2VtNTBnTzhmaDJaWmtBMGFRTEZvSDNHNU04YVlKcFBiSWJlZzh3cVFsMWpOMjRjSXFTbmRra3FoMTlHbDV5RmtuM3lFeXZSTDNZMEhhdHM?oc=5",
+      "https://news.google.com/rss/articles/CBMikgFBVV95cUxQR2JzamV5ZHM2alNocnZhblRrS2l2OWFUb25JbUt1Q2RzX0M3c0JqN0NPcG5xMHI1cWt2UEtTVTQ3ZlRRR09Pb0tpVDY5YUJsbDZLVjIyQ0FkWG1GSjRibFZTdjM4TzJQejdmOFM3RW0ycW15RXpJSF95bUZ3dG8yaFBKdEc5aVV4eG1sVUtXeU1ZQQ?oc=5"
+    ],
+    "thumbnail": {
+      "prompt": "2026-07-02 다우 강세·S&P 500 보합·Nasdaq 약세: AI·반도체와 빅테크 점검 블로그 썸네일 만들어줘",
+      "relativePath": "assets/naver-thumbnail-2026-07-02.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us-market/assets/naver-thumbnail-2026-07-02.png",
+      "sha256": "629331a980c8ea317dec350033e04ae81d4978b3f7082a566ff9fc47ca8323fc",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-03T12:29:13.155Z"
+    },
+    "publicationDate": "2026-07-02"
+  },
+  "automation": {
+    "scheduledPublishAllowed": true,
+    "duplicateScope": "us-daily-market-news",
+    "duplicateDate": "2026-07-02"
+  },
+  "prepare": {
+    "preparedAt": "2026-07-03T12:31:40.491Z",
+    "expiresAt": "2026-07-03T13:01:40.490Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us-market/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "3e4e1b0f03097d81a348512042d414b03d4c106a76d2b1ba4901382fdb0fd248",
+    "approvalTokenHash": "6dd4864bee7174686edc4371afb23c5974271f849882e00a06f96f02b5543a76",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": false,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

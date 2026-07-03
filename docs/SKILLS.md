@@ -1,6 +1,6 @@
 # Skills Catalog & Behavior
 
-24 skills shipped in `kr-research-kit`. Korean stock workflow shorthand:
+25 skills shipped in `kr-research-kit`. Korean stock workflow shorthand:
 
 ```text
 kr-stock-plan -> kr-stock-chart -> kr-stock-dart-analysis -> kr-stock-data-pack -> kr-stock-analysis
@@ -20,6 +20,7 @@ Use $kr-stock-plan as the entry point for Korean stock work. Have it first ask w
 - `kr-stock-plan` — scopes Korean stock research into an execution-ready brief and acts as the default entry-point orchestrator for fresh memos, follow-up questions, and dated updates.
 - `kr-market-leaders` — integrated KOSPI + KOSDAQ technical leadership screens across 1D/7D, 30D/60D, and 120D/252D lenses.
 - `kr-daily-market-news` — daily Korean market-wide plus watchlist news report for Codex Desktop Automation, with dated Markdown/JSON artifacts and a Naver Blog publish manifest.
+- `us-daily-market-news` — daily U.S. market-wide and sector news report for Codex Desktop Automation, with U.S. RSS sources, New York date filtering, dated Markdown/JSON artifacts, and a Naver Blog publish manifest.
 - `kr-stock-chart` — chart-only KRX output and reusable chart artifacts (`chart-data.json`, `chart-analysis.md`, five PNG panels, CSV sidecars, optional rule-screen outputs).
 - `kr-stock-dart-analysis` — precise DART filing extraction before broader Korean stock interpretation.
 - `kr-stock-data-pack` — structured company fact packs before drafting, including optional outside-view inputs.
@@ -126,6 +127,7 @@ Routing guide:
 - `skills/kr-stock-chart/scripts/build-kr-universe-rs-cache.js` — integrated `KOSPI + KOSDAQ` relative-strength percentile cache files under `.tmp/kr-rs-cache/<YYYY-MM-DD>.json`
 - `skills/kr-market-leaders/scripts/screen-kr-market-leaders.js` — market-wide KRX leadership reports under `analysis-example/kr-market/leaders-<YYYY-MM-DD>.md` and `.json`
 - `skills/kr-daily-market-news/scripts/fetch-daily-market-news.js` and `render-daily-report.js` — daily market-news artifacts under `analysis-example/kr-market/daily-news-<YYYY-MM-DD>.md` / `.json` plus a dated Naver publish manifest.
+- `skills/us-daily-market-news/scripts/fetch-daily-market-news.js` and `render-daily-report.js` — U.S. daily market-news artifacts under `analysis-example/us-market/daily-news-<YYYY-MM-DD>.md` / `.json` plus a dated Naver publish manifest.
 - `skills/kr-stock-chart/scripts/kr-trend-rules.js` — `Minervini Trend Template` pass/fail plus `KRX 52주 신고가 리더십 점수` markdown blocks embeddable in the memo's `Chart and Positioning` section
 - `scripts/valuation-bands.js` — 3–5 year valuation band summaries
 - `scripts/peer-valuation.js` — comparable-company valuation tables

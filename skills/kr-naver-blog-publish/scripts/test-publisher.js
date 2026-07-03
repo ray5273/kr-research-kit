@@ -5,7 +5,7 @@ const fs = require("fs");
 const os = require("os");
 const path = require("path");
 const { buildPost } = require("./memo-to-post");
-const { editorBody, editorHtml, expectedTableData, prepare, publish, renderExcelTableHtml, validateBlockFormatting } = require("./publisher");
+const { editorBody, editorHtml, expectedTableData, prepare, publish, renderExcelTableHtml, validateBlockFormatting, validateTables } = require("./publisher");
 const { readJson, sha256, writeJsonAtomic } = require("./lib");
 
 assert(!editorBody("# 제목\n\n## 결론\n\n**강조**\n\n![차트](chart.png)").includes("#"));
@@ -42,6 +42,14 @@ assert.strictEqual((editorHtml("> line 1\n> line 2\n> ✓ item").match(/<p\b/g) 
     alignments: ["left", "right", "center"],
   }))[0]);
   assert(rendered.includes("<table"));
+  assert.doesNotThrow(() => validateTables(
+    [{ rows: [["항목", "값"], ["대표 뉴스", "English headline한국어 정리"]], rowCount: 2, columnCount: 2 }],
+    [{ rows: [["항목", "값"], ["대표 뉴스", "English headline\n한국어 정리"]], rowCount: 2, columnCount: 2 }],
+  ));
+  assert.throws(() => validateTables(
+    [{ rows: [["항목", "값"], ["대표 뉴스", "다른 내용"]], rowCount: 2, columnCount: 2 }],
+    [{ rows: [["항목", "값"], ["대표 뉴스", "English headline\n한국어 정리"]], rowCount: 2, columnCount: 2 }],
+  ), /cell mismatch/);
 }
 {
   const html = editorHtml("# 제목\n\n## 결론\n\n본문\n다음 줄\n\n### 근거\n\n**강조**\n\n---\n\n![차트](chart.png)");
@@ -523,8 +531,20 @@ function makeDailyCase(fixtureOverrides = {}) {
 
 {
   const test = makeDailyCase();
+  const genericThumbnailPath = path.join(test.root, "assets", "naver-thumbnail.png");
+  fs.mkdirSync(path.dirname(genericThumbnailPath), { recursive: true });
+  fs.writeFileSync(genericThumbnailPath, Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAFgwJ/l4kK3wAAAABJRU5ErkJggg==", "base64"));
   const prepared = prepare({ fixture: test.fixture, scheduled: "yes" }, test.manifest, readJson(test.manifest));
   assert(prepared.approvalToken);
+  const dailyManifest = readJson(test.manifest);
+  assert.strictEqual(dailyManifest.post.thumbnail.relativePath, "assets/naver-thumbnail-2026-06-28.png");
+  assert.strictEqual(dailyManifest.post.thumbnail.absolutePath, path.join(test.root, "assets", "naver-thumbnail-2026-06-28.png"));
+  assert.strictEqual(dailyManifest.post.thumbnail.prompt, `${dailyManifest.post.title} 블로그 썸네일 만들어줘`);
+  assert.strictEqual(dailyManifest.post.thumbnail.source, "gemini-web");
+  assert.strictEqual(dailyManifest.post.thumbnail.status, "generated");
+  assert(fs.existsSync(dailyManifest.post.thumbnail.absolutePath));
+  assert.notStrictEqual(dailyManifest.post.thumbnail.absolutePath, genericThumbnailPath);
+  assert.deepStrictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).geminiPrompts, [dailyManifest.post.thumbnail.prompt]);
   assert.strictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).linkCardPasteCalls, undefined);
   assert.deepStrictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).linkCardEnterCalls, ["https://news.example.com/market1", "https://news.example.com/market2"]);
   assert(JSON.parse(fs.readFileSync(test.fixture, "utf8")).editor.bodyHtml.includes("<table"));
@@ -543,6 +563,34 @@ function makeDailyCase(fixtureOverrides = {}) {
   assert.strictEqual(published.status, "published");
   assert.strictEqual(readJson(test.manifest).contentType, "daily-market-news");
   assert.strictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).publicClicked, true);
+}
+
+{
+  const test = makeDailyCase();
+  const manifest = readJson(test.manifest);
+  const stalePath = path.join(test.root, "assets", "naver-thumbnail.png");
+  fs.mkdirSync(path.dirname(stalePath), { recursive: true });
+  fs.writeFileSync(stalePath, Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAFgwJ/l4kK3wAAAABJRU5ErkJggg==", "base64"));
+  manifest.post.thumbnail = {
+    prompt: "wrong prompt",
+    relativePath: "assets/naver-thumbnail.png",
+    absolutePath: stalePath,
+    sha256: sha256(fs.readFileSync(stalePath)),
+    source: "gemini-web",
+    status: "generated",
+    generatedAt: "2026-06-27T00:00:00.000Z",
+  };
+  writeJsonAtomic(test.manifest, manifest);
+  prepare({ fixture: test.fixture, scheduled: "yes" }, test.manifest, readJson(test.manifest));
+  const repairedManifest = readJson(test.manifest);
+  assert.strictEqual(repairedManifest.post.thumbnail.relativePath, "assets/naver-thumbnail-2026-06-28.png");
+  assert.strictEqual(repairedManifest.post.thumbnail.absolutePath, path.join(test.root, "assets", "naver-thumbnail-2026-06-28.png"));
+  assert.strictEqual(repairedManifest.post.thumbnail.prompt, `${repairedManifest.post.title} 블로그 썸네일 만들어줘`);
+  assert.strictEqual(repairedManifest.post.thumbnail.source, "gemini-web");
+  assert.strictEqual(repairedManifest.post.thumbnail.status, "generated");
+  assert(fs.existsSync(repairedManifest.post.thumbnail.absolutePath));
+  assert.strictEqual(repairedManifest.post.thumbnail.sha256, sha256(fs.readFileSync(repairedManifest.post.thumbnail.absolutePath)));
+  assert.deepStrictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).geminiPrompts, [repairedManifest.post.thumbnail.prompt]);
 }
 
 {

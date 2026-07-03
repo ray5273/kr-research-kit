@@ -1,0 +1,7 @@
+[
+  { "ticker": "NVDA", "name": "NVIDIA", "keywords": ["AI", "GPU"] },
+  { "ticker": "MSFT", "name": "Microsoft", "keywords": ["cloud", "AI"] },
+  { "ticker": "AAPL", "name": "Apple", "keywords": ["iPhone", "services"] },
+  { "ticker": "AMZN", "name": "Amazon", "keywords": ["AWS", "consumer"] },
+  { "ticker": "META", "name": "Meta Platforms", "keywords": ["advertising", "AI"] }
+]

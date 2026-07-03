@@ -332,20 +332,63 @@ function isSupportedImage(filePath) {
 }
 
 function thumbnailOutputPath(manifest) {
-  return path.resolve(path.dirname(manifest.post.markdownPath), "assets", "naver-thumbnail.png");
+  const fileName = isDailyMarketManifest(manifest)
+    ? `naver-thumbnail-${dailyMarketThumbnailDate(manifest)}.png`
+    : "naver-thumbnail.png";
+  return path.resolve(path.dirname(manifest.post.markdownPath), "assets", fileName);
 }
 
 function thumbnailPrompt(manifest) {
   return `${manifest.post.title} 블로그 썸네일 만들어줘`;
 }
 
+function dailyMarketThumbnailDate(manifest) {
+  const date = manifest.post?.publicationDate || manifest.automation?.duplicateDate || manifest.source?.asOfDate;
+  assert(/^\d{4}-\d{2}-\d{2}$/.test(date || ""), "Daily market-news thumbnail requires a YYYY-MM-DD publication date");
+  return date;
+}
+
+function expectedThumbnailRelativePath(manifest) {
+  return path.relative(path.dirname(manifest.post.markdownPath), thumbnailOutputPath(manifest)).replace(/\\/g, "/");
+}
+
+function expectedThumbnailMetadata(manifest) {
+  const absolutePath = thumbnailOutputPath(manifest);
+  return {
+    prompt: thumbnailPrompt(manifest),
+    relativePath: expectedThumbnailRelativePath(manifest),
+    absolutePath,
+    source: "gemini-web",
+    status: "generated",
+  };
+}
+
+function dailyMarketThumbnailMatches(manifest) {
+  if (!isDailyMarketManifest(manifest) || !manifest.post.thumbnail) return false;
+  const thumbnail = manifest.post.thumbnail;
+  if (!thumbnail.absolutePath || !thumbnail.sha256) return false;
+  const expected = expectedThumbnailMetadata(manifest);
+  return thumbnail.prompt === expected.prompt
+    && thumbnail.relativePath === expected.relativePath
+    && path.resolve(thumbnail.absolutePath || "") === expected.absolutePath
+    && thumbnail.source === expected.source
+    && thumbnail.status === expected.status
+    && fs.existsSync(thumbnail.absolutePath)
+    && isSupportedImage(thumbnail.absolutePath)
+    && fileSha256(thumbnail.absolutePath) === thumbnail.sha256;
+}
+
 function verifyThumbnailArtifact(manifest) {
   const thumbnail = manifest.post.thumbnail;
   assert(thumbnail, "Manifest thumbnail metadata missing; run prepare again");
   assert(thumbnail.status === "generated", `Thumbnail is not generated: ${thumbnail.status || "unknown"}`);
-  const allowedSource = thumbnail.source === "gemini-web" || (isDailyMarketManifest(manifest) && thumbnail.source === "imagegen-local");
-  assert(allowedSource, `Unsupported thumbnail source: ${thumbnail.source || "unknown"}`);
+  assert(thumbnail.source === "gemini-web", `Unsupported thumbnail source: ${thumbnail.source || "unknown"}`);
   assert(thumbnail.prompt === thumbnailPrompt(manifest), "Thumbnail prompt does not match the generated blog title; run prepare again");
+  if (isDailyMarketManifest(manifest)) {
+    const expected = expectedThumbnailMetadata(manifest);
+    assert(thumbnail.relativePath === expected.relativePath, `Daily market-news thumbnail path is stale; run prepare again: ${thumbnail.relativePath || thumbnail.absolutePath}`);
+    assert(path.resolve(thumbnail.absolutePath || "") === expected.absolutePath, `Daily market-news thumbnail absolute path is stale; run prepare again: ${thumbnail.absolutePath || "missing"}`);
+  }
   assert(fs.existsSync(thumbnail.absolutePath), `Thumbnail missing: ${thumbnail.relativePath || thumbnail.absolutePath}`);
   assert(isSupportedImage(thumbnail.absolutePath), `Thumbnail is not a supported non-empty PNG/JPG/WebP image: ${thumbnail.relativePath || thumbnail.absolutePath}`);
   assert(fileSha256(thumbnail.absolutePath) === thumbnail.sha256, `Thumbnail changed after prepare: ${thumbnail.relativePath || thumbnail.absolutePath}`);
@@ -354,13 +397,16 @@ function verifyThumbnailArtifact(manifest) {
 function ensureThumbnailArtifact(manifest, driver) {
   const prompt = thumbnailPrompt(manifest);
   if (manifest.post.thumbnail) {
-    verifyThumbnailArtifact(manifest);
-    return manifest.post.thumbnail;
+    if (isDailyMarketManifest(manifest) && !dailyMarketThumbnailMatches(manifest)) manifest.post.thumbnail = null;
+    else {
+      verifyThumbnailArtifact(manifest);
+      return manifest.post.thumbnail;
+    }
   }
   const absolutePath = thumbnailOutputPath(manifest);
-  const relativePath = path.relative(path.dirname(manifest.post.markdownPath), absolutePath).replace(/\\/g, "/");
+  const relativePath = expectedThumbnailRelativePath(manifest);
   fs.mkdirSync(path.dirname(absolutePath), { recursive: true });
-  if (!isSupportedImage(absolutePath)) driver.generateGeminiThumbnail(prompt, absolutePath);
+  if (isDailyMarketManifest(manifest) || !isSupportedImage(absolutePath)) driver.generateGeminiThumbnail(prompt, absolutePath);
   assert(isSupportedImage(absolutePath), `Gemini thumbnail was not saved as a supported non-empty PNG/JPG/WebP image: ${absolutePath}`);
   manifest.post.thumbnail = {
     prompt,
@@ -372,6 +418,12 @@ function ensureThumbnailArtifact(manifest, driver) {
     generatedAt: new Date().toISOString(),
   };
   return manifest.post.thumbnail;
+}
+
+function verifyExistingThumbnailForArtifacts(manifest) {
+  if (!manifest.post.thumbnail) return;
+  if (isDailyMarketManifest(manifest) && !dailyMarketThumbnailMatches(manifest)) return;
+  verifyThumbnailArtifact(manifest);
 }
 
 function extractTablesFromHtml(html) {
@@ -405,6 +457,12 @@ function expectedTableData(markdown) {
   });
 }
 
+function equivalentTableCellText(actualText, expectedText) {
+  if (actualText === expectedText) return true;
+  if (!expectedText.includes("\n")) return false;
+  return actualText === expectedText.replace(/\n+/g, "");
+}
+
 function validateTables(actualTables = [], expectedTables = []) {
   assert(actualTables.length === expectedTables.length, `Editor table count mismatch: expected ${expectedTables.length}, got ${actualTables.length}`);
   for (let index = 0; index < expectedTables.length; index += 1) {
@@ -416,7 +474,7 @@ function validateTables(actualTables = [], expectedTables = []) {
       for (let cellIndex = 0; cellIndex < expected.rows[rowIndex].length; cellIndex += 1) {
         const expectedText = normalizeText(expected.rows[rowIndex][cellIndex]);
         const actualText = normalizeText(actual.rows[rowIndex]?.[cellIndex] || "");
-        assert(actualText === expectedText, `Editor table ${index + 1} cell mismatch at row ${rowIndex + 1}, column ${cellIndex + 1}: expected "${expectedText}", got "${actualText}"`);
+        assert(equivalentTableCellText(actualText, expectedText), `Editor table ${index + 1} cell mismatch at row ${rowIndex + 1}, column ${cellIndex + 1}: expected "${expectedText}", got "${actualText}"`);
       }
     }
   }
@@ -529,7 +587,7 @@ function sameDayPublishedManifest(manifestPath, manifest) {
   return null;
 }
 
-function verifyArtifacts(manifest) {
+function verifyArtifacts(manifest, options = {}) {
   assert(manifest.schemaVersion === 1, "Unsupported manifest schemaVersion");
   assert(manifest.status !== "published", "Manifest is already published; duplicate publish blocked");
   const sourcePath = manifestSourcePath(manifest);
@@ -544,7 +602,8 @@ function verifyArtifacts(manifest) {
     assert(fs.existsSync(image.absolutePath), `Image missing: ${image.relativePath}`);
     assert(fileSha256(image.absolutePath) === image.sha256, `Image changed after conversion: ${image.relativePath}`);
   }
-  if (manifest.post.thumbnail) verifyThumbnailArtifact(manifest);
+  if (options.allowDailyThumbnailRepair) verifyExistingThumbnailForArtifacts(manifest);
+  else if (manifest.post.thumbnail) verifyThumbnailArtifact(manifest);
 }
 
 class FixtureDriver {
@@ -1638,7 +1697,7 @@ function setBodyWithDailyLinkCards(driver, markdown, manifest) {
 
 function prepare(args, manifestPath, manifest) {
   if (args.scheduled) assertScheduledPublishAllowed(args, manifest);
-  verifyArtifacts(manifest);
+  verifyArtifacts(manifest, { allowDailyThumbnailRepair: true });
   const duplicate = args.scheduled ? sameDayPublishedManifest(manifestPath, manifest) : null;
   if (duplicate) throw new Error(`Duplicate same-day daily market-news publication blocked: ${duplicate.path}`);
   const driver = createDriver(args);
@@ -1781,5 +1840,6 @@ module.exports = {
   renderExcelTableHtml,
   validateBlockFormatting,
   validateEditor,
+  validateTables,
   verifyArtifacts,
 };

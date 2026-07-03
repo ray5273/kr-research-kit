@@ -87,6 +87,14 @@ $kr-daily-market-news로 오늘 한국 시장/업종 데일리 뉴스 리포트�
 
 산출물: `analysis-example/kr-market/daily-news-<YYYY-MM-DD>.md` + `.json`, 날짜별 Naver publish manifest. 예시: [daily-news-2026-06-28](analysis-example/kr-market/daily-news-2026-06-28.md), [Naver post](analysis-example/kr-market/naver-post-2026-06-28.md), [publish manifest](analysis-example/kr-market/naver-publish-2026-06-28.json).
 
+미국 시장 데일리 뉴스도 같은 산출물 계약을 사용합니다.
+
+```text
+$us-daily-market-news로 오늘 미국 시장/업종 데일리 뉴스 리포트를 블로그 게시용으로 작성해줘. analysis-example/us-market/daily-news-YYYY-MM-DD.md와 .json을 쓴 다음, $kr-naver-blog-publish를 scheduled mode로 사용해줘.
+```
+
+미국 섹터 seed는 [examples/us/daily-sector-stocks.json](examples/us/daily-sector-stocks.json), watchlist 호환 파일은 [examples/us/daily-watchlist.json](examples/us/daily-watchlist.json)에 있습니다.
+
 추가 시나리오(섹터 비교, 포트폴리오 헬스, 실적 발표 업데이트) → [docs/MARKETPLACE.md § Use cases](docs/MARKETPLACE.md). 전체 스킬 프롬프트 카탈로그 → [docs/USAGE.md](docs/USAGE.md).
 
 ## 산출물 미리보기
@@ -105,7 +113,7 @@ DART recheck는 `confirmed`, `partially supported`, `not separately disclosed`�
 
 ## 구성
 
-24개 스킬. 한국 주식 파이프라인: `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-stock-data-pack → kr-stock-analysis`. 데일리 시장 뉴스 워크플로: `kr-daily-market-news → kr-naver-blog-publish`. 미국 주식: `us-stock-analysis`. 섹터 워크플로: `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update`.
+25개 스킬. 한국 주식 파이프라인: `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-stock-data-pack → kr-stock-analysis`. 데일리 시장 뉴스 워크플로: `kr-daily-market-news` / `us-daily-market-news → kr-naver-blog-publish`. 미국 주식: `us-stock-analysis`. 섹터 워크플로: `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update`.
 
 전체 카탈로그 + 스킬별 동작 + 번들 헬퍼 → [docs/SKILLS.md](docs/SKILLS.md).
 

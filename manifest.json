@@ -50,7 +50,8 @@
       "kr-naver-blog-publish",
       "kr-foreign-analyst",
       "kr-market-leaders",
-      "kr-daily-market-news"
+      "kr-daily-market-news",
+      "us-daily-market-news"
     ],
     "bundle": [
       "kr-stock-analysis",
@@ -119,6 +120,12 @@
       "tier": "standalone",
       "tagline": "Build a dated Korean daily market-news report from market-wide news plus a watchlist, then emit Markdown/JSON artifacts and a Naver Blog scheduled-publish manifest.",
       "entry": "skills/kr-daily-market-news/SKILL.md"
+    },
+    {
+      "name": "us-daily-market-news",
+      "tier": "standalone",
+      "tagline": "Build a dated U.S. daily market-news report from market-wide and sector RSS flow, then emit Markdown/JSON artifacts and a Naver Blog scheduled-publish manifest.",
+      "entry": "skills/us-daily-market-news/SKILL.md"
     },
     {
       "name": "kr-stock-analysis",
@@ -220,6 +227,7 @@
   "datasources": [
     "OpenDART (dart.fss.or.kr) — requires OPENDART_API_KEY env",
     "Yahoo Finance (query2.finance.yahoo.com)",
+    "Yahoo Finance RSS / MarketWatch RSS / CNBC RSS for U.S. daily market news",
     "Hankyung Consensus (consensus.hankyung.com)",
     "Naver Pay Research (finance.naver.com/research)",
     "Naver Search / Blog / News",

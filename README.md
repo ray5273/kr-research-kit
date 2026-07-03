@@ -87,6 +87,14 @@ Use $kr-daily-market-news to create today's Korean market-wide and sector daily 
 
 Output: `analysis-example/kr-market/daily-news-<YYYY-MM-DD>.md` + `.json` and a dated Naver publish manifest. Examples: [daily-news-2026-06-28](analysis-example/kr-market/daily-news-2026-06-28.md), [daily-news-2026-06-29](analysis-example/kr-market/daily-news-2026-06-29.md), [daily-news-2026-07-02](analysis-example/kr-market/daily-news-2026-07-02.md), [2026-06-29 Naver post](analysis-example/kr-market/naver-post-2026-06-29.md), [2026-07-02 Naver post](analysis-example/kr-market/naver-post-2026-07-02.md), [2026-06-29 publish manifest](analysis-example/kr-market/naver-publish-2026-06-29.json), [2026-07-02 publish manifest](analysis-example/kr-market/naver-publish-2026-07-02.json). Sector collection uses the default seed list at [examples/kr/daily-sector-stocks.json](examples/kr/daily-sector-stocks.json).
 
+U.S. daily market news uses the same artifact contract with U.S. sources, New York date filtering, and GICS-style sector seeds:
+
+```text
+Use $us-daily-market-news to create today's U.S. market-wide and sector daily news report for blog publication. Write analysis-example/us-market/daily-news-YYYY-MM-DD.md and .json, then use $kr-naver-blog-publish in scheduled mode.
+```
+
+Sector collection uses [examples/us/daily-sector-stocks.json](examples/us/daily-sector-stocks.json) and the optional watchlist compatibility file at [examples/us/daily-watchlist.json](examples/us/daily-watchlist.json).
+
 More scenarios (sector compare, portfolio health, post-earnings update) → [docs/MARKETPLACE.md § Use cases](docs/MARKETPLACE.md). Full prompt catalog for every shipped skill → [docs/USAGE.md](docs/USAGE.md).
 
 ## Outputs Preview
@@ -105,7 +113,7 @@ Full index of 35+ example artifacts (memos, Naver posts, DART references, chart 
 
 ## What's Inside
 
-24 skills. Korean stock pipeline: `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-stock-data-pack → kr-stock-analysis`. Daily market workflow: `kr-daily-market-news → kr-naver-blog-publish`. U.S. stocks: `us-stock-analysis`. Sector workflow: `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update`.
+25 skills. Korean stock pipeline: `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-stock-data-pack → kr-stock-analysis`. Daily market workflows: `kr-daily-market-news` / `us-daily-market-news → kr-naver-blog-publish`. U.S. stocks: `us-stock-analysis`. Sector workflow: `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update`.
 
 Full catalog + per-skill behavior + bundled helpers → [docs/SKILLS.md](docs/SKILLS.md).
 
