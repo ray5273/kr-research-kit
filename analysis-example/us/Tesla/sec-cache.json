@@ -1,0 +1,368 @@
+{
+  "generatedAt": "2026-07-04T02:12:46.133Z",
+  "company": {
+    "name": "Tesla, Inc.",
+    "ticker": "TSLA",
+    "cik": "1318605",
+    "cik10": "0001318605",
+    "exchange": "Nasdaq"
+  },
+  "filings": [
+    {
+      "requestedForm": "10-K",
+      "form": "10-K",
+      "accessionNumber": "0001628280-26-003952",
+      "filingDate": "2026-01-29",
+      "reportDate": "2025-12-31",
+      "primaryDocumentUrl": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm",
+      "status": "selected"
+    },
+    {
+      "requestedForm": "10-Q",
+      "form": "10-Q",
+      "accessionNumber": "0001628280-26-026673",
+      "filingDate": "2026-04-23",
+      "reportDate": "2026-03-31",
+      "primaryDocumentUrl": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026026673/tsla-20260331.htm",
+      "status": "selected"
+    },
+    {
+      "requestedForm": "8-K",
+      "form": "8-K",
+      "accessionNumber": "0001628280-26-046717",
+      "filingDate": "2026-07-02",
+      "reportDate": "2026-07-02",
+      "primaryDocumentUrl": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026046717/tsla-20260702.htm",
+      "status": "selected"
+    }
+  ],
+  "xbrl": {
+    "revenue": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "unit": "USD",
+        "val": 22387000000,
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "fy": 2026,
+        "fp": "Q1",
+        "form": "10-Q",
+        "filed": "2026-04-23",
+        "accn": "0001628280-26-026673",
+        "frame": "CY2026Q1"
+      }
+    },
+    "grossProfit": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "GrossProfit",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "GrossProfit",
+        "unit": "USD",
+        "val": 4720000000,
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "fy": 2026,
+        "fp": "Q1",
+        "form": "10-Q",
+        "filed": "2026-04-23",
+        "accn": "0001628280-26-026673",
+        "frame": "CY2026Q1"
+      }
+    },
+    "operatingIncome": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "OperatingIncomeLoss",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "OperatingIncomeLoss",
+        "unit": "USD",
+        "val": 941000000,
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "fy": 2026,
+        "fp": "Q1",
+        "form": "10-Q",
+        "filed": "2026-04-23",
+        "accn": "0001628280-26-026673",
+        "frame": "CY2026Q1"
+      }
+    },
+    "netIncome": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "NetIncomeLoss",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "NetIncomeLoss",
+        "unit": "USD",
+        "val": 477000000,
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "fy": 2026,
+        "fp": "Q1",
+        "form": "10-Q",
+        "filed": "2026-04-23",
+        "accn": "0001628280-26-026673",
+        "frame": "CY2026Q1"
+      }
+    },
+    "epsDiluted": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "EarningsPerShareDiluted",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "EarningsPerShareDiluted",
+        "unit": "USD/shares",
+        "val": 0.13,
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "fy": 2026,
+        "fp": "Q1",
+        "form": "10-Q",
+        "filed": "2026-04-23",
+        "accn": "0001628280-26-026673",
+        "frame": "CY2026Q1"
+      }
+    },
+    "cash": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "CashAndCashEquivalentsAtCarryingValue",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "CashAndCashEquivalentsAtCarryingValue",
+        "unit": "USD",
+        "val": 16603000000,
+        "start": null,
+        "end": "2026-03-31",
+        "fy": 2026,
+        "fp": "Q1",
+        "form": "10-Q",
+        "filed": "2026-04-23",
+        "accn": "0001628280-26-026673",
+        "frame": "CY2026Q1I"
+      }
+    },
+    "assets": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "Assets",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "Assets",
+        "unit": "USD",
+        "val": 143724000000,
+        "start": null,
+        "end": "2026-03-31",
+        "fy": 2026,
+        "fp": "Q1",
+        "form": "10-Q",
+        "filed": "2026-04-23",
+        "accn": "0001628280-26-026673",
+        "frame": "CY2026Q1I"
+      }
+    },
+    "liabilities": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "Liabilities",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "Liabilities",
+        "unit": "USD",
+        "val": 58922000000,
+        "start": null,
+        "end": "2026-03-31",
+        "fy": 2026,
+        "fp": "Q1",
+        "form": "10-Q",
+        "filed": "2026-04-23",
+        "accn": "0001628280-26-026673",
+        "frame": "CY2026Q1I"
+      }
+    },
+    "equity": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "StockholdersEquity",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "StockholdersEquity",
+        "unit": "USD",
+        "val": 84116000000,
+        "start": null,
+        "end": "2026-03-31",
+        "fy": 2026,
+        "fp": "Q1",
+        "form": "10-Q",
+        "filed": "2026-04-23",
+        "accn": "0001628280-26-026673",
+        "frame": "CY2026Q1I"
+      }
+    },
+    "operatingCashFlow": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "NetCashProvidedByUsedInOperatingActivities",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "NetCashProvidedByUsedInOperatingActivities",
+        "unit": "USD",
+        "val": 3937000000,
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "fy": 2026,
+        "fp": "Q1",
+        "form": "10-Q",
+        "filed": "2026-04-23",
+        "accn": "0001628280-26-026673",
+        "frame": "CY2026Q1"
+      }
+    },
+    "capex": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "PaymentsToAcquirePropertyPlantAndEquipment",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "unit": "USD",
+        "val": 2493000000,
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "fy": 2026,
+        "fp": "Q1",
+        "form": "10-Q",
+        "filed": "2026-04-23",
+        "accn": "0001628280-26-026673",
+        "frame": "CY2026Q1"
+      }
+    }
+  },
+  "sectionCoverage": {
+    "form": "10-K",
+    "summary": {
+      "parsedCount": 13,
+      "partialCount": 7,
+      "missingCount": 0,
+      "needsReviewCount": 3,
+      "completionRate": 0.5652173913043478
+    },
+    "weakItems": [
+      {
+        "key": "Item 1B",
+        "expectedTitle": "Unresolved Staff Comments",
+        "status": "needs_review"
+      },
+      {
+        "key": "Item 3",
+        "expectedTitle": "Legal Proceedings",
+        "status": "partial"
+      },
+      {
+        "key": "Item 4",
+        "expectedTitle": "Mine Safety Disclosures",
+        "status": "needs_review"
+      },
+      {
+        "key": "Item 6",
+        "expectedTitle": "Reserved",
+        "status": "needs_review"
+      },
+      {
+        "key": "Item 9",
+        "expectedTitle": "Changes in and Disagreements With Accountants",
+        "status": "partial"
+      },
+      {
+        "key": "Item 9C",
+        "expectedTitle": "Disclosure Regarding Foreign Jurisdictions",
+        "status": "partial"
+      },
+      {
+        "key": "Item 11",
+        "expectedTitle": "Executive Compensation",
+        "status": "partial"
+      },
+      {
+        "key": "Item 12",
+        "expectedTitle": "Security Ownership",
+        "status": "partial"
+      },
+      {
+        "key": "Item 13",
+        "expectedTitle": "Certain Relationships and Related Transactions",
+        "status": "partial"
+      },
+      {
+        "key": "Item 14",
+        "expectedTitle": "Principal Accountant Fees and Services",
+        "status": "partial"
+      }
+    ]
+  },
+  "sourceMap": [
+    {
+      "claim": "Ticker to CIK mapping",
+      "sourceType": "SEC ticker map",
+      "documentOrConcept": "company_tickers_exchange.json / company_tickers.json",
+      "filed": null,
+      "accession": null,
+      "url": "https://www.sec.gov/files/company_tickers_exchange.json",
+      "status": "collected"
+    },
+    {
+      "claim": "Filing history",
+      "sourceType": "SEC submissions API",
+      "documentOrConcept": "CIK0001318605.json",
+      "filed": null,
+      "accession": null,
+      "url": "https://data.sec.gov/submissions/CIK0001318605.json",
+      "status": "collected"
+    },
+    {
+      "claim": "Standard XBRL company facts",
+      "sourceType": "SEC companyfacts API",
+      "documentOrConcept": "CIK0001318605.json",
+      "filed": null,
+      "accession": null,
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json",
+      "status": "collected"
+    },
+    {
+      "claim": "Latest 10-K selected filing",
+      "sourceType": "SEC primary filing document",
+      "documentOrConcept": "tsla-20251231.htm",
+      "filed": "2026-01-29",
+      "accession": "0001628280-26-003952",
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm",
+      "status": "collected"
+    },
+    {
+      "claim": "Latest 10-Q selected filing",
+      "sourceType": "SEC primary filing document",
+      "documentOrConcept": "tsla-20260331.htm",
+      "filed": "2026-04-23",
+      "accession": "0001628280-26-026673",
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026026673/tsla-20260331.htm",
+      "status": "collected"
+    },
+    {
+      "claim": "Latest 8-K selected filing",
+      "sourceType": "SEC primary filing document",
+      "documentOrConcept": "tsla-20260702.htm",
+      "filed": "2026-07-02",
+      "accession": "0001628280-26-046717",
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026046717/tsla-20260702.htm",
+      "status": "collected"
+    }
+  ]
+}

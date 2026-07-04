@@ -430,6 +430,67 @@ foreach ($skillDir in $skillDirs) {
             Write-Error "Expected previous same-date content to be replaced, not duplicated."
         }
     }
+
+    if ($skillDir.Name -eq "us-sec-analysis") {
+        $secOutputFormat = [System.IO.File]::ReadAllText((Join-Path $skillDir.FullName "references\output-format.md"))
+        $secWorkflow = [System.IO.File]::ReadAllText((Join-Path $skillDir.FullName "references\workflow.md"))
+        if (-not $secOutputFormat.Contains("Default to Korean for user-facing output")) {
+            Write-Error "Expected us-sec-analysis output format to default to Korean."
+        }
+        if (-not $secWorkflow.Contains("10 requests/second")) {
+            Write-Error "Expected us-sec-analysis workflow to document SEC fair-access request limits."
+        }
+        if (-not $skillMd.Contains("User-Agent")) {
+            Write-Error "Expected us-sec-analysis skill rules to require a declared SEC User-Agent."
+        }
+        if (-not $secOutputFormat.Contains("## Source Map")) {
+            Write-Error "Expected us-sec-analysis output format to include Source Map."
+        }
+        if (-not $skillMd.Contains("US_SEC_REFERENCE_DIGEST")) {
+            Write-Error "Expected us-sec-analysis skill rules to include the reference-digest marker."
+        }
+
+        $secFixtureDir = Join-Path $repoRoot "examples\us-sec-analysis"
+        $secOut = Join-Path $tempRoot "us-sec-analysis"
+        New-Item -ItemType Directory -Force -Path $secOut | Out-Null
+
+        node .\skills\us-sec-analysis\scripts\fetch-sec-edgar.js --ticker AAPL --output $secOut --fixture-dir $secFixtureDir --user-agent "KrResearchKit validation@example.com" | Out-Null
+        $secExport = Join-Path $secOut "sec-filing-export.json"
+        $secFacts = Join-Path $secOut "sec-companyfacts.json"
+        $latest10k = Join-Path $secOut "latest-10k.txt"
+        if (-not (Test-Path $secExport) -or (Get-Item $secExport).Length -le 0) {
+            Write-Error "Expected SEC filing export was not created."
+        }
+        if (-not (Test-Path $secFacts) -or (Get-Item $secFacts).Length -le 0) {
+            Write-Error "Expected SEC companyfacts summary was not created."
+        }
+        if (-not (Test-Path $latest10k) -or (Get-Item $latest10k).Length -le 0) {
+            Write-Error "Expected latest 10-K text export was not created."
+        }
+
+        $secSections = Join-Path $secOut "sec-sections.json"
+        node .\skills\us-sec-analysis\scripts\extract-sec-sections.js --input $latest10k --form 10-K --output $secSections | Out-Null
+        if (-not ([System.IO.File]::ReadAllText($secSections).Contains('"key": "Item 7"'))) {
+            Write-Error "Expected SEC section extraction to include Item 7."
+        }
+
+        $secReference = Join-Path $secOut "sec-reference.md"
+        $secCache = Join-Path $secOut "sec-cache.json"
+        node .\skills\us-sec-analysis\scripts\build-sec-reference.js --input $secExport --sections $secSections --facts $secFacts --output $secReference --cache-out $secCache | Out-Null
+        $secReferenceText = [System.IO.File]::ReadAllText($secReference)
+        if (-not $secReferenceText.Contains("US_SEC_REFERENCE_DIGEST_EXAMPLE")) {
+            Write-Error "Expected SEC reference output to include reference-digest marker."
+        }
+        if (-not $secReferenceText.Contains("## Source Map")) {
+            Write-Error "Expected SEC reference output to include Source Map."
+        }
+        if (-not $secReferenceText.Contains("RevenueFromContractWithCustomerExcludingAssessedTax")) {
+            Write-Error "Expected SEC reference output to include revenue XBRL concept."
+        }
+        if (-not (Test-Path $secCache) -or (Get-Item $secCache).Length -le 0) {
+            Write-Error "Expected SEC cache output was not created."
+        }
+    }
 }
 
 $sectorExampleRoot = Join-Path $repoRoot "analysis-example\kr-sector"

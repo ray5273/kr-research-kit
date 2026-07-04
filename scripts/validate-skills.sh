@@ -426,6 +426,75 @@ if (!pattern.test(text)) {
         fi
     fi
 
+    if [ "$SKILL_NAME" = "us-sec-analysis" ]; then
+        if ! grep -Fq 'Default to Korean for user-facing output' "$SKILL_DIR/references/output-format.md"; then
+            echo "Expected us-sec-analysis output format to default to Korean." >&2
+            exit 1
+        fi
+
+        if ! grep -Fq '10 requests/second' "$SKILL_DIR/references/workflow.md"; then
+            echo "Expected us-sec-analysis workflow to document SEC fair-access request limits." >&2
+            exit 1
+        fi
+
+        if ! grep -Fq 'User-Agent' "$SKILL_DIR/SKILL.md"; then
+            echo "Expected us-sec-analysis skill rules to require a declared SEC User-Agent." >&2
+            exit 1
+        fi
+
+        if ! grep -Fq '## Source Map' "$SKILL_DIR/references/output-format.md"; then
+            echo "Expected us-sec-analysis output format to include Source Map." >&2
+            exit 1
+        fi
+
+        if ! grep -q 'US_SEC_REFERENCE_DIGEST' "$SKILL_DIR/SKILL.md"; then
+            echo "Expected us-sec-analysis skill rules to include the reference-digest marker." >&2
+            exit 1
+        fi
+
+        SEC_FIXTURE_DIR="$REPO_ROOT/examples/us-sec-analysis"
+        SEC_OUT="$TMP_ROOT/us-sec-analysis"
+        mkdir -p "$SEC_OUT"
+
+        node "$SKILL_DIR/scripts/fetch-sec-edgar.js" --ticker AAPL --output "$SEC_OUT" --fixture-dir "$SEC_FIXTURE_DIR" --user-agent "KrResearchKit validation@example.com" >/dev/null
+        if [ ! -s "$SEC_OUT/sec-filing-export.json" ]; then
+            echo "Expected SEC filing export was not created." >&2
+            exit 1
+        fi
+        if [ ! -s "$SEC_OUT/sec-companyfacts.json" ]; then
+            echo "Expected SEC companyfacts summary was not created." >&2
+            exit 1
+        fi
+        if [ ! -s "$SEC_OUT/latest-10k.txt" ]; then
+            echo "Expected latest 10-K text export was not created." >&2
+            exit 1
+        fi
+
+        node "$SKILL_DIR/scripts/extract-sec-sections.js" --input "$SEC_OUT/latest-10k.txt" --form 10-K --output "$SEC_OUT/sec-sections.json" >/dev/null
+        if ! grep -q '"key": "Item 7"' "$SEC_OUT/sec-sections.json"; then
+            echo "Expected SEC section extraction to include Item 7." >&2
+            exit 1
+        fi
+
+        node "$SKILL_DIR/scripts/build-sec-reference.js" --input "$SEC_OUT/sec-filing-export.json" --sections "$SEC_OUT/sec-sections.json" --facts "$SEC_OUT/sec-companyfacts.json" --output "$SEC_OUT/sec-reference.md" --cache-out "$SEC_OUT/sec-cache.json" >/dev/null
+        if ! grep -q 'US_SEC_REFERENCE_DIGEST_EXAMPLE' "$SEC_OUT/sec-reference.md"; then
+            echo "Expected SEC reference output to include reference-digest marker." >&2
+            exit 1
+        fi
+        if ! grep -q '## Source Map' "$SEC_OUT/sec-reference.md"; then
+            echo "Expected SEC reference output to include Source Map." >&2
+            exit 1
+        fi
+        if ! grep -q 'RevenueFromContractWithCustomerExcludingAssessedTax' "$SEC_OUT/sec-reference.md"; then
+            echo "Expected SEC reference output to include revenue XBRL concept." >&2
+            exit 1
+        fi
+        if [ ! -s "$SEC_OUT/sec-cache.json" ]; then
+            echo "Expected SEC cache output was not created." >&2
+            exit 1
+        fi
+    fi
+
     if [ "$SKILL_NAME" = "kr-daily-market-news" ]; then
         node "$SKILL_DIR/scripts/test-daily-market-news.js" >/dev/null
         if ! grep -Fq 'analysis-example/kr-market/daily-news-YYYY-MM-DD.md' "$SKILL_DIR/SKILL.md"; then

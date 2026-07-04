@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/package.json",
   "name": "KrResearchKit",
   "version": "0.1.0",
-  "description": "AI-native Korean equity research skill pack — DART filings, sell-side consensus, foreign-IB coverage, 5-panel charts, and Naver-blog publishing in one package. Native to Codex CLI and Claude Code.",
+  "description": "AI-native Korean + U.S. equity research skill pack — DART and SEC filings, sell-side consensus, foreign-IB coverage, 5-panel charts, daily market news, and Naver-blog publishing in one package. Native to Codex CLI and Claude Code.",
   "homepage": "https://github.com/ray5273/kr-research-kit",
   "repository": {
     "type": "git",
@@ -16,6 +16,7 @@
   "categories": [
     "finance",
     "korean-market",
+    "us-market",
     "equity-research",
     "research-automation"
   ],
@@ -51,6 +52,8 @@
       "kr-foreign-analyst",
       "kr-market-leaders",
       "kr-daily-market-news",
+      "us-stock-analysis",
+      "us-sec-analysis",
       "us-daily-market-news"
     ],
     "bundle": [
@@ -126,6 +129,18 @@
       "tier": "standalone",
       "tagline": "Build a dated U.S. daily market-news report from market-wide and sector RSS flow, then emit Markdown/JSON artifacts and a Naver Blog scheduled-publish manifest.",
       "entry": "skills/us-daily-market-news/SKILL.md"
+    },
+    {
+      "name": "us-stock-analysis",
+      "tier": "standalone",
+      "tagline": "Build dated, source-backed U.S. stock and ETF memos with thesis, valuation, catalysts, risks, and chart context.",
+      "entry": "skills/us-stock-analysis/SKILL.md"
+    },
+    {
+      "name": "us-sec-analysis",
+      "tier": "standalone",
+      "tagline": "Collect SEC EDGAR evidence packs — latest 10-K/10-Q, latest 8-K metadata, filing text, XBRL companyfacts, and Source Map.",
+      "entry": "skills/us-sec-analysis/SKILL.md"
     },
     {
       "name": "kr-stock-analysis",
@@ -225,6 +240,7 @@
     }
   ],
   "datasources": [
+    "SEC EDGAR / data.sec.gov submissions and XBRL companyfacts — requires declared User-Agent, no API key",
     "OpenDART (dart.fss.or.kr) — requires OPENDART_API_KEY env",
     "Yahoo Finance (query2.finance.yahoo.com)",
     "Yahoo Finance RSS / MarketWatch RSS / CNBC RSS for U.S. daily market news",

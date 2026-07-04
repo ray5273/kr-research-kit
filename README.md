@@ -1,4 +1,4 @@
-# KrResearchKit — Korean Equity Research
+# KrResearchKit — Korean + U.S. Equity Research
 
 AI skills for U.S. and Korean stock analysis, KRX portfolio monitoring, and Korea-focused sector research. Native to both **Claude Code** and **OpenAI Codex CLI**.
 
@@ -7,7 +7,7 @@ Languages:
 - English — [README.md](README.md)
 - 한국어 — [README-kr.md](README-kr.md)
 
-Strongest with Korean equities: one ticker question goes through DART filings, KRX chart pack, sell-side consensus, foreign-IB coverage, and Naver-blog publishing — all landing in `analysis-example/<market>/<company>/memo.md`.
+Strongest with Korean equities, now with a U.S. SEC precision stage: one Korean ticker question goes through DART filings, KRX chart pack, sell-side consensus, foreign-IB coverage, and Naver-blog publishing; U.S. stock work can start from SEC EDGAR/XBRL evidence packs before the final memo. Stock artifacts land in `analysis-example/<market>/<company>/memo.md`.
 
 ## Quick Install
 
@@ -37,7 +37,7 @@ git clone --single-branch --depth 1 https://github.com/ray5273/kr-research-kit ~
 cd ~/.claude/src/kr-research-kit && bash ./scripts/install-all-claude-skills.sh
 ```
 
-OpenDART API key, macOS Naver fallback, Windows PowerShell, custom install targets, and the Chrome extension DART path are all in [docs/INSTALL.md](docs/INSTALL.md).
+OpenDART API key, SEC EDGAR `User-Agent`, macOS Naver fallback, Windows PowerShell, custom install targets, and the Chrome extension DART path are all in [docs/INSTALL.md](docs/INSTALL.md).
 
 </details>
 
@@ -95,6 +95,14 @@ Use $us-daily-market-news to create today's U.S. market-wide and sector daily ne
 
 Sector collection uses [examples/us/daily-sector-stocks.json](examples/us/daily-sector-stocks.json) and the optional watchlist compatibility file at [examples/us/daily-watchlist.json](examples/us/daily-watchlist.json).
 
+U.S. SEC filing precision uses official SEC submissions, companyfacts, and filing archive documents:
+
+```text
+Use $us-sec-analysis for AAPL and create a Korean SEC evidence pack from the latest 10-K and 10-Q with XBRL facts and Source Map.
+```
+
+Output: `analysis-example/us/<company>/sec-analysis.md` plus optional `sec-reference.md` and `sec-cache.json`. Examples: [Tesla SEC analysis](analysis-example/us/Tesla/sec-analysis.md) and [Tesla full memo](analysis-example/us/Tesla/memo.md). Offline validation fixtures: [AAPL submissions sample](examples/us-sec-analysis/submissions-aapl-sample.json), [AAPL companyfacts sample](examples/us-sec-analysis/companyfacts-aapl-sample.json), and [AAPL 10-K HTML sample](examples/us-sec-analysis/filing-10k-aapl-sample.html).
+
 More scenarios (sector compare, portfolio health, post-earnings update) → [docs/MARKETPLACE.md § Use cases](docs/MARKETPLACE.md). Full prompt catalog for every shipped skill → [docs/USAGE.md](docs/USAGE.md).
 
 ## Outputs Preview
@@ -109,17 +117,17 @@ DART recheck distinguishes `confirmed`, `partially supported`, and `not separate
 
 ![HD현대중공업 momentum chart](analysis-example/kr/HD현대중공업/assets/HD현대중공업-chart-momentum.png)
 
-Full index of 35+ example artifacts (memos, Naver posts, DART references, chart packs, sector reports) → [docs/EXAMPLES.md](docs/EXAMPLES.md).
+Full index of 35+ example artifacts and fixtures (memos, Naver posts, DART references, SEC fixtures, chart packs, sector reports) → [docs/EXAMPLES.md](docs/EXAMPLES.md).
 
 ## What's Inside
 
-25 skills. Korean stock pipeline: `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-stock-data-pack → kr-stock-analysis`. Daily market workflows: `kr-daily-market-news` / `us-daily-market-news → kr-naver-blog-publish`. U.S. stocks: `us-stock-analysis`. Sector workflow: `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update`.
+27 skills. Korean stock pipeline: `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-stock-data-pack → kr-stock-analysis`. Daily market workflows: `kr-daily-market-news` / `us-daily-market-news → kr-naver-blog-publish`. U.S. stocks: `us-sec-analysis → us-stock-analysis`. Sector workflow: `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update`.
 
 Full catalog + per-skill behavior + bundled helpers → [docs/SKILLS.md](docs/SKILLS.md).
 
 ## Docs
 
-- Installation (Plugin / Codex / Claude Code / OpenDART / Chrome extension / fonts / known issues) — [docs/INSTALL.md](docs/INSTALL.md)
+- Installation (Plugin / Codex / Claude Code / OpenDART / SEC User-Agent / Chrome extension / fonts / known issues) — [docs/INSTALL.md](docs/INSTALL.md)
 - Skills catalog & behavior — [docs/SKILLS.md](docs/SKILLS.md)
 - Prompt catalog for every skill — [docs/USAGE.md](docs/USAGE.md)
 - Analysis examples index — [docs/EXAMPLES.md](docs/EXAMPLES.md)

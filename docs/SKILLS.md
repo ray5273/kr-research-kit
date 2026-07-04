@@ -1,9 +1,15 @@
 # Skills Catalog & Behavior
 
-25 skills shipped in `kr-research-kit`. Korean stock workflow shorthand:
+27 skills shipped in `kr-research-kit`. Korean stock workflow shorthand:
 
 ```text
 kr-stock-plan -> kr-stock-chart -> kr-stock-dart-analysis -> kr-stock-data-pack -> kr-stock-analysis
+```
+
+U.S. stock workflow shorthand:
+
+```text
+us-sec-analysis -> us-stock-analysis
 ```
 
 `kr-stock-plan` should act as the entry-point orchestrator: if the user starts there and did not explicitly ask for `plan only`, it should ask a short needs check, build the brief, decide whether this is a fresh memo, follow-up, or dated update, and continue through the downstream skills automatically.
@@ -17,6 +23,7 @@ Use $kr-stock-plan as the entry point for Korean stock work. Have it first ask w
 ## Skill list
 
 - `us-stock-analysis` — U.S. stocks and U.S.-listed ETFs.
+- `us-sec-analysis` — SEC EDGAR filing-precision packs for U.S. companies, including latest 10-K/10-Q, latest 8-K metadata, filing text, XBRL companyfacts, and Source Map.
 - `kr-stock-plan` — scopes Korean stock research into an execution-ready brief and acts as the default entry-point orchestrator for fresh memos, follow-up questions, and dated updates.
 - `kr-market-leaders` — integrated KOSPI + KOSDAQ technical leadership screens across 1D/7D, 30D/60D, and 120D/252D lenses.
 - `kr-daily-market-news` — daily Korean market-wide plus watchlist news report for Codex Desktop Automation, with dated Markdown/JSON artifacts and a Naver Blog publish manifest.
@@ -44,23 +51,28 @@ These skills are designed to avoid stale-memory analysis. Shared behavior:
 - When the workspace is writable, the default deliverable is a markdown report file in `analysis-example/<market>/<company>/memo.md` for stock work or `analysis-example/kr-sector/<sector>.md` for sector work — not just a chat answer.
 - The report file stays synchronized with the final answer, with an explicit "as of" date.
 
-### `us-stock-analysis`
+### U.S. stock skills
 
 Primary instructions:
 
 - [skills/us-stock-analysis/SKILL.md](../skills/us-stock-analysis/SKILL.md)
 - [skills/us-stock-analysis/references/workflow.md](../skills/us-stock-analysis/references/workflow.md)
 - [skills/us-stock-analysis/references/output-format.md](../skills/us-stock-analysis/references/output-format.md)
+- [skills/us-sec-analysis/SKILL.md](../skills/us-sec-analysis/SKILL.md)
+- [skills/us-sec-analysis/references/workflow.md](../skills/us-sec-analysis/references/workflow.md)
+- [skills/us-sec-analysis/references/output-format.md](../skills/us-sec-analysis/references/output-format.md)
+- [skills/us-sec-analysis/references/script-inputs.md](../skills/us-sec-analysis/references/script-inputs.md)
 
 Current behavior:
 
-1. Define scope first: ticker, exchange, time horizon, comparison set, and whether the request is a full memo, comparison, pre-earnings note, or post-earnings note.
-2. Verify fresh inputs from primary sources, starting with SEC filings and IR materials, then company news and market data checks.
-3. Build a thesis around business quality, financial quality, capital allocation, catalysts, and risks.
-4. Apply a valuation method that fits the company instead of forcing one template across all business models.
-5. Write the final output in the default memo format when appropriate: summary, business and thesis, latest results, valuation, catalysts, risks, and what would change the view.
+1. `us-sec-analysis` acts as the SEC filing-precision stage when exact 10-K/10-Q facts, MD&A, Risk Factors, liquidity, controls, XBRL companyfacts, or latest 8-K metadata matter. It writes `sec-analysis.md`, `sec-reference.md`, and `sec-cache.json` when a reusable evidence pack is needed.
+2. `us-stock-analysis` defines scope first: ticker, exchange, time horizon, comparison set, and whether the request is a full memo, comparison, pre-earnings note, or post-earnings note.
+3. `us-stock-analysis` verifies fresh inputs from primary sources, starting with SEC evidence artifacts and IR materials, then company news and market data checks.
+4. It builds a thesis around business quality, financial quality, capital allocation, catalysts, and risks.
+5. It applies a valuation method that fits the company instead of forcing one template across all business models.
+6. It writes the final output in the default memo format when appropriate: summary, business and thesis, latest results, valuation, catalysts, risks, and what would change the view.
 
-Bundled helpers: `scripts/peer-valuation.js`, `scripts/etf-overlap.js`, `scripts/chart-basics.js`.
+Bundled helpers: `us-stock-analysis/scripts/peer-valuation.js`, `us-stock-analysis/scripts/etf-overlap.js`, `us-stock-analysis/scripts/chart-basics.js`, `us-sec-analysis/scripts/fetch-sec-edgar.js`, `us-sec-analysis/scripts/extract-sec-sections.js`, `us-sec-analysis/scripts/build-sec-reference.js`.
 
 ### Korean stock skills
 
@@ -128,6 +140,9 @@ Routing guide:
 - `skills/kr-market-leaders/scripts/screen-kr-market-leaders.js` — market-wide KRX leadership reports under `analysis-example/kr-market/leaders-<YYYY-MM-DD>.md` and `.json`
 - `skills/kr-daily-market-news/scripts/fetch-daily-market-news.js` and `render-daily-report.js` — daily market-news artifacts under `analysis-example/kr-market/daily-news-<YYYY-MM-DD>.md` / `.json` plus a dated Naver publish manifest.
 - `skills/us-daily-market-news/scripts/fetch-daily-market-news.js` and `render-daily-report.js` — U.S. daily market-news artifacts under `analysis-example/us-market/daily-news-<YYYY-MM-DD>.md` / `.json` plus a dated Naver publish manifest.
+- `skills/us-sec-analysis/scripts/fetch-sec-edgar.js` — resolves ticker/CIK, fetches SEC submissions and companyfacts with declared `User-Agent`, downloads selected filing HTML, writes text exports, and emits `sec-filing-export.json` plus `sec-companyfacts.json`.
+- `skills/us-sec-analysis/scripts/extract-sec-sections.js` — parses 10-K/10-Q Item headings and emits section coverage as `parsed`, `partial`, `missing`, or `needs_review`.
+- `skills/us-sec-analysis/scripts/build-sec-reference.js` — generates `sec-reference.md` and `sec-cache.json` for downstream `us-stock-analysis` reuse.
 - `skills/kr-stock-chart/scripts/kr-trend-rules.js` — `Minervini Trend Template` pass/fail plus `KRX 52주 신고가 리더십 점수` markdown blocks embeddable in the memo's `Chart and Positioning` section
 - `scripts/valuation-bands.js` — 3–5 year valuation band summaries
 - `scripts/peer-valuation.js` — comparable-company valuation tables

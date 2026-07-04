@@ -17,6 +17,7 @@ Audited golden examples and reusable fixtures, grouped by the question each arti
 - [KR — 삼성전자 Sell-Side Count Memo](<../analysis-example/kr/삼성전자/memo.md>) and [KR — SK하이닉스 Sell-Side Count Memo](<../analysis-example/kr/SK하이닉스/memo.md>) — semiconductor examples focused on sell-side coverage count and market framing.
 - [KR — HD현대 Memo](<../analysis-example/kr/HD현대/memo.md>) — OpenDART-backed holding-company example.
 - [KR — 테스 Memo](<../analysis-example/kr/테스/memo.md>) — fresh Korean equipment-stock memo anchored on DART 1Q results, customer concentration, backlog, valuation, and synchronized chart panels.
+- [US — Tesla Memo](<../analysis-example/us/Tesla/memo.md>) — SEC-grounded U.S. growth-stock memo with XBRL facts, Q2 operating update, valuation, catalysts, risks, and Source Map.
 
 ## Naver blog publishing — memo-to-post transformation
 
@@ -37,6 +38,7 @@ Audited golden examples and reusable fixtures, grouped by the question each arti
 - [KR — 한화오션 Analyst Report Insight](<../analysis-example/kr/한화오션/analyst-report-insight.md>)
 - [KR — HD현대 DART Reference (OpenDART)](<../analysis-example/kr/HD현대/dart-reference.md>)
 - [KR — HD현대 DART Coverage](<../analysis-example/kr/HD현대/dart-coverage.json>)
+- [US — Tesla SEC 분석](<../analysis-example/us/Tesla/sec-analysis.md>) — SEC submissions, latest 10-K/10-Q, latest 8-K Exhibit 99.1, XBRL companyfacts, and Source Map.
 
 ## Chart package — reusable KRX chart artifacts
 
@@ -85,3 +87,8 @@ Audited golden examples and reusable fixtures, grouped by the question each arti
 ## Fixtures
 
 - [KR — DART browser export sample](../examples/kr-stock-dart-analysis/dart-browser-export-sample.json)
+- [US — AAPL SEC ticker map sample](../examples/us-sec-analysis/company_tickers_exchange_sample.json)
+- [US — AAPL SEC submissions sample](../examples/us-sec-analysis/submissions-aapl-sample.json)
+- [US — AAPL SEC companyfacts sample](../examples/us-sec-analysis/companyfacts-aapl-sample.json)
+- [US — AAPL 10-K HTML sample](../examples/us-sec-analysis/filing-10k-aapl-sample.html)
+- [US — AAPL 10-Q HTML sample](../examples/us-sec-analysis/filing-10q-aapl-sample.html)

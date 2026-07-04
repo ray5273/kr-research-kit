@@ -1,4 +1,4 @@
-# KrResearchKit — Korean Equity Research
+# KrResearchKit — Korean + U.S. Equity Research
 
 미국 주식, 한국 주식, KRX 포트폴리오, 한국 섹터 리서치용 AI 스킬 모음입니다. **Claude Code**와 **OpenAI Codex CLI** 양쪽 네이티브입니다.
 
@@ -7,7 +7,7 @@
 - English — [README.md](README.md)
 - 한국어 — [README-kr.md](README-kr.md)
 
-한국 주식 리서치에서 가장 강합니다. 종목 하나가 DART 공시, KRX 차트, 증권사 컨센서스, 외국계 IB 커버리지, Naver 블로그 게시까지 한 번에 처리되어 `analysis-example/kr/<company>/memo.md`에 정리됩니다.
+한국 주식 리서치에서 가장 강하고, 미국 주식용 SEC 정밀 수집 단계도 추가했습니다. 한국 종목 하나는 DART 공시, KRX 차트, 증권사 컨센서스, 외국계 IB 커버리지, Naver 블로그 게시까지 한 번에 처리되어 `analysis-example/kr/<company>/memo.md`에 정리되고, 미국 종목은 SEC EDGAR/XBRL evidence pack을 먼저 만든 뒤 메모로 넘길 수 있습니다.
 
 ## 빠른 설치
 
@@ -37,7 +37,7 @@ git clone --single-branch --depth 1 https://github.com/ray5273/kr-research-kit ~
 cd ~/.claude/src/kr-research-kit && bash ./scripts/install-all-claude-skills.sh
 ```
 
-OpenDART API 키, macOS Naver fallback, Windows PowerShell, 커스텀 설치 경로, Chrome 확장 DART 경로는 모두 [docs/INSTALL.md](docs/INSTALL.md)에 있습니다.
+OpenDART API 키, SEC EDGAR `User-Agent`, macOS Naver fallback, Windows PowerShell, 커스텀 설치 경로, Chrome 확장 DART 경로는 모두 [docs/INSTALL.md](docs/INSTALL.md)에 있습니다.
 
 </details>
 
@@ -95,6 +95,14 @@ $us-daily-market-news로 오늘 미국 시장/업종 데일리 뉴스 리포트�
 
 미국 섹터 seed는 [examples/us/daily-sector-stocks.json](examples/us/daily-sector-stocks.json), watchlist 호환 파일은 [examples/us/daily-watchlist.json](examples/us/daily-watchlist.json)에 있습니다.
 
+미국 SEC 공시 정밀 분석은 SEC submissions, companyfacts, filing archive를 사용합니다.
+
+```text
+$us-sec-analysis로 AAPL 최신 10-K/10-Q 기준 SEC evidence pack을 한국어로 만들고 XBRL facts와 Source Map을 포함해줘.
+```
+
+산출물: `analysis-example/us/<company>/sec-analysis.md` 및 필요 시 `sec-reference.md`, `sec-cache.json`. 오프라인 검증 fixture: [AAPL submissions sample](examples/us-sec-analysis/submissions-aapl-sample.json), [AAPL companyfacts sample](examples/us-sec-analysis/companyfacts-aapl-sample.json), [AAPL 10-K HTML sample](examples/us-sec-analysis/filing-10k-aapl-sample.html).
+
 추가 시나리오(섹터 비교, 포트폴리오 헬스, 실적 발표 업데이트) → [docs/MARKETPLACE.md § Use cases](docs/MARKETPLACE.md). 전체 스킬 프롬프트 카탈로그 → [docs/USAGE.md](docs/USAGE.md).
 
 ## 산출물 미리보기
@@ -109,17 +117,17 @@ DART recheck는 `confirmed`, `partially supported`, `not separately disclosed`�
 
 ![HD현대중공업 모멘텀 차트](analysis-example/kr/HD현대중공업/assets/HD현대중공업-chart-momentum.png)
 
-35개 이상 예시 산출물(메모, Naver 포스트, DART reference, 차트 팩, 섹터 보고서) 전체 인덱스 → [docs/EXAMPLES.md](docs/EXAMPLES.md).
+35개 이상 예시 산출물과 fixture(메모, Naver 포스트, DART reference, SEC fixture, 차트 팩, 섹터 보고서) 전체 인덱스 → [docs/EXAMPLES.md](docs/EXAMPLES.md).
 
 ## 구성
 
-25개 스킬. 한국 주식 파이프라인: `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-stock-data-pack → kr-stock-analysis`. 데일리 시장 뉴스 워크플로: `kr-daily-market-news` / `us-daily-market-news → kr-naver-blog-publish`. 미국 주식: `us-stock-analysis`. 섹터 워크플로: `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update`.
+27개 스킬. 한국 주식 파이프라인: `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-stock-data-pack → kr-stock-analysis`. 데일리 시장 뉴스 워크플로: `kr-daily-market-news` / `us-daily-market-news → kr-naver-blog-publish`. 미국 주식: `us-sec-analysis → us-stock-analysis`. 섹터 워크플로: `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update`.
 
 전체 카탈로그 + 스킬별 동작 + 번들 헬퍼 → [docs/SKILLS.md](docs/SKILLS.md).
 
 ## 문서
 
-- 설치 (Plugin / Codex / Claude Code / OpenDART / Chrome 확장 / 폰트 / 알려진 이슈) — [docs/INSTALL.md](docs/INSTALL.md)
+- 설치 (Plugin / Codex / Claude Code / OpenDART / SEC User-Agent / Chrome 확장 / 폰트 / 알려진 이슈) — [docs/INSTALL.md](docs/INSTALL.md)
 - 스킬 카탈로그와 동작 방식 — [docs/SKILLS.md](docs/SKILLS.md)
 - 스킬별 프롬프트 카탈로그 — [docs/USAGE.md](docs/USAGE.md)
 - 분석 예시 인덱스 — [docs/EXAMPLES.md](docs/EXAMPLES.md)

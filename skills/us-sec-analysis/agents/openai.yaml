@@ -1,0 +1,7 @@
+interface:
+  display_name: "U.S. SEC Analysis"
+  short_description: "Build source-mapped SEC filing evidence packs."
+  default_prompt: "Use $us-sec-analysis for a U.S. ticker to collect the latest 10-K, 10-Q, 8-K metadata, SEC XBRL facts, filing text, and source map in Korean."
+
+policy:
+  allow_implicit_invocation: true

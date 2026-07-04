@@ -12,6 +12,8 @@ Use this order unless the user explicitly wants a faster but lighter answer:
 
 If a number matters to the conclusion, trace it back to a primary source when possible.
 
+Use `us-sec-analysis` before drafting when the user needs precise SEC evidence for reported results, XBRL facts, MD&A, Risk Factors, liquidity, controls, or filing section wording. If `analysis-example/us/<company>/sec-reference.md` or `sec-cache.json` already exists for the same accession numbers, read it before re-fetching SEC data.
+
 ## Single-Stock Checklist
 
 ### Scope
@@ -21,6 +23,7 @@ If a number matters to the conclusion, trace it back to a primary source when po
 - Identify the analysis horizon: trading, next earnings, 12-24 months, or multi-year compounder view.
 - Identify the user's goal: idea generation, validation, comparison, or risk review.
 - If the workspace is writable, set the output file path early. Default to `analysis-example/us/<company>/memo.md` for a full report.
+- Check for existing SEC evidence artifacts under `analysis-example/us/<company>/sec-analysis.md`, `sec-reference.md`, and `sec-cache.json` before collecting filings again.
 
 ### Business Quality
 

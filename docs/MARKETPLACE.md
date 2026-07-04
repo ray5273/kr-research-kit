@@ -30,8 +30,8 @@ Backing files in this repo:
 - `.claude-plugin/plugin.json` — plugin manifest (name `kr-research-kit`,
   version `0.1.0`, MIT, keywords for discoverability).
 - `.claude-plugin/marketplace.json` — marketplace manifest. `plugins[]`
-  enumerates 23 KR skill paths under `skills/` and points `source: "."` so the
-  repo serves as both plugin and marketplace.
+  enumerates the published Korean + U.S. skill paths under `skills/` and points
+  `source: "."` so the repo serves as both plugin and marketplace.
 - `manifest.json` (repo root) — _informational_ project descriptor. Not read
   by Claude Code; lives next to README for human/marketplace-card consumption.
 - `NOTICE` — third-party attribution (NotoSansKR SIL OFL, gstack MIT,
@@ -77,20 +77,20 @@ Approved plugins land in `anthropics/claude-plugins-community/.claude-plugin/mar
 ### Listing card copy (paste into submission form)
 
 - **Plugin name:** `kr-research-kit`
-- **Display name:** KrResearchKit — Korean Equity Research
+- **Display name:** KrResearchKit — Korean + U.S. Equity Research
 - **Category:** `finance`
-- **Tags:** `korean-market`, `equity-research`, `krx`, `dart`, `naver-blog`
+- **Tags:** `korean-market`, `us-market`, `equity-research`, `krx`, `sec-edgar`, `dart`, `naver-blog`
 - **Homepage:** https://github.com/ray5273/kr-research-kit
 - **Sponsor:** GitHub Sponsors `ray5273` + KakaoPay (linked via `.github/FUNDING.yml`)
 
 #### Short tagline (≤80 chars)
 
-- **EN:** Korean equity research memos — DART, consensus, foreign-IB, charts, Naver-blog publish.
-- **KR:** 한국 주식 리서치 메모 — DART, 컨센서스, 외국계 IB, 차트, 네이버 게시까지 한 번에.
+- **EN:** Korean + U.S. equity research — DART/SEC, consensus, charts, Naver publish.
+- **KR:** 한국+미국 주식 리서치 — DART/SEC, 컨센서스, 차트, 네이버 게시까지.
 
 #### Long description (English, ≤500 words)
 
-> **AI-native Korean equity research in one skill pack.** One ticker question goes through:
+> **AI-native Korean + U.S. equity research in one skill pack.** One Korean ticker question goes through:
 >
 > 1. **Filing precision** — `kr-stock-dart-analysis` pulls primary OpenDART filings (사업/반기/분기보고서, 단일판매·공급계약, 임원·주요주주 등) via the official API. Chrome-extension fallback for sessions without an API key.
 > 2. **Chart pack** — `kr-stock-chart` renders five synchronized PNG panels (trend, overlay, momentum, structure with volume-by-price + S/R zones, pattern with swing pivots + Fibonacci) plus structure-zone and pattern-wave CSV sidecars. Auto-discovers Korean fonts on macOS/Linux/Windows.
@@ -100,11 +100,13 @@ Approved plugins land in `anthropics/claude-plugins-community/.claude-plugin/mar
 > 6. **Decision memo** — `kr-stock-analysis` writes a memo with fixed headers (`Decision Frame`, `DART Recheck`, `Street / Alternative Views`, `Valuation Snapshot`, `Catalysts & Disconfirming Evidence`, `Uncomfortable Questions`, `Structured Stance`, `Follow-up Research Prompts`).
 > 7. **Naver publish** — `kr-naver-blog-publish` converts the memo to a Naver SmartEditor draft with charts, tags, and a preview screenshot. **Publish requires explicit user approval via screenshot review — never auto-publishes.**
 >
-> Also bundled: `kr-market-leaders` (KOSPI + KOSDAQ leadership screener), `kr-portfolio-monitor` (SMA20/RSI14 portfolio health), `kr-stock-update` (incremental memo updates), and a full sector workflow (`kr-sector-plan/-analysis/-data-pack/-compare/-audit/-update`). 23 skills total.
+> U.S. stock work adds `us-sec-analysis`, which collects official SEC submissions, latest 10-K/10-Q filing text, latest 8-K metadata, standardized XBRL companyfacts, `sec-reference.md`, `sec-cache.json`, and a Source Map before `us-stock-analysis` writes thesis, valuation, catalysts, and risks.
+>
+> Also bundled: `kr-market-leaders` (KOSPI + KOSDAQ leadership screener), `kr-portfolio-monitor` (SMA20/RSI14 portfolio health), `kr-stock-update` (incremental memo updates), U.S. daily market news, and a full sector workflow (`kr-sector-plan/-analysis/-data-pack/-compare/-audit/-update`). 27 skills total.
 >
 > Native to both **Claude Code** and **OpenAI Codex CLI**. No npm dependencies (Node stdlib only). Optional Python (pypdf, Pillow) for PDF extraction and chart text rendering on macOS/Linux. Optional Bun for Naver browser automation.
 >
-> **Required env:** `OPENDART_API_KEY` (free, opendart.fss.or.kr). License: MIT. Third-party attributions in `NOTICE`.
+> **Useful env:** `OPENDART_API_KEY` (free, opendart.fss.or.kr) for Korean filings and `SEC_USER_AGENT` (app/contact string) for live SEC collection. License: MIT. Third-party attributions in `NOTICE`.
 
 #### Long description (한국어, ≤500자)
 
@@ -118,11 +120,13 @@ Approved plugins land in `anthropics/claude-plugins-community/.claude-plugin/mar
 > 6. **결정 메모 작성** — `Decision Frame`, `DART Recheck`, `Valuation Snapshot`, `Structured Stance` 같은 고정 헤더로 출력.
 > 7. **Naver 블로그 자동 게시** — SmartEditor로 draft·이미지·태그·미리보기까지 준비. **발행 직전 사용자 명시 승인 필수 — 자동 스팸 없음.**
 >
-> 추가 번들: `kr-market-leaders`(KOSPI+KOSDAQ leadership 스크리닝), `kr-portfolio-monitor`(SMA20/RSI14 헬스체크), `kr-stock-update`(메모 증분 업데이트), 섹터 워크플로 6종(`kr-sector-*`). 총 23개 스킬.
+> 미국 주식은 `us-sec-analysis`가 SEC submissions, 최신 10-K/10-Q 원문, 최신 8-K 메타데이터, XBRL companyfacts, Source Map을 먼저 수집하고 `us-stock-analysis`가 thesis·valuation·catalyst·risk 메모로 넘깁니다.
+>
+> 추가 번들: `kr-market-leaders`(KOSPI+KOSDAQ leadership 스크리닝), `kr-portfolio-monitor`(SMA20/RSI14 헬스체크), `kr-stock-update`(메모 증분 업데이트), 미국 데일리 시장 뉴스, 섹터 워크플로 6종(`kr-sector-*`). 총 27개 스킬.
 >
 > **Claude Code + Codex CLI 양쪽 네이티브**. npm 의존성 0, Node stdlib만. 선택 의존성: Python(pypdf, Pillow), Bun(Naver 자동화).
 >
-> **필요 환경변수:** `OPENDART_API_KEY` (무료, opendart.fss.or.kr). License: MIT.
+> **주요 환경변수:** `OPENDART_API_KEY`(무료, opendart.fss.or.kr), `SEC_USER_AGENT`(SEC live 수집용 앱/연락처 문자열). License: MIT.
 
 ### Use cases (paste into submission form 또는 README)
 
@@ -284,8 +288,8 @@ when this guide was written.
   captured June 2026 via the docs page at code.claude.com/docs/en/plugins).
 - [ ] Run `claude plugin validate` once Claude Code CLI is available locally.
 - [ ] Confirm the Anthropic community catalog accepts the `skills[]` field
-  inside a marketplace plugin entry as a scoping mechanism (used here to
-  exclude `us-stock-analysis` from v0.1.0 — see `.claude-plugin/marketplace.json`).
+  inside a marketplace plugin entry as a scoping mechanism for the published
+  Korean + U.S. skill subset — see `.claude-plugin/marketplace.json`.
 - [ ] Decide whether to file a PR to `openai/skills` or hold for self-publish.
 
 ## References

@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "kr-research-kit-marketplace",
-  "description": "Self-hosted marketplace for the KrResearchKit Korean equity research skill pack. Add with: /plugin marketplace add ray5273/kr-research-kit",
+  "description": "Self-hosted marketplace for the KrResearchKit Korean + U.S. equity research skill pack. Add with: /plugin marketplace add ray5273/kr-research-kit",
   "owner": {
     "name": "Sanghyeok Park",
     "email": "ray5273@naver.com"
@@ -9,8 +9,8 @@
   "plugins": [
     {
       "name": "kr-research-kit",
-      "displayName": "KrResearchKit — Korean Equity Research",
-      "description": "AI-native Korean equity research — DART filings, sell-side consensus, foreign-IB coverage, 5-panel charts, and Naver-blog publishing in one skill pack. KR-first, primary-source-only.",
+      "displayName": "KrResearchKit — Korean + U.S. Equity Research",
+      "description": "AI-native Korean + U.S. equity research — DART and SEC filings, sell-side consensus, foreign-IB coverage, 5-panel charts, daily market news, and Naver-blog publishing in one skill pack. Primary-source-first.",
       "author": {
         "name": "Sanghyeok Park",
         "email": "ray5273@naver.com"
@@ -20,8 +20,10 @@
       "version": "0.1.0",
       "tags": [
         "korean-market",
+        "us-market",
         "equity-research",
         "krx",
+        "sec-edgar",
         "dart",
         "naver-blog"
       ],
@@ -30,6 +32,10 @@
         "kospi",
         "kosdaq",
         "opendart",
+        "sec",
+        "edgar",
+        "xbrl",
+        "us-stock",
         "sell-side-consensus",
         "foreign-ib",
         "hankyung-consensus",
@@ -44,6 +50,7 @@
         "skills/kr-stock-dart-analysis",
         "skills/kr-stock-update",
         "skills/kr-market-leaders",
+        "skills/kr-daily-market-news",
         "skills/kr-sector-plan",
         "skills/kr-sector-analysis",
         "skills/kr-sector-data-pack",
@@ -59,7 +66,10 @@
         "skills/kr-naver-insight",
         "skills/kr-naver-blog-publish",
         "skills/kr-web-browse",
-        "skills/kr-portfolio-monitor"
+        "skills/kr-portfolio-monitor",
+        "skills/us-stock-analysis",
+        "skills/us-sec-analysis",
+        "skills/us-daily-market-news"
       ]
     }
   ]

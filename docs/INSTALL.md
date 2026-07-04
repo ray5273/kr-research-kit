@@ -86,7 +86,29 @@ Single-skill install:
 bash ./scripts/install-claude-skill.sh kr-stock-analysis
 ```
 
-## 4. OpenDART API key
+## 4. SEC EDGAR User-Agent
+
+`us-sec-analysis` uses official SEC EDGAR JSON APIs and archive documents. SEC does not require an API key for `data.sec.gov`, but automated requests must declare a `User-Agent` with an app/company name and contact email and stay within fair-access request limits.
+
+Recommended:
+
+```bash
+export SEC_USER_AGENT="KrResearchKit your-email@example.com"
+```
+
+Manual one-off run:
+
+```bash
+node skills/us-sec-analysis/scripts/fetch-sec-edgar.js --ticker AAPL --output analysis-example/us/Apple --user-agent "KrResearchKit your-email@example.com"
+```
+
+Validation can run offline from fixtures:
+
+```bash
+node skills/us-sec-analysis/scripts/fetch-sec-edgar.js --ticker AAPL --output .tmp/sec-test --fixture-dir examples/us-sec-analysis --user-agent "KrResearchKit validation@example.com"
+```
+
+## 5. OpenDART API key
 
 Most of the `kr-stock-dart-analysis` workflows expect an OpenDART key.
 
@@ -99,7 +121,7 @@ OPENDART_API_KEY=YOUR_KEY_HERE
 
 Without the key, `kr-stock-dart-analysis` falls back to the Chrome extension flow (see § 5).
 
-## 5. Claude.ai DART browser workflow (no API key)
+## 6. Claude.ai DART browser workflow (no API key)
 
 When Codex / Claude Code cannot drive the DART viewer directly, use the bundled Chrome extension under [`integrations/claude-dart-extension/`](../integrations/claude-dart-extension/README.md).
 
@@ -119,7 +141,7 @@ Reference files:
 - [Claude DART Extractor README](../integrations/claude-dart-extension/README.md)
 - [Sample browser export JSON](../examples/kr-stock-dart-analysis/dart-browser-export-sample.json)
 
-## 6. OpenDART API workflow (preferred over the extension)
+## 7. OpenDART API workflow (preferred over the extension)
 
 When `OPENDART_API_KEY` is set, `fetch-opendart.js` emits the same `dart-browser-export.json` schema so the rest of the pipeline (`normalize → extract → verify → build-reference`) runs unchanged.
 
@@ -134,7 +156,7 @@ node skills/kr-stock-dart-analysis/scripts/build-dart-reference.js --sections an
 
 `--report-code` is `11011` (사업보고서), `11012` (반기보고서), `11013` (분기보고서 Q1), `11014` (분기보고서 Q3). Cache lives in `.tmp/opendart-cache/` (gitignored). The script never logs the API key.
 
-## 7. PDF extraction (analyst reports + DART)
+## 8. PDF extraction (analyst reports + DART)
 
 Both `kr-stock-dart-analysis` and `kr-analyst-report-fetch` call `skills/kr-stock-dart-analysis/scripts/extract-pdf-text.py` via `child_process`, which requires:
 
@@ -142,7 +164,7 @@ Both `kr-stock-dart-analysis` and `kr-analyst-report-fetch` call `skills/kr-stoc
 python3 -m pip install pypdf
 ```
 
-## 8. Korean chart fonts
+## 9. Korean chart fonts
 
 PNG charts auto-discover a Korean font:
 
@@ -163,7 +185,7 @@ When no Korean font is found (or Pillow is missing), charts fall back to a 47-ja
 
 Override anywhere with `KR_STOCK_CHART_FONT=/path/to/font.ttf`.
 
-## 9. Known issue — Naver browse in sandbox
+## 10. Known issue — Naver browse in sandbox
 
 `kr-naver-browse`, `kr-naver-blogger`, and `kr-naver-insight` depend on a local gstack `browse` server that binds to `127.0.0.1`.
 
@@ -171,7 +193,7 @@ Override anywhere with `KR_STOCK_CHART_FONT=/path/to/font.ttf`.
 - Rerun the Naver fetch step outside the sandbox or with elevated execution. Do not assume `0 posts` means the bloggers or posts do not exist until the runtime issue is excluded.
 - On Linux/WSL installs, the `kr-naver-browse` post-install hook tries `bunx playwright install-deps chromium` before installing Chromium. Set `SKILL_INSTALL_SKIP_LINUX_DEPS=1` to skip automatic system dependency installation.
 
-## 10. Validation
+## 11. Validation
 
 Windows:
 

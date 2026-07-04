@@ -1,0 +1,179 @@
+{
+  "generatedAt": "2026-07-04T02:12:34.974Z",
+  "fixtureMode": false,
+  "secFairAccess": {
+    "declaredUserAgent": "KrResearchKit AdminContact@example.com",
+    "requestDelayMs": 150,
+    "maxRequestsPerSecondPolicy": "SEC fair access page states current max request rate is 10 requests/second; this script throttles below that."
+  },
+  "company": {
+    "name": "Tesla, Inc.",
+    "ticker": "TSLA",
+    "cik": "1318605",
+    "cik10": "0001318605",
+    "exchange": "Nasdaq"
+  },
+  "formsRequested": [
+    "10-K",
+    "10-Q",
+    "8-K"
+  ],
+  "selectedFilings": [
+    {
+      "requestedForm": "10-K",
+      "accessionNumber": "0001628280-26-003952",
+      "form": "10-K",
+      "filingDate": "2026-01-29",
+      "reportDate": "2025-12-31",
+      "acceptanceDateTime": "2026-01-29T01:55:03.000Z",
+      "act": "34",
+      "fileNumber": "001-34756",
+      "filmNumber": "26574326",
+      "items": "",
+      "size": 15755490,
+      "isXBRL": 1,
+      "isInlineXBRL": 1,
+      "primaryDocument": "tsla-20251231.htm",
+      "primaryDocDescription": "10-K",
+      "archiveFolderUrl": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/",
+      "indexUrl": "https://www.sec.gov/Archives/edgar/data/1318605/0001628280-26-003952-index.html",
+      "primaryDocumentUrl": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm"
+    },
+    {
+      "requestedForm": "10-Q",
+      "accessionNumber": "0001628280-26-026673",
+      "form": "10-Q",
+      "filingDate": "2026-04-23",
+      "reportDate": "2026-03-31",
+      "acceptanceDateTime": "2026-04-23T01:43:00.000Z",
+      "act": "34",
+      "fileNumber": "001-34756",
+      "filmNumber": "26885308",
+      "items": "",
+      "size": 8018370,
+      "isXBRL": 1,
+      "isInlineXBRL": 1,
+      "primaryDocument": "tsla-20260331.htm",
+      "primaryDocDescription": "10-Q",
+      "archiveFolderUrl": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026026673/",
+      "indexUrl": "https://www.sec.gov/Archives/edgar/data/1318605/0001628280-26-026673-index.html",
+      "primaryDocumentUrl": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026026673/tsla-20260331.htm"
+    },
+    {
+      "requestedForm": "8-K",
+      "accessionNumber": "0001628280-26-046717",
+      "form": "8-K",
+      "filingDate": "2026-07-02",
+      "reportDate": "2026-07-02",
+      "acceptanceDateTime": "2026-07-02T13:01:26.000Z",
+      "act": "34",
+      "fileNumber": "001-34756",
+      "filmNumber": "261148032",
+      "items": "2.02,9.01",
+      "size": 156958,
+      "isXBRL": 1,
+      "isInlineXBRL": 1,
+      "primaryDocument": "tsla-20260702.htm",
+      "primaryDocDescription": "8-K",
+      "archiveFolderUrl": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026046717/",
+      "indexUrl": "https://www.sec.gov/Archives/edgar/data/1318605/0001628280-26-046717-index.html",
+      "primaryDocumentUrl": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026046717/tsla-20260702.htm"
+    }
+  ],
+  "documents": [
+    {
+      "requestedForm": "10-K",
+      "form": "10-K",
+      "accessionNumber": "0001628280-26-003952",
+      "filingDate": "2026-01-29",
+      "reportDate": "2025-12-31",
+      "primaryDocument": "tsla-20251231.htm",
+      "primaryDocumentUrl": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm",
+      "htmlPath": "latest-10k.html",
+      "textPath": "latest-10k.txt"
+    },
+    {
+      "requestedForm": "10-Q",
+      "form": "10-Q",
+      "accessionNumber": "0001628280-26-026673",
+      "filingDate": "2026-04-23",
+      "reportDate": "2026-03-31",
+      "primaryDocument": "tsla-20260331.htm",
+      "primaryDocumentUrl": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026026673/tsla-20260331.htm",
+      "htmlPath": "latest-10q.html",
+      "textPath": "latest-10q.txt"
+    },
+    {
+      "requestedForm": "8-K",
+      "form": "8-K",
+      "accessionNumber": "0001628280-26-046717",
+      "filingDate": "2026-07-02",
+      "reportDate": "2026-07-02",
+      "primaryDocument": "tsla-20260702.htm",
+      "primaryDocumentUrl": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026046717/tsla-20260702.htm",
+      "htmlPath": "latest-8k.html",
+      "textPath": "latest-8k.txt"
+    }
+  ],
+  "files": {
+    "submissions": "sec-submissions.json",
+    "companyfacts": "sec-companyfacts.json",
+    "filingExport": "sec-filing-export.json"
+  },
+  "sourceMap": [
+    {
+      "claim": "Ticker to CIK mapping",
+      "sourceType": "SEC ticker map",
+      "documentOrConcept": "company_tickers_exchange.json / company_tickers.json",
+      "filed": null,
+      "accession": null,
+      "url": "https://www.sec.gov/files/company_tickers_exchange.json",
+      "status": "collected"
+    },
+    {
+      "claim": "Filing history",
+      "sourceType": "SEC submissions API",
+      "documentOrConcept": "CIK0001318605.json",
+      "filed": null,
+      "accession": null,
+      "url": "https://data.sec.gov/submissions/CIK0001318605.json",
+      "status": "collected"
+    },
+    {
+      "claim": "Standard XBRL company facts",
+      "sourceType": "SEC companyfacts API",
+      "documentOrConcept": "CIK0001318605.json",
+      "filed": null,
+      "accession": null,
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json",
+      "status": "collected"
+    },
+    {
+      "claim": "Latest 10-K selected filing",
+      "sourceType": "SEC primary filing document",
+      "documentOrConcept": "tsla-20251231.htm",
+      "filed": "2026-01-29",
+      "accession": "0001628280-26-003952",
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm",
+      "status": "collected"
+    },
+    {
+      "claim": "Latest 10-Q selected filing",
+      "sourceType": "SEC primary filing document",
+      "documentOrConcept": "tsla-20260331.htm",
+      "filed": "2026-04-23",
+      "accession": "0001628280-26-026673",
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026026673/tsla-20260331.htm",
+      "status": "collected"
+    },
+    {
+      "claim": "Latest 8-K selected filing",
+      "sourceType": "SEC primary filing document",
+      "documentOrConcept": "tsla-20260702.htm",
+      "filed": "2026-07-02",
+      "accession": "0001628280-26-046717",
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026046717/tsla-20260702.htm",
+      "status": "collected"
+    }
+  ]
+}

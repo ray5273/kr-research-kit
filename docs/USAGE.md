@@ -9,6 +9,14 @@ Use $us-stock-analysis for NVDA and write a dated investment memo with valuation
 ```
 
 ```text
+Use $us-sec-analysis for AAPL and create a Korean SEC evidence pack from the latest 10-K and 10-Q with XBRL companyfacts, MD&A, Risk Factors, latest 8-K metadata, and a Source Map under analysis-example/us/Apple/sec-analysis.md.
+```
+
+```text
+Use $us-sec-analysis for MSFT, build sec-reference.md and sec-cache.json from the latest 10-K filing text and SEC companyfacts, then hand the evidence pack to $us-stock-analysis for a dated memo.
+```
+
+```text
 Use $kr-stock-plan as the entry point for 064400.KS. First ask what I actually need, lock the ticker, share class, horizon, output mode, and key questions, treat my main question as the priority lens, then continue through the downstream Korean stock workflow automatically unless I ask for plan only.
 ```
 
@@ -80,6 +88,14 @@ Use $kr-sector-update to update analysis-example/kr-sector/국내 데이터센�
 
 ```text
 /us-stock-analysis write a dated investment memo for NVDA with valuation, catalysts, risks, and chart context.
+```
+
+```text
+/us-sec-analysis create a Korean SEC evidence pack for AAPL from the latest 10-K and 10-Q with XBRL companyfacts, MD&A, Risk Factors, latest 8-K metadata, and a Source Map.
+```
+
+```text
+/us-sec-analysis build sec-reference.md and sec-cache.json for MSFT from the latest 10-K, then use /us-stock-analysis to turn the evidence pack into a dated memo.
 ```
 
 ```text

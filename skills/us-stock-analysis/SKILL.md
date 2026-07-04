@@ -13,6 +13,7 @@ Use this skill to produce equity research style analysis for U.S. stocks and U.S
 - Prefer primary sources first: SEC filings, investor relations pages, earnings releases, earnings decks, transcripts, exchange announcements, ETF fact sheets, and official macro data.
 - Pin the scope before analyzing: ticker, exchange, analysis horizon, comparison set, and the desired output type.
 - If the workspace is writable, treat the default deliverable as a markdown report file, not just a chat reply. For a U.S. stock or ETF, create or update `analysis-example/us/<company>/memo.md`.
+- If exact SEC filing support matters, use `us-sec-analysis` first. Read any existing `analysis-example/us/<company>/sec-analysis.md`, `sec-reference.md`, or `sec-cache.json` before re-fetching filings.
 - State an explicit "as of" date in the final answer.
 
 ## Workflow
@@ -21,6 +22,8 @@ Use this skill to produce equity research style analysis for U.S. stocks and U.S
    Capture the security, market, user goal, time horizon, and whether the user wants a quick view, a deep memo, a comparison, or an event-driven read.
 2. Gather verified facts.
    Read current price context, recent SEC filings, the latest earnings package, and any recent company-specific news needed for the question.
+2A. Add SEC precision when needed.
+   For filing-sensitive claims about reported results, MD&A, Risk Factors, liquidity, cash flow, segment disclosure, controls, or exact XBRL facts, route through `us-sec-analysis` and ingest its `sec-reference.md` / `sec-cache.json` artifacts before drafting.
 3. Build the thesis.
    Explain what drives the business, why the market may be underpricing or overpricing it, and which metrics matter most for this business model.
 4. Stress test the idea.
@@ -51,6 +54,7 @@ Read [references/script-inputs.md](references/script-inputs.md) when using the b
 - Say when data is missing or uncertain.
 - If the user asks for portfolio sizing, tax, or personal suitability, keep the response informational unless the user provides those constraints explicitly.
 - If you produced a full single-stock memo, keep the file deliverable synchronized with the final chat answer rather than letting the report drift.
+- Do not re-collect SEC filings blindly when a matching `sec-reference.md` or `sec-cache.json` already covers the accession numbers being used.
 
 ## Source Priority
 
@@ -58,6 +62,8 @@ Read [references/script-inputs.md](references/script-inputs.md) when using the b
 2. Exchange notices and fund sponsor documents
 3. Official macro or industry data
 4. Reputable news and transcript providers for context
+
+Use `us-sec-analysis` as the SEC filing-precision stage when exact filing evidence is more important than a broad investment memo.
 
 ## Minimum Output Standard
 
