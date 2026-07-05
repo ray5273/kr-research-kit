@@ -505,6 +505,13 @@ function rankNewsItems(items, limit = null, options = {}) {
   return limit == null ? ranked : ranked.slice(0, limit);
 }
 
+// Ordering score for render-daily-report.js. KR ranking is score-only (no
+// recency/closing bonus like the US variant) — prefer the precomputed
+// importanceScore from rankNewsItems, recompute for raw items.
+function newsRankScore(item) {
+  return Number.isFinite(item?.importanceScore) ? item.importanceScore : marketNewsScore(item);
+}
+
 function classifyThemes(items) {
   const buckets = [
     { theme: "반도체 / AI", pattern: /반도체|HBM|DRAM|낸드|AI|엔비디아|메모리/i },
@@ -796,6 +803,7 @@ module.exports = {
   buildOneLine,
   buildMarketSummary,
   buildSectorDiscoveryQueries,
+  newsRankScore,
   classifyThemes,
   collectDailyMarketNews,
   collectDirectRssItems,
