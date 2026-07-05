@@ -1,7 +1,7 @@
 {
   "name": "kr-research-kit",
   "description": "AI-native Korean + U.S. equity research skill pack — DART filings, SEC EDGAR/XBRL, sell-side consensus, foreign-IB coverage, 5-panel charts, daily market news, and Naver-blog publishing. Primary-source-first.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Sanghyeok Park",
     "email": "ray5273@naver.com",
