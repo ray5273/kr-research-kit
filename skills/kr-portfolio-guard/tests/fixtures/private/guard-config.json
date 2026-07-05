@@ -1,0 +1,15 @@
+{
+  "total_capital": 100000000,
+  "riskBudgetPctByConfidence": { "1": 0.5, "2": 1.0, "3": 1.5 },
+  "thresholds": {
+    "triggerNearPct": 3,
+    "sma20DeviationPct": 7,
+    "rsiOversold": 30,
+    "rsiOverbought": 70,
+    "memoStaleDays": 45,
+    "corpActionJumpPct": 30,
+    "lastRunWarnDays": 7
+  },
+  "benchmarkByMarket": { "KR": "^KS11", "US": "^GSPC" },
+  "scoringHorizonsWeeks": [1, 4, 12]
+}

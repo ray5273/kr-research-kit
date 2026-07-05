@@ -998,12 +998,12 @@ function main() {
   }
 
   if (!opts.mode) {
-    console.error("Error: --mode is required (chart, dart, gate, blog, analyst, foreign, all, regression)");
+    console.error("Error: --mode is required (chart, dart, gate, blog, analyst, foreign, all, regression, guard)");
     console.error(usage());
     process.exit(1);
   }
 
-  if (!opts.company && !opts.memoPath) {
+  if (!opts.company && !opts.memoPath && opts.mode !== "guard") {
     console.error("Error: --company or --memo-path is required");
     process.exit(1);
   }
@@ -1084,10 +1084,33 @@ function main() {
   } else if (opts.mode === "regression") {
     const result = runRegression(opts);
     process.exit(result.passed ? 0 : 1);
+  } else if (opts.mode === "guard") {
+    runGuard(opts);
   } else {
     console.error(`Error: unknown mode '${opts.mode}'`);
     process.exit(1);
   }
+}
+
+// kr-portfolio-guard: fixture test suite + offline dry-run E2E (no network,
+// no private data — fixtures only). Live sweeps run against the user's
+// private dir via the skill itself, never through the harness.
+function runGuard() {
+  const { execFileSync } = require("child_process");
+  const testScript = path.join(
+    __dirname, "..", "skills", "kr-portfolio-guard", "tests", "run-tests.js"
+  );
+  if (!fs.existsSync(testScript)) {
+    console.error(`[guard] test suite not found: ${testScript} — install kr-portfolio-guard first`);
+    process.exit(1);
+  }
+  console.log("[guard] running fixture tests + offline dry-run E2E…");
+  try {
+    execFileSync(process.execPath, [testScript], { stdio: "inherit" });
+  } catch (err) {
+    process.exit(1);
+  }
+  console.log("[guard] PASS");
 }
 
 main();
