@@ -1,0 +1,23 @@
+{
+  "asOf": "2026-07-01",
+  "holdings": [
+    {
+      "ticker": "TESTA",
+      "name": "가드테스트A",
+      "market": "KR",
+      "currency": "KRW",
+      "quantity": 100,
+      "avgCost": 10000,
+      "memo": "skills/kr-portfolio-guard/tests/fixtures/memo-a.md"
+    },
+    {
+      "ticker": "TESTB",
+      "name": "가드테스트B",
+      "market": "KR",
+      "currency": "KRW",
+      "quantity": 50,
+      "avgCost": 5000,
+      "memo": "none"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Korean Portfolio Guard"
+  short_description: "Weekly guard over real holdings: memo triggers, price levels, indicators, and new filings become a one-screen ACTION NEEDED report, then each flag is debated and closed with a forced SELL/HOLD/ADD/REVIEW/DEFER decision in a local ledger."
+  default_prompt: "Use $kr-portfolio-guard to load pending guard flags from the private data directory, run guard-sweep if stale, debate each flagged holding bull-vs-bear, and record the user's decision with ledger-append."
+
+policy:
+  allow_implicit_invocation: false
