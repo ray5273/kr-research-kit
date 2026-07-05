@@ -745,6 +745,7 @@ function buildMetrics(bars) {
   const macd = macdSeries(closes, 12, 26, 9);
   const adx = adxSeries(highs, lows, closes, 14);
   const volume20Series = rollingAverageSeries(volumes, 20);
+  const volume60Series = rollingAverageSeries(volumes, 60);
   const bollinger = bollingerSeries(closes, 20, 2);
   const ichimoku = ichimokuSeries(highs, lows, closes);
 
@@ -793,6 +794,8 @@ function buildMetrics(bars) {
     macdSeriesData: macd,
     adxSeriesData: adx,
     avgVolume20: volume20Series[latestIndex],
+    volume20Series,
+    volume60Series,
     volumeRatio,
     volumeRegime: classifyVolume(volumeRatio),
     breakoutLevel,
