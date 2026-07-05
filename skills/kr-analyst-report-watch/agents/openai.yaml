@@ -1,0 +1,7 @@
+interface:
+  display_name: "KR Analyst Report Watch"
+  short_description: "Monitor daily or weekly Korean brokerage research flow, summarize Top N reports, and compare narrative changes by topic."
+  default_prompt: "Use $kr-analyst-report-watch to collect the newest public Korean securities reports in daily or weekly mode, write analysis-example/kr-reports/report-watch-<mode>-YYYY-MM-DD.md and .json, and summarize the most important narrative changes versus prior report-watch artifacts. Use Hankyung Consensus first and Naver Research as fallback/secondary. Keep login-gated reports as metadata only and paraphrase copyrighted report text."
+
+policy:
+  allow_implicit_invocation: true

@@ -52,6 +52,7 @@
       "kr-foreign-analyst",
       "kr-market-leaders",
       "kr-daily-market-news",
+      "kr-analyst-report-watch",
       "us-stock-analysis",
       "us-sec-analysis",
       "us-daily-market-news"
@@ -123,6 +124,12 @@
       "tier": "standalone",
       "tagline": "Build a dated Korean daily market-news report from market-wide news plus a watchlist, then emit Markdown/JSON artifacts and a Naver Blog scheduled-publish manifest.",
       "entry": "skills/kr-daily-market-news/SKILL.md"
+    },
+    {
+      "name": "kr-analyst-report-watch",
+      "tier": "standalone",
+      "tagline": "Monitor daily or weekly Korean brokerage report flow, summarize Top N public reports, and compare narrative changes by topic.",
+      "entry": "skills/kr-analyst-report-watch/SKILL.md"
     },
     {
       "name": "us-daily-market-news",
@@ -246,6 +253,7 @@
     "Yahoo Finance RSS / MarketWatch RSS / CNBC RSS for U.S. daily market news",
     "Hankyung Consensus (consensus.hankyung.com)",
     "Naver Pay Research (finance.naver.com/research)",
+    "Daily/weekly Korean brokerage report monitoring via Hankyung Consensus and Naver Pay Research",
     "Naver Search / Blog / News",
     "Naver SmartEditor (blog.naver.com) — browser automation, explicit-approval stock publish gate, scheduled daily-market publish gate"
   ],

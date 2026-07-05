@@ -53,6 +53,14 @@ Use $kr-stock-update to refresh analysis-example/kr/엘앤에프/memo.md with co
 ```
 
 ```text
+Use $kr-analyst-report-watch in daily mode for today's Korean brokerage report flow. Summarize the Top 10 public reports, compare topic narratives against prior report-watch artifacts, and write analysis-example/kr-reports/report-watch-daily-YYYY-MM-DD.md and .json.
+```
+
+```text
+Use $kr-analyst-report-watch in weekly mode for this week's Korean brokerage report flow. Summarize the Top 30 public reports and highlight industry trend, demand/supply, policy, competition, risk, and catalyst narrative changes.
+```
+
+```text
 Use $kr-daily-market-news to create today's Korean daily market-news report for blog publication. Read watchlist from examples/kr/daily-watchlist.json, use official Korean market/disclosure sources first where available and Naver News second, write analysis-example/kr-market/daily-news-YYYY-MM-DD.md and .json, then use $kr-naver-blog-publish to publish in scheduled mode only if validation passes.
 ```
 
@@ -132,6 +140,14 @@ Use $kr-sector-update to update analysis-example/kr-sector/국내 데이터센�
 
 ```text
 /kr-stock-update update analysis-example/kr/엘앤에프/memo.md with company-specific disclosures, IR materials, and news after the memo date. Preserve 기준일, update the dated Update Log block by default, and synchronize only gated thesis sections if the evidence changes the memo stance.
+```
+
+```text
+/kr-analyst-report-watch run daily mode for today's Korean brokerage report flow, write analysis-example/kr-reports/report-watch-daily-YYYY-MM-DD.md and .json, and summarize the Top 10 narrative changes.
+```
+
+```text
+/kr-analyst-report-watch run weekly mode for this week's Korean brokerage report flow and highlight topic-by-topic narrative changes versus prior watch artifacts.
 ```
 
 ```text

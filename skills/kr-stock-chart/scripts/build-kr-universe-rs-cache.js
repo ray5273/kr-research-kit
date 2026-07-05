@@ -233,6 +233,52 @@ function computeReturnFromBars(bars, period) {
   return latest / prior - 1;
 }
 
+function averageVolume(bars) {
+  const volumes = bars
+    .map((bar) => bar.volume)
+    .filter((volume) => Number.isFinite(volume));
+  if (!volumes.length) {
+    return null;
+  }
+  return volumes.reduce((sum, volume) => sum + volume, 0) / volumes.length;
+}
+
+function computeVolumeRatio(bars, period = 20) {
+  if (bars.length <= period) {
+    return null;
+  }
+  const latestVolume = bars[bars.length - 1]?.volume;
+  const priorAverage = averageVolume(bars.slice(-period - 1, -1));
+  if (![latestVolume, priorAverage].every(Number.isFinite) || priorAverage === 0) {
+    return null;
+  }
+  return latestVolume / priorAverage;
+}
+
+function computeHighLowStats(bars, period = 252) {
+  const window = bars.slice(-period).filter((bar) => Number.isFinite(bar.close));
+  const latestClose = bars[bars.length - 1]?.close;
+  if (!window.length || !Number.isFinite(latestClose)) {
+    return {
+      close52WeekHigh: null,
+      close52WeekLow: null,
+      priceVs52WeekHighRatio: null,
+      priceVs52WeekLowRatio: null,
+      has52WeekHistory: false,
+    };
+  }
+  const closes = window.map((bar) => bar.close);
+  const close52WeekHigh = Math.max(...closes);
+  const close52WeekLow = Math.min(...closes);
+  return {
+    close52WeekHigh,
+    close52WeekLow,
+    priceVs52WeekHighRatio: close52WeekHigh > 0 ? latestClose / close52WeekHigh : null,
+    priceVs52WeekLowRatio: close52WeekLow > 0 ? latestClose / close52WeekLow : null,
+    has52WeekHistory: bars.length >= period,
+  };
+}
+
 function computeRsRawScore(entry) {
   if (![entry.return63, entry.return126, entry.return252].every(Number.isFinite)) {
     return null;
@@ -343,16 +389,30 @@ async function buildUniverseCache(options = {}) {
     try {
       const allBars = await fetchYahooChart(entry.symbol, options.range || "2y");
       const bars = filterBarsToDate(allBars, asOfDate);
+      const latestBar = bars[bars.length - 1] || {};
+      const highLowStats = computeHighLowStats(bars);
       const result = {
         ticker: entry.ticker,
         symbol: entry.symbol,
         name: entry.name,
         market: entry.market,
+        industry: entry.industry,
+        product: entry.product,
         latestDate: bars[bars.length - 1]?.date || null,
+        latestClose: latestBar.close ?? null,
+        latestVolume: latestBar.volume ?? null,
         barsFetched: bars.length,
+        return1: computeReturnFromBars(bars, 1),
+        return7: computeReturnFromBars(bars, 7),
+        return30: computeReturnFromBars(bars, 30),
+        return60: computeReturnFromBars(bars, 60),
+        return120: computeReturnFromBars(bars, 120),
         return63: computeReturnFromBars(bars, 63),
         return126: computeReturnFromBars(bars, 126),
         return252: computeReturnFromBars(bars, 252),
+        volumeRatio20: computeVolumeRatio(bars, 20),
+        ...highLowStats,
+        dataQuality: bars.length < 252 ? ["252거래일 미만"] : [],
       };
       result.rsRawScore = computeRsRawScore(result);
       return result;
@@ -438,5 +498,6 @@ module.exports = {
   computeReturnFromBars,
   computeRsRawScore,
   assignPercentiles,
+  fetchYahooChart,
   buildUniverseCache,
 };

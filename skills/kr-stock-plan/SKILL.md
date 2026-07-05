@@ -22,7 +22,7 @@ For Korean single-name work, this is the default entry point. It should decide w
 - If the user invoked `kr-stock-plan` as the entry point for a real stock task, do not stop after the brief. Use the brief to route automatically into `kr-stock-dart-analysis`, `kr-stock-data-pack`, and `kr-stock-analysis` as needed unless the user explicitly asked to stop at the brief.
 - Treat `analysis-example/kr/<company>/memo.md` as the canonical reusable artifact for non-planning work.
 - Only write `analysis-example/kr/<company>/리서치브리프.md` when the user explicitly asked for planning only or asked to keep the brief itself as a reusable artifact.
-- For a follow-up request, resolve the existing memo first and classify the work as `memo-only` or `refresh-needed` before routing further.
+- For a follow-up request, resolve the existing memo first and classify the work as `answer-now`, `refresh-now`, `wait-for-event`, or `ask-user` before routing further. Compatibility aliases: `memo-only` maps to `answer-now`; `refresh-needed` maps to `refresh-now`.
 
 ## Workflow
 
@@ -63,4 +63,4 @@ Read [references/output-format.md](references/output-format.md) for the required
 - Treat `kr-stock-plan` as the default orchestrator for Korean single-stock work. Unless the user explicitly requests planning only, carry the work forward yourself after the brief is locked.
 - Resolve follow-up requests against `analysis-example/kr/<company>/memo.md` first. Only ask the user to restate the ticker or company when the target memo is missing or ambiguous.
 - Keep the user question as a priority lens. If the user supplied a specific concern, the downstream memo should reorder emphasis around that concern instead of treating it as an appendix.
-- Route `memo-only` follow-ups back into `kr-stock-analysis` with the existing memo as context. Route `refresh-needed` follow-ups into `kr-stock-update` and only pull `kr-stock-dart-analysis` or `kr-stock-data-pack` again when new verification is needed.
+- Route `answer-now` (`memo-only`) follow-ups back into `kr-stock-analysis` with the existing memo as context. Route `refresh-now` (`refresh-needed`) follow-ups into `kr-stock-update` and only pull `kr-stock-dart-analysis` or `kr-stock-data-pack` again when new verification is needed. Route `wait-for-event` into a short trigger note and route `ask-user` into a clarifying question.

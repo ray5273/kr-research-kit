@@ -74,6 +74,17 @@ Execution rule:
 
 The Naver-first path applies when the user's ask is explicitly about what Naver bloggers or the retail community thinks, not about a filing-grounded decision memo.
 
+## Follow-up Classification Loop
+
+When an existing `analysis-example/kr/<company>/memo.md` is found, classify the follow-up before routing:
+
+- `answer-now`: the existing memo state is enough to answer the user question. Legacy alias: `memo-only`.
+- `refresh-now`: new post-memo disclosures, IR materials, or company-specific news are required. Legacy alias: `refresh-needed`.
+- `wait-for-event`: the right next action is to wait for a named filing, earnings release, IR deck, KRX disclosure, or source update.
+- `ask-user`: the memo target, event, time window, or desired depth is ambiguous enough that routing would be risky.
+
+Route `refresh-now` to `kr-stock-update`. Route `answer-now` to memo-context answer or `kr-stock-analysis` only if an analytical rewrite is requested. Route `wait-for-event` to a concise trigger note. Route `ask-user` to the shortest clarifying question.
+
 Prefer the filing-heavy workflow when the request depends on:
 
 - latest quarter or half-year numbers

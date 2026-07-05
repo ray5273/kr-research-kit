@@ -1,9 +1,9 @@
 # Skills Catalog & Behavior
 
-27 skills shipped in `kr-research-kit`. Korean stock workflow shorthand:
+29 skills shipped in `kr-research-kit`. Korean stock workflow shorthand:
 
 ```text
-kr-stock-plan -> kr-stock-chart -> kr-stock-dart-analysis -> kr-stock-data-pack -> kr-stock-analysis
+kr-stock-plan -> kr-stock-chart -> kr-stock-dart-analysis -> kr-trade-flow-analysis -> kr-stock-data-pack -> kr-stock-analysis
 ```
 
 U.S. stock workflow shorthand:
@@ -27,12 +27,14 @@ Use $kr-stock-plan as the entry point for Korean stock work. Have it first ask w
 - `kr-stock-plan` — scopes Korean stock research into an execution-ready brief and acts as the default entry-point orchestrator for fresh memos, follow-up questions, and dated updates.
 - `kr-market-leaders` — integrated KOSPI + KOSDAQ technical leadership screens across 1D/7D, 30D/60D, and 120D/252D lenses.
 - `kr-daily-market-news` — daily Korean market-wide plus watchlist news report for Codex Desktop Automation, with dated Markdown/JSON artifacts and a Naver Blog publish manifest.
+- `kr-analyst-report-watch` — daily/weekly Korean brokerage report monitor that summarizes Top N reports and flags narrative changes by topic.
 - `us-daily-market-news` — daily U.S. market-wide and sector news report for Codex Desktop Automation, with U.S. RSS sources, New York date filtering, dated Markdown/JSON artifacts, and a Naver Blog publish manifest.
 - `kr-stock-chart` — chart-only KRX output and reusable chart artifacts (`chart-data.json`, `chart-analysis.md`, five PNG panels, CSV sidecars, optional rule-screen outputs).
 - `kr-stock-dart-analysis` — precise DART filing extraction before broader Korean stock interpretation.
+- `kr-trade-flow-analysis` — CSV-first customs/KITA/UN Comtrade proxy analysis for undisclosed customer, geography, or product mix; writes `trade-flow-data.json` and `trade-flow-analysis.md` with explicit evidence grades.
 - `kr-stock-data-pack` — structured company fact packs before drafting, including optional outside-view inputs.
 - `kr-stock-analysis` — Korean stock quick views, full decision memos, event notes, pair compares, archetype-specific uncomfortable questions, decision-changing issues, structured stance, and follow-up research prompts.
-- `kr-stock-update` — dated follow-up updates to an existing Korean stock memo.
+- `kr-stock-update` — baseline-aware maintenance updates to an existing Korean stock memo, defaulting to Update Log only with gated thesis-section sync.
 - `kr-foreign-analyst` — collects foreign-IB coverage of a KRX company from Korean news and renders a `## Street / Alternative Views` Markdown block.
 - `kr-portfolio-monitor` — multi-position KRX portfolio snapshots via Kiwoom REST API or Yahoo fallback.
 - `kr-analyst-report-discover` / `kr-analyst-report-fetch` / `kr-analyst-report-insight` — Hankyung Consensus + Naver Pay Research analyst-report pipeline.
@@ -81,6 +83,8 @@ Primary instructions:
 - [skills/kr-stock-plan/SKILL.md](../skills/kr-stock-plan/SKILL.md)
 - [skills/kr-stock-dart-analysis/SKILL.md](../skills/kr-stock-dart-analysis/SKILL.md)
 - [skills/kr-stock-dart-analysis/references/script-inputs.md](../skills/kr-stock-dart-analysis/references/script-inputs.md)
+- [skills/kr-trade-flow-analysis/SKILL.md](../skills/kr-trade-flow-analysis/SKILL.md)
+- [skills/kr-trade-flow-analysis/references/output-format.md](../skills/kr-trade-flow-analysis/references/output-format.md)
 - [skills/kr-stock-data-pack/SKILL.md](../skills/kr-stock-data-pack/SKILL.md)
 - [skills/kr-stock-analysis/SKILL.md](../skills/kr-stock-analysis/SKILL.md)
 - [skills/kr-stock-analysis/references/blended-source-notes.md](../skills/kr-stock-analysis/references/blended-source-notes.md)
@@ -89,6 +93,7 @@ Primary instructions:
 - [skills/kr-analyst-report-discover/SKILL.md](../skills/kr-analyst-report-discover/SKILL.md)
 - [skills/kr-analyst-report-fetch/SKILL.md](../skills/kr-analyst-report-fetch/SKILL.md)
 - [skills/kr-analyst-report-insight/SKILL.md](../skills/kr-analyst-report-insight/SKILL.md)
+- [skills/kr-analyst-report-watch/SKILL.md](../skills/kr-analyst-report-watch/SKILL.md)
 - [skills/kr-foreign-analyst/SKILL.md](../skills/kr-foreign-analyst/SKILL.md)
 - [skills/kr-foreign-analyst/references/output-format.md](../skills/kr-foreign-analyst/references/output-format.md)
 
@@ -97,9 +102,10 @@ Current behavior:
 1. `kr-stock-plan` starts with a short user-needs check, converts a vague Korean stock request into a clear security definition, output mode, key questions, and a recommended workflow, classifies the task as fresh memo vs follow-up vs dated update, and continues into the downstream skills automatically unless the user asked for planning only.
 2. `kr-stock-chart` owns KRX chart generation. It fetches about 2 years of daily bars by default, writes `chart-data.json` and `chart-analysis.md`, renders the five PNG chart panels plus CSV sidecars, and can add a rule-screen block when requested. The technical read surfaces today's `MA5 / 20 / 60 / 120 / 200` price levels explicitly.
 3. `kr-stock-dart-analysis` acts as the filing-precision stage when the work depends on exact DART-backed result, segment, customer, backlog, contract, or disclosure wording detail, and first asks a short filing-needs check when the target slice is still unclear. For long annual filings, it keeps a `dart-reference.md` digest and `dart-cache.json` coverage cache so later updates can reuse section-level verification instead of re-reading the entire filing blindly. When the filing supports a broader stock memo, it also runs a DART recheck loop for thesis-critical claims instead of treating deep verification as optional.
-4. `kr-stock-data-pack` collects dated price context, filings, results, governance facts, valuation inputs, chart inputs, and optional outside-view inputs before drafting, and ingests `kr-stock-chart` artifacts rather than rebuilding them.
-5. `kr-stock-analysis` writes the final output as a `quick view`, `full memo`, `pre-earnings note`, `post-earnings note`, or `pair compare` for KRX-listed companies, and first confirms the final decision frame or section priorities when they are still ambiguous. Full memos lead with `Decision Frame`, then surface `Uncomfortable Questions`, `Decision-Changing Issues`, `Structured Stance`, and `Follow-up Research Prompts` as fixed headers.
-6. `kr-stock-update` preserves the original memo date, refreshes `최근 업데이트일`, and appends or replaces dated follow-up blocks under `## Update Log`.
+4. `kr-trade-flow-analysis` normalizes official or manual trade-stat CSVs and scores whether HS-code / country / region / plant-cluster movement can support `Trade Flow Inference` for undisclosed customer, geography, or product mix. It never upgrades a proxy to `confirmed disclosure` without DART/IR support.
+5. `kr-stock-data-pack` collects dated price context, filings, results, governance facts, valuation inputs, chart inputs, optional outside-view inputs, and optional trade-flow proxy rows before drafting, and ingests `kr-stock-chart` artifacts rather than rebuilding them.
+6. `kr-stock-analysis` writes the final output as a `quick view`, `full memo`, `pre-earnings note`, `post-earnings note`, or `pair compare` for KRX-listed companies, and first confirms the final decision frame or section priorities when they are still ambiguous. Full memos lead with `Decision Frame`, then surface `Uncomfortable Questions`, `Decision-Changing Issues`, `Structured Stance`, and `Follow-up Research Prompts` as fixed headers.
+7. `kr-stock-update` preserves the original memo date, classifies follow-ups as `answer-now`, `refresh-now`, `wait-for-event`, or `ask-user`, refreshes `최근 업데이트일`, and appends or replaces dated follow-up blocks under `## Update Log`. It synchronizes `Summary`, `Structured Stance`, `Decision-Changing Issues`, `Follow-up Research Prompts`, `DART Recheck`, `Decision Frame`, or `guard-decision` only when a material thesis delta or resolved follow-up prompt requires it.
 
 Recommended pipeline:
 
@@ -109,6 +115,7 @@ kr-stock-plan
   -> decide fresh memo vs follow-up vs dated update
   -> if chart work matters: kr-stock-chart
   -> if filing precision matters: kr-stock-dart-analysis
+  -> if undisclosed mix can be proxied by customs/trade statistics: kr-trade-flow-analysis
   -> if sell-side consensus matters: kr-analyst-report-discover -> kr-analyst-report-fetch -> kr-analyst-report-insight
   -> if foreign-IB views matter: kr-foreign-analyst
   -> if independent retail voices matter: kr-naver-blogger -> kr-naver-insight
@@ -122,6 +129,7 @@ Analyst-report pipeline details:
 - `kr-analyst-report-discover` scrapes sell-side reports from `consensus.hankyung.com` (primary) with `finance.naver.com/research` as fallback. Default lookback is 365 days (`--lookback-days` overrides). Login-gated reports are kept with `requiresAuth: true`. Output: `.tmp/analyst-report-cache/index/<ticker>/<YYYY-MM-DD>.json`.
 - `kr-analyst-report-fetch` downloads each non-auth PDF and extracts text via the shared `skills/kr-stock-dart-analysis/scripts/extract-pdf-text.py` helper (requires `pypdf`). Output: `.tmp/analyst-report-cache/extracted/<ticker>/<YYYY-MM-DD>.json`.
 - `kr-analyst-report-insight` renders a 7-section Markdown digest (consensus snapshot, broker table, recent reports with verbatim key-point bullets, divergences, TP trajectory with ASCII sparkline, source-quality footer). Snippets are quoted verbatim at ~1500 chars per report; it is a standalone deliverable and also the ingestion source for `kr-stock-data-pack` → `External Views` with `Source role: sell-side consensus`.
+- `kr-analyst-report-watch` monitors broad daily/weekly Korean brokerage flow without requiring a ticker, writes `analysis-example/kr-reports/report-watch-<mode>-<YYYY-MM-DD>.md` and `.json`, and compares each topic key with the newest prior watch artifact to emphasize narrative deltas.
 - `kr-foreign-analyst` searches Korean news for foreign investment-bank coverage, extracts broker / rating / target-price / date metadata from article text, and renders a memo-ready `## Street / Alternative Views` block. Treat it as secondary news-sourced evidence, not a primary report or filing fact.
 
 Routing guide:
@@ -129,6 +137,7 @@ Routing guide:
 - Start with `kr-stock-plan` when the request is still ambiguous on ticker, share class, horizon, compare mode, deliverable shape, or whether the user wants a fresh memo vs a follow-up. If the user started there for actual analysis work, continue automatically after the brief instead of waiting for another manual skill call.
 - Insert `kr-stock-chart` when the user wants chart-only output or when the memo should ingest reusable chart artifacts.
 - Insert `kr-stock-dart-analysis` when the conclusion depends on exact DART wording, standalone-quarter derivation, segment detail, customer concentration, backlog, or contract disclosures.
+- Insert `kr-trade-flow-analysis` when the company is export-driven and undisclosed customer, geography, or product mix can be triangulated from official trade-flow CSVs plus DART, peer, and contract evidence.
 - Use `kr-stock-data-pack` to assemble the dated fact base around price, governance, valuation, chart, and outside-view inputs.
 - Finish with `kr-stock-analysis` for the final memo, event note, quick view, or pair compare. For full memos, keep `analysis-example/kr/<company>/memo.md` as the canonical state artifact for later follow-up work.
 
@@ -139,6 +148,7 @@ Routing guide:
 - `skills/kr-stock-chart/scripts/build-kr-universe-rs-cache.js` — integrated `KOSPI + KOSDAQ` relative-strength percentile cache files under `.tmp/kr-rs-cache/<YYYY-MM-DD>.json`
 - `skills/kr-market-leaders/scripts/screen-kr-market-leaders.js` — market-wide KRX leadership reports under `analysis-example/kr-market/leaders-<YYYY-MM-DD>.md` and `.json`
 - `skills/kr-daily-market-news/scripts/fetch-daily-market-news.js` and `render-daily-report.js` — daily market-news artifacts under `analysis-example/kr-market/daily-news-<YYYY-MM-DD>.md` / `.json` plus a dated Naver publish manifest.
+- `skills/kr-analyst-report-watch/scripts/discover-watch-reports.js` — broad Korean sell-side report monitor with fixture-testable parsing, dedupe, topic classification, prior-artifact comparison, and Markdown/JSON rendering.
 - `skills/us-daily-market-news/scripts/fetch-daily-market-news.js` and `render-daily-report.js` — U.S. daily market-news artifacts under `analysis-example/us-market/daily-news-<YYYY-MM-DD>.md` / `.json` plus a dated Naver publish manifest.
 - `skills/us-sec-analysis/scripts/fetch-sec-edgar.js` — resolves ticker/CIK, fetches SEC submissions and companyfacts with declared `User-Agent`, downloads selected filing HTML, writes text exports, and emits `sec-filing-export.json` plus `sec-companyfacts.json`.
 - `skills/us-sec-analysis/scripts/extract-sec-sections.js` — parses 10-K/10-Q Item headings and emits section coverage as `parsed`, `partial`, `missing`, or `needs_review`.
@@ -153,8 +163,11 @@ Routing guide:
 - `skills/kr-stock-dart-analysis/scripts/opendart-zip.py` — Python3 stdlib helper used by `fetch-opendart.js` for cp949-safe ZIP extraction and `dart4.xsd` XML pre-processing
 - `skills/kr-stock-dart-analysis/scripts/verify-dart-coverage.js` — checks whether the filing TOC was fully parsed
 - `skills/kr-stock-dart-analysis/scripts/build-dart-reference.js` — generates `dart-reference.md` and `dart-cache.json`. `dart-cache.json` reserves a `verifiedClaims` block for memo-critical claim verification results
-- `skills/kr-stock-update/scripts/extract-report-baseline.js` — parses memo metadata, update dates, and existing source URLs
+- `skills/kr-trade-flow-analysis/scripts/normalize-trade-flow.js` — converts 관세청/KITA, UN Comtrade, or manual CSV rows into `trade-flow-data.json`
+- `skills/kr-trade-flow-analysis/scripts/score-trade-inference.js` — scores trade-flow inference confidence from trade movement, company results, peer divergence, contract-scale fit, and contradiction checks
+- `skills/kr-stock-update/scripts/extract-report-baseline.js` — parses memo metadata, fixed memo sections, update blocks, event keys, existing source URLs, DART state, chart assets, and sibling artifacts
 - `skills/kr-stock-update/scripts/normalize-update-log.js` — renders a normalized dated update block and writes it back into the memo
+- `skills/kr-stock-update/scripts/apply-memo-section-updates.js` — replaces only gated thesis-maintenance sections while preserving `기준일`
 
 ### `kr-portfolio-monitor`
 

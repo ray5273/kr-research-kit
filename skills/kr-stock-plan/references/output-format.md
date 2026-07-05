@@ -18,7 +18,7 @@ Use this default planning shape unless the user asked for something else.
 ## User Needs
 - Planning only vs execute now:
 - Existing memo path, if this is a follow-up:
-- Follow-up classification (`memo-only` or `refresh-needed`):
+- Follow-up classification (`answer-now`, `refresh-now`, `wait-for-event`, or `ask-user`; legacy aliases `memo-only` / `refresh-needed`):
 - Priority user question:
 - Must-have workstreams:
 - Nice-to-have workstreams:

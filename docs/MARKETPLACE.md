@@ -102,7 +102,7 @@ Approved plugins land in `anthropics/claude-plugins-community/.claude-plugin/mar
 >
 > U.S. stock work adds `us-sec-analysis`, which collects official SEC submissions, latest 10-K/10-Q filing text, latest 8-K metadata, standardized XBRL companyfacts, `sec-reference.md`, `sec-cache.json`, and a Source Map before `us-stock-analysis` writes thesis, valuation, catalysts, and risks.
 >
-> Also bundled: `kr-market-leaders` (KOSPI + KOSDAQ leadership screener), `kr-portfolio-monitor` (SMA20/RSI14 portfolio health), `kr-stock-update` (incremental memo updates), U.S. daily market news, and a full sector workflow (`kr-sector-plan/-analysis/-data-pack/-compare/-audit/-update`). 27 skills total.
+> Also bundled: `kr-market-leaders` (KOSPI + KOSDAQ leadership screener), `kr-portfolio-monitor` (SMA20/RSI14 portfolio health), `kr-stock-update` (baseline-aware memo maintenance with gated thesis updates), U.S. daily market news, Korean brokerage report watch, and a full sector workflow (`kr-sector-plan/-analysis/-data-pack/-compare/-audit/-update`). 29 skills total.
 >
 > Native to both **Claude Code** and **OpenAI Codex CLI**. No npm dependencies (Node stdlib only). Optional Python (pypdf, Pillow) for PDF extraction and chart text rendering on macOS/Linux. Optional Bun for Naver browser automation.
 >
@@ -122,7 +122,7 @@ Approved plugins land in `anthropics/claude-plugins-community/.claude-plugin/mar
 >
 > 미국 주식은 `us-sec-analysis`가 SEC submissions, 최신 10-K/10-Q 원문, 최신 8-K 메타데이터, XBRL companyfacts, Source Map을 먼저 수집하고 `us-stock-analysis`가 thesis·valuation·catalyst·risk 메모로 넘깁니다.
 >
-> 추가 번들: `kr-market-leaders`(KOSPI+KOSDAQ leadership 스크리닝), `kr-portfolio-monitor`(SMA20/RSI14 헬스체크), `kr-stock-update`(메모 증분 업데이트), 미국 데일리 시장 뉴스, 섹터 워크플로 6종(`kr-sector-*`). 총 27개 스킬.
+> 추가 번들: `kr-market-leaders`(KOSPI+KOSDAQ leadership 스크리닝), `kr-portfolio-monitor`(SMA20/RSI14 헬스체크), `kr-stock-update`(기존 메모 상태 기반 증분 업데이트와 제한적 thesis 동기화), 미국 데일리 시장 뉴스, 증권사 리포트 워치, 섹터 워크플로 6종(`kr-sector-*`). 총 29개 스킬.
 >
 > **Claude Code + Codex CLI 양쪽 네이티브**. npm 의존성 0, Node stdlib만. 선택 의존성: Python(pypdf, Pillow), Bun(Naver 자동화).
 >
@@ -162,10 +162,10 @@ Approved plugins land in `anthropics/claude-plugins-community/.claude-plugin/mar
 **프롬프트:**
 
 ```text
-/kr-stock-update analysis-example/kr/엘앤에프/memo.md를 이번 주 새 공시·뉴스 반영해서 업데이트해줘 (기존 기준일은 보존하고 ## Update Log 블록만 추가)
+/kr-stock-update analysis-example/kr/엘앤에프/memo.md를 이번 주 새 공시·뉴스 반영해서 업데이트해줘 (기존 기준일은 보존하고 기본은 ## Update Log만 갱신하되, thesis가 바뀌면 Summary/Structured Stance 같은 제한 섹션만 동기화)
 ```
 
-**핵심 동작:** 메모 `기준일` 이후 발행된 회사 공시·IR 자료·뉴스만 검토 → 날짜 표시된 Update Log 블록만 추가. 기존 본문은 손대지 않음 → 시계열 추적성 유지.
+**핵심 동작:** 먼저 기존 메모의 `Decision Frame`, `DART Recheck`, `Structured Stance`, `Follow-up Research Prompts`, `Update Log` 상태를 읽고 follow-up을 `answer-now` / `refresh-now` / `wait-for-event` / `ask-user`로 분류 → `refresh-now`일 때만 메모 `기준일` 이후 회사 공시·IR 자료·뉴스를 검토 → 기본은 날짜 표시된 Update Log 블록만 추가/교체 → material thesis delta가 있으면 허용된 본문 섹션만 제한 동기화.
 
 ---
 

@@ -446,67 +446,127 @@ function compareWithPriorReport(current, prior) {
     };
   }
 
-  const currentComposite = (current.rankings?.composite || []).slice(0, DEFAULT_TOP);
-  const priorComposite = (prior.rankings?.composite || []).slice(0, DEFAULT_TOP);
-  const priorTopTickers = new Set(priorComposite.map((entry) => entry.ticker));
+  const lensKeys = ["shortTerm", "intermediate", "structural", "composite"];
+  const lensLabels = {
+    shortTerm: "단기 top20",
+    intermediate: "중기 top20",
+    structural: "구조적 top20",
+    composite: "Composite top20",
+  };
+  const currentTopByLens = Object.fromEntries(lensKeys.map((key) => [key, (current.rankings?.[key] || []).slice(0, DEFAULT_TOP)]));
+  const priorTopByLens = Object.fromEntries(lensKeys.map((key) => [key, (prior.rankings?.[key] || []).slice(0, DEFAULT_TOP)]));
+  const currentComposite = currentTopByLens.composite;
   const priorByTicker = new Map((prior.entries || []).map((entry) => [entry.ticker, entry]));
-  const labelStrength = new Map([
-    ["관찰", 0],
-    ["데이터 검증 필요", 0],
-    ["과열 주의", 1],
-    ["단기 급등", 2],
-    ["중기 주도", 3],
-    ["구조적 주도", 4],
-    ["눌림 후보", 4],
-    ["돌파 후보", 5],
-    ["전구간 주도", 6],
-  ]);
+  const newEntrantMap = new Map();
 
-  const newEntrants = currentComposite
-    .filter((entry) => !priorTopTickers.has(entry.ticker))
-    .map((entry) => ({
+  function rankIn(rows, ticker) {
+    const index = rows.findIndex((entry) => entry.ticker === ticker);
+    return index === -1 ? null : index + 1;
+  }
+
+  function addNewSignal(entry, signal, previousRank, currentRank) {
+    const existing = newEntrantMap.get(entry.ticker) || {
       ticker: entry.ticker,
       name: entry.name,
       market: entry.market,
+      newlyEntered: [],
+      previousRanks: [],
+      currentRanks: [],
+      leadershipLabel: entry.leadershipLabel,
+      setupLabel: entry.setupLabel,
+      return1: round(entry.return1),
+      return7: round(entry.return7),
+      return30: round(entry.return30),
+      return60: round(entry.return60),
+      return120: round(entry.return120),
+      return252: round(entry.return252),
+      rsPercentile: round(entry.rsPercentile, 2),
+      volumeRatio20: round(entry.volumeRatio20, 2),
+      highProximityPct: round(entry.highProximityPct, 2),
+      dataQualityNote: entry.dataQualityNote || "정상",
       compositeScore: entry.compositeScore,
       buyabilityScore: entry.buyabilityScore,
-      setupLabel: entry.setupLabel,
-      rsPercentile: round(entry.rsPercentile, 2),
-    }));
+    };
+    existing.newlyEntered.push(signal);
+    existing.previousRanks.push(previousRank || "not in top 20");
+    existing.currentRanks.push(currentRank || "-");
+    newEntrantMap.set(entry.ticker, existing);
+  }
 
-  const labelUpgrades = currentComposite
+  lensKeys.forEach((key) => {
+    currentTopByLens[key].forEach((entry, index) => {
+      const priorRank = rankIn(priorTopByLens[key], entry.ticker);
+      if (!priorRank) {
+        addNewSignal(entry, lensLabels[key], "not in top 20", index + 1);
+      }
+    });
+  });
+
+  const upgradedLabels = new Set(["전구간 주도", "중기 주도", "구조적 주도"]);
+  const labelUpgrades = (current.entries || [])
+    .filter((entry) => upgradedLabels.has(entry.leadershipLabel))
+    .filter((entry) => (priorByTicker.get(entry.ticker)?.leadershipLabel || "관찰") !== entry.leadershipLabel)
     .map((entry) => {
       const previous = priorByTicker.get(entry.ticker);
-      if (!previous) {
-        return null;
-      }
-      const previousLabel = previous.setupLabel || previous.leadershipLabel || "관찰";
-      const currentLabel = entry.setupLabel || entry.leadershipLabel || "관찰";
-      if ((labelStrength.get(currentLabel) ?? 0) <= (labelStrength.get(previousLabel) ?? 0)) {
-        return null;
-      }
+      addNewSignal(entry, `${entry.leadershipLabel} 신규 승격`, null, rankIn(currentComposite, entry.ticker));
       return {
         ticker: entry.ticker,
         name: entry.name,
-        from: previousLabel,
-        to: currentLabel,
+        from: previous?.leadershipLabel || "관찰",
+        to: entry.leadershipLabel,
         buyabilityScore: entry.buyabilityScore,
       };
-    })
-    .filter(Boolean);
+    });
 
-  const rs90Breakouts = currentComposite
+  const rs90Breakouts = (current.entries || [])
     .filter((entry) => Number.isFinite(entry.rsPercentile) && entry.rsPercentile >= 90)
     .filter((entry) => {
       const previous = priorByTicker.get(entry.ticker);
       return !previous || !Number.isFinite(previous.rsPercentile) || previous.rsPercentile < 90;
     })
+    .map((entry) => {
+      addNewSignal(entry, "RS 90 신규 돌파", null, rankIn(currentComposite, entry.ticker));
+      return {
+        ticker: entry.ticker,
+        name: entry.name,
+        rsPercentile: round(entry.rsPercentile, 2),
+        setupLabel: entry.setupLabel,
+      };
+    });
+
+  (current.entries || [])
+    .filter((entry) => Number.isFinite(entry.highProximityPct) && entry.highProximityPct >= 95)
+    .filter((entry) => {
+      const previous = priorByTicker.get(entry.ticker);
+      const previousHighProximity = Number.isFinite(previous?.highProximityPct)
+        ? previous.highProximityPct
+        : Number.isFinite(previous?.priceVs52WeekHighRatio)
+          ? previous.priceVs52WeekHighRatio * 100
+          : null;
+      return !Number.isFinite(previousHighProximity) || previousHighProximity < 95;
+    })
+    .forEach((entry) => addNewSignal(entry, "52주 고가 95% 신규 도달", null, rankIn(currentComposite, entry.ticker)));
+
+  const top20AnyLens = new Set(lensKeys.flatMap((key) => currentTopByLens[key].map((entry) => entry.ticker)));
+  (current.entries || [])
+    .filter((entry) => top20AnyLens.has(entry.ticker))
+    .filter((entry) => Number.isFinite(entry.volumeRatio20) && entry.volumeRatio20 >= 1.5)
+    .filter((entry) => {
+      const previous = priorByTicker.get(entry.ticker);
+      return !previous || !Number.isFinite(previous.volumeRatio20) || previous.volumeRatio20 < 1.5;
+    })
+    .forEach((entry) => addNewSignal(entry, "거래량 1.5x+ 및 렌즈 top20", null, rankIn(currentComposite, entry.ticker)));
+
+  const newEntrants = [...newEntrantMap.values()]
     .map((entry) => ({
-      ticker: entry.ticker,
-      name: entry.name,
-      rsPercentile: round(entry.rsPercentile, 2),
-      setupLabel: entry.setupLabel,
-    }));
+      ...entry,
+      newlyEntered: [...new Set(entry.newlyEntered)],
+      previousRank: [...new Set(entry.previousRanks)].join("; "),
+      currentRank: [...new Set(entry.currentRanks)].join("; "),
+    }))
+    .sort((left, right) => (right.compositeScore ?? -Infinity) - (left.compositeScore ?? -Infinity)
+      || (right.rsPercentile ?? -Infinity) - (left.rsPercentile ?? -Infinity)
+      || String(left.ticker).localeCompare(String(right.ticker)));
 
   return {
     available: true,
@@ -585,7 +645,34 @@ function renderNewEntrants(comparison) {
   const newEntrants = comparison.newEntrants || [];
   const labelUpgrades = comparison.labelUpgrades || [];
   const rs90Breakouts = comparison.rs90Breakouts || [];
-  lines.push(`- 신규 top20 진입: ${newEntrants.length ? newEntrants.map((entry) => `${entry.name}(${entry.ticker}, ${entry.setupLabel})`).join(", ") : "없음"}.`);
+  if (newEntrants.length) {
+    lines.push("| # | Ticker | Name | Market | New signal | Previous rank | Current rank | Current label | 1D | 7D | 30D | 60D | 120D | 252D | RS %ile | Vol | 52W High | Data |");
+    lines.push("|---:|---|---|---|---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|");
+    newEntrants.slice(0, 20).forEach((entry, index) => {
+      lines.push([
+        index + 1,
+        entry.ticker,
+        entry.name,
+        entry.market,
+        Array.isArray(entry.newlyEntered) ? entry.newlyEntered.join("; ") : "-",
+        entry.previousRank || "not in top 20",
+        entry.currentRank || "-",
+        entry.leadershipLabel || entry.setupLabel || "-",
+        formatPercent(entry.return1),
+        formatPercent(entry.return7),
+        formatPercent(entry.return30),
+        formatPercent(entry.return60),
+        formatPercent(entry.return120),
+        formatPercent(entry.return252),
+        formatScore(entry.rsPercentile),
+        formatRatio(entry.volumeRatio20),
+        Number.isFinite(entry.highProximityPct) ? `${entry.highProximityPct.toFixed(1)}%` : "-",
+        entry.dataQualityNote || "정상",
+      ].join(" | "));
+    });
+  } else {
+    lines.push("- 신규 주도주 진입: 없음.");
+  }
   lines.push(`- 라벨 승격: ${labelUpgrades.length ? labelUpgrades.map((entry) => `${entry.name}(${entry.ticker}, ${entry.from} -> ${entry.to})`).join(", ") : "없음"}.`);
   lines.push(`- RS 90 신규 돌파: ${rs90Breakouts.length ? rs90Breakouts.map((entry) => `${entry.name}(${entry.ticker}, RS ${formatScore(entry.rsPercentile)})`).join(", ") : "없음"}.`);
   return lines.join("\n");
