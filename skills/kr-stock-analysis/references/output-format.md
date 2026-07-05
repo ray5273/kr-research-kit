@@ -143,3 +143,23 @@ Use:
 - In `Decision-Changing Issues`, prefer ranked swing factors over a long undifferentiated list.
 - In `Follow-up Research Prompts`, prefer concrete next-step diligence over generic brainstorming.
 - Avoid personalized financial advice unless the user explicitly asks for it and provides the needed constraints.
+
+## Decision Block (kr-portfolio-guard 연동 — full memo 필수)
+
+`full memo`는 본문 결론과 별개로, 메모 끝부분에 기계판독 Decision Block을 포함한다. kr-portfolio-guard가 이 블록을 파싱해 트리거를 자동 감시하므로, 블록이 있는 메모는 휴리스틱 파싱(PARSE_GAP 위험)이 필요 없다.
+
+```guard-decision
+stance: 관찰 유지
+review_by: 2026-09-30
+triggers:
+  - direction: sell
+    level: 9200
+    quote: 종가 9,200원 이탈 후 이틀 연속 회복 실패 시 매도 전환
+  - direction: buy
+    level: 12000
+    quote: MA60(12,000원) 안착 + MACD 골든크로스 시 추가
+  - direction: sell
+    quote: 단월 매출 300억 미만 2개월 연속 (비가격형 — 공시·IR로 확인)
+```
+
+규칙: `stance`(현재 판단)와 `review_by`(재검토 기한)는 필수. 가격형 트리거는 `level`(숫자, 통화 단위 없음)을 명시하고, 비가격형은 `level` 없이 `quote`만 — 가드의 LLM 계층이 공시 목록과 대조해 판단한다. `quote`는 본문 조건 문장과 일치시킨다.
