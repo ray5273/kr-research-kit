@@ -78,6 +78,13 @@ function buildCandidateSymbols(ticker, market) {
     return [rawTicker.toUpperCase()];
   }
 
+  // Index symbols (^KS11, ^GSPC) and letter-leading tickers (GOOG, TSLA) are
+  // passed through unchanged — the .KS/.KQ retry only applies to bare KRX
+  // codes, which always start with a digit (e.g. 066970, 00088K).
+  if (rawTicker.startsWith("^") || /^[A-Za-z]/.test(rawTicker)) {
+    return [rawTicker.startsWith("^") ? rawTicker : rawTicker.toUpperCase()];
+  }
+
   const normalizedMarket = normalizeMarket(market);
   if (normalizedMarket) {
     const alternate = normalizedMarket === "KS" ? "KQ" : "KS";
@@ -87,8 +94,12 @@ function buildCandidateSymbols(ticker, market) {
   return [`${rawTicker}.KS`, `${rawTicker}.KQ`];
 }
 
-function fetchJson(url) {
+function fetchJson(url, redirectDepth = 0) {
   return new Promise((resolve, reject) => {
+    if (redirectDepth > 5) {
+      reject(new Error("Too many redirects from Yahoo Finance chart endpoint."));
+      return;
+    }
     const request = https.get(
       url,
       {
@@ -100,7 +111,7 @@ function fetchJson(url) {
       (response) => {
         if (response.statusCode >= 300 && response.statusCode < 400 && response.headers.location) {
           response.resume();
-          fetchJson(response.headers.location).then(resolve).catch(reject);
+          fetchJson(response.headers.location, redirectDepth + 1).then(resolve).catch(reject);
           return;
         }
 
@@ -121,6 +132,12 @@ function fetchJson(url) {
         });
       },
     );
+
+    // Unattended weekly runs (kr-portfolio-guard cron) must never hang on a
+    // stuck socket — a silent hang is worse than a loud DATA_GAP.
+    request.setTimeout(30_000, () => {
+      request.destroy(new Error("Timeout after 30s from Yahoo Finance chart endpoint."));
+    });
 
     request.on("error", (error) => {
       reject(error);
@@ -146,6 +163,7 @@ function formatDateInSeoul(timestampSeconds) {
 function parseBars(result) {
   const timestamps = result.timestamp || [];
   const quote = result.indicators?.quote?.[0];
+  const adj = result.indicators?.adjclose?.[0]?.adjclose;
 
   if (!quote) {
     throw new Error("Yahoo Finance response did not include quote data.");
@@ -158,6 +176,9 @@ function parseBars(result) {
       high: quote.high?.[index] ?? null,
       low: quote.low?.[index] ?? null,
       close: quote.close?.[index] ?? null,
+      // Dividend/split-adjusted close — scoring paths must use this; raw
+      // close stays the trigger-comparison price (memo triggers are quoted raw).
+      adjClose: adj?.[index] ?? null,
       volume: quote.volume?.[index] ?? null,
     }))
     .filter((bar) => bar.close !== null && bar.close !== undefined);
@@ -239,7 +260,11 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  console.error(`Error: ${error.message}`);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(`Error: ${error.message}`);
+    process.exit(1);
+  });
+}
+
+module.exports = { buildCandidateSymbols, parseBars, resolveAndFetch, fetchForSymbol };
