@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "KrResearchKit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "AI-native Korean + U.S. equity research skill pack — DART and SEC filings, sell-side consensus, foreign-IB coverage, 5-panel charts, daily market news, and Naver-blog publishing in one package. Native to Codex CLI and Claude Code.",
   "homepage": "https://github.com/ray5273/kr-research-kit",
   "repository": {

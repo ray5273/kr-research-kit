@@ -1,5 +1,53 @@
 # TODOS
 
+## Portfolio Guard (kr-portfolio-guard)
+
+### E4: 일간 미니 가드
+
+**What:** 가격 트리거·신규 공시만 점검하는 일간 경량 스케줄 실행 (주간 가드의 축소판).
+
+**Why:** 주간 주기가 놓치는 급락·공시 이벤트를 보완. 트리거 발동 감지 지연을 최대 1일로 단축.
+
+**Context:** 2026-07-04 CEO 리뷰 체리픽에서 연기(D15.4). guard-sweep.js를 그대로 재사용하고 점검 범위만 축소(가격 트리거 + NEW_FILING). day 1 주간 스케줄(OV10)이 확정되어 스케줄 인프라는 이미 존재 — 주기만 추가하면 됨.
+
+**Effort:** S
+**Priority:** P2
+**Depends on:** 주간 가드 2주 안정화
+
+### 크로스-프로세스 파일 락
+
+**What:** decision-ledger/state.json/portfolio.json 갱신에 단순 lockfile(또는 ndjson O_APPEND) 도입.
+
+**Why:** 두 세션(또는 세션+스케줄 스윕)이 동시에 쓰면 read-modify-write 경합으로 한쪽 기록이 조용히 유실될 수 있음. 적대적 리뷰(2026-07-05) INVESTIGATE 판정.
+
+**Context:** 싱글 유저 주간 케이던스라 실발생 확률은 낮고, 장부 유실 외 항목은 다음 스윕에서 자가 치유. SKILL.md에 운영 회피 노트 있음.
+
+**Effort:** S
+**Priority:** P2
+**Depends on:** 가드 v1 운영 경험
+
+### 분할·배당 시 지표 오염 방어
+
+**What:** CORP_ACTION_CHECK를 since-last-run 윈도우가 아닌 지표 룩백 전 구간으로 확장하거나, SMA/RSI/MACD 계산을 adjClose 기반으로 전환(트리거 대조는 원가 유지).
+
+**Why:** 마지막 실행 윈도우 밖에서 발생한 분할이 SMA60/RSI에 불연속을 남겨 허위 SMA_DEV/RSI 플래그 또는 억제를 유발. 적대적 리뷰(2026-07-05) INVESTIGATE 판정.
+
+**Effort:** M
+**Priority:** P2
+**Depends on:** 실데이터에서 오탐 사례 확보
+
+### E5: NO_MEMO 보유종목 quick-memo 자동 제안
+
+**What:** 가드가 NO_MEMO 플래그 보유종목에 대해 kr-stock-analysis 퀵뷰 생성을 제안(또는 실행)해 트리거·스탠스를 만들어줌.
+
+**Why:** 가드 커버리지 100% 달성. 현재 확인된 실보유(솔루스첨단소재)가 memo.md 없이 proxy 루틴 산출물만 있는 정확히 이 케이스.
+
+**Context:** 2026-07-04 CEO 리뷰 체리픽에서 연기(D15.5). v1은 NO_MEMO를 커버리지형 플래그(1회 ack)로 상기만 시킴. 퀵뷰 생성은 기존 kr-stock-analysis 수동 호출로 가능 — 자동화만 미룸.
+
+**Effort:** M (CC 기준 S)
+**Priority:** P2
+**Depends on:** 가드 v1 + NO_MEMO ack 운영 경험
+
 ## Korean Stock Orchestrator
 
 ### Auto-suggest comparison candidates when thesis is ambiguous
@@ -81,3 +129,5 @@
 **Effort:** S
 **Priority:** P2
 **Depends on:** Harness test infrastructure
+
+## Completed
