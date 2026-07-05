@@ -270,8 +270,8 @@ if (!pattern.test(text)) {
             exit 1
         fi
 
-        if ! grep -Fq 'Follow-up classification (`memo-only` or `refresh-needed`):' "$SKILL_DIR/references/output-format.md"; then
-            echo "Expected kr-stock-plan output format to include follow-up classification." >&2
+        if ! grep -Fq 'Follow-up classification (`answer-now`, `refresh-now`, `wait-for-event`, or `ask-user`; legacy aliases `memo-only` / `refresh-needed`):' "$SKILL_DIR/references/output-format.md"; then
+            echo "Expected kr-stock-plan output format to include four-state follow-up classification with legacy aliases." >&2
             exit 1
         fi
     fi
@@ -555,6 +555,11 @@ if (!pattern.test(text)) {
             exit 1
         fi
 
+        if ! grep -q '"sections":' "$BASELINE_OUT"; then
+            echo "Baseline parser did not emit memo section snapshots." >&2
+            exit 1
+        fi
+
         cat > "$UPDATE_JSON" <<'EOF'
 {
   "date": "2026-04-10",
@@ -632,11 +637,14 @@ EOF
             echo "Expected previous same-date content to be replaced, not duplicated." >&2
             exit 1
         fi
+
+        node "$SKILL_DIR/scripts/test-update-scripts.js" >/dev/null
     fi
 done
 
 node "$REPO_ROOT/scripts/validate-contracts.js" >/dev/null
 node "$REPO_ROOT/scripts/audit-analysis-artifacts.js" >/dev/null
+node "$REPO_ROOT/scripts/test-telegram.js" >/dev/null
 
 SECTOR_EXAMPLE_ROOT="$REPO_ROOT/analysis-example/kr-sector"
 if [ ! -d "$SECTOR_EXAMPLE_ROOT" ]; then

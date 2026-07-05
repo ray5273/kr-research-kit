@@ -541,6 +541,9 @@ if ($LASTEXITCODE -ne 0) { throw "Contract validation failed." }
 node (Join-Path $repoRoot "scripts\audit-analysis-artifacts.js")
 if ($LASTEXITCODE -ne 0) { throw "Golden artifact audit failed." }
 
+node (Join-Path $repoRoot "scripts\test-telegram.js")
+if ($LASTEXITCODE -ne 0) { throw "Telegram sender tests failed." }
+
 Write-Host "Regression (dry-run): 엘앤에프"
 node (Join-Path $repoRoot "scripts\harness.js") --mode regression --ticker 066970 --company "엘앤에프" --dry-run | Out-Null
 if ($LASTEXITCODE -ne 0) { throw "Regression dry-run failed." }

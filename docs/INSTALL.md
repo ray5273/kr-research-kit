@@ -185,7 +185,28 @@ When no Korean font is found (or Pillow is missing), charts fall back to a 47-ja
 
 Override anywhere with `KR_STOCK_CHART_FONT=/path/to/font.ttf`.
 
-## 10. Known issue — Naver browse in sandbox
+## 10. Telegram result sender
+
+Telegram sending is an explicit post-processing command. It is not integrated into data collection, Naver publishing, or scheduled workflows.
+
+1. Copy the values from [`.env.telegram.example`](../.env.telegram.example) into the repo-root `.env` and replace them:
+
+```text
+TELEGRAM_BOT_TOKEN=123456789:replace_with_your_bot_token
+TELEGRAM_CHAT_ID=123456789
+```
+
+2. Preview the send plan without network calls:
+
+```bash
+node scripts/send-telegram.js --input analysis-example/kr-market/daily-news-2026-07-02.json --dry-run
+```
+
+3. Remove `--dry-run` to send a short summary plus the matching Markdown artifact when present. Use `--summary-only`, `--document-only`, or `--attach <path>` to override the default.
+
+CLI flags `--token` and `--chat-id` override `.env`. `TELEGRAM_API_BASE` is optional for compatible Bot API gateways. The sender redacts bot tokens from errors.
+
+## 11. Known issue — Naver browse in sandbox
 
 `kr-naver-browse`, `kr-naver-blogger`, and `kr-naver-insight` depend on a local gstack `browse` server that binds to `127.0.0.1`.
 
@@ -193,7 +214,7 @@ Override anywhere with `KR_STOCK_CHART_FONT=/path/to/font.ttf`.
 - Rerun the Naver fetch step outside the sandbox or with elevated execution. Do not assume `0 posts` means the bloggers or posts do not exist until the runtime issue is excluded.
 - On Linux/WSL installs, the `kr-naver-browse` post-install hook tries `bunx playwright install-deps chromium` before installing Chromium. Set `SKILL_INSTALL_SKIP_LINUX_DEPS=1` to skip automatic system dependency installation.
 
-## 11. Validation
+## 12. Validation
 
 Windows:
 
