@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "kr-trade-flow-data.v1",
+  "generatedAt": "2026-07-05T00:00:00+09:00",
+  "sourceType": "kita-official-browser",
+  "sourceLabel": "K-stat 지자체 수출입 품목별",
+  "sourceUrl": "https://stat.kita.net/stat/kts/prod/ProdWholeList.screen",
+  "sourceDate": "2026-07-05",
+  "notes": [
+    "정확한 엘앤에프 proxy는 전국 중국향이 아니라 대구 지역의 HS10 수출중량으로 본다.",
+    "K-stat 지자체 수출입 > 품목별 화면에서 지역구분=광역자치별, 품목=HSK, HS=2841909020, 화면선택=중량, 당월/누계=당월로 조회했다.",
+    "HS 2841909020은 K-stat/관세청 품목명 기준 '니켈코발트망간 산화물의 리튬염'이다.",
+    "K-stat 지자체 품목별 화면은 지역+HS10+중량을 제공하지만, 국가 목적지까지 동시에 격리하지는 않는다. 따라서 '대구 NCM 수출중량'은 확인되나 '대구에서 중국향'은 이 화면만으로 확정하지 않는다.",
+    "관세청 수출입무역통계 지역별 실적 화면은 대구+HS 조회가 가능하지만 다운로드/응답 헤더가 건수와 금액 중심이고 중량이 비어 있어 수출량 proxy에는 K-stat 지자체 품목별을 사용했다."
+  ],
+  "rowCount": 8,
+  "rows": [
+    {
+      "rowId": "kita-daegu-ncm-weight-2026-01",
+      "period": "2026-01",
+      "reporter": "Korea",
+      "region": "대구",
+      "partner": "all",
+      "direction": "export",
+      "hsCode": "2841909020",
+      "productName": "니켈코발트망간 산화물의 리튬염",
+      "quantity": 5552236,
+      "unit": "kg",
+      "priorYearQuantity": 2421563,
+      "yoyPct": 129.3,
+      "sourceRole": "regional shipment proxy"
+    },
+    {
+      "rowId": "kita-daegu-ncm-weight-2026-02",
+      "period": "2026-02",
+      "reporter": "Korea",
+      "region": "대구",
+      "partner": "all",
+      "direction": "export",
+      "hsCode": "2841909020",
+      "productName": "니켈코발트망간 산화물의 리튬염",
+      "quantity": 6208177,
+      "unit": "kg",
+      "priorYearQuantity": 3875571,
+      "yoyPct": 60.2,
+      "sourceRole": "regional shipment proxy"
+    },
+    {
+      "rowId": "kita-daegu-ncm-weight-2026-03",
+      "period": "2026-03",
+      "reporter": "Korea",
+      "region": "대구",
+      "partner": "all",
+      "direction": "export",
+      "hsCode": "2841909020",
+      "productName": "니켈코발트망간 산화물의 리튬염",
+      "quantity": 6913740,
+      "unit": "kg",
+      "priorYearQuantity": 3703438,
+      "yoyPct": 86.7,
+      "sourceRole": "regional shipment proxy"
+    },
+    {
+      "rowId": "kita-daegu-ncm-weight-2026-04",
+      "period": "2026-04",
+      "reporter": "Korea",
+      "region": "대구",
+      "partner": "all",
+      "direction": "export",
+      "hsCode": "2841909020",
+      "productName": "니켈코발트망간 산화물의 리튬염",
+      "quantity": 6922579,
+      "unit": "kg",
+      "priorYearQuantity": 4569623,
+      "yoyPct": 51.5,
+      "sourceRole": "regional shipment proxy"
+    },
+    {
+      "rowId": "kita-daegu-ncm-weight-2026-05",
+      "period": "2026-05",
+      "reporter": "Korea",
+      "region": "대구",
+      "partner": "all",
+      "direction": "export",
+      "hsCode": "2841909020",
+      "productName": "니켈코발트망간 산화물의 리튬염",
+      "quantity": 6655179,
+      "unit": "kg",
+      "priorYearQuantity": 4405710,
+      "yoyPct": 51.1,
+      "sourceRole": "regional shipment proxy"
+    },
+    {
+      "rowId": "kita-daegu-ncm-weight-2026-01-05",
+      "period": "2026-01..2026-05",
+      "reporter": "Korea",
+      "region": "대구",
+      "partner": "all",
+      "direction": "export",
+      "hsCode": "2841909020",
+      "productName": "니켈코발트망간 산화물의 리튬염",
+      "quantity": 32251911,
+      "unit": "kg",
+      "priorYearQuantity": 18975905,
+      "yoyPct": 70.0,
+      "sourceRole": "regional shipment proxy"
+    },
+    {
+      "rowId": "dart-contract-sdi-lfp-2026-03-24",
+      "period": "2026-03-30..2029-12-31",
+      "reporter": "엘앤에프",
+      "partner": "삼성SDI",
+      "direction": "supply contract",
+      "hsCode": "",
+      "productName": "LFP 양극재",
+      "valueKrw": 1606700000000,
+      "quantity": null,
+      "unit": "",
+      "sourceRole": "confirmed disclosure"
+    },
+    {
+      "rowId": "company-pr-lfp-capacity-2026-03-24",
+      "period": "2026",
+      "reporter": "엘앤에프",
+      "partner": "North America ESS / data center ESS",
+      "direction": "capacity plan",
+      "hsCode": "",
+      "productName": "LFP 양극재",
+      "quantity": 60000,
+      "unit": "ton/year capacity",
+      "sourceRole": "company PR"
+    }
+  ],
+  "aggregates": {
+    "daeguNcmJanMay2025": {
+      "quantityKg": 18975905,
+      "quantityTon": 18975.905
+    },
+    "daeguNcmJanMay2026": {
+      "quantityKg": 32251911,
+      "quantityTon": 32251.911
+    },
+    "daeguNcmJanMayYoY": {
+      "quantityPct": 70.0
+    },
+    "daeguNcmMonthly2026Ton": {
+      "2026-01": 5552.236,
+      "2026-02": 6208.177,
+      "2026-03": 6913.74,
+      "2026-04": 6922.579,
+      "2026-05": 6655.179
+    }
+  }
+}

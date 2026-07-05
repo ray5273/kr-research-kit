@@ -23,6 +23,10 @@ Use this default pack shape unless the user asked for something else.
 - Geography:
 - Customer concentration:
 
+## Revenue Mix Proxy
+| Source role | Confidence | Proxy claim | Confirmed disclosure basis | Inference basis | Source/date |
+| --- | --- | --- | --- | --- | --- |
+
 ## Balance Sheet And Capital Allocation
 - ...
 

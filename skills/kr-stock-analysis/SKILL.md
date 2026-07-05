@@ -42,6 +42,7 @@ The 11 steps below are the canonical work order. Group them into the 3 phases de
    Pull sell-side notes, specialist media, or independent long-form analysis to surface market framing, disagreements, and open questions. When independent Naver coverage is available, use `kr-naver-blogger` to identify specialists for the ticker and `kr-naver-insight` to fetch and digest their recent posts as source type 4 material. All three outside-view channels (sell-side, Naver, foreign IB) must be dispatched as parallel subagents alongside the Step 3 data fetches — see `## Parallel Dispatch`.
 6. Build the memo.
    Separate verified facts from inference, keep section boundaries clean, and label what came from primary sources versus outside interpretation.
+   Put customs, KITA, UN Comtrade, or overseas trade-stat claims in a standalone `Trade Flow Inference` block. Run DART recheck separately for any disclosure-backed component, and never present trade-flow inference as a confirmed filing fact.
 7. Run DART recheck on key claims.
    Before finalizing the memo, convert the 3-8 most important business, customer, segment, backlog, related-party, capital-allocation, or governance claims into a DART verification list and route them through `kr-stock-dart-analysis` or an existing `dart-cache.json`.
 8. Attack the thesis.
@@ -138,6 +139,7 @@ If a Phase B subagent returns a gap (e.g. Naver returned 0 specialist hits, fore
 - Use primary sources to anchor core numbers, customer concentration, capital allocation facts, and governance facts.
 - Use outside research to capture framing, disagreement, and thesis pressure points instead of repeating company marketing language.
 - Label outside interpretation as `Street view`, `Specialist media`, `Independent view`, or `Not separately disclosed` when the distinction matters.
+- Label trade-stat interpretation as `Trade Flow Inference` with its confidence grade (`high-confidence inference`, `medium-confidence proxy`, `weak proxy`, or `contradicted`) when the company, customer, geography, or product mix is not separately disclosed.
 - Prefer ranges and scenarios over false precision.
 - Say when data is missing or uncertain.
 - If revenue mix, customer concentration, or a valuation metric is not disclosed cleanly, say so and explain what the current source set does and does not provide.

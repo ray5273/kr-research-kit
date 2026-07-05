@@ -1,0 +1,19 @@
+{
+  "company": "엘앤에프",
+  "thesis": "China NCM trade-flow acceleration is likely tied to L&F shipments, not Tesla EV LFP.",
+  "evidence": {
+    "tradeChangePct": 45,
+    "quantityChangePct": 32,
+    "companyRevenueChangePct": 28,
+    "peerRevenueChangePct": 6,
+    "contractCoverageRatio": 0.9
+  },
+  "sourceDates": {
+    "tradeData": "2026-04-30",
+    "companyResults": "2026-05-15",
+    "peerResults": "2026-05-15"
+  },
+  "unresolvedChecks": [
+    "Customer-specific allocation is not separately disclosed."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "company": "Contradicted Co",
+  "thesis": "Exports rose, but company results do not support attribution.",
+  "evidence": {
+    "tradeChangePct": 38,
+    "quantityChangePct": 22,
+    "companyRevenueChangePct": -12,
+    "peerRevenueChangePct": 20,
+    "companyDisclosureContradiction": true
+  }
+}

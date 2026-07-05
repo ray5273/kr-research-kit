@@ -41,11 +41,15 @@ Use $kr-stock-data-pack for LG CNS and gather a dated company fact pack with pri
 ```
 
 ```text
+Use $kr-trade-flow-analysis for 엘앤에프(066970). Normalize my customs/KITA/UN Comtrade CSVs into analysis-example/kr/엘앤에프/trade-flow-data.json, then write trade-flow-analysis.md that separates confirmed disclosure from Trade Flow Inference and scores whether China NCM shipment growth can be a high-confidence inference after checking peers, 1Q revenue, and disclosed contract scale.
+```
+
+```text
 Use $kr-stock-analysis for 005930.KS and write a decision memo with DART-based evidence, street or alternative views, valuation, governance checks, catalysts, chart context, archetype-specific uncomfortable questions, decision-changing issues, structured stance, and follow-up research prompts.
 ```
 
 ```text
-Use $kr-stock-update to refresh analysis-example/kr/엘앤에프/memo.md with company-specific disclosures, IR materials, and news published after the memo date, and append a dated update block to the same file.
+Use $kr-stock-update to refresh analysis-example/kr/엘앤에프/memo.md with company-specific disclosures, IR materials, and news published after the memo date. Preserve 기준일, update the dated Update Log block by default, and synchronize only gated thesis sections if the evidence changes the memo stance.
 ```
 
 ```text
@@ -119,11 +123,15 @@ Use $kr-sector-update to update analysis-example/kr-sector/국내 데이터센�
 ```
 
 ```text
+/kr-trade-flow-analysis normalize customs/KITA/UN Comtrade CSVs for 엘앤에프 into trade-flow-data.json, then create trade-flow-analysis.md with evidence grades that separate confirmed disclosure from Trade Flow Inference.
+```
+
+```text
 /kr-stock-analysis analyze 005930.KS with DART-based evidence, street or alternative views, valuation, governance checks, catalysts, chart context, archetype-specific uncomfortable questions, decision-changing issues, structured stance, and follow-up research prompts.
 ```
 
 ```text
-/kr-stock-update update analysis-example/kr/엘앤에프/memo.md with company-specific disclosures, IR materials, and news after the memo date, and append a dated update block to the same file.
+/kr-stock-update update analysis-example/kr/엘앤에프/memo.md with company-specific disclosures, IR materials, and news after the memo date. Preserve 기준일, update the dated Update Log block by default, and synchronize only gated thesis sections if the evidence changes the memo stance.
 ```
 
 ```text

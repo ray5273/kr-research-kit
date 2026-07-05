@@ -291,6 +291,27 @@ if (!pattern.test(text)) {
             echo "Expected kr-stock-data-pack output format to include External Views." >&2
             exit 1
         fi
+
+        if ! grep -Fq '## Revenue Mix Proxy' "$SKILL_DIR/references/output-format.md"; then
+            echo "Expected kr-stock-data-pack output format to include Revenue Mix Proxy." >&2
+            exit 1
+        fi
+    fi
+
+    if [ "$SKILL_NAME" = "kr-trade-flow-analysis" ]; then
+        if [ ! -f "$SKILL_DIR/references/workflow.md" ]; then
+            echo "Missing required trade-flow reference file: $SKILL_DIR/references/workflow.md" >&2
+            exit 1
+        fi
+        if [ ! -f "$SKILL_DIR/references/output-format.md" ]; then
+            echo "Missing required trade-flow reference file: $SKILL_DIR/references/output-format.md" >&2
+            exit 1
+        fi
+        if ! grep -Fq 'Trade Flow Inference' "$SKILL_DIR/references/output-format.md"; then
+            echo "Expected kr-trade-flow-analysis output format to separate Trade Flow Inference." >&2
+            exit 1
+        fi
+        node "$SKILL_DIR/scripts/test-trade-flow-analysis.js" >/dev/null
     fi
 
     if [ "$SKILL_NAME" = "kr-stock-dart-analysis" ]; then

@@ -230,6 +230,25 @@ foreach ($skillDir in $skillDirs) {
         if (-not $dataPackOutputFormat.Contains("## External Views")) {
             Write-Error "Expected kr-stock-data-pack output format to include External Views."
         }
+        if (-not $dataPackOutputFormat.Contains("## Revenue Mix Proxy")) {
+            Write-Error "Expected kr-stock-data-pack output format to include Revenue Mix Proxy."
+        }
+    }
+
+    if ($skillDir.Name -eq "kr-trade-flow-analysis") {
+        $tradeWorkflow = Join-Path $skillDir.FullName "references\workflow.md"
+        $tradeOutput = Join-Path $skillDir.FullName "references\output-format.md"
+        if (-not (Test-Path $tradeWorkflow)) {
+            Write-Error "Missing required trade-flow reference file: $tradeWorkflow"
+        }
+        if (-not (Test-Path $tradeOutput)) {
+            Write-Error "Missing required trade-flow reference file: $tradeOutput"
+        }
+        $tradeOutputText = [System.IO.File]::ReadAllText($tradeOutput)
+        if (-not $tradeOutputText.Contains("Trade Flow Inference")) {
+            Write-Error "Expected kr-trade-flow-analysis output format to separate Trade Flow Inference."
+        }
+        node (Join-Path $skillDir.FullName "scripts\test-trade-flow-analysis.js") | Out-Null
     }
 
     if ($skillDir.Name -eq "kr-stock-dart-analysis") {

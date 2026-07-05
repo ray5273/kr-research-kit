@@ -14,6 +14,7 @@ Use this skill to assemble the inputs that a downstream Korean stock memo needs.
 - Prefer primary sources first: DART, KRX disclosures, company IR, official financial statements, and governance pages.
 - If the user mainly needs exact filing extraction for quarterly, half-year, segment, customer-concentration, backlog, or contract-disclosure detail, use `kr-stock-dart-analysis` first and then pull the rest of the pack around it.
 - When the downstream memo needs more than official company framing, gather dated outside-view inputs from sell-side, specialist media, or detailed independent analysis.
+- If the company is export-driven and customer, geography, or product mix is not separately disclosed, ingest `kr-trade-flow-analysis` artifacts as `External Evidence` or `Revenue Mix Proxy`; keep confirmed disclosures and trade-flow inference in separate rows.
 - Keep the output structured. The point is to gather clean inputs, not to write the final thesis.
 - If the workspace is writable, write the pack to `analysis-example/kr/<company>/data-pack.md` when the user asked for a reusable artifact.
 
@@ -44,5 +45,6 @@ Read [../kr-stock-analysis/references/blended-source-notes.md](../kr-stock-analy
 - Label outside inputs by source role and keep their verification status visible.
 - When `naver-insights.md` exists in the company output directory, ingest its per-post entries into `## External Views` with `Source role: independent analysis`, `Verification status: unverified (blogger)`, and the post URL in `Source`. Do not treat blogger claims as primary-source numbers.
 - When `analyst-report-insight.md` exists in the company output directory, ingest its broker-coverage rows into `## External Views` with `Source role: sell-side consensus`, `Verification status: sell-side (broker)`, the report's landing URL in `Source`, and the per-broker 1-liner as the takeaway. Also carry the consensus TP median and rating distribution into the valuation / view block as a labeled street-consensus reference — do not treat analyst TPs as primary filings.
+- When `trade-flow-analysis.md` exists in the company output directory, ingest only the confidence summary and source-dated inference rows into `## External Views` or `## Revenue Mix Proxy` with `Source role: trade-flow proxy`, `Verification status: Trade Flow Inference`, and the confidence grade. Do not promote trade-stat proxy claims to filing facts unless DART/IR explicitly confirms them.
 - Do not convert a thin source set into a confident valuation call.
 - Ask a short user-need check before gathering broad data blocks when the must-have sections are still unclear.

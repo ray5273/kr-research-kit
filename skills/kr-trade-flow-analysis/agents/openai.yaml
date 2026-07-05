@@ -1,0 +1,7 @@
+interface:
+  display_name: "Trade Flow Analysis (KR)"
+  short_description: "Normalize trade-stat CSVs and triangulate Korean company revenue or shipment inferences from customs data, filings, peers, and contracts."
+  default_prompt: "Use $kr-trade-flow-analysis when a KRX company has undisclosed customer, geography, or product mix and export/import statistics may proxy shipment or revenue changes. Normalize the CSVs, separate confirmed disclosures from Trade Flow Inference, score the confidence, and write analysis-example/kr/<company>/trade-flow-analysis.md plus trade-flow-data.json when the workspace is writable."
+
+policy:
+  allow_implicit_invocation: true

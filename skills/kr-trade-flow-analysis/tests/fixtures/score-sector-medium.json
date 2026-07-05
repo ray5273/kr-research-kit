@@ -1,0 +1,14 @@
+{
+  "company": "Generic Exporter",
+  "thesis": "Sector exports improved but company attribution remains incomplete.",
+  "evidence": {
+    "tradeChangePct": 31,
+    "quantityChangePct": 5,
+    "companyRevenueChangePct": 18,
+    "broadSectorOnly": false
+  },
+  "unresolvedChecks": [
+    "No peer divergence check yet.",
+    "No disclosed contract scale check yet."
+  ]
+}

@@ -7,7 +7,7 @@ Languages:
 - English — [README.md](README.md)
 - 한국어 — [README-kr.md](README-kr.md)
 
-Strongest with Korean equities, now with a U.S. SEC precision stage: one Korean ticker question goes through DART filings, KRX chart pack, sell-side consensus, foreign-IB coverage, and Naver-blog publishing; U.S. stock work can start from SEC EDGAR/XBRL evidence packs before the final memo. Stock artifacts land in `analysis-example/<market>/<company>/memo.md`.
+Strongest with Korean equities, now with a U.S. SEC precision stage: one Korean ticker question goes through DART filings, KRX chart pack, sell-side consensus, foreign-IB coverage, trade-flow proxy checks, and Naver-blog publishing; U.S. stock work can start from SEC EDGAR/XBRL evidence packs before the final memo. Stock artifacts land in `analysis-example/<market>/<company>/memo.md`.
 
 ## Quick Install
 
@@ -43,7 +43,7 @@ OpenDART API key, SEC EDGAR `User-Agent`, macOS Naver fallback, Windows PowerShe
 
 ## Use Cases
 
-Four end-to-end scenarios. Each prompt works as-is in Claude Code (`/skill`) or Codex (`$skill`).
+Six end-to-end scenarios. Each prompt works as-is in Claude Code (`/skill`) or Codex (`$skill`).
 
 ### 1. Naver KOL — one cycle from ticker to blog post (10 min)
 
@@ -77,9 +77,19 @@ Output: row-by-row contract timeline + maturity distribution + explicit "disclos
 /kr-market-leaders 오늘 기준 KOSPI + KOSDAQ 통합 universe에서 단기·중기·구조 lens별 leadership 스크리닝 돌려줘. RS, 거래량, 52주 신고가 트리거 포함하고, 어제 leaders-YYYY-MM-DD.md와 비교해서 오늘 신규 진입한 top-20 종목을 별도 표로 정리해줘.
 ```
 
-Output: `analysis-example/kr-market/leaders-<YYYY-MM-DD>.md` + `.json` cache with prior-day diff. Daily artifact, regenerated each run.
+Output: `analysis-example/kr-market/leaders-<YYYY-MM-DD>.md` + `.json` cache with prior-day diff. Daily artifact, regenerated each run. Example: [leaders-2026-07-04](analysis-example/kr-market/leaders-2026-07-04.md).
 
-### 5. Codex Desktop daily market-news automation
+### 5. Undisclosed customer / end-demand reverse tracking (CSV-first)
+
+```text
+/kr-trade-flow-analysis 엘앤에프(066970)의 중국 NCM 관련 수출입 CSV를 trade-flow-data.json으로 정규화하고, DART/peer/기존 공급계약과 교차검증해서 공시 확인 사실과 high-confidence investment inference를 분리한 trade-flow-analysis.md를 작성해줘. Tesla EV LFP는 제외하고 Samsung SDI/미국향 ESS LFP는 별도 thesis로 추적해줘.
+```
+
+Output: `analysis-example/kr/<company>/trade-flow-analysis.md` + `trade-flow-data.json`. Use case: 비공개 고객사/최종 수요를 수출입 지표로 역추적하되, `Trade Flow Inference`와 `confirmed disclosure`를 분리한다. Skill files: [kr-trade-flow-analysis](skills/kr-trade-flow-analysis/SKILL.md), [output format](skills/kr-trade-flow-analysis/references/output-format.md).
+
+Example: [엘앤에프 trade-flow-analysis.md](analysis-example/kr/엘앤에프/trade-flow-analysis.md), [trade-flow-data.json](analysis-example/kr/엘앤에프/trade-flow-data.json).
+
+### 6. Codex Desktop daily market-news automation
 
 ```text
 Use $kr-daily-market-news to create today's Korean market-wide and sector daily news report for blog publication. Write analysis-example/kr-market/daily-news-YYYY-MM-DD.md and .json, then use $kr-naver-blog-publish in scheduled mode.
@@ -121,7 +131,7 @@ Full index of 35+ example artifacts and fixtures (memos, Naver posts, DART refer
 
 ## What's Inside
 
-27 skills. Korean stock pipeline: `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-stock-data-pack → kr-stock-analysis`. Daily market workflows: `kr-daily-market-news` / `us-daily-market-news → kr-naver-blog-publish`. U.S. stocks: `us-sec-analysis → us-stock-analysis`. Sector workflow: `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update`.
+28 skills. Korean stock pipeline: `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-trade-flow-analysis → kr-stock-data-pack → kr-stock-analysis`. Daily market workflows: `kr-daily-market-news` / `us-daily-market-news → kr-naver-blog-publish`. U.S. stocks: `us-sec-analysis → us-stock-analysis`. Sector workflow: `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update`.
 
 Full catalog + per-skill behavior + bundled helpers → [docs/SKILLS.md](docs/SKILLS.md).
 
