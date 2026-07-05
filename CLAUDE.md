@@ -19,6 +19,7 @@ bash ./scripts/validate-skills.sh        # Linux/macOS
 bash ./scripts/install-skill.sh kr-stock-analysis
 bash ./scripts/install-skill.sh kr-stock-update
 bash ./scripts/install-skill.sh kr-portfolio-monitor
+bash ./scripts/install-skill.sh kr-portfolio-guard
 bash ./scripts/install-skill.sh us-stock-analysis
 bash ./scripts/install-skill.sh kr-naver-browse
 bash ./scripts/install-skill.sh kr-naver-blogger
@@ -40,6 +41,7 @@ bash ./scripts/install-all-skills.sh
 bash ./scripts/install-claude-skill.sh kr-stock-analysis
 bash ./scripts/install-claude-skill.sh kr-stock-update
 bash ./scripts/install-claude-skill.sh kr-portfolio-monitor
+bash ./scripts/install-claude-skill.sh kr-portfolio-guard
 bash ./scripts/install-claude-skill.sh us-stock-analysis
 bash ./scripts/install-claude-skill.sh kr-naver-browse
 bash ./scripts/install-claude-skill.sh kr-naver-blogger
@@ -102,7 +104,9 @@ All scripts accept JSON via `--input` and output Markdown or PNG. They use only 
 | `valuation-chart.js` | PNG valuation band time-series charts (P/E, P/B, EV/EBITDA) from historical JSON (kr only) |
 | `extract-report-baseline.js` | Parse an existing KR memo into baseline metadata for follow-up updates |
 | `normalize-update-log.js` | Render or append a dated update block to an existing KR memo |
-| `portfolio-snapshot.js` | SMA20 deviation + RSI14 snapshot table across multiple KRX positions from JSON (kr only, MCP fallback) |
+| `portfolio-snapshot.js` | SMA20 deviation + RSI14 snapshot table across multiple KRX positions from JSON (kr only, MCP fallback). Exports `computeSMA`/`computeRSI` for kr-portfolio-guard |
+| `guard-sweep.js` | kr-portfolio-guard 주간 스윕: 실보유 포트폴리오(private dir)의 메모 트리거·가격·SMA20/60·RSI·MACD·신규 DART 공시를 점검해 flags.json(기계판독) + 한 화면 ACTION NEEDED 리포트 산출. 트레이드형 플래그는 세션 결정 대상(PENDING), 커버리지형(NO_MEMO 등)은 ack 대상 |
+| `ledger-append.js` | kr-portfolio-guard 결정 기록: SELL/HOLD/ADD/REVIEW/DEFER를 decision-ledger.ndjson에 원자적 기록(+.bak), 같은 날 재결정 supersede, qty_change 시 portfolio.json 동기 갱신, E1 qty_guide(표시 전용) 계산. `ack` 서브커맨드로 커버리지 플래그 침묵 |
 | `normalize-browser-dart-export.js` | Convert a Chrome extension DART viewer export into plain text for section parsing |
 | `fetch-opendart.js` | OpenDART API alternative to the Chrome extension. Resolves `--ticker` to corp_code, downloads the latest 정기공시 `document.xml` ZIP + structured endpoints (majorshareholder, alotMatter, tesstkAcqsDspsSttus, irdsSttus, cpndlhCmpsBoardCo, fnlttSinglAcntAll), produces the same `dart-browser-export.json` schema. Requires `OPENDART_API_KEY` env var. Caches to `.tmp/opendart-cache/`. |
 | `fetch-nps-holdings.js` | Sweep 지분공시 (pblntf_ty=D) via OpenDART `list.json` over a lookback window (default 90d, chunked into ≤80d slices to satisfy the 3-month range cap), filter to filings where `flr_nm` contains "국민연금", then enrich with `majorstock.json` (5%룰) and `elestock.json` (임원·주요주주) keyed by `rcept_no`. Writes `nps-holdings.json` + `nps-holdings.md`. Auto-loads `OPENDART_API_KEY` from repo-root `.env`. |
@@ -137,6 +141,7 @@ node scripts/harness.js --mode analyst --ticker 066970 --company "엘앤에프"
 node scripts/harness.js --mode foreign --ticker 005930 --company "삼성전자"
 node scripts/harness.js --mode all     --ticker 005930 --company "삼성전자" --with-foreign
 node scripts/harness.js --mode regression --ticker 066970 --company "엘앤에프" --dart-input export.json
+node scripts/harness.js --mode guard
 ```
 
 | Mode | What it does |
@@ -148,6 +153,7 @@ node scripts/harness.js --mode regression --ticker 066970 --company "엘앤에�
 | `analyst` | discover-reports.js → fetch-reports.js → summarize-reports.js (Hankyung/Naver analyst-report chain) |
 | `foreign` | fetch-analyst-coverage.js → summarize-analyst-views.js (foreign-IB coverage from Korean news → Street / Alternative Views block) |
 | `all` | chart + dart (if `--dart-input`) + blog (if `--with-blog`) + analyst (if `--with-analyst`) + foreign (if `--with-foreign`) + gate sequentially |
+| `guard` | kr-portfolio-guard 픽스처 테스트 + 오프라인 드라이런 E2E (네트워크·실데이터 불요 — 라이브 스윕은 스킬로만) |
 | `regression` | Run every routed skill end-to-end (chart → dart → analyst → blog → gate) with artifact + section assertions; designed to catch wiring regressions in the full `kr-stock-plan` chain |
 
 The quality gate is available on demand via `node scripts/harness.js --mode gate --company <name>`. It is not run as part of `validate-skills.sh` / `.ps1` (removed to keep CI tolerant of older example memos with different section templates).
@@ -181,6 +187,8 @@ The quality gate is available on demand via `node scripts/harness.js --mode gate
 - **PDF extraction**: both `kr-stock-dart-analysis` and `kr-analyst-report-fetch` call `skills/kr-stock-dart-analysis/scripts/extract-pdf-text.py` via `child_process`, which requires `python3 -m pip install pypdf` on the host before running the fetch chain.
 - **Korean chart fonts**: PNG charts (`chart-basics.js`, `valuation-chart.js`) auto-discover a Korean font on every platform — macOS (AppleSDGothicNeo by default), Linux (Noto CJK / Nanum via standard paths or `fc-match :lang=ko`), Windows (Malgun / Nanum / Noto KR via `C:\Windows\Fonts` and `%LOCALAPPDATA%\Microsoft\Windows\Fonts` directory scan). Rendering also needs Pillow (`python3 -m pip install pillow`) on Mac/Linux; Windows uses built-in GDI. When no Korean font is found (or Pillow is missing), charts fall back to a 47-jamo bitmap with incomplete Hangul coverage, and `validate-skills.sh` / `.ps1` prints a warning per chart script. Recommended installs: Linux `apt install fonts-noto-cjk` / `dnf install google-noto-cjk-fonts`; English-locale Windows install Noto Sans KR or Malgun Gothic. Override anywhere with `KR_STOCK_CHART_FONT=/path/to/font.ttf`.
 - **Analyst-report chain**: `kr-analyst-report-*` skills share the gstack `browse` binary vendored under `kr-naver-browse` (via `kr-web-browse`). Install `kr-naver-browse` first so the binary is resolvable. Source priority is Hankyung Consensus first, Naver Pay Research as fallback; default lookback is 365 days; login-gated reports are skipped in v1. PDFs are downloaded into a scratch tempdir, extracted, and deleted — only the extracted `.txt` is cached under `.tmp/analyst-report-cache/text/<ticker>/`.
+- **kr-portfolio-guard**: install `kr-stock-analysis` first — guard scripts `require("../../kr-stock-analysis/scripts/...")` for price fetch and SMA/RSI math and fail loudly if absent. Real holdings live OUTSIDE the repo in a private dir (default `~/stock-analysis-private`, override via `.env` `KR_PORTFOLIO_GUARD_HOME`); guard reports/ledger contain holdings and must never be passed to publish skills or committed. Scoring aggregates always carry `n` and the n<30 disclaimer. Weekly schedule must be LOCAL (cron / Windows Task Scheduler) — never a cloud routine.
+- **수익 루프 우선 원칙 (E3, 2026-07-04 CEO 리뷰)**: kr-portfolio-guard의 forward 장부 8주 검증이 끝나기 전까지, 발행 트랙(kr-daily-market-news, kr-naver-blog-publish, 마켓플레이스 패키징)은 신규 기능 투자 후순위. 새 분석 스킬 추가보다 결정 루프 완성이 우선.
 - **Regression extensibility**: `--mode regression` iterates a `ROUTED_STEPS` registry at the top of `scripts/harness.js` and runs every routed leg with artifact + section assertions. When `kr-stock-plan` gains a new routed skill, add a one-line entry to `ROUTED_STEPS` (`{ name, run, requires, cleanCache, artifacts, assert }`) and the regression mode picks it up automatically. A full (non-dry) regression needs network access + `pypdf`; `validate-skills.sh` only runs `--dry-run` so CI stays offline.
 
 ## gstack
