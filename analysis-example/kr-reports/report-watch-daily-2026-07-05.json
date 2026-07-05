@@ -1,0 +1,830 @@
+{
+  "schemaVersion": 1,
+  "skill": "kr-analyst-report-watch",
+  "mode": "daily",
+  "asOfDate": "2026-07-05",
+  "generatedAt": "2026-07-05T12:40:28.264Z",
+  "sourceScope": "Korean securities reports; Naver Research latest accessible company reports",
+  "collection": {
+    "lookbackDays": 3,
+    "maxReports": 10,
+    "sources": [
+      "naver"
+    ],
+    "rawReportCount": 10,
+    "dedupedReportCount": 10,
+    "note": "2026-07-05 is Sunday; no same-day new publication was used. Reports are the latest accessible Naver Research detail/PDF items, published 2026-07-03 and 2026-07-02."
+  },
+  "reports": [
+    {
+      "reportId": "naver-93873",
+      "originalRead": true,
+      "nid": "93873",
+      "company": "한온시스템",
+      "ticker": null,
+      "broker": "DS투자증권",
+      "analyst": null,
+      "publishedDate": "2026-07-03",
+      "title": "실적 경로는 유효, 관건은 신사업",
+      "rating": "매수",
+      "ratingRaw": "매수",
+      "targetPrice": 5000,
+      "targetRaw": "5,000원",
+      "currency": "KRW",
+      "sourceSite": "naver",
+      "sourceSites": [
+        "naver"
+      ],
+      "landingUrl": "https://finance.naver.com/research/company_read.naver?nid=93873&page=1",
+      "pdfUrl": "https://stock.pstatic.net/stock-research/company/66/20260703_company_834564000.pdf",
+      "requiresAuth": false,
+      "accessiblePdf": true,
+      "textExtracted": true,
+      "sourceQuality": "pdf-text",
+      "pdfPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/pdf/93873-한온시스템.pdf",
+      "extractedTextPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/text/93873-한온시스템.txt",
+      "detailText": "2Q26F Pre: 유럽 단가 성장 지속, 원가 개선은 제한적 2Q26F 매출액 2.94조원(+2.7% 이하 YoY), 영업이익 1,145억원(+78.97%)으로 추정한다. OPM은 3.9%다. 유럽이 성장을 견인한다. 1분기 벤츠·폭스바겐·BMW에서 확인된 대당 단가 확대가 이어진다. 부품에서 모듈·시스템 단계로 공급이 올라선 효과다. 이는 물량 회복이 아니라 단가 상승이 실질적인 동인이다. 미주는 현대차·기아의 하이브리드 믹스로 물량 감소를 방어한다. 포드는 내연기관 중심으로 부진하다. 원가 개선은 하반기에 몰린다. 원재료 구매 단가 인하 효과가 아직 초입이고 전쟁으로 오른 알루미늄이 원가에 먼저 반영되며 2분기 개선폭은 제한적이다. 한온시스템_기업리포트_260703.pdf",
+      "topicKey": "company:한온시스템",
+      "topicType": "company",
+      "summary": "신사업 가치와 하반기 회복 논리는 있으나 원가·회수 지연·차환 부담이 함께 있어 바로 좋은 리포트로 보긴 어렵다.",
+      "narrative": {
+        "industryTrend": "유럽 단가 성장이 2Q26 매출 성장을 견인한다는 관점",
+        "demandSupply": "3분기 원가 저점 통과와 4분기 회복 가능성",
+        "policy": null,
+        "competition": null,
+        "risk": "원가 개선 폭은 제한적이고 알루미늄 등 원재료 부담이 남아 있음",
+        "catalyst": "ESS·AS 등 신사업 옵션가치를 멀티플 상향 근거로 제시"
+      },
+      "goodBadAssessment": {
+        "bucket": "애매한 리포트",
+        "reason": "신사업 가치와 하반기 회복 논리는 있으나 원가·회수 지연·차환 부담이 함께 있어 바로 좋은 리포트로 보긴 어렵다."
+      },
+      "upsideDrivers": [
+        "유럽 단가 성장이 2Q26 매출 성장을 견인한다는 관점",
+        "3분기 원가 저점 통과와 4분기 회복 가능성",
+        "ESS·AS 등 신사업 옵션가치를 멀티플 상향 근거로 제시"
+      ],
+      "risks": [
+        "원가 개선 폭은 제한적이고 알루미늄 등 원재료 부담이 남아 있음",
+        "회사 가이던스 OPM 4%를 소폭 하회하는 추정",
+        "Ford·GM 손상차손 회수 지연과 회사채 차환 부담"
+      ],
+      "keyAssumptions": [
+        "2Q26F 매출액 2.94조원, 영업이익 1,145억원 추정",
+        "2026F 매출액 11.4조원, 영업이익 4,360억원 추정",
+        "목표주가 5,000원으로 상향, 투자의견 매수 유지"
+      ],
+      "priorComparison": {
+        "priorArtifact": null,
+        "priorReportId": null,
+        "labels": [
+          "new-topic"
+        ],
+        "summary": "No prior same-topic watch item found."
+      },
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "reportId": "naver-93871",
+      "originalRead": true,
+      "nid": "93871",
+      "company": "시프트업",
+      "ticker": null,
+      "broker": "교보증권",
+      "analyst": null,
+      "publishedDate": "2026-07-03",
+      "title": "추정치의 바닥에서 모멘텀 축적 시작",
+      "rating": "Buy",
+      "ratingRaw": "Buy",
+      "targetPrice": 42000,
+      "targetRaw": "42,000원",
+      "currency": "KRW",
+      "sourceSite": "naver",
+      "sourceSites": [
+        "naver"
+      ],
+      "landingUrl": "https://finance.naver.com/research/company_read.naver?nid=93871&page=1",
+      "pdfUrl": "https://stock.pstatic.net/stock-research/company/62/20260703_company_268901000.pdf",
+      "requiresAuth": false,
+      "accessiblePdf": true,
+      "textExtracted": true,
+      "sourceQuality": "pdf-text",
+      "pdfPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/pdf/93871-시프트업.pdf",
+      "extractedTextPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/text/93871-시프트업.txt",
+      "detailText": "2Q26 Preview: 매출 & 영업이익 컨센서스 상회 예상 2Q26 매출은 574억원(YoY -48.9%, QoQ +21.4%), 영업이익은 304억원(YoY -55.5%, QoQ +41.2%)으로 컨센서스(매출 538억원, 영익 287억원) 상회 예상. 464억원(YoY +2.9%)으로 예상되는 ‘니케’ 매출 중 글로벌(중국 외) 매출은 3.5주년 업데이트 호조로 YoY +20.8% 기록, 2Q25 중국 출시된 ‘승리의 여신: 새로운 희망’(니케) 매출은 전년 동기 출시 초기 효과 제거되며 42억원(YoY -58.9%) 기록 추정. ‘스텔라 블레이드’는 판매량의 하향 안정화가 지속되며 84억원(YoY -87.2%, QoQ -34.7%) 기록 전망 영업비용(271억원) 중 인건비는 전분기 일시 소급 인식된 상여 영향 제거되나 2Q26 언바운드 연결 편입 영향으로 171억원(YoY +4.0%, QoQ +5.4%), 변동비는 스텔라 블레이드 관련 지급수수료 감소로 38억원(YoY -85.1%, QoQ -23.3%) 기록 예상. 고정비는 언바운드 연결 편입에 따른 고정비 추가 인식으로 61억원(YoY +166.8%, QoQ +33.3%) 추정 20260703_462870_20210135_269.pdf",
+      "topicKey": "company:시프트업",
+      "topicType": "company",
+      "summary": "컨센서스 상회와 바닥 통과 논리는 좋지만 YoY 역성장과 신작 공백을 감안하면 확인이 더 필요하다.",
+      "narrative": {
+        "industryTrend": "니케 글로벌 매출 호조와 3.5주년 업데이트 효과",
+        "demandSupply": "스텔라 블레이드 판매량 하향 안정화로 추가 추정치 하향 제한",
+        "policy": null,
+        "competition": null,
+        "risk": "2Q26 매출과 영업이익은 전년 대비 큰 폭 감소 예상",
+        "catalyst": "신작 정보 공개와 스위치2 출시가 모멘텀 공백을 줄일 가능성"
+      },
+      "goodBadAssessment": {
+        "bucket": "애매한 리포트",
+        "reason": "컨센서스 상회와 바닥 통과 논리는 좋지만 YoY 역성장과 신작 공백을 감안하면 확인이 더 필요하다."
+      },
+      "upsideDrivers": [
+        "니케 글로벌 매출 호조와 3.5주년 업데이트 효과",
+        "스텔라 블레이드 판매량 하향 안정화로 추가 추정치 하향 제한",
+        "신작 정보 공개와 스위치2 출시가 모멘텀 공백을 줄일 가능성"
+      ],
+      "risks": [
+        "2Q26 매출과 영업이익은 전년 대비 큰 폭 감소 예상",
+        "스텔라 블레이드 매출 하향 안정화가 아직 성장 재개는 아님",
+        "언바운드 연결 편입으로 고정비와 적자 부담 발생"
+      ],
+      "keyAssumptions": [
+        "2Q26 매출 574억원, 영업이익 304억원으로 컨센서스 상회 예상",
+        "투자의견 Buy, 목표주가 42,000원 유지",
+        "언바운드 연간 적자 약 120억원 추정"
+      ],
+      "priorComparison": {
+        "priorArtifact": null,
+        "priorReportId": null,
+        "labels": [
+          "new-topic"
+        ],
+        "summary": "No prior same-topic watch item found."
+      },
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "reportId": "naver-93865",
+      "originalRead": true,
+      "nid": "93865",
+      "company": "키움증권",
+      "ticker": null,
+      "broker": "미래에셋증권",
+      "analyst": null,
+      "publishedDate": "2026-07-03",
+      "title": "새로운 정책 수혜주로 발돋움할 전망",
+      "rating": "매수",
+      "ratingRaw": "매수",
+      "targetPrice": 550000,
+      "targetRaw": "550,000원",
+      "currency": "KRW",
+      "sourceSite": "naver",
+      "sourceSites": [
+        "naver"
+      ],
+      "landingUrl": "https://finance.naver.com/research/company_read.naver?nid=93865&page=1",
+      "pdfUrl": "https://stock.pstatic.net/stock-research/company/56/20260703_company_10064000.pdf",
+      "requiresAuth": false,
+      "accessiblePdf": true,
+      "textExtracted": false,
+      "sourceQuality": "pdf-text-low + detail-page",
+      "pdfPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/pdf/93865-키움증권.pdf",
+      "extractedTextPath": null,
+      "detailText": "투자의견 매수 유지, 목표주가 550,000원으로 상향 키움증권에 대한 투자의견 매수 유지, 목표주가는 기존 516,000원에서 550,000원으로 상향한다. 목표주가 산출에 적용한 목표 배당수익률은 기존 3.0%로 동일하지만, 2026년 예상 주당배당금을 기존 15,500원에서 16,500원으로 상향했다. 2분기 실적이 컨센서스를 크게 상회할 전망인 가운데, 코스닥 활성화 정책에 힘입어 점유율 회복도 가능할 것으로 예상하기 때문이다. 상승여력은 70.5%로, 투자의견은 매수를 유지한다. 20260702173824487_ko.pdf",
+      "topicKey": "company:키움증권",
+      "topicType": "company",
+      "summary": "목표가 상향의 근거가 정책·실적·배당으로 비교적 명확해 좋은 리포트로 분류한다.",
+      "narrative": {
+        "industryTrend": "코스닥 활성화 정책 수혜와 점유율 회복 가능성",
+        "demandSupply": "2분기 실적이 컨센서스를 크게 상회할 전망",
+        "policy": "코스닥 활성화 정책 수혜와 점유율 회복 가능성",
+        "competition": null,
+        "risk": "정책 수혜와 거래대금 회복에 의존하는 사이클 민감도가 높음",
+        "catalyst": "예상 주당배당금 상향이 목표주가 상향의 직접 근거"
+      },
+      "goodBadAssessment": {
+        "bucket": "좋은 리포트",
+        "reason": "목표가 상향의 근거가 정책·실적·배당으로 비교적 명확해 좋은 리포트로 분류한다."
+      },
+      "upsideDrivers": [
+        "코스닥 활성화 정책 수혜와 점유율 회복 가능성",
+        "2분기 실적이 컨센서스를 크게 상회할 전망",
+        "예상 주당배당금 상향이 목표주가 상향의 직접 근거"
+      ],
+      "risks": [
+        "정책 수혜와 거래대금 회복에 의존하는 사이클 민감도가 높음",
+        "PDF 본문 텍스트 추출 품질이 낮아 상세 페이지 본문 중심으로 판단",
+        "증권업 전반 밸류에이션은 시장 거래대금 둔화 시 빠르게 흔들릴 수 있음"
+      ],
+      "keyAssumptions": [
+        "목표주가 516,000원에서 550,000원으로 상향",
+        "2026년 예상 주당배당금 15,500원에서 16,500원으로 상향",
+        "상승여력 70.5%, 투자의견 매수 유지"
+      ],
+      "priorComparison": {
+        "priorArtifact": null,
+        "priorReportId": null,
+        "labels": [
+          "new-topic"
+        ],
+        "summary": "No prior same-topic watch item found."
+      },
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "reportId": "naver-93863",
+      "originalRead": true,
+      "nid": "93863",
+      "company": "삼성전자",
+      "ticker": null,
+      "broker": "iM증권",
+      "analyst": null,
+      "publishedDate": "2026-07-03",
+      "title": "실적 전망치 상향 조정 지속",
+      "rating": "Buy",
+      "ratingRaw": "Buy",
+      "targetPrice": 480000,
+      "targetRaw": "480,000원",
+      "currency": "KRW",
+      "sourceSite": "naver",
+      "sourceSites": [
+        "naver"
+      ],
+      "landingUrl": "https://finance.naver.com/research/company_read.naver?nid=93863&page=1",
+      "pdfUrl": "https://stock.pstatic.net/stock-research/company/61/20260703_company_762170000.pdf",
+      "requiresAuth": false,
+      "accessiblePdf": true,
+      "textExtracted": true,
+      "sourceQuality": "pdf-text",
+      "pdfPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/pdf/93863-삼성전자.pdf",
+      "extractedTextPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/text/93863-삼성전자.txt",
+      "detailText": "[투자포인트] ■ 삼성전자의 2Q26 영업이익 전망치를 기존의 76.1조원에서 80.0조원으로 상향 조정한다. 또한 당사는 FY26 영업이익에 대한 전망치도 기존의 340조원에서 360조원으로 상향했다. 이는 2Q26과 3Q26의 DRAM, NAND ASP 상승폭이 확대되기 때문이다. 당사의 채널 체크에 따르면 2Q26 DRAM Blended ASP는 40% 이상, NAND ASP는 60%대 중반 상승한 것으로 보이며, 3Q26 DRAM, NAND ASP는 15~20% 가량 추가 상승할 가능성이 높은 것으로 판단된다. ■ 1Q26, 2Q26의 반도체 부문 직원들에 대한 상여금 지급용 충당금이 한꺼번에 반영될 2Q26의 동사 영업이익은 80.0조원으로 예상된다. 2Q26 메모리 반도체 부문에서는 79.2조원의 영업이익이 발생할 전망이며 충당금이 없었다면 94.9조원에 달했을 것으로 추정된다. 비메모리 부문에서도 Foundry 실적 개선에 따라 영업적자 폭이 소폭 감소했을 것으로 보인다. 반면 SDC, MX/NW 부문의 2Q26 영업이익은 메모리 가격 급등에 의한 부작용에 따라 0.2조원, 1.0조원으로 축소될 전망이다. ■ 메모리 반도체 업황은 적어도 CY27까지는 호황이 이어질 것으로 판단된다. CY27에는 DRAM 업계 생산 증가율이 올해의 25%에서 20% 미만으로 하락하고, 빅테크 업체들이 Cash 부족에도 불구하고 유상 증자, SPV & JV 등의 방식으로 데이터센터 투자를 강하게 지속할 전망이기 때문이다. ■ 최근 급등에 따른 단기 주가 조정이 나타나고 있으나, 업황 및 실적 호조가 지속되고 글로벌 유동성 YoY 증감률의 상승이 2H26에 재개될 전망이므로 동사 주가의 중기 상승세는 유효할 것으로 판단된다. [02170455]_005930.pdf",
+      "topicKey": "company:삼성전자",
+      "topicType": "company",
+      "summary": "실적 추정 상향과 업황 논리가 숫자로 뒷받침되어 원문 기준 설득력이 높다.",
+      "narrative": {
+        "industryTrend": "DRAM·NAND ASP 상승폭 확대를 근거로 2Q26/FY26 영업이익 전망 상향",
+        "demandSupply": "CY27까지 메모리 호황 지속 가능성을 제시",
+        "policy": null,
+        "competition": null,
+        "risk": "메모리 가격 급등 부작용으로 SDC와 MX/NW 이익 축소 전망",
+        "catalyst": "글로벌 유동성과 업황 호조가 중기 주가 상승세를 뒷받침한다는 논리"
+      },
+      "goodBadAssessment": {
+        "bucket": "좋은 리포트",
+        "reason": "실적 추정 상향과 업황 논리가 숫자로 뒷받침되어 원문 기준 설득력이 높다."
+      },
+      "upsideDrivers": [
+        "DRAM·NAND ASP 상승폭 확대를 근거로 2Q26/FY26 영업이익 전망 상향",
+        "CY27까지 메모리 호황 지속 가능성을 제시",
+        "글로벌 유동성과 업황 호조가 중기 주가 상승세를 뒷받침한다는 논리"
+      ],
+      "risks": [
+        "메모리 가격 급등 부작용으로 SDC와 MX/NW 이익 축소 전망",
+        "지정학 이슈 장기화 시 AI 투자와 메모리 업황 둔화 가능",
+        "목표주가가 높은 P/B 적용에 민감함"
+      ],
+      "keyAssumptions": [
+        "2Q26 영업이익 전망 76.1조원에서 80.0조원으로 상향",
+        "FY26 영업이익 전망 340조원에서 360조원으로 상향",
+        "목표주가 480,000원, Buy 유지"
+      ],
+      "priorComparison": {
+        "priorArtifact": null,
+        "priorReportId": null,
+        "labels": [
+          "new-topic"
+        ],
+        "summary": "No prior same-topic watch item found."
+      },
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "reportId": "naver-93860",
+      "originalRead": true,
+      "nid": "93860",
+      "company": "비에이치아이",
+      "ticker": null,
+      "broker": "IBK투자증권",
+      "analyst": null,
+      "publishedDate": "2026-07-03",
+      "title": "1분기와 유사한 실적 흐름 예상",
+      "rating": "매수",
+      "ratingRaw": "매수",
+      "targetPrice": 110000,
+      "targetRaw": "110,000원",
+      "currency": "KRW",
+      "sourceSite": "naver",
+      "sourceSites": [
+        "naver"
+      ],
+      "landingUrl": "https://finance.naver.com/research/company_read.naver?nid=93860&page=1",
+      "pdfUrl": "https://stock.pstatic.net/stock-research/company/40/20260703_company_488547000.pdf",
+      "requiresAuth": false,
+      "accessiblePdf": true,
+      "textExtracted": true,
+      "sourceQuality": "pdf-text",
+      "pdfPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/pdf/93860-비에이치아이.pdf",
+      "extractedTextPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/text/93860-비에이치아이.txt",
+      "detailText": "2분기, 시장 기대치 상회 전망 2분기 연결 매출액과 영업이익은 각각 2,726억원(+61.0% yoy), 352억원(+72.5% yoy)으로 전망되며 컨센서스(2,478억원/297억원)를 상회할 전망이다. HRSG(배열회수보일러: 가스터빈의 폐열을 활용해 증기를 생산하는 복합화력발전 핵심 설비)와 보일러 등 전사업부문의 고른 성장세가 예상되며, 원가 및 판관비 측면에서도 특별한 부담 요인은 제한적인 것으로 판단된다. 다만 1분기에 이어 환율 상승에 따른 파생상품 거래손실이 반영되면서 당기순이익은 상대적으로 부진할 것으로 예상된다. 20260703071226850_ko.pdf",
+      "topicKey": "company:비에이치아이",
+      "topicType": "company",
+      "summary": "목표가는 내려갔지만 실적 상회와 수주 기반 성장 논리가 구체적이라 좋은 리포트로 본다.",
+      "narrative": {
+        "industryTrend": "2Q26 매출과 영업이익이 컨센서스를 상회할 전망",
+        "demandSupply": "HRSG와 보일러 등 전 사업부 성장, 사우디 LNG 프로젝트 매출 인식",
+        "policy": null,
+        "competition": null,
+        "risk": "목표주가는 14만원에서 11만원으로 하향",
+        "catalyst": "글로벌 전력 수요 수혜와 중장기 성장성을 유지"
+      },
+      "goodBadAssessment": {
+        "bucket": "좋은 리포트",
+        "reason": "목표가는 내려갔지만 실적 상회와 수주 기반 성장 논리가 구체적이라 좋은 리포트로 본다."
+      },
+      "upsideDrivers": [
+        "2Q26 매출과 영업이익이 컨센서스를 상회할 전망",
+        "HRSG와 보일러 등 전 사업부 성장, 사우디 LNG 프로젝트 매출 인식",
+        "글로벌 전력 수요 수혜와 중장기 성장성을 유지"
+      ],
+      "risks": [
+        "목표주가는 14만원에서 11만원으로 하향",
+        "당기순이익은 상대적으로 부진할 것으로 예상",
+        "수주 프로젝트 매출 인식과 전력 투자 사이클 의존도가 큼"
+      ],
+      "keyAssumptions": [
+        "2Q26 연결 매출액 2,726억원, 영업이익 352억원 전망",
+        "HRSG 매출 1,706억원, 보일러 매출 505억원 전망",
+        "투자의견 매수 유지, 목표주가 110,000원"
+      ],
+      "priorComparison": {
+        "priorArtifact": null,
+        "priorReportId": null,
+        "labels": [
+          "new-topic"
+        ],
+        "summary": "No prior same-topic watch item found."
+      },
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "reportId": "naver-93851",
+      "originalRead": true,
+      "nid": "93851",
+      "company": "천보",
+      "ticker": null,
+      "broker": "키움증권",
+      "analyst": null,
+      "publishedDate": "2026-07-02",
+      "title": "점진적 실적 개선 가시화",
+      "rating": "OutPerform",
+      "ratingRaw": "OutPerform",
+      "targetPrice": 45000,
+      "targetRaw": "45,000원",
+      "currency": "KRW",
+      "sourceSite": "naver",
+      "sourceSites": [
+        "naver"
+      ],
+      "landingUrl": "https://finance.naver.com/research/company_read.naver?nid=93851&page=1",
+      "pdfUrl": "https://stock.pstatic.net/stock-research/company/39/20260702_company_398920000.pdf",
+      "requiresAuth": false,
+      "accessiblePdf": true,
+      "textExtracted": true,
+      "sourceQuality": "pdf-text",
+      "pdfPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/pdf/93851-천보.pdf",
+      "extractedTextPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/text/93851-천보.txt",
+      "detailText": "2Q26 영업이익 -30억원(적자전환 YoY) 전망 2Q26 실적은 매출액 485억원(+19%QoQ, +47%YoY), 영업이익은 -30억원(적자지속 QoQ, 적자전환 YoY)으로 시장 컨센서스를 상회할 것으로 전망한다(영업이익 컨센서스 -69억원). 최근 중국 시장 내 첨가제 및 전해질 수요 증가와 가격 상승 현상이 나타나는 가운데, 주력 제품인 LiPO2F2 제품은 EVE Energy 등 중국 배터리 업체 향 판매량이 증가한 것으로 추정된다. 또한 지난 1분기부터 가동된 북미향 새만금 공장(LiFSI/FEC) 물량 증가도 예상돼 매출도 컨센서스(429억원)를 상회할 것으로 전망한다. 손익의 경우 새만금 공장의 가동에 따른 고정비 부담과 낮은 가동률 등으로 전분기비 매출 증가에도 불구하고 적자 기조가 지속될 것으로 전망한다. rfCR12167.pdf",
+      "topicKey": "company:천보",
+      "topicType": "company",
+      "summary": "개선 방향은 보이나 적자 지속·고정비·목표가 하향이 핵심이라 리스크가 큰 리포트다.",
+      "narrative": {
+        "industryTrend": "중국향 판매 확대와 새만금 북미향 물량 증가로 적자폭 축소",
+        "demandSupply": "2Q26 영업이익 컨센서스 대비 상회 예상",
+        "policy": null,
+        "competition": null,
+        "risk": "2Q26 영업이익 -30억원으로 적자 지속 전망",
+        "catalyst": "전분기 대비 점진적 실적 개선 가능성"
+      },
+      "goodBadAssessment": {
+        "bucket": "리스크가 큰 리포트",
+        "reason": "개선 방향은 보이나 적자 지속·고정비·목표가 하향이 핵심이라 리스크가 큰 리포트다."
+      },
+      "upsideDrivers": [
+        "중국향 판매 확대와 새만금 북미향 물량 증가로 적자폭 축소",
+        "2Q26 영업이익 컨센서스 대비 상회 예상",
+        "전분기 대비 점진적 실적 개선 가능성"
+      ],
+      "risks": [
+        "2Q26 영업이익 -30억원으로 적자 지속 전망",
+        "새만금 공장 고정비 부담과 낮은 가동률이 손익을 압박",
+        "2026년 영업이익 -68억원으로 적자전환 전망, 목표주가 하향"
+      ],
+      "keyAssumptions": [
+        "2Q26 매출액 485억원, 영업이익 -30억원 전망",
+        "2026년 매출액 1,964억원, 영업이익 -68억원 전망",
+        "목표주가 45,000원으로 하향, 투자의견 Outperform"
+      ],
+      "priorComparison": {
+        "priorArtifact": null,
+        "priorReportId": null,
+        "labels": [
+          "new-topic"
+        ],
+        "summary": "No prior same-topic watch item found."
+      },
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "reportId": "naver-93850",
+      "originalRead": true,
+      "nid": "93850",
+      "company": "삼성E&A",
+      "ticker": null,
+      "broker": "키움증권",
+      "analyst": null,
+      "publishedDate": "2026-07-02",
+      "title": "여전히 가져가도 좋은 하반기 수주 모멘텀",
+      "rating": "Buy",
+      "ratingRaw": "Buy",
+      "targetPrice": 72000,
+      "targetRaw": "72,000원",
+      "currency": "KRW",
+      "sourceSite": "naver",
+      "sourceSites": [
+        "naver"
+      ],
+      "landingUrl": "https://finance.naver.com/research/company_read.naver?nid=93850&page=1",
+      "pdfUrl": "https://stock.pstatic.net/stock-research/company/39/20260702_company_998468000.pdf",
+      "requiresAuth": false,
+      "accessiblePdf": true,
+      "textExtracted": true,
+      "sourceQuality": "pdf-text",
+      "pdfPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/pdf/93850-삼성E&A.pdf",
+      "extractedTextPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/text/93850-삼성E&A.txt",
+      "detailText": "2분기 영업이익 시장 컨센서스 부합 전망 삼성E&A의 2분기 영업이익은 2,108원(YoY +16.5%)으로 시장 컨센서스(2,177억원)에 부합할 것으로 전망된다. 일부 중동현장에서 대체항로로 인한 비용 상승은 있었으나, 예비비 내에서 충당된 것으로 보이며 이익률에 큰 영향은 없을 것으로 판단된다. 화공 부문은 파딜리 현장의 공정률 상승으로 매출액 반등이 예상되나, 3분기부터 라스라판, BGCC 현장 매출감소가 전망된다. 다만, 첨단산업 및 뉴에너지 부문 매출액은 삼성전자 P5 골조공사 본격화와 말레이시아 SAF, Taziz 메탄올 현장 등의 매출 본격화로 점차 증가할 것으로 전망된다. 2분기에는 기다리던 중동 수처리 수주(7.9억불)를 받았으며, 동일 현장에서의 O&M도 추가로 수주했다. rfCR12166.pdf",
+      "topicKey": "company:삼성E&A",
+      "topicType": "company",
+      "summary": "실적은 컨센서스 수준이나 수주 모멘텀과 목표가 상향 근거가 명확해 좋은 리포트로 분류한다.",
+      "narrative": {
+        "industryTrend": "하반기 그룹사 수주와 수주 가이던스 상향 가능성",
+        "demandSupply": "첨단산업·뉴에너지 매출이 점차 증가할 전망",
+        "policy": null,
+        "competition": null,
+        "risk": "중동 전쟁으로 수주 발표 일정이 지연될 수 있음",
+        "catalyst": "목표주가를 72,000원으로 상향"
+      },
+      "goodBadAssessment": {
+        "bucket": "좋은 리포트",
+        "reason": "실적은 컨센서스 수준이나 수주 모멘텀과 목표가 상향 근거가 명확해 좋은 리포트로 분류한다."
+      },
+      "upsideDrivers": [
+        "하반기 그룹사 수주와 수주 가이던스 상향 가능성",
+        "첨단산업·뉴에너지 매출이 점차 증가할 전망",
+        "목표주가를 72,000원으로 상향"
+      ],
+      "risks": [
+        "중동 전쟁으로 수주 발표 일정이 지연될 수 있음",
+        "라스라판, BGCC 현장 매출 감소가 3분기부터 예상",
+        "수주 가이던스 상향은 아직 기대 요인"
+      ],
+      "keyAssumptions": [
+        "2Q26 영업이익은 시장 컨센서스 부합 전망",
+        "2Q26 영업이익 2,108억원 전망",
+        "투자의견 Buy 유지, 목표주가 72,000원 상향"
+      ],
+      "priorComparison": {
+        "priorArtifact": null,
+        "priorReportId": null,
+        "labels": [
+          "new-topic"
+        ],
+        "summary": "No prior same-topic watch item found."
+      },
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "reportId": "naver-93848",
+      "originalRead": true,
+      "nid": "93848",
+      "company": "한세실업",
+      "ticker": null,
+      "broker": "대신증권",
+      "analyst": null,
+      "publishedDate": "2026-07-02",
+      "title": "2분기 낮은 기저 영향으로 증익 전망",
+      "rating": "Buy",
+      "ratingRaw": "Buy",
+      "targetPrice": 12000,
+      "targetRaw": "12,000원",
+      "currency": "KRW",
+      "sourceSite": "naver",
+      "sourceSites": [
+        "naver"
+      ],
+      "landingUrl": "https://finance.naver.com/research/company_read.naver?nid=93848&page=1",
+      "pdfUrl": "https://stock.pstatic.net/stock-research/company/15/20260702_company_241090000.pdf",
+      "requiresAuth": false,
+      "accessiblePdf": true,
+      "textExtracted": true,
+      "sourceQuality": "pdf-text",
+      "pdfPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/pdf/93848-한세실업.pdf",
+      "extractedTextPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/text/93848-한세실업.txt",
+      "detailText": "투자의견 BUY를 유지하나 목표주가 12,000원으로 하향(-14%) 투자의견 BUY를 유지하며 목표주가를 12,000원(12개월 FWD 예상 P/E 8배)으로 하향(-14%). 목표주가 하향은 실적 하향 조정에 따름 26년 3분기 오더 흐름은 달러 기준 전년 수준에 그칠 것으로 전망. 관세 영향으로 동사가 제조하는 중저가 의류 제품은 수주가 의미 있게 증가하지 못하는 상황이 올해 당분간 지속될 것으로 전망 다만 동사는 이미 이전에 공시를 통해 26-28F 최소 배당 600원을 제시. 하반기 낮은 이익 개선률 전망에도 주가는 이미 큰 폭의 조정을 겪은 상황으로, 현 주가 수준에서 예상되는 높은 배당수익률은 향후 주가의 변동성을 낮추는 역할을 할 것으로 전망(배당 수익률 7.5% 전망). 57954_260701_Hansae.pdf",
+      "topicKey": "company:한세실업",
+      "topicType": "company",
+      "summary": "증익은 낮은 기저 성격이고 목표가 하향·오더 정체·관세 부담이 강해 리스크 쪽으로 둔다.",
+      "narrative": {
+        "industryTrend": "낮은 기저 효과로 2Q26 영업이익 증가 전망",
+        "demandSupply": "OEM 달러 기준 매출 성장률 +5% 전망",
+        "policy": null,
+        "competition": null,
+        "risk": "목표주가를 12,000원으로 14% 하향",
+        "catalyst": "배당수익률 방어 논리가 있음"
+      },
+      "goodBadAssessment": {
+        "bucket": "리스크가 큰 리포트",
+        "reason": "증익은 낮은 기저 성격이고 목표가 하향·오더 정체·관세 부담이 강해 리스크 쪽으로 둔다."
+      },
+      "upsideDrivers": [
+        "낮은 기저 효과로 2Q26 영업이익 증가 전망",
+        "OEM 달러 기준 매출 성장률 +5% 전망",
+        "배당수익률 방어 논리가 있음"
+      ],
+      "risks": [
+        "목표주가를 12,000원으로 14% 하향",
+        "3분기 오더 흐름이 달러 기준 전년 수준에 그칠 전망",
+        "관세 영향으로 실적 하향 조정 우려가 지속"
+      ],
+      "keyAssumptions": [
+        "2Q26 매출액 5,446억원, 영업이익 202억원 전망",
+        "목표주가 12,000원, BUY 유지",
+        "배당수익률 7.5% 전망"
+      ],
+      "priorComparison": {
+        "priorArtifact": null,
+        "priorReportId": null,
+        "labels": [
+          "new-topic"
+        ],
+        "summary": "No prior same-topic watch item found."
+      },
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "reportId": "naver-93847",
+      "originalRead": true,
+      "nid": "93847",
+      "company": "영원무역",
+      "ticker": null,
+      "broker": "대신증권",
+      "analyst": null,
+      "publishedDate": "2026-07-02",
+      "title": "양호한 실적, 오랜 기간 조정 이제는 주가 회복만 남음",
+      "rating": "Buy",
+      "ratingRaw": "Buy",
+      "targetPrice": 140000,
+      "targetRaw": "140,000원",
+      "currency": "KRW",
+      "sourceSite": "naver",
+      "sourceSites": [
+        "naver"
+      ],
+      "landingUrl": "https://finance.naver.com/research/company_read.naver?nid=93847&page=1",
+      "pdfUrl": "https://stock.pstatic.net/stock-research/company/15/20260702_company_805827000.pdf",
+      "requiresAuth": false,
+      "accessiblePdf": true,
+      "textExtracted": true,
+      "sourceQuality": "pdf-text",
+      "pdfPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/pdf/93847-영원무역.pdf",
+      "extractedTextPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/text/93847-영원무역.txt",
+      "detailText": "투자의견 BUY와 목표주가 140,000원 유지 투자의견 BUY와 목표주가 140,000원(12MF 예상 P/E 9배) 유지 2분기에도 고유가에 따른 원가 상승 등 중동 지역 전쟁 피해는 없는 것으로 파악. 이는 동사의 제품이 지속적으로 성장하는 기능성 의류 제품으로 이 시장에서 동사가 No. 1 벤더로서 가지는 경쟁력 때문. 하반기에도 고유가가 원가율에 미치는 영향은 거의 없을 것으로 예상되는데 이는 양호한 매출 성장세가 이어지고 고환율이 높은 영업이익률을 지탱해줄 것으로 전망되기 때문 자회사 Scott의 경우 당장 흑자 전환은 쉽지 않으나 분기 적자가 100억원대 진입하였고 OEM 부문의 양호한 실적 덕분에 전체 실적에 큰 변수는 더 이상 아닌 것으로 판단. 올해 글로벌 AI 산업의 폭발적인 성장으로 동사의 주가는 양호한 실적 불구 시장에서 소외되며 12FWD P/E는 5배 수준까지 하락. 연초부터 고유가로 인한 원가 상승, 수주 저성장 등 우려 사항으로 지적됐던 것들은 모두 해소. 하반기 양호한 실적과 함께 주가 회복 전망 57953_260701_Youngone.pdf",
+      "topicKey": "company:영원무역",
+      "topicType": "company",
+      "summary": "실적·수주·마진의 세 축이 동시에 제시되어 원문 기준 좋은 리포트다.",
+      "narrative": {
+        "industryTrend": "2분기 OEM 달러 기준 8% 성장 전망",
+        "demandSupply": "양호한 수주 성장과 고마진 상황 지속 전망",
+        "policy": null,
+        "competition": null,
+        "risk": "Scott은 2분기에도 영업적자 확대 가능성이 남아 있음",
+        "catalyst": "Scott 적자도 전년 대비 개선 예상"
+      },
+      "goodBadAssessment": {
+        "bucket": "좋은 리포트",
+        "reason": "실적·수주·마진의 세 축이 동시에 제시되어 원문 기준 좋은 리포트다."
+      },
+      "upsideDrivers": [
+        "2분기 OEM 달러 기준 8% 성장 전망",
+        "양호한 수주 성장과 고마진 상황 지속 전망",
+        "Scott 적자도 전년 대비 개선 예상"
+      ],
+      "risks": [
+        "Scott은 2분기에도 영업적자 확대 가능성이 남아 있음",
+        "주가가 AI 테마에서 소외되며 장기간 조정 받았음",
+        "고객사 수주와 환율 효과 의존도가 있음"
+      ],
+      "keyAssumptions": [
+        "2Q26 매출액 1조1,633억원, 영업이익 1,777억원 전망",
+        "투자의견 BUY와 목표주가 140,000원 유지",
+        "12MF 예상 P/E 9배 적용"
+      ],
+      "priorComparison": {
+        "priorArtifact": null,
+        "priorReportId": null,
+        "labels": [
+          "new-topic"
+        ],
+        "summary": "No prior same-topic watch item found."
+      },
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "reportId": "naver-93844",
+      "originalRead": true,
+      "nid": "93844",
+      "company": "CJ제일제당",
+      "ticker": null,
+      "broker": "DS투자증권",
+      "analyst": null,
+      "publishedDate": "2026-07-02",
+      "title": "바이오 실적 호조 속 사업구조 재편 기대",
+      "rating": "매수",
+      "ratingRaw": "매수",
+      "targetPrice": 300000,
+      "targetRaw": "300,000원",
+      "currency": "KRW",
+      "sourceSite": "naver",
+      "sourceSites": [
+        "naver"
+      ],
+      "landingUrl": "https://finance.naver.com/research/company_read.naver?nid=93844&page=1",
+      "pdfUrl": "https://stock.pstatic.net/stock-research/company/66/20260702_company_390601000.pdf",
+      "requiresAuth": false,
+      "accessiblePdf": true,
+      "textExtracted": true,
+      "sourceQuality": "pdf-text",
+      "pdfPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/pdf/93844-CJ제일제당.pdf",
+      "extractedTextPath": ".tmp/kr-analyst-report-watch/original-2026-07-05/text/93844-CJ제일제당.txt",
+      "detailText": "2Q26Pre: 국내외 식품 수익 부진을 바이오에서 방어 CJ제일제당의 2Q26 실적은 연결기준 매출액 7조원(+4% YoY), 영업이익 2,789억원(-9% YoY, OPM 4%)으로 시장기대치(OP 2,778억원)에 부합할 전망이다. 1)국내 식품 매출은 1.3조원(+1% YoY)으로 전망하는데 가공식품은 내수 소비 둔화 속 +2% 내외 성장이 기대되나 소재식품이 주요 제품 판가 인하 및 포토폴리오 조정에 따른 판매량 감소로 -5% 내외 감소한 것으로 파악된다. 수익성은 소재 판가 인하와 환율 및 원자재 가격 부담 증가로 전년비 부진할 전망이다. 2)해외 식품 매출은 1.4조원(+7% YoY)으로 전망하는데 미국은 피자 부진을 만두, 햇반, 치킨 등 전략상품 매출이 성장하며 상쇄했고 유럽, 아태 지역은 두자리수 성장세를 이어간 것으로 파악된다. 다만 전반적인 인플레이션 부담 및 광고비용 증가로 수익성은 부진할 전망이다. 3)바이오 매출은 1.1조원(+7%)으로 전망하는데 경쟁사 대비 유리한 원가 구조로 메치오닌 판매 호조, 고수익 스페셜티 제품 중심 외형 성장으로 수익기여도는 더욱 확대될 것으로 기대된다. 260702_CJCJ_2Q26PreDS장지혜.pdf",
+      "topicKey": "company:CJ제일제당",
+      "topicType": "company",
+      "summary": "밸류에이션 반등 논리는 있으나 식품 수익성 부진을 바이오가 방어하는 구조라 애매한 리포트로 본다.",
+      "narrative": {
+        "industryTrend": "바이오 부문이 식품 수익 부진을 방어",
+        "demandSupply": "메치오닌 판매 호조와 고수익 스페셜티 제품 성장",
+        "policy": null,
+        "competition": null,
+        "risk": "국내 소재식품 판가 인하와 소비 둔화",
+        "catalyst": "사업 구조 재편과 재무 구조 개선 성과가 주가 반등 변수"
+      },
+      "goodBadAssessment": {
+        "bucket": "애매한 리포트",
+        "reason": "밸류에이션 반등 논리는 있으나 식품 수익성 부진을 바이오가 방어하는 구조라 애매한 리포트로 본다."
+      },
+      "upsideDrivers": [
+        "바이오 부문이 식품 수익 부진을 방어",
+        "메치오닌 판매 호조와 고수익 스페셜티 제품 성장",
+        "사업 구조 재편과 재무 구조 개선 성과가 주가 반등 변수"
+      ],
+      "risks": [
+        "국내 소재식품 판가 인하와 소비 둔화",
+        "미국 피자 부진, 인플레이션과 광고비 증가로 해외 식품 수익성 부진",
+        "2Q26 영업이익은 전년 대비 감소 전망"
+      ],
+      "keyAssumptions": [
+        "2Q26 연결 매출액 7조원, 영업이익 2,789억원 전망",
+        "국내 식품 매출 1.3조원, 해외 식품 매출 1.4조원, 바이오 매출 1.1조원 전망",
+        "투자의견 매수, 목표주가 300,000원 유지"
+      ],
+      "priorComparison": {
+        "priorArtifact": null,
+        "priorReportId": null,
+        "labels": [
+          "new-topic"
+        ],
+        "summary": "No prior same-topic watch item found."
+      },
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    }
+  ],
+  "topicChanges": [
+    {
+      "topicKey": "company:한온시스템",
+      "topicType": "company",
+      "reportIds": [
+        "naver-93873"
+      ],
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "topicKey": "company:시프트업",
+      "topicType": "company",
+      "reportIds": [
+        "naver-93871"
+      ],
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "topicKey": "company:키움증권",
+      "topicType": "company",
+      "reportIds": [
+        "naver-93865"
+      ],
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "topicKey": "company:삼성전자",
+      "topicType": "company",
+      "reportIds": [
+        "naver-93863"
+      ],
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "topicKey": "company:비에이치아이",
+      "topicType": "company",
+      "reportIds": [
+        "naver-93860"
+      ],
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "topicKey": "company:천보",
+      "topicType": "company",
+      "reportIds": [
+        "naver-93851"
+      ],
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "topicKey": "company:삼성E&A",
+      "topicType": "company",
+      "reportIds": [
+        "naver-93850"
+      ],
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "topicKey": "company:한세실업",
+      "topicType": "company",
+      "reportIds": [
+        "naver-93848"
+      ],
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "topicKey": "company:영원무역",
+      "topicType": "company",
+      "reportIds": [
+        "naver-93847"
+      ],
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    },
+    {
+      "topicKey": "company:CJ제일제당",
+      "topicType": "company",
+      "reportIds": [
+        "naver-93844"
+      ],
+      "narrativeDeltaLabels": [
+        "new-topic"
+      ]
+    }
+  ],
+  "sourceQuality": {
+    "accessiblePdfCount": 10,
+    "loginGatedCount": 0,
+    "extractedTextCount": 9,
+    "warnings": [
+      "키움증권: pdf-text-low + detail-page; PDF text extraction was incomplete, so detail-page text was used as fallback."
+    ]
+  }
+}
