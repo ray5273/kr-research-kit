@@ -189,7 +189,7 @@ Override anywhere with `KR_STOCK_CHART_FONT=/path/to/font.ttf`.
 
 Telegram sending is an explicit post-processing command. It is not integrated into data collection, Naver publishing, or scheduled workflows.
 
-1. Copy the values from [`.env.telegram.example`](../.env.telegram.example) into the repo-root `.env` and replace them:
+1. Locate the installed `telegram-report-sender` skill folder, then copy the values from [`.env.telegram.example`](../.env.telegram.example) into that skill folder's gitignored `.env` and replace them:
 
 ```text
 TELEGRAM_BOT_TOKEN=123456789:replace_with_your_bot_token
@@ -199,7 +199,7 @@ TELEGRAM_CHAT_ID=123456789
 2. Preview the send plan without network calls:
 
 ```bash
-node scripts/send-telegram.js --input analysis-example/kr-market/daily-news-2026-07-02.json --dry-run
+node <telegram-report-sender-skill>/scripts/send-telegram.js --input analysis-example/kr-market/daily-news-2026-07-02.json --dry-run
 ```
 
 3. Remove `--dry-run` to send a short summary plus the matching Markdown artifact when present. Use `--summary-only`, `--document-only`, or `--attach <path>` to override the default.

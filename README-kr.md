@@ -82,7 +82,7 @@ end-to-end 6가지. 각 프롬프트는 Claude Code(`/skill`) 또는 Codex(`$ski
 Telegram 발송은 수집/네이버 게시와 독립된 후처리 명령입니다. 자동으로 전송하지 않습니다.
 
 ```bash
-node scripts/send-telegram.js --input analysis-example/kr-market/leaders-2026-07-04.json --dry-run
+node skills/telegram-report-sender/scripts/send-telegram.js --input analysis-example/kr-market/leaders-2026-07-04.json --dry-run
 ```
 
 ### 5. 한국 증권사 리포트 워치
@@ -93,7 +93,7 @@ $kr-analyst-report-watch daily mode로 오늘 한국 증권사 리포트 흐름�
 
 산출물: `analysis-example/kr-reports/report-watch-<mode>-<YYYY-MM-DD>.md` + `.json`. topic key, narrative delta label, 이전 watch artifact 대비 변화, 공개 원문 링크를 포함합니다. 스킬 파일: [kr-analyst-report-watch](skills/kr-analyst-report-watch/SKILL.md).
 
-생성 후 Telegram으로 요약과 첨부 파일을 보내려면 [`.env.telegram.example`](.env.telegram.example)의 값을 gitignored `.env`에 채운 뒤 `node scripts/send-telegram.js --input <artifact>`를 명시적으로 실행합니다.
+생성 후 Telegram으로 요약과 첨부 파일을 보내려면 [`.env.telegram.example`](.env.telegram.example)의 값을 `telegram-report-sender` 스킬 폴더의 gitignored `.env`에 채운 뒤 `node skills/telegram-report-sender/scripts/send-telegram.js --input <artifact>`를 명시적으로 실행합니다.
 
 ### 6. Codex Desktop 데일리 시장 뉴스 자동화
 
@@ -106,7 +106,7 @@ $kr-daily-market-news로 오늘 한국 시장/업종 데일리 뉴스 리포트�
 Telegram 발송도 같은 artifact를 입력으로 받지만 별도 선택지입니다. JSON과 같은 basename의 Markdown이 있으면 해당 `.md`를 첨부합니다.
 
 ```bash
-node scripts/send-telegram.js --input analysis-example/kr-market/daily-news-2026-07-02.json --dry-run
+node skills/telegram-report-sender/scripts/send-telegram.js --input analysis-example/kr-market/daily-news-2026-07-02.json --dry-run
 ```
 
 미국 시장 데일리 뉴스도 같은 산출물 계약을 사용합니다.
@@ -118,7 +118,7 @@ $us-daily-market-news로 오늘 미국 시장/업종 데일리 뉴스 리포트�
 미국 섹터 seed는 [examples/us/daily-sector-stocks.json](examples/us/daily-sector-stocks.json), watchlist 호환 파일은 [examples/us/daily-watchlist.json](examples/us/daily-watchlist.json)에 있습니다.
 
 ```bash
-node scripts/send-telegram.js --input analysis-example/us-market/daily-news-2026-07-02.json --summary-only
+node skills/telegram-report-sender/scripts/send-telegram.js --input analysis-example/us-market/daily-news-2026-07-02.json --summary-only
 ```
 
 미국 SEC 공시 정밀 분석은 SEC submissions, companyfacts, filing archive를 사용합니다.
@@ -147,7 +147,7 @@ DART recheck는 `confirmed`, `partially supported`, `not separately disclosed`�
 
 ## 구성
 
-29개 스킬. 한국 주식 파이프라인: `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-stock-data-pack → kr-stock-analysis`. 데일리 시장 뉴스 워크플로: `kr-daily-market-news` / `us-daily-market-news → kr-naver-blog-publish`; 증권사 리포트 모니터링: `kr-analyst-report-watch`. 미국 주식: `us-sec-analysis → us-stock-analysis`. 섹터 워크플로: `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update`.
+30개 스킬. 한국 주식 파이프라인: `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-stock-data-pack → kr-stock-analysis`. 데일리 시장 뉴스 워크플로: `kr-daily-market-news` / `us-daily-market-news → kr-naver-blog-publish`; 증권사 리포트 모니터링: `kr-analyst-report-watch`; Telegram 후처리: `telegram-report-sender`. 미국 주식: `us-sec-analysis → us-stock-analysis`. 섹터 워크플로: `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update`.
 
 전체 카탈로그 + 스킬별 동작 + 번들 헬퍼 → [docs/SKILLS.md](docs/SKILLS.md).
 

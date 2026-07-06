@@ -1,6 +1,6 @@
 # Skills Catalog & Behavior
 
-29 skills shipped in `kr-research-kit`. Korean stock workflow shorthand:
+30 skills shipped in `kr-research-kit`. Korean stock workflow shorthand:
 
 ```text
 kr-stock-plan -> kr-stock-chart -> kr-stock-dart-analysis -> kr-trade-flow-analysis -> kr-stock-data-pack -> kr-stock-analysis
@@ -28,6 +28,7 @@ Use $kr-stock-plan as the entry point for Korean stock work. Have it first ask w
 - `kr-market-leaders` — integrated KOSPI + KOSDAQ technical leadership screens across 1D/7D, 30D/60D, and 120D/252D lenses.
 - `kr-daily-market-news` — daily Korean market-wide plus watchlist news report for Codex Desktop Automation, with dated Markdown/JSON artifacts and a Naver Blog publish manifest.
 - `kr-analyst-report-watch` — daily/weekly Korean brokerage report monitor that summarizes Top N reports and flags narrative changes by topic.
+- `telegram-report-sender` — explicit Telegram post-processing sender for generated report artifacts; reads credentials from the sender skill folder or CLI flags.
 - `us-daily-market-news` — daily U.S. market-wide and sector news report for Codex Desktop Automation, with U.S. RSS sources, New York date filtering, dated Markdown/JSON artifacts, and a Naver Blog publish manifest.
 - `kr-stock-chart` — chart-only KRX output and reusable chart artifacts (`chart-data.json`, `chart-analysis.md`, five PNG panels, CSV sidecars, optional rule-screen outputs).
 - `kr-stock-dart-analysis` — precise DART filing extraction before broader Korean stock interpretation.

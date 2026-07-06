@@ -1,0 +1,6 @@
+---
+name: telegram-report-sender
+description: Send generated research artifacts to Telegram only after explicit user approval.
+---
+
+Use this skill to preview or send Telegram delivery for generated report artifacts. Never send automatically as part of report collection or publishing.

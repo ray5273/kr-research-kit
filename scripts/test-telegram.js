@@ -7,6 +7,9 @@ const path = require("path");
 const { spawnSync } = require("child_process");
 const {
   chunkTelegramMessage,
+  findConfigRoot,
+  findSkillRoot,
+  loadConfigEnv,
   redactToken,
   resolveTelegramConfig,
   sendDocument,
@@ -64,6 +67,11 @@ const generic = writeJson("generic.json", { schemaVersion: 1, asOfDate: "2026-07
 const markdown = path.join(root, "memo.md");
 fs.writeFileSync(markdown, "# Memo Title\n\n## Decision\n\n- First point\n- Second point\n");
 
+const fakeSkill = path.join(root, "skills", "telegram-sender");
+fs.mkdirSync(path.join(fakeSkill, "scripts"), { recursive: true });
+fs.writeFileSync(path.join(fakeSkill, "SKILL.md"), "---\nname: telegram-sender\n---\n");
+fs.writeFileSync(path.join(fakeSkill, ".env"), "TELEGRAM_BOT_TOKEN=111111:skill_token_value\nTELEGRAM_CHAT_ID=skill-chat\n");
+
 assert(buildSendPlan({ input: krDaily }).summary.includes("Korean market daily news"));
 assert(buildSendPlan({ input: usDaily }).summary.includes("U.S. market daily news"));
 assert(buildSendPlan({ input: reportWatch }).summary.includes("Korean analyst report watch"));
@@ -75,6 +83,10 @@ assert.strictEqual(buildSendPlan({ input: krDaily, attach: markdown }).attachmen
 assert.strictEqual(buildSendPlan({ input: krDaily, "summary-only": true }).sendDocument, false);
 assert.strictEqual(buildSendPlan({ input: krDaily, "document-only": true }).sendSummary, false);
 assert.throws(() => buildSendPlan({ input: krDaily, "summary-only": true, "document-only": true }), /cannot be used together/);
+assert.strictEqual(findSkillRoot(path.join(fakeSkill, "scripts")), fakeSkill);
+assert.strictEqual(findConfigRoot(path.join(fakeSkill, "scripts")), fakeSkill);
+assert.strictEqual(loadConfigEnv(fakeSkill).TELEGRAM_CHAT_ID, "skill-chat");
+assert.strictEqual(resolveTelegramConfig({ configRoot: fakeSkill }).chatId, "skill-chat");
 
 const calls = [];
 const transport = async request => {

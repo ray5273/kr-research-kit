@@ -6,6 +6,16 @@ const DEFAULT_API_BASE = "https://api.telegram.org";
 const MESSAGE_LIMIT = 4096;
 const CAPTION_LIMIT = 1024;
 
+function findSkillRoot(startDir = process.cwd()) {
+  let current = path.resolve(startDir);
+  while (true) {
+    if (fs.existsSync(path.join(current, "SKILL.md"))) return current;
+    const parent = path.dirname(current);
+    if (parent === current) return "";
+    current = parent;
+  }
+}
+
 function findRepoRoot(startDir = process.cwd()) {
   let current = path.resolve(startDir);
   while (true) {
@@ -14,6 +24,12 @@ function findRepoRoot(startDir = process.cwd()) {
     if (parent === current) return path.resolve(startDir);
     current = parent;
   }
+}
+
+function findConfigRoot(startDir = process.cwd()) {
+  const skillRoot = findSkillRoot(startDir);
+  if (skillRoot) return skillRoot;
+  return findRepoRoot(startDir);
 }
 
 function parseEnvLine(line) {
@@ -26,8 +42,8 @@ function parseEnvLine(line) {
   return [match[1], value];
 }
 
-function loadRepoEnv(repoRoot = findRepoRoot()) {
-  const envPath = path.join(repoRoot, ".env");
+function loadConfigEnv(configRoot = findConfigRoot()) {
+  const envPath = path.join(configRoot, ".env");
   if (!fs.existsSync(envPath)) return {};
   const env = {};
   for (const line of fs.readFileSync(envPath, "utf8").split(/\r?\n/)) {
@@ -39,9 +55,14 @@ function loadRepoEnv(repoRoot = findRepoRoot()) {
   return env;
 }
 
+function loadRepoEnv(repoRoot = findRepoRoot()) {
+  return loadConfigEnv(repoRoot);
+}
+
 function resolveTelegramConfig(options = {}) {
-  const repoEnv = loadRepoEnv(options.repoRoot);
-  const source = { ...repoEnv, ...process.env };
+  const configRoot = options.configRoot || options.skillRoot || options.repoRoot;
+  const configEnv = loadConfigEnv(configRoot);
+  const source = { ...configEnv, ...process.env };
   return {
     token: options.token || source.TELEGRAM_BOT_TOKEN || "",
     chatId: options.chatId || source.TELEGRAM_CHAT_ID || "",
@@ -61,7 +82,7 @@ function requireTelegramConfig(config) {
   if (!config.token) missing.push("TELEGRAM_BOT_TOKEN");
   if (!config.chatId) missing.push("TELEGRAM_CHAT_ID");
   if (missing.length) {
-    throw new Error(`Missing Telegram credential(s): ${missing.join(", ")}. Set them in repo .env or pass --token/--chat-id.`);
+    throw new Error(`Missing Telegram credential(s): ${missing.join(", ")}. Set them in the sender skill folder .env or pass --token/--chat-id.`);
   }
 }
 
@@ -187,7 +208,10 @@ module.exports = {
   DEFAULT_API_BASE,
   MESSAGE_LIMIT,
   chunkTelegramMessage,
+  findConfigRoot,
   findRepoRoot,
+  findSkillRoot,
+  loadConfigEnv,
   loadRepoEnv,
   redactToken,
   requestJson,

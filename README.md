@@ -82,7 +82,7 @@ Output: `analysis-example/kr-market/leaders-<YYYY-MM-DD>.md` + `.json` cache wit
 Optional Telegram delivery is a separate post-processing step, never part of collection or Naver publishing:
 
 ```bash
-node scripts/send-telegram.js --input analysis-example/kr-market/leaders-2026-07-04.json --dry-run
+node skills/telegram-report-sender/scripts/send-telegram.js --input analysis-example/kr-market/leaders-2026-07-04.json --dry-run
 ```
 
 ### 5. Undisclosed customer / end-demand reverse tracking (CSV-first)
@@ -103,7 +103,7 @@ Use $kr-analyst-report-watch in daily mode for today's Korean brokerage report f
 
 Output: `analysis-example/kr-reports/report-watch-<mode>-<YYYY-MM-DD>.md` + `.json`, with topic keys, narrative delta labels, source quality gaps, and links back to public report sources. Skill files: [kr-analyst-report-watch](skills/kr-analyst-report-watch/SKILL.md), [output format](skills/kr-analyst-report-watch/references/output-format.md).
 
-To send the report summary and attachment to Telegram after generation, configure [`.env.telegram.example`](.env.telegram.example) values in your gitignored `.env`, then run `node scripts/send-telegram.js --input <artifact>`.
+To send the report summary and attachment to Telegram after generation, configure [`.env.telegram.example`](.env.telegram.example) values in the `telegram-report-sender` skill folder's gitignored `.env`, then run `node skills/telegram-report-sender/scripts/send-telegram.js --input <artifact>`.
 
 ### 7. Codex Desktop daily market-news automation
 
@@ -124,11 +124,11 @@ Sector collection uses [examples/us/daily-sector-stocks.json](examples/us/daily-
 Telegram delivery is available for Korean/U.S. daily-news JSON or Markdown artifacts as an explicit follow-up command. It sends a short summary plus the matching `.md` file when present:
 
 ```bash
-node scripts/send-telegram.js --input analysis-example/kr-market/daily-news-2026-07-02.json --dry-run
-node scripts/send-telegram.js --input analysis-example/us-market/daily-news-2026-07-02.json --summary-only
+node skills/telegram-report-sender/scripts/send-telegram.js --input analysis-example/kr-market/daily-news-2026-07-02.json --dry-run
+node skills/telegram-report-sender/scripts/send-telegram.js --input analysis-example/us-market/daily-news-2026-07-02.json --summary-only
 ```
 
-Remove `--dry-run` only after `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` are set in `.env` or passed with CLI flags.
+Remove `--dry-run` only after `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` are set in the sender skill folder `.env` or passed with CLI flags.
 
 U.S. SEC filing precision uses official SEC submissions, companyfacts, and filing archive documents:
 
@@ -156,7 +156,7 @@ Full index of 35+ example artifacts and fixtures (memos, Naver posts, DART refer
 
 ## What's Inside
 
-29 skills. Korean stock pipeline: `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-trade-flow-analysis → kr-stock-data-pack → kr-stock-analysis`. Daily market workflows: `kr-daily-market-news` / `us-daily-market-news → kr-naver-blog-publish`; report monitoring: `kr-analyst-report-watch`. U.S. stocks: `us-sec-analysis → us-stock-analysis`. Sector workflow: `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update`.
+30 skills. Korean stock pipeline: `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-trade-flow-analysis → kr-stock-data-pack → kr-stock-analysis`. Daily market workflows: `kr-daily-market-news` / `us-daily-market-news → kr-naver-blog-publish`; report monitoring: `kr-analyst-report-watch`; Telegram follow-up: `telegram-report-sender`. U.S. stocks: `us-sec-analysis → us-stock-analysis`. Sector workflow: `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update`.
 
 Full catalog + per-skill behavior + bundled helpers → [docs/SKILLS.md](docs/SKILLS.md).
 

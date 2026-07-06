@@ -26,7 +26,7 @@ function parseArgs(argv) {
 
 function usage() {
   return [
-    "Usage: node scripts/send-telegram.js --input <artifact> [options]",
+    "Usage: node <telegram-report-sender>/scripts/send-telegram.js --input <artifact> [options]",
     "",
     "Options:",
     "  --chat-id <id>       Override TELEGRAM_CHAT_ID",
@@ -157,7 +157,8 @@ function buildSendPlan(args) {
 async function main(argv = process.argv) {
   const args = parseArgs(argv);
   const plan = buildSendPlan(args);
-  const config = resolveTelegramConfig({ token: args.token, chatId: args["chat-id"] });
+  const configRoot = args["config-root"] || process.env.TELEGRAM_CONFIG_ROOT || path.resolve(__dirname, "..");
+  const config = resolveTelegramConfig({ token: args.token, chatId: args["chat-id"], configRoot });
   if (args["dry-run"]) {
     console.log(JSON.stringify({
       dryRun: true,

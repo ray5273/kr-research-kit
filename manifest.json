@@ -53,6 +53,7 @@
       "kr-market-leaders",
       "kr-daily-market-news",
       "kr-analyst-report-watch",
+      "telegram-report-sender",
       "us-stock-analysis",
       "us-sec-analysis",
       "us-daily-market-news"
@@ -130,6 +131,12 @@
       "tier": "standalone",
       "tagline": "Monitor daily or weekly Korean brokerage report flow, summarize Top N public reports, and compare narrative changes by topic.",
       "entry": "skills/kr-analyst-report-watch/SKILL.md"
+    },
+    {
+      "name": "telegram-report-sender",
+      "tier": "standalone",
+      "tagline": "Send generated research artifacts to Telegram as an explicit post-processing step using the sender skill folder's credentials.",
+      "entry": "skills/telegram-report-sender/SKILL.md"
     },
     {
       "name": "us-daily-market-news",
