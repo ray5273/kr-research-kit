@@ -24,6 +24,7 @@ Before searching for new information:
 6. Read the existing `Decision Frame`, `Summary`, `DART Recheck`, `Street / Alternative Views`, `Decision-Changing Issues`, `Structured Stance`, and `Follow-up Research Prompts` sections so you know what the original thesis and unresolved work were.
 7. Parse `guard-decision` or `Decision Block` if present.
 8. Identify linked chart/valuation assets and sibling artifacts (`data-pack.md`, `dart-reference.md`, `dart-cache.json`, `chart-analysis.md`, outside-view digests).
+   Also record the memo's **last-stated close and its date** (e.g. `2026-04-15 종가 170,600원`) and the market cap / PER / PBR anchored to it. This is the baseline the Price & Chart Freshness Gate compares the live price against.
 9. If `dart-reference.md` or `dart-cache.json` exists, also parse:
    - `reference 기준일`
    - `최근 확인일`
@@ -79,6 +80,19 @@ Run sell-side / Naver / foreign-IB refresh only when at least one gate triggers:
 - the company is in a retail-favored sector where Naver voices are likely to affect the alternative-view section
 - an earnings, guidance, or consensus event makes sell-side delta relevant
 - an existing `Street / Alternative Views` bullet has an unresolved or stale claim
+
+## Price & Chart Freshness Gate
+
+Run this gate BEFORE writing the update whenever the classification is `refresh-now`, the memo will be published, the user asked about price/valuation/target/upside, the live close moved ≥ 5% versus the memo's last-stated close, or the memo's price date is more than 5 trading days old.
+
+When it triggers:
+
+1. Fetch the live close and regenerate chart artifacts with `scripts/harness.js --mode chart` (or `fetch-kr-chart.js` → `chart-basics.js`). Overwrite `chart-data.json`, `chart-analysis.md`, and the linked PNG panels.
+2. Recompute 현재가, 시가총액, PER/PBR/EV·EBITDA, the valuation snapshot table, and target-price upside against the new close.
+3. Re-examine the 결론 / `Structured Stance` / `Decision Frame`. A large move (e.g. −40%) can flip a "고평가라 추격 보류" call. State the new price basis explicitly.
+4. Record `priceAsOf`, `priceMovePct`, `chartsRegenerated`, and `valuationRecomputed` in the update packet.
+
+If a live price cannot be fetched, label the valuation `stale — not refreshed` in the update block. Never present a stale multiple, market cap, or upside as current, and never publish a stale-priced memo to a blog.
 
 ## Materiality Filter
 
@@ -142,7 +156,7 @@ Allowed sections for section sync:
 - `Decision Frame`
 - `guard-decision` / `Decision Block`
 
-Do not use section sync for `Update Log`, `Sources`, chart/valuation assets, or unrelated rewrites. If chart or valuation data is stale, mark asset refresh as required in the update block and refresh the actual PNG/JSON only when the user requested it or the memo relies on it.
+Do not use section sync for `Update Log`, `Sources`, or unrelated rewrites. Chart/valuation assets are the exception: when the Price & Chart Freshness Gate triggers, regenerating the chart PNG/JSON and recomputing the valuation snapshot, market cap, and multiples is REQUIRED — not "only when the user requested it." A stale price silently corrupts PER/PBR, upside, and the 결론, so never defer it on judgment.
 
 ## File Update Rules
 
@@ -170,3 +184,6 @@ If the new information materially changes the original conclusion, use the secti
 - running outside-view pipelines on every minor update
 - silently changing `기준일`
 - rewriting the full memo when a gated section sync would be enough
+- reusing a stale close, market cap, PER/PBR, or upside without running the Price & Chart Freshness Gate
+- publishing a memo to Naver Blog without regenerating charts and recomputing the valuation against the live price
+- leaving `Decision Frame` quoting an old 종가 while the Update Log quotes a new one

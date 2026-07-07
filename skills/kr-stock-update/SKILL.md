@@ -28,20 +28,60 @@ Use this skill when the user already has a Korean stock memo and wants follow-up
 3. Refresh sources only when needed.
    For `refresh-now`, read DART/KRX/company IR/news published after the original `기준일`, then deduplicate by event key and source URL. For `answer-now`, answer from existing memo state and log only if the user wants persistent state.
    If the memo has unresolved customer, geography, or product-mix gaps and a `trade-flow-analysis.md` artifact exists or the user asks for customs/export proxy work, use `kr-trade-flow-analysis` as a follow-up evidence source. Search only post-`기준일` company-specific disclosures, IR, and news for confirmation; keep the trade-stat result labeled as inference.
-4. Apply gated upstream skill calls.
+4. Run the Price & Chart Freshness Gate.
+   MANDATORY whenever the update is `refresh-now`, the memo will be published (e.g. handed to `kr-naver-blog-publish`), or the user asks anything about price, valuation, target price, or upside. Fetch the live close, compare it to the memo's last-stated price, and if the gate triggers, regenerate the chart artifacts and recompute every price-derived fact. See [Price & Chart Freshness Gate](#price--chart-freshness-gate-mandatory) below.
+5. Apply gated upstream skill calls.
    Always prioritize DART/KRX/company sources. Add sell-side, Naver, or foreign-IB passes only when the user asked, the memo has an external-view gap, the sector is retail-favored, an earnings/consensus event requires it, or an existing `Street / Alternative Views` claim is unresolved.
-5. Judge materiality and thesis delta.
+6. Judge materiality and thesis delta.
    Use `stronger`, `weaker`, `unchanged`, or `unclear`. Do not turn every headline into a thesis change.
-6. Write an update packet.
-   Use the v2 JSON shape in `references/script-inputs.md`, including classification, thesis delta, event keys, follow-up resolutions, DART recheck rows, signals, and sources.
-7. Write back idempotently.
-   Run `scripts/normalize-update-log.js` to refresh `최근 업데이트일` and append or replace the dated block. Run `scripts/apply-memo-section-updates.js` only when the hybrid gate allows selected section sync.
-8. Answer the user.
-   Lead with classification, material changes, unchanged thesis points, and whether any upstream memo sections were synchronized.
+7. Write an update packet.
+   Use the v2 JSON shape in `references/script-inputs.md`, including classification, thesis delta, event keys, follow-up resolutions, DART recheck rows, signals, sources, and the freshness-gate result (`priceAsOf`, `priceMovePct`, `chartsRegenerated`, `valuationRecomputed`).
+8. Write back idempotently.
+   Run `scripts/normalize-update-log.js` to refresh `최근 업데이트일` and append or replace the dated block. Run `scripts/apply-memo-section-updates.js` when the hybrid gate allows selected section sync OR the freshness gate requires refreshing price-derived sections.
+9. Answer the user.
+   Lead with classification, the price as-of date and move since the memo, material changes, unchanged thesis points, and whether charts/valuation and any upstream memo sections were synchronized.
 
 Read [references/workflow.md](references/workflow.md) for the detailed checklist.
 Read [references/output-format.md](references/output-format.md) for the expected update-block shape.
 Read [references/script-inputs.md](references/script-inputs.md) when using the bundled scripts with structured JSON inputs.
+
+## Price & Chart Freshness Gate (MANDATORY)
+
+A memo's price, market cap, PER/PBR, valuation snapshot, target-price upside, and conclusion are all derived from one number: the last close the memo was written against. When that close is stale, every derived number and the 결론 are silently wrong. A KRX name can move 40% between the memo date and the update, so you cannot reuse the old valuation. This gate is not optional section sync — it is a data-staleness correction that runs before you write anything.
+
+**Trigger predicate (observable — do not skip on judgment):**
+
+Run the gate whenever ANY of these is true:
+
+- classification is `refresh-now`
+- the memo will be published or exported (any `kr-naver-blog-publish` handoff, PDF, or shared post)
+- the user asked anything about price, valuation, multiple, target price, upside, or 결론
+- the live close differs from the memo's last-stated close by **≥ 5%**
+- the memo's last price date is **more than 5 trading days** before today
+
+If you cannot fetch a live price, say so explicitly in the update block and mark the valuation as `stale — not refreshed`. Never present a stale multiple as current.
+
+**Required actions when the gate triggers (do all — this is the contract):**
+
+1. **Fetch the live close.** Regenerate chart artifacts with the real scripts, do not hand-edit numbers:
+   ```bash
+   node scripts/harness.js --mode chart --ticker <code> --company "<name>"
+   # or directly:
+   node skills/kr-stock-analysis/scripts/fetch-kr-chart.js --ticker <code> --range 1y
+   node skills/kr-stock-analysis/scripts/chart-basics.js --input <chart-data.json> --png-out <assets/…>.png
+   ```
+   This overwrites `chart-data.json`, `chart-analysis.md`, and the linked `*-chart*.png` panels beside the memo.
+2. **Recompute every price-derived fact** against the new close: 현재가, 시가총액, PER/PBR/EV·EBITDA, 밸류에이션 스냅샷 표, 목표주가 대비 upside, and any band/technical read.
+3. **Revisit the 결론 / Structured Stance / Decision Frame.** If the price moved enough to change the risk-reward (e.g. a name that was "추격 보류 (고평가)" fell 40%), the conclusion may flip. State the new price basis explicitly, e.g. `2026-07-07 종가 99,500원 기준`.
+4. **Record the gate result** in the update packet: `priceAsOf`, `priceMovePct`, `chartsRegenerated: true`, `valuationRecomputed: true`.
+
+**Red flags — STOP, you are about to ship a stale memo:**
+
+- Reusing a market cap or PER whose price date is older than the memo's `최근 업데이트일`.
+- Publishing to Naver Blog without regenerating the chart PNGs first.
+- Writing a valuation or 결론 sentence that cites a price you did not fetch this session.
+- Thinking "the charts probably didn't change much" — regenerate and verify, don't assume.
+- Leaving `Decision Frame` quoting an old 종가 while the Update Log quotes a new one (internal contradiction).
 
 ## Bundled Scripts
 
@@ -64,7 +104,7 @@ Read [references/script-inputs.md](references/script-inputs.md) when using the b
 - Prefer saying `no material change` over forcing a narrative.
 - If a requested update window has no material company-specific developments, add a short dated note saying so.
 - Write event keys for material events when possible so future updates can deduplicate repeated coverage.
-- Mark whether chart or valuation assets need refresh when price, valuation, or technical claims are reused.
+- Whenever the Price & Chart Freshness Gate triggers, regenerate the chart artifacts and recompute every price-derived fact (현재가, 시가총액, PER/PBR, 밸류에이션 표, 목표주가 upside, 결론). Never reuse a multiple or market cap tied to a price you did not fetch this session.
 
 ## Hybrid Section Sync Gate
 
@@ -75,7 +115,7 @@ Keep section sync narrow. Update `Summary`, `Structured Stance`, `Decision-Chang
 - `guard-decision` trigger or `review_by` is stale
 - a tracked follow-up prompt was resolved or became obsolete
 
-Do not rewrite `Sources`, `Update Log`, valuation tables, chart sections, or the whole memo through the section updater.
+Do not rewrite `Sources`, `Update Log`, or the whole memo through the section updater. Valuation tables, the valuation snapshot, market cap, and chart sections are the one exception: when the Price & Chart Freshness Gate triggers you MUST refresh them against the newly fetched close (regenerate chart PNGs/JSON, recompute multiples), because leaving them stale ships a wrong 결론. This refresh is required, not gated by thesis delta.
 
 ## Source Priority
 
@@ -94,4 +134,5 @@ Do not rewrite `Sources`, `Update Log`, valuation tables, chart sections, or the
 - Signals to watch next
 - A dated source list
 - An updated memo file when the workspace is writable
+- The price as-of date and the move since the memo, plus whether charts and valuation were regenerated (or an explicit `stale — not refreshed` note if a live price could not be fetched)
 - A statement of whether body sections were left unchanged or synchronized under the hybrid gate
