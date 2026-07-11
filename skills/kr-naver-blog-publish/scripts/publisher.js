@@ -2359,8 +2359,11 @@ function cleanupLegacyBrowser(args) {
       execFileSync(bin, ["--headed", "stop"], stopOptions);
     } catch (error) {
       const output = String(error.stderr || error.stdout || error.message || "");
-      if (!/Unknown command: '--headed'/.test(output)) throw error;
-      execFileSync(bin, ["stop"], stopOptions);
+      if (/Unknown command: '--headed'/.test(output)) {
+        execFileSync(bin, ["stop"], stopOptions);
+      } else if (!/Server connection lost|Server crashed|no (?:running )?server/i.test(output)) {
+        throw error;
+      }
     }
   }
   writeAudit("legacy-browser-cleanup", { stoppedPids: legacy.map(item => item.pid).join(","), forcedDedicatedSession: forceDedicatedSession });
