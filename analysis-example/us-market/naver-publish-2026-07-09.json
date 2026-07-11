@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "contentType": "daily-market-news",
+  "status": "prepared",
+  "source": {
+    "reportPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us-market/daily-news-2026-07-09.md",
+    "reportSha256": "047c30ea3ed1bb233ba516b8f4d6bfa69dbffb1ea061ec57c2e329b85f707b62",
+    "asOfDate": "2026-07-09"
+  },
+  "post": {
+    "company": "미국 시장",
+    "ticker": "",
+    "title": "2026-07-09 미국증시 | PepsiCo·Goldman Sachs 특징주, 금리·달러와 실적",
+    "issue": "지수는 Dow Jones +0.27%, S&P 500 +0.81%, Nasdaq +1.30%; 섹터는 Technology +2.18% / Consumer Staples -1.41%가 대비됐습니다.",
+    "category": null,
+    "tags": [
+      "미국증시",
+      "S&P 500",
+      "Nasdaq",
+      "시장뉴스",
+      "20260709"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us-market/naver-post-2026-07-09.md",
+    "markdownSha256": "710ab063f1afdccd3eb9e7b1afda8456194211ef0b802a4884bf2954cb2eea97",
+    "images": [],
+    "linkCards": [
+      "https://www.cnbc.com/2026/07/09/pepsico-pep-q2-2026-earnings.html",
+      "https://www.cnbc.com/2026/07/09/goldman-sachs-asset-management-deals-verizon-lockheed-martin.html",
+      "https://www.cnbc.com/2026/07/09/kalshi-traders-see-roughly-50percent-odds-of-a-rate-hike-in-2026-as-fed-is-split-on-policy.html"
+    ],
+    "thumbnail": {
+      "prompt": "2026-07-09 미국증시 | PepsiCo·Goldman Sachs 특징주, 금리·달러와 실적 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.",
+      "relativePath": "assets/naver-thumbnail-2026-07-09.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us-market/assets/naver-thumbnail-2026-07-09.png",
+      "sha256": "a720ad6f13f3714f9c0ea924de981b8b82b1eb1fbfac4eaba841bb33fd6f28d8",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-10T23:43:57.594Z"
+    },
+    "publicationDate": "2026-07-09"
+  },
+  "automation": {
+    "scheduledPublishAllowed": false,
+    "duplicateScope": "us-daily-market-news",
+    "duplicateDate": "2026-07-09",
+    "qualityGate": {
+      "passed": false,
+      "reasons": [
+        "유효한 당일 시장 주요 뉴스가 3건 미만입니다.",
+        "직접 RSS 시장 기사가 2건 미만입니다.",
+        "원문 본문과 정규장 종가를 확인한 특징주가 3건 미만입니다."
+      ],
+      "metrics": {
+        "indexCount": 4,
+        "sectorSnapshotCount": 11,
+        "marketNewsCount": 1,
+        "directMarketNewsCount": 1,
+        "linkedSectorCount": 5,
+        "featuredStockCount": 2,
+        "usedArticleCount": 3
+      }
+    },
+    "schedule": {
+      "timezone": "Asia/Seoul",
+      "date": "2026-07-13",
+      "time": "08:00",
+      "nextBusinessDay": true
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-10T23:44:01.501Z",
+    "expiresAt": "2026-07-11T00:14:01.501Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us-market/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "80decd7c67e11d9eaf00e47a38932bde38a50a6318770ea1f6fef7402d4f8b66",
+    "approvalTokenHash": "a34d09f557210ee3dc7d9239208f954c7aaf45da6a7b7f0fde08528029f1635e",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": false,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

@@ -1,17 +1,25 @@
 #!/usr/bin/env node
 
 const assert = require("assert");
+const { spawnSync } = require("child_process");
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
+const publisherTestRuntime = fs.mkdtempSync(path.join(os.tmpdir(), "kr-naver-publisher-runtime-"));
+process.env.NAVER_PUBLISH_RUNTIME_DIR = publisherTestRuntime;
 const { buildPost } = require("./memo-to-post");
-const { editorBody, editorHtml, expectedTableData, prepare, publish, renderExcelTableHtml, validateBlockFormatting, validateTables } = require("./publisher");
+const { GstackDriver, browserStartupRecoveryGuide, cleanupLegacyBrowser, editorBody, editorHtml, expectedTableData, isPublicNaverPostUrl, parseLegacyProfileDaemons, prepare, publish, reconcilePublication, renderExcelTableHtml, validateBlockFormatting, validateTables } = require("./publisher");
 const { readJson, sha256, writeJsonAtomic } = require("./lib");
 
 assert(!editorBody("# 제목\n\n## 결론\n\n**강조**\n\n![차트](chart.png)").includes("#"));
 assert(!editorBody("# 제목\n\n본문").includes("제목"));
 assert(editorBody("# 제목\n\n## 결론\n\n**강조**").includes("결론\n\n강조"));
 assert(!editorBody("> signature").includes(">"));
+assert.strictEqual(isPublicNaverPostUrl("https://blog.naver.com/example/123456789"), true);
+assert.strictEqual(isPublicNaverPostUrl("https://blog.naver.com/PostView.naver?blogId=example&logNo=123456789"), true);
+assert.strictEqual(isPublicNaverPostUrl("https://blog.naver.com/GoBlogWrite.naver"), false);
+assert(browserStartupRecoveryGuide().includes("--force-dedicated-session yes"));
+assert(browserStartupRecoveryGuide().includes("no other Naver publishing task is active"));
 assert(editorHtml("> signature").includes('data-kr-naver-signature="true"'));
 assert.strictEqual((editorHtml("> line 1\n> line 2\n> ✓ item").match(/<blockquote\b/g) || []).length, 1);
 assert.strictEqual((editorHtml("> line 1\n> line 2\n> ✓ item").match(/<p\b/g) || []).length, 3);
@@ -176,7 +184,7 @@ assert.strictEqual((editorHtml("> line 1\n> line 2\n> ✓ item").match(/<p\b/g) 
 }
 
 function makeCase(fixtureOverrides = {}) {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), "kr-naver-publisher-test-"));
+const root = fs.mkdtempSync(path.join(os.tmpdir(), "kr-naver-publisher-test-"));
   const companyDir = path.join(root, "SOOP");
   const assetDir = path.join(companyDir, "assets");
   fs.mkdirSync(assetDir, { recursive: true });
@@ -332,7 +340,7 @@ function makeDailyCase(fixtureOverrides = {}) {
   assert(prepared.approvalToken);
   const preparedFixture = JSON.parse(fs.readFileSync(test.fixture, "utf8"));
   const preparedManifest = readJson(test.manifest);
-  assert.strictEqual(preparedManifest.post.thumbnail.prompt, `${preparedManifest.post.title} 블로그 썸네일 만들어줘`);
+  assert.strictEqual(preparedManifest.post.thumbnail.prompt, `${preparedManifest.post.title} 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.`);
   assert.strictEqual(preparedManifest.post.thumbnail.source, "gemini-web");
   assert.strictEqual(preparedManifest.post.thumbnail.status, "generated");
   assert(fs.existsSync(preparedManifest.post.thumbnail.absolutePath));
@@ -359,6 +367,66 @@ function makeDailyCase(fixtureOverrides = {}) {
   const published = publish({ fixture: test.fixture, token: prepared.approvalToken, "confirm-public": "yes" }, test.manifest, readJson(test.manifest));
   assert.strictEqual(published.status, "published");
   assert.throws(() => publish({ fixture: test.fixture, token: prepared.approvalToken, "confirm-public": "yes" }, test.manifest, readJson(test.manifest)), /already published/);
+}
+
+{
+  const fakeRoot = fs.mkdtempSync(path.join(os.tmpdir(), "kr-naver-gstack-driver-"));
+  const fakeBin = path.join(fakeRoot, "browse");
+  const fakeLog = path.join(fakeRoot, "commands.log");
+  const fakePage = path.join(fakeRoot, "page-ready");
+  fs.writeFileSync(fakeBin, `#!/usr/bin/env node
+const fs = require("fs");
+const args = process.argv.slice(2).filter(arg => arg !== "--headed");
+if (args[0] === "--help") { process.stdout.write("gstack browse\\nUsage: browse <command>\\n"); process.exit(0); }
+fs.appendFileSync(process.env.FAKE_BROWSE_LOG, args.join(" ") + "\\n");
+if (args[0] === "status") { process.stdout.write("ok\\n"); process.exit(0); }
+if (args[0] === "url") {
+  if (!fs.existsSync(process.env.FAKE_BROWSE_PAGE)) { process.stderr.write("No open pages\\n"); process.exit(1); }
+  process.stdout.write("about:blank\\n"); process.exit(0);
+}
+if (args[0] === "newtab") { fs.writeFileSync(process.env.FAKE_BROWSE_PAGE, "ready\\n"); process.stdout.write("1\\n"); process.exit(0); }
+process.stdout.write("ok\\n");
+`, "utf8");
+  fs.chmodSync(fakeBin, 0o755);
+  const previous = {
+    GSTACK_BROWSE_BIN: process.env.GSTACK_BROWSE_BIN,
+    FAKE_BROWSE_LOG: process.env.FAKE_BROWSE_LOG,
+    FAKE_BROWSE_PAGE: process.env.FAKE_BROWSE_PAGE,
+  };
+  process.env.GSTACK_BROWSE_BIN = fakeBin;
+  process.env.FAKE_BROWSE_LOG = fakeLog;
+  process.env.FAKE_BROWSE_PAGE = fakePage;
+  const driver = new GstackDriver({ skipLegacyPreflight: true });
+  driver.ensurePage();
+  const commands = fs.readFileSync(fakeLog, "utf8");
+  assert(commands.includes("url"));
+  assert(commands.includes("newtab about:blank"));
+  assert.strictEqual(driver.env.BROWSE_PARENT_PID, "0");
+  assert.strictEqual(driver.env.BROWSE_STATE_FILE, path.join(publisherTestRuntime, "browse.json"));
+  const legacyState = path.join(fakeRoot, "legacy-browse.json");
+  const processList = `12345 1 bun run /tmp/gstack/browse/src/terminal-agent.ts CHROMIUM_PROFILE=${driver.publishProfile} BROWSE_STATE_FILE=${legacyState}\n`
+    + `12346 1 bun run /tmp/gstack/browse/src/terminal-agent.ts CHROMIUM_PROFILE=${driver.publishProfile} BROWSE_STATE_FILE=${driver.publishStateFile}\n`;
+  assert.deepStrictEqual(parseLegacyProfileDaemons(processList, driver.publishProfile, driver.publishStateFile).map(item => item.pid), [12345]);
+  assert.throws(() => new GstackDriver({ legacyProcessOutput: processList }), /Legacy gstack daemons/);
+  assert.throws(() => cleanupLegacyBrowser({}), /confirm-stale-profile/);
+  for (const [key, value] of Object.entries(previous)) {
+    if (value === undefined) delete process.env[key];
+    else process.env[key] = value;
+  }
+}
+
+{
+  const runtime = fs.mkdtempSync(path.join(os.tmpdir(), "kr-naver-publisher-lock-"));
+  const lockDir = path.join(runtime, "publisher.lock");
+  fs.mkdirSync(lockDir);
+  fs.writeFileSync(path.join(lockDir, "owner.json"), `${JSON.stringify({ pid: process.pid, action: "scheduled-publish" })}\n`, "utf8");
+  const result = spawnSync(process.execPath, [path.resolve(__dirname, "publisher.js"), "prepare", "--manifest", path.join(runtime, "missing.json")], {
+    encoding: "utf8",
+    env: { ...process.env, NAVER_PUBLISH_RUNTIME_DIR: runtime },
+  });
+  assert.notStrictEqual(result.status, 0);
+  assert(/Another Naver publisher is active/.test(result.stderr));
+  fs.rmSync(lockDir, { recursive: true, force: true });
 }
 
 {
@@ -539,7 +607,7 @@ function makeDailyCase(fixtureOverrides = {}) {
   const dailyManifest = readJson(test.manifest);
   assert.strictEqual(dailyManifest.post.thumbnail.relativePath, "assets/naver-thumbnail-2026-06-28.png");
   assert.strictEqual(dailyManifest.post.thumbnail.absolutePath, path.join(test.root, "assets", "naver-thumbnail-2026-06-28.png"));
-  assert.strictEqual(dailyManifest.post.thumbnail.prompt, `${dailyManifest.post.title} 블로그 썸네일 만들어줘`);
+  assert.strictEqual(dailyManifest.post.thumbnail.prompt, `${dailyManifest.post.title} 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.`);
   assert.strictEqual(dailyManifest.post.thumbnail.source, "gemini-web");
   assert.strictEqual(dailyManifest.post.thumbnail.status, "generated");
   assert(fs.existsSync(dailyManifest.post.thumbnail.absolutePath));
@@ -560,9 +628,94 @@ function makeDailyCase(fixtureOverrides = {}) {
   assert(marketNewsBody.indexOf("https://news.example.com/market1") < marketNewsBody.indexOf("2. 환율 하락과 외국인 수급 개선"));
   assert(marketNewsBody.indexOf("2. 환율 하락과 외국인 수급 개선") < marketNewsBody.indexOf("https://news.example.com/market2"));
   const published = publish({ fixture: test.fixture, scheduled: "yes", token: prepared.approvalToken, "confirm-public": "yes" }, test.manifest, readJson(test.manifest));
-  assert.strictEqual(published.status, "published");
+  assert.strictEqual(published.status, "scheduled");
   assert.strictEqual(readJson(test.manifest).contentType, "daily-market-news");
-  assert.strictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).publicClicked, true);
+  const scheduledFixture = JSON.parse(fs.readFileSync(test.fixture, "utf8"));
+  assert.strictEqual(scheduledFixture.publicClicked, undefined);
+  assert.strictEqual(scheduledFixture.scheduleConfirmed, true);
+  assert.strictEqual(scheduledFixture.schedule.time, "08:00");
+}
+
+{
+  const test = makeDailyCase({ scheduleConfigurationFails: true });
+  assert.throws(() => prepare({ fixture: test.fixture, scheduled: "yes" }, test.manifest, readJson(test.manifest)), /schedule controls unavailable/);
+  const fixture = JSON.parse(fs.readFileSync(test.fixture, "utf8"));
+  assert.strictEqual(fixture.scheduleConfirmed, undefined);
+  assert.strictEqual(fixture.publicClicked, undefined);
+}
+
+{
+  const test = makeDailyCase();
+  const manifest = readJson(test.manifest);
+  manifest.automation.scheduledPublishAllowed = false;
+  writeJsonAtomic(test.manifest, manifest);
+  assert.throws(() => prepare({ fixture: test.fixture, scheduled: "yes" }, test.manifest, readJson(test.manifest)), /does not allow scheduled public publishing/);
+  assert.strictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).publicClicked, undefined);
+}
+
+{
+  const test = makeCase({ publishVerificationFails: true });
+  const prepared = prepare({ fixture: test.fixture }, test.manifest, readJson(test.manifest));
+  assert.throws(
+    () => publish({ fixture: test.fixture, token: prepared.approvalToken, "confirm-public": "yes" }, test.manifest, readJson(test.manifest)),
+    /publication-unverified/,
+  );
+  const manifest = readJson(test.manifest);
+  assert.strictEqual(manifest.status, "publication-unverified");
+  assert.strictEqual(manifest.publish.result, "unverified");
+  assert.strictEqual(manifest.prepare.approvalTokenHash, null);
+  assert.throws(
+    () => publish({ fixture: test.fixture, token: prepared.approvalToken, "confirm-public": "yes" }, test.manifest, readJson(test.manifest)),
+    /Prepare must complete before publish/,
+  );
+  const reconciled = reconcilePublication(
+    { fixture: test.fixture, "public-url": "https://blog.naver.com/fixture/123456789" },
+    test.manifest,
+    readJson(test.manifest),
+  );
+  assert.strictEqual(reconciled.status, "published");
+  assert.strictEqual(reconciled.result, "reconciled-published");
+  assert.strictEqual(readJson(test.manifest).publish.validation.disclaimer, true);
+}
+
+{
+  const test = makeCase({ publishVerificationFails: true });
+  const prepared = prepare({ fixture: test.fixture }, test.manifest, readJson(test.manifest));
+  assert.throws(
+    () => publish({ fixture: test.fixture, token: prepared.approvalToken, "confirm-public": "yes" }, test.manifest, readJson(test.manifest)),
+    /publication-unverified/,
+  );
+  assert.throws(
+    () => reconcilePublication({ fixture: test.fixture, "not-published": "yes" }, test.manifest, readJson(test.manifest)),
+    /confirm-no-public-post/,
+  );
+  const reconciled = reconcilePublication(
+    { fixture: test.fixture, "not-published": "yes", "confirm-no-public-post": "yes" },
+    test.manifest,
+    readJson(test.manifest),
+  );
+  assert.strictEqual(reconciled.status, "converted");
+  const manifest = readJson(test.manifest);
+  assert.strictEqual(manifest.prepare, null);
+  assert.strictEqual(manifest.publish.result, "confirmed-not-published");
+}
+
+{
+  const test = makeCase({ publishConfirmUnavailable: true });
+  const prepared = prepare({ fixture: test.fixture }, test.manifest, readJson(test.manifest));
+  assert.throws(
+    () => publish({ fixture: test.fixture, token: prepared.approvalToken, "confirm-public": "yes" }, test.manifest, readJson(test.manifest)),
+    /Public confirmation was not issued/,
+  );
+  const manifest = readJson(test.manifest);
+  assert.strictEqual(manifest.status, "prepared");
+  assert.strictEqual(manifest.publish.result, "not-attempted");
+  assert.strictEqual(manifest.prepare.approvalTokenHash, null);
+  assert.strictEqual(JSON.parse(fs.readFileSync(test.fixture, "utf8")).publicClicked, undefined);
+  assert.throws(
+    () => publish({ fixture: test.fixture, token: prepared.approvalToken, "confirm-public": "yes" }, test.manifest, readJson(test.manifest)),
+    /Approval token was cleared/,
+  );
 }
 
 {
@@ -585,7 +738,7 @@ function makeDailyCase(fixtureOverrides = {}) {
   const repairedManifest = readJson(test.manifest);
   assert.strictEqual(repairedManifest.post.thumbnail.relativePath, "assets/naver-thumbnail-2026-06-28.png");
   assert.strictEqual(repairedManifest.post.thumbnail.absolutePath, path.join(test.root, "assets", "naver-thumbnail-2026-06-28.png"));
-  assert.strictEqual(repairedManifest.post.thumbnail.prompt, `${repairedManifest.post.title} 블로그 썸네일 만들어줘`);
+  assert.strictEqual(repairedManifest.post.thumbnail.prompt, `${repairedManifest.post.title} 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.`);
   assert.strictEqual(repairedManifest.post.thumbnail.source, "gemini-web");
   assert.strictEqual(repairedManifest.post.thumbnail.status, "generated");
   assert(fs.existsSync(repairedManifest.post.thumbnail.absolutePath));

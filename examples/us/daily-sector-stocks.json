@@ -4,7 +4,8 @@
     { "ticker": "MSFT", "name": "Microsoft", "keywords": ["cloud", "AI"] },
     { "ticker": "AAPL", "name": "Apple", "keywords": ["services", "iPhone"] },
     { "ticker": "AVGO", "name": "Broadcom", "keywords": ["AI", "semiconductor"] },
-    { "ticker": "AMD", "name": "AMD", "keywords": ["GPU", "data center"] }
+    { "ticker": "AMD", "name": "AMD", "keywords": ["GPU", "data center"] },
+    { "ticker": "SKHYV", "name": "SK Hynix", "keywords": ["HBM", "memory", "DRAM", "AI"] }
   ],
   "Communication Services": [
     { "ticker": "GOOGL", "name": "Alphabet", "keywords": ["advertising", "search"] },
@@ -59,7 +60,7 @@
     { "ticker": "LIN", "name": "Linde", "keywords": ["industrial gas", "chemicals"] },
     { "ticker": "FCX", "name": "Freeport-McMoRan", "keywords": ["copper", "mining"] },
     { "ticker": "NEM", "name": "Newmont", "keywords": ["gold", "mining"] },
-    { "ticker": "DOW", "name": "Dow", "keywords": ["chemicals", "materials"] },
+    { "ticker": "DOW", "name": "Dow Inc.", "keywords": ["chemicals", "materials"] },
     { "ticker": "NUE", "name": "Nucor", "keywords": ["steel", "construction"] }
   ],
   "Utilities": [

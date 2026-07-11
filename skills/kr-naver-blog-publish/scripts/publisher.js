@@ -23,6 +23,30 @@ const {
 const TOKEN_TTL_MS = 30 * 60 * 1000;
 const WRITE_URL = "https://blog.naver.com/GoBlogWrite.naver";
 const GEMINI_URL = "https://gemini.google.com/app";
+const PUBLISH_RUNTIME_DIR = process.env.NAVER_PUBLISH_RUNTIME_DIR || path.join(os.homedir(), ".gstack", "kr-naver-blog-publish");
+const PUBLISH_LOCK_DIR = path.join(PUBLISH_RUNTIME_DIR, "publisher.lock");
+const PUBLISH_AUDIT_LOG = path.join(PUBLISH_RUNTIME_DIR, "publisher-audit.jsonl");
+const DEFAULT_BROWSE_STATE_FILE = path.join(PUBLISH_RUNTIME_DIR, "browse.json");
+const PUBLICATION_VERIFY_TIMEOUT_MS = 120_000;
+
+function nextKstBusinessSchedule(now = new Date()) {
+  const parts = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit", weekday: "short" })
+    .formatToParts(now)
+    .reduce((out, item) => ({ ...out, [item.type]: item.value }), {});
+  const base = new Date(`${parts.year}-${parts.month}-${parts.day}T00:00:00Z`);
+  do { base.setUTCDate(base.getUTCDate() + 1); } while ([0, 6].includes(base.getUTCDay()));
+  return { timezone: "Asia/Seoul", date: base.toISOString().slice(0, 10), time: "08:00" };
+}
+
+function scheduledPublication(manifest) {
+  const configured = manifest.automation?.schedule || {};
+  const fallback = nextKstBusinessSchedule();
+  const date = configured.date || fallback.date;
+  const time = configured.time || "08:00";
+  assert(configured.timezone === "Asia/Seoul" || !configured.timezone, "Scheduled daily publication must use Asia/Seoul");
+  assert(/^\d{4}-\d{2}-\d{2}$/.test(date) && /^\d{2}:\d{2}$/.test(time), "Scheduled publication date/time is invalid");
+  return { timezone: "Asia/Seoul", date, time };
+}
 const SELECTORS = {
   title: [
     ".se-documentTitle .se-text-paragraph",
@@ -62,6 +86,94 @@ function parseArgs(argv) {
     else { args[value.slice(2)] = next; i += 1; }
   }
   return args;
+}
+
+function isProcessAlive(pid) {
+  if (!Number.isInteger(pid) || pid <= 0) return false;
+  try { process.kill(pid, 0); return true; } catch { return false; }
+}
+
+function parseLegacyProfileDaemons(processList, profilePath, dedicatedStateFile) {
+  const profile = path.resolve(profilePath);
+  const dedicated = path.resolve(dedicatedStateFile);
+  const results = [];
+  for (const line of String(processList || "").split(/\r?\n/)) {
+    const match = line.match(/^\s*(\d+)\s+(\d+)\s+([\s\S]+)$/);
+    if (!match) continue;
+    const [, pidText, ppidText, command] = match;
+    if (!/gstack\/browse\/src\/(?:server|terminal-agent)\.ts|browse\/src\/(?:server|terminal-agent)\.ts/.test(command)) continue;
+    const profileMatch = command.match(/(?:^|\s)CHROMIUM_PROFILE=([^\s]+)/);
+    const stateMatch = command.match(/(?:^|\s)BROWSE_STATE_FILE=([^\s]+)/);
+    if (!profileMatch || !stateMatch) continue;
+    if (path.resolve(profileMatch[1]) !== profile) continue;
+    const stateFile = path.resolve(stateMatch[1]);
+    if (stateFile === dedicated) continue;
+    results.push({ pid: Number(pidText), ppid: Number(ppidText), stateFile, command: command.slice(0, 500) });
+  }
+  return [...new Map(results.map(item => [item.pid, item])).values()];
+}
+
+function findLegacyProfileDaemons(profilePath, dedicatedStateFile) {
+  if (process.platform === "win32") return [];
+  let processList = "";
+  try {
+    processList = execFileSync("ps", ["eww", "-axo", "pid=,ppid=,command="], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "pipe"],
+      timeout: 10_000,
+      maxBuffer: 20 * 1024 * 1024,
+    });
+  } catch {
+    return [];
+  }
+  return parseLegacyProfileDaemons(processList, profilePath, dedicatedStateFile).filter(item => isProcessAlive(item.pid));
+}
+
+function browserStartupRecoveryGuide() {
+  return [
+    "The dedicated Naver gstack browser did not start.",
+    "After confirming that no other Naver publishing task is active, stop the stale dedicated session with:",
+    "node skills/kr-naver-blog-publish/scripts/publisher.js cleanup-browser --confirm-stale-profile yes --force-dedicated-session yes",
+    "Then retry the publishing action once. This command closes only the dedicated Naver publishing browser session; do not run it while another task is using that profile.",
+  ].join("\\n");
+}
+
+function writeAudit(event, details = {}) {
+  fs.mkdirSync(PUBLISH_RUNTIME_DIR, { recursive: true });
+  const safeDetails = Object.fromEntries(Object.entries(details).filter(([key]) => !/token|cookie|password/i.test(key)));
+  fs.appendFileSync(PUBLISH_AUDIT_LOG, `${JSON.stringify({ at: new Date().toISOString(), pid: process.pid, event, ...safeDetails })}\n`, "utf8");
+}
+
+function acquirePublisherLock(action, manifestPath) {
+  fs.mkdirSync(PUBLISH_RUNTIME_DIR, { recursive: true });
+  const acquire = () => {
+    fs.mkdirSync(PUBLISH_LOCK_DIR);
+    fs.writeFileSync(path.join(PUBLISH_LOCK_DIR, "owner.json"), `${JSON.stringify({ pid: process.pid, action, manifestPath, startedAt: new Date().toISOString() }, null, 2)}\n`, "utf8");
+  };
+  try {
+    acquire();
+  } catch (error) {
+    if (error.code !== "EEXIST") throw error;
+    let owner = null;
+    try { owner = readJson(path.join(PUBLISH_LOCK_DIR, "owner.json")); } catch {}
+    if (owner?.pid && isProcessAlive(Number(owner.pid))) {
+      throw new Error(`Another Naver publisher is active (PID ${owner.pid}, action ${owner.action || "unknown"}); concurrent publication is blocked`);
+    }
+    fs.rmSync(PUBLISH_LOCK_DIR, { recursive: true, force: true });
+    acquire();
+  }
+  return () => fs.rmSync(PUBLISH_LOCK_DIR, { recursive: true, force: true });
+}
+
+function isPublicNaverPostUrl(value) {
+  try {
+    const url = new URL(String(value || ""));
+    if (url.protocol !== "https:" || url.hostname !== "blog.naver.com") return false;
+    if (/GoBlogWrite|PostWriteForm|Redirect=Write|workingonit/i.test(`${url.pathname}${url.search}`)) return false;
+    return /\/\d{6,}(?:$|[/?#])/.test(url.pathname) || /(?:^|[?&])logNo=\d{6,}(?:&|$)/.test(url.search);
+  } catch {
+    return false;
+  }
 }
 
 function editorBody(markdown) {
@@ -339,7 +451,7 @@ function thumbnailOutputPath(manifest) {
 }
 
 function thumbnailPrompt(manifest) {
-  return `${manifest.post.title} 블로그 썸네일 만들어줘`;
+  return `${manifest.post.title} 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.`;
 }
 
 function dailyMarketThumbnailDate(manifest) {
@@ -582,7 +694,7 @@ function sameDayPublishedManifest(manifestPath, manifest) {
     if (candidate.contentType !== "daily-market-news") continue;
     const candidateDate = candidate.automation?.duplicateDate || candidate.post?.publicationDate || candidate.source?.asOfDate;
     if (candidateDate !== duplicateDate) continue;
-    if (candidate.status === "published" || candidate.publish?.url) return { path: candidatePath, manifest: candidate };
+    if (candidate.status === "published" || candidate.status === "scheduled" || candidate.publish?.url) return { path: candidatePath, manifest: candidate };
   }
   return null;
 }
@@ -590,6 +702,8 @@ function sameDayPublishedManifest(manifestPath, manifest) {
 function verifyArtifacts(manifest, options = {}) {
   assert(manifest.schemaVersion === 1, "Unsupported manifest schemaVersion");
   assert(manifest.status !== "published", "Manifest is already published; duplicate publish blocked");
+  assert(manifest.status !== "scheduled", "Manifest is already scheduled; duplicate publish blocked");
+  assert(!["publishing", "publication-unverified"].includes(manifest.status), "A public publish attempt is pending or unverified; do not prepare or click publish again until the public blog is reconciled");
   const sourcePath = manifestSourcePath(manifest);
   const sourceSha256 = manifestSourceSha256(manifest);
   assert(sourcePath, "Manifest source path missing");
@@ -743,33 +857,85 @@ class FixtureDriver {
   editorUrl() { return this.fixture.editorUrl || "https://blog.naver.com/GoBlogWrite.naver?fixtureDraft=1"; }
   openPublishLayer() { this.recordClick("publishOpen"); this.fixture.publishLayerOpen = true; this.persist(); }
   closePublishLayer() { this.fixture.publishLayerOpen = false; this.persist(); }
+  configureScheduledPublication(schedule) {
+    this.requireSelector("publishConfirm");
+    if (this.fixture.scheduleConfigurationFails) throw new Error("Fixture Naver schedule controls unavailable");
+    this.fixture.schedule = { ...schedule, visibility: "public", scheduled: true, verified: true };
+    this.persist();
+    return this.fixture.schedule;
+  }
+  inspectScheduledPublication() { return this.fixture.schedule || null; }
   publish() {
     this.recordClick("publishConfirm");
     assert(this.fixture.publishLayerOpen, "Fixture publish layer was not opened");
+    if (this.fixture.publishConfirmUnavailable) {
+      const error = new Error("Fixture public confirmation button unavailable");
+      error.publicConfirmationIssued = false;
+      throw error;
+    }
     this.fixture.publicClicked = true;
-    this.fixture.publishedUrl ||= "https://blog.naver.com/fixture/123456789";
+    this.fixture.publishedUrl ||= this.fixture.publishVerificationFails
+      ? "https://blog.naver.com/GoBlogWrite.naver?fixtureDraft=1"
+      : "https://blog.naver.com/fixture/123456789";
     this.persist();
+    return this.fixture.publishedUrl;
+  }
+  schedule() {
+    this.recordClick("publishConfirm");
+    assert(this.fixture.publishLayerOpen, "Fixture publish layer was not opened");
+    if (this.fixture.scheduleConfirmUnavailable) {
+      const error = new Error("Fixture scheduled confirmation button unavailable");
+      error.publicConfirmationIssued = false;
+      throw error;
+    }
+    this.fixture.scheduleConfirmed = true;
+    this.persist();
+    return true;
   }
   publishedUrl() { return this.fixture.publishedUrl; }
+  openPublicPost(url) {
+    this.fixture.publicPostOpened = url;
+    this.persist();
+  }
+  inspectPublicPost() {
+    return {
+      url: this.fixture.publicPostOpened || this.fixture.publishedUrl || "",
+      text: this.fixture.publicPostText || `${this.fixture.editor.title || ""}\n${this.fixture.editor.body || ""}`,
+    };
+  }
   requireSelector(name) {
     if ((this.fixture.missingSelectors || []).includes(name)) throw new Error(`Required selector unavailable: ${name}`);
   }
 }
 
 class GstackDriver {
-  constructor() {
+  constructor(options = {}) {
     const browse = require("../../kr-naver-browse/scripts/browse-naver.js");
     this.bin = browse.resolveBrowseBinary();
     this.supportsHeadedFlag = null;
     this.defaultProfile = path.join(os.homedir(), ".gstack", "kr-naver-blog-publish", "chromium-profile");
+    this.publishProfile = process.env.NAVER_PUBLISH_PROFILE || this.defaultProfile;
+    this.publishStateFile = process.env.NAVER_PUBLISH_STATE_FILE || DEFAULT_BROWSE_STATE_FILE;
     this.env = {
       ...process.env,
-      CHROMIUM_PROFILE: process.env.NAVER_PUBLISH_PROFILE || this.defaultProfile,
+      CHROMIUM_PROFILE: this.publishProfile,
+      BROWSE_STATE_FILE: this.publishStateFile,
+      BROWSE_PARENT_PID: process.env.BROWSE_PARENT_PID || "0",
     };
+    if (!options.skipLegacyPreflight) {
+      const legacy = options.legacyProcessOutput == null
+        ? findLegacyProfileDaemons(this.publishProfile, this.publishStateFile)
+        : parseLegacyProfileDaemons(options.legacyProcessOutput, this.publishProfile, this.publishStateFile);
+      assert(!legacy.length, `Legacy gstack daemons still reference the Naver publish profile through other state files; browser start blocked to prevent a profile collision. Run publisher.js cleanup-browser --confirm-stale-profile yes only after confirming no other Naver publishing task is active. Legacy PIDs: ${legacy.map(item => item.pid).join(", ")}`);
+    }
   }
   withProfile(profilePath, callback) {
     const previous = this.env;
-    this.env = { ...process.env, CHROMIUM_PROFILE: profilePath };
+    const sameProfile = path.resolve(profilePath) === path.resolve(this.publishProfile);
+    const stateFile = sameProfile
+      ? this.publishStateFile
+      : path.join(PUBLISH_RUNTIME_DIR, `browse-${sha256(path.resolve(profilePath)).slice(0, 12)}.json`);
+    this.env = { ...previous, CHROMIUM_PROFILE: profilePath, BROWSE_STATE_FILE: stateFile };
     try {
       return callback();
     } finally {
@@ -779,16 +945,31 @@ class GstackDriver {
   run(args, timeout = 90_000) {
     if (this.supportsHeadedFlag === null) {
       try {
-        execFileSync(this.bin, ["--headed", "status"], { encoding: "utf8", env: this.env, timeout: 15_000, maxBuffer: 1024 * 1024 });
+        execFileSync(this.bin, ["--headed", "status"], { encoding: "utf8", env: this.env, stdio: ["ignore", "pipe", "pipe"], timeout: 15_000, maxBuffer: 1024 * 1024 });
         this.supportsHeadedFlag = true;
       } catch (error) {
         this.supportsHeadedFlag = !/Unknown command: '--headed'/.test(String(error.stderr || error.stdout || error.message));
       }
     }
     const commandArgs = this.supportsHeadedFlag && !args.includes("--headed") ? ["--headed", ...args] : args;
-    return execFileSync(this.bin, commandArgs, { encoding: "utf8", env: this.env, timeout, maxBuffer: 10 * 1024 * 1024 }).trim();
+    let lastError;
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      try {
+        return execFileSync(this.bin, commandArgs, { encoding: "utf8", env: this.env, stdio: ["ignore", "pipe", "pipe"], timeout, maxBuffer: 10 * 1024 * 1024 }).trim();
+      } catch (error) {
+        lastError = error;
+        const message = String(error.stderr || error.stdout || error.message || "");
+        const startupFailure = /Server failed to start within|Timed out waiting for another instance to start|Another instance is starting the server/i.test(message);
+        if (!startupFailure || attempt === 2) {
+          if (startupFailure) throw new Error(`${message}\\n${browserStartupRecoveryGuide()}`);
+          throw error;
+        }
+        Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 1000);
+      }
+    }
+    throw lastError;
   }
-  js(expression) { return this.run(["js", expression]); }
+  js(expression, timeout) { return this.run(["js", expression], timeout); }
   enterEditorFrame() {
     const hasMainFrame = /true/i.test(this.js("Boolean(document.querySelector('#mainFrame'))"));
     if (hasMainFrame) {
@@ -802,6 +983,15 @@ class GstackDriver {
     } catch (error) {
       if (!/net::ERR_ABORTED/.test(error.message)) throw error;
     }
+  }
+  ensurePage() {
+    try {
+      const url = this.run(["url"], 15_000);
+      if (url) return;
+    } catch (error) {
+      if (!/no\s+(?:open\s+)?(?:page|tab)|page.*(?:missing|closed|not found)|target.*closed|no active/i.test(String(error.message))) throw error;
+    }
+    this.run(["newtab", "about:blank"], 30_000);
   }
   findSelector(name) {
     const candidates = SELECTORS[name];
@@ -959,8 +1149,10 @@ class GstackDriver {
       return 'reset';
     })()`);
   }
-  openEditor() { this.run(["frame", "main"]); this.gotoAllowRedirectAbort(process.env.NAVER_BLOG_WRITE_URL || WRITE_URL); this.run(["wait", "--load"], 15_000); this.enterEditorFrame(); }
-  openPreparedDraft(url) { assert(url, "Prepared draft URL is missing"); this.run(["frame", "main"]); this.gotoAllowRedirectAbort(url); this.run(["wait", "--load"], 15_000); this.enterEditorFrame(); }
+  openEditor() { this.ensurePage(); this.run(["frame", "main"]); this.gotoAllowRedirectAbort(process.env.NAVER_BLOG_WRITE_URL || WRITE_URL); this.run(["wait", "--load"], 15_000); this.enterEditorFrame(); }
+  openPreparedDraft(url) { assert(url, "Prepared draft URL is missing"); this.ensurePage(); this.run(["frame", "main"]); this.gotoAllowRedirectAbort(url); this.run(["wait", "--load"], 15_000); this.enterEditorFrame(); }
+  openPublicPost(url) { assert(isPublicNaverPostUrl(url), "Reconciliation requires a valid public Naver Blog post URL"); this.ensurePage(); this.run(["frame", "main"]); this.gotoAllowRedirectAbort(url); this.run(["wait", "--load"], 20_000); this.enterEditorFrame(); }
+  inspectPublicPost() { return { url: this.run(["url"], 15_000).replace(/^"|"$/g, ""), text: this.run(["text"], 30_000) }; }
   isLoggedIn() {
     const url = this.js("location.href");
     const text = this.run(["text"]);
@@ -1123,8 +1315,10 @@ class GstackDriver {
   generateGeminiThumbnail(prompt, outputPath) {
     const profile = process.env.NAVER_GEMINI_PROFILE || process.env.NAVER_PUBLISH_PROFILE || this.defaultProfile;
     return this.withProfile(profile, () => {
-      this.run(["frame", "main"]);
-      this.gotoAllowRedirectAbort(process.env.GEMINI_URL || GEMINI_URL);
+      this.ensurePage();
+      // Naver's write page may retain an iframe navigation context. Open Gemini
+      // in a fresh tab so a pending GoBlogWrite redirect cannot abort the move.
+      this.run(["newtab", process.env.GEMINI_URL || GEMINI_URL]);
       this.run(["wait", "--load"], 20_000);
       const auth = this.js(`JSON.stringify((() => {
         const url = location.href;
@@ -1585,9 +1779,49 @@ class GstackDriver {
   }
   screenshot(filePath) { this.run(["screenshot", filePath], 60_000); }
   editorUrl() { return this.js("location.href").replace(/^"|"$/g, ""); }
+  dismissRepresentativeThumbnailPosition() {
+    const result = this.js(`(() => {
+      const visible = element => {
+        if (!element) return false;
+        const style = getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
+        return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+      };
+      const label = element => (element.getAttribute('aria-label') || element.innerText || element.textContent || '').replace(/\\s+/g, ' ').trim();
+      const movingMessage = document.querySelector('.se-cover-moving-message');
+      const layer = movingMessage?.closest('.se-documentTitle-cover-image, [class*=documentTitle]')
+        || [...document.querySelectorAll('[role=dialog], [class*=cover], [class*=Cover], [class*=position], [class*=Position], [class*=layer], [class*=Layer]')]
+          .filter(visible)
+          .find(element => /이미지를 움직여 위치를 조정|대표 위치|위치 조정/.test(element.innerText || element.textContent || ''));
+      if (!layer) return 'none';
+      const confirm = [...layer.querySelectorAll('button,[role=button],.se-cover-button-confirm-position')].find(element => {
+        const style = getComputedStyle(element);
+        return style.display !== 'none' && style.visibility !== 'hidden' && /^(확인|완료)$/.test(label(element));
+      });
+      if (!confirm) return 'confirm-missing';
+      confirm.click();
+      return 'confirmed';
+    })()`);
+    assert(!/confirm-missing/i.test(result), "Representative thumbnail position layer is open but its safe confirmation button is unavailable");
+    if (/confirmed/i.test(result)) this.js("new Promise(resolve => setTimeout(() => resolve('ok'), 500))");
+    return result;
+  }
   openPublishLayer() {
+    this.dismissRepresentativeThumbnailPosition();
+    const alreadyOpen = /true/i.test(this.js("Boolean(document.querySelector('[data-testid=preTimeRadioBtn], #radio_time2'))"));
+    if (alreadyOpen) return;
     const selector = this.markButtonByText("publishOpen", ["발행"]) || this.findSelector("publishOpen");
     this.clickOrDomClick(selector, 90_000);
+    const opened = this.js(`new Promise(resolve => {
+      const deadline = Date.now() + 5000;
+      const poll = () => {
+        if (document.querySelector('[data-testid=preTimeRadioBtn], #radio_time2')) return resolve('opened');
+        if (Date.now() >= deadline) return resolve('missing');
+        setTimeout(poll, 100);
+      };
+      poll();
+    })`);
+    assert(/opened/i.test(opened), "Naver publish settings layer did not open");
   }
   closePublishLayer() {
     const selector = this.js(`(() => {
@@ -1602,14 +1836,166 @@ class GstackDriver {
     if (!selector) return;
     this.clickOrDomClick(selector);
   }
-  publish() {
-    const selector = this.markButtonByText("publishConfirm", ["발행"]) || this.findSelector("publishConfirm");
-    this.clickOrDomClick(selector, 90_000);
+  configureScheduledPublication(schedule) {
+    const calendarSetup = JSON.parse(this.js(`(() => {
+      const visible = e => { const s=getComputedStyle(e), r=e.getBoundingClientRect(); return s.display!=='none' && s.visibility!=='hidden' && r.width>0 && r.height>0; };
+      const text = e => (e.getAttribute('aria-label') || e.innerText || e.textContent || '').replace(/\\s+/g,' ').trim();
+      const controls = [...document.querySelectorAll('button,label,input,[role=radio]')].filter(visible);
+      const reserve = document.querySelector('label[for=radio_time2], [data-testid=preTimeRadioBtn]')
+        || controls.find(e => /^예약(?: 발행)?$/.test(text(e)) || /예약 발행/.test(text(e)) || e.value === '예약');
+      if (!reserve) return JSON.stringify({ error: 'schedule-option-missing' });
+      reserve.click();
+      const dateInput = document.querySelector('input[class*=input_date]');
+      if (!dateInput) return JSON.stringify({ mode: 'native' });
+      const days = [...document.querySelectorAll('button.ui-state-default')].filter(button => {
+        const style = getComputedStyle(button);
+        return style.display !== 'none' && style.visibility !== 'hidden';
+      });
+      if (!days.length) dateInput.click();
+      return JSON.stringify({ mode: 'custom' });
+    })()`));
+    assert(!calendarSetup.error, `Naver scheduled publication configuration failed: ${calendarSetup.error}`);
+    if (calendarSetup.mode === 'custom') this.run(['wait', 'div.ui-datepicker'], 3_000);
+    const result = JSON.parse(this.js(`(() => {
+      const visible = e => { const s=getComputedStyle(e), r=e.getBoundingClientRect(); return s.display!=='none' && s.visibility!=='hidden' && r.width>0 && r.height>0; };
+      const text = e => (e.getAttribute('aria-label') || e.innerText || e.textContent || '').replace(/\\s+/g,' ').trim();
+      const controls = [...document.querySelectorAll('button,label,input,[role=radio]')].filter(visible);
+      const reserve = document.querySelector('label[for=radio_time2], [data-testid=preTimeRadioBtn]')
+        || controls.find(e => /^예약(?: 발행)?$/.test(text(e)) || /예약 발행/.test(text(e)) || e.value === '예약');
+      if (!reserve) return JSON.stringify({ error: 'schedule-option-missing' });
+      reserve.click();
+      const dates = [...document.querySelectorAll('input[type=date], input[placeholder*=날짜]')].filter(visible);
+      const times = [...document.querySelectorAll('input[type=time], input[placeholder*=시간]')].filter(visible);
+      const set = (el, value) => { const proto=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set; proto.call(el,value); el.dispatchEvent(new Event('input',{bubbles:true})); el.dispatchEvent(new Event('change',{bubbles:true})); };
+      let dateValue = '';
+      let timeValue = '';
+      if (dates[0] && times[0]) {
+        set(dates[0], ${JSON.stringify(schedule.date)}); set(times[0], ${JSON.stringify(schedule.time)});
+        dateValue = dates[0].value; timeValue = times[0].value;
+      } else {
+        const dateInput = document.querySelector('input[class*=input_date]');
+        const hour = document.querySelector('select[class*=hour_option]');
+        const minute = document.querySelector('select[class*=minute_option]');
+        if (!dateInput || !hour || !minute) return JSON.stringify({ error: 'schedule-date-time-missing' });
+        const target = ${JSON.stringify(schedule.date)}.split('-').map(Number);
+        const current = (dateInput.value.match(/(\\d{4})\\.\\s*(\\d{1,2})\\.\\s*(\\d{1,2})/) || []).slice(1).map(Number);
+        if (current.length !== 3 || current[0] !== target[0] || current[1] !== target[1]) return JSON.stringify({ error: 'schedule-date-month-navigation-missing' });
+        const calendarDays = () => [...document.querySelectorAll('button.ui-state-default')].filter(button => {
+          const style = getComputedStyle(button);
+          return style.display !== 'none' && style.visibility !== 'hidden';
+        });
+        // The Naver date input toggles its picker.  Do not click it when the
+        // picker is already open, otherwise a safe retry closes the picker
+        // and makes the requested day appear to be unavailable.
+        if (!calendarDays().length) dateInput.click();
+        const day = calendarDays().find(button => button.textContent.trim() === String(target[2]) && !button.closest('td')?.classList.contains('ui-state-disabled') && button.tabIndex !== -1);
+        if (!day) return JSON.stringify({ error: 'schedule-date-day-missing' });
+        day.click();
+        hour.value = ${JSON.stringify(schedule.time.slice(0, 2))}; hour.dispatchEvent(new Event('change',{bubbles:true}));
+        minute.value = ${JSON.stringify(schedule.time.slice(3, 5))}; minute.dispatchEvent(new Event('change',{bubbles:true}));
+        dateValue = dateInput.value.replace(/\\.\\s*/g,'-').replace(/-$/,'').replace(/^(\\d{4})-(\\d)-(\\d)$/, '$1-0$2-0$3').replace(/^(\\d{4})-(\\d)-(\\d{2})$/, '$1-0$2-$3').replace(/^(\\d{4})-(\\d{2})-(\\d)$/, '$1-$2-0$3');
+        timeValue = hour.value + ':' + minute.value;
+      }
+      const publicControl = controls.find(e => /전체공개|공개/.test(text(e)) && !/비공개|이웃/.test(text(e)));
+      if (!publicControl) return JSON.stringify({ error: 'public-visibility-missing' });
+      publicControl.click();
+      return JSON.stringify({ date: dateValue, time: timeValue, visibility: text(publicControl) });
+    })()`));
+    assert(!result.error, `Naver scheduled publication configuration failed: ${result.error}`);
+    assert(result.date === schedule.date && result.time === schedule.time && /공개/.test(result.visibility), "Naver scheduled publication values could not be verified");
+    return result;
+  }
+  inspectScheduledPublication() {
+    return JSON.parse(this.js(`(() => {
+      const visible = e => { const s=getComputedStyle(e), r=e.getBoundingClientRect(); return s.display!=='none' && s.visibility!=='hidden' && r.width>0 && r.height>0; };
+      const dates=[...document.querySelectorAll('input[type=date], input[placeholder*=날짜]')].filter(visible);
+      const times=[...document.querySelectorAll('input[type=time], input[placeholder*=시간]')].filter(visible);
+      const layerText=[...document.querySelectorAll('[role=dialog], [class*=publish_layer], [class*=PublishLayer], [class*=layer]')].filter(visible).map(e => e.innerText || '').join(' ');
+      const dateInput = document.querySelector('input[class*=input_date]');
+      const hour = document.querySelector('select[class*=hour_option]');
+      const minute = document.querySelector('select[class*=minute_option]');
+      const customDate = dateInput?.value.replace(/\\.\\s*/g,'-').replace(/-$/,'').replace(/^(\\d{4})-(\\d)-(\\d)$/, '$1-0$2-0$3').replace(/^(\\d{4})-(\\d)-(\\d{2})$/, '$1-0$2-$3').replace(/^(\\d{4})-(\\d{2})-(\\d)$/, '$1-$2-0$3') || '';
+      return JSON.stringify({ date: dates[0]?.value || customDate, time: times[0]?.value || (hour && minute ? hour.value + ':' + minute.value : ''), scheduled: Boolean(document.querySelector('[data-testid=preTimeRadioBtn]:checked, #radio_time2:checked')) || /예약/.test(layerText), visibility: /전체공개|공개/.test(layerText) });
+    })()`));
+  }
+  clickPublicConfirmOnce(selector) {
+    let result;
     try {
-      this.run(["wait", "--networkidle"], 60_000);
-    } catch {
-      try { this.run(["wait", "--load"], 30_000); } catch {}
+      result = this.js(`(() => {
+        const element = document.querySelector(${JSON.stringify(selector)});
+        if (!element) return 'missing';
+        const style = getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
+        if (style.display === 'none' || style.visibility === 'hidden' || rect.width <= 0 || rect.height <= 0) return 'not-visible';
+        if (element.disabled || element.getAttribute('aria-disabled') === 'true') return 'disabled';
+        element.scrollIntoView({ block: 'center', inline: 'nearest' });
+        element.click();
+        return 'clicked-once';
+      })()`).replace(/^"|"$/g, "");
+    } catch (error) {
+      error.publicConfirmationIssued = true;
+      throw error;
     }
+    if (result !== "clicked-once") {
+      const error = new Error(`Final public confirmation was not clickable (${result}); public publish was not attempted`);
+      error.publicConfirmationIssued = false;
+      throw error;
+    }
+  }
+  markPublicConfirmButton() {
+    return this.js(`(() => {
+      const visible = element => {
+        if (!element) return false;
+        const style = getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
+        return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+      };
+      const label = element => (element.getAttribute('aria-label') || element.innerText || element.textContent || '').replace(/\\s+/g, ' ').trim();
+      const buttons = [...document.querySelectorAll('button')]
+        .filter(visible)
+        .filter(element => label(element) === '발행' && !element.disabled && element.getAttribute('aria-disabled') !== 'true');
+      const layerSelector = '[role=dialog], [class*=publish_layer], [class*=PublishLayer], [class*=publishLayer], [class*=layer], [class*=Layer]';
+      const layered = buttons.filter(button => {
+        const layer = button.closest(layerSelector);
+        return layer && visible(layer) && /발행|공개|카테고리|예약/.test(label(layer));
+      });
+      const element = layered.at(-1) || buttons.at(-1);
+      if (!element) return '';
+      element.setAttribute('data-kr-naver-role', 'publishConfirmOnce');
+      return 'button[data-kr-naver-role=publishConfirmOnce]';
+    })()`).replace(/^"|"$/g, "");
+  }
+  publicationEvidenceUrls() {
+    const urls = [];
+    try { urls.push(this.run(["url"], 15_000).replace(/^"|"$/g, "")); } catch {}
+    try {
+      const tabs = this.run(["tabs"], 15_000);
+      urls.push(...(tabs.match(/https:\/\/blog\.naver\.com\/[^\s)\]}]+/g) || []));
+    } catch {}
+    return [...new Set(urls)].filter(isPublicNaverPostUrl);
+  }
+  waitForPublishedUrl(baselineUrls = [], timeoutMs = PUBLICATION_VERIFY_TIMEOUT_MS) {
+    const baseline = new Set(baselineUrls);
+    const deadline = Date.now() + timeoutMs;
+    while (Date.now() < deadline) {
+      const url = this.publicationEvidenceUrls().find(candidate => !baseline.has(candidate));
+      if (url) return url;
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 750);
+    }
+    return "";
+  }
+  publish() {
+    const selector = this.markPublicConfirmButton();
+    assert(selector, "Required visible Naver public confirmation button unavailable; public publish was not attempted");
+    const baselineUrls = this.publicationEvidenceUrls();
+    this.clickPublicConfirmOnce(selector);
+    return this.waitForPublishedUrl(baselineUrls);
+  }
+  schedule() {
+    const selector = this.markPublicConfirmButton();
+    assert(selector, "Required visible Naver scheduled confirmation button unavailable; scheduled publish was not attempted");
+    this.clickPublicConfirmOnce(selector);
+    return true;
   }
   publishedUrl() { return this.js("location.href").replace(/^"|"$/g, ""); }
 }
@@ -1721,10 +2107,19 @@ function prepare(args, manifestPath, manifest) {
   if (manifest.post.category) driver.setCategory(manifest.post.category);
   if (!isDailyMarketManifest(manifest)) driver.setTags(manifest.post.tags);
   driver.selectRepresentativeThumbnail(manifest.post.thumbnail.absolutePath);
+  if (args.scheduled) {
+    driver.openPublishLayer();
+    driver.configureScheduledPublication(scheduledPublication(manifest));
+  }
   if (!isDailyMarketManifest(manifest) && typeof driver.pruneTags === "function") driver.pruneTags(manifest.post.tags);
   driver.closePublishLayer();
   driver.saveDraft();
   driver.openPublishLayer();
+  if (args.scheduled) {
+    const schedule = scheduledPublication(manifest);
+    const inspectedSchedule = driver.inspectScheduledPublication();
+    assert(inspectedSchedule?.date === schedule.date && inspectedSchedule?.time === schedule.time && inspectedSchedule.visibility, "Naver scheduled publication values changed before draft validation");
+  }
   if (!isDailyMarketManifest(manifest) && typeof driver.pruneTags === "function") driver.pruneTags(manifest.post.tags);
   const inspected = driver.inspect();
   const validateTags = !isDailyMarketManifest(manifest);
@@ -1757,6 +2152,7 @@ function publish(args, manifestPath, manifest) {
   if (duplicate) throw new Error(`Duplicate same-day daily market-news publication blocked: ${duplicate.path}`);
   assert(Date.now() <= Date.parse(manifest.prepare.expiresAt), "Approval token expired; run prepare again");
   verifyArtifacts(manifest);
+  assert(typeof manifest.prepare.approvalTokenHash === "string" && /^[0-9a-f]{64}$/i.test(manifest.prepare.approvalTokenHash), "Approval token was cleared; run prepare again");
   const expectedHash = sha256(`${args.token}:${manifestSourceSha256(manifest)}:${manifest.post.markdownSha256}:${manifest.prepare.contentFingerprint}`);
   const actual = Buffer.from(expectedHash, "hex");
   const stored = Buffer.from(manifest.prepare.approvalTokenHash, "hex");
@@ -1791,39 +2187,222 @@ function publish(args, manifestPath, manifest) {
   if (manifest.post.category) driver.setCategory(manifest.post.category);
   if (!isDailyMarketManifest(manifest)) driver.setTags(manifest.post.tags);
   driver.selectRepresentativeThumbnail(manifest.post.thumbnail.absolutePath);
+  if (args.scheduled) {
+    driver.openPublishLayer();
+    driver.configureScheduledPublication(scheduledPublication(manifest));
+  }
   if (!isDailyMarketManifest(manifest) && typeof driver.pruneTags === "function") driver.pruneTags(manifest.post.tags);
   const inspected = driver.inspect();
   const validateTags = !isDailyMarketManifest(manifest);
   const fingerprint = validateEditor(inspected, manifest, body, { validateTags, validateThumbnail: true, expectedHtml: html, expectedTables: expectedTableData(markdown) });
   assert(fingerprint === manifest.prepare.contentFingerprint, "Editor content changed after prepare; public publish was not attempted");
-  driver.publish();
-  const url = driver.publishedUrl();
-  assert(/^https:\/\/blog\.naver\.com\//.test(url), `Unexpected published URL: ${url}`);
-  assert(!/GoBlogWrite|PostWriteForm|Redirect=Write|workingonit/i.test(url), `Publish did not leave the editor; public URL was not confirmed: ${url}`);
-  manifest.status = "published";
-  manifest.publish = { publishedAt: new Date().toISOString(), url, result: "published" };
+  let schedule = null;
+  if (args.scheduled) {
+    schedule = scheduledPublication(manifest);
+    const inspectedSchedule = driver.inspectScheduledPublication();
+    assert(inspectedSchedule?.date === schedule.date && inspectedSchedule?.time === schedule.time && inspectedSchedule.visibility, "Naver scheduled publication values changed before confirmation");
+  }
+  const attemptedAt = new Date().toISOString();
+  manifest.status = "publishing";
+  manifest.publish = { attemptedAt, result: "pending-verification", editorUrl: driver.publishedUrl() };
   manifest.prepare.approvalTokenHash = null;
   writeJsonAtomic(manifestPath, manifest);
+  writeAudit("public-confirmation-armed", { manifestPath, contentType: manifest.contentType, publicationDate: manifest.post?.publicationDate || manifest.source?.asOfDate });
+  let url = "";
+  let confirmationIssued = false;
+  try {
+    if (args.scheduled) {
+      driver.schedule();
+      confirmationIssued = true;
+      manifest.status = "scheduled";
+      manifest.publish = { attemptedAt, scheduledAt: `${schedule.date}T${schedule.time}:00+09:00`, result: "scheduled", editorUrl: driver.publishedUrl() };
+      writeJsonAtomic(manifestPath, manifest);
+      writeAudit("publication-scheduled", { manifestPath, scheduledAt: manifest.publish.scheduledAt });
+      return { status: "scheduled", manifestPath, scheduledAt: manifest.publish.scheduledAt };
+    }
+    url = driver.publish();
+    confirmationIssued = true;
+    assert(isPublicNaverPostUrl(url), `Public URL was not confirmed within ${PUBLICATION_VERIFY_TIMEOUT_MS / 1000} seconds`);
+  } catch (error) {
+    confirmationIssued = confirmationIssued || error.publicConfirmationIssued === true;
+    let lastKnownUrl = url;
+    if (!lastKnownUrl) {
+      try { lastKnownUrl = driver.publishedUrl(); } catch { lastKnownUrl = ""; }
+    }
+    if (!confirmationIssued) {
+      manifest.status = "prepared";
+      manifest.publish = {
+        attemptedAt,
+        checkedAt: new Date().toISOString(),
+        result: "not-attempted",
+        editorUrl: manifest.publish.editorUrl,
+        error: String(error.message || error).slice(0, 1000),
+      };
+      writeJsonAtomic(manifestPath, manifest);
+      writeAudit("public-confirmation-not-issued", { manifestPath, error: manifest.publish.error });
+      throw new Error(`Public confirmation was not issued. The approval token was cleared; run prepare again before retrying. Cause: ${error.message}`);
+    }
+    manifest.status = "publication-unverified";
+    manifest.publish = {
+      ...manifest.publish,
+      checkedAt: new Date().toISOString(),
+      result: "unverified",
+      lastKnownUrl,
+      error: String(error.message || error).slice(0, 1000),
+    };
+    writeJsonAtomic(manifestPath, manifest);
+    writeAudit("public-confirmation-unverified", { manifestPath, lastKnownUrl: manifest.publish.lastKnownUrl, error: manifest.publish.error });
+    throw new Error(`The public confirmation was issued once, but publication could not be verified. The manifest is now publication-unverified; do not click publish again. Reconcile the public blog first. Cause: ${error.message}`);
+  }
+  manifest.status = "published";
+  manifest.publish = { attemptedAt, publishedAt: new Date().toISOString(), url, result: "published" };
+  writeAudit("publication-verified", { manifestPath, url, publicationDate: manifest.post?.publicationDate || manifest.source?.asOfDate });
+  writeJsonAtomic(manifestPath, manifest);
   return { status: "published", url, publishedAt: manifest.publish.publishedAt };
+}
+
+function validatePublicPostSnapshot(inspected, manifest) {
+  const url = inspected?.url || "";
+  const text = compactEditorText(inspected?.text || "");
+  const expectedTitle = compactEditorText(manifest.post?.title || "");
+  const asOfDate = compactEditorText(manifest.source?.asOfDate || manifest.post?.publicationDate || "");
+  assert(isPublicNaverPostUrl(url), `Reconciliation did not resolve to a public Naver Blog post URL: ${url || "missing"}`);
+  assert(expectedTitle && text.includes(expectedTitle), "Public post title does not match the manifest");
+  assert(asOfDate && text.includes(asOfDate), "Public post basis/publication date does not match the manifest");
+  assert(text.includes(compactEditorText("출처")), "Public post Sources section was not found");
+  assert(text.includes(compactEditorText("매수·매도를 권유하지 않습니다")), "Public post investment disclaimer was not found");
+  return { url, title: true, asOfDate: true, sources: true, disclaimer: true };
+}
+
+function reconcilePublication(args, manifestPath, manifest) {
+  assert(["publishing", "publication-unverified"].includes(manifest.status), "Reconciliation is only allowed for publishing or publication-unverified manifests");
+  const publicUrl = String(args["public-url"] || "").trim();
+  const confirmedNotPublished = args["not-published"] === "yes";
+  assert(Boolean(publicUrl) !== confirmedNotPublished, "Reconcile with exactly one of --public-url <url> or --not-published yes");
+  const reconciledAt = new Date().toISOString();
+  if (confirmedNotPublished) {
+    assert(args["confirm-no-public-post"] === "yes", "Resetting an unverified publication requires --confirm-no-public-post yes after checking the public blog");
+    manifest.status = "converted";
+    manifest.prepare = null;
+    manifest.publish = {
+      ...(manifest.publish || {}),
+      reconciledAt,
+      result: "confirmed-not-published",
+      url: null,
+    };
+    writeJsonAtomic(manifestPath, manifest);
+    writeAudit("publication-reconciled-not-published", { manifestPath, publicationDate: manifest.post?.publicationDate || manifest.source?.asOfDate });
+    return { status: "converted", result: "confirmed-not-published", manifestPath, reconciledAt };
+  }
+  assert(isPublicNaverPostUrl(publicUrl), "Reconciliation requires a valid public Naver Blog post URL");
+  const driver = createDriver(args);
+  driver.openPublicPost(publicUrl);
+  const validation = validatePublicPostSnapshot(driver.inspectPublicPost(), manifest);
+  const publishedAt = manifest.publish?.attemptedAt || reconciledAt;
+  manifest.status = "published";
+  manifest.prepare ||= {};
+  manifest.prepare.approvalTokenHash = null;
+  manifest.publish = {
+    ...(manifest.publish || {}),
+    publishedAt,
+    verifiedAt: reconciledAt,
+    publicationTimeBasis: manifest.publish?.attemptedAt ? "attemptedAt" : "verifiedAt",
+    url: validation.url,
+    result: "reconciled-published",
+    validation,
+  };
+  writeJsonAtomic(manifestPath, manifest);
+  writeAudit("publication-reconciled-published", { manifestPath, url: validation.url, publicationDate: manifest.post?.publicationDate || manifest.source?.asOfDate });
+  return { status: "published", result: "reconciled-published", url: validation.url, publishedAt, verifiedAt: reconciledAt };
+}
+
+function cleanupLegacyBrowser(args) {
+  assert(args["confirm-stale-profile"] === "yes", "Legacy browser cleanup requires --confirm-stale-profile yes after confirming no other Naver publishing task is active");
+  const forceDedicatedSession = args["force-dedicated-session"] === "yes";
+  const profilePath = process.env.NAVER_PUBLISH_PROFILE || path.join(os.homedir(), ".gstack", "kr-naver-blog-publish", "chromium-profile");
+  const stateFile = process.env.NAVER_PUBLISH_STATE_FILE || DEFAULT_BROWSE_STATE_FILE;
+  const legacy = findLegacyProfileDaemons(profilePath, stateFile);
+  const nonOrphans = legacy.filter(item => item.ppid !== 1);
+  assert(!nonOrphans.length, `Active legacy browser processes still have parent tasks and were not stopped: ${nonOrphans.map(item => item.pid).join(", ")}`);
+  const browse = require("../../kr-naver-browse/scripts/browse-naver.js");
+  const bin = browse.resolveBrowseBinary();
+  for (const legacyState of [...new Set(legacy.map(item => item.stateFile))]) {
+    try {
+      execFileSync(bin, ["stop"], {
+        encoding: "utf8",
+        env: { ...process.env, CHROMIUM_PROFILE: profilePath, BROWSE_STATE_FILE: legacyState },
+        stdio: ["ignore", "pipe", "pipe"],
+        timeout: 20_000,
+        maxBuffer: 2 * 1024 * 1024,
+      });
+    } catch {
+      // The explicit orphan PID cleanup below handles missing/stale state files.
+    }
+  }
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 500);
+  for (const item of legacy) {
+    if (!isProcessAlive(item.pid)) continue;
+    try { process.kill(item.pid, "SIGTERM"); } catch {}
+  }
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 750);
+  const remaining = findLegacyProfileDaemons(profilePath, stateFile);
+  assert(!remaining.length, `Legacy Naver profile daemons remain after cleanup: ${remaining.map(item => item.pid).join(", ")}`);
+  if (forceDedicatedSession) {
+    const stopOptions = {
+      encoding: "utf8",
+      env: { ...process.env, CHROMIUM_PROFILE: profilePath, BROWSE_STATE_FILE: stateFile },
+      stdio: ["ignore", "pipe", "pipe"],
+      timeout: 20_000,
+      maxBuffer: 2 * 1024 * 1024,
+    };
+    try {
+      execFileSync(bin, ["--headed", "stop"], stopOptions);
+    } catch (error) {
+      const output = String(error.stderr || error.stdout || error.message || "");
+      if (!/Unknown command: '--headed'/.test(output)) throw error;
+      execFileSync(bin, ["stop"], stopOptions);
+    }
+  }
+  writeAudit("legacy-browser-cleanup", { stoppedPids: legacy.map(item => item.pid).join(","), forcedDedicatedSession: forceDedicatedSession });
+  return {
+    status: "clean",
+    stoppedPids: legacy.map(item => item.pid),
+    forcedDedicatedSession: forceDedicatedSession,
+    message: legacy.length || forceDedicatedSession ? undefined : "No stale Naver profile daemons found",
+  };
 }
 
 function main() {
   const args = parseArgs(process.argv);
   const action = args._[0];
-  assert(action === "prepare" || action === "publish" || action === "scheduled-publish", "Usage: publisher.js <prepare|publish|scheduled-publish> --manifest <json> [--fixture <json>] [--token <token> --confirm-public yes] [--scheduled yes]");
-  assert(args.manifest, "--manifest is required");
-  const manifestPath = path.resolve(args.manifest);
-  const manifest = readJson(manifestPath);
-  const result = action === "prepare"
-    ? prepare(args, manifestPath, manifest)
-    : action === "scheduled-publish"
-      ? (() => {
-        const prepared = prepare({ ...args, scheduled: "yes" }, manifestPath, manifest);
-        const latest = readJson(manifestPath);
-        return publish({ ...args, scheduled: "yes", token: prepared.approvalToken, "confirm-public": "yes" }, manifestPath, latest);
-      })()
-      : publish(args, manifestPath, manifest);
-  process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+  assert(action === "prepare" || action === "publish" || action === "scheduled-publish" || action === "reconcile" || action === "cleanup-browser", "Usage: publisher.js <prepare|publish|scheduled-publish|reconcile|cleanup-browser> [--manifest <json>] [--fixture <json>] [--token <token> --confirm-public yes] [--scheduled yes] [--public-url <url> | --not-published yes --confirm-no-public-post yes] [--confirm-stale-profile yes --force-dedicated-session yes]");
+  if (action !== "cleanup-browser") assert(args.manifest, "--manifest is required");
+  const manifestPath = args.manifest ? path.resolve(args.manifest) : null;
+  const releaseLock = acquirePublisherLock(action, manifestPath);
+  writeAudit("action-started", { action, manifestPath });
+  try {
+    const manifest = manifestPath ? readJson(manifestPath) : null;
+    const result = action === "cleanup-browser"
+      ? cleanupLegacyBrowser(args)
+      : action === "reconcile"
+      ? reconcilePublication(args, manifestPath, manifest)
+      : action === "prepare"
+      ? prepare(args, manifestPath, manifest)
+      : action === "scheduled-publish"
+        ? (() => {
+          const prepared = prepare({ ...args, scheduled: "yes" }, manifestPath, manifest);
+          const latest = readJson(manifestPath);
+          return publish({ ...args, scheduled: "yes", token: prepared.approvalToken, "confirm-public": "yes" }, manifestPath, latest);
+        })()
+        : publish(args, manifestPath, manifest);
+    writeAudit("action-completed", { action, manifestPath, status: result.status, url: result.url || "" });
+    process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+  } catch (error) {
+    writeAudit("action-failed", { action, manifestPath, error: String(error.message || error).slice(0, 1000) });
+    throw error;
+  } finally {
+    releaseLock();
+  }
 }
 
 if (require.main === module) {
@@ -1832,11 +2411,17 @@ if (require.main === module) {
 
 module.exports = {
   FixtureDriver,
+  GstackDriver,
+  browserStartupRecoveryGuide,
   editorBody,
   editorHtml,
   expectedTableData,
+  isPublicNaverPostUrl,
+  parseLegacyProfileDaemons,
   prepare,
   publish,
+  reconcilePublication,
+  cleanupLegacyBrowser,
   renderExcelTableHtml,
   validateBlockFormatting,
   validateEditor,

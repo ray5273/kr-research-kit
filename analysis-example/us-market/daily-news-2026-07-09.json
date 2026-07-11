@@ -1,0 +1,1764 @@
+{
+  "schemaVersion": 1,
+  "reportType": "us-daily-market-news",
+  "asOfDate": "2026-07-09",
+  "generatedAt": "2026-07-10T14:12:39.400Z",
+  "sourceMode": "rss-hybrid",
+  "watchlist": [
+    {
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "keywords": [
+        "AI",
+        "GPU"
+      ],
+      "secUrl": null,
+      "exchangeUrl": null,
+      "irUrl": null
+    },
+    {
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "keywords": [
+        "cloud",
+        "AI"
+      ],
+      "secUrl": null,
+      "exchangeUrl": null,
+      "irUrl": null
+    },
+    {
+      "ticker": "AAPL",
+      "name": "Apple",
+      "keywords": [
+        "iPhone",
+        "services"
+      ],
+      "secUrl": null,
+      "exchangeUrl": null,
+      "irUrl": null
+    },
+    {
+      "ticker": "AMZN",
+      "name": "Amazon",
+      "keywords": [
+        "AWS",
+        "consumer"
+      ],
+      "secUrl": null,
+      "exchangeUrl": null,
+      "irUrl": null
+    },
+    {
+      "ticker": "META",
+      "name": "Meta Platforms",
+      "keywords": [
+        "advertising",
+        "AI"
+      ],
+      "secUrl": null,
+      "exchangeUrl": null,
+      "irUrl": null
+    }
+  ],
+  "oneLine": "지수는 Dow Jones +0.27%, S&P 500 +0.81%, Nasdaq +1.30%; 섹터는 Technology +2.18% / Consumer Staples -1.41%가 대비됐습니다.",
+  "marketSnapshot": {
+    "source": "Yahoo Finance chart",
+    "asOfDate": "2026-07-09",
+    "latestDate": "2026-07-09",
+    "indexes": [
+      {
+        "symbol": "^GSPC",
+        "name": "S&P 500",
+        "date": "2026-07-09",
+        "price": 7543.64013671875,
+        "previousClose": 7482.7099609375,
+        "change": 60.93017578125,
+        "changePct": 0.8142795337428278,
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/%5EGSPC"
+      },
+      {
+        "symbol": "^IXIC",
+        "name": "Nasdaq Composite",
+        "date": "2026-07-09",
+        "price": 26206.890625,
+        "previousClose": 25870.650390625,
+        "change": 336.240234375,
+        "changePct": 1.2996976469398953,
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/%5EIXIC"
+      },
+      {
+        "symbol": "^DJI",
+        "name": "Dow Jones",
+        "date": "2026-07-09",
+        "price": 52487.41015625,
+        "previousClose": 52348.390625,
+        "change": 139.01953125,
+        "changePct": 0.26556600802854197,
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/%5EDJI"
+      },
+      {
+        "symbol": "^RUT",
+        "name": "Russell 2000",
+        "date": "2026-07-09",
+        "price": 2992.5400390625,
+        "previousClose": 2956.389892578125,
+        "change": 36.150146484375,
+        "changePct": 1.2227800729236766,
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/%5ERUT"
+      }
+    ],
+    "sectors": [
+      {
+        "sector": "Technology/AI",
+        "symbol": "XLK",
+        "name": "Technology",
+        "date": "2026-07-09",
+        "price": 185.35000610351562,
+        "previousClose": 181.39999389648438,
+        "change": 3.95001220703125,
+        "changePct": 2.1775150716296707,
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/XLK"
+      },
+      {
+        "sector": "Communication Services",
+        "symbol": "XLC",
+        "name": "Communication Services",
+        "date": "2026-07-09",
+        "price": 110.51000213623047,
+        "previousClose": 109.45999908447266,
+        "change": 1.0500030517578125,
+        "changePct": 0.9592573182350408,
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/XLC"
+      },
+      {
+        "sector": "Consumer Discretionary",
+        "symbol": "XLY",
+        "name": "Consumer Discretionary",
+        "date": "2026-07-09",
+        "price": 116.8499984741211,
+        "previousClose": 115.30000305175781,
+        "change": 1.5499954223632812,
+        "changePct": 1.3443151616114817,
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/XLY"
+      },
+      {
+        "sector": "Consumer Staples",
+        "symbol": "XLP",
+        "name": "Consumer Staples",
+        "date": "2026-07-09",
+        "price": 83.19999694824219,
+        "previousClose": 84.38999938964844,
+        "change": -1.19000244140625,
+        "changePct": -1.410122585629761,
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/XLP"
+      },
+      {
+        "sector": "Financials",
+        "symbol": "XLF",
+        "name": "Financials",
+        "date": "2026-07-09",
+        "price": 55.540000915527344,
+        "previousClose": 54.970001220703125,
+        "change": 0.5699996948242188,
+        "changePct": 1.0369286559330513,
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/XLF"
+      },
+      {
+        "sector": "Health Care",
+        "symbol": "XLV",
+        "name": "Health Care",
+        "date": "2026-07-09",
+        "price": 162.1699981689453,
+        "previousClose": 162.3000030517578,
+        "change": -0.1300048828125,
+        "changePct": -0.0801015898755351,
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/XLV"
+      },
+      {
+        "sector": "Industrials",
+        "symbol": "XLI",
+        "name": "Industrials",
+        "date": "2026-07-09",
+        "price": 181.11000061035156,
+        "previousClose": 180.4199981689453,
+        "change": 0.69000244140625,
+        "changePct": 0.3824423281282442,
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/XLI"
+      },
+      {
+        "sector": "Energy",
+        "symbol": "XLE",
+        "name": "Energy",
+        "date": "2026-07-09",
+        "price": 54.81999969482422,
+        "previousClose": 55.599998474121094,
+        "change": -0.779998779296875,
+        "changePct": -1.4028755408328364,
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/XLE"
+      },
+      {
+        "sector": "Materials",
+        "symbol": "XLB",
+        "name": "Materials",
+        "date": "2026-07-09",
+        "price": 50.2599983215332,
+        "previousClose": 50.15999984741211,
+        "change": 0.09999847412109375,
+        "changePct": 0.19935900005042156,
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/XLB"
+      },
+      {
+        "sector": "Utilities",
+        "symbol": "XLU",
+        "name": "Utilities",
+        "date": "2026-07-09",
+        "price": 45.130001068115234,
+        "previousClose": 45.36000061035156,
+        "change": -0.22999954223632812,
+        "changePct": -0.5070536577193964,
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/XLU"
+      },
+      {
+        "sector": "Real Estate",
+        "symbol": "XLRE",
+        "name": "Real Estate",
+        "date": "2026-07-09",
+        "price": 44.22999954223633,
+        "previousClose": 44.150001525878906,
+        "change": 0.07999801635742188,
+        "changePct": 0.18119595377710315,
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/XLRE"
+      }
+    ]
+  },
+  "marketNews": [
+    {
+      "headline": "Kalshi traders see roughly 50% odds of a rate hike in 2026 as Fed is split on policy",
+      "title": "Kalshi traders see roughly 50% odds of a rate hike in 2026 as Fed is split on policy",
+      "url": "https://www.cnbc.com/2026/07/09/kalshi-traders-see-roughly-50percent-odds-of-a-rate-hike-in-2026-as-fed-is-split-on-policy.html",
+      "source": "CNBC Investing",
+      "sourceUrl": "https://www.cnbc.com/id/15839069/device/rss/rss.html",
+      "sourceRole": "direct-rss",
+      "description": "Wednesday's Fed minutes showed a divided outlook on where interest rates are headed this year. Traders on Kalshi see a 54% likelihood of a hike before 2027.",
+      "pubDate": "Thu, 09 Jul 2026 19:24:21 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T19:24:21.000Z",
+      "importanceScore": 10,
+      "rankScore": 15.133333333333333,
+      "articleText": "Kalshi traders see roughly 50% odds of a rate hike in 2026 as Fed is split on policy Skip Navigation Markets Pre-Markets Kalshi traders see roughly 50% odds of a rate hike in 2026 as Fed is split on policy The Federal Reserve&#x27;s June meeting minutes issued Wednesday indicated that central bank officials were divided on where rates will be at the end of this year. In turn, Kalshi traders now see a 54% likelihood that the central bank will raise rates this year. These prediction market traders also see a 62% probability that the next hike will come before July 2027. Federal Reserve policymakers are split on the path for interest rates — and Kalshi traders also seem to be divided, seeing just over 50% odds of a hike this year. Prediction market traders on Kalshi now forecast a 54% likelihood that the Fed will raise rates this year. That&#x27;s down slightly from 56% over the past day. This contract asks Kalshi traders when a hike will take place and would resolve if it happens before this year ends, before July 2027 or before 2028. Kalshi traders see a nearly 80% chance that a hike will happen in 2028 and a 62% likelihood that it will happen before July 2027. These results come a day after the U.S. central bank rolled out its June meeting minutes. The document said that \"many participants indicated that the appropriate level of the federal funds rate would be within or slightly below the current target range at the end of this year.\" The key interest rate is currently in a range of 3.5% to 3.75% — where it has been since December 2025. The Fed&#x27;s latest minutes also showed that \"many other participants\" deemed that the appropriate level for the rate would be \"above the current target range at the end of this year.\" Central bank policymakers&#x27; divided viewpoint comes as the U.S. grapples with inflation and rising tensions in the Middle East. The Fed&#x27;s preferred inflation gauge, the personal consumption expenditures price index, hit an annual rate of 4.1% in May — the highest since April 2023. Another similar market on Kalshi, asking how many rate cuts will happen this year, sees about a 76% chance that there will be none. Those odds first increased from 68% to 77% on June 16, the first day of Kevin Warsh&#x27;s inaugural Federal Reserve meeting as chairman. Those numbers didn&#x27;t move much before and after the minutes were issued on Wednesday. The market&#x27;s outcome would be verified by the Fed. Disclosure: CNBC and Kalshi have a commercial relationship that includes customer acquisition and a minority investment. News Tips Got a confidential news tip? We want to hear from you. CNBC Newsletters Sign up for free newsletters and get more CNBC delivered to your inbox Get this delivered to your inbox, and more info about our products and services. © 2026 Versant Media, LLC. All Rights Reserved. A Versant Media Company. Data is a real-time snapshot *Data is delayed at least 15 minutes. Global Business and Financial News, Stock Quotes, and Market Data and Analysis."
+    }
+  ],
+  "marketSummary": [
+    {
+      "rank": 1,
+      "title": "Kalshi traders see roughly 50% odds of a rate hike in 2026 as Fed is split on policy",
+      "summary": "금리/달러: Kalshi traders see roughly 50% odds of a rate hike in 2026 as Fed is split on policy은 Wednesday's Fed minutes showed a divided outlook on where interest rates are headed this year. Traders on Kalshi see a 54% likelihood of a hike before 2027. 투자자는 금리와 달러 변화가 성장주 밸류에이션과 섹터.",
+      "url": "https://www.cnbc.com/2026/07/09/kalshi-traders-see-roughly-50percent-odds-of-a-rate-hike-in-2026-as-fed-is-split-on-policy.html",
+      "source": "CNBC Investing",
+      "summaryBasis": "headline-description-theme"
+    }
+  ],
+  "sectorNews": [
+    {
+      "sector": "Technology/AI",
+      "query": "Technology AI OR NVIDIA OR Microsoft OR Apple OR Broadcom OR AMD OR AI OR GPU OR cloud OR services stock market news",
+      "queries": [
+        {
+          "sector": "Technology/AI",
+          "query": "Technology AI OR NVIDIA OR Microsoft OR Apple OR Broadcom OR AMD OR AI OR GPU OR cloud OR services stock market news",
+          "terms": [
+            "Technology AI",
+            "NVIDIA",
+            "Microsoft",
+            "Apple",
+            "Broadcom",
+            "AMD",
+            "AI",
+            "GPU",
+            "cloud",
+            "services"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "Apple Edges Closer to Dethroning Nvidia After $30B Broadcom Chips Deal",
+          "title": "Apple Edges Closer to Dethroning Nvidia After $30B Broadcom Chips Deal",
+          "url": "https://finance.yahoo.com/technology/articles/apple-edges-closer-dethroning-nvidia-040100806.html",
+          "source": "The Daily Upside",
+          "sourceUrl": "http://thedailyupside.com/",
+          "sourceRole": "direct-rss",
+          "description": "",
+          "pubDate": "2026-07-09T04:01:00Z",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T04:01:00.000Z",
+          "sector": "Technology/AI",
+          "query": "Technology AI OR NVIDIA OR Microsoft OR Apple OR Broadcom OR AMD OR AI OR GPU OR cloud OR services stock market news",
+          "importanceScore": 5,
+          "rankScore": 5.0055555555555555
+        },
+        {
+          "headline": "AI spending sends tech-services market to $42.4B in Q2 - Stock Titan",
+          "title": "AI spending sends tech-services market to $42.4B in Q2 - Stock Titan",
+          "url": "",
+          "source": "Stock Titan",
+          "sourceUrl": "https://www.stocktitan.net",
+          "sourceRole": "discovery-signal",
+          "description": "AI spending sends tech-services market to $42.4B in Q2 &nbsp;&nbsp; Stock Titan",
+          "pubDate": "Thu, 09 Jul 2026 14:02:29 GMT",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T14:02:29.000Z",
+          "query": "Technology AI OR NVIDIA OR Microsoft OR Apple OR Broadcom OR AMD OR AI OR GPU OR cloud OR services stock market news",
+          "discovery": true,
+          "sector": "Technology/AI",
+          "importanceScore": -3,
+          "rankScore": 0.3444444444444441
+        }
+      ],
+      "discoverySignalCount": 1
+    },
+    {
+      "sector": "Communication Services",
+      "query": "Communication Services OR Alphabet OR Meta Platforms OR Netflix OR Disney OR Verizon OR advertising OR search OR AI OR streaming stock market news",
+      "queries": [
+        {
+          "sector": "Communication Services",
+          "query": "Communication Services OR Alphabet OR Meta Platforms OR Netflix OR Disney OR Verizon OR advertising OR search OR AI OR streaming stock market news",
+          "terms": [
+            "Communication Services",
+            "Alphabet",
+            "Meta Platforms",
+            "Netflix",
+            "Disney",
+            "Verizon",
+            "advertising",
+            "search",
+            "AI",
+            "streaming"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "Goldman Sachs wins $70 billion in asset management deals with Verizon, Lockheed Martin",
+          "title": "Goldman Sachs wins $70 billion in asset management deals with Verizon, Lockheed Martin",
+          "url": "https://www.cnbc.com/2026/07/09/goldman-sachs-asset-management-deals-verizon-lockheed-martin.html",
+          "source": "CNBC Markets",
+          "sourceUrl": "https://www.cnbc.com/id/10001147/device/rss/rss.html",
+          "sourceRole": "direct-rss",
+          "description": "Competition in the multitrillion-dollar market for retirement assets is fierce among managers such as Goldman Sachs, BlackRock, Russell Investments and Mercer.",
+          "pubDate": "Thu, 09 Jul 2026 15:00:50 GMT",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T15:00:50.000Z",
+          "sector": "Communication Services",
+          "query": "Communication Services OR Alphabet OR Meta Platforms OR Netflix OR Disney OR Verizon OR advertising OR search OR AI OR streaming stock market news",
+          "importanceScore": -1,
+          "rankScore": 2.666666666666667
+        }
+      ],
+      "discoverySignalCount": 0
+    },
+    {
+      "sector": "Consumer Discretionary",
+      "query": "Consumer Discretionary OR Amazon OR Tesla OR Home Depot OR McDonald's OR Booking Holdings OR e-commerce OR AWS OR EV OR autonomous stock market news",
+      "queries": [
+        {
+          "sector": "Consumer Discretionary",
+          "query": "Consumer Discretionary OR Amazon OR Tesla OR Home Depot OR McDonald's OR Booking Holdings OR e-commerce OR AWS OR EV OR autonomous stock market news",
+          "terms": [
+            "Consumer Discretionary",
+            "Amazon",
+            "Tesla",
+            "Home Depot",
+            "McDonald's",
+            "Booking Holdings",
+            "e-commerce",
+            "AWS",
+            "EV",
+            "autonomous"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "Which Is the Better Consumer Staples ETF, Vanguard's VDC or Invesco's RSPS? - The Motley Fool",
+          "title": "Which Is the Better Consumer Staples ETF, Vanguard's VDC or Invesco's RSPS? - The Motley Fool",
+          "url": "",
+          "source": "The Motley Fool",
+          "sourceUrl": "https://www.fool.com",
+          "sourceRole": "discovery-signal",
+          "description": "Which Is the Better Consumer Staples ETF, Vanguard's VDC or Invesco's RSPS? &nbsp;&nbsp; The Motley Fool",
+          "pubDate": "Thu, 09 Jul 2026 22:06:00 GMT",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T22:06:00.000Z",
+          "query": "Consumer Discretionary OR Amazon OR Tesla OR Home Depot OR McDonald's OR Booking Holdings OR e-commerce OR AWS OR EV OR autonomous stock market news",
+          "discovery": true,
+          "sector": "Consumer Discretionary",
+          "importanceScore": -3,
+          "rankScore": 3
+        },
+        {
+          "headline": "Two Trades for Today: An e-commerce player for a rise of 8%, and a mid-cap industrial mining stock for a 6 - The Economic Times",
+          "title": "Two Trades for Today: An e-commerce player for a rise of 8%, and a mid-cap industrial mining stock for a 6 - The Economic Times",
+          "url": "",
+          "source": "The Economic Times",
+          "sourceUrl": "https://m.economictimes.com",
+          "sourceRole": "discovery-signal",
+          "description": "Two Trades for Today: An e-commerce player for a rise of 8%, and a mid-cap industrial mining stock for a 6 &nbsp;&nbsp; The Economic Times",
+          "pubDate": "Thu, 09 Jul 2026 14:24:01 GMT",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T14:24:01.000Z",
+          "query": "Consumer Discretionary OR Amazon OR Tesla OR Home Depot OR McDonald's OR Booking Holdings OR e-commerce OR AWS OR EV OR autonomous stock market news",
+          "discovery": true,
+          "sector": "Consumer Discretionary",
+          "importanceScore": -8,
+          "rankScore": -4.533333333333333
+        }
+      ],
+      "discoverySignalCount": 2
+    },
+    {
+      "sector": "Consumer Staples",
+      "query": "Consumer Staples OR Walmart OR Costco OR Procter & Gamble OR Coca-Cola OR PepsiCo OR retail OR grocery OR membership OR household stock market news",
+      "queries": [
+        {
+          "sector": "Consumer Staples",
+          "query": "Consumer Staples OR Walmart OR Costco OR Procter & Gamble OR Coca-Cola OR PepsiCo OR retail OR grocery OR membership OR household stock market news",
+          "terms": [
+            "Consumer Staples",
+            "Walmart",
+            "Costco",
+            "Procter & Gamble",
+            "Coca-Cola",
+            "PepsiCo",
+            "retail",
+            "grocery",
+            "membership",
+            "household"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "PepsiCo earnings miss estimates as U.S. consumers tighten their budgets",
+          "title": "PepsiCo earnings miss estimates as U.S. consumers tighten their budgets",
+          "url": "https://www.cnbc.com/2026/07/09/pepsico-pep-q2-2026-earnings.html",
+          "source": "CNBC Markets",
+          "sourceUrl": "https://www.cnbc.com/id/10001147/device/rss/rss.html",
+          "sourceRole": "direct-rss",
+          "description": "PepsiCo reported weaker-than-expected quarterly earnings despite strong international demand.",
+          "pubDate": "Thu, 09 Jul 2026 14:01:00 GMT",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T14:01:00.000Z",
+          "sector": "Consumer Staples",
+          "query": "Consumer Staples OR Walmart OR Costco OR Procter & Gamble OR Coca-Cola OR PepsiCo OR retail OR grocery OR membership OR household stock market news",
+          "importanceScore": 12,
+          "rankScore": 15.338888888888889
+        },
+        {
+          "headline": "Procter & Gamble (PG) Stock Sinks As Market Gains: What You Should Know - Yahoo Finance",
+          "title": "Procter & Gamble (PG) Stock Sinks As Market Gains: What You Should Know - Yahoo Finance",
+          "url": "",
+          "source": "Yahoo Finance",
+          "sourceUrl": "https://finance.yahoo.com",
+          "sourceRole": "discovery-signal",
+          "description": "Procter & Gamble (PG) Stock Sinks As Market Gains: What You Should Know &nbsp;&nbsp; Yahoo Finance",
+          "pubDate": "Thu, 09 Jul 2026 21:50:05 GMT",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T21:50:05.000Z",
+          "query": "Consumer Staples OR Walmart OR Costco OR Procter & Gamble OR Coca-Cola OR PepsiCo OR retail OR grocery OR membership OR household stock market news",
+          "discovery": true,
+          "sector": "Consumer Staples",
+          "importanceScore": 0,
+          "rankScore": 5.944444444444445
+        }
+      ],
+      "discoverySignalCount": 1
+    },
+    {
+      "sector": "Financials",
+      "query": "Financials OR JPMorgan Chase OR Bank of America OR Goldman Sachs OR Visa OR Berkshire Hathaway OR bank OR credit OR rates OR investment banking stock market news",
+      "queries": [
+        {
+          "sector": "Financials",
+          "query": "Financials OR JPMorgan Chase OR Bank of America OR Goldman Sachs OR Visa OR Berkshire Hathaway OR bank OR credit OR rates OR investment banking stock market news",
+          "terms": [
+            "Financials",
+            "JPMorgan Chase",
+            "Bank of America",
+            "Goldman Sachs",
+            "Visa",
+            "Berkshire Hathaway",
+            "bank",
+            "credit",
+            "rates",
+            "investment banking"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "Kalshi traders see roughly 50% odds of a rate hike in 2026 as Fed is split on policy",
+          "title": "Kalshi traders see roughly 50% odds of a rate hike in 2026 as Fed is split on policy",
+          "url": "https://www.cnbc.com/2026/07/09/kalshi-traders-see-roughly-50percent-odds-of-a-rate-hike-in-2026-as-fed-is-split-on-policy.html",
+          "source": "CNBC Investing",
+          "sourceUrl": "https://www.cnbc.com/id/15839069/device/rss/rss.html",
+          "sourceRole": "direct-rss",
+          "description": "Wednesday's Fed minutes showed a divided outlook on where interest rates are headed this year. Traders on Kalshi see a 54% likelihood of a hike before 2027.",
+          "pubDate": "Thu, 09 Jul 2026 19:24:21 GMT",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T19:24:21.000Z",
+          "sector": "Financials",
+          "query": "Financials OR JPMorgan Chase OR Bank of America OR Goldman Sachs OR Visa OR Berkshire Hathaway OR bank OR credit OR rates OR investment banking stock market news",
+          "importanceScore": 10,
+          "rankScore": 15.133333333333333
+        },
+        {
+          "headline": "Goldman Sachs wins $70 billion in asset management deals with Verizon, Lockheed Martin",
+          "title": "Goldman Sachs wins $70 billion in asset management deals with Verizon, Lockheed Martin",
+          "url": "https://www.cnbc.com/2026/07/09/goldman-sachs-asset-management-deals-verizon-lockheed-martin.html",
+          "source": "CNBC Markets",
+          "sourceUrl": "https://www.cnbc.com/id/10001147/device/rss/rss.html",
+          "sourceRole": "direct-rss",
+          "description": "Competition in the multitrillion-dollar market for retirement assets is fierce among managers such as Goldman Sachs, BlackRock, Russell Investments and Mercer.",
+          "pubDate": "Thu, 09 Jul 2026 15:00:50 GMT",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T15:00:50.000Z",
+          "sector": "Financials",
+          "query": "Financials OR JPMorgan Chase OR Bank of America OR Goldman Sachs OR Visa OR Berkshire Hathaway OR bank OR credit OR rates OR investment banking stock market news",
+          "importanceScore": -1,
+          "rankScore": 2.666666666666667
+        },
+        {
+          "headline": "Taiwan central bank chief warns of AI bubble risk",
+          "title": "Taiwan central bank chief warns of AI bubble risk",
+          "url": "https://finance.yahoo.com/economy/policy/articles/taiwan-central-bank-chief-warns-075123349.html",
+          "source": "Reuters",
+          "sourceUrl": "http://www.reuters.com/",
+          "sourceRole": "direct-rss",
+          "description": "",
+          "pubDate": "2026-07-09T07:51:23Z",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T07:51:23.000Z",
+          "sector": "Financials",
+          "query": "Financials OR JPMorgan Chase OR Bank of America OR Goldman Sachs OR Visa OR Berkshire Hathaway OR bank OR credit OR rates OR investment banking stock market news",
+          "importanceScore": -3,
+          "rankScore": -1.7166666666666666
+        },
+        {
+          "headline": "June home sales disappoint as prices reach an all-time high",
+          "title": "June home sales disappoint as prices reach an all-time high",
+          "url": "https://www.cnbc.com/2026/07/09/june-home-sales-prices.html",
+          "source": "CNBC Markets",
+          "sourceUrl": "https://www.cnbc.com/id/10001147/device/rss/rss.html",
+          "sourceRole": "direct-rss",
+          "description": "Home sales dropped in June month over month as mortgage rates remain stubbornly high. Prices hit an all-time high.",
+          "pubDate": "Thu, 09 Jul 2026 14:44:29 GMT",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T14:44:29.000Z",
+          "sector": "Financials",
+          "query": "Financials OR JPMorgan Chase OR Bank of America OR Goldman Sachs OR Visa OR Berkshire Hathaway OR bank OR credit OR rates OR investment banking stock market news",
+          "importanceScore": -8,
+          "rankScore": -4.4222222222222225
+        },
+        {
+          "headline": "Best CD rates today, Thursday, July 9, 2026: Lock in up to 4.10% APY",
+          "title": "Best CD rates today, Thursday, July 9, 2026: Lock in up to 4.10% APY",
+          "url": "https://finance.yahoo.com/personal-finance/banking/article/best-cd-rates-today-thursday-july-9-2026-lock-in-up-to-410-apy-100000260.html",
+          "source": "Yahoo Personal Finance",
+          "sourceUrl": "https://finance.yahoo.com/",
+          "sourceRole": "direct-rss",
+          "description": "",
+          "pubDate": "2026-07-09T10:00:00Z",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T10:00:00.000Z",
+          "sector": "Financials",
+          "query": "Financials OR JPMorgan Chase OR Bank of America OR Goldman Sachs OR Visa OR Berkshire Hathaway OR bank OR credit OR rates OR investment banking stock market news",
+          "importanceScore": -8,
+          "rankScore": -6
+        }
+      ],
+      "discoverySignalCount": 0
+    },
+    {
+      "sector": "Health Care",
+      "query": "Health Care OR Eli Lilly OR UnitedHealth OR Johnson & Johnson OR Merck OR AbbVie OR obesity OR diabetes OR managed care OR Medicare stock market news",
+      "queries": [
+        {
+          "sector": "Health Care",
+          "query": "Health Care OR Eli Lilly OR UnitedHealth OR Johnson & Johnson OR Merck OR AbbVie OR obesity OR diabetes OR managed care OR Medicare stock market news",
+          "terms": [
+            "Health Care",
+            "Eli Lilly",
+            "UnitedHealth",
+            "Johnson & Johnson",
+            "Merck",
+            "AbbVie",
+            "obesity",
+            "diabetes",
+            "managed care",
+            "Medicare"
+          ]
+        }
+      ],
+      "items": [],
+      "discoverySignalCount": 0
+    },
+    {
+      "sector": "Industrials",
+      "query": "Industrials OR GE Aerospace OR Caterpillar OR Boeing OR RTX OR Union Pacific OR aerospace OR engines OR machinery OR construction stock market news",
+      "queries": [
+        {
+          "sector": "Industrials",
+          "query": "Industrials OR GE Aerospace OR Caterpillar OR Boeing OR RTX OR Union Pacific OR aerospace OR engines OR machinery OR construction stock market news",
+          "terms": [
+            "Industrials",
+            "GE Aerospace",
+            "Caterpillar",
+            "Boeing",
+            "RTX",
+            "Union Pacific",
+            "aerospace",
+            "engines",
+            "machinery",
+            "construction"
+          ]
+        }
+      ],
+      "items": [],
+      "discoverySignalCount": 0
+    },
+    {
+      "sector": "Energy",
+      "query": "Energy OR Exxon Mobil OR Chevron OR ConocoPhillips OR SLB OR EOG Resources OR oil OR natural gas OR LNG OR production stock market news",
+      "queries": [
+        {
+          "sector": "Energy",
+          "query": "Energy OR Exxon Mobil OR Chevron OR ConocoPhillips OR SLB OR EOG Resources OR oil OR natural gas OR LNG OR production stock market news",
+          "terms": [
+            "Energy",
+            "Exxon Mobil",
+            "Chevron",
+            "ConocoPhillips",
+            "SLB",
+            "EOG Resources",
+            "oil",
+            "natural gas",
+            "LNG",
+            "production"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "Stocks recover losses, and oil prices ease as calm returns to financial markets worldwide",
+          "title": "Stocks recover losses, and oil prices ease as calm returns to financial markets worldwide",
+          "url": "https://finance.yahoo.com/markets/world-indices/articles/asian-stocks-slip-oil-prices-044236738.html",
+          "source": "Associated Press",
+          "sourceUrl": "https://apnews.com/",
+          "sourceRole": "direct-rss",
+          "description": "",
+          "pubDate": "2026-07-09T04:42:36Z",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T04:42:36.000Z",
+          "sector": "Energy",
+          "query": "Energy OR Exxon Mobil OR Chevron OR ConocoPhillips OR SLB OR EOG Resources OR oil OR natural gas OR LNG OR production stock market news",
+          "importanceScore": 15,
+          "rankScore": 15.233333333333333
+        },
+        {
+          "headline": "U.S. LNG Exporter Reaps Windfall as Middle East Turmoil Drives Fees Higher",
+          "title": "U.S. LNG Exporter Reaps Windfall as Middle East Turmoil Drives Fees Higher",
+          "url": "https://finance.yahoo.com/energy/articles/u-lng-exporter-reaps-windfall-054500952.html",
+          "source": "Oilprice.com",
+          "sourceUrl": "http://oilprice.com",
+          "sourceRole": "direct-rss",
+          "description": "",
+          "pubDate": "2026-07-09T05:45:00Z",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T05:45:00.000Z",
+          "sector": "Energy",
+          "query": "Energy OR Exxon Mobil OR Chevron OR ConocoPhillips OR SLB OR EOG Resources OR oil OR natural gas OR LNG OR production stock market news",
+          "importanceScore": 7,
+          "rankScore": 7.583333333333333
+        },
+        {
+          "headline": "Chevron Licenses Enhanced Oil Recovery Technology to ZL Chemicals",
+          "title": "Chevron Licenses Enhanced Oil Recovery Technology to ZL Chemicals",
+          "url": "https://finance.yahoo.com/energy/articles/chevron-licenses-enhanced-oil-recovery-051330430.html",
+          "source": "Oilprice.com",
+          "sourceUrl": "http://oilprice.com",
+          "sourceRole": "direct-rss",
+          "description": "",
+          "pubDate": "2026-07-09T05:13:30Z",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T05:13:30.000Z",
+          "sector": "Energy",
+          "query": "Energy OR Exxon Mobil OR Chevron OR ConocoPhillips OR SLB OR EOG Resources OR oil OR natural gas OR LNG OR production stock market news",
+          "importanceScore": -1,
+          "rankScore": -0.5944444444444444
+        }
+      ],
+      "discoverySignalCount": 0
+    },
+    {
+      "sector": "Materials",
+      "query": "Materials OR Linde OR Freeport-McMoRan OR Newmont OR Dow OR Nucor OR industrial gas OR chemicals OR copper OR mining stock market news",
+      "queries": [
+        {
+          "sector": "Materials",
+          "query": "Materials OR Linde OR Freeport-McMoRan OR Newmont OR Dow OR Nucor OR industrial gas OR chemicals OR copper OR mining stock market news",
+          "terms": [
+            "Materials",
+            "Linde",
+            "Freeport-McMoRan",
+            "Newmont",
+            "Dow",
+            "Nucor",
+            "industrial gas",
+            "chemicals",
+            "copper",
+            "mining"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "Gold prices today, Thursday, July 9, 2026: Prices open lower as U.S.-Iran airstrikes continue",
+          "title": "Gold prices today, Thursday, July 9, 2026: Prices open lower as U.S.-Iran airstrikes continue",
+          "url": "https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-thursday-july-9-2026-prices-open-lower-as-us-iran-airstrikes-continue-120253974.html",
+          "source": "Yahoo Personal Finance",
+          "sourceUrl": "https://finance.yahoo.com/",
+          "sourceRole": "direct-rss",
+          "description": "",
+          "pubDate": "2026-07-09T12:02:53Z",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T12:02:53.000Z",
+          "sector": "Materials",
+          "query": "Materials OR Linde OR Freeport-McMoRan OR Newmont OR Dow OR Nucor OR industrial gas OR chemicals OR copper OR mining stock market news",
+          "importanceScore": 7,
+          "rankScore": 9.677777777777777
+        },
+        {
+          "headline": "Chevron Licenses Enhanced Oil Recovery Technology to ZL Chemicals",
+          "title": "Chevron Licenses Enhanced Oil Recovery Technology to ZL Chemicals",
+          "url": "https://finance.yahoo.com/energy/articles/chevron-licenses-enhanced-oil-recovery-051330430.html",
+          "source": "Oilprice.com",
+          "sourceUrl": "http://oilprice.com",
+          "sourceRole": "direct-rss",
+          "description": "",
+          "pubDate": "2026-07-09T05:13:30Z",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T05:13:30.000Z",
+          "sector": "Materials",
+          "query": "Materials OR Linde OR Freeport-McMoRan OR Newmont OR Dow OR Nucor OR industrial gas OR chemicals OR copper OR mining stock market news",
+          "importanceScore": -1,
+          "rankScore": -0.5944444444444444
+        }
+      ],
+      "discoverySignalCount": 0
+    },
+    {
+      "sector": "Utilities",
+      "query": "Utilities OR NextEra Energy OR Duke Energy OR Southern Company OR Constellation Energy OR American Electric Power OR utility OR renewables OR power OR electricity stock market news",
+      "queries": [
+        {
+          "sector": "Utilities",
+          "query": "Utilities OR NextEra Energy OR Duke Energy OR Southern Company OR Constellation Energy OR American Electric Power OR utility OR renewables OR power OR electricity stock market news",
+          "terms": [
+            "Utilities",
+            "NextEra Energy",
+            "Duke Energy",
+            "Southern Company",
+            "Constellation Energy",
+            "American Electric Power",
+            "utility",
+            "renewables",
+            "power",
+            "electricity"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "Clean power comeback? Don't count out renewable energy and this one stock in particular",
+          "title": "Clean power comeback? Don't count out renewable energy and this one stock in particular",
+          "url": "https://www.cnbc.com/2026/07/09/clean-power-comeback-dont-count-out-renewable-energy-and-this-one-stock-in-particular.html",
+          "source": "CNBC Investing",
+          "sourceUrl": "https://www.cnbc.com/id/15839069/device/rss/rss.html",
+          "sourceRole": "direct-rss",
+          "description": "Clean power is responsible for roughly 90% of all new electrical capacity being added to the grid, according to the CEO of the American Clean Power Association.",
+          "pubDate": "Thu, 09 Jul 2026 11:49:01 GMT",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T11:49:01.000Z",
+          "sector": "Utilities",
+          "query": "Utilities OR NextEra Energy OR Duke Energy OR Southern Company OR Constellation Energy OR American Electric Power OR utility OR renewables OR power OR electricity stock market news",
+          "importanceScore": -3,
+          "rankScore": -0.3944444444444448
+        }
+      ],
+      "discoverySignalCount": 0
+    },
+    {
+      "sector": "Real Estate",
+      "query": "Real Estate OR Prologis OR American Tower OR Equinix OR Realty Income OR Simon Property Group OR warehouse OR logistics OR tower OR REIT stock market news",
+      "queries": [
+        {
+          "sector": "Real Estate",
+          "query": "Real Estate OR Prologis OR American Tower OR Equinix OR Realty Income OR Simon Property Group OR warehouse OR logistics OR tower OR REIT stock market news",
+          "terms": [
+            "Real Estate",
+            "Prologis",
+            "American Tower",
+            "Equinix",
+            "Realty Income",
+            "Simon Property Group",
+            "warehouse",
+            "logistics",
+            "tower",
+            "REIT"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "headline": "Levi Strauss beats quarterly expectations, raises guidance and dividend",
+          "title": "Levi Strauss beats quarterly expectations, raises guidance and dividend",
+          "url": "https://www.cnbc.com/2026/07/08/levi-strauss-levi-q2-2026-earnings.html",
+          "source": "CNBC Markets",
+          "sourceUrl": "https://www.cnbc.com/id/10001147/device/rss/rss.html",
+          "sourceRole": "direct-rss",
+          "description": "Levi Strauss beat quarterly expectations on the top and bottom lines during its fiscal 2026 second quarter.",
+          "pubDate": "Thu, 09 Jul 2026 11:44:00 GMT",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T11:44:00.000Z",
+          "sector": "Real Estate",
+          "query": "Real Estate OR Prologis OR American Tower OR Equinix OR Realty Income OR Simon Property Group OR warehouse OR logistics OR tower OR REIT stock market news",
+          "importanceScore": -1,
+          "rankScore": 1.577777777777778
+        },
+        {
+          "headline": "RWR vs. RWO: Should Your REIT ETF Include International Stocks? - The Motley Fool",
+          "title": "RWR vs. RWO: Should Your REIT ETF Include International Stocks? - The Motley Fool",
+          "url": "",
+          "source": "The Motley Fool",
+          "sourceUrl": "https://www.fool.com",
+          "sourceRole": "discovery-signal",
+          "description": "RWR vs. RWO: Should Your REIT ETF Include International Stocks? &nbsp;&nbsp; The Motley Fool",
+          "pubDate": "Thu, 09 Jul 2026 12:11:00 GMT",
+          "publishedDate": "2026-07-09",
+          "publishedAt": "2026-07-09T12:11:00.000Z",
+          "query": "Real Estate OR Prologis OR American Tower OR Equinix OR Realty Income OR Simon Property Group OR warehouse OR logistics OR tower OR REIT stock market news",
+          "discovery": true,
+          "sector": "Real Estate",
+          "importanceScore": 0,
+          "rankScore": 2.727777777777778
+        }
+      ],
+      "discoverySignalCount": 1
+    }
+  ],
+  "featuredStocks": [
+    {
+      "headline": "PepsiCo earnings miss estimates as U.S. consumers tighten their budgets",
+      "title": "PepsiCo earnings miss estimates as U.S. consumers tighten their budgets",
+      "url": "https://www.cnbc.com/2026/07/09/pepsico-pep-q2-2026-earnings.html",
+      "source": "CNBC Markets",
+      "sourceUrl": "https://www.cnbc.com/id/10001147/device/rss/rss.html",
+      "sourceRole": "direct-rss",
+      "description": "PepsiCo reported weaker-than-expected quarterly earnings despite strong international demand.",
+      "pubDate": "Thu, 09 Jul 2026 14:01:00 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T14:01:00.000Z",
+      "sector": "Consumer Staples",
+      "query": "Consumer Staples OR Walmart OR Costco OR Procter & Gamble OR Coca-Cola OR PepsiCo OR retail OR grocery OR membership OR household stock market news",
+      "importanceScore": 12,
+      "rankScore": 15.338888888888889,
+      "ticker": "PEP",
+      "name": "PepsiCo",
+      "articleText": "PepsiCo (PEP) Q2 2026 earnings Skip Navigation Markets Pre-Markets PepsiCo earnings miss estimates as U.S. consumers tighten their budgets PepsiCo reported weaker-than-expected quarterly earnings. The company&#x27;s revenue topped Wall Street&#x27;s estimates, boosted by strong international demand for its snacks and drinks. Pepsi reiterated its full-year forecast. PepsiCo on Thursday reported mixed quarterly results as the struggles of its North American food and beverage divisions offset strong international demand. \"Results were tempered in the quarter as U.S. food and beverage category performance moderated with consumer budgets tightening due to rising inflationary pressures,\" CEO Ramon Laguarta said in prepared remarks shared on the company&#x27;s website on Thursday. During Pepsi&#x27;s second quarter, global oil prices swung dramatically due to the U.S. war with Iran. In the U.S., the national average gas price hit a four-year high of $4.56 per gallon in late May, leading many shoppers to watch their spending. Shares of Pepsi were down more than 4% in morning trading. Here&#x27;s what the company reported for the quarter ended June 13 compared with what Wall Street was expecting, based on a survey of analysts by LSEG: Earnings per share: $2.20 adjusted vs. $2.21 expected Revenue: $24.18 billion vs. $23.95 billion expected Pepsi reported second-quarter net income attributable to the company of $2.98 billion, or $2.18 per share, up from $1.26 billion, or 92 cents per share, a year earlier. Excluding restructuring and impairment charges and other items, the company earned $2.20 per share. Net sales rose 6.4% to $24.18 billion. Organic revenue, which excludes acquisitions, divestitures and foreign currency, increased 2.4% in the quarter. Globally, volume for Pepsi&#x27;s food increased 3%, while volume for its beverages rose 2%. The metric excludes pricing and foreign exchange fluctuations to reflect demand more accurately. But Pepsi&#x27;s volume growth came from its international markets. Demand was much weaker domestically. Its North American food business reported flat volume for the quarter, and its North American beverage division saw volume drop 4%. \"I think the consumer is worse than what we had anticipated, and it&#x27;s driven mainly by gas prices,\" Laguarta said on the company&#x27;s earnings conference call. Demand was particularly weak at convenience stores. \"We need to see some improvement in the in the convenience and gas channel, and hopefully we&#x27;ll get some tailwinds from gas prices to do that,\" CFO Steve Schmitt said. Over the last two years, both North American segments have seen weaker demand as a result of higher prices. In February, Pepsi cut prices on Lay&#x27;s, Tostitos, Doritos and Cheetos by as much as 15% to try to win back shoppers. The company has also been \"restaging\" some of its iconic brands, like Gatorade and Lay&#x27;s, with fresh branding to boost their sales. Pepsi expects that its North American volumes will recover, but that will take time, particularly after this quarter&#x27;s setback. \"Our North America business was softer than we anticipated in the second quarter, and we now expect a more gradual improvement in performance trends for the balance of this year,\" Schmitt said in his prepared remarks. For the full year, Pepsi reiterated its prior forecast that organic revenue will rise between 2% and 4% and core constant currency earnings per share will increase in a range of 4% to 6%. News Tips Got a confidential news tip? We want to hear from you. CNBC Newsletters Sign up for free newsletters and get more CNBC delivered to your inbox Get this delivered to your inbox, and more info about our products and services. © 2026 Versant Media, LLC. All Rights Reserved. A Versant Media Company. Data is a real-time snapshot *Data is delayed at least 15 minutes. Global Business and Financial News, Stock Quotes, and Market Data and Analysis.",
+      "quote": {
+        "symbol": "PEP",
+        "price": 137.86000061035156,
+        "previousClose": 142.50999450683594,
+        "change": -4.649993896484375,
+        "changePct": -3.2629247601727496,
+        "date": "2026-07-09",
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/PEP"
+      }
+    },
+    {
+      "headline": "Goldman Sachs wins $70 billion in asset management deals with Verizon, Lockheed Martin",
+      "title": "Goldman Sachs wins $70 billion in asset management deals with Verizon, Lockheed Martin",
+      "url": "https://www.cnbc.com/2026/07/09/goldman-sachs-asset-management-deals-verizon-lockheed-martin.html",
+      "source": "CNBC Markets",
+      "sourceUrl": "https://www.cnbc.com/id/10001147/device/rss/rss.html",
+      "sourceRole": "direct-rss",
+      "description": "Competition in the multitrillion-dollar market for retirement assets is fierce among managers such as Goldman Sachs, BlackRock, Russell Investments and Mercer.",
+      "pubDate": "Thu, 09 Jul 2026 15:00:50 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T15:00:50.000Z",
+      "sector": "Financials",
+      "query": "Financials OR JPMorgan Chase OR Bank of America OR Goldman Sachs OR Visa OR Berkshire Hathaway OR bank OR credit OR rates OR investment banking stock market news",
+      "importanceScore": -1,
+      "rankScore": 2.666666666666667,
+      "ticker": "GS",
+      "name": "Goldman Sachs",
+      "articleText": "Goldman Sachs wins $70B in asset management for Verizon, Lockheed Martin Skip Navigation Markets Pre-Markets Goldman Sachs wins $70 billion in asset management deals with Verizon, Lockheed Martin Goldman Sachs won deals with Verizon Communications and Lockheed Martin to manage a combined $70 billion in retirement assets. Some of America&#x27;s largest employers are increasingly handing responsibility for managing retirement assets to outside firms as portfolios become more complex. Goldman hopes to increase its share of revenues that are seen as stable and recurring, unlike the more volatile trading and investment banking operations. Goldman Sachs said Thursday it won deals to manage a combined $70 billion in retirement assets for Verizon Communications and Lockheed Martin, one of the larger recent announcements in the fast-growing market for outsourced corporate investing. The mandates include about $30 billion in pension assets for Verizon and Lockheed Martin and $40 billion in Verizon defined-contribution retirement assets, which are typically 401(k)s, according to Goldman. The moves underscore how some of America&#x27;s largest employers are increasingly handing responsibility for managing retirement assets to outside firms such as Goldman as portfolios become more complex and require expertise across public and private markets. Competition in the multitrillion-dollar market for retirement assets is fierce among managers including Goldman, BlackRock , Russell Investments and Mercer , because the long-term institutional mandates generate steady fee revenue. By growing that business, Goldman hopes to increase its share of revenues that are seen as stable and recurring, unlike the more volatile trading and investment banking operations. \"Large plan sponsors are consolidating responsibilities with one partner with the investment expertise and depth of platform to manage their bespoke needs,\" Marc Nachmann, Goldman&#x27;s global head of asset and wealth management, said in a statement. Goldman&#x27;s outsourced chief investment officer business had about $480 billion in assets as of March 31, while the firm&#x27;s broader asset and wealth management division oversees roughly $3.7 trillion worth of investments. News Tips Got a confidential news tip? We want to hear from you. CNBC Newsletters Sign up for free newsletters and get more CNBC delivered to your inbox Get this delivered to your inbox, and more info about our products and services. © 2026 Versant Media, LLC. All Rights Reserved. A Versant Media Company. Data is a real-time snapshot *Data is delayed at least 15 minutes. Global Business and Financial News, Stock Quotes, and Market Data and Analysis.",
+      "quote": {
+        "symbol": "GS",
+        "price": 1055.969970703125,
+        "previousClose": 1029.6400146484375,
+        "change": 26.3299560546875,
+        "changePct": 2.5572001554036006,
+        "date": "2026-07-09",
+        "source": "Yahoo Finance chart",
+        "sourceUrl": "https://finance.yahoo.com/quote/GS"
+      }
+    }
+  ],
+  "discoveryNews": [
+    {
+      "headline": "S&P 500 closes higher as chip stocks rise and oil prices slide - CNBC",
+      "title": "S&P 500 closes higher as chip stocks rise and oil prices slide - CNBC",
+      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFB2UlJXXzJYdkQtdUh4dlpudTZWWnNGRTNybUZZc3dvQ2twQ2lqZGVFbmFELTBIeFEyYW9DdE1IUkdpZlRGdkpnYlJNX2thQ1pXc2ZYRHVlMnpPUHNjTWFHSS1kM0Rac2NFdnVMemluc1lnODhKSXlF0gF8QVVfeXFMUHJaN2NNbDVKQTNoZTJEOHZtUlE3c2twbEMxaGNFbEdMdXpLTVh6QnFkZVpWNnBGV1lWUmk5Q1JZZ3NSclllVzF6YWJmZk9fVEFoazFmXzlXaXc3bFVrUDBkRVNtR0w4cEo3T2lUZ29QYUFxbXhrelA5c3FQdA?oc=5",
+      "source": "CNBC",
+      "sourceUrl": "https://www.cnbc.com",
+      "sourceRole": "discovery-rss",
+      "description": "S&P 500 closes higher as chip stocks rise and oil prices slide &nbsp;&nbsp; CNBC",
+      "pubDate": "Thu, 09 Jul 2026 21:39:00 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T21:39:00.000Z",
+      "query": "S&P 500 Nasdaq Dow Jones market close",
+      "discovery": true
+    },
+    {
+      "headline": "Stock Market News From July 9, 2026: Nasdaq Leads Broad Rally - Barron's",
+      "title": "Stock Market News From July 9, 2026: Nasdaq Leads Broad Rally - Barron's",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8wTkRZU2VWYWc3RVBqUUctTW5ScDRwNFpQZEZIeXZiT0xZTFNiVUtpTkJMT1JUUDI5Vzh5dkJtUnNWZ1JRb01kNnJZWmFDWEhyeHBEX2RLa2xtWVd1YklOZzJOeC1jbXJVU2M0TzN1d19MZDlpVHc?oc=5",
+      "source": "Barron's",
+      "sourceUrl": "https://www.barrons.com",
+      "sourceRole": "discovery-rss",
+      "description": "Stock Market News From July 9, 2026: Nasdaq Leads Broad Rally &nbsp;&nbsp; Barron's",
+      "pubDate": "Thu, 09 Jul 2026 21:20:00 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T21:20:00.000Z",
+      "query": "S&P 500 Nasdaq Dow Jones market close",
+      "discovery": true
+    },
+    {
+      "headline": "Nasdaq ends sharply higher; chip surge offsets Iran worries - Reuters",
+      "title": "Nasdaq ends sharply higher; chip surge offsets Iran worries - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOWlJrcUhGNjUtY2dOX1RQcWxqNW1KNGtrZU9uYU5KSjZiaDdZM3ozU1BZUjR4WmJyLVJjLW9yYjJGRHdSSEo4T0NNVUQ1T2VHN19keUtvRklORURPYUhtS0hUR2NJWnRIcnd3VFRLdGpDTmcwSnA0WHcxSUJ2RHhrNG1hOWUycm5kUjl6OHhoTjhSNVZXRmFUVnRMclJYMW9FdXRJZ1VLSkFrbmxRWVg5N3Z5c3M?oc=5",
+      "source": "Reuters",
+      "sourceUrl": "https://www.reuters.com",
+      "sourceRole": "discovery-rss",
+      "description": "Nasdaq ends sharply higher; chip surge offsets Iran worries &nbsp;&nbsp; Reuters",
+      "pubDate": "Thu, 09 Jul 2026 23:36:06 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T23:36:06.000Z",
+      "query": "S&P 500 Nasdaq Dow Jones market close",
+      "discovery": true
+    },
+    {
+      "headline": "Stock market today: Dow, S&P 500, Nasdaq rise as chip stocks rebound, oil prices fall - Yahoo Finance",
+      "title": "Stock market today: Dow, S&P 500, Nasdaq rise as chip stocks rebound, oil prices fall - Yahoo Finance",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNUzBlZlpWbGgwbkJjMjVKN1BTQ2l5Y3hEb1RXaFJ4VHhDNTRHY1h5QVNMcUVQS1FIalkwSEFiRTZyaGlid050bHBYMktHd05NVVBoYndaNHpyVTVwQ21mektjWk9ZdFVfeXV3ek5iYThtSnZ2WjF2RFI2WG5NaWJpOFlPR0tYN3JrVVp6NXFFU0tMTGNDR3VUNmYzdkpEMEpJaWNxZVdyUlZpNXN0aTJPc0k4YTBYOW9pbkE?oc=5",
+      "source": "Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com",
+      "sourceRole": "discovery-rss",
+      "description": "Stock market today: Dow, S&P 500, Nasdaq rise as chip stocks rebound, oil prices fall &nbsp;&nbsp; Yahoo Finance",
+      "pubDate": "Thu, 09 Jul 2026 20:04:12 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T20:04:12.000Z",
+      "query": "S&P 500 Nasdaq Dow Jones market close",
+      "discovery": true
+    },
+    {
+      "headline": "Stock market today: S&P 500, Dow, Nasdaq edge up as focus turns to AI despite war jitters - Yahoo Finance UK",
+      "title": "Stock market today: S&P 500, Dow, Nasdaq edge up as focus turns to AI despite war jitters - Yahoo Finance UK",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQUWZiWVlzWl9aWTBIVWdkUDJsRWJlUktiWXpRaS1UWUI1bDNJd29rYy1QRG1WUUR4Z29qZU1XejNnWnpDTlpFdnk2Y1V1WGpQYzkzZWRobWdjbkNYQlI0RG14QnBidFZEeGtGaE9vRVJ2Z0k0S1NhNmt5N0pid3dJRTJfeWZzemtSOVdzdXAtSURzZG1FUHJiMWU3RW9mYzlXb3I3OU5wdlRBMHJteXAxNldHcWRZbTJxXzVleFM0TUxGYzM2VVd3VkxaZWRNMURl?oc=5",
+      "source": "Yahoo Finance UK",
+      "sourceUrl": "https://uk.finance.yahoo.com",
+      "sourceRole": "discovery-rss",
+      "description": "Stock market today: S&P 500, Dow, Nasdaq edge up as focus turns to AI despite war jitters &nbsp;&nbsp; Yahoo Finance UK",
+      "pubDate": "Thu, 09 Jul 2026 14:46:20 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T14:46:20.000Z",
+      "query": "S&P 500 Nasdaq Dow Jones market close",
+      "discovery": true
+    },
+    {
+      "headline": "Dow, Nasdaq, S&P 500 Futures Retreat After Chip-Led Gains At Close: META, ONDS, FUBO, FRMI Stocks In Focus - Stocktwits",
+      "title": "Dow, Nasdaq, S&P 500 Futures Retreat After Chip-Led Gains At Close: META, ONDS, FUBO, FRMI Stocks In Focus - Stocktwits",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQQ1F3aWM2cVRYakF0aFdwYVlCZzVfSndobkV2ZFkyMzBVX1dlLVloQmZUQWYtMERZWU9fOEpVNU8wOW9WejJIVHRKaWEtdEZxVllNdzZHTjBHV1ZuaVlfQlJpVGpTVTJKY3VNMWRXNWFHR2RGOU5GOWRYNWZhZHVmTWY0SjFzOXZkR3c1RFBHMlBGOWFVOUJJZ3NPZW16b2pHVmdORFliQXdGdXBIUzR1YklTeEh3R3hGSGIzRUpWYTV5VGdl?oc=5",
+      "source": "Stocktwits",
+      "sourceUrl": "https://stocktwits.com",
+      "sourceRole": "discovery-rss",
+      "description": "Dow, Nasdaq, S&P 500 Futures Retreat After Chip-Led Gains At Close: META, ONDS, FUBO, FRMI Stocks In Focus &nbsp;&nbsp; Stocktwits",
+      "pubDate": "Fri, 10 Jul 2026 01:30:00 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-10T01:30:00.000Z",
+      "query": "S&P 500 Nasdaq Dow Jones market close",
+      "discovery": true
+    },
+    {
+      "headline": "S&P 500, Nasdaq, Dow End Higher Led By Chipmaker Stocks As Investors Look Past US-Iran Hostility — ORCL, SBUX, WULF, PANW, FATE In Focus - TradingView",
+      "title": "S&P 500, Nasdaq, Dow End Higher Led By Chipmaker Stocks As Investors Look Past US-Iran Hostility — ORCL, SBUX, WULF, PANW, FATE In Focus - TradingView",
+      "url": "https://news.google.com/rss/articles/CBMimAJBVV95cUxOVzNkWFJrTV9BUzJNeFFqY1MyLUEzUzd5TjFtOGU2UmhYZ1BNcVdUMm9neVg4cG5mclBXd0pkWXRfYXBuQ3hKTHlES1lycVhvanhrVVBVS2puNGg1aGhuMUJTZlUySEpHSEk5ajV0cWJDMmwxWENrbHl3UjRlMkhlLVlnVmRwM0llODdZd3NfTVk0c0hZS3owcnZUR01HM1F4Q2U5Q2pBZklsSF90dEdoMlpnZ3c4b2VfQjB4VHFfUG9oMUg0d3pWMkpMMVdZUG5XV01pUEpmMmkxWTk3ejVoUUlJa0RWSG5KY0k0UVp6RU9YV3ltZVJOUjdNVWdLSWgtTUFKdzdRbjZKVUJIT0VYdU1ucDRaQjdi?oc=5",
+      "source": "TradingView",
+      "sourceUrl": "https://www.tradingview.com",
+      "sourceRole": "discovery-rss",
+      "description": "S&P 500, Nasdaq, Dow End Higher Led By Chipmaker Stocks As Investors Look Past US-Iran Hostility — ORCL, SBUX, WULF, PANW, FATE In Focus &nbsp;&nbsp; TradingView",
+      "pubDate": "Thu, 09 Jul 2026 21:28:17 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T21:28:17.000Z",
+      "query": "S&P 500 Nasdaq Dow Jones market close",
+      "discovery": true
+    },
+    {
+      "headline": "Stock Market Today: S&P 500, Nasdaq 100, Dow Jones Futures Rise as US-Iran Exchange Strikes—Levi Strauss - Benzinga",
+      "title": "Stock Market Today: S&P 500, Nasdaq 100, Dow Jones Futures Rise as US-Iran Exchange Strikes—Levi Strauss - Benzinga",
+      "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxObkdZZEt3ckZldEYwMmdzR21OMWlhYm9ac2ppN3lhTzZJeTVCN3R3VmRoRDJNTFRYZy1tY0xKTXV3eUl6MXN3cHBnRk5tRVc3RnV4bmdaSlRPQS1qMFRZbUloZkcxYXZTMnVLZng3dWN0eDE2ZHFTUTQyNFd4VW45VVhpX0xKc29GSk1tWENLVF9nSDVERi1BQ09FUGlTZWxzcU01cVlmb0NXY040UTJyanlWaGlKdnBvSkJ0RzJBZjZjdC1EZmJiakdZZV9HN1djR05kY0QzVGNxTkVJQnVrNnVsRDBaRUtBd0hROWRVUHRTZnZncExQeGUxYWVKODZqQllz?oc=5",
+      "source": "Benzinga",
+      "sourceUrl": "https://www.benzinga.com",
+      "sourceRole": "discovery-rss",
+      "description": "Stock Market Today: S&P 500, Nasdaq 100, Dow Jones Futures Rise as US-Iran Exchange Strikes—Levi Strauss &nbsp;&nbsp; Benzinga",
+      "pubDate": "Thu, 09 Jul 2026 12:58:00 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T12:58:00.000Z",
+      "query": "S&P 500 Nasdaq Dow Jones market close",
+      "discovery": true
+    },
+    {
+      "headline": "U.S. Stock Market Close | Chip stocks led gains, lifting major indices higher across the board; optical communications stocks strengthened, with Lumentum rising over 11% and Corning up more than 4%; gold, silver, and Bitcoin rebounded. - 富途牛牛",
+      "title": "U.S. Stock Market Close | Chip stocks led gains, lifting major indices higher across the board; optical communications stocks strengthened, with Lumentum rising over 11% and Corning up more than 4%; gold, silver, and Bitcoin rebounded. - 富途牛牛",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPb3NMc1o1RlJELVhNYzIwQnZTbXVVWC1pSDU0UnlRY1VXQUlGdi1ldDNuSkNRSGx3bFdFSmxzZDVDVjJlNWgxTG1mUTVlMllQa0N5a2VzYVBqU05vTUlwV2xPeGtHbGYwcldxQVM4WnNnYTFxSm9tRHo5bENRQkQ3OG5KWWx1dXEydFhVUnJDMHhHanZ5M0pSSVkzeTJvMk0?oc=5",
+      "source": "富途牛牛",
+      "sourceUrl": "https://news.futunn.com",
+      "sourceRole": "discovery-rss",
+      "description": "U.S. Stock Market Close | Chip stocks led gains, lifting major indices higher across the board; optical communications stocks strengthened, with Lumentum rising over 11% and Corning up more than 4%; gold, silver, and Bitcoin rebounded. &nbsp;&nbsp; 富途牛牛",
+      "pubDate": "Thu, 09 Jul 2026 22:23:25 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T22:23:25.000Z",
+      "query": "S&P 500 Nasdaq Dow Jones market close",
+      "discovery": true
+    },
+    {
+      "headline": "Wall Street Closes Higher: S&P 500, Nasdaq, And Dow Jones All In The Green - Bitcoin World",
+      "title": "Wall Street Closes Higher: S&P 500, Nasdaq, And Dow Jones All In The Green - Bitcoin World",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBLeWg1dER0eU5faVYtNHl1cld1QloxcU93TFpHekxxOW9adVlqQ2tNa2dpNkRXbjEycUZjSWw5Vkc3UkhTNWkydVBkQnZTQ1k0N3hNSThVaGw3YkpKZDZYZmR5QzVKRzg?oc=5",
+      "source": "Bitcoin World",
+      "sourceUrl": "https://bitcoinworld.co.in",
+      "sourceRole": "discovery-rss",
+      "description": "Wall Street Closes Higher: S&P 500, Nasdaq, And Dow Jones All In The Green &nbsp;&nbsp; Bitcoin World",
+      "pubDate": "Fri, 10 Jul 2026 00:00:11 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-10T00:00:11.000Z",
+      "query": "S&P 500 Nasdaq Dow Jones market close",
+      "discovery": true
+    },
+    {
+      "headline": "US markets today: Dow futures down, S&P 500, Nasdaq futures trade higher amid mixed global market cues - Upstox",
+      "title": "US markets today: Dow futures down, S&P 500, Nasdaq futures trade higher amid mixed global market cues - Upstox",
+      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxObGRELXBhT0pGSmVFUWpLa28tQzdTUnZ6eFl4dzR0NTNwWG1PcWZPSm9Jdkxod0lMdENVLU8xRm1EX0o0YUJBSjVfWE5vbEZOWVJDdDc5QllwV3RFUTNNV0lDVnRVNGlSSmVyLXk3eVhGcGE1N0U0dW9lUm5FT2pWTmtiVWpiVWZ1aWF4MlBhczdXZkNEZFU3SHhQMmQxekVXTnJaZUFIT21KcUtLR0EtM0lWNzhfdnBxYXkzRDNtMkNoMWVMZkQ1SlVTU0NROG1MQXhrT1Y1dnl6SmVWTnhaWTc2aWlnRkxWQkJlc1czSHJ0MzMxYTVxTw?oc=5",
+      "source": "Upstox",
+      "sourceUrl": "https://upstox.com",
+      "sourceRole": "discovery-rss",
+      "description": "US markets today: Dow futures down, S&P 500, Nasdaq futures trade higher amid mixed global market cues &nbsp;&nbsp; Upstox",
+      "pubDate": "Thu, 09 Jul 2026 13:00:16 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T13:00:16.000Z",
+      "query": "S&P 500 Nasdaq Dow Jones market close",
+      "discovery": true
+    },
+    {
+      "headline": "Louis Navellier flags three top tech stocks for market growth - Yahoo Finance",
+      "title": "Louis Navellier flags three top tech stocks for market growth - Yahoo Finance",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOWFdjT1lvZ3U2UUExSjAtQl91bldiYU94MDd2NWV5R1k0cUZUVmcxRjZSZ1NZbGhHX3JZZHBScUo0SEltcnBodjQ0eFM3WER2Nzc5eHlma1dYQ0dVTV9OV0JiODFKbVpQZWVVSExoWDNCOHFJU3gwMFhlUFl0cUI5Y25GdlRDUmFGb0hQVW1JTU5JY2xvNEZRbzJOclM?oc=5",
+      "source": "Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com",
+      "sourceRole": "discovery-rss",
+      "description": "Louis Navellier flags three top tech stocks for market growth &nbsp;&nbsp; Yahoo Finance",
+      "pubDate": "Fri, 10 Jul 2026 02:06:00 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-10T02:06:00.000Z",
+      "query": "Technology AI OR NVIDIA OR Microsoft OR Apple OR Broadcom OR AMD OR AI OR GPU OR cloud OR services stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Datavault AI becomes exclusive tech partner for Mandela Dollar stablecoin - Stock Titan",
+      "title": "Datavault AI becomes exclusive tech partner for Mandela Dollar stablecoin - Stock Titan",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNeG5vUExUVlkxT3B1MVd2eVdQd2hFcU5xc1VIbl9yWG9ESmNOR1JYTmpkLWdydm5FMWUzYml6NWE3UjBuUXk2YjRuVG9EQ2tRQVRUU3JWSHM1T3Q2LXllbDRHZzlfOUxmTU5CdHJzSTdIaGsxSFBWNmc1YUZxemNnY1BJZjdQNU9vT01PU1diSjVydU5PTmFyZFZDM2szVFlsX2Rvb1p0Zk9fS2FPdVNfdnhydUVqa0thWkowUWV2Zw?oc=5",
+      "source": "Stock Titan",
+      "sourceUrl": "https://www.stocktitan.net",
+      "sourceRole": "discovery-rss",
+      "description": "Datavault AI becomes exclusive tech partner for Mandela Dollar stablecoin &nbsp;&nbsp; Stock Titan",
+      "pubDate": "Thu, 09 Jul 2026 12:32:00 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T12:32:00.000Z",
+      "query": "Technology AI OR NVIDIA OR Microsoft OR Apple OR Broadcom OR AMD OR AI OR GPU OR cloud OR services stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "AI spending sends tech-services market to $42.4B in Q2 - Stock Titan",
+      "title": "AI spending sends tech-services market to $42.4B in Q2 - Stock Titan",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNZjlsUDYxM1V1WjN1VnBydEJhaG9mWXpNT3NJQ2xzdTQ0RFlrc3hta2YyejdabFJzWWtoRlVVelpZd3JxQVNPNS1kbzlQb2FfUkx4SXNHUkZ1MnRpcFh5d3NQZEVMbG0yRzU4dFNURWRPcTdIdElfamc0ZTNDS1RDdDRwVTdmUEx3MzZ3bGpqQzNzWTN0YXlkTmxiM3p0RzUzSkJEZzR0bUpKS0RPRloyYWVpSU0?oc=5",
+      "source": "Stock Titan",
+      "sourceUrl": "https://www.stocktitan.net",
+      "sourceRole": "discovery-rss",
+      "description": "AI spending sends tech-services market to $42.4B in Q2 &nbsp;&nbsp; Stock Titan",
+      "pubDate": "Thu, 09 Jul 2026 14:02:29 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T14:02:29.000Z",
+      "query": "Technology AI OR NVIDIA OR Microsoft OR Apple OR Broadcom OR AMD OR AI OR GPU OR cloud OR services stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Asia Broadband adds AI tools for drilling and mine optimization in Mexico - Stock Titan",
+      "title": "Asia Broadband adds AI tools for drilling and mine optimization in Mexico - Stock Titan",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPUWMxOXBsQ3Rvc3ZYbU5LLTdTTjZ3UVNiXy1RM0NVeXJBQ3Rqc0plVU9yS25MMFlEMmdYd252UHJhNUlLNnVsVnRVOFBTenBJVVd4OXUzNS13Y010VzY4R1hMOEVFUlNCcEVJWGctN3hFa2xRSlhFTk12cVBvMlc1UmRKOEFEaTZZTnBlQXg5dmRtaEpuX3hjbUJfWTNTV2ZJVXV4VHM3SExIMlhmNlhramJkQUZxd3dfWnZpeDZqdFY?oc=5",
+      "source": "Stock Titan",
+      "sourceUrl": "https://www.stocktitan.net",
+      "sourceRole": "discovery-rss",
+      "description": "Asia Broadband adds AI tools for drilling and mine optimization in Mexico &nbsp;&nbsp; Stock Titan",
+      "pubDate": "Thu, 09 Jul 2026 11:00:00 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T11:00:00.000Z",
+      "query": "Technology AI OR NVIDIA OR Microsoft OR Apple OR Broadcom OR AMD OR AI OR GPU OR cloud OR services stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "VZ Stock Quote Price and Forecast - CNN",
+      "title": "VZ Stock Quote Price and Forecast - CNN",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE0wVDJEQm9aRXVPT2NaSXFyTW8yaUtJY05panlYUEtmNk1yX0VXSTlVVlFoU3hGMGVON2tSR1FFQ2lrM1VacWhIM0g2SzAyUQ?oc=5",
+      "source": "CNN",
+      "sourceUrl": "https://www.cnn.com",
+      "sourceRole": "discovery-rss",
+      "description": "VZ Stock Quote Price and Forecast &nbsp;&nbsp; CNN",
+      "pubDate": "Thu, 09 Jul 2026 06:36:29 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T06:36:29.000Z",
+      "query": "Communication Services OR Alphabet OR Meta Platforms OR Netflix OR Disney OR Verizon OR advertising OR search OR AI OR streaming stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Procter & Gamble (PG) Stock Sinks As Market Gains: What You Should Know - Yahoo Finance",
+      "title": "Procter & Gamble (PG) Stock Sinks As Market Gains: What You Should Know - Yahoo Finance",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPZ1lERXU2OU9pY1poSEhwZk40SGhwaENmVllwNjhFd3Zyc3ZsU2JNWGh0bDliVXpWTThISXZUQXg5UTRLZzBXQUYxNFBOTXYwVUlhR1M2WGRlSGNxRTZHYjNQYUUwQWVWcUxycmpidnpndy1nX3IzTEstOGE3NEU1UmZPSzhfbDJnckVzMXczTmNRRTk0YVRVeUln?oc=5",
+      "source": "Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com",
+      "sourceRole": "discovery-rss",
+      "description": "Procter & Gamble (PG) Stock Sinks As Market Gains: What You Should Know &nbsp;&nbsp; Yahoo Finance",
+      "pubDate": "Thu, 09 Jul 2026 21:50:05 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T21:50:05.000Z",
+      "query": "Consumer Staples OR Walmart OR Costco OR Procter & Gamble OR Coca-Cola OR PepsiCo OR retail OR grocery OR membership OR household stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Which Is the Better Consumer Staples ETF, Vanguard's VDC or Invesco's RSPS? - The Motley Fool",
+      "title": "Which Is the Better Consumer Staples ETF, Vanguard's VDC or Invesco's RSPS? - The Motley Fool",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNaGE5ZXZjSXFXaEJqWHd2LU1MVWhiaXkzZ3ExMWQ3d0dQU21wS2w2dVI5aHVDLWJGTjRqczFfLVB5bmFvbjBLN05JYzdvMkFFOHFpQUNGWTFnaW1lQTNTTGlLS2R1UV9RV0xjcVluUVVfUFA0bDRkRktlZWF3OEJPU0xkc3F4bnZSQ1Z4LXFHeFVLLXhHSzRVcUtTU3FRWU10QVYwQlpfUjJ0N0otX2dMX0U4eHFBenJBMlZXYg?oc=5",
+      "source": "The Motley Fool",
+      "sourceUrl": "https://www.fool.com",
+      "sourceRole": "discovery-rss",
+      "description": "Which Is the Better Consumer Staples ETF, Vanguard's VDC or Invesco's RSPS? &nbsp;&nbsp; The Motley Fool",
+      "pubDate": "Thu, 09 Jul 2026 22:06:00 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T22:06:00.000Z",
+      "query": "Consumer Staples OR Walmart OR Costco OR Procter & Gamble OR Coca-Cola OR PepsiCo OR retail OR grocery OR membership OR household stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Huntington Bancshares: Financials Have Improving Technicals And Fundamentals - Seeking Alpha",
+      "title": "Huntington Bancshares: Financials Have Improving Technicals And Fundamentals - Seeking Alpha",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQdzZyU2xYbXNCMUFEdlpyTUdNV296UWN5LWxiRTdDLWQycmkwcGVfZExpM1E5Yks3dDFfT05iVlNaN0Y2WEQyR3U2amNZRE9MUDBDenUwVm01RHlBbVBGYXZPd2VtRVBraGY2cFNjWXd3OVdjQ1JlcGdsczRLS1cwTkJha0tVdjJRQTlGbG5QdURXcEYzdEg5Nl9TMDlILThDcUx6TmxsVm1aNzNfaUJvdzJKUVdoZXc?oc=5",
+      "source": "Seeking Alpha",
+      "sourceUrl": "https://seekingalpha.com",
+      "sourceRole": "discovery-rss",
+      "description": "Huntington Bancshares: Financials Have Improving Technicals And Fundamentals &nbsp;&nbsp; Seeking Alpha",
+      "pubDate": "Fri, 10 Jul 2026 00:59:48 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-10T00:59:48.000Z",
+      "query": "Financials OR JPMorgan Chase OR Bank of America OR Goldman Sachs OR Visa OR Berkshire Hathaway OR bank OR credit OR rates OR investment banking stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "A Downgrade Wave Says Bank Stocks Are Priced for Perfection Ahead of Q2 Earnings. Here's the Bear Case. - AOL.com",
+      "title": "A Downgrade Wave Says Bank Stocks Are Priced for Perfection Ahead of Q2 Earnings. Here's the Bear Case. - AOL.com",
+      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQRzlKNHlQb1pyR3JQaXJhZmpyYjg1U0xRZ3h1WGxxdjFmUklIRTlweUJZaG9SbTV2YWdnN2JKRGx2OGlQYnV2VlA1VzlINEcxZnZFNWRVblVnTU84WFo1dTRxSmREZG9mZEd6MGxWQ2YxZjl3MDRxMDFuZnJ5aDF5NQ?oc=5",
+      "source": "AOL.com",
+      "sourceUrl": "https://www.aol.com",
+      "sourceRole": "discovery-rss",
+      "description": "A Downgrade Wave Says Bank Stocks Are Priced for Perfection Ahead of Q2 Earnings. Here's the Bear Case. &nbsp;&nbsp; AOL.com",
+      "pubDate": "Thu, 09 Jul 2026 09:48:49 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T09:48:49.000Z",
+      "query": "Financials OR JPMorgan Chase OR Bank of America OR Goldman Sachs OR Visa OR Berkshire Hathaway OR bank OR credit OR rates OR investment banking stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Jim Cramer: \"The Real Bull Market\" Is Happening in Health Insurance. CVS Is One of the Biggest Winners as Walgreens \"Basically Disappears\" - 24/7 Wall St.",
+      "title": "Jim Cramer: \"The Real Bull Market\" Is Happening in Health Insurance. CVS Is One of the Biggest Winners as Walgreens \"Basically Disappears\" - 24/7 Wall St.",
+      "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxNY3JFNDFYWWNDaTNRbG1WM3RqSXUwdGd3Nl9jbW9rZ3NybzlTbVVEMm53dEZISFlaLXZVLW8tNUM0QVU1NWlwVmNtdkNKR2dXalNWNkRmTjJ4MlplckpNZEZucGttS2FMb1lCV01nMy01T004aFhPZHBfZDdEdm1PV3laanVYeGdxUUNKRmczNFJmM19hMDZvZTRHR1I5cDBtc0VjdG5YcFNKYW5hd1lPb1pXR0xGakFYUGloWll4OHE1VWExdEF0TXgwMENrellFeWcxN3ZNcXp3LW9maDZaWlBJZWN1ODI4OXFtM3hzdjlXNzZqYUtfcXBLQUotTzZZcVN4X2dyZw?oc=5",
+      "source": "24/7 Wall St.",
+      "sourceUrl": "https://247wallst.com",
+      "sourceRole": "discovery-rss",
+      "description": "Jim Cramer: \"The Real Bull Market\" Is Happening in Health Insurance. CVS Is One of the Biggest Winners as Walgreens \"Basically Disappears\" &nbsp;&nbsp; 24/7 Wall St.",
+      "pubDate": "Thu, 09 Jul 2026 18:34:21 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T18:34:21.000Z",
+      "query": "Health Care OR Eli Lilly OR UnitedHealth OR Johnson & Johnson OR Merck OR AbbVie OR obesity OR diabetes OR managed care OR Medicare stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "UnitedHealth (NYSE:UNH) Leads Healthcare Rally - Kalkine Media",
+      "title": "UnitedHealth (NYSE:UNH) Leads Healthcare Rally - Kalkine Media",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNQjUyckxfMWlobzlxX0xneFZVZ2xrNTdCWl9YZzh2ZEZHbEduaFFCZDhoNW1lYW9GQkY5V0k4dTl2SGVDSEVWby16NTFPT2RvV2N4MlZIWlZWOTNTTFZzOWJaWExjSjQ3QVlxb1MtUXVNcFA2ajJqZlg1N3BHY2NxVGtnM1B4WXBrVXZYX0wxT1JWaFE?oc=5",
+      "source": "Kalkine Media",
+      "sourceUrl": "https://kalkinemedia.com",
+      "sourceRole": "discovery-rss",
+      "description": "UnitedHealth (NYSE:UNH) Leads Healthcare Rally &nbsp;&nbsp; Kalkine Media",
+      "pubDate": "Thu, 09 Jul 2026 19:19:00 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T19:19:00.000Z",
+      "query": "Health Care OR Eli Lilly OR UnitedHealth OR Johnson & Johnson OR Merck OR AbbVie OR obesity OR diabetes OR managed care OR Medicare stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "UnitedHealth Group stock stays resilient as investors watch Medicare and commercial trends - AD HOC NEWS",
+      "title": "UnitedHealth Group stock stays resilient as investors watch Medicare and commercial trends - AD HOC NEWS",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOSmxYdl93ZWVjLUxlVTBfYW5aMzJ1Z3lGdE0tRG4yeHNvemZqQTJoZ19LQWFpMXN0UWpoOTZieXE3ekx5OG8zSE1VNDhadFFZVnYwMnZQWTFsMjNrWjA0M1kySy1fbUdIeHFJdzFRdHkyMnFjbGZhVm1UTzlWTzRqZXJRZEJKZmd6b3VYSWQxVWJ1STdCcDY0b2g5RHJNMTZuZW1BY1ozcHpvOVUyRlNNTWdjUC1FVFBKc0hpMTEzRDdPWkM4WENXWWtrUQ?oc=5",
+      "source": "AD HOC NEWS",
+      "sourceUrl": "https://www.ad-hoc-news.de",
+      "sourceRole": "discovery-rss",
+      "description": "UnitedHealth Group stock stays resilient as investors watch Medicare and commercial trends &nbsp;&nbsp; AD HOC NEWS",
+      "pubDate": "Thu, 09 Jul 2026 18:13:49 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T18:13:49.000Z",
+      "query": "Health Care OR Eli Lilly OR UnitedHealth OR Johnson & Johnson OR Merck OR AbbVie OR obesity OR diabetes OR managed care OR Medicare stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "UnitedHealth Group stock holds steady as investors watch regulatory and cost trends - AD HOC NEWS",
+      "title": "UnitedHealth Group stock holds steady as investors watch regulatory and cost trends - AD HOC NEWS",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPZ1cwWFZDdE1UaHpGZTRVSTktVUdEX1h4eDA5ZVJ1dEM2dnZOTkRyT3h5anR3eDkzTzN5XzVZMmJsd3BuNEtWUFZZbjRodlVuYXN0ZnF3ZjhaSmNTSkpITzZMU2lLMDdiaW1nY3NvTUVDSVJwRnI4U0ZvUjhldjI0REJlSzd1bFJRQ1M2WHMyS1h2NXlUM3Z5NEtrU1A4Z1d6MW9KcVpTdUJ3WUd2MUcwTnF0MDNFMjdsSFBPSnlpNVhzOXNhZlM2MWdR?oc=5",
+      "source": "AD HOC NEWS",
+      "sourceUrl": "https://www.ad-hoc-news.de",
+      "sourceRole": "discovery-rss",
+      "description": "UnitedHealth Group stock holds steady as investors watch regulatory and cost trends &nbsp;&nbsp; AD HOC NEWS",
+      "pubDate": "Thu, 09 Jul 2026 12:58:01 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T12:58:01.000Z",
+      "query": "Health Care OR Eli Lilly OR UnitedHealth OR Johnson & Johnson OR Merck OR AbbVie OR obesity OR diabetes OR managed care OR Medicare stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Johnson & Johnson stock holds steady as diversified healthcare business supports long-term outlook - AD HOC NEWS",
+      "title": "Johnson & Johnson stock holds steady as diversified healthcare business supports long-term outlook - AD HOC NEWS",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQZ2ZoczU3azRnWWtiUkp2UG96OGNkVW5ZZ195XzhWcUlSR3E3M1FJMS1zWmxNX2JQMjE2SHJrYWFkWnZaaE9seEpzNkpTNFN3VHRPaWlxQksyUEVSaUJoeGNuQUdNSF9tY3hWbnRnZE9TS3NCTmxzc1Q1WmVEZnltUnBCT1NCTXF5MGcxbkVzc3Mxdkt4LTJLb3Y3RnQ0ZldiX3RLUWJlVlZLekVidEdnS284bXE0d1B1NkljM0NjMFQ?oc=5",
+      "source": "AD HOC NEWS",
+      "sourceUrl": "https://www.ad-hoc-news.de",
+      "sourceRole": "discovery-rss",
+      "description": "Johnson & Johnson stock holds steady as diversified healthcare business supports long-term outlook &nbsp;&nbsp; AD HOC NEWS",
+      "pubDate": "Thu, 09 Jul 2026 18:59:24 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T18:59:24.000Z",
+      "query": "Health Care OR Eli Lilly OR UnitedHealth OR Johnson & Johnson OR Merck OR AbbVie OR obesity OR diabetes OR managed care OR Medicare stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "UnitedHealth Group extends its health care reach. Investors watch the S&P 500 heavyweight - AD HOC NEWS",
+      "title": "UnitedHealth Group extends its health care reach. Investors watch the S&P 500 heavyweight - AD HOC NEWS",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNT09hYWZ3bnF2cHRVVEU0RUxXM1EwYXFROVpoNGs1SUZwd3hQX1VGaURabF9fSlJQLUt5OUh0ZzQyWjF0THdGc245VTZyNHVqdmk2RDNLa2xkczlRV3NlTE5XU3J6X1h2a09EZ2RETFhiMUVWNmRxMkNoM0ltMXgyOEVOWGJIYnF0NGZZSExVNXZ4RVF6OWpkd1FTUWFBWXRtbnpKZU90UWRsMGwySm56RWNPRUp3VTRxZGh1ekNKTzV6QkF1R0tuMw?oc=5",
+      "source": "AD HOC NEWS",
+      "sourceUrl": "https://www.ad-hoc-news.de",
+      "sourceRole": "discovery-rss",
+      "description": "UnitedHealth Group extends its health care reach. Investors watch the S&P 500 heavyweight &nbsp;&nbsp; AD HOC NEWS",
+      "pubDate": "Thu, 09 Jul 2026 05:50:27 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T05:50:27.000Z",
+      "query": "Health Care OR Eli Lilly OR UnitedHealth OR Johnson & Johnson OR Merck OR AbbVie OR obesity OR diabetes OR managed care OR Medicare stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Eli Lilly & Co. strengthens its position in innovative medicines. Investors watch the pharma heavywe - AD HOC NEWS",
+      "title": "Eli Lilly & Co. strengthens its position in innovative medicines. Investors watch the pharma heavywe - AD HOC NEWS",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQMGJpbW9jTkM2VkRHRmhvMUpSa1BCTHdiZmdfMGhWMjhHS2JXUVRDdW1adlRsVGRYQ3RuTDVIVlBvVWJrNDljellUNThDaWJLVHBWdENzTTE4ZnFYc2pFTzh5a0JfR1B6NHpPR0FVbHZ5RlJQTnFXd0RaaC1LYUJkMTB6U1RDM0N3QWM2Sk55TVNhVUJlZDdCQTBmM1IwWXVBLWtBRjB3ZV9Ec1F1dmRqRE81eGltRjJJZWpkYmJwSExRdw?oc=5",
+      "source": "AD HOC NEWS",
+      "sourceUrl": "https://www.ad-hoc-news.de",
+      "sourceRole": "discovery-rss",
+      "description": "Eli Lilly & Co. strengthens its position in innovative medicines. Investors watch the pharma heavywe &nbsp;&nbsp; AD HOC NEWS",
+      "pubDate": "Thu, 09 Jul 2026 09:02:12 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T09:02:12.000Z",
+      "query": "Health Care OR Eli Lilly OR UnitedHealth OR Johnson & Johnson OR Merck OR AbbVie OR obesity OR diabetes OR managed care OR Medicare stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "GE Aerospace (GE) Projected to Release Earnings on Thursday - MarketBeat",
+      "title": "GE Aerospace (GE) Projected to Release Earnings on Thursday - MarketBeat",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPeXZyeDhObHp5MnY4a2IwaWlFeC16Rng1dEJjaXd5V1NRVnFhamxGMGExX09lNjNHd1l6Nko1RTJlbHpvX0RTT09WOERaTDlfSU1TeGZMOXV6MjRPMTkxaWRsaW9vYU5JbnFDaWRreWZFX3lQZjFiQ1pjbDRQLWdLSl9hbkM4bVlaUXNvNF90S3dIWkQ1Y2JYSG1HUTZTUG9FZkFpZmRrZXlHTjAydlZabQ?oc=5",
+      "source": "MarketBeat",
+      "sourceUrl": "https://www.marketbeat.com",
+      "sourceRole": "discovery-rss",
+      "description": "GE Aerospace (GE) Projected to Release Earnings on Thursday &nbsp;&nbsp; MarketBeat",
+      "pubDate": "Thu, 09 Jul 2026 05:46:06 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T05:46:06.000Z",
+      "query": "Industrials OR GE Aerospace OR Caterpillar OR Boeing OR RTX OR Union Pacific OR aerospace OR engines OR machinery OR construction stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "DSM Capital Partners LLC Reduces Stock Position in GE Aerospace $GE - MarketBeat",
+      "title": "DSM Capital Partners LLC Reduces Stock Position in GE Aerospace $GE - MarketBeat",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOaU90VV9xWnUtb1VzTHlLUTh4ZUp5X2dubEtyNmFIWW9qU1pScnlpbVhrdWQ3U2owdjVUS0w5dHFTaTI4ckRJLWZGM2RSVHNZYnEtS1U5ZElDdTBiRVRHLVJVbWI1cHFiUUtpaVZQdXoxVGIxQXpEbWVMSnFvbGd6d1BlU3ZLSXZlV0lCbXJqOTdkM1NYVXdlWUViRXpuNWFRVDdYSExhRFV4S090amFrY3hhOEI3S3NHbjJvMDgzNXVnRGhNVkE?oc=5",
+      "source": "MarketBeat",
+      "sourceUrl": "https://www.marketbeat.com",
+      "sourceRole": "discovery-rss",
+      "description": "DSM Capital Partners LLC Reduces Stock Position in GE Aerospace $GE &nbsp;&nbsp; MarketBeat",
+      "pubDate": "Thu, 09 Jul 2026 07:38:27 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T07:38:27.000Z",
+      "query": "Industrials OR GE Aerospace OR Caterpillar OR Boeing OR RTX OR Union Pacific OR aerospace OR engines OR machinery OR construction stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "GE Aerospace (GE) Earnings Expected to Grow: What to Know Ahead of Next Week's Release - Yahoo Finance",
+      "title": "GE Aerospace (GE) Earnings Expected to Grow: What to Know Ahead of Next Week's Release - Yahoo Finance",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQUjJmU0o3Qm1iSmlyR2ZlRGFBN1ZwV1FYRXl0WTd1NGJvTEdnbmt0MHNpTzVaOTktZTc0RmlsVC1yVDhoWnhLZ3NjejVoUlBENTZEU1A5UXJyaU9nQjk0MW1fZnNnU21jQzZHVm9ZSHFESEFZbHZFdTZySFllakNZcEJlRVoxWXNRV1BFUFM1SFoyYktTamMydXpUamZGRzQ?oc=5",
+      "source": "Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com",
+      "sourceRole": "discovery-rss",
+      "description": "GE Aerospace (GE) Earnings Expected to Grow: What to Know Ahead of Next Week's Release &nbsp;&nbsp; Yahoo Finance",
+      "pubDate": "Thu, 09 Jul 2026 14:00:01 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T14:00:01.000Z",
+      "query": "Industrials OR GE Aerospace OR Caterpillar OR Boeing OR RTX OR Union Pacific OR aerospace OR engines OR machinery OR construction stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Sageworth Trust Co Takes $1.83 Million Position in GE Aerospace $GE - MarketBeat",
+      "title": "Sageworth Trust Co Takes $1.83 Million Position in GE Aerospace $GE - MarketBeat",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQTGt2MGhIOTIwUEZfanotQXp2dGVpY2lEaVVhdmk0dUw2Rzg2Rmx6QnZXNmFQVDdUY25iZXJsT0NWTU00NnRMWWxnOWJTNFdqYk43THFqWExfNzI3NlNOcm5qek5kZGIwU01UUHJHalhKQVNIeTkyd2ZobkdoS000Sk1maGZLZE5KUHpEUU0xNHVtb0VRLTc4clhvM3dodWduX3EtZTJra0cybkJGU2VnbEJDUWVvTkNpQVlaa3huYzZ0Qk0?oc=5",
+      "source": "MarketBeat",
+      "sourceUrl": "https://www.marketbeat.com",
+      "sourceRole": "discovery-rss",
+      "description": "Sageworth Trust Co Takes $1.83 Million Position in GE Aerospace $GE &nbsp;&nbsp; MarketBeat",
+      "pubDate": "Thu, 09 Jul 2026 10:04:55 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T10:04:55.000Z",
+      "query": "Industrials OR GE Aerospace OR Caterpillar OR Boeing OR RTX OR Union Pacific OR aerospace OR engines OR machinery OR construction stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "GE Aerospace $GE is Hoertkorn Richard Charles' 6th Largest Position - MarketBeat",
+      "title": "GE Aerospace $GE is Hoertkorn Richard Charles' 6th Largest Position - MarketBeat",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOcl9VRkZYLURKV2FpR0lKZGFhejZidTJSdnM2MV9wUExjVklPZTQ5T3FHQ3piRDVlYnVKVFRWeGpuSUFILWh5bkR2UmRLSGFSZllNWG1Dd09GTWRsQ0xwV2V6dGRXY25ib19hWFVsdWpWendjdHc2cTNtME9CcXg1dElzYm5KNXVQanIwdjR6SkxJRDZtZzhnOTBxbnYxMk9ZSF93R19LcWw4bjY5aXJvam5uWWZhV0g0ZzJVckRkdmplU05D?oc=5",
+      "source": "MarketBeat",
+      "sourceUrl": "https://www.marketbeat.com",
+      "sourceRole": "discovery-rss",
+      "description": "GE Aerospace $GE is Hoertkorn Richard Charles' 6th Largest Position &nbsp;&nbsp; MarketBeat",
+      "pubDate": "Thu, 09 Jul 2026 10:35:18 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T10:35:18.000Z",
+      "query": "Industrials OR GE Aerospace OR Caterpillar OR Boeing OR RTX OR Union Pacific OR aerospace OR engines OR machinery OR construction stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "GE Aerospace $GE Position Lessened by Sumitomo Mitsui Trust Group Inc. - MarketBeat",
+      "title": "GE Aerospace $GE Position Lessened by Sumitomo Mitsui Trust Group Inc. - MarketBeat",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNUXk2Y2NTalZmYnJWdXVWWkk2LW80TlNHS3ZLOThHY2JfbFNSQ0xoeWNjTUZaeF9TdkJhTEV5VHByMmQ0T041TDRZZVJtUlBrckhtUHhma01RbDN6LTcwQmVWTHNtaFd6VWR0OUpxVXM3bTM1c1Rzd24xTnpNNFRDeUVfMFVqZU44VTlHSHB0QTlxTFE1ZXEzb2dJRUNXVS1sWmJlZnBSTldOWWVtdVlETUFqUE5JUnhsUWlhRDZ3MEFIM2RlUXdfRg?oc=5",
+      "source": "MarketBeat",
+      "sourceUrl": "https://www.marketbeat.com",
+      "sourceRole": "discovery-rss",
+      "description": "GE Aerospace $GE Position Lessened by Sumitomo Mitsui Trust Group Inc. &nbsp;&nbsp; MarketBeat",
+      "pubDate": "Thu, 09 Jul 2026 11:20:18 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T11:20:18.000Z",
+      "query": "Industrials OR GE Aerospace OR Caterpillar OR Boeing OR RTX OR Union Pacific OR aerospace OR engines OR machinery OR construction stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Frank Rimerman Advisors LLC Increases Holdings in GE Aerospace $GE - MarketBeat",
+      "title": "Frank Rimerman Advisors LLC Increases Holdings in GE Aerospace $GE - MarketBeat",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPQldvQkQtWExSUjF1SFlLeVVPcVhWUDdGTC16bDEwTXQwdnF3VUFYY3RnRndIZU82MDAweGN2a2hwang0UVBUdWJqdmYwdU5EUzg4YmNVZFNabmltRU9DZjZUOW93dGt6eUQ1LVo2RnVGbEFrbjdLSEgyYlZHbUlwRzU1WmMzWHh2NURxMUZxWTBTS0d0c1lqdzVnNDF5UnBlMFJ3aXFjSFF3dTRyamdHbDh3eG02NU0tWWlRTDZ6ZGFDZ3Zr?oc=5",
+      "source": "MarketBeat",
+      "sourceUrl": "https://www.marketbeat.com",
+      "sourceRole": "discovery-rss",
+      "description": "Frank Rimerman Advisors LLC Increases Holdings in GE Aerospace $GE &nbsp;&nbsp; MarketBeat",
+      "pubDate": "Thu, 09 Jul 2026 09:54:56 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T09:54:56.000Z",
+      "query": "Industrials OR GE Aerospace OR Caterpillar OR Boeing OR RTX OR Union Pacific OR aerospace OR engines OR machinery OR construction stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Top Wall Street Forecasters Revamp GE Aerospace Expectations Ahead Of Q2 Earnings - Benzinga",
+      "title": "Top Wall Street Forecasters Revamp GE Aerospace Expectations Ahead Of Q2 Earnings - Benzinga",
+      "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOYXZJc0tqUlVzcmg1cWpmUDZCM1o0VGF0NzAyWWVKQTM1YUlBSzUxN2o4b2o3S0xFNWZUdDVyR2lZVTVsQkZJZ29McWNsd1RYREdvNWVieXh2dnJ0ZHgtU3dhbUUzNS03RTR4c3loVzBKR3Ftd1NkRUIxMEthYjQxalhMTDdXb1djaEJXbUZJM2hScS0tRGlKLVNGOENVel80MDRQYnJuWmwzcUJmVDQwdmtaak9rbVNUdUdZelhUc0R6a3BrZHNFZm8tMDFCaThmMVpxUkN1dWxKcDY3a3dlV2ZVdnRjMkRtYzBVM25MMA?oc=5",
+      "source": "Benzinga",
+      "sourceUrl": "https://www.benzinga.com",
+      "sourceRole": "discovery-rss",
+      "description": "Top Wall Street Forecasters Revamp GE Aerospace Expectations Ahead Of Q2 Earnings &nbsp;&nbsp; Benzinga",
+      "pubDate": "Thu, 09 Jul 2026 05:14:41 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T05:14:41.000Z",
+      "query": "Industrials OR GE Aerospace OR Caterpillar OR Boeing OR RTX OR Union Pacific OR aerospace OR engines OR machinery OR construction stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Exxon Mobil Holdings (XOM) Stock Falls Amid Market Uptick: What Investors Need to Know - Yahoo Finance",
+      "title": "Exxon Mobil Holdings (XOM) Stock Falls Amid Market Uptick: What Investors Need to Know - Yahoo Finance",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQdFNYcUdTMlFMdllabW5zTVdFNkFreGdhZlRsZEZNQi1SNkhYaDY5a0dqVUxJNWQwYWd6VERLTWNnOGNibXhvbWpVUUhTZFd2S3NFNUVZN01JczZ3RjlnTlVma3hpN1pFLWFYdGxSVDlGMlB1UTlxaXViWFpYTGEzUk1wemRGeDRPNUZrT2tyM0FyN2tCVTdVNVhrVQ?oc=5",
+      "source": "Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com",
+      "sourceRole": "discovery-rss",
+      "description": "Exxon Mobil Holdings (XOM) Stock Falls Amid Market Uptick: What Investors Need to Know &nbsp;&nbsp; Yahoo Finance",
+      "pubDate": "Thu, 09 Jul 2026 21:45:02 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T21:45:02.000Z",
+      "query": "Energy OR Exxon Mobil OR Chevron OR ConocoPhillips OR SLB OR EOG Resources OR oil OR natural gas OR LNG OR production stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Crescent Energy Stock Rises 18% in 6 Months: Time to Buy or Stay? - TradingView",
+      "title": "Crescent Energy Stock Rises 18% in 6 Months: Time to Buy or Stay? - TradingView",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNdjFjWHliNjJSdW9WNzlXU21iRWVSM01kNE1UdWhCbU9NNk5nZzdvUmtaLWpkbTl6Y3g3VHBxX0dVZXlLRV9jOHBHZVlrN3RZVDExTkNsMmIzdnY5Q0hKQzRqV1U2UnN4T2Jpel9DcVZpVXlDbG9CLTNPSm1zMWJ0WWxTWnhCOEFQZTVfbXc1WkRRSjFxSjJqS2JmNHM5MGNaZFZIc1VqMmZkNExubHNlTzJEZ0J4Y2xjYmc?oc=5",
+      "source": "TradingView",
+      "sourceUrl": "https://www.tradingview.com",
+      "sourceRole": "discovery-rss",
+      "description": "Crescent Energy Stock Rises 18% in 6 Months: Time to Buy or Stay? &nbsp;&nbsp; TradingView",
+      "pubDate": "Thu, 09 Jul 2026 12:16:00 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T12:16:00.000Z",
+      "query": "Energy OR Exxon Mobil OR Chevron OR ConocoPhillips OR SLB OR EOG Resources OR oil OR natural gas OR LNG OR production stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "ExxonMobil vs. Chevron: Which Oil Dividend Stock is the Better Buy for a Lifetime of Passive Income - The Globe and Mail",
+      "title": "ExxonMobil vs. Chevron: Which Oil Dividend Stock is the Better Buy for a Lifetime of Passive Income - The Globe and Mail",
+      "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxNMzcyODZiYTdTcHBhbjVRcThqb0xnU0RQM29KLUJ0aXJJcmxwaTB1M2V1LVF1UjE2VVNhcEg5N1Z1T1dUem9nSkV0QzRBbngtdW45d3ctNERkSzFFaGx0M0xkeGJmNkV3ZnVnWmZoMjlGQUlPUWIyS19ncThUSnBXNkdsVl9MTXpnWnpEYm5sV1h2M1BkUi1RYUJjTDBsOWNtQk1vRWNRRWxIQm9ES1diTWtkTlRnMEZ1NTM5Y29XbVdmdkhzbE5FbEY1TGRhOVFieE1NWDNYM0VNeWktamZJSWI2LXpremxZMkctbHpaUEgzSGlFRlI2bTNTR1g5THBVeVVkYS1xRQ?oc=5",
+      "source": "The Globe and Mail",
+      "sourceUrl": "https://www.theglobeandmail.com",
+      "sourceRole": "discovery-rss",
+      "description": "ExxonMobil vs. Chevron: Which Oil Dividend Stock is the Better Buy for a Lifetime of Passive Income &nbsp;&nbsp; The Globe and Mail",
+      "pubDate": "Thu, 09 Jul 2026 11:12:22 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T11:12:22.000Z",
+      "query": "Energy OR Exxon Mobil OR Chevron OR ConocoPhillips OR SLB OR EOG Resources OR oil OR natural gas OR LNG OR production stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Chevron (NYSE:CVX): Can Oil Strength Power The Next Move? - Kalkine Media",
+      "title": "Chevron (NYSE:CVX): Can Oil Strength Power The Next Move? - Kalkine Media",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQYllhUTlQV1JUWWRSMTJpdTgtQnlKT1ZOMDFEQU9uelFibTR4QWpCMHNNZEtxNzMzVmhRcWdkU3ltbFNYbVNEVHNPTGRreUV5aVJBS3psd3gtaVctcUpaRG90RU9PQmV2RVlEQ1NiTVVrNUd1VmxJdWV0VmVxMDJubEZ1RGlXTFdNRnJSTlFQQVp1RzRxSUpiMXFB?oc=5",
+      "source": "Kalkine Media",
+      "sourceUrl": "https://kalkinemedia.com",
+      "sourceRole": "discovery-rss",
+      "description": "Chevron (NYSE:CVX): Can Oil Strength Power The Next Move? &nbsp;&nbsp; Kalkine Media",
+      "pubDate": "Thu, 09 Jul 2026 18:50:00 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T18:50:00.000Z",
+      "query": "Energy OR Exxon Mobil OR Chevron OR ConocoPhillips OR SLB OR EOG Resources OR oil OR natural gas OR LNG OR production stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Chevron's New Technology Licensing Deal to Boost Shale Oil Recovery - TradingView",
+      "title": "Chevron's New Technology Licensing Deal to Boost Shale Oil Recovery - TradingView",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPeHNtUGFtTzlaSHVQWTFwVmVjb2RkT3FTeU5INm51OG9TalMweV9QNzltLXEwaVJ2ODlxeGRZamVmdWFYQUd5S1V5VThZdWw1WFhoLTY1T011dndDZW81ZnlfNkJSUXU2bmw0Z3I0OTEzVVhxbGlTVlRiNEJVem1Xd09uT3VRdy1xMG5EZjdfbVh5OC0xU2pKc09JaHBVQUhDVHRtdmZaLW15VEZ5VFoyeC1NLTdKX2ZRM0VJYmtMN1Q?oc=5",
+      "source": "TradingView",
+      "sourceUrl": "https://www.tradingview.com",
+      "sourceRole": "discovery-rss",
+      "description": "Chevron's New Technology Licensing Deal to Boost Shale Oil Recovery &nbsp;&nbsp; TradingView",
+      "pubDate": "Thu, 09 Jul 2026 12:52:00 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T12:52:00.000Z",
+      "query": "Energy OR Exxon Mobil OR Chevron OR ConocoPhillips OR SLB OR EOG Resources OR oil OR natural gas OR LNG OR production stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "EOG Resources highlights its shale strength as a leading US independent. The company focuses on disc - AD HOC NEWS",
+      "title": "EOG Resources highlights its shale strength as a leading US independent. The company focuses on disc - AD HOC NEWS",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQZ0Y5b29pMkVLdjk5dzlJcmpvY1JtX3Ffa2Z3dmkybEhQWVFfRlNCaENpZzVtWkVVbFJWNTlhT3AtVTVvSllHS2p0SGlyNHFwZWUtd0JJMUJNQUhWc1pBUzdaS3B1aURiRDlVVG93QWJlZnkxak94VnVtNnhHdkxKUng4dnZjRG42ekUxNVNYUHZ3REJvVTExMlZBS2JuWEZaQkQyQ3B3TTlFVW4wd2M1ME9LeDZGR3I0Z1hFd2ViTVYzT0Y1bnBDWmJ3?oc=5",
+      "source": "AD HOC NEWS",
+      "sourceUrl": "https://www.ad-hoc-news.de",
+      "sourceRole": "discovery-rss",
+      "description": "EOG Resources highlights its shale strength as a leading US independent. The company focuses on disc &nbsp;&nbsp; AD HOC NEWS",
+      "pubDate": "Thu, 09 Jul 2026 10:47:43 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T10:47:43.000Z",
+      "query": "Energy OR Exxon Mobil OR Chevron OR ConocoPhillips OR SLB OR EOG Resources OR oil OR natural gas OR LNG OR production stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Exxon Mobil stock holds firm on its global energy scale - AD HOC NEWS",
+      "title": "Exxon Mobil stock holds firm on its global energy scale - AD HOC NEWS",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQTFptd1F6M2xqbDlpMk9ZTTFtSkVkYjhwVTY2LVVDWEVxeGlVX3M1LVZMb2JkcFJleEZCNkh3cGVrNEJVUVFHMHEwY3ViNG51VHRMMkZLQkZTWTBCNUxVWjc5MnpYZkVoQVVKU0UxdGl0WkwxODk1cVREWUo2UjlJNE92dDI0dUF3UUFEdlh2cGtjMkw2U0RUSXBxck0zOWlYU2pxT3N5THRyb0NtakwwYlNuMTA?oc=5",
+      "source": "AD HOC NEWS",
+      "sourceUrl": "https://www.ad-hoc-news.de",
+      "sourceRole": "discovery-rss",
+      "description": "Exxon Mobil stock holds firm on its global energy scale &nbsp;&nbsp; AD HOC NEWS",
+      "pubDate": "Thu, 09 Jul 2026 18:17:12 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T18:17:12.000Z",
+      "query": "Energy OR Exxon Mobil OR Chevron OR ConocoPhillips OR SLB OR EOG Resources OR oil OR natural gas OR LNG OR production stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Exxon Mobil stock holds steady. Business scale still defines the story. - AD HOC NEWS",
+      "title": "Exxon Mobil stock holds steady. Business scale still defines the story. - AD HOC NEWS",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOQWRlNWdVZmhBR09wb3Z4ZU9BdzdEdkR0ZDNfdzhjUHZ6WTJUT2tnMjY4cGNPbU5lZzJDZ05LUUh0OXhDMWo5OUIxa25tNnpNQmdUMUVCSFhOVHQ2RWxWQnhLOUtvQm5sOTQ1U3o1UFpWM0RINFU4T285YVphSFA3RzY1RUJLb0gxdWFMd1VKUzRhdHVTbDR1dkg4OFZudzQ0V2pNWlJhQUtnRHU0ZWdLRzRodjRxUU05YWl3MVRVamhvMl9YUHAw?oc=5",
+      "source": "AD HOC NEWS",
+      "sourceUrl": "https://www.ad-hoc-news.de",
+      "sourceRole": "discovery-rss",
+      "description": "Exxon Mobil stock holds steady. Business scale still defines the story. &nbsp;&nbsp; AD HOC NEWS",
+      "pubDate": "Thu, 09 Jul 2026 11:52:02 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T11:52:02.000Z",
+      "query": "Energy OR Exxon Mobil OR Chevron OR ConocoPhillips OR SLB OR EOG Resources OR oil OR natural gas OR LNG OR production stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Chevron stock reflects a broad energy backdrop. The company stays anchored by its upstream and downs - AD HOC NEWS",
+      "title": "Chevron stock reflects a broad energy backdrop. The company stays anchored by its upstream and downs - AD HOC NEWS",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNcmNDNnJ3OFBiNUNtZGFSSXlIamViWFhLUDZuZ1gtbXVzWElzTDFQTDlJeFZvRXp3NFdxVE9lZ21zQ3BFanJER3Z2VjlfakpFblpoRWNFYXFObnB5dG1ZOXFxTVdiRnJxVzNZZ3N1MzZmaUtFSExvaFBoZm1sSGRVbzYxbEZOd3VFal94b3h3WmlfOXluZzd5N09UdWxXdm42MkdpZjRjX01tb19pdFZEaENHNUVtV2xLTkJzdUVGeTE2SjZmVlhFQnhyaWY?oc=5",
+      "source": "AD HOC NEWS",
+      "sourceUrl": "https://www.ad-hoc-news.de",
+      "sourceRole": "discovery-rss",
+      "description": "Chevron stock reflects a broad energy backdrop. The company stays anchored by its upstream and downs &nbsp;&nbsp; AD HOC NEWS",
+      "pubDate": "Thu, 09 Jul 2026 12:11:53 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T12:11:53.000Z",
+      "query": "Energy OR Exxon Mobil OR Chevron OR ConocoPhillips OR SLB OR EOG Resources OR oil OR natural gas OR LNG OR production stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Hess stock reacts to Chevron takeover progress and sector moves - AD HOC NEWS",
+      "title": "Hess stock reacts to Chevron takeover progress and sector moves - AD HOC NEWS",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQU2E2ODdqcmVzQ2pkQzhNT1ZkM3BlUHJXMF9yNkNmODBtZk9WQmhJTUpCLWZMa1hkVjM2M3U2anJCZkp2RTM4ajk4Zzd2RDIzQlhDcVJRb1c5eW9fNHZWbWJnS1MxTEVrdTFzTVdwMkdqR3pRTTF2QWp6dGlYZW9wSXJNY25WMHpYQzdmRG9lNjI4cDFaMjlucjVYX3BHbEVKXzFHRml1LV9DWDBlRndRRExtMFNzck1LbUtIWDlFQQ?oc=5",
+      "source": "AD HOC NEWS",
+      "sourceUrl": "https://www.ad-hoc-news.de",
+      "sourceRole": "discovery-rss",
+      "description": "Hess stock reacts to Chevron takeover progress and sector moves &nbsp;&nbsp; AD HOC NEWS",
+      "pubDate": "Thu, 09 Jul 2026 14:34:32 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T14:34:32.000Z",
+      "query": "Energy OR Exxon Mobil OR Chevron OR ConocoPhillips OR SLB OR EOG Resources OR oil OR natural gas OR LNG OR production stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Exxon Mobil Corp. highlights integrated energy strategy as a global oil and gas major - AD HOC NEWS",
+      "title": "Exxon Mobil Corp. highlights integrated energy strategy as a global oil and gas major - AD HOC NEWS",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNdHBQbVRJVlozN3BJS2N6NnpNTjFLN1AyNDBQT2ZaYXN0eHBRX2x4bE9uNU84VU5qa3pkVHpzei00dWh6Q1pKWGY1dlcyb1ZCVTdCQkVOeHYzWWdEcXRuRGk3MkVmN2hMejQ3RmE1WFVpSnh4UFVKRmhIRTNYdGxkam0tZXZhVHhZMmI2b2VxX2pmT0pOQVNiNzYtc1BkV3Y3eEd3dkNlMjJIM1BLRVdKSjMweGNsckNpM1BCT1E2bnNhOFZYV28tWA?oc=5",
+      "source": "AD HOC NEWS",
+      "sourceUrl": "https://www.ad-hoc-news.de",
+      "sourceRole": "discovery-rss",
+      "description": "Exxon Mobil Corp. highlights integrated energy strategy as a global oil and gas major &nbsp;&nbsp; AD HOC NEWS",
+      "pubDate": "Thu, 09 Jul 2026 07:15:54 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T07:15:54.000Z",
+      "query": "Energy OR Exxon Mobil OR Chevron OR ConocoPhillips OR SLB OR EOG Resources OR oil OR natural gas OR LNG OR production stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Silver and Copper Are Outpacing Gold in 2026 and After Following Industrial Metals These 3 ETFs Show How Smart Money Is Playing the Trend - 24/7 Wall St.",
+      "title": "Silver and Copper Are Outpacing Gold in 2026 and After Following Industrial Metals These 3 ETFs Show How Smart Money Is Playing the Trend - 24/7 Wall St.",
+      "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxNN3hsQ0Q3TWZfODF6U29ybTIycTF1YlBFRXRITkZxWnB1NzRtYjN3bWp4U05ZV0FUdjlobHlMMklLRVA0anU5RFk0U2VUajhHNFM5OXVNYmFranlWdjV0ZXZpTTZxWkdlak9EdWNIZTBXVHpxVzFpRExIdE9GS3NCLVZRUTI1eDRzN2ozb19BM0t2VkFBYWoybzJGWlpBVVMtakY2RF9yR2tnWXJVQ096dUttdWtSRUFpVHprYUhEbGxOWGJwZFBOWW5Mc28xWjk1R2NSNVhUX1F1SVpQMXVKN0RrZUx4cy1oUW1rdzAyWDlJZ25OUjdnSk9oc0xiTFdJZkhMd0xXa0NFcjlBRE9rdHhWMA?oc=5",
+      "source": "24/7 Wall St.",
+      "sourceUrl": "https://247wallst.com",
+      "sourceRole": "discovery-rss",
+      "description": "Silver and Copper Are Outpacing Gold in 2026 and After Following Industrial Metals These 3 ETFs Show How Smart Money Is Playing the Trend &nbsp;&nbsp; 24/7 Wall St.",
+      "pubDate": "Fri, 10 Jul 2026 01:54:41 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-10T01:54:41.000Z",
+      "query": "Materials OR Linde OR Freeport-McMoRan OR Newmont OR Dow OR Nucor OR industrial gas OR chemicals OR copper OR mining stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Onfolio Eyes Industrial Gas Market With Paramount Helium Deal - Zacks Investment Research",
+      "title": "Onfolio Eyes Industrial Gas Market With Paramount Helium Deal - Zacks Investment Research",
+      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQSW1iSGdfVGU5X1ZZNmtDWTRuczFHNXBQZmc3YlV1X3dWeDVzUTZqRFM2NUZuTjBKbWNTZTFwZWJiR2tET0lTNHdZZy1yQjlpMEhHRjBtTTFxSllsTWlXTXFPV2NfUllzb0w1b2Uxa0JXejE1MjV2VU44eEpuM09tak90SE0tamdnZDBaTGJTXzlXV0c1ZFc4VUNyNHZzbE8wZXBFOHpkZzFPWHRkY0FqS2RMR3NWSDUxOTNORVdMM0ZrSWlxTkJEY2xrcjFhbmRCV0N1cF9nLWFaallicUdjMTFSMA?oc=5",
+      "source": "Zacks Investment Research",
+      "sourceUrl": "https://www.zacks.com",
+      "sourceRole": "discovery-rss",
+      "description": "Onfolio Eyes Industrial Gas Market With Paramount Helium Deal &nbsp;&nbsp; Zacks Investment Research",
+      "pubDate": "Thu, 09 Jul 2026 15:44:18 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T15:44:18.000Z",
+      "query": "Materials OR Linde OR Freeport-McMoRan OR Newmont OR Dow OR Nucor OR industrial gas OR chemicals OR copper OR mining stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Two Trades for Today: An e-commerce player for a rise of 8%, and a mid-cap industrial mining stock for a 6 - The Economic Times",
+      "title": "Two Trades for Today: An e-commerce player for a rise of 8%, and a mid-cap industrial mining stock for a 6 - The Economic Times",
+      "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxNTU1wWDBVd3pGOUZLQmM5OWwyR0JPMGpPOGZnejg1ZnRPTjV3YXZ3X21HcEZMbGNMX0ltcVdtaENUbXphVzVSTGJQSHktd3VfY1JFdThTV1VQdHFpTUV1WmdlMzJVRVhsVlgzTGtiRDNXZHBsbU4wd2h1RHpFTWJEVVRLdWd0RTY2eTg5U0ZYd1NWb3NFSzhBeXJNMTdtNWJYclJjb1dCVW5KMDhOb0lGclNhVTJXNzdtTFY2Rmk2dkRHWkZCdjlXN2tEY1pSYUpWd3gxNEpJWjlwbkRrUXg4VGFCNkwxQWZXYmxBbzFwUEpsRXEyTEE2dkt3ZHJPNUVReVJ3S3diVk85OXZuSFBB0gGUAkFVX3lxTE9xQ2JCZ3pKN3AwZGNZTGdiWC05NVkyTjVsZTcyUUsycGZNTlU4aFZTUnBjM0lkREdJOXp6MXctZHprZmtFWHMwWnpwODFnVkpfb2w2QW1uNmJCTFh2a2k2cmY2U3hrYzZRRnBIZUltc2R6enFWVnltM2luMGpacEVxSGUwbVBmY091Uk4wekxTUGVVbzh4NEQ5RDdFY1Rvd1hlcDJ5QmpFUTd6amRIeXdqWVFZSG5RMHU5ZFRDSHBZYlpqQUtvRW5VQTZ5RnN5XzBTcXNOS1ZzTS1fcjNMZkJLZkpzYy1jcW5nLVp6ZG9lSjRITC1hNHMwVFg5NE1FWjhSbmp1YVEyVnRMX1JlTUR2QkhWRQ?oc=5",
+      "source": "The Economic Times",
+      "sourceUrl": "https://m.economictimes.com",
+      "sourceRole": "discovery-rss",
+      "description": "Two Trades for Today: An e-commerce player for a rise of 8%, and a mid-cap industrial mining stock for a 6 &nbsp;&nbsp; The Economic Times",
+      "pubDate": "Thu, 09 Jul 2026 14:24:01 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T14:24:01.000Z",
+      "query": "Materials OR Linde OR Freeport-McMoRan OR Newmont OR Dow OR Nucor OR industrial gas OR chemicals OR copper OR mining stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "NextEra Energy (NYSE:NEE) Becomes Market Shield - Kalkine Media",
+      "title": "NextEra Energy (NYSE:NEE) Becomes Market Shield - Kalkine Media",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOVUk5NEhYd21pTW1acVcwSjlna1BhdG92WWRfNmpjVHRjdkdwZ1R4Q3o2dkV5MXhQNTA1RW9uTU9CeUpheGZMN0VFYnFXQl8yVGlncTZadTB2RDJyaEFQVkpYZHJndzJuY2FidE9Xc212VUpiZkRJSkl0UjZLcmE0VmFCZk9XUFcyRnl4RFFGa2Y?oc=5",
+      "source": "Kalkine Media",
+      "sourceUrl": "https://kalkinemedia.com",
+      "sourceRole": "discovery-rss",
+      "description": "NextEra Energy (NYSE:NEE) Becomes Market Shield &nbsp;&nbsp; Kalkine Media",
+      "pubDate": "Thu, 09 Jul 2026 21:45:00 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T21:45:00.000Z",
+      "query": "Utilities OR NextEra Energy OR Duke Energy OR Southern Company OR Constellation Energy OR American Electric Power OR utility OR renewables OR power OR electricity stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "DTE Energy stock stays supported by a regulated utility profile - AD HOC NEWS",
+      "title": "DTE Energy stock stays supported by a regulated utility profile - AD HOC NEWS",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQQzZZTlROa0lBVHJGSHY5QmlkVXZsbElpNXp5SzlTTkdmcVByZDdCWTZLTnJOQ1FoZXdIVm5WQkV5WVNZMDhFUHhjWVQtRHpESGtXbkFYa3Q0Vmg3ZjljdVhtaWliN0RPaXB4eUI5ODJWT3FmQWFBVzRNNm1MYmd5aTRtVjVKOEVwdnNWa05pTTJ0akFiR0ZXeW9pbllVczlsWUx3dmFHbDgtYmFpQlFtOWhYWjljWTk1bzJvS0dKbw?oc=5",
+      "source": "AD HOC NEWS",
+      "sourceUrl": "https://www.ad-hoc-news.de",
+      "sourceRole": "discovery-rss",
+      "description": "DTE Energy stock stays supported by a regulated utility profile &nbsp;&nbsp; AD HOC NEWS",
+      "pubDate": "Thu, 09 Jul 2026 13:41:11 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T13:41:11.000Z",
+      "query": "Utilities OR NextEra Energy OR Duke Energy OR Southern Company OR Constellation Energy OR American Electric Power OR utility OR renewables OR power OR electricity stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "RWR vs. RWO: Should Your REIT ETF Include International Stocks? - The Motley Fool",
+      "title": "RWR vs. RWO: Should Your REIT ETF Include International Stocks? - The Motley Fool",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNampoR2M1RG1oS1NvNFllRUVORUpfTjFiUlZlNXdwTmlCanlEZE9ZTXEyS2hUUTd1SE9majd4T2tGX3hhS2RicDllN2NienVReDdCMDJEZ2FJSnVWMXoxalZCLTNxY0NKUTFnN2Q5TDYzcHdzTDROWHNqaEgxeEFOMFJwWUxrNUx5WmxOYWxaZjlOY3JUQ19xUGxNSVNqMWxSYTkwSExQTHpsR0k?oc=5",
+      "source": "The Motley Fool",
+      "sourceUrl": "https://www.fool.com",
+      "sourceRole": "discovery-rss",
+      "description": "RWR vs. RWO: Should Your REIT ETF Include International Stocks? &nbsp;&nbsp; The Motley Fool",
+      "pubDate": "Thu, 09 Jul 2026 12:11:00 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T12:11:00.000Z",
+      "query": "Real Estate OR Prologis OR American Tower OR Equinix OR Realty Income OR Simon Property Group OR warehouse OR logistics OR tower OR REIT stock market news",
+      "discovery": true
+    },
+    {
+      "headline": "Federal Realty stock stays supported by a steady retail portfolio - AD HOC NEWS",
+      "title": "Federal Realty stock stays supported by a steady retail portfolio - AD HOC NEWS",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQMWVKLWQ4cHNhTl9vR2oxTDdzZzBNeWVsajBSSF8yOVFRci1CU2lSbjI5TDlKYXl4bUpRbXB4blZ4S29XY3FzU0poMVhVX0ZOc3BTVEVXV3RRVlRSUVBYSnJxME4yX0tTQ2NBMmhrb3ZBVzRtRmlVek1xSlBMTlE5bG14QlFxS0Vfdml3Ui1YOW43LTFBdzBwaGRWbkFHbW5RQUY2MVl2cjc2NHZMX00wTFJsb2gwSWYxWVRtNEdFdTJ1QQ?oc=5",
+      "source": "AD HOC NEWS",
+      "sourceUrl": "https://www.ad-hoc-news.de",
+      "sourceRole": "discovery-rss",
+      "description": "Federal Realty stock stays supported by a steady retail portfolio &nbsp;&nbsp; AD HOC NEWS",
+      "pubDate": "Thu, 09 Jul 2026 12:21:50 GMT",
+      "publishedDate": "2026-07-09",
+      "publishedAt": "2026-07-09T12:21:50.000Z",
+      "query": "Real Estate OR Prologis OR American Tower OR Equinix OR Realty Income OR Simon Property Group OR warehouse OR logistics OR tower OR REIT stock market news",
+      "discovery": true
+    }
+  ],
+  "themes": [
+    {
+      "theme": "AI / Semiconductors",
+      "count": 13,
+      "headlines": [
+        "Apple Edges Closer to Dethroning Nvidia After $30B Broadcom Chips Deal",
+        "AI spending sends tech-services market to $42.4B in Q2 - Stock Titan",
+        "Taiwan central bank chief warns of AI bubble risk",
+        "S&P 500 closes higher as chip stocks rise and oil prices slide - CNBC",
+        "Nasdaq ends sharply higher; chip surge offsets Iran worries - Reuters"
+      ]
+    },
+    {
+      "theme": "Rates / Macro",
+      "count": 4,
+      "headlines": [
+        "Kalshi traders see roughly 50% odds of a rate hike in 2026 as Fed is split on policy",
+        "Datavault AI becomes exclusive tech partner for Mandela Dollar stablecoin - Stock Titan",
+        "Federal Realty stock stays supported by a steady retail portfolio - AD HOC NEWS"
+      ]
+    },
+    {
+      "theme": "Megacap Tech",
+      "count": 3,
+      "headlines": [
+        "Apple Edges Closer to Dethroning Nvidia After $30B Broadcom Chips Deal",
+        "Dow, Nasdaq, S&P 500 Futures Retreat After Chip-Led Gains At Close: META, ONDS, FUBO, FRMI Stocks In Focus - Stocktwits",
+        "Silver and Copper Are Outpacing Gold in 2026 and After Following Industrial Metals These 3 ETFs Show How Smart Money Is Playing the Trend - 24/7 Wall St."
+      ]
+    },
+    {
+      "theme": "Earnings Season",
+      "count": 6,
+      "headlines": [
+        "PepsiCo earnings miss estimates as U.S. consumers tighten their budgets",
+        "Levi Strauss beats quarterly expectations, raises guidance and dividend",
+        "A Downgrade Wave Says Bank Stocks Are Priced for Perfection Ahead of Q2 Earnings. Here's the Bear Case. - AOL.com",
+        "GE Aerospace (GE) Projected to Release Earnings on Thursday - MarketBeat",
+        "GE Aerospace (GE) Earnings Expected to Grow: What to Know Ahead of Next Week's Release - Yahoo Finance"
+      ]
+    },
+    {
+      "theme": "Health Care / Biotech",
+      "count": 9,
+      "headlines": [
+        "Two Trades for Today: An e-commerce player for a rise of 8%, and a mid-cap industrial mining stock for a 6 - The Economic Times",
+        "UnitedHealth (NYSE:UNH) Leads Healthcare Rally - Kalkine Media",
+        "UnitedHealth Group stock stays resilient as investors watch Medicare and commercial trends - AD HOC NEWS",
+        "Johnson & Johnson stock holds steady as diversified healthcare business supports long-term outlook - AD HOC NEWS",
+        "UnitedHealth Group extends its health care reach. Investors watch the S&P 500 heavyweight - AD HOC NEWS"
+      ]
+    },
+    {
+      "theme": "Energy / Commodities",
+      "count": 24,
+      "headlines": [
+        "Goldman Sachs wins $70 billion in asset management deals with Verizon, Lockheed Martin",
+        "Stocks recover losses, and oil prices ease as calm returns to financial markets worldwide",
+        "U.S. LNG Exporter Reaps Windfall as Middle East Turmoil Drives Fees Higher",
+        "Chevron Licenses Enhanced Oil Recovery Technology to ZL Chemicals",
+        "Gold prices today, Thursday, July 9, 2026: Prices open lower as U.S.-Iran airstrikes continue"
+      ]
+    }
+  ],
+  "officialSources": [],
+  "sourceSummary": {
+    "marketNewsCount": 1,
+    "marketNewsDirectCount": 3,
+    "marketNewsDiscoveryFallbackCount": 2,
+    "sectorNewsCount": 20,
+    "featuredStockCount": 2,
+    "sectorDiscoverySignalCount": 5,
+    "discoveryNewsCount": 53,
+    "officialSourceCount": 0,
+    "marketSnapshotIndexCount": 4,
+    "marketSnapshotSectorCount": 11
+  },
+  "warnings": [
+    "Google News RSS discovery 1138건은 기준일(2026-07-09) 기사가 아니어서 제외했습니다.",
+    "미국 RSS 기사 155건은 기준일(2026-07-09) 기사가 아니어서 제외했습니다.",
+    "시장 주요 뉴스는 direct RSS 3건에 Google News discovery 보조 후보 2건을 더해 구성했습니다.",
+    "원문 본문과 당일 종가를 함께 확인한 특징주가 2건입니다. 예약 게시 기준(3건)에 미달합니다."
+  ]
+}

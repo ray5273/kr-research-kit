@@ -3,6 +3,7 @@
 const fs = require("fs");
 const https = require("https");
 const path = require("path");
+const { MIN_BODY_CHARS, applyEditorial, articleId, canonicalUrl, extractEvidence } = require("./article-evidence");
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -113,12 +114,46 @@ const DEFAULT_DIRECT_RSS_SOURCES = [
   { name: "Investing.com Stock Market", url: "https://www.investing.com/rss/news_25.rss" },
   { name: "Investing.com Economy", url: "https://www.investing.com/rss/news_95.rss" },
 ];
+const DEFAULT_PUBLISHER_SOURCES = [
+  {
+    id: "yahoo-finance",
+    name: "Yahoo Finance",
+    sectionUrl: "https://finance.yahoo.com/topic/stock-market-news/",
+    hosts: ["finance.yahoo.com"],
+    priority: 1,
+  },
+  {
+    id: "ap-business",
+    name: "AP News",
+    sectionUrl: "https://apnews.com/hub/business",
+    hosts: ["apnews.com"],
+    priority: 2,
+  },
+  {
+    id: "reuters-investing",
+    name: "Reuters via Investing.com",
+    sectionUrl: "https://www.investing.com/news/stock-market-news",
+    hosts: ["investing.com"],
+    priority: 3,
+  },
+  {
+    id: "cnbc-markets",
+    name: "CNBC Markets",
+    sectionUrl: "https://www.cnbc.com/markets/",
+    hosts: ["cnbc.com"],
+    priority: 4,
+  },
+];
 const GOOGLE_NEWS_RSS_BASE = "https://news.google.com/rss/search";
 const MARKET_KEYWORDS = /S&P\s*500|Nasdaq|Dow Jones|Russell 2000|Wall Street|stock market|stocks|equities|market\s*(?:close|rally|selloff|wrap|outlook)|Treasury|yield|Fed|FOMC|inflation|CPI|PCE|dollar|earnings|megacap|Magnificent Seven/i;
 const BROAD_MARKET_PATTERN = /S&P\s*500|Nasdaq|Dow Jones|Russell 2000|Wall Street|stock market today|stocks?\s+(?:close|finish|end|rise|fall|gain|drop|slip|rally|sell off|mixed)|markets?\s+(?:close|finish|end|rise|fall|gain|drop|slip|rally|sell off|mixed)|Treasury|yield|Fed|FOMC|inflation|CPI|PCE|jobs report|payrolls|dollar|VIX|market wrap/i;
-const LOW_PRIORITY_NEWS_PATTERN = /after\s*hours|pre[-\s]?market|IPO filing|files?\s+for\s+(?:IPO|Nasdaq)|secondary offering|stock split|dividend declaration|insider sale|price target|analyst rating|lawsuit|class action|penny stock|stock market today,\s*[^:]+:\s*(?!Dow|S&P|Nasdaq|Wall Street|Stocks|Markets|Futures|Treasury|Yields|Fed)|breaks?\s+(?:above|below)\s+(?:its\s+)?(?:50|100|200)-day|cross(?:es)?\s+(?:above|below)\s+(?:key|critical)?\s*moving average|cross(?:es)?\s+(?:above|below)\s+\d+\s*DMA|\b\d+\s*DMA\b|oversold|overbought|notable for|crypto market|bitcoin|millionaires?|wealth report|personal wealth|stock gains on S&P SmallCap/i;
+const LOW_PRIORITY_NEWS_PATTERN = /after\s*hours|pre[-\s]?market|IPO filing|files?\s+for\s+(?:IPO|Nasdaq)|secondary offering|stock split|dividend declaration|insider sale|price target|analyst rating|lawsuit|class action|penny stock|schedules?\s+(?:an?\s+)?earnings\s+(?:call|webcast|discussion)|webcast\s+discussion|what\s+to\s+expect|what\s+to\s+know\s+ahead|earnings\s+expected\s+to|next\s+quarterly\s+earnings|projected\s+to\s+release\s+earnings|forecasters?\s+revamp|expectations?\s+ahead\s+of|new\s+[^.]{0,40}\bETF\b|launch(?:es|ed|ing)?\s+[^.]{0,40}\bETF\b|grows?\s+(?:its\s+)?(?:holdings|position|stake)|boosts?\s+(?:its\s+)?(?:holdings|position|stake)|cuts?\s+(?:its\s+)?(?:holdings|position|stake)|(?:holdings?|position|stake)\s+(?:lessened|reduced|lowered|increased|raised|boosted)|(?:largest|major|top)\s+(?:holding|position)|\b\d+(?:st|nd|rd|th)\s+largest\s+position|(?:buys?|sells?|adds?|trims?|reduces?|increases?)\s+(?:its\s+)?(?:holdings|position|stake)|acquires?\s+\d+\s+shares|sells?\s+\d+\s+shares|charged\s+with|manslaughter|fatal\s+crash|stock market today,\s*[^:]+:\s*(?!Dow|S&P|Nasdaq|Wall Street|Stocks|Markets|Futures|Treasury|Yields|Fed)|breaks?\s+(?:above|below)\s+(?:its\s+)?(?:50|100|200)-day|cross(?:es)?\s+(?:above|below)\s+(?:key|critical)?\s*moving average|cross(?:es)?\s+(?:above|below)\s+\d+\s*DMA|\b\d+\s*DMA\b|oversold|overbought|notable for|crypto market|bitcoin|millionaires?|wealth report|personal wealth|stock gains on S&P SmallCap/i;
 const SECTOR_REJECT_PATTERN = /sports|lacrosse|mortgage rates only|home listing|celebrity|crypto|bitcoin|lottery|gamer trades|physical discs|credit-card debt|401\(k\)|retirement account|personal finance|New Zealand|Mexico stocks|Colombia stocks|European shares|FTSE|DAX|Nikkei|Hang Seng/i;
-const BROAD_SECTOR_TERMS = new Set(["AI", "Services", "Consumer", "Staples", "Health", "Care", "Energy", "Materials", "Utilities", "Real", "Estate", "production", "capital", "demand", "media", "search"]);
+const LOW_QUALITY_SECTOR_SOURCE_PATTERN = /MarketBeat|Kalkine Media|Ad[- ]?hoc[- ]?news/i;
+const LOW_QUALITY_DISCOVERY_SOURCE_PATTERN = /富途牛牛|Benzinga|simplywall\.st|24\/7 Wall St\./i;
+const RECOMMENDATION_ARTICLE_PATTERN = /ETF showdown|which ETF is the better buy|screaming buy|buy right now|what it could mean for .* stock|largest company/i;
+const FEATURED_STORY_REJECT_PATTERN = /analyst report|EPS Revisions|declares? .* dividend|Nasdaq non-compliance|missing Form 6-K|Swedish inflation expectations|reports earnings|earnings and webcast|live coverage/i;
+const BROAD_SECTOR_TERMS = new Set(["AI", "Technology", "Services", "Consumer", "Staples", "Health", "Care", "Energy", "Materials", "Utilities", "Real", "Estate", "production", "capital", "demand", "media", "search"]);
 const INDEX_SYMBOLS = [
   { symbol: "^GSPC", name: "S&P 500" },
   { symbol: "^IXIC", name: "Nasdaq Composite" },
@@ -187,8 +222,20 @@ function articleTextForMatch(item) {
     item.title,
     item.description,
     item.summary,
+    item.articleText,
     item.name,
   ].filter(Boolean).join(" "));
+}
+
+function normalizedArticleUrl(value) {
+  try {
+    const url = new URL(String(value || ""));
+    url.search = "";
+    url.hash = "";
+    return url.toString().toLowerCase();
+  } catch {
+    return String(value || "").replace(/[?#].*$/, "").toLowerCase();
+  }
 }
 
 function dateInEastern(date) {
@@ -437,6 +484,144 @@ function fetchText(url, timeoutMs = 15000) {
   });
 }
 
+function absoluteUrl(href, baseUrl) {
+  try {
+    return new URL(String(href || ""), baseUrl).toString();
+  } catch {
+    return "";
+  }
+}
+
+function hostnameMatches(url, hosts = []) {
+  try {
+    const hostname = new URL(url).hostname.toLowerCase();
+    return hosts.some(host => hostname === host || hostname.endsWith(`.${host}`));
+  } catch {
+    return false;
+  }
+}
+
+function parsePublisherCandidates(html, source) {
+  const output = [];
+  const anchorPattern = /<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+  let match;
+  while ((match = anchorPattern.exec(String(html || ""))) !== null) {
+    const url = absoluteUrl(match[1], source.sectionUrl);
+    const headline = normalizeSpace(stripHtml(match[2]));
+    if (!url || !headline || headline.length < 20 || !hostnameMatches(url, source.hosts)) continue;
+    if (/\/topic\/|\/tag\/|\/author\/|\/video\//i.test(new URL(url).pathname)) continue;
+    if (isGoogleNewsUrl(url) || LOW_PRIORITY_NEWS_PATTERN.test(headline) || RECOMMENDATION_ARTICLE_PATTERN.test(headline)) continue;
+    const item = {
+      headline,
+      title: headline,
+      url: canonicalUrl(url),
+      source: source.name,
+      sourceId: source.id,
+      sourceRole: "publisher-web",
+      sourceTier: "primary-publisher",
+      sourcePriority: source.priority,
+    };
+    if (!matchesMarketNews(item) && !DEFAULT_SECTORS.some(sector => matchesSectorNews(item, sector, []))) continue;
+    output.push(item);
+  }
+  return dedupeItems(output);
+}
+
+function metaContent(html, keys) {
+  for (const key of keys) {
+    const escaped = escapeRegExp(key);
+    const propertyFirst = new RegExp(`<meta\\b[^>]*(?:property|name|itemprop)=["']${escaped}["'][^>]*content=["']([^"']+)["'][^>]*>`, "i");
+    const contentFirst = new RegExp(`<meta\\b[^>]*content=["']([^"']+)["'][^>]*(?:property|name|itemprop)=["']${escaped}["'][^>]*>`, "i");
+    const value = html.match(propertyFirst)?.[1] || html.match(contentFirst)?.[1];
+    if (value) return decodeXmlEntities(value);
+  }
+  return "";
+}
+
+function publisherArticleMetadata(html, candidate, asOfDate) {
+  const headline = normalizeSpace(metaContent(html, ["og:title", "twitter:title"]) || candidate.headline);
+  const publishedAt = normalizeSpace(metaContent(html, ["article:published_time", "datePublished", "date", "parsely-pub-date"]));
+  const publishedDate = normalizeRssPubDate(publishedAt, asOfDate) || normalizeNewsDate(publishedAt, asOfDate) || candidate.publishedDate || null;
+  const canonical = canonicalUrl(metaContent(html, ["og:url"]) || candidate.url);
+  return { headline, publishedAt: publishedAt || null, publishedDate, canonicalUrl: canonical };
+}
+
+async function fetchPublisherArticle(candidate, options = {}) {
+  const fetcher = options.publisherArticleFetcher || options.articleFetcher || fetchText;
+  const html = await fetcher(candidate.url, Number(options.articleTimeoutMs || 15000));
+  const metadata = publisherArticleMetadata(html, candidate, options.asOfDate);
+  return { ...metadata, body: articleBodyFromHtml(html) };
+}
+
+async function collectPublisherCandidates(options = {}) {
+  const warnings = options.warnings || [];
+  const sources = (options.publisherSources || DEFAULT_PUBLISHER_SOURCES).slice().sort((a, b) => a.priority - b.priority);
+  const fetcher = options.publisherSectionFetcher || fetchText;
+  const items = [];
+  for (const source of sources) {
+    try {
+      const html = await fetcher(source.sectionUrl, Number(options.sectionTimeoutMs || 15000));
+      const parsed = parsePublisherCandidates(html, source);
+      if (!parsed.length) warnings.push(`${source.name} 섹션에서 직접 기사 링크를 찾지 못했습니다.`);
+      items.push(...parsed);
+    } catch (error) {
+      warnings.push(`${source.name} 섹션 수집 실패: ${error.message}`);
+    }
+  }
+  return dedupeItems(items).sort((a, b) => a.sourcePriority - b.sourcePriority);
+}
+
+function articleBodyFromHtml(html) {
+  const withoutNoise = String(html || "")
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<noscript[\s\S]*?<\/noscript>/gi, " ")
+    .replace(/<svg[\s\S]*?<\/svg>/gi, " ")
+    .replace(/<(?:nav|header|footer|aside|form)[^>]*>[\s\S]*?<\/(?:nav|header|footer|aside|form)>/gi, " ");
+  const articleBlocks = [...withoutNoise.matchAll(/<article\b[^>]*>([\s\S]*?)<\/article>/gi)].map(match => match[1]);
+  const containers = articleBlocks.length ? articleBlocks : [withoutNoise];
+  const candidates = containers.map(container => {
+    const paragraphs = [...container.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
+      .map(match => stripHtml(match[1]))
+      .filter(text => text.length >= 45 && !/^(?:advertisement|subscribe|read more|sign up)$/i.test(text));
+    return normalizeSpace(paragraphs.join(" "));
+  }).filter(text => text.length >= 180);
+  return candidates.sort((a, b) => b.length - a.length)[0]?.slice(0, 8000) || "";
+}
+
+function significantHeadlineTerms(headline) {
+  const stopWords = new Set(["the", "a", "an", "and", "or", "as", "to", "of", "in", "on", "for", "with", "after", "before", "today", "stock", "stocks", "market", "news", "why", "how"]);
+  return normalizeSpace(headline).toLowerCase().match(/[a-z][a-z0-9-]{2,}/g)?.filter(word => !stopWords.has(word)) || [];
+}
+
+function articleMatchesHeadline(body, headline) {
+  const terms = significantHeadlineTerms(headline);
+  if (!terms.length) return true;
+  const lower = String(body || "").toLowerCase();
+  const matched = terms.filter(term => lower.includes(term)).length;
+  return matched >= Math.min(2, terms.length);
+}
+
+async function fetchArticleBody(url, options = {}) {
+  if (!/^https?:\/\//i.test(url || "")) return "";
+  const fetcher = options.articleFetcher || fetchText;
+  try {
+    const html = await fetcher(url, Number(options.articleTimeoutMs || 15000));
+    const extracted = articleBodyFromHtml(html);
+    if (extracted.length >= MIN_BODY_CHARS || !options.browserFallback) return extracted;
+  } catch {
+    if (!options.browserFallback) return "";
+  }
+  // Opt-in only: public sites that render article paragraphs client-side may
+  // need Chromium text extraction. It never substitutes an RSS title.
+  try {
+    const { browseText } = require("../../kr-web-browse/scripts/browse-web");
+    return normalizeSpace(browseText(url, { timeoutMs: Number(options.browserTimeoutMs || 30000) }) || "").slice(0, 8000);
+  } catch {
+    return "";
+  }
+}
+
 async function fetchJson(url, timeoutMs = 15000) {
   const text = await fetchText(url, timeoutMs);
   return JSON.parse(text);
@@ -536,7 +721,7 @@ function isDirectRssArticle(item) {
 
 function matchesMarketNews(item) {
   const text = articleTextForMatch(item);
-  if (LOW_PRIORITY_NEWS_PATTERN.test(text) || SECTOR_REJECT_PATTERN.test(text)) return false;
+  if (LOW_PRIORITY_NEWS_PATTERN.test(text) || RECOMMENDATION_ARTICLE_PATTERN.test(text) || SECTOR_REJECT_PATTERN.test(text)) return false;
   return MARKET_KEYWORDS.test(text) && BROAD_MARKET_PATTERN.test(text);
 }
 
@@ -565,8 +750,12 @@ function termMatchesText(text, term) {
 
 function matchesSectorNews(item, sector, stocks = []) {
   const text = articleTextForMatch(item);
+  if (LOW_QUALITY_SECTOR_SOURCE_PATTERN.test(item.source || "")) return false;
+  if (item.discovery && LOW_QUALITY_DISCOVERY_SOURCE_PATTERN.test(item.source || "")) return false;
+  if (sector === "Materials" && /\bDow Jones\b/i.test(text)) return false;
+  if (sector === "Consumer Discretionary" && /Consumer Staples/i.test(text)) return false;
   if (SECTOR_REJECT_PATTERN.test(text)) return false;
-  if (LOW_PRIORITY_NEWS_PATTERN.test(text)) return false;
+  if (LOW_PRIORITY_NEWS_PATTERN.test(text) || RECOMMENDATION_ARTICLE_PATTERN.test(text)) return false;
   return sectorMatchTerms(sector, stocks).some(term => termMatchesText(text, term));
 }
 
@@ -721,18 +910,18 @@ function rankNewsItems(items, limit = null, options = {}) {
 }
 
 function supplementMarketNews(directMarketNews, discoveryItems, limit = 5) {
-  if (directMarketNews.length >= limit) return { marketNews: directMarketNews.slice(0, limit), fallbackCount: 0 };
   const existingKeys = new Set(directMarketNews.map(item => sourceKey(item)));
   const candidates = rankNewsItems((discoveryItems || [])
     .filter(matchesMarketNews)
+    .filter(item => !LOW_QUALITY_DISCOVERY_SOURCE_PATTERN.test(item.source || ""))
     .filter(item => !existingKeys.has(sourceKey(item)))
     .map(item => ({
       ...item,
-      sourceRole: "discovery-fallback",
-      discoveryFallback: true,
-    })), limit - directMarketNews.length, { minScore: 1 });
+      sourceRole: "discovery-rss",
+      discovery: true,
+    })), limit, { minScore: 1 });
   return {
-    marketNews: [...directMarketNews, ...candidates].slice(0, limit),
+    marketNews: rankNewsItems([...directMarketNews, ...candidates], limit, { minScore: 1 }),
     fallbackCount: candidates.length,
   };
 }
@@ -954,26 +1143,110 @@ async function collectSectorNews(options = {}) {
       .filter(isDirectRssArticle)
       .filter(item => matchesSectorNews(item, sector, stocks))
       .map(item => ({ ...item, sector, query: discoveryQuery.query })), perSectorLimit);
-    const fallbackItems = directSectorItems.length >= minSignals ? [] : rankNewsItems(discoveryItems
+    const discoverySectorItems = rankNewsItems(discoveryItems
       .filter(item => matchesSectorNews(item, sector, stocks))
       .map(item => ({
         ...item,
-        url: "",
         sector,
         query: discoveryQuery.query,
-        sourceRole: "discovery-signal",
+        sourceRole: "discovery-rss",
         discovery: true,
-      })), Math.max(0, minSignals - directSectorItems.length));
-    const items = [...directSectorItems, ...fallbackItems].slice(0, perSectorLimit);
+      })), perSectorLimit);
+    const items = dedupeItems([...directSectorItems, ...discoverySectorItems]).slice(0, perSectorLimit);
     groups.push({
       sector,
       query: discoveryQuery.query,
       queries: [discoveryQuery],
       items,
-      discoverySignalCount: fallbackItems.length,
+      discoverySignalCount: discoverySectorItems.length,
     });
   }
   return groups;
+}
+
+function featuredStockMatches(item, stock) {
+  const text = articleTextForMatch(item);
+  return termMatchesText(text, stock.name) || termMatchesText(text, stock.ticker);
+}
+
+function featuredStockCandidates(sectorNews, sectorStocks, asOfDate) {
+  const seen = new Set();
+  const candidates = [];
+  for (const group of sectorNews || []) {
+    for (const item of group.items || []) {
+      if ((!isDirectRssArticle(item) && !item.discovery) || item.publishedDate !== asOfDate) continue;
+      if (FEATURED_STORY_REJECT_PATTERN.test(articleTextForMatch(item))) continue;
+      if (group.sector === "Materials" && /\bDow(?: Jones)?\b/i.test(item.headline || item.title || "")) continue;
+      const stock = (sectorStocks?.[group.sector] || []).find(candidate => featuredStockMatches(item, candidate));
+      const key = normalizedArticleUrl(item.url) || headlineFingerprint(item.headline || item.title);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      candidates.push({ ...item, sector: group.sector, ticker: stock?.ticker || "", name: stock?.name || group.sector });
+    }
+  }
+  const primaryByArticle = new Map();
+  for (const candidate of candidates) {
+    const articleKey = normalizedArticleUrl(candidate.url) || headlineFingerprint(candidate.headline || candidate.title);
+    const headline = String(candidate.headline || candidate.title || "");
+    const position = headline.toLowerCase().indexOf(String(candidate.name || "").toLowerCase());
+    const current = primaryByArticle.get(articleKey);
+    if (!current || (position >= 0 && (current.position < 0 || position < current.position))) primaryByArticle.set(articleKey, { candidate, position });
+  }
+  return [...primaryByArticle.values()].map(item => item.candidate)
+    .sort((a, b) => (b.rankScore ?? newsRankScore(b)) - (a.rankScore ?? newsRankScore(a)));
+}
+
+async function collectFeaturedStocks(options = {}) {
+  const candidates = featuredStockCandidates(options.sectorNews, options.sectorStocks, options.asOfDate)
+    .slice(0, Number(options.featuredCandidateLimit || 14));
+  const output = [];
+  const usedSectors = new Set();
+  for (const candidate of candidates) {
+    if (usedSectors.has(candidate.sector)) continue;
+    const articleText = normalizeSpace(candidate.articleText || await fetchArticleBody(candidate.url, options));
+    // RSS 제목·설명은 후보를 찾는 단서일 뿐, 블로그에 쓸 사실 근거가 아니다.
+    // 특징주로 채택하려면 기사 URL에서 읽을 수 있는 본문을 반드시 확보한다.
+    if (articleText.length < 180) continue;
+    const quote = candidate.ticker
+      ? (options.stockQuotes?.[candidate.ticker]
+        || await fetchMarketQuote({ symbol: candidate.ticker, name: candidate.name }, options.asOfDate, options.warnings, options))
+      : null;
+    const sectorQuote = (options.marketSnapshot?.sectors || []).find(item => item.sector === candidate.sector) || null;
+    output.push({
+      ...candidate,
+      articleText,
+      evidenceText: articleText,
+      evidenceType: "article-body",
+      ...(quote && quote.date === options.asOfDate && Number.isFinite(Number(quote.price)) && Number.isFinite(Number(quote.changePct)) ? {
+        quote: {
+          symbol: candidate.ticker,
+          price: quote.price,
+          previousClose: quote.previousClose,
+          change: quote.change,
+          changePct: quote.changePct,
+          date: quote.date,
+          source: quote.source,
+          sourceUrl: quote.sourceUrl,
+        },
+      } : {}),
+      ...(sectorQuote ? { sectorQuote: { symbol: sectorQuote.symbol, name: sectorQuote.name, changePct: sectorQuote.changePct, date: sectorQuote.date } } : {}),
+    });
+    usedSectors.add(candidate.sector);
+    if (output.length >= Number(options.featuredLimit || 5)) break;
+  }
+  return output;
+}
+
+async function enrichArticleBodies(items, options = {}) {
+  const output = [];
+  for (const item of items || []) {
+    // Google News 발견 기사는 직접 RSS 기사와 함께 쓸 수 있지만, URL에서
+    // 읽히는 본문을 확보한 경우에만 본문 후보가 된다.
+    if (!isDirectRssArticle(item) && !item.discovery) continue;
+    const articleText = normalizeSpace(item.articleText || await fetchArticleBody(item.url, options));
+    if (articleText.length >= 180) output.push({ ...item, articleText, evidenceText: articleText, evidenceType: "article-body" });
+  }
+  return output;
 }
 
 async function collectDailyMarketNews(options) {
@@ -985,6 +1258,9 @@ async function collectDailyMarketNews(options) {
     const marketNews = rankNewsItems(filterSameDateItems(fixture.marketNews || [], date, warnings, "시장 뉴스"), Number(options.marketLimit || 12));
     const marketSummary = fixture.marketSummary || await buildMarketSummary(marketNews, { fixture: true });
     const sectorNews = normalizeSectorNews(fixture.sectorNews, date, warnings);
+    const featuredStocks = (fixture.featuredStocks || [])
+      .filter(item => item.publishedDate === date && item.articleText)
+      .map(item => ({ ...item, evidenceText: item.evidenceText || item.articleText, evidenceType: item.evidenceType || "article-body" }));
     const officialSources = dedupeItems(fixture.officialSources || []);
     const allNews = [...marketNews, ...sectorNews.flatMap(group => group.items || [])];
     return {
@@ -998,11 +1274,13 @@ async function collectDailyMarketNews(options) {
       marketNews,
       marketSummary,
       sectorNews,
+      featuredStocks,
       themes: fixture.themes || classifyThemes(allNews),
       officialSources,
       sourceSummary: {
         marketNewsCount: marketNews.length,
         sectorNewsCount: sectorNews.reduce((sum, group) => sum + (group.items?.length || 0), 0),
+        featuredStockCount: featuredStocks.length,
         officialSourceCount: officialSources.length,
       },
       warnings,
@@ -1033,7 +1311,12 @@ async function collectDailyMarketNews(options) {
     .filter(isDirectRssArticle)
     .filter(matchesMarketNews), Number(options.marketLimit || 12), { minScore: 1 });
   const marketSupplement = supplementMarketNews(directMarketNews, googleDiscovery, Math.min(Number(options.marketLimit || 12), 5));
-  const marketNews = marketSupplement.marketNews;
+  let marketNews = await enrichArticleBodies(marketSupplement.marketNews, options);
+  if (marketNews.length < 3) {
+    const bodyVerifiedFallback = supplementMarketNews([], googleDiscovery, Math.min(Number(options.marketLimit || 12), 5));
+    const fallbackNews = await enrichArticleBodies(bodyVerifiedFallback.marketNews, options);
+    marketNews = rankNewsItems([...marketNews, ...fallbackNews], Number(options.marketLimit || 12), { minScore: 1 });
+  }
   if (directMarketNews.length < 5 && marketSupplement.fallbackCount) {
     warnings.push(`시장 주요 뉴스는 direct RSS ${directMarketNews.length}건에 Google News discovery 보조 후보 ${marketSupplement.fallbackCount}건을 더해 구성했습니다.`);
   } else if (marketNews.length < 5) {
@@ -1042,6 +1325,8 @@ async function collectDailyMarketNews(options) {
   const marketSnapshot = options.marketSnapshotData || await collectMarketSnapshot({ ...options, asOfDate: date, warnings });
   const marketSummary = await buildMarketSummary(marketNews, options);
   const sectorNews = await collectSectorNews({ ...options, asOfDate: date, warnings, sectorStocks, directRssItems, discoveryItems: googleDiscovery });
+  const featuredStocks = await collectFeaturedStocks({ ...options, asOfDate: date, warnings, sectorStocks, sectorNews, marketSnapshot });
+  if (featuredStocks.length < 3) warnings.push(`원문 본문과 당일 종가를 함께 확인한 특징주가 ${featuredStocks.length}건입니다. 예약 게시 기준(3건)에 미달합니다.`);
   warnings.push(...sectorNews.map(group => group.warning).filter(Boolean));
   const officialSources = [];
   const allNews = [...marketNews, ...sectorNews.flatMap(group => group.items || [])];
@@ -1057,6 +1342,7 @@ async function collectDailyMarketNews(options) {
     marketNews,
     marketSummary,
     sectorNews,
+    featuredStocks,
     discoveryNews: googleDiscovery,
     themes: classifyThemes([...allNews, ...googleDiscovery]),
     officialSources,
@@ -1065,6 +1351,7 @@ async function collectDailyMarketNews(options) {
       marketNewsDirectCount: directMarketNews.length,
       marketNewsDiscoveryFallbackCount: marketSupplement.fallbackCount,
       sectorNewsCount: sectorNews.reduce((sum, group) => sum + (group.items?.length || 0), 0),
+      featuredStockCount: featuredStocks.length,
       sectorDiscoverySignalCount: sectorNews.reduce((sum, group) => sum + (group.discoverySignalCount || 0), 0),
       discoveryNewsCount: googleDiscovery.length,
       officialSourceCount: officialSources.length,
@@ -1075,11 +1362,286 @@ async function collectDailyMarketNews(options) {
   };
 }
 
+function readEditorialOverrides(value) {
+  if (!value) return {};
+  if (typeof value === "object") return value;
+  const parsed = JSON.parse(fs.readFileSync(path.resolve(String(value)), "utf8"));
+  return parsed.articles && typeof parsed.articles === "object" ? parsed.articles : parsed;
+}
+
+function readPublisherCandidates(value) {
+  if (!value) return null;
+  if (Array.isArray(value)) return value;
+  const parsed = typeof value === "object" ? value : JSON.parse(fs.readFileSync(path.resolve(String(value)), "utf8"));
+  const candidates = Array.isArray(parsed) ? parsed : parsed.candidates;
+  assert(Array.isArray(candidates), "Publisher candidates must be a JSON array or an object with a candidates array");
+  return candidates.map((candidate, index) => {
+    assert(/^https?:\/\//i.test(candidate.url || ""), `Publisher candidate ${index + 1} requires a direct canonical URL`);
+    assert(!isGoogleNewsUrl(candidate.url), `Publisher candidate ${index + 1} cannot use a Google News URL`);
+    assert(normalizeSpace(candidate.headline), `Publisher candidate ${index + 1} requires a headline`);
+    assert(normalizeSpace(candidate.source), `Publisher candidate ${index + 1} requires a publisher name`);
+    return { ...candidate, url: canonicalUrl(candidate.url), sourceRole: "publisher-web", sourceTier: "primary-publisher" };
+  });
+}
+
+function classifyEvidenceArticle(item, sectorStocks) {
+  const text = articleTextForMatch(item);
+  const sectors = DEFAULT_SECTORS.filter(sector => matchesSectorNews(item, sector, sectorStocks?.[sector] || []));
+  const stock = sectors.flatMap(sector => (sectorStocks?.[sector] || []).map(candidate => ({ sector, ...candidate })))
+    .find(candidate => termMatchesText(text, candidate.name) || termMatchesText(text, candidate.ticker));
+  const market = matchesMarketNews(item);
+  if (stock) return { kind: "stock", sector: stock.sector, ticker: stock.ticker, name: stock.name };
+  if (sectors.length === 1) return { kind: "sector", sector: sectors[0], ticker: "", name: "" };
+  if (market) return { kind: "market", sector: "", ticker: "", name: "" };
+  return null;
+}
+
+function selectVerifiedStories(articles, asOfDate) {
+  const selected = [];
+  const usedSectors = new Set();
+  const usedTickers = new Set();
+  const sorted = [...articles]
+    .filter(article => article.editorial?.status === "verified")
+    .sort((a, b) => (b.rankScore || 0) - (a.rankScore || 0)
+      || (Date.parse(b.publishedAt || "") || 0) - (Date.parse(a.publishedAt || "") || 0));
+  for (const article of sorted) {
+    if (article.publishedDate !== asOfDate) continue;
+    if (article.classification.kind === "stock" && usedTickers.has(article.classification.ticker)) continue;
+    if (article.classification.kind === "sector" && usedSectors.has(article.classification.sector)) continue;
+    selected.push({
+      id: `story-${article.id.slice(-12)}`,
+      articleId: article.id,
+      kind: article.classification.kind,
+      sector: article.classification.sector,
+      ticker: article.classification.ticker,
+      name: article.classification.name,
+      headlineKo: article.editorial.headlineKo,
+      summaryKo: article.editorial.summaryKo,
+      evidenceIds: article.editorial.evidenceIds,
+      url: article.canonicalUrl,
+      source: article.source,
+      sourceId: article.sourceId,
+      sourceRole: article.sourceRole,
+      sourceTier: article.sourceTier,
+      publishedAt: article.publishedAt || null,
+      publishedDate: article.publishedDate,
+      quote: article.quote || null,
+    });
+    if (article.classification.kind === "stock") usedTickers.add(article.classification.ticker);
+    if (article.classification.kind === "sector") usedSectors.add(article.classification.sector);
+    if (selected.length >= 6) break;
+  }
+  return selected;
+}
+
+async function collectEvidenceReport(options = {}) {
+  const asOfDate = options.date || todayEastern();
+  const warnings = [];
+  const sectorStocks = options.sectorStocks || readSectorStocks(options.sectorStocksPath || DEFAULT_SECTOR_STOCKS_PATH);
+  const marketQueries = [
+    "S&P 500 Nasdaq Dow Jones market close",
+    "U.S. stock market sectors themes",
+    "Wall Street Treasury yields Fed earnings",
+  ];
+  const sectorQueries = DEFAULT_SECTORS.map(sector => buildSectorDiscoveryQueries(sector, sectorStocks?.[sector] || []).query);
+  const [directItems, discoveryItems, marketSnapshot] = await Promise.all([
+    Array.isArray(options.directRssItems)
+      ? Promise.resolve(filterSameDateItems(options.directRssItems, asOfDate, warnings, "미국 RSS 기사"))
+      : collectDirectRssItems({ ...options, asOfDate, warnings }),
+    Array.isArray(options.googleDiscoveryItems)
+      ? Promise.resolve(filterSameDateItems(options.googleDiscoveryItems, asOfDate, warnings, "Google News RSS discovery"))
+      : collectGoogleDiscovery({ ...options, asOfDate, warnings, googleQueries: [...marketQueries, ...sectorQueries] }),
+    options.marketSnapshotData ? Promise.resolve(options.marketSnapshotData) : collectMarketSnapshot({ ...options, asOfDate, warnings }),
+  ]);
+  const candidates = rankNewsItems(dedupeItems([...directItems, ...discoveryItems])
+    .filter(item => item.publishedDate === asOfDate)
+    .filter(item => matchesMarketNews(item) || DEFAULT_SECTORS.some(sector => matchesSectorNews(item, sector, sectorStocks?.[sector] || []))), Number(options.bodyCandidateLimit || 24));
+  const editorialOverrides = readEditorialOverrides(options.editorial || options.editorialJson);
+  const articles = [];
+  for (const candidate of candidates) {
+    const body = normalizeSpace(candidate.articleText || await fetchArticleBody(candidate.url, options));
+    if (body.length < MIN_BODY_CHARS) {
+      warnings.push(`본문 추출 기준 미달로 제외: ${candidate.headline}`);
+      continue;
+    }
+    if (!articleMatchesHeadline(body, candidate.headline)) {
+      warnings.push(`제목과 본문 일치 검증 실패로 제외: ${candidate.headline}`);
+      continue;
+    }
+    const evidence = extractEvidence(body);
+    if (!evidence.length) {
+      warnings.push(`인용 가능한 사실 문장이 없어 제외: ${candidate.headline}`);
+      continue;
+    }
+    const enriched = { ...candidate, articleText: body };
+    const classification = classifyEvidenceArticle(enriched, sectorStocks);
+    if (!classification) continue;
+    let quote = null;
+    if (classification.ticker) {
+      const candidateQuote = options.stockQuotes?.[classification.ticker]
+        || await fetchMarketQuote({ symbol: classification.ticker, name: classification.name }, asOfDate, warnings, options);
+      if (candidateQuote?.date === asOfDate && Number.isFinite(Number(candidateQuote.price)) && Number.isFinite(Number(candidateQuote.changePct))) {
+        quote = { symbol: classification.ticker, price: candidateQuote.price, changePct: candidateQuote.changePct, date: candidateQuote.date, source: candidateQuote.source, sourceUrl: candidateQuote.sourceUrl };
+      }
+    }
+    const article = applyEditorial({
+      id: articleId(candidate.url),
+      canonicalUrl: canonicalUrl(candidate.url),
+      source: candidate.source,
+      sourceRole: candidate.sourceRole,
+      publishedAt: candidate.publishedAt || null,
+      publishedDate: candidate.publishedDate,
+      headline: candidate.headline,
+      body: { charCount: body.length, sha256: require("crypto").createHash("sha256").update(body).digest("hex") },
+      evidence,
+      classification,
+      quote,
+      rankScore: newsRankScore(candidate),
+    }, editorialOverrides);
+    articles.push(article);
+  }
+  const stories = selectVerifiedStories(articles, asOfDate);
+  const editorialQueue = articles.filter(article => article.editorial.status !== "verified").map(article => ({
+    articleId: article.id,
+    canonicalUrl: article.canonicalUrl,
+    headline: article.headline,
+    classification: article.classification,
+    evidence: article.evidence,
+    requiredShape: { headlineKo: "한국어 제목", summaryKo: "본문 근거 기반 한국어 요약", evidenceIds: ["e1"] },
+  }));
+  if (stories.length < 3) warnings.push(`본문 근거와 검증된 한국어 편집을 모두 갖춘 기사가 ${stories.length}건입니다. 임시저장·예약 발행 기준(3건)에 미달합니다.`);
+  return {
+    schemaVersion: 2,
+    reportType: "us-daily-market-news",
+    asOfDate,
+    generatedAt: new Date().toISOString(),
+    sourceMode: "evidence-pipeline",
+    marketSnapshot,
+    articles,
+    stories,
+    editorialQueue,
+    sourceSummary: {
+      directCandidateCount: directItems.length,
+      discoveryCandidateCount: discoveryItems.length,
+      bodyVerifiedArticleCount: articles.length,
+      editorialVerifiedStoryCount: stories.length,
+      directVerifiedStoryCount: stories.filter(story => story.sourceRole === "direct-rss").length,
+    },
+    warnings,
+  };
+}
+
+async function collectPublisherEvidenceReport(options = {}) {
+  const asOfDate = options.date || todayEastern();
+  const warnings = [];
+  const sectorStocks = options.sectorStocks || readSectorStocks(options.sectorStocksPath || DEFAULT_SECTOR_STOCKS_PATH);
+  const [candidates, marketSnapshot] = await Promise.all([
+    Array.isArray(options.publisherCandidates)
+      ? Promise.resolve(options.publisherCandidates)
+      : collectPublisherCandidates({ ...options, warnings }),
+    options.marketSnapshotData ? Promise.resolve(options.marketSnapshotData) : collectMarketSnapshot({ ...options, asOfDate, warnings }),
+  ]);
+  const publisherCandidates = dedupeItems(candidates)
+    .filter(candidate => /^https?:\/\//i.test(candidate.url || "") && !isGoogleNewsUrl(candidate.url));
+  const editorialOverrides = readEditorialOverrides(options.editorial || options.editorialJson);
+  const articles = [];
+  const candidateLimit = Number(options.publisherCandidateLimit || 32);
+  for (const candidate of publisherCandidates.slice(0, candidateLimit)) {
+    let fetched;
+    try {
+      fetched = candidate.articleText
+        ? { headline: candidate.headline, publishedAt: candidate.publishedAt || null, publishedDate: candidate.publishedDate, canonicalUrl: canonicalUrl(candidate.url), body: candidate.articleText }
+        : await fetchPublisherArticle(candidate, { ...options, asOfDate });
+    } catch (error) {
+      warnings.push(`기사 본문 수집 실패: ${candidate.headline} (${error.message})`);
+      continue;
+    }
+    if (fetched.publishedDate !== asOfDate) continue;
+    const body = normalizeSpace(fetched.body);
+    if (body.length < MIN_BODY_CHARS) {
+      warnings.push(`본문 추출 기준 미달로 제외: ${fetched.headline}`);
+      continue;
+    }
+    if (!articleMatchesHeadline(body, fetched.headline)) {
+      warnings.push(`제목과 본문 일치 검증 실패로 제외: ${fetched.headline}`);
+      continue;
+    }
+    const evidence = extractEvidence(body);
+    if (!evidence.length) {
+      warnings.push(`인용 가능한 사실 문장이 없어 제외: ${fetched.headline}`);
+      continue;
+    }
+    const enriched = { ...candidate, headline: fetched.headline, title: fetched.headline, articleText: body };
+    const classification = classifyEvidenceArticle(enriched, sectorStocks);
+    if (!classification) continue;
+    let quote = null;
+    if (classification.ticker) {
+      const candidateQuote = options.stockQuotes?.[classification.ticker]
+        || await fetchMarketQuote({ symbol: classification.ticker, name: classification.name }, asOfDate, warnings, options);
+      if (candidateQuote?.date === asOfDate && Number.isFinite(Number(candidateQuote.price)) && Number.isFinite(Number(candidateQuote.changePct))) {
+        quote = { symbol: classification.ticker, price: candidateQuote.price, changePct: candidateQuote.changePct, date: candidateQuote.date, source: candidateQuote.source, sourceUrl: candidateQuote.sourceUrl };
+      }
+    }
+    const article = applyEditorial({
+      id: articleId(fetched.canonicalUrl),
+      canonicalUrl: fetched.canonicalUrl,
+      source: candidate.source,
+      sourceId: candidate.sourceId,
+      sourceRole: "publisher-web",
+      sourceTier: "primary-publisher",
+      publishedAt: fetched.publishedAt,
+      publishedDate: fetched.publishedDate,
+      headline: fetched.headline,
+      body: { charCount: body.length, sha256: require("crypto").createHash("sha256").update(body).digest("hex") },
+      evidence,
+      classification,
+      quote,
+      rankScore: newsRankScore(enriched),
+    }, editorialOverrides);
+    articles.push(article);
+  }
+  const stories = selectVerifiedStories(articles, asOfDate);
+  const editorialQueue = articles.filter(article => article.editorial.status !== "verified").map(article => ({
+    articleId: article.id,
+    canonicalUrl: article.canonicalUrl,
+    headline: article.headline,
+    source: article.source,
+    classification: article.classification,
+    evidence: article.evidence,
+    requiredShape: { headlineKo: "한국어 제목", summaryKo: "본문 근거 기반 한국어 요약", evidenceIds: ["e1"] },
+  }));
+  if (stories.length < 3) warnings.push(`직접 발행사 본문과 Codex 편집 근거를 모두 갖춘 기사가 ${stories.length}건입니다. 임시저장·예약 발행 기준(3건)에 미달합니다.`);
+  return {
+    schemaVersion: 2,
+    reportType: "us-daily-market-news",
+    asOfDate,
+    generatedAt: new Date().toISOString(),
+    sourceMode: "publisher-web-evidence",
+    marketSnapshot,
+    articles,
+    stories,
+    editorialQueue,
+    sourceSummary: {
+      publisherCandidateCount: publisherCandidates.length,
+      bodyVerifiedArticleCount: articles.length,
+      editorialVerifiedStoryCount: stories.length,
+      directPublisherStoryCount: stories.filter(story => story.sourceRole === "publisher-web").length,
+      publisherNames: [...new Set(articles.map(article => article.source))],
+    },
+    warnings,
+  };
+}
+
 async function main() {
   const args = parseArgs(process.argv);
   const date = args.date || todayEastern();
   const outPath = path.resolve(args["json-out"] || `analysis-example/us-market/daily-news-${date}.json`);
-  const result = await collectDailyMarketNews({ ...args, date, watchlist: args.watchlist || "examples/us/daily-watchlist.json" });
+  const result = await collectPublisherEvidenceReport({
+    ...args,
+    date,
+    publisherCandidates: readPublisherCandidates(args["publisher-candidates"]),
+    editorial: args.editorial || args["editorial-json"],
+  });
   writeJsonAtomic(outPath, result);
   process.stdout.write(`${JSON.stringify({ jsonPath: outPath, asOfDate: result.asOfDate, sourceSummary: result.sourceSummary, warnings: result.warnings }, null, 2)}\n`);
 }
@@ -1095,11 +1657,22 @@ module.exports = {
   buildSectorDiscoveryQueries,
   classifyThemes,
   collectDailyMarketNews,
+  collectEvidenceReport,
+  collectPublisherCandidates,
+  collectPublisherEvidenceReport,
+  readPublisherCandidates,
   collectDirectRssItems,
   collectGoogleDiscovery,
   collectMarketSnapshot,
   collectSectorNews,
+  collectFeaturedStocks,
+  enrichArticleBodies,
+  featuredStockCandidates,
+  fetchArticleBody,
+  articleBodyFromHtml,
+  articleMatchesHeadline,
   DEFAULT_DIRECT_RSS_SOURCES,
+  DEFAULT_PUBLISHER_SOURCES,
   DEFAULT_SECTORS,
   DEFAULT_SECTOR_STOCKS_PATH,
   dedupeItems,

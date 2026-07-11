@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 2,
+  "reportType": "us-daily-market-news",
+  "asOfDate": "2026-07-10",
+  "generatedAt": "2026-07-11T01:00:00.000Z",
+  "sourceMode": "publisher-web-evidence",
+  "marketSnapshot": {
+    "asOfDate": "2026-07-10",
+    "indexes": [
+      { "symbol": "^GSPC", "name": "S&P 500", "price": 7575.39, "changePct": 0.42 },
+      { "symbol": "^IXIC", "name": "Nasdaq Composite", "price": 26281.61, "changePct": 0.29 },
+      { "symbol": "^DJI", "name": "Dow Jones", "price": 52637.01, "changePct": 0.29 },
+      { "symbol": "^RUT", "name": "Russell 2000", "price": 2977.81, "changePct": -0.49 }
+    ],
+    "sectors": [
+      { "symbol": "XLK", "name": "Technology", "changePct": 0.23 },
+      { "symbol": "XLC", "name": "Communication Services", "changePct": 1.02 },
+      { "symbol": "XLY", "name": "Consumer Discretionary", "changePct": 0.33 },
+      { "symbol": "XLP", "name": "Consumer Staples", "changePct": 1.11 },
+      { "symbol": "XLF", "name": "Financials", "changePct": 0.31 },
+      { "symbol": "XLV", "name": "Health Care", "changePct": -0.82 },
+      { "symbol": "XLI", "name": "Industrials", "changePct": 0.45 },
+      { "symbol": "XLE", "name": "Energy", "changePct": 0.47 },
+      { "symbol": "XLB", "name": "Materials", "changePct": 1.25 },
+      { "symbol": "XLU", "name": "Utilities", "changePct": 0.62 },
+      { "symbol": "XLRE", "name": "Real Estate", "changePct": 0.50 }
+    ]
+  },
+  "articles": [
+    {
+      "id": "article-ap-market-20260710",
+      "canonicalUrl": "https://apnews.com/article/45e2da56e466900ff8def70ab931387d",
+      "source": "AP News",
+      "sourceRole": "publisher-web",
+      "sourceTier": "primary-publisher",
+      "publishedDate": "2026-07-10",
+      "headline": "US stocks rise as Wall Street shows it's still hungry for AI winners",
+      "body": { "charCount": 4200, "sha256": "manual-web-evidence-ap-market" },
+      "evidence": [
+        { "id": "e1", "quote": "The S&P 500 rose 0.4% to close out its fourth winning week in the last five. The Dow Jones Industrial Average added 149 points, or 0.3%, and the Nasdaq composite climbed 0.3%.", "start": 0, "end": 174 },
+        { "id": "e2", "quote": "Nvidia was the strongest single force lifting the S&P 500 Friday after rising 4%.", "start": 175, "end": 257 }
+      ],
+      "classification": { "kind": "market", "sector": "", "ticker": "", "name": "" },
+      "editorial": {
+        "status": "verified",
+        "headlineKo": "AI 관련주 강세에 S&P 500·나스닥 상승 마감",
+        "summaryKo": "S&P 500은 0.4%, 다우와 나스닥은 각각 0.3% 올랐습니다. 엔비디아가 4% 상승하며 S&P 500 상승에 가장 크게 기여했습니다.",
+        "evidenceIds": ["e1", "e2"]
+      }
+    },
+    {
+      "id": "article-ap-skhynix-20260710",
+      "canonicalUrl": "https://apnews.com/article/73f13a85ae00e30bad0540281bbe44f3",
+      "source": "AP News",
+      "sourceRole": "publisher-web",
+      "sourceTier": "primary-publisher",
+      "publishedDate": "2026-07-10",
+      "headline": "SK Hynix rises nearly 13% in debut on Wall Street as demand for memory chips soars amid AI frenzy",
+      "body": { "charCount": 3900, "sha256": "manual-web-evidence-ap-skhynix" },
+      "evidence": [
+        { "id": "e1", "quote": "Shares of South Korean memory chipmaker SK Hynix rose 12.8% as they made their debut on Wall Street.", "start": 0, "end": 106 },
+        { "id": "e2", "quote": "The offering of 177.9 million ADRs raised proceeds of $26.5 billion, making it the biggest-ever initial share sale in the U.S. by a foreign company.", "start": 107, "end": 255 }
+      ],
+      "classification": { "kind": "stock", "sector": "Technology/AI", "ticker": "SKHYV", "name": "SK Hynix" },
+      "quote": { "symbol": "SKHYV", "price": 168.01, "changePct": 12.76, "date": "2026-07-10", "source": "AP News" },
+      "editorial": {
+        "status": "verified",
+        "headlineKo": "SK하이닉스, 나스닥 데뷔 첫날 12.8% 상승",
+        "summaryKo": "SK하이닉스 ADR은 월가 데뷔 첫날 12.8% 올랐습니다. 1억7,790만 ADR 발행으로 265억달러를 조달해 외국 기업의 미국 최대 신규 주식 발행으로 기록됐습니다.",
+        "evidenceIds": ["e1", "e2"]
+      }
+    },
+    {
+      "id": "article-bankingdive-circle-20260710",
+      "canonicalUrl": "https://www.bankingdive.com/news/circle-occ-national-trust-bank-charter-full-approval-allaire-usdc-stablecoin/824969/",
+      "source": "Banking Dive",
+      "sourceRole": "publisher-web",
+      "sourceTier": "primary-publisher",
+      "publishedDate": "2026-07-10",
+      "headline": "Circle gets OCC’s full trust bank charter nod",
+      "body": { "charCount": 1800, "sha256": "manual-web-evidence-circle" },
+      "evidence": [
+        { "id": "e1", "quote": "Stablecoin issuer Circle has received the Office of the Comptroller of the Currency’s unfettered approval for a national trust bank license.", "start": 0, "end": 143 },
+        { "id": "e2", "quote": "Circle National Trust will offer fiduciary digital asset custody services and plans to provide reserve management later.", "start": 144, "end": 264 }
+      ],
+      "classification": { "kind": "sector", "sector": "Financials", "ticker": "", "name": "" },
+      "editorial": {
+        "status": "verified",
+        "headlineKo": "서클, OCC 내셔널 트러스트 뱅크 인가 획득",
+        "summaryKo": "스테이블코인 발행사 서클이 OCC의 내셔널 트러스트 뱅크 인가를 받았습니다. 새 법인은 디지털자산 수탁 서비스를 제공하고 향후 준비자산 관리도 추진할 계획입니다.",
+        "evidenceIds": ["e1", "e2"]
+      }
+    }
+  ],
+  "stories": [
+    { "id": "story-market", "articleId": "article-ap-market-20260710", "kind": "market", "sector": "", "ticker": "", "name": "", "headlineKo": "AI 관련주 강세에 S&P 500·나스닥 상승 마감", "summaryKo": "S&P 500은 0.4%, 다우와 나스닥은 각각 0.3% 올랐습니다. 엔비디아가 4% 상승하며 S&P 500 상승에 가장 크게 기여했습니다.", "evidenceIds": ["e1", "e2"], "url": "https://apnews.com/article/45e2da56e466900ff8def70ab931387d", "source": "AP News", "sourceRole": "publisher-web", "sourceTier": "primary-publisher", "publishedDate": "2026-07-10", "quote": null },
+    { "id": "story-skhynix", "articleId": "article-ap-skhynix-20260710", "kind": "stock", "sector": "Technology/AI", "ticker": "SKHYV", "name": "SK Hynix", "headlineKo": "SK하이닉스, 나스닥 데뷔 첫날 12.8% 상승", "summaryKo": "SK하이닉스 ADR은 월가 데뷔 첫날 12.8% 올랐습니다. 1억7,790만 ADR 발행으로 265억달러를 조달해 외국 기업의 미국 최대 신규 주식 발행으로 기록됐습니다.", "evidenceIds": ["e1", "e2"], "url": "https://apnews.com/article/73f13a85ae00e30bad0540281bbe44f3", "source": "AP News", "sourceRole": "publisher-web", "sourceTier": "primary-publisher", "publishedDate": "2026-07-10", "quote": { "symbol": "SKHYV", "price": 168.01, "changePct": 12.76, "date": "2026-07-10", "source": "AP News" } },
+    { "id": "story-circle", "articleId": "article-bankingdive-circle-20260710", "kind": "sector", "sector": "Financials", "ticker": "", "name": "", "headlineKo": "서클, OCC 내셔널 트러스트 뱅크 인가 획득", "summaryKo": "스테이블코인 발행사 서클이 OCC의 내셔널 트러스트 뱅크 인가를 받았습니다. 새 법인은 디지털자산 수탁 서비스를 제공하고 향후 준비자산 관리도 추진할 계획입니다.", "evidenceIds": ["e1", "e2"], "url": "https://www.bankingdive.com/news/circle-occ-national-trust-bank-charter-full-approval-allaire-usdc-stablecoin/824969/", "source": "Banking Dive", "sourceRole": "publisher-web", "sourceTier": "primary-publisher", "publishedDate": "2026-07-10", "quote": null }
+  ],
+  "editorialQueue": [],
+  "sourceSummary": { "publisherCandidateCount": 3, "bodyVerifiedArticleCount": 3, "editorialVerifiedStoryCount": 3, "directPublisherStoryCount": 3, "publisherNames": ["AP News", "Banking Dive"] },
+  "warnings": ["Yahoo Finance 자동 섹션 수집이 차단돼, 원문 본문을 직접 확인한 신뢰 발행사 기사로 보완했습니다."]
+}

@@ -119,7 +119,9 @@ U.S. daily market news uses the same artifact contract with U.S. sources, New Yo
 Use $us-daily-market-news to create today's U.S. market-wide and sector daily news report for blog publication. Write analysis-example/us-market/daily-news-YYYY-MM-DD.md and .json, then use $kr-naver-blog-publish in scheduled mode.
 ```
 
-Sector collection uses [examples/us/daily-sector-stocks.json](examples/us/daily-sector-stocks.json) and the optional watchlist compatibility file at [examples/us/daily-watchlist.json](examples/us/daily-watchlist.json).
+Sector collection uses [examples/us/daily-sector-stocks.json](examples/us/daily-sector-stocks.json) and the optional watchlist compatibility file at [examples/us/daily-watchlist.json](examples/us/daily-watchlist.json). The evidence-first workflow writes an editorial queue; reviewed Korean copy must cite body evidence IDs using [daily-market-editorial.example.json](examples/us/daily-market-editorial.example.json).
+
+U.S. examples: [2026-07-09 daily report](analysis-example/us-market/daily-news-2026-07-09.md), [2026-07-10 daily report](analysis-example/us-market/daily-news-2026-07-10.md), [2026-07-09 Naver post](analysis-example/us-market/naver-post-2026-07-09.md), and [2026-07-09 publish manifest](analysis-example/us-market/naver-publish-2026-07-09.json).
 
 Telegram delivery is available for Korean/U.S. daily-news JSON or Markdown artifacts as an explicit follow-up command. It sends a short summary plus the matching `.md` file when present:
 

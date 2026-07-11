@@ -52,7 +52,47 @@ node skills/kr-naver-blog-publish/scripts/publisher.js scheduled-publish \
   --scheduled yes
 ```
 
-Scheduled mode still runs draft preparation, source-hash checks, body/source/disclaimer validation, thumbnail validation, login/CAPTCHA checks, and duplicate same-day publication protection before clicking publish. It is blocked for normal company memo manifests.
+Scheduled mode still runs draft preparation, source-hash checks, body/source/disclaimer validation, thumbnail validation, login/CAPTCHA checks, and duplicate same-day publication protection. It configures Naver’s actual scheduled-publication controls, verifies the Korean date/time and public visibility, then clicks the reservation confirmation once; it never uses the immediate-publication path.
+
+Scheduled mode is also blocked when the generator sets `automation.scheduledPublishAllowed: false`, including a failed daily-report quality gate.
+
+If a one-shot public confirmation ends in `publishing` or `publication-unverified`, do not publish again. Reconcile it explicitly. When a public URL exists, the publisher opens the page and validates title, basis date, Sources, and disclaimer before recording `published`:
+
+```bash
+node skills/kr-naver-blog-publish/scripts/publisher.js reconcile \
+  --manifest analysis-example/<market>/naver-publish-YYYY-MM-DD.json \
+  --public-url 'https://blog.naver.com/<blog-id>/<log-no>'
+```
+
+When the public blog has been checked and no post exists, a human-confirmed reset is available:
+
+```bash
+node skills/kr-naver-blog-publish/scripts/publisher.js reconcile \
+  --manifest analysis-example/<market>/naver-publish-YYYY-MM-DD.json \
+  --not-published yes \
+  --confirm-no-public-post yes
+```
+
+The reset returns the manifest to `converted` and clears preparation state; the next attempt must run every preparation check again.
+
+Before starting a browser, the publisher rejects legacy gstack daemons that point the same Naver profile at repo-local state files. After confirming that no other Naver publishing task is active, remove only those parentless legacy daemons through the guarded cleanup action:
+
+```bash
+node skills/kr-naver-blog-publish/scripts/publisher.js cleanup-browser \
+  --confirm-stale-profile yes
+```
+
+The cleanup refuses to stop a legacy process that still has a parent task.
+
+If gstack cannot start the dedicated browser even after its normal retries, first confirm that no other Naver publishing task is active. Then force-close the stale session that uses the dedicated state file and retry the publisher action once:
+
+```bash
+node skills/kr-naver-blog-publish/scripts/publisher.js cleanup-browser \
+  --confirm-stale-profile yes \
+  --force-dedicated-session yes
+```
+
+`--force-dedicated-session yes` closes the dedicated Naver publishing browser, including its open draft tabs. Do not use it while another task is preparing, previewing, or publishing with that profile.
 
 For daily market-news manifests only, `post.linkCards` contains the raw URLs rendered in the Naver `시장 주요 뉴스` section, in display order. During preparation the publisher inserts each URL at its raw URL line and presses Enter so SmartEditor can create a link preview card immediately after the numbered headline. Validation accepts either SmartEditor link-card/anchor URLs or plain URL links if Naver leaves them that way. Do not run this link-card insertion path for normal stock-memo manifests.
 
@@ -64,10 +104,13 @@ Daily market-news Naver Markdown should not contain watchlist/관심종목 secti
 - Keep daily market-news blog artifacts under `analysis-example/kr-market/` with the date in the file name.
 - Preserve core figures, reasoning, contrary views, valuation, catalysts, risks, source URLs, and chart order.
 - Keep the current Naver category when the user did not specify one.
-- Treat the manifest as the authoritative state record: `converted` → `prepared` → `published`.
+- Treat the manifest as the authoritative state record: `converted` → `prepared` → `publishing` → `published` or `scheduled`. Daily scheduled posts default to the next Korean weekday at 08:00 KST unless the manifest supplies a valid `automation.schedule.date`. If the single confirmation click cannot be verified, record `publication-unverified`, clear the token, and never click again until the public blog is reconciled.
 - Never reuse a published manifest or a token from an older preparation.
 - Never publish after any hash, selector, image-count, title, body, source, disclaimer, login, CAPTCHA, or token check fails.
 - Never scheduled-publish if a same-day daily market-news manifest in the same output directory is already published.
+- Serialize publisher actions with the runtime lock under `~/.gstack/kr-naver-blog-publish/`. The browser profile and gstack state file must use that same dedicated runtime so separate Codex tasks cannot start competing servers for one profile.
+- Fail before browser startup when another state file still controls the same profile; never silently start a competing browser server.
+- Keep a token-free audit trail at `~/.gstack/kr-naver-blog-publish/publisher-audit.jsonl` for startup, validation, confirmation, verification, and failure events.
 
 ## Validation
 

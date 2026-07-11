@@ -1,0 +1,7 @@
+{
+  "https://publisher.example.com/article": {
+    "headlineKo": "한국어 제목은 원문 본문을 바탕으로 작성",
+    "summaryKo": "한국어 요약은 아래 evidenceIds가 가리키는 원문 문장에서 확인되는 사실만 담습니다.",
+    "evidenceIds": ["e1", "e2"]
+  }
+}

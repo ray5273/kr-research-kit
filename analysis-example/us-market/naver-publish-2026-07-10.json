@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "contentType": "daily-market-news",
+  "status": "scheduled",
+  "source": {
+    "reportPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us-market/daily-news-2026-07-10.md",
+    "reportSha256": "cc4838e4453ad9486de464bbd89082e61b74ab47484c42b27db9797e934ce7c0",
+    "asOfDate": "2026-07-10"
+  },
+  "post": {
+    "company": "미국 시장",
+    "ticker": "",
+    "title": "2026-07-10 미국증시 | SK Hynix·금융 핵심 뉴스",
+    "issue": "S&P 500은 0.4%, 다우와 나스닥은 각각 0.3% 올랐습니다. 엔비디아가 4% 상승하며 S&P 500 상승에 가장 크게 기여했습니다.",
+    "category": null,
+    "tags": [
+      "미국증시",
+      "S&P 500",
+      "Nasdaq",
+      "시장뉴스",
+      "20260710"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us-market/naver-post-2026-07-10.md",
+    "markdownSha256": "883a4abd2f27e79a8d5c83883584a2846403bf78e0f22cfb8b1badd4ab902c35",
+    "images": [],
+    "linkCards": [
+      "https://apnews.com/article/73f13a85ae00e30bad0540281bbe44f3",
+      "https://www.bankingdive.com/news/circle-occ-national-trust-bank-charter-full-approval-allaire-usdc-stablecoin/824969/",
+      "https://apnews.com/article/45e2da56e466900ff8def70ab931387d"
+    ],
+    "thumbnail": {
+      "prompt": "2026-07-10 미국증시 | SK Hynix·금융 핵심 뉴스 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.",
+      "relativePath": "assets/naver-thumbnail-2026-07-10.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us-market/assets/naver-thumbnail-2026-07-10.png",
+      "sha256": "f7f5c6f97484f1b40e90654d7981e26e54ebcb23c939bd071fc451bb4b2f4240",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-11T01:43:26.729Z"
+    },
+    "publicationDate": "2026-07-10"
+  },
+  "automation": {
+    "scheduledPublishAllowed": true,
+    "duplicateScope": "us-daily-market-news",
+    "duplicateDate": "2026-07-10",
+    "qualityGate": {
+      "passed": true,
+      "reasons": [],
+      "metrics": {
+        "indexCount": 4,
+        "sectorSnapshotCount": 11,
+        "verifiedStoryCount": 3,
+        "directPublisherStoryCount": 3,
+        "pendingEditorialCount": 0
+      }
+    },
+    "schedule": {
+      "timezone": "Asia/Seoul",
+      "date": "2026-07-13",
+      "time": "08:00",
+      "nextBusinessDay": true
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-11T01:58:53.193Z",
+    "expiresAt": "2026-07-11T02:28:53.193Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us-market/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "7bc9c4d37b78dea35d9c845bbaa555d7ea8c2be9d6e4a771d20c3a5752a01e95",
+    "approvalTokenHash": null,
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": false,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": {
+    "attemptedAt": "2026-07-11T01:58:55.706Z",
+    "scheduledAt": "2026-07-13T08:00:00+09:00",
+    "result": "scheduled",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false"
+  }
+}
