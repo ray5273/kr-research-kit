@@ -1,0 +1,4 @@
+interface:
+  display_name: "KRX Strategy Backtest"
+  short_description: "Design, test, and record KOSPI/KOSDAQ-only trading strategies."
+  default_prompt: "Use $kr-strategy-backtest to design a KOSPI/KOSDAQ-only daily-bar trading strategy, backtest it with explicit costs and no-look-ahead rules, and write reproducible Markdown and JSON results under analysis-example/kr-market/strategies/."
