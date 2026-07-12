@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/부국증권/memo.md",
+    "memoSha256": "8b36cafbf68e874e66a1078f4dd7c89d0048ed623f9a7d4664b497b58cdb0c59",
+    "asOfDate": "2026-07-10"
+  },
+  "post": {
+    "company": "부국증권",
+    "ticker": "",
+    "title": "부국증권 | 자본배분·지배구조 재평가형 중소형 증권사 | 2026-07-10",
+    "issue": "자본배분·지배구조 재평가형 중소형 증권사",
+    "category": null,
+    "tags": [
+      "부국증권",
+      "주식분석",
+      "배당"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/부국증권/naver-post.md",
+    "markdownSha256": "2e59d88380c7e8bb8ca8de22a33c183bde5481431ab2ff61e5ad91f64ff18f32",
+    "images": [
+      {
+        "order": 1,
+        "alt": "부국증권 추세",
+        "relativePath": "../assets/부국증권-chart.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/부국증권-chart.png",
+        "sha256": "c5f6cf8c00e0e511e769b399c2015c516fa35e531922d0f6932aef5977957c5c",
+        "section": "Chart and Positioning"
+      },
+      {
+        "order": 2,
+        "alt": "부국증권 오버레이",
+        "relativePath": "../assets/부국증권-chart-overlay.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/부국증권-chart-overlay.png",
+        "sha256": "84f3da3468371a37a1ea36e6d0236c7e22cf9e76b7e6d44af582c3826c5eec40",
+        "section": "Chart and Positioning"
+      },
+      {
+        "order": 3,
+        "alt": "부국증권 모멘텀",
+        "relativePath": "../assets/부국증권-chart-momentum.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/부국증권-chart-momentum.png",
+        "sha256": "d3820e3802f923cb8f695613119bfc255d4062605c9106a31027527866527a55",
+        "section": "Chart and Positioning"
+      },
+      {
+        "order": 4,
+        "alt": "부국증권 구조",
+        "relativePath": "../assets/부국증권-chart-structure.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/부국증권-chart-structure.png",
+        "sha256": "a009d31257fb9265acdb6f91cdb5dba614058bce9df0c74d44c15745ffae7f37",
+        "section": "Chart and Positioning"
+      }
+    ],
+    "thumbnail": {
+      "prompt": "부국증권 | 자본배분·지배구조 재평가형 중소형 증권사 | 2026-07-10 블로그 썸네일 만들어줘",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/부국증권/assets/naver-thumbnail.png",
+      "sha256": "fcf4471b8b40f34e587e24d3ffe0871abf06bbe1cae52b36c46a58a8799418f4",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-12T01:11:50.499Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-12T01:12:15.485Z",
+    "expiresAt": "2026-07-12T01:42:15.485Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/부국증권/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "0338269216c4a839a3e1756f70c4a3061ee8ca061c5015e1d5a0dc19dae351be",
+    "approvalTokenHash": "0b615139d64d5e3b4af4aff5c642ec5625c470a2b537e15a8abb65792fd4157b",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

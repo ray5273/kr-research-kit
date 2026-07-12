@@ -1,0 +1,18 @@
+{
+  "reference": {
+    "company": "부국증권",
+    "ticker": "001270",
+    "asOf": "2026-07-12",
+    "lastFilingChecked": "분기보고서(2026.03), 2026-05-15",
+    "coverage": "partial"
+  },
+  "verifiedClaims": [
+    {"claim":"2025년 연결 순이익 456억원","status":"confirmed"},
+    {"claim":"결산 DPS 보통주 2400원·우선주 2450원","status":"confirmed"},
+    {"claim":"보통주 3730764주·우선주 36340주 소각 계획","status":"confirmed"},
+    {"claim":"최대주주측 의결권 기준 지분율 약 60.69%","status":"partially_supported"},
+    {"claim":"종류별 자사주 취득원가·보유 수량","status":"confirmed"},
+    {"claim":"잔여 보통주 700000주의 우리사주·임직원보상 처분 계획","status":"confirmed"},
+    {"claim":"자산재평가의 세후 규제자본 영향","status":"needs_follow_up"}
+  ]
+}

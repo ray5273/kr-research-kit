@@ -1,0 +1,13 @@
+{
+  "ticker": "001270",
+  "asOf": "2026-07-10",
+  "status": "partial",
+  "minerviniTrendTemplate": "incomplete",
+  "krx52WeekLeadershipScore": "partial",
+  "reason": "Integrated KOSPI+KOSDAQ RS percentile cache unavailable",
+  "checks": [
+    {"name":"closeAboveMA60","status":"fail","close":56300,"ma60":65106.67},
+    {"name":"closeAboveMA120","status":"fail","close":56300,"ma120":70344.17},
+    {"name":"near52WeekHigh","status":"fail","high52Week":104600}
+  ]
+}

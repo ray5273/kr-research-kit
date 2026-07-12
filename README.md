@@ -9,6 +9,8 @@ Languages:
 
 Strongest with Korean equities, now with a U.S. SEC precision stage: one Korean ticker question goes through DART filings, KRX chart pack, sell-side consensus, foreign-IB coverage, trade-flow proxy checks, and Naver-blog publishing; U.S. stock work can start from SEC EDGAR/XBRL evidence packs before the final memo. Stock artifacts land in `analysis-example/<market>/<company>/memo.md`.
 
+Recent example: [부국증권 보통주·우선주 결정 메모](<analysis-example/kr/부국증권/memo.md>).
+
 ## Quick Install
 
 In Claude Code:
