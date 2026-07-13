@@ -40,4 +40,47 @@ function run(label, strategy) {
 
 run('momentum', { type: 'cross-sectional-momentum', lookbackDays: 20, topN: 1, rebalanceEvery: 5 });
 run('sma', { type: 'sma-cross', fastDays: 10, slowDays: 20, maxPositions: 2, rebalanceEvery: 5 });
+
+// Offline coverage for the KOSPI ex-heavyweights reconstruction (no network).
+function testReconstructExKospi() {
+  const { reconstructExKospi } = require('./run-kr-trend-following-10y.js');
+  const n = 40;
+  const series = closes => closes.map((close, i) => ({ date: new Date(Date.UTC(2016, 0, 1 + i)).toISOString().slice(0, 10), close }));
+  const kClose = Array.from({ length: n }, (_, i) => 1000 * 1.005 ** i);
+  const kospi = { bars: series(kClose) };
+  const calendar = kospi.bars.map(b => b.date);
+  const kospiReturn = kClose[n - 1] / kClose[0] - 1;
+  const excluded = closes => [{ ticker: '005930', bars: series(closes) }];
+
+  // 1. Zero weight must collapse the reconstruction back onto the raw KOSPI index.
+  const zero = reconstructExKospi(calendar, kospi, excluded(Array.from({ length: n }, (_, i) => 50000 * 1.01 ** i)), { '005930': 0 }, { name: 'zero' });
+  if (Math.abs(zero.summary.totalReturn - kospiReturn) > 1e-9) throw new Error('ex-KOSPI: zero weight should equal the raw KOSPI return');
+
+  // 2. An excluded name that outperforms the index must drag the "rest of market" below KOSPI.
+  const outperform = reconstructExKospi(calendar, kospi, excluded(Array.from({ length: n }, (_, i) => 50000 * 1.02 ** i)), { '005930': 0.3 }, { name: 'up' });
+  if (!(outperform.summary.totalReturn < kospiReturn - 1e-9)) throw new Error('ex-KOSPI: excluded outperformer should lower the ex-index return');
+
+  // 3. An excluded name that underperforms must lift the ex-index above KOSPI.
+  const underperform = reconstructExKospi(calendar, kospi, excluded(Array.from({ length: n }, (_, i) => 50000 * 0.99 ** i)), { '005930': 0.3 }, { name: 'down' });
+  if (!(underperform.summary.totalReturn > kospiReturn + 1e-9)) throw new Error('ex-KOSPI: excluded underperformer should raise the ex-index return');
+
+  // 4. Weights heavy enough to drive the reconstruction non-positive must fail loudly, not emit a bogus index.
+  let threw = false;
+  try { reconstructExKospi(calendar, kospi, excluded(Array.from({ length: n }, () => 50000)), { '005930': 5 }, { name: 'bad' }); } catch (_) { threw = true; }
+  if (!threw) throw new Error('ex-KOSPI: oversized weight should throw instead of returning a non-positive index');
+
+  // 5. indexLevels expose REAL ex-index points (used by the standalone tracker); they must be
+  //    positive, carry the raw KOSPI level, and rescale to the normalized equity via baseValue.
+  const r = reconstructExKospi(calendar, kospi, excluded(Array.from({ length: n }, (_, i) => 50000 * 1.02 ** i)), { '005930': 0.3 }, { name: 'levels' });
+  if (r.indexLevels.length !== calendar.length) throw new Error('ex-KOSPI: indexLevels length mismatch');
+  if (!(r.baseValue > 0)) throw new Error('ex-KOSPI: baseValue must be positive');
+  for (let i = 0; i < calendar.length; i += 1) {
+    if (!(r.indexLevels[i].level > 0)) throw new Error('ex-KOSPI: index level must stay positive');
+    if (r.indexLevels[i].kospi !== kClose[i]) throw new Error('ex-KOSPI: indexLevels.kospi must equal the raw KOSPI close');
+    const rescaled = 100000000 * r.indexLevels[i].level / r.baseValue;
+    if (Math.abs(rescaled - r.dailyEquity[i].equity) > 1e-6) throw new Error('ex-KOSPI: indexLevels must rescale to dailyEquity via baseValue');
+  }
+}
+testReconstructExKospi();
+
 console.log('PASS', dir);
