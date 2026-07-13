@@ -11,6 +11,8 @@ Strongest with Korean equities, now with a U.S. SEC precision stage: one Korean 
 
 Recent example: [부국증권 보통주·우선주 결정 메모](<analysis-example/kr/부국증권/memo.md>).
 
+Weekly portfolio example: [주간 포트폴리오 성과와 월간 업데이트 비교](<analysis-example/kr-market/strategies/trend-following-10y/weekly-portfolio-performance-and-monthly-comparison-through-2026-07-10.md>) — 동일한 Minervini RS·EPS·매출 상위 10개 규칙을 주간과 월간으로 비교하고, 주간 레짐·변동성 타기팅의 MDD 관리 결과를 정리합니다.
+
 ## Quick Install
 
 In Claude Code:
