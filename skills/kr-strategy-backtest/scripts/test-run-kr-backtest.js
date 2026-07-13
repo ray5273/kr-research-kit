@@ -68,6 +68,18 @@ function testReconstructExKospi() {
   let threw = false;
   try { reconstructExKospi(calendar, kospi, excluded(Array.from({ length: n }, () => 50000)), { '005930': 5 }, { name: 'bad' }); } catch (_) { threw = true; }
   if (!threw) throw new Error('ex-KOSPI: oversized weight should throw instead of returning a non-positive index');
+
+  // 5. indexLevels expose REAL ex-index points (used by the standalone tracker); they must be
+  //    positive, carry the raw KOSPI level, and rescale to the normalized equity via baseValue.
+  const r = reconstructExKospi(calendar, kospi, excluded(Array.from({ length: n }, (_, i) => 50000 * 1.02 ** i)), { '005930': 0.3 }, { name: 'levels' });
+  if (r.indexLevels.length !== calendar.length) throw new Error('ex-KOSPI: indexLevels length mismatch');
+  if (!(r.baseValue > 0)) throw new Error('ex-KOSPI: baseValue must be positive');
+  for (let i = 0; i < calendar.length; i += 1) {
+    if (!(r.indexLevels[i].level > 0)) throw new Error('ex-KOSPI: index level must stay positive');
+    if (r.indexLevels[i].kospi !== kClose[i]) throw new Error('ex-KOSPI: indexLevels.kospi must equal the raw KOSPI close');
+    const rescaled = 100000000 * r.indexLevels[i].level / r.baseValue;
+    if (Math.abs(rescaled - r.dailyEquity[i].equity) > 1e-6) throw new Error('ex-KOSPI: indexLevels must rescale to dailyEquity via baseValue');
+  }
 }
 testReconstructExKospi();
 

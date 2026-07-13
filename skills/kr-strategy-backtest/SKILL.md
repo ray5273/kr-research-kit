@@ -46,6 +46,19 @@ It fixes the test window at 2016-07-11 through 2026-07-10, with 2015-07-01 as wa
 
 Use `--limit N` only for a technical smoke run. The result remains current-universe based and must carry the survivor-bias warning.
 
+## Tracking the ex-heavyweights index on its own
+
+To follow the "KOSPI minus 삼성전자·삼성전자우·SK하이닉스" index over time **without** the full ~2,470-ticker run, use the standalone tracker. It fetches only `^KS11` and the excluded tickers from Yahoo, sources weights from Naver (with a committed market-cap snapshot as an offline fallback), and reuses the same `reconstructExKospi` engine:
+
+```bash
+node skills/kr-strategy-backtest/scripts/track-ex-kospi-index.js \
+  --years 5 \
+  --output-dir analysis-example/kr-market/strategies/ex-kospi-index \
+  --log analysis-example/kr-market/strategies/ex-kospi-index/history.ndjson
+```
+
+Each run writes a dated `ex-kospi-index-<end>.json` + `.md` snapshot in **actual index points** (KOSPI level, ex-heavyweights contribution, and the semiconductor contribution in points and %), plus the standard return/vol/Sharpe/MDD metrics. Passing `--log` appends the latest reading to an NDJSON file so the level and return can be tracked across scheduled runs. Weight sourcing precedence: `--kospi-total-marketcap` override → live Naver → `--weights-from-snapshot` (auto-fallback when Naver is unreachable; use `--no-naver` to force it). Override the excluded set with `--exclude-tickers`, or the window with `--start`/`--end`. This output is index-level public data only — no holdings — so it is safe to commit. It carries the same current-weight/constant-share approximation and survivor-bias caveats as the benchmark.
+
 ## Engine Rules
 
 - Compute signals from each session's close and place the rebalance at the next available session's open. Never use same-close execution.
