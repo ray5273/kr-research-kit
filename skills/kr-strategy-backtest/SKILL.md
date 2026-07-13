@@ -45,6 +45,33 @@ It fixes the test window at 2016-07-11 through 2026-07-10, with 2015-07-01 as wa
 
 Use `--limit N` only for a technical smoke run. The result remains current-universe based and must carry the survivor-bias warning.
 
+## Alternative Factor Studies
+
+Four validated non-momentum factor backtests share one core module,
+[scripts/lib/factor-backtest-core.js](scripts/lib/factor-backtest-core.js)
+(fixed 10y frame, top-300 ordinary universe, month-end -> next-open, 25bp,
+50:50 benchmark, and the extended point-in-time DART panel reader with net
+income / CFO / total & current liabilities / current assets). They reuse the
+existing price cache and DART quarterly panel, so no extra fetch is needed.
+Each takes `--limit N` for a smoke run and writes a JSON+MD pair into
+`analysis-example/kr-market/strategies/trend-following-10y/`.
+
+```bash
+node skills/kr-strategy-backtest/scripts/backtest-kr-low-volatility.js       # low-vol factor (Baker-Haugen / BAB); vol as stock picker, not overlay
+node skills/kr-strategy-backtest/scripts/backtest-kr-value-momentum.js       # E/P + B/P value x momentum (Asness); the missing value axis
+node skills/kr-strategy-backtest/scripts/backtest-kr-piotroski.js            # 9-point F-score quality screen (Piotroski 2000)
+node skills/kr-strategy-backtest/scripts/backtest-kr-short-term-reversal.js  # 1-month cross-sectional reversal (Jegadeesh 1990)
+```
+
+Each has a `test-<slug>.js` smoke driver asserting the holdings cap, next-open
+execution (no look-ahead), factor ranges, and input-hash presence. These were
+added because the prior studies had saturated the momentum axis: measured on
+monthly returns, the current recommended RS+earnings portfolio is 0.998
+correlated with plain momentum, whereas low-vol (0.36), pure value (0.37), and
+reversal (0.55) carry genuinely diversifying return streams. Value x 252-day
+momentum is the standout (CAGR ~32%, Sharpe ~1.28, MDD ~-33%). Every report
+must keep the survivorship-bias + omitted-friction disclaimer.
+
 ## Engine Rules
 
 - Compute signals from each session's close and place the rebalance at the next available session's open. Never use same-close execution.
