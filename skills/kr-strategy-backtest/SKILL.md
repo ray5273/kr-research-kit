@@ -42,6 +42,7 @@ It fixes the test window at 2016-07-11 through 2026-07-10, with 2015-07-01 as wa
 - 252-session momentum top 20, equal-weighted and rebalanced monthly.
 - Minervini Trend Template plus KRX weighted 3/6/12-month RS percentile: top 10 passing names, equal-weighted and rebalanced monthly.
 - A static 50:50 KOSPI/KOSDAQ index benchmark.
+- A reconstructed **"KOSPI ex-반도체 대형주"** benchmark (default 삼성전자 005930, 삼성전자우 005935, SK하이닉스 000660): the actual KOSPI level `^KS11` with each excluded name's market-cap contribution stripped out, i.e. `M_ex(t) = K(t) − Σ wᵢ·K(T)·pᵢ(t)/pᵢ(T)`. Current index weights `wᵢ = capᵢ/총KOSPI시총` are pulled live from Naver's marketValue endpoint (all KOSPI pages summed for the denominator). This is a **current-weight, constant-share approximation** (splits handled by Yahoo adjustment; buybacks/issuance, free-float, and new listings ignored) — a comparison series, not a tradeable index. Override with `--exclude-tickers`, force the denominator with `--kospi-total-marketcap`, or skip entirely with `--no-ex-benchmark`. On any fetch failure the run drops this benchmark with a warning rather than failing. It is written to the artifact as `benchmarkExHeavies` alongside `benchmark`.
 
 Use `--limit N` only for a technical smoke run. The result remains current-universe based and must carry the survivor-bias warning.
 
