@@ -22,6 +22,10 @@ assert(medianRet < 0, `reversal picks losers (median selected ret21 ${medianRet}
 const qCand = x.strategies.revQuality.monthlySelections.map(m => m.candidates);
 const pCand = x.strategies.revPure.monthlySelections.map(m => m.candidates);
 assert(qCand.every((c, i) => c <= pCand[i]), 'revQuality candidate pool <= revPure');
+// Corrected-methodology invariants: sell tax should have bitten this high-turnover strategy.
+assert(x.benchmarkTotalReturn && x.benchmarkTotalReturn.summary.cagr > x.benchmarkPriceIndex.summary.cagr, 'total-return benchmark > price-index (C2)');
+assert(x.commonRules.cost.sellBps > x.commonRules.cost.buyBps, 'sell tax modeled (C3)');
+assert(x.augmentation.strategyStats.revEps.deflated, 'deflated Sharpe attached (H1)');
 assert(x.data.hashes.priceManifestSha256 && x.data.hashes.dartPanelManifestSha256, 'input hashes present');
 assert(x.period.outOfSampleStart === '2023-07-11', 'out-of-sample cut recorded');
 console.log(JSON.stringify({ pass: true, strategies: Object.keys(x.strategies), medianSelectedRet21: medianRet, revPureCagr: x.strategies.revPure.summary.cagr, revPureTurnover: x.strategies.revPure.summary.turnover }, null, 2));

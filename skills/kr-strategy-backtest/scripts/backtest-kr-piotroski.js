@@ -82,11 +82,11 @@ function main() {
   const { series, manifestHash } = L.loadSeriesByTicker();
   const monthEnds = L.monthEnds(calendar);
 
-  const modes = ['pFilterMom', 'pScoreMom', 'pPure'];
+  const modes = ['pFilterMom', 'pScoreMom', 'pPure', 'pStrict9'];
   const result = {};
 
   for (const mode of modes) {
-    const orders = new Map(), monthly = [], warnings = { noPrice: 0, noFscore: 0, reducedScoreCount: 0, thinGate: 0 };
+    const orders = new Map(), monthly = [], warnings = { noPrice: 0, noFscore: 0, reducedScoreCount: 0, thinGate: 0, evaluableDist: { 7: 0, 8: 0, 9: 0 } };
     for (const signalDate of monthEnds) {
       const rows = [];
       for (const [ticker, state] of states) {
@@ -95,22 +95,28 @@ function main() {
         const pio = piotroskiAt(series.get(ticker) || [], signalDate);
         if (!pio) { warnings.noFscore++; continue; }
         if (pio.evaluable < 9) warnings.reducedScoreCount++;
+        warnings.evaluableDist[pio.evaluable] = (warnings.evaluableDist[pio.evaluable] || 0) + 1;
+        // Strict variant: only fully-evaluable names, so raw F-scores are directly comparable.
+        if (mode === 'pStrict9' && pio.evaluable < 9) continue;
         const ret252 = state.bars[i].close / state.bars[i - 252].close - 1;
-        rows.push({ ticker, name: state.name, market: state.market, fScore: pio.fScore, evaluable: pio.evaluable, signals: pio.signals, ret252, report: pio.report });
+        // Fraction normalizes for the evaluable-count denominator so a 7-of-7 outranks a 7-of-9 (M2 fix).
+        rows.push({ ticker, name: state.name, market: state.market, fScore: pio.fScore, evaluable: pio.evaluable, fFrac: pio.fScore / pio.evaluable, signals: pio.signals, ret252, report: pio.report });
       }
       if (!rows.length) continue;
-      L.percentile(rows, 'fScore');
+      L.percentile(rows, 'fFrac');
       L.percentile(rows, 'ret252');
       let ranked;
       if (mode === 'pFilterMom') {
         const gate = rows.filter(r => r.fScore >= F_GATE);
         if (gate.length < L.MAX_HOLDINGS) warnings.thinGate++;
-        ranked = gate.sort((a, b) => b.ret252 - a.ret252 || b.fScore - a.fScore);
+        ranked = gate.sort((a, b) => b.ret252 - a.ret252 || b.fFrac - a.fFrac);
       } else if (mode === 'pScoreMom') {
-        for (const r of rows) r.score = 0.5 * r.fScorePct + 0.5 * r.ret252Pct;
-        ranked = rows.sort((a, b) => b.score - a.score || b.fScore - a.fScore);
-      } else {
+        for (const r of rows) r.score = 0.5 * r.fFracPct + 0.5 * r.ret252Pct;
+        ranked = rows.sort((a, b) => b.score - a.score || b.fFrac - a.fFrac);
+      } else if (mode === 'pStrict9') {
         ranked = rows.sort((a, b) => b.fScore - a.fScore || b.ret252 - a.ret252);
+      } else {
+        ranked = rows.sort((a, b) => b.fFrac - a.fFrac || b.ret252 - a.ret252);
       }
       const next = calendar[calendar.indexOf(signalDate) + 1];
       if (next && next <= L.CUTOFF) orders.set(next, { signalDate, tickers: ranked.slice(0, L.MAX_HOLDINGS).map(r => r.ticker) });
@@ -123,37 +129,53 @@ function main() {
 
   const benchEq = base.benchmark.dailyEquity.filter(x => x.date >= L.START && x.date <= L.CUTOFF);
   const ps = L.panelStatus();
+  const aug = L.reportAugmentation(states, calendar, series, { pFilterMom: result.pFilterMom.dailyEquity, pStrict9: result.pStrict9.dailyEquity });
+  const ewTR = aug.ewTotalReturnBenchmark, taxedBase = aug.taxedMomentumBaseline;
+  const dist = result.pScoreMom.warnings.evaluableDist;
   const artifact = {
     generatedAt: new Date().toISOString(),
     period: { start: L.START, end: L.CUTOFF, outOfSampleStart: L.OOS_START },
     universe: { source: L.TOP_FILE, top300Count: 300, eligibleCount: top.length, priceUsableCount: states.size, maxHoldings: L.MAX_HOLDINGS },
-    commonRules: { costOneWay: L.COST, signal: 'month-end adjusted close', execution: 'next trading-day open', pointInTime: 'DART rcept_no <= signal date', cashResidual: true, fScoreGate: F_GATE },
+    commonRules: { cost: aug.costModel, signal: 'month-end adjusted close', execution: 'next trading-day open', pointInTime: 'DART rcept_no <= signal date', cashResidual: true, fScoreGate: F_GATE },
     data: { priceCache: L.DATA, dartPanel: L.PANEL, panelStatus: ps, hashes: { priceManifestSha256: L.priceManifestHash(states), dartPanelManifestSha256: manifestHash } },
     strategies: result,
-    benchmark: { summary: L.stats(benchEq), dailyEquity: benchEq },
-    warnings: [...L.DISCLAIMER, 'F-score는 TTM 기준이며 1년 전 TTM과 비교한다. 레버리지는 총부채/자산 프록시, 유동비율은 유동자산/유동부채, 주식수는 TTM 순이익/EPS 근사치.', '9개 신호 중 최소 7개가 산출되는 종목만 포함하고, 축소 산출 건수는 reducedScoreCount에 기록한다.'],
+    augmentation: aug,
+    evaluableDistribution: dist,
+    benchmarkPriceIndex: { summary: L.stats(benchEq), dailyEquity: benchEq },
+    benchmarkTotalReturn: { summary: ewTR.summary, constituents: ewTR.constituents, dailyEquity: ewTR.dailyEquity },
+    taxedMomentumBaseline: { summary: taxedBase.summary },
+    warnings: [...L.DISCLAIMER, 'F-score는 TTM 기준이며 1년 전 TTM과 비교한다. 레버리지는 총부채/자산 프록시, 유동비율은 유동자산/유동부채, 주식수는 TTM 순이익/EPS 근사치.', '랭킹은 raw F가 아닌 F/evaluable(분수)로 하여 7-of-7이 7-of-9보다 상위. pStrict9는 9개 전부 산출된 종목만 써 raw F 직접 비교 가능.'],
   };
   L.write(path.join(L.OUT, `${OUT_STEM}.json`), artifact);
 
   const p = L.pctText;
-  const labels = { pFilterMom: 'F≥7 필터 → 252일 모멘텀', pScoreMom: 'F-score 50% × 252일 모멘텀', pPure: '고 F-score 단독' };
+  const labels = { pFilterMom: 'F≥7 필터 → 252일 모멘텀', pScoreMom: 'F분수 50% × 252일 모멘텀', pPure: '고 F분수 단독', pStrict9: 'F 9개 완전산출 단독' };
   const rowLine = (label, s, oos, ytd) => `|${label}|${p(s.totalReturn)}|${p(s.cagr)}|${p(s.annualizedVolatility)}|${s.sharpeZeroRf.toFixed(2)}|${p(s.maxDrawdown)}|${s.calmar.toFixed(2)}|${s.tradeCount ?? '—'}|${s.turnover !== undefined ? s.turnover.toFixed(2) : '—'}|${p(oos.totalReturn)}|${p(ytd.totalReturn)}|`;
   const rows = modes.map(m => rowLine(labels[m], result[m].summary, result[m].outOfSample, result[m].ytd)).join('\n');
-  const benchRow = rowLine('KOSPI/KOSDAQ 50:50', { ...L.stats(benchEq), tradeCount: '—', turnover: undefined }, L.stats(benchEq.filter(x => x.date >= L.OOS_START)), L.stats(benchEq.filter(x => x.date >= '2026-01-01')));
+  const benchRow = rowLine('벤치마크: KOSPI/KOSDAQ 50:50 (가격지수)', { ...L.stats(benchEq), tradeCount: '—', turnover: undefined }, L.stats(benchEq.filter(x => x.date >= L.OOS_START)), L.stats(benchEq.filter(x => x.date >= '2026-01-01')));
+  const ewRow = rowLine('벤치마크: 동일가중 유니버스 (총수익)', { ...ewTR.summary, tradeCount: '—', turnover: undefined }, L.stats(ewTR.dailyEquity.filter(x => x.date >= L.OOS_START)), L.stats(ewTR.dailyEquity.filter(x => x.date >= '2026-01-01')));
+  const baseS = taxedBase.summary;
+  const baselineRow = `|참고: 252일 모멘텀 + EPS·매출 (동일 과세)|${p(baseS.totalReturn)}|${p(baseS.cagr)}|${p(baseS.annualizedVolatility)}|${baseS.sharpeZeroRf.toFixed(2)}|${p(baseS.maxDrawdown)}|${baseS.calmar.toFixed(2)}|${baseS.tradeCount}|${baseS.turnover.toFixed(2)}|—|—|`;
 
   const md = `# KOSPI·KOSDAQ Piotroski F-score 백테스트
 
 - 기간: ${L.START}~${L.CUTOFF} (out-of-sample 컷 ${L.OOS_START} 이후)
 - 유니버스: 현재 시가총액 상위 300개 중 보통주 ${top.length}개, 가격 데이터 사용 가능 ${states.size}개
 - 보유: 상위 ${L.MAX_HOLDINGS}개 동일비중, 미투자금 현금
-- 체결: 월말 조정 종가 신호, 다음 거래일 시가 / 비용: 편도 25bp
+- 체결: 월말 조정 종가 신호, 다음 거래일 시가 / 비용: **매수 25bp / 매도 25bp + 증권거래세 0.18%**
 
-> 과거 시뮬레이션이며 매매 추천이 아니다. Piotroski F-score는 기존 대체지표 비교에서 명시적으로 제외됐던 9점 재무건전성 스크린이다.
+> 과거 시뮬레이션이며 매매 추천이 아니다. Piotroski F-score는 기존 대체지표 비교에서 명시적으로 제외됐던 9점 재무건전성 스크린이다. 종목 간 비교가능성을 위해 랭킹은 **F/evaluable(분수)**로 하고, 9개 전부 산출된 종목만 쓰는 pStrict9 변형을 함께 실었다.
 
 |전략|누적수익률|CAGR|변동성|Sharpe|MDD|Calmar|거래 수|회전율|OOS 누적|2026 YTD|
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 ${rows}
+${baselineRow}
+${ewRow}
 ${benchRow}
+
+- 산출 신호 수 분포(name-month): 7개 ${dist[7]}건 · 8개 ${dist[8]}건 · 9개 ${dist[9]}건. pStrict9는 9개짜리만 사용.
+
+${L.statsFootnote(aug, 'pFilterMom', 'F≥7 필터 → 252일 모멘텀')}
 
 ## F-score 9개 신호 (TTM, 1년 전 TTM 대비)
 
@@ -165,7 +187,8 @@ ${benchRow}
 
 - DART 패널 ${ps.total}건 중 정상 ${ps.ok}건, OFS fallback ${ps.ofs}건, 미제공 ${ps.noData}건.
 - 레버리지는 장기차입금 대신 총부채/자산, 주식수는 순이익/EPS 역산 근사치다. 9개 중 7개 이상 산출되는 종목만 포함한다.
-- 현재 구성종목을 과거에 적용한 생존자 편향이 남아 있다. 거래정지·상장폐지·호가·시장충격·세금·배당은 반영하지 않는다.
+- 매수 25bp + 매도 25bp에 한국 증권거래세 0.18%를 반영. 호가·시장충격·거래정지는 미반영.
+- 현재 구성종목을 과거에 적용한 생존자 편향이 남아 있다(크기 추정은 survivorship-bias-quantification.md 참조).
 `;
   L.fs.writeFileSync(path.join(L.OUT, `${OUT_STEM}.md`), md);
   console.log(JSON.stringify(Object.fromEntries(modes.map(m => [m, result[m].summary])), null, 2));

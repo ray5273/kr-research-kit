@@ -19,12 +19,6 @@ const path = L.path;
 const OUT_STEM = 'low-volatility-backtest-through-2026-07-10';
 const WINDOWS = [60, 120, 252];
 
-function baselineSummary() {
-  // Optional reference: the current best momentum combo (252d momentum + EPS/revenue).
-  const f = path.join(L.OUT, 'alternative-indicators-backtest-through-2026-07-10.json');
-  try { return L.read(f).strategies.baseline.summary; } catch { return null; }
-}
-
 function main() {
   const limit = (() => { const i = process.argv.indexOf('--limit'); return i >= 0 ? Number(process.argv[i + 1]) : 0; })();
   const { top, states } = L.loadPriceStates(limit);
@@ -76,16 +70,19 @@ function main() {
 
   const benchEq = base.benchmark.dailyEquity.filter(x => x.date >= L.START && x.date <= L.CUTOFF);
   const ps = L.panelStatus();
-  const baseline = baselineSummary();
+  const aug = L.reportAugmentation(states, calendar, series, { volLow120: result.volLow120.dailyEquity });
+  const ewTR = aug.ewTotalReturnBenchmark, taxedBase = aug.taxedMomentumBaseline;
   const artifact = {
     generatedAt: new Date().toISOString(),
     period: { start: L.START, end: L.CUTOFF, outOfSampleStart: L.OOS_START },
     universe: { source: L.TOP_FILE, top300Count: 300, eligibleCount: top.length, priceUsableCount: states.size, maxHoldings: L.MAX_HOLDINGS },
-    commonRules: { costOneWay: L.COST, signal: 'month-end adjusted close', execution: 'next trading-day open', pointInTime: 'DART rcept_no <= signal date', cashResidual: true },
+    commonRules: { cost: aug.costModel, signal: 'month-end adjusted close', execution: 'next trading-day open', pointInTime: 'DART rcept_no <= signal date', cashResidual: true },
     data: { priceCache: L.DATA, dartPanel: L.PANEL, panelStatus: ps, hashes: { priceManifestSha256: L.priceManifestHash(states), dartPanelManifestSha256: manifestHash } },
     strategies: result,
-    baselineReference: baseline,
-    benchmark: { summary: L.stats(benchEq), dailyEquity: benchEq },
+    augmentation: aug,
+    benchmarkPriceIndex: { summary: L.stats(benchEq), dailyEquity: benchEq },
+    benchmarkTotalReturn: { summary: ewTR.summary, constituents: ewTR.constituents, dailyEquity: ewTR.dailyEquity },
+    taxedMomentumBaseline: { summary: taxedBase.summary },
     warnings: [...L.DISCLAIMER, '변동성은 조정 종가 일간수익률의 표준편차×√252로 계산했다.'],
   };
   L.write(path.join(L.OUT, `${OUT_STEM}.json`), artifact);
@@ -94,23 +91,28 @@ function main() {
   const labels = { volLow60: '저변동성 60일 (순수)', volLow120: '저변동성 120일 (순수)', volLow252: '저변동성 252일 (순수)', volLow120_eps: '저변동성 120일 × EPS·매출' };
   const rowLine = (label, s, oos, ytd) => `|${label}|${p(s.totalReturn)}|${p(s.cagr)}|${p(s.annualizedVolatility)}|${s.sharpeZeroRf.toFixed(2)}|${p(s.maxDrawdown)}|${s.calmar.toFixed(2)}|${s.tradeCount ?? '—'}|${s.turnover !== undefined ? s.turnover.toFixed(2) : '—'}|${p(oos.totalReturn)}|${p(ytd.totalReturn)}|`;
   const rows = modes.map(m => rowLine(labels[m.key], result[m.key].summary, result[m.key].outOfSample, result[m.key].ytd)).join('\n');
-  const benchRow = rowLine('KOSPI/KOSDAQ 50:50', { ...L.stats(benchEq), tradeCount: '—', turnover: undefined }, L.stats(benchEq.filter(x => x.date >= L.OOS_START)), benchYtd);
-  const baselineRow = baseline ? `\n|참고: 252일 모멘텀 + EPS·매출 (기존 최고 조합)|${p(baseline.totalReturn)}|${p(baseline.cagr)}|${p(baseline.annualizedVolatility)}|${baseline.sharpeZeroRf.toFixed(2)}|${p(baseline.maxDrawdown)}|${baseline.calmar ? baseline.calmar.toFixed(2) : '—'}|${baseline.tradeCount ?? '—'}|${baseline.turnover !== undefined ? baseline.turnover.toFixed(2) : '—'}|—|—|` : '';
+  const benchRow = rowLine('벤치마크: KOSPI/KOSDAQ 50:50 (가격지수)', { ...L.stats(benchEq), tradeCount: '—', turnover: undefined }, L.stats(benchEq.filter(x => x.date >= L.OOS_START)), benchYtd);
+  const ewRow = rowLine('벤치마크: 동일가중 유니버스 (총수익)', { ...ewTR.summary, tradeCount: '—', turnover: undefined }, L.stats(ewTR.dailyEquity.filter(x => x.date >= L.OOS_START)), L.stats(ewTR.dailyEquity.filter(x => x.date >= '2026-01-01')));
+  const baseS = taxedBase.summary;
+  const baselineRow = `|참고: 252일 모멘텀 + EPS·매출 (동일 과세)|${p(baseS.totalReturn)}|${p(baseS.cagr)}|${p(baseS.annualizedVolatility)}|${baseS.sharpeZeroRf.toFixed(2)}|${p(baseS.maxDrawdown)}|${baseS.calmar.toFixed(2)}|${baseS.tradeCount}|${baseS.turnover.toFixed(2)}|—|—|`;
 
   const md = `# KOSPI·KOSDAQ 저변동성 팩터 백테스트
 
 - 기간: ${L.START}~${L.CUTOFF} (out-of-sample 컷 ${L.OOS_START} 이후)
 - 유니버스: 현재 시가총액 상위 300개 중 보통주 ${top.length}개, 가격 데이터 사용 가능 ${states.size}개
 - 보유: 상위 ${L.MAX_HOLDINGS}개 동일비중, 미투자금 현금
-- 체결: 월말 조정 종가 신호, 다음 거래일 시가 / 비용: 편도 25bp
+- 체결: 월말 조정 종가 신호, 다음 거래일 시가 / 비용: **매수 25bp / 매도 25bp + 증권거래세 0.18%**
 
-> 과거 시뮬레이션이며 매매 추천이 아니다. 저변동성 팩터는 학술적으로 강건한 방어형 이상현상(Baker-Haugen, Frazzini-Pedersen BAB)으로, 기존 스터디가 종목 선정 신호로는 쓰지 않았던 축이다.
+> 과거 시뮬레이션이며 매매 추천이 아니다. 저변동성 팩터는 학술적으로 강건한 방어형 이상현상(Baker-Haugen, Frazzini-Pedersen BAB)으로, 기존 스터디가 종목 선정 신호로는 쓰지 않았던 축이다. 벤치마크는 배당 제외 가격지수와 배당 포함 동일가중 유니버스(전략과 동일 총수익 기준) 둘 다 병기한다.
 
 |전략|누적수익률|CAGR|변동성|Sharpe|MDD|Calmar|거래 수|회전율|OOS 누적|2026 YTD|
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-${rows}${baselineRow}
+${rows}
+${baselineRow}
+${ewRow}
 ${benchRow}
 
+${L.statsFootnote(aug, 'volLow120', '저변동성 120일 순수')}
 ## 산식
 
 - 저변동성 점수: 각 종목의 최근 N거래일 조정 종가 일간수익률 표준편차 × √252 (연율화). 값이 낮을수록 유니버스 백분위 상위.
@@ -120,7 +122,8 @@ ${benchRow}
 ## 데이터 품질과 한계
 
 - DART 패널 ${ps.total}건 중 정상 ${ps.ok}건, OFS fallback ${ps.ofs}건, 미제공 ${ps.noData}건.
-- 현재 구성종목을 과거에 적용한 생존자 편향이 남아 있다. 거래정지·상장폐지·호가·시장충격·세금·배당은 반영하지 않는다.
+- 매수 25bp + 매도 25bp에 한국 증권거래세 0.18%를 반영. 호가·시장충격·거래정지·상장폐지는 미반영.
+- 현재 구성종목을 과거에 적용한 생존자 편향이 남아 있다(크기 추정은 survivorship-bias-quantification.md 참조).
 - 저변동성 팩터는 대형·안정주로 쏠리는 경향이 있어 사이즈 팩터와 상관될 수 있다.
 `;
   L.fs.writeFileSync(path.join(L.OUT, `${OUT_STEM}.md`), md);

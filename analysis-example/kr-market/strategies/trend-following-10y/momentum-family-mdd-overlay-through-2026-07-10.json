@@ -1,0 +1,193 @@
+{
+  "generatedAt": "2026-07-13T22:26:07.301Z",
+  "period": {
+    "start": "2016-07-11",
+    "end": "2026-07-10"
+  },
+  "universe": {
+    "priceUsableCount": 220,
+    "maxHoldings": 10
+  },
+  "commonRules": {
+    "cost": {
+      "buyBps": 25,
+      "sellBps": 43
+    },
+    "regime": {
+      "maWindow": 200,
+      "band": 0.03,
+      "marketProxy": "KOSPI/KOSDAQ 50:50 price index"
+    },
+    "volTarget": {
+      "target": 0.18,
+      "window": 60,
+      "maxLeverage": 1
+    }
+  },
+  "data": {
+    "priceCache": "/Users/sanghyeok/workspace/stock-analysis-skill/.tmp/kr-strategy-backtest/2026-07-10",
+    "hashes": {
+      "priceManifestSha256": "57136ffd3ff908f1c3d9bef0ec9df63a451925a5bae133e34134c4706b221fad",
+      "dartPanelManifestSha256": "660f9e67b4486a3c7b70124aa7673ecab8da1557585d1ffa30387ca97a584770"
+    }
+  },
+  "strategies": {
+    "252일 모멘텀 + EPS·매출": {
+      "raw": {
+        "summary": {
+          "startEquity": 100000000,
+          "endEquity": 3210767825.085537,
+          "totalReturn": 31.107678250855372,
+          "cagr": 0.4148903634685135,
+          "annualizedVolatility": 0.32720588309833704,
+          "sharpeZeroRf": 1.2554310242469522,
+          "maxDrawdown": -0.4122554827956424,
+          "calmar": 1.0063913781206817,
+          "monthWinRate": 0.575,
+          "sessions": 2449
+        },
+        "exposureTurnover": 0
+      },
+      "regime": {
+        "summary": {
+          "startEquity": 100000000,
+          "endEquity": 1257150872.697979,
+          "totalReturn": 11.57150872697979,
+          "cagr": 0.2882018189544453,
+          "annualizedVolatility": 0.2559016271477102,
+          "sharpeZeroRf": 1.146669108697513,
+          "maxDrawdown": -0.2802723081467704,
+          "calmar": 1.028292166500882,
+          "monthWinRate": 0.35,
+          "sessions": 2449
+        },
+        "exposureTurnover": 12
+      },
+      "vol": {
+        "summary": {
+          "startEquity": 100000000,
+          "endEquity": 598211164.5645107,
+          "totalReturn": 4.982111645645107,
+          "cagr": 0.19596196534702126,
+          "annualizedVolatility": 0.1857154475316736,
+          "sharpeZeroRf": 1.0847585819249248,
+          "maxDrawdown": -0.30030070339852233,
+          "calmar": 0.6525524686732569,
+          "monthWinRate": 0.5833333333333334,
+          "sessions": 2449
+        },
+        "exposureTurnover": 17.232075089487516
+      },
+      "both": {
+        "summary": {
+          "startEquity": 100000000,
+          "endEquity": 424919780.3438246,
+          "totalReturn": 3.2491978034382463,
+          "cagr": 0.15573032444188595,
+          "annualizedVolatility": 0.13706844695554724,
+          "sharpeZeroRf": 1.155388290829214,
+          "maxDrawdown": -0.16294404165828857,
+          "calmar": 0.9557288677573705,
+          "monthWinRate": 0.35,
+          "sessions": 2449
+        },
+        "exposureTurnover": 16.22337202403194
+      }
+    },
+    "변동성조정 모멘텀 + EPS·매출": {
+      "raw": {
+        "summary": {
+          "startEquity": 100000000,
+          "endEquity": 4243691735.9869547,
+          "totalReturn": 41.43691735986955,
+          "cagr": 0.4549271833481776,
+          "annualizedVolatility": 0.3236579727276681,
+          "sharpeZeroRf": 1.3546514251897284,
+          "maxDrawdown": -0.41305198672010834,
+          "calmar": 1.1013799666249873,
+          "monthWinRate": 0.6,
+          "sessions": 2449
+        },
+        "exposureTurnover": 0
+      },
+      "regime": {
+        "summary": {
+          "startEquity": 100000000,
+          "endEquity": 1620685049.3493605,
+          "totalReturn": 15.206850493493604,
+          "cagr": 0.32135515271852655,
+          "annualizedVolatility": 0.25339378374280397,
+          "sharpeZeroRf": 1.2589780280709708,
+          "maxDrawdown": -0.27869812177925446,
+          "calmar": 1.1530581930977597,
+          "monthWinRate": 0.36666666666666664,
+          "sessions": 2449
+        },
+        "exposureTurnover": 12
+      },
+      "vol": {
+        "summary": {
+          "startEquity": 100000000,
+          "endEquity": 712801419.1517086,
+          "totalReturn": 6.128014191517086,
+          "cagr": 0.21711579779055445,
+          "annualizedVolatility": 0.1854656122801028,
+          "sharpeZeroRf": 1.1833188568683128,
+          "maxDrawdown": -0.2793863842549865,
+          "calmar": 0.7771166027632908,
+          "monthWinRate": 0.6,
+          "sessions": 2449
+        },
+        "exposureTurnover": 17.18723923263675
+      },
+      "both": {
+        "summary": {
+          "startEquity": 100000000,
+          "endEquity": 496234587.5923848,
+          "totalReturn": 3.962345875923848,
+          "cagr": 0.17380859486764222,
+          "annualizedVolatility": 0.13786268527737133,
+          "sharpeZeroRf": 1.2654168722022912,
+          "maxDrawdown": -0.14618175391314314,
+          "calmar": 1.1889896667330597,
+          "monthWinRate": 0.36666666666666664,
+          "sessions": 2449
+        },
+        "exposureTurnover": 16.957504423111004
+      }
+    }
+  },
+  "benchmarkTotalReturn": {
+    "summary": {
+      "startEquity": 100000000,
+      "endEquity": 669255135.9837921,
+      "totalReturn": 5.69255135983792,
+      "cagr": 0.20946440213963458,
+      "annualizedVolatility": 0.2442183432393551,
+      "sharpeZeroRf": 0.9242565819833456,
+      "maxDrawdown": -0.4334172302712582,
+      "calmar": 0.48328582139786946,
+      "monthWinRate": 0.6416666666666667,
+      "sessions": 2449
+    }
+  },
+  "benchmarkPriceIndex": {
+    "summary": {
+      "startEquity": 100000000,
+      "endEquity": 248027943.0100307,
+      "totalReturn": 1.4802794301003068,
+      "cagr": 0.09513149500967155,
+      "annualizedVolatility": 0.22605528635950162,
+      "sharpeZeroRf": 0.5274839336338167,
+      "maxDrawdown": -0.48889248976642685,
+      "calmar": 0.19458571567569294,
+      "monthWinRate": 0.575,
+      "sessions": 2449
+    }
+  },
+  "warnings": [
+    "Current market-cap universe applied historically; survivorship bias remains (see winner-removal bound).",
+    "매수 25bp + 매도 25bp에 한국 증권거래세 0.18%를 반영. 호가·시장충격·거래정지·상장폐지·유상증자는 미반영.",
+    "오버레이 노출은 전일 종가 기준 결정(룩어헤드 없음). 노출 변경마다 매도/매수 비용을 부과했다."
+  ]
+}

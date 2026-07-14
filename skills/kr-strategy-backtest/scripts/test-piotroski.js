@@ -19,6 +19,13 @@ for (const [name, s] of Object.entries(x.strategies)) {
 const gated = x.strategies.pFilterMom.monthlySelections.flatMap(m => m.holdings);
 assert(gated.length && gated.every(h => h.fScore >= 7), 'pFilterMom holds only F>=7 names');
 assert(x.commonRules.fScoreGate === 7, 'F-score gate recorded');
+// M2: strict variant holds only fully-evaluable (9-signal) names.
+assert(x.strategies.pStrict9, 'pStrict9 variant present');
+assert(x.strategies.pStrict9.monthlySelections.flatMap(m => m.holdings).every(h => h.evaluable === 9), 'pStrict9 holds only 9-signal names');
+assert(x.evaluableDistribution && (x.evaluableDistribution['9'] || x.evaluableDistribution[9]) > 0, 'evaluable distribution recorded');
+// Corrected-methodology invariants.
+assert(x.benchmarkTotalReturn && x.benchmarkTotalReturn.summary.cagr > x.benchmarkPriceIndex.summary.cagr, 'total-return benchmark > price-index (C2)');
+assert(x.commonRules.cost.sellBps > x.commonRules.cost.buyBps, 'sell tax modeled (C3)');
 assert(x.data.hashes.priceManifestSha256 && x.data.hashes.dartPanelManifestSha256, 'input hashes present');
 assert(x.period.outOfSampleStart === '2023-07-11', 'out-of-sample cut recorded');
 console.log(JSON.stringify({ pass: true, strategies: Object.keys(x.strategies), pFilterMomCagr: x.strategies.pFilterMom.summary.cagr, pPureCagr: x.strategies.pPure.summary.cagr }, null, 2));

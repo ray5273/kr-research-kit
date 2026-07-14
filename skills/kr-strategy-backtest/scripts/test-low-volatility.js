@@ -16,7 +16,11 @@ for (const [name, s] of Object.entries(x.strategies)) {
 // The pure low-vol sleeve should hold materially lower realized vol than the
 // market benchmark's volatility — the whole point of the factor.
 const lowVol120 = x.strategies.volLow120.summary.annualizedVolatility;
-assert(lowVol120 < x.benchmark.summary.annualizedVolatility, `low-vol portfolio vol (${lowVol120}) should be < benchmark`);
+assert(lowVol120 < x.benchmarkPriceIndex.summary.annualizedVolatility, `low-vol portfolio vol (${lowVol120}) should be < benchmark`);
+// Corrected-methodology invariants.
+assert(x.benchmarkTotalReturn && x.benchmarkTotalReturn.summary.cagr > x.benchmarkPriceIndex.summary.cagr, 'total-return benchmark > price-index benchmark (dividends, C2)');
+assert(x.commonRules.cost.sellBps > x.commonRules.cost.buyBps, 'sell leg costs more than buy (Korea tax, C3)');
+assert(x.augmentation.strategyStats.volLow120.deflated && x.augmentation.strategyStats.volLow120.ci, 'CI + deflated Sharpe attached (H1/H3)');
 assert(x.data.hashes.priceManifestSha256 && x.data.hashes.dartPanelManifestSha256, 'input hashes present');
 assert(x.period.outOfSampleStart === '2023-07-11', 'out-of-sample cut recorded');
-console.log(JSON.stringify({ pass: true, strategies: Object.keys(x.strategies), lowVol120PortfolioVol: lowVol120, benchmarkVol: x.benchmark.summary.annualizedVolatility }, null, 2));
+console.log(JSON.stringify({ pass: true, strategies: Object.keys(x.strategies), lowVol120PortfolioVol: lowVol120, benchmarkTRcagr: x.benchmarkTotalReturn.summary.cagr }, null, 2));

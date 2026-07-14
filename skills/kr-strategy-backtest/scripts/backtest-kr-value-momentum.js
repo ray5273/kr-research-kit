@@ -37,7 +37,7 @@ function valueSignals(series, date, price) {
     const equity = assets.value - liab.value;
     if (Number.isFinite(shares) && shares > 1e4 && equity > 0 && price > 0) {
       const marketCap = price * shares;
-      if (marketCap > 0) out.bookYield = L.clamp(equity / marketCap, 0, 50);
+      if (marketCap > 0) { const raw = equity / marketCap; out.bookYield = L.clamp(raw, 0, 50); out.bpClamped = raw !== out.bookYield; }
     }
   }
   return (out.earningsYield !== null || out.bookYield !== null) ? out : null;
@@ -50,11 +50,11 @@ function main() {
   const { series, manifestHash } = L.loadSeriesByTicker();
   const monthEnds = L.monthEnds(calendar);
 
-  const modes = ['valuePure', 'value_mom252', 'value_rs'];
+  const modes = ['valuePure', 'valueEPonly', 'value_mom252', 'value_rs'];
   const result = {};
 
   for (const mode of modes) {
-    const orders = new Map(), monthly = [], warnings = { noPrice: 0, noValue: 0 };
+    const orders = new Map(), monthly = [], warnings = { noPrice: 0, noValue: 0, epCount: 0, bpCount: 0, bpClampHits: 0 };
     for (const signalDate of monthEnds) {
       const rows = [];
       for (const [ticker, state] of states) {
@@ -63,10 +63,16 @@ function main() {
         const price = state.bars[i].close;
         const val = valueSignals(series.get(ticker) || [], signalDate, price);
         if (!val) { warnings.noValue++; continue; }
+        if (val.earningsYield !== null) warnings.epCount++;
+        if (val.bookYield !== null) warnings.bpCount++;
+        if (val.bpClamped) warnings.bpClampHits++;
         const ret252 = state.bars[i].close / state.bars[i - 252].close - 1;
         const r63 = state.bars[i].close / state.bars[i - 63].close - 1, r126 = state.bars[i].close / state.bars[i - 126].close - 1;
         const rs = 0.4 * r63 + 0.3 * r126 + 0.3 * ret252;
-        rows.push({ ticker, name: state.name, market: state.market, earningsYield: val.earningsYield, bookYield: val.bookYield, ret252, rs, report: val.report });
+        // E/P-only mode deliberately drops the approximate B/P so the report can
+        // separate the clean earnings-yield signal from the shares-derived B/P.
+        const bookYield = mode === 'valueEPonly' ? undefined : val.bookYield;
+        rows.push({ ticker, name: state.name, market: state.market, earningsYield: val.earningsYield, bookYield, ret252, rs, report: val.report });
       }
       if (!rows.length) continue;
       // Cheaper (higher yield) ranks higher — ascending percentile.
@@ -76,7 +82,7 @@ function main() {
       L.percentile(rows, 'ret252');
       L.percentile(rows, 'rs');
       let ranked;
-      if (mode === 'valuePure') {
+      if (mode === 'valuePure' || mode === 'valueEPonly') {
         for (const r of rows) r.score = r.valueScore;
         ranked = rows.filter(r => r.score !== null).sort((a, b) => b.score - a.score || (b.earningsYield ?? -9) - (a.earningsYield ?? -9));
       } else {
@@ -95,38 +101,53 @@ function main() {
 
   const benchEq = base.benchmark.dailyEquity.filter(x => x.date >= L.START && x.date <= L.CUTOFF);
   const ps = L.panelStatus();
+  const aug = L.reportAugmentation(states, calendar, series, { value_mom252: result.value_mom252.dailyEquity, valueEPonly: result.valueEPonly.dailyEquity });
+  const ewTR = aug.ewTotalReturnBenchmark, taxedBase = aug.taxedMomentumBaseline;
+  const cover = result.valuePure.warnings;
   const artifact = {
     generatedAt: new Date().toISOString(),
     period: { start: L.START, end: L.CUTOFF, outOfSampleStart: L.OOS_START },
     universe: { source: L.TOP_FILE, top300Count: 300, eligibleCount: top.length, priceUsableCount: states.size, maxHoldings: L.MAX_HOLDINGS },
-    commonRules: { costOneWay: L.COST, signal: 'month-end adjusted close', execution: 'next trading-day open', pointInTime: 'DART rcept_no <= signal date', cashResidual: true },
+    commonRules: { cost: aug.costModel, signal: 'month-end adjusted close', execution: 'next trading-day open', pointInTime: 'DART rcept_no <= signal date', cashResidual: true },
     data: { priceCache: L.DATA, dartPanel: L.PANEL, panelStatus: ps, hashes: { priceManifestSha256: L.priceManifestHash(states), dartPanelManifestSha256: manifestHash } },
     strategies: result,
-    benchmark: { summary: L.stats(benchEq), dailyEquity: benchEq },
-    warnings: [...L.DISCLAIMER, 'B/P의 주식수는 TTM 순이익 / TTM EPS로 도출한 근사치다(자기주식·희석·비지배지분 미조정).', 'E/P·B/P는 조정 종가 기준이라 point-in-time이며, 별도 시가총액 시계열을 쓰지 않는다.'],
+    augmentation: aug,
+    signalCoverage: { earningsYieldNameMonths: cover.epCount, bookYieldNameMonths: cover.bpCount, bookYieldClampHits: cover.bpClampHits },
+    benchmarkPriceIndex: { summary: L.stats(benchEq), dailyEquity: benchEq },
+    benchmarkTotalReturn: { summary: ewTR.summary, constituents: ewTR.constituents, dailyEquity: ewTR.dailyEquity },
+    taxedMomentumBaseline: { summary: taxedBase.summary },
+    warnings: [...L.DISCLAIMER, 'B/P의 주식수는 TTM 순이익 / TTM EPS로 도출한 근사치다(자기주식·희석·비지배지분 미조정). valueEPonly 변형은 B/P를 빼고 E/P만 쓴다.', 'E/P·B/P는 조정 종가 기준이라 point-in-time이며, 별도 시가총액 시계열을 쓰지 않는다.'],
   };
   L.write(path.join(L.OUT, `${OUT_STEM}.json`), artifact);
 
   const p = L.pctText;
-  const labels = { valuePure: '밸류 단독 (E/P·B/P)', value_mom252: '밸류 × 252일 모멘텀', value_rs: '밸류 × Minervini RS' };
+  const labels = { valuePure: '밸류 단독 (E/P·B/P)', valueEPonly: '밸류 E/P 단독 (B/P 제외)', value_mom252: '밸류 × 252일 모멘텀', value_rs: '밸류 × Minervini RS' };
   const rowLine = (label, s, oos, ytd) => `|${label}|${p(s.totalReturn)}|${p(s.cagr)}|${p(s.annualizedVolatility)}|${s.sharpeZeroRf.toFixed(2)}|${p(s.maxDrawdown)}|${s.calmar.toFixed(2)}|${s.tradeCount ?? '—'}|${s.turnover !== undefined ? s.turnover.toFixed(2) : '—'}|${p(oos.totalReturn)}|${p(ytd.totalReturn)}|`;
   const rows = modes.map(m => rowLine(labels[m], result[m].summary, result[m].outOfSample, result[m].ytd)).join('\n');
-  const benchRow = rowLine('KOSPI/KOSDAQ 50:50', { ...L.stats(benchEq), tradeCount: '—', turnover: undefined }, L.stats(benchEq.filter(x => x.date >= L.OOS_START)), L.stats(benchEq.filter(x => x.date >= '2026-01-01')));
+  const benchRow = rowLine('벤치마크: KOSPI/KOSDAQ 50:50 (가격지수)', { ...L.stats(benchEq), tradeCount: '—', turnover: undefined }, L.stats(benchEq.filter(x => x.date >= L.OOS_START)), L.stats(benchEq.filter(x => x.date >= '2026-01-01')));
+  const ewRow = rowLine('벤치마크: 동일가중 유니버스 (총수익)', { ...ewTR.summary, tradeCount: '—', turnover: undefined }, L.stats(ewTR.dailyEquity.filter(x => x.date >= L.OOS_START)), L.stats(ewTR.dailyEquity.filter(x => x.date >= '2026-01-01')));
+  const baseS = taxedBase.summary;
+  const baselineRow = `|참고: 252일 모멘텀 + EPS·매출 (동일 과세)|${p(baseS.totalReturn)}|${p(baseS.cagr)}|${p(baseS.annualizedVolatility)}|${baseS.sharpeZeroRf.toFixed(2)}|${p(baseS.maxDrawdown)}|${baseS.calmar.toFixed(2)}|${baseS.tradeCount}|${baseS.turnover.toFixed(2)}|—|—|`;
 
   const md = `# KOSPI·KOSDAQ 밸류 + 모멘텀 백테스트
 
 - 기간: ${L.START}~${L.CUTOFF} (out-of-sample 컷 ${L.OOS_START} 이후)
 - 유니버스: 현재 시가총액 상위 300개 중 보통주 ${top.length}개, 가격 데이터 사용 가능 ${states.size}개
 - 보유: 상위 ${L.MAX_HOLDINGS}개 동일비중, 미투자금 현금
-- 체결: 월말 조정 종가 신호, 다음 거래일 시가 / 비용: 편도 25bp
+- 체결: 월말 조정 종가 신호, 다음 거래일 시가 / 비용: **매수 25bp / 매도 25bp + 증권거래세 0.18%**
 
-> 과거 시뮬레이션이며 매매 추천이 아니다. 밸류는 기존 스터디에 통째로 비어 있던 축이며, 밸류·모멘텀 결합은 Asness의 "Value and Momentum Everywhere"에서 검증된 음의 상관 조합이다.
+> 과거 시뮬레이션이며 매매 추천이 아니다. 밸류는 기존 스터디에 통째로 비어 있던 축이며, 밸류·모멘텀 결합은 Asness의 "Value and Momentum Everywhere"에서 검증된 음의 상관 조합이다. B/P는 주식수 근사에 의존하므로 **E/P 단독 변형**을 함께 실어 근사 노이즈 기여를 분리했다.
 
 |전략|누적수익률|CAGR|변동성|Sharpe|MDD|Calmar|거래 수|회전율|OOS 누적|2026 YTD|
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 ${rows}
+${baselineRow}
+${ewRow}
 ${benchRow}
 
+- 신호 커버리지(name-month): E/P ${cover.epCount}건, B/P ${cover.bpCount}건, B/P clamp 적중 ${cover.bpClampHits}건(이상치 은폐 여부 지표).
+
+${L.statsFootnote(aug, 'value_mom252', '밸류 × 252일 모멘텀')}
 ## 산식
 
 - E/P(이익수익률) = 최근 4개 standalone 분기 EPS 합 / 조정 종가. 높을수록 저평가(백분위 상위).
@@ -137,8 +158,9 @@ ${benchRow}
 ## 데이터 품질과 한계
 
 - DART 패널 ${ps.total}건 중 정상 ${ps.ok}건, OFS fallback ${ps.ofs}건, 미제공 ${ps.noData}건.
-- 주식수를 순이익/EPS로 역산하므로 자기주식·희석·비지배지분·우선주를 조정하지 못한다. B/P는 근사 지표로 해석해야 한다.
-- 현재 구성종목을 과거에 적용한 생존자 편향이 남아 있다. 거래정지·상장폐지·호가·시장충격·세금·배당은 반영하지 않는다.
+- 주식수를 순이익/EPS로 역산하므로 자기주식·희석·비지배지분·우선주를 조정하지 못한다. B/P는 근사 지표로 해석해야 하며, E/P 단독 변형과 비교해 기여를 확인할 것.
+- 매수 25bp + 매도 25bp에 한국 증권거래세 0.18%를 반영. 호가·시장충격·거래정지는 미반영.
+- 현재 구성종목을 과거에 적용한 생존자 편향이 남아 있다(크기 추정은 survivorship-bias-quantification.md 참조).
 `;
   L.fs.writeFileSync(path.join(L.OUT, `${OUT_STEM}.md`), md);
   console.log(JSON.stringify(Object.fromEntries(modes.map(m => [m, result[m].summary])), null, 2));

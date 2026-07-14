@@ -71,20 +71,30 @@ Each takes `--limit N` for a smoke run and writes a JSON+MD pair into
 `analysis-example/kr-market/strategies/trend-following-10y/`.
 
 ```bash
-node skills/kr-strategy-backtest/scripts/backtest-kr-low-volatility.js       # low-vol factor (Baker-Haugen / BAB); vol as stock picker, not overlay
-node skills/kr-strategy-backtest/scripts/backtest-kr-value-momentum.js       # E/P + B/P value x momentum (Asness); the missing value axis
-node skills/kr-strategy-backtest/scripts/backtest-kr-piotroski.js            # 9-point F-score quality screen (Piotroski 2000)
-node skills/kr-strategy-backtest/scripts/backtest-kr-short-term-reversal.js  # 1-month cross-sectional reversal (Jegadeesh 1990)
+node skills/kr-strategy-backtest/scripts/backtest-kr-low-volatility.js         # low-vol factor (Baker-Haugen / BAB); vol as stock picker, not overlay
+node skills/kr-strategy-backtest/scripts/backtest-kr-value-momentum.js         # E/P + B/P value x momentum (Asness); includes an E/P-only variant
+node skills/kr-strategy-backtest/scripts/backtest-kr-piotroski.js              # 9-point F-score quality screen (Piotroski 2000)
+node skills/kr-strategy-backtest/scripts/backtest-kr-short-term-reversal.js    # 1-month cross-sectional reversal (Jegadeesh 1990)
+node skills/kr-strategy-backtest/scripts/backtest-kr-combined-sleeves.js       # 50:50 momentum+low-vol / momentum+value blends; tests diversification for real
+node skills/kr-strategy-backtest/scripts/quantify-survivorship.js              # winner-removal lower bound on the survivorship premium
+node skills/kr-strategy-backtest/scripts/report-alternative-factors-comparison.js  # regenerates the consolidated comparison from the JSONs
 ```
 
-Each has a `test-<slug>.js` smoke driver asserting the holdings cap, next-open
-execution (no look-ahead), factor ranges, and input-hash presence. These were
-added because the prior studies had saturated the momentum axis: measured on
-monthly returns, the current recommended RS+earnings portfolio is 0.998
-correlated with plain momentum, whereas low-vol (0.36), pure value (0.37), and
-reversal (0.55) carry genuinely diversifying return streams. Value x 252-day
-momentum is the standout (CAGR ~32%, Sharpe ~1.28, MDD ~-33%). Every report
-must keep the survivorship-bias + omitted-friction disclaimer.
+Each backtest has a `test-<slug>.js` smoke driver asserting the holdings cap,
+next-open execution (no look-ahead), factor ranges, the dual benchmark, the sell
+tax, and input-hash presence.
+
+The cost/benchmark model is deliberately conservative (a CEO-review pass tightened it):
+- **Costs:** buy 25bp; sell 25bp **plus the 0.18% Korea securities transaction tax** (`SELL_TAX` in the lib). High-turnover strategies are penalized honestly.
+- **Two benchmarks per report:** the `^KS11`/`^KQ11` 50:50 **price index** (excludes dividends — an understated lower bar) and an **equal-weight total-return universe** benchmark built from the same adjusted prices (dividend-inclusive but carries a size tilt + survivorship — an overstated upper bar). Judge strategies against the range.
+- **Multiple-testing hurdle + CI:** every report carries a monthly-block bootstrap CI and a Deflated Sharpe hurdle (`deflatedSharpeNote`) for ~50 configurations tried.
+
+Corrected takeaways (against the fair total-return benchmark, CAGR ~21% / Sharpe ~0.92):
+- **Value E/P is the most robust standalone factor** — clears the fair benchmark and the deflated-Sharpe hurdle, and is nearly immune to survivorship (winner-removal premium ~1%p vs momentum's ~11%p). The clean E/P beats the E/P+B/P composite (the shares-derived B/P adds noise).
+- **Low-vol earns its keep only in combination:** momentum+low-vol 50:50 lifts Sharpe (1.26 -> 1.29) and cuts MDD (-41% -> -32%) — diversification confirmed by the combined-sleeves run, not just inferred from correlation.
+- **Reversal and large-cap Piotroski do not survive** realistic costs / the fair benchmark. Momentum's headline CAGR is substantially a survivorship artifact.
+
+Every report must keep the survivorship-bias + omitted-friction disclaimer.
 
 ## Engine Rules
 

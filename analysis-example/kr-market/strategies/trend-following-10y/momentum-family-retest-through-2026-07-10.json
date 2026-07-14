@@ -1,0 +1,285 @@
+{
+  "generatedAt": "2026-07-13T14:26:43.628Z",
+  "period": {
+    "start": "2016-07-11",
+    "end": "2026-07-10"
+  },
+  "universe": {
+    "priceUsableCount": 220,
+    "maxHoldings": 10
+  },
+  "commonRules": {
+    "cost": {
+      "buyBps": 25,
+      "sellBps": 43,
+      "sellTaxBps": 18
+    },
+    "nTrials": 55
+  },
+  "data": {
+    "priceCache": "/Users/sanghyeok/workspace/stock-analysis-skill/.tmp/kr-strategy-backtest/2026-07-10",
+    "hashes": {
+      "priceManifestSha256": "57136ffd3ff908f1c3d9bef0ec9df63a451925a5bae133e34134c4706b221fad",
+      "dartPanelManifestSha256": "660f9e67b4486a3c7b70124aa7673ecab8da1557585d1ffa30387ca97a584770"
+    }
+  },
+  "strategies": {
+    "252일 모멘텀 + EPS·매출": {
+      "summary": {
+        "startEquity": 100000000,
+        "endEquity": 3210767825.085537,
+        "totalReturn": 31.107678250855372,
+        "cagr": 0.4148903634685135,
+        "annualizedVolatility": 0.32720588309833704,
+        "sharpeZeroRf": 1.2554310242469522,
+        "maxDrawdown": -0.4122554827956424,
+        "calmar": 1.0063913781206817,
+        "monthWinRate": 0.575,
+        "sessions": 2449,
+        "tradeCount": 1468,
+        "turnover": 77.23643139096686
+      },
+      "ci": {
+        "resamples": 1000,
+        "months": 121,
+        "cagr": {
+          "p5": 0.21508356644867987,
+          "p50": 0.4181243338426821,
+          "p95": 0.6900276931217184
+        },
+        "sharpe": {
+          "p5": 0.7676946356085131,
+          "p50": 1.2686804448910847,
+          "p95": 1.842395889928687
+        },
+        "maxDrawdown": {
+          "p5": -0.57478713407168,
+          "p50": -0.4088685627829095,
+          "p95": -0.2949668107265394
+        }
+      },
+      "deflated": {
+        "observedSharpe": 1.2554310242469522,
+        "trials": 55,
+        "nYears": 9.995893223819301,
+        "expectedMaxZ": 2.312596612609439,
+        "sharpeStdErr": 0.4229406747494157,
+        "hurdleAnnualizedSharpe": 0.9780911717602492,
+        "clears": true
+      },
+      "survivorshipPremium": 0.10681964572142366
+    },
+    "Minervini RS + EPS·매출": {
+      "summary": {
+        "startEquity": 100000000,
+        "endEquity": 2321409441.741604,
+        "totalReturn": 22.21409441741604,
+        "cagr": 0.3697183880173851,
+        "annualizedVolatility": 0.32485872037190494,
+        "sharpeZeroRf": 1.1593137213823288,
+        "maxDrawdown": -0.4585841303929845,
+        "calmar": 0.8062171442796205,
+        "monthWinRate": 0.5583333333333333,
+        "sessions": 2449,
+        "tradeCount": 1526,
+        "turnover": 87.39637156230204
+      },
+      "ci": {
+        "resamples": 1000,
+        "months": 121,
+        "cagr": {
+          "p5": 0.16030200891669555,
+          "p50": 0.36928446674368454,
+          "p95": 0.6216207254542021
+        },
+        "sharpe": {
+          "p5": 0.6318426925252429,
+          "p50": 1.1718371947959028,
+          "p95": 1.7508775370645522
+        },
+        "maxDrawdown": {
+          "p5": -0.5883191959178902,
+          "p50": -0.42064151763368707,
+          "p95": -0.30438851548481827
+        }
+      },
+      "deflated": {
+        "observedSharpe": 1.1593137213823288,
+        "trials": 55,
+        "nYears": 9.995893223819301,
+        "expectedMaxZ": 2.312596612609439,
+        "sharpeStdErr": 0.4089854629549691,
+        "hurdleAnnualizedSharpe": 0.9458183962361647,
+        "clears": true
+      },
+      "survivorshipPremium": 0.037609823339590065
+    },
+    "변동성조정 모멘텀 + EPS·매출": {
+      "summary": {
+        "startEquity": 100000000,
+        "endEquity": 4243691735.9869547,
+        "totalReturn": 41.43691735986955,
+        "cagr": 0.4549271833481776,
+        "annualizedVolatility": 0.3236579727276681,
+        "sharpeZeroRf": 1.3546514251897284,
+        "maxDrawdown": -0.41305198672010834,
+        "calmar": 1.1013799666249873,
+        "monthWinRate": 0.6,
+        "sessions": 2449,
+        "tradeCount": 1475,
+        "turnover": 78.61395300991263
+      },
+      "ci": {
+        "resamples": 1000,
+        "months": 121,
+        "cagr": {
+          "p5": 0.23086598295627558,
+          "p50": 0.4490644013803713,
+          "p95": 0.705463820344058
+        },
+        "sharpe": {
+          "p5": 0.8143621943270819,
+          "p50": 1.3641660374551132,
+          "p95": 1.8992400464213208
+        },
+        "maxDrawdown": {
+          "p5": -0.5742112766443417,
+          "p50": -0.4024197603979388,
+          "p95": -0.29245211116680614
+        }
+      },
+      "deflated": {
+        "observedSharpe": 1.3546514251897284,
+        "trials": 55,
+        "nYears": 9.995893223819301,
+        "expectedMaxZ": 2.312596612609439,
+        "sharpeStdErr": 0.4379872208502334,
+        "hurdleAnnualizedSharpe": 1.012887763304472,
+        "clears": true
+      },
+      "survivorshipPremium": 0.09730351587446706
+    },
+    "52주 고점 + EPS·매출": {
+      "summary": {
+        "startEquity": 100000000,
+        "endEquity": 1742374490.304656,
+        "totalReturn": 16.42374490304656,
+        "cagr": 0.33096042490344213,
+        "annualizedVolatility": 0.27612772776298194,
+        "sharpeZeroRf": 1.2041619426992038,
+        "maxDrawdown": -0.48025017124641844,
+        "calmar": 0.6891417113803067,
+        "monthWinRate": 0.575,
+        "sessions": 2449,
+        "tradeCount": 1727,
+        "turnover": 123.96277048279816
+      },
+      "ci": {
+        "resamples": 1000,
+        "months": 121,
+        "cagr": {
+          "p5": 0.143095622705661,
+          "p50": 0.32975633847185337,
+          "p95": 0.5393915258196631
+        },
+        "sharpe": {
+          "p5": 0.621991154734952,
+          "p50": 1.2113231832137545,
+          "p95": 1.7905297034022936
+        },
+        "maxDrawdown": {
+          "p5": -0.5422231817231065,
+          "p50": -0.36787132717964977,
+          "p95": -0.275241172080706
+        }
+      },
+      "deflated": {
+        "observedSharpe": 1.2041619426992038,
+        "trials": 55,
+        "nYears": 9.995893223819301,
+        "expectedMaxZ": 2.312596612609439,
+        "sharpeStdErr": 0.415416863318564,
+        "hurdleAnnualizedSharpe": 0.9606916309313493,
+        "clears": true
+      },
+      "survivorshipPremium": 0.0782469314249139
+    },
+    "252일 모멘텀 (순수, 재무無)": {
+      "summary": {
+        "startEquity": 100000000,
+        "endEquity": 3074335396.6075416,
+        "totalReturn": 29.743353966075414,
+        "cagr": 0.4087575229649567,
+        "annualizedVolatility": 0.3753046017640313,
+        "sharpeZeroRf": 1.1278345281765074,
+        "maxDrawdown": -0.4558560243424822,
+        "calmar": 0.8966811912917912,
+        "monthWinRate": 0.6166666666666667,
+        "sessions": 2449,
+        "tradeCount": 1513,
+        "turnover": 71.02338163492455
+      },
+      "ci": {
+        "resamples": 1000,
+        "months": 121,
+        "cagr": {
+          "p5": 0.1608177973135947,
+          "p50": 0.4170330381022316,
+          "p95": 0.7212087357740717
+        },
+        "sharpe": {
+          "p5": 0.5933263166992778,
+          "p50": 1.1520217467601537,
+          "p95": 1.7032990436123228
+        },
+        "maxDrawdown": {
+          "p5": -0.6876971522920323,
+          "p50": -0.49908049021758927,
+          "p95": -0.3773654301986161
+        }
+      },
+      "deflated": {
+        "observedSharpe": 1.1278345281765074,
+        "trials": 55,
+        "nYears": 9.995893223819301,
+        "expectedMaxZ": 2.312596612609439,
+        "sharpeStdErr": 0.40455871122671644,
+        "hurdleAnnualizedSharpe": 0.9355811051845446,
+        "clears": true
+      },
+      "survivorshipPremium": 0.06800601026819342
+    }
+  },
+  "benchmarkTotalReturn": {
+    "summary": {
+      "startEquity": 100000000,
+      "endEquity": 669255135.9837921,
+      "totalReturn": 5.69255135983792,
+      "cagr": 0.20946440213963458,
+      "annualizedVolatility": 0.2442183432393551,
+      "sharpeZeroRf": 0.9242565819833456,
+      "maxDrawdown": -0.4334172302712582,
+      "calmar": 0.48328582139786946,
+      "monthWinRate": 0.6416666666666667,
+      "sessions": 2449
+    }
+  },
+  "benchmarkPriceIndex": {
+    "summary": {
+      "startEquity": 100000000,
+      "endEquity": 248027943.0100307,
+      "totalReturn": 1.4802794301003068,
+      "cagr": 0.09513149500967155,
+      "annualizedVolatility": 0.22605528635950162,
+      "sharpeZeroRf": 0.5274839336338167,
+      "maxDrawdown": -0.48889248976642685,
+      "calmar": 0.19458571567569294,
+      "monthWinRate": 0.575,
+      "sessions": 2449
+    }
+  },
+  "warnings": [
+    "Current market-cap universe applied historically; survivorship bias remains (see winner-removal bound).",
+    "매수 25bp + 매도 25bp에 한국 증권거래세 0.18%를 반영. 호가·시장충격·거래정지·상장폐지·유상증자는 미반영."
+  ]
+}

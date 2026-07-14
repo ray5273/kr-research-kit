@@ -30,7 +30,8 @@ const BASE_FILE = path.join(OUT, 'backtest-2026-07-10.json');
 const START = '2016-07-11';
 const CUTOFF = '2026-07-10';
 const OOS_START = '2023-07-11'; // out-of-sample cut reported separately
-const COST = 0.0025; // 25bp one-way
+const COST = 0.0025; // 25bp one-way (commission + slippage)
+const SELL_TAX = 0.0018; // Korea securities transaction tax on sells (~0.18%), buys exempt
 const INITIAL = 100000000;
 const MAX_HOLDINGS = 10;
 
@@ -123,9 +124,11 @@ function runBacktest(states, calendar, orders) {
     const o = orders.get(d);
     if (o) {
       const before = value(d, 'open'), names = o.tickers.filter(t => exactPrice(states.get(t), d, 'open') !== null), all = new Set([...pos.keys(), ...names]);
+      // Sells pay commission+slippage AND Korea transaction tax; buys pay commission+slippage only.
+      const rateFor = delta => delta > 0 ? COST : COST + SELL_TAX;
       let lo = 0, hi = before;
-      for (let z = 0; z < 32; z++) { let c = cash, invest = (lo + hi) / 2; for (const t of all) { const p = exactPrice(states.get(t), d, 'open'); if (p === null) continue; const target = names.includes(t) ? invest / names.length / p : 0, delta = target - (pos.get(t) || 0); c -= delta * p + Math.abs(delta) * p * COST; } if (c >= 0) lo = invest; else hi = invest; }
-      for (const t of all) { const p = exactPrice(states.get(t), d, 'open'); if (p === null) continue; const target = names.includes(t) ? lo / names.length / p : 0, delta = target - (pos.get(t) || 0); if (Math.abs(delta) < 1e-8) continue; const n = Math.abs(delta) * p, fee = n * COST; cash -= delta * p + fee; turnover += n / Math.max(before, 1); if (target) pos.set(t, target); else pos.delete(t); trades.push({ date: d, signalDate: o.signalDate, ticker: t, side: delta > 0 ? 'BUY' : 'SELL', notional: n, estimatedCost: fee }); }
+      for (let z = 0; z < 32; z++) { let c = cash, invest = (lo + hi) / 2; for (const t of all) { const p = exactPrice(states.get(t), d, 'open'); if (p === null) continue; const target = names.includes(t) ? invest / names.length / p : 0, delta = target - (pos.get(t) || 0); c -= delta * p + Math.abs(delta) * p * rateFor(delta); } if (c >= 0) lo = invest; else hi = invest; }
+      for (const t of all) { const p = exactPrice(states.get(t), d, 'open'); if (p === null) continue; const target = names.includes(t) ? lo / names.length / p : 0, delta = target - (pos.get(t) || 0); if (Math.abs(delta) < 1e-8) continue; const n = Math.abs(delta) * p, fee = n * rateFor(delta); cash -= delta * p + fee; turnover += n / Math.max(before, 1); if (target) pos.set(t, target); else pos.delete(t); trades.push({ date: d, signalDate: o.signalDate, ticker: t, side: delta > 0 ? 'BUY' : 'SELL', notional: n, estimatedCost: fee }); }
     }
     equity.push({ date: d, equity: value(d, 'close'), cash, holdings: pos.size });
   }
@@ -265,21 +268,236 @@ function panelStatus() {
 }
 function priceManifestHash(states) { return sha([...states].map(([t, s]) => `${t}:${s.rawSha256 || ''}`).sort().join('\n')); }
 
-// Standard disclaimer every report must carry.
+// ---- Benchmarks -----------------------------------------------------------
+
+// Equal-weight, daily-rebalanced, costless total-return benchmark built from the
+// SAME dividend/split-adjusted top-300 prices the strategies trade. Apples-to-
+// apples on the dividend dimension, unlike the ^KS11/^KQ11 price index (which
+// excludes dividends while the strategy legs are total-return) — fixes C2.
+function equalWeightUniverseBenchmark(states, calendar) {
+  const names = [...states.keys()].filter(t => closePrice(states.get(t), calendar[0]) !== null);
+  const base = new Map(names.map(t => [t, closePrice(states.get(t), calendar[0])]));
+  const equity = calendar.map(d => {
+    let sum = 0, cnt = 0;
+    for (const t of names) { const p = closePrice(states.get(t), d); if (p !== null) { sum += p / base.get(t); cnt++; } }
+    return { date: d, equity: INITIAL * (cnt ? sum / cnt : 1) };
+  });
+  return { name: '동일가중 유니버스(총수익)', summary: stats(equity), dailyEquity: equity, constituents: names.length };
+}
+
+// Order stream for the current recommended baseline: 252-day price momentum 50%
+// + EPS/revenue improvement 50%, top-10. Runs through runBacktest so the
+// baseline pays the SAME sell tax as the factor strategies — an apples-to-apples
+// comparison row (fixes the "baseline pulled from a pre-tax artifact" gap in C3).
+function momentumEpsOrders(states, series, calendar) {
+  const orders = new Map();
+  for (const signalDate of monthEnds(calendar)) {
+    const rows = [];
+    for (const [ticker, state] of states) {
+      const i = lastIndex(state.bars, signalDate);
+      if (i < 252 || state.bars[i].date !== signalDate) continue;
+      const fundamental = fundamentalAt(series.get(ticker) || [], signalDate);
+      if (!fundamental) continue;
+      rows.push({ ticker, ret252: state.bars[i].close / state.bars[i - 252].close - 1, fundamental });
+    }
+    if (!rows.length) continue;
+    percentile(rows, 'ret252');
+    attachFundamentalComposite(rows);
+    for (const r of rows) r.score = r.fundamentalScore === null ? null : 0.5 * r.ret252Pct + 0.5 * r.fundamentalScore;
+    const ranked = rows.filter(r => r.score !== null).sort((a, b) => b.score - a.score || b.ret252 - a.ret252);
+    const next = calendar[calendar.indexOf(signalDate) + 1];
+    if (next && next <= CUTOFF) orders.set(next, { signalDate, tickers: ranked.slice(0, MAX_HOLDINGS).map(r => r.ticker) });
+  }
+  return orders;
+}
+function taxedMomentumBaseline(states, series, calendar) {
+  const run = runBacktest(states, calendar, momentumEpsOrders(states, series, calendar));
+  return { summary: { ...stats(run.equity), tradeCount: run.trades.length, turnover: run.turnover }, dailyEquity: run.equity };
+}
+
+// ---- Statistics (H1/H3) ---------------------------------------------------
+
+// Monthly-block bootstrap CI for CAGR / Sharpe / MDD. Resamples whole calendar
+// months with replacement to preserve within-month autocorrelation, rebuilds an
+// equity path, and returns the 5th/50th/95th percentiles. Plain node execution,
+// so Math.random is available (unlike Workflow scripts). Deterministic-ish: the
+// caller may seed by ordering; here we accept sampling noise at 1000 resamples.
+function blockBootstrapCI(dailyEquity, resamples = 1000) {
+  if (dailyEquity.length < 3) return null;
+  // Group daily simple returns by calendar month.
+  const byMonth = new Map();
+  for (let i = 1; i < dailyEquity.length; i++) {
+    const m = dailyEquity[i].date.slice(0, 7), r = dailyEquity[i].equity / dailyEquity[i - 1].equity - 1;
+    if (!byMonth.has(m)) byMonth.set(m, []);
+    byMonth.get(m).push(r);
+  }
+  const blocks = [...byMonth.values()];
+  if (blocks.length < 6) return null;
+  const startDate = dailyEquity[0].date, endDate = dailyEquity.at(-1).date;
+  const years = (Date.parse(endDate) - Date.parse(startDate)) / 86400000 / 365.25;
+  const cagrs = [], sharpes = [], mdds = [];
+  for (let s = 0; s < resamples; s++) {
+    const rets = [];
+    for (let b = 0; b < blocks.length; b++) rets.push(...blocks[Math.floor(Math.random() * blocks.length)]);
+    // Metrics from the resampled daily return path.
+    let eq = 1, peak = 1, mdd = 0; for (const r of rets) { eq *= 1 + r; peak = Math.max(peak, eq); mdd = Math.min(mdd, eq / peak - 1); }
+    const mean = rets.reduce((a, b) => a + b, 0) / rets.length, sd = stddev(rets);
+    cagrs.push(eq ** (1 / years) - 1);
+    sharpes.push(sd ? mean / sd * Math.sqrt(252) : 0);
+    mdds.push(mdd);
+  }
+  const pctl = (arr, q) => { const s = [...arr].sort((a, b) => a - b); return s[Math.min(s.length - 1, Math.max(0, Math.floor(q * s.length)))]; };
+  const band = arr => ({ p5: pctl(arr, 0.05), p50: pctl(arr, 0.5), p95: pctl(arr, 0.95) });
+  return { resamples, months: blocks.length, cagr: band(cagrs), sharpe: band(sharpes), maxDrawdown: band(mdds) };
+}
+
+// Inverse standard-normal CDF (Acklam's rational approximation), for the
+// expected-maximum-Sharpe hurdle below.
+function probit(p) {
+  if (p <= 0) return -Infinity; if (p >= 1) return Infinity;
+  const a = [-3.969683028665376e1, 2.209460984245205e2, -2.759285104469687e2, 1.383577518672690e2, -3.066479806614716e1, 2.506628277459239];
+  const b = [-5.447609879822406e1, 1.615858368580409e2, -1.556989798598866e2, 6.680131188771972e1, -1.328068155288572e1];
+  const c = [-7.784894002430293e-3, -3.223964580411365e-1, -2.400758277161838, -2.549732539343734, 4.374664141464968, 2.938163982698783];
+  const d = [7.784695709041462e-3, 3.224671290700398e-1, 2.445134137142996, 3.754408661907416];
+  const pl = 0.02425;
+  if (p < pl) { const q = Math.sqrt(-2 * Math.log(p)); return (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1); }
+  if (p > 1 - pl) { const q = Math.sqrt(-2 * Math.log(1 - p)); return -(((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1); }
+  const q = p - 0.5, r = q * q;
+  return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q / (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
+}
+
+// Multiple-testing hurdle (Bailey/López de Prado, deflated Sharpe). Across
+// `trials` independent strategy attempts on `nYears` of data, some Sharpe will
+// look high by luck alone. Returns the ANNUALIZED Sharpe hurdle a strategy must
+// clear to be distinguishable from the best of `trials` null strategies, in the
+// same units as the report tables. `clears` = observed beats the hurdle.
+function deflatedSharpeNote(observedSharpe, trials, nYears) {
+  const EM = 0.5772156649; // Euler-Mascheroni
+  // Expected maximum of `trials` iid standard normals.
+  const eMaxZ = (1 - EM) * probit(1 - 1 / trials) + EM * probit(1 - 1 / (trials * Math.E));
+  // Standard error of an annualized Sharpe estimate over nYears (normal-returns approx).
+  const seSharpe = Math.sqrt((1 + 0.5 * observedSharpe * observedSharpe) / nYears);
+  const hurdle = eMaxZ * seSharpe;
+  return { observedSharpe, trials, nYears, expectedMaxZ: eMaxZ, sharpeStdErr: seSharpe, hurdleAnnualizedSharpe: hurdle, clears: observedSharpe > hurdle };
+}
+
+// ---- MDD-control overlays -------------------------------------------------
+// Modulate exposure to a strategy's daily-return stream. Exposure is decided at
+// the PRIOR close (no look-ahead) and each exposure change pays a transaction
+// cost (sell rate when de-risking, buy rate when re-risking), so whipsaw is
+// charged honestly. `marketLevels` is [{date, level}] used for the regime MA.
+
+function marketRegimeStates(marketLevels, maWindow = 200, band = 0.03) {
+  const states = new Map(); let on = 1;
+  for (let i = 0; i < marketLevels.length; i++) {
+    if (i < maWindow) { states.set(marketLevels[i].date, 1); continue; } // warmup: fully invested
+    const sma = marketLevels.slice(i - maWindow + 1, i + 1).reduce((s, x) => s + x.level, 0) / maWindow;
+    const lvl = marketLevels[i].level;
+    if (lvl > sma * (1 + band)) on = 1; else if (lvl < sma * (1 - band)) on = 0; // otherwise hold prior state (hysteresis)
+    states.set(marketLevels[i].date, on);
+  }
+  return states;
+}
+
+function trailingVolOfReturns(rets, endIdx, window) {
+  if (endIdx < window) return null;
+  return stddev(rets.slice(endIdx - window + 1, endIdx + 1)) * Math.sqrt(252);
+}
+
+// Apply a regime filter and/or volatility target to a strategy's daily equity.
+// Returns a new daily-equity path carrying `exposure` each day.
+function applyMddOverlay(dailyEquity, marketLevels, opts = {}) {
+  const { regime = false, volTarget = null, maWindow = 200, band = 0.03, volWindow = 60 } = opts;
+  const dates = dailyEquity.map(x => x.date);
+  const rets = dailyEquity.map((x, i) => i ? x.equity / dailyEquity[i - 1].equity - 1 : 0);
+  const regimeStates = regime ? marketRegimeStates(marketLevels, maWindow, band) : null;
+  let e = 1, eq = INITIAL, exposureTurnover = 0;
+  const out = [{ date: dates[0], equity: INITIAL, exposure: 1 }];
+  for (let i = 1; i < dates.length; i++) {
+    let eDes = 1;
+    if (regimeStates) eDes *= (regimeStates.get(dates[i - 1]) ?? 1);
+    if (volTarget) { const tv = trailingVolOfReturns(rets, i - 1, volWindow); if (tv && tv > 0) eDes = Math.min(eDes, Math.min(1, volTarget / tv)); }
+    const change = Math.abs(eDes - e), rate = eDes < e ? COST + SELL_TAX : COST;
+    eq *= (1 - change * rate); exposureTurnover += change;
+    e = eDes;
+    eq *= (1 + e * rets[i]);
+    out.push({ date: dates[i], equity: eq, exposure: e });
+  }
+  out.exposureTurnover = exposureTurnover;
+  return out;
+}
+
+// ---- Survivorship sensitivity (C1) ----------------------------------------
+
+// Re-run a strategy's month-end selections with the ex-post best-performing
+// `dropFrac` of names removed from the tradable universe each rebalance. The
+// CAGR gap vs the full-universe run is a LOWER BOUND on the survivorship premium
+// (it does not add back truly delisted names, which the cache lacks).
+function winnerRemovalOrders(states, series, calendar, buildOrders, dropFrac) {
+  // Rank names by full-sample total return; drop the top dropFrac from selection.
+  const fullReturn = new Map();
+  for (const [t, s] of states) { const first = closePrice(s, calendar[0]), last = closePrice(s, calendar.at(-1)); if (first && last) fullReturn.set(t, last / first - 1); }
+  const ranked = [...fullReturn.entries()].sort((a, b) => b[1] - a[1]);
+  const dropSet = new Set(ranked.slice(0, Math.floor(ranked.length * dropFrac)).map(x => x[0]));
+  const reduced = new Map([...states].filter(([t]) => !dropSet.has(t)));
+  const orders = buildOrders(reduced, series, calendar);
+  return { orders, states: reduced, dropped: dropSet.size };
+}
+
+// One-call report augmentation shared by every factor script: the total-return
+// EW-universe benchmark (C2), the sell-tax-consistent momentum baseline (C3),
+// and per-strategy bootstrap CI + multiple-testing hurdle (H1/H3).
+// `headlineEquityByStrategy` maps a strategy key to its dailyEquity array.
+function reportAugmentation(states, calendar, series, headlineEquityByStrategy, nTrials = 50) {
+  const nYears = (Date.parse(calendar.at(-1)) - Date.parse(calendar[0])) / 86400000 / 365.25;
+  const strategyStats = {};
+  for (const [k, eq] of Object.entries(headlineEquityByStrategy)) {
+    const s = stats(eq);
+    strategyStats[k] = { ci: blockBootstrapCI(eq), deflated: deflatedSharpeNote(s.sharpeZeroRf, nTrials, nYears) };
+  }
+  return {
+    ewTotalReturnBenchmark: equalWeightUniverseBenchmark(states, calendar),
+    taxedMomentumBaseline: taxedMomentumBaseline(states, series, calendar),
+    strategyStats, nYears, nTrials,
+    costModel: { buyBps: COST * 10000, sellBps: (COST + SELL_TAX) * 10000, sellTaxBps: SELL_TAX * 10000 },
+  };
+}
+
+// Render a compact Markdown footnote block from reportAugmentation output for a
+// chosen headline strategy key. Keeps every report's stats section identical.
+function statsFootnote(aug, headlineKey, headlineLabel) {
+  const st = aug.strategyStats[headlineKey]; if (!st) return '';
+  const p = x => `${(x * 100).toFixed(1)}%`;
+  const ci = st.ci, d = st.deflated;
+  const ciLine = ci ? `CAGR 90% 신뢰구간 ${p(ci.cagr.p5)}~${p(ci.cagr.p95)} (중앙 ${p(ci.cagr.p50)}), Sharpe ${ci.sharpe.p5.toFixed(2)}~${ci.sharpe.p95.toFixed(2)} — 월 블록 부트스트랩 ${ci.resamples}회, ${ci.months}개월` : '신뢰구간 산출 불가(표본 부족)';
+  return `## 통계적 엄밀성 (${headlineLabel})
+
+- **신뢰구간:** ${ciLine}.
+- **다중검정 허들:** 이 레포는 동일 표본에서 ~${d.trials}개 구성을 시험했다. 운만으로 나올 최대 연율 Sharpe 허들은 **${d.hurdleAnnualizedSharpe.toFixed(2)}** (Deflated Sharpe, López de Prado). 관측 Sharpe ${d.observedSharpe.toFixed(2)} → **${d.clears ? '허들 통과(선택편향으로 설명 안 됨)' : '허들 미달(운으로 설명 가능, 과신 금지)'}**.
+- **벤치마크 해석:** 가격지수(50:50)는 배당을 빼 저평가된 하한 바, 동일가중 유니버스(총수익)는 배당 포함이지만 **소형주 틸트+생존자편향이 섞인 상한 바**다. 공정한 기준선은 두 값 사이에 있다.
+`;
+}
+
+// Standard disclaimer every report must carry. Transaction tax is now modeled;
+// market impact / halts / true delisting are still not.
 const DISCLAIMER = [
-  'Current market-cap universe applied historically; survivorship bias remains.',
-  '거래정지·상장폐지·호가·시장충격·세금·배당·유상증자는 반영하지 않는다.',
+  'Current market-cap universe applied historically; survivorship bias remains (see winner-removal bound).',
+  '매수 25bp + 매도 25bp에 한국 증권거래세 0.18%를 반영. 호가·시장충격·거래정지·상장폐지·유상증자는 미반영.',
 ];
 
 module.exports = {
   fs, path,
   ROOT, DATA, PANEL, OUT, TOP_FILE, BASE_FILE,
-  START, CUTOFF, OOS_START, COST, INITIAL, MAX_HOLDINGS,
+  START, CUTOFF, OOS_START, COST, SELL_TAX, INITIAL, MAX_HOLDINGS,
   read, write, num, clamp, sha, pctText,
   ordinaryShare, quality, loadPriceStates, loadCalendar, monthEnds,
   lastIndex, exactPrice, closePrice, stddev, realizedVol, trailingReturn, percentile,
   stats, annual, runBacktest,
   chooseAccount, loadRawReports, buildSeries, loadSeriesByTicker,
   improvement, fundamentalAt, attachFundamentalComposite, ttmFlow, latestSnapshot,
+  equalWeightUniverseBenchmark, momentumEpsOrders, taxedMomentumBaseline,
+  blockBootstrapCI, probit, deflatedSharpeNote, winnerRemovalOrders,
+  marketRegimeStates, applyMddOverlay,
+  reportAugmentation, statsFootnote,
   panelStatus, priceManifestHash, DISCLAIMER,
 };
