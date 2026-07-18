@@ -60,7 +60,7 @@ function trailingVol(bars, i, window) {
 // overlay: regime(bool)/regimeMaWindow/regimeBand, volTarget(null=off)/volWindow
 function runConfig(ctx, cfg) {
   const { annualUniverse, states, coverageLedger, series, kospi, allCalendar, calendar, startDate } = ctx;
-  const buyCost = COST, sellTax = SELL_TAX;
+  const buyCost = cfg.buyCost != null ? cfg.buyCost : COST, sellTax = cfg.sellTax != null ? cfg.sellTax : SELL_TAX;
   const epsWeight = cfg.epsWeight;                 // 0 => RS only
   const lowVolWeight = cfg.lowVolWeight || 0;      // 0 => no low-vol sleeve
   const lowVolWindow = cfg.lowVolWindow || 60;
