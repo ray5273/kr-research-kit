@@ -64,6 +64,8 @@ function runConfig(ctx, cfg) {
   const epsWeight = cfg.epsWeight;                 // 0 => RS only
   const lowVolWeight = cfg.lowVolWeight || 0;      // 0 => no low-vol sleeve
   const lowVolWindow = cfg.lowVolWindow || 60;
+  const valueWeight = cfg.valueWeight || 0;        // E/P (earnings yield) sleeve
+  const qualityWeight = cfg.qualityWeight || 0;    // ROA (TTM net / assets) sleeve
   const useRegime = cfg.regime !== false;          // apply SMA regime filter
   const maWindow = cfg.regimeMaWindow || 200;
   const band = cfg.regimeBand == null ? 0.03 : cfg.regimeBand;
@@ -84,15 +86,28 @@ function runConfig(ctx, cfg) {
       if (!f) continue;                            // universe held fixed to DART-covered names across all configs
       const rs = .4 * (state.bars[i].close / state.bars[i - 63].close - 1) + .3 * (state.bars[i].close / state.bars[i - 126].close - 1) + .3 * (state.bars[i].close / state.bars[i - 252].close - 1);
       const v = trailingVol(state.bars, i, lowVolWindow);
-      rows.push({ ticker, name: state.name, rs, fundamental: f, lowVol: v == null ? null : -v });
+      // Value E/P and quality ROA use the same point-in-time DART series. EPS is
+      // nominal (per raw share) so E/P = ttmEPS * adjustmentFactor / adjustedClose
+      // keeps units consistent with the split-back-adjusted price.
+      const fseries = series.get(ticker) || [];
+      const adjF = state.bars[i].adjustmentFactor == null ? 1 : state.bars[i].adjustmentFactor;
+      const epsTtm = L.ttmFlow(fseries, fundamentalAsOf, 'eps');
+      const ep = (epsTtm && Number.isFinite(epsTtm.value) && state.bars[i].close > 0) ? epsTtm.value * adjF / state.bars[i].close : null;
+      const netTtm = L.ttmFlow(fseries, fundamentalAsOf, 'net'), assets = L.latestSnapshot(fseries, fundamentalAsOf, 'assets');
+      const roa = (netTtm && assets && assets.value > 0) ? netTtm.value / assets.value : null;
+      rows.push({ ticker, name: state.name, rs, fundamental: f, lowVol: v == null ? null : -v, ep, roa });
     }
     L.percentile(rows, 'rs'); L.attachFundamentalComposite(rows);
     if (lowVolWeight > 0) L.percentile(rows.filter(r => r.lowVol !== null), 'lowVol');
-    const rsWeight = Math.max(0, 1 - epsWeight - lowVolWeight);
+    if (valueWeight > 0) L.percentile(rows.filter(r => r.ep !== null), 'ep');
+    if (qualityWeight > 0) L.percentile(rows.filter(r => r.roa !== null), 'roa');
+    const rsWeight = Math.max(0, 1 - epsWeight - lowVolWeight - valueWeight - qualityWeight);
     for (const r of rows) {
       const fundOk = epsWeight === 0 || r.fundamentalScore !== null;
       const lvOk = lowVolWeight === 0 || (r.lowVol !== null && r.lowVolPct !== undefined);
-      r.score = (fundOk && lvOk) ? rsWeight * r.rsPct + epsWeight * (r.fundamentalScore || 0) + lowVolWeight * (r.lowVolPct || 0) : null;
+      const valOk = valueWeight === 0 || (r.ep !== null && r.epPct !== undefined);
+      const qOk = qualityWeight === 0 || (r.roa !== null && r.roaPct !== undefined);
+      r.score = (fundOk && lvOk && valOk && qOk) ? rsWeight * r.rsPct + epsWeight * (r.fundamentalScore || 0) + lowVolWeight * (r.lowVolPct || 0) + valueWeight * (r.epPct || 0) + qualityWeight * (r.roaPct || 0) : null;
     }
     const ranked = rows.filter(r => r.score !== null).sort((a, b) => b.score - a.score || b.rs - a.rs);
     orders.set(executionDate, { signalDate, forcedAnnualRoll, tickers: ranked.slice(0, N).map(x => x.ticker) });
@@ -128,7 +143,7 @@ function runConfig(ctx, cfg) {
     exposure = nextExposure;
     equity.push({ date, equity: value(date, 'close') });
   }
-  return { ...metrics(equity), tradeCount, turnover };
+  return { ...metrics(equity), tradeCount, turnover, equity };
 }
 
 // Build a reusable backtest context (universe states, DART panel, KOSPI

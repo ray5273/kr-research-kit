@@ -1,0 +1,499 @@
+{
+  "generatedAt": "2026-07-18T11:59:52.257Z",
+  "label": "marcap-total-return",
+  "period": {
+    "start": "2017-01-02",
+    "end": "2026-07-16"
+  },
+  "isEnd": "2022-12-30",
+  "oosStart": "2023-01-02",
+  "nTrials": 50,
+  "nYears": 9.533196440793978,
+  "priceCache": ".tmp/kr-strategy-backtest/marcap-total-return",
+  "note": "regime-on, vol-off, top-10 EW, 5-session cadence; selection sleeves vary. Split+dividend honest cache, not strict official. DSR nTrials is conservative (whole research).",
+  "ranked": [
+    {
+      "key": "Quality ROA",
+      "cfg": {
+        "regime": true,
+        "regimeMaWindow": 200,
+        "regimeBand": 0.03,
+        "volTarget": null,
+        "epsWeight": 0,
+        "qualityWeight": 1
+      },
+      "full": {
+        "cagr": 0.10452402808925432,
+        "sharpe": 0.584251926187714,
+        "mdd": -0.368918369586106,
+        "calmar": 0.28332562622598895,
+        "trades": 2640
+      },
+      "ci": {
+        "cagrP5": -0.018910915078776735,
+        "cagrP95": 0.24786469286250945,
+        "sharpeP5": 0.019291616169090264,
+        "sharpeP95": 1.1943831558922535
+      },
+      "dsr": {
+        "hurdle": 0.7976805792904587,
+        "observed": 0.584251926187714,
+        "clears": false
+      },
+      "is": {
+        "cagr": 0.05742782448018913,
+        "sharpe": 0.43035595163983853,
+        "mdd": -0.2390729402158579
+      },
+      "oos": {
+        "cagr": 0.20325640305846382,
+        "sharpe": 0.8205528704134726,
+        "mdd": -0.2888329907179954
+      },
+      "robust": false
+    },
+    {
+      "key": "Value + Quality",
+      "cfg": {
+        "regime": true,
+        "regimeMaWindow": 200,
+        "regimeBand": 0.03,
+        "volTarget": null,
+        "epsWeight": 0,
+        "valueWeight": 0.5,
+        "qualityWeight": 0.5
+      },
+      "full": {
+        "cagr": 0.0343535569911968,
+        "sharpe": 0.29216876243013395,
+        "mdd": -0.5082639001393539,
+        "calmar": 0.0675899999621808,
+        "trades": 2753
+      },
+      "ci": {
+        "cagrP5": -0.04692309883517354,
+        "cagrP95": 0.1349269787538081,
+        "sharpeP5": -0.2271734911280616,
+        "sharpeP95": 0.87727991185774
+      },
+      "dsr": {
+        "hurdle": 0.7528121304229954,
+        "observed": 0.29216876243013395,
+        "clears": false
+      },
+      "is": {
+        "cagr": 0.017716636151879683,
+        "sharpe": 0.20210083930328304,
+        "mdd": -0.24816186019458197
+      },
+      "oos": {
+        "cagr": 0.0796320901945673,
+        "sharpe": 0.4770911353249986,
+        "mdd": -0.3641318644442958
+      },
+      "robust": false
+    },
+    {
+      "key": "Value + Low-vol",
+      "cfg": {
+        "regime": true,
+        "regimeMaWindow": 200,
+        "regimeBand": 0.03,
+        "volTarget": null,
+        "epsWeight": 0,
+        "valueWeight": 0.5,
+        "lowVolWeight": 0.5
+      },
+      "full": {
+        "cagr": 0.014186663246182896,
+        "sharpe": 0.18185166649451565,
+        "mdd": -0.3086846598232781,
+        "calmar": 0.04595843296620168,
+        "trades": 2932
+      },
+      "ci": {
+        "cagrP5": -0.052004322157450766,
+        "cagrP95": 0.0909452554202348,
+        "sharpeP5": -0.3928351749516217,
+        "sharpeP95": 0.8201659482602862
+      },
+      "dsr": {
+        "hurdle": 0.7433134457244038,
+        "observed": 0.18185166649451565,
+        "clears": false
+      },
+      "is": {
+        "cagr": 0.006691358597777031,
+        "sharpe": 0.11816152389023744,
+        "mdd": -0.3086846598232781
+      },
+      "oos": {
+        "cagr": 0.06016831163801206,
+        "sharpe": 0.46541155832130066,
+        "mdd": -0.2090255404617256
+      },
+      "robust": false
+    },
+    {
+      "key": "EPS growth",
+      "cfg": {
+        "regime": true,
+        "regimeMaWindow": 200,
+        "regimeBand": 0.03,
+        "volTarget": null,
+        "epsWeight": 1
+      },
+      "full": {
+        "cagr": 0.14761642067848668,
+        "sharpe": 0.7685337450800822,
+        "mdd": -0.3265280543534914,
+        "calmar": 0.4520788297065608,
+        "trades": 2777
+      },
+      "ci": {
+        "cagrP5": 0.028551422158471507,
+        "cagrP95": 0.3013518597305085,
+        "sharpeP5": 0.24514124423231112,
+        "sharpeP95": 1.3939509398144962
+      },
+      "dsr": {
+        "hurdle": 0.8390729069829701,
+        "observed": 0.7685337450800822,
+        "clears": false
+      },
+      "is": {
+        "cagr": 0.17942873745150156,
+        "sharpe": 1.0691710244805879,
+        "mdd": -0.19329800053734392
+      },
+      "oos": {
+        "cagr": 0.08690945083500767,
+        "sharpe": 0.45313108144782,
+        "mdd": -0.2820570664292078
+      },
+      "robust": false
+    },
+    {
+      "key": "Momentum (RS)",
+      "cfg": {
+        "regime": true,
+        "regimeMaWindow": 200,
+        "regimeBand": 0.03,
+        "volTarget": null,
+        "epsWeight": 0
+      },
+      "full": {
+        "cagr": 0.10634558286449969,
+        "sharpe": 0.4939856565948474,
+        "mdd": -0.37698774887426645,
+        "calmar": 0.28209294116867506,
+        "trades": 2953
+      },
+      "ci": {
+        "cagrP5": -0.0668740889089825,
+        "cagrP95": 0.3377106531261955,
+        "sharpeP5": -0.08143989898060229,
+        "sharpeP95": 1.1253130648989869
+      },
+      "dsr": {
+        "hurdle": 0.7809250577476832,
+        "observed": 0.4939856565948474,
+        "clears": false
+      },
+      "is": {
+        "cagr": 0.08834801587553076,
+        "sharpe": 0.5036261612332178,
+        "mdd": -0.2633032772909696
+      },
+      "oos": {
+        "cagr": 0.09316930490836439,
+        "sharpe": 0.4313389989449553,
+        "mdd": -0.36454503715280007
+      },
+      "robust": false
+    },
+    {
+      "key": "Value E/P",
+      "cfg": {
+        "regime": true,
+        "regimeMaWindow": 200,
+        "regimeBand": 0.03,
+        "volTarget": null,
+        "epsWeight": 0,
+        "valueWeight": 1
+      },
+      "full": {
+        "cagr": 0.06959441335261318,
+        "sharpe": 0.48273835552090827,
+        "mdd": -0.38816555661253105,
+        "calmar": 0.1792905428290813,
+        "trades": 2729
+      },
+      "ci": {
+        "cagrP5": -0.02179727240046858,
+        "cagrP95": 0.17703059084242634,
+        "sharpeP5": -0.029108311605255073,
+        "sharpeP95": 1.056497942771442
+      },
+      "dsr": {
+        "hurdle": 0.779011220658911,
+        "observed": 0.48273835552090827,
+        "clears": false
+      },
+      "is": {
+        "cagr": 0.07193282918952448,
+        "sharpe": 0.5975711462857389,
+        "mdd": -0.23804997326093313
+      },
+      "oos": {
+        "cagr": 0.06508042168190853,
+        "sharpe": 0.3981653066929359,
+        "mdd": -0.34570216059783454
+      },
+      "robust": false
+    },
+    {
+      "key": "R1 baseline (RS+EPS)",
+      "cfg": {
+        "regime": true,
+        "regimeMaWindow": 200,
+        "regimeBand": 0.03,
+        "volTarget": null,
+        "epsWeight": 0.5
+      },
+      "full": {
+        "cagr": 0.11796623997015798,
+        "sharpe": 0.567614063558292,
+        "mdd": -0.35982370619850956,
+        "calmar": 0.3278445470323673,
+        "trades": 2958
+      },
+      "ci": {
+        "cagrP5": -0.025018841984022933,
+        "cagrP95": 0.2947531561967629,
+        "sharpeP5": 0.028752166849169647,
+        "sharpeP95": 1.1652284053852233
+      },
+      "dsr": {
+        "hurdle": 0.7944092552915406,
+        "observed": 0.567614063558292,
+        "clears": false
+      },
+      "is": {
+        "cagr": 0.12548506252982317,
+        "sharpe": 0.7264545819556927,
+        "mdd": -0.21101043982880108
+      },
+      "oos": {
+        "cagr": 0.06141477990533839,
+        "sharpe": 0.3522248059425214,
+        "mdd": -0.3209046659418996
+      },
+      "robust": false
+    },
+    {
+      "key": "Value + EPS growth",
+      "cfg": {
+        "regime": true,
+        "regimeMaWindow": 200,
+        "regimeBand": 0.03,
+        "volTarget": null,
+        "epsWeight": 0.5,
+        "valueWeight": 0.5
+      },
+      "full": {
+        "cagr": 0.0512678487866578,
+        "sharpe": 0.38960092452027445,
+        "mdd": -0.37500485052519794,
+        "calmar": 0.13671249509134797,
+        "trades": 2875
+      },
+      "ci": {
+        "cagrP5": -0.037066995165598526,
+        "cagrP95": 0.1465867877711151,
+        "sharpeP5": -0.13459422360695905,
+        "sharpeP95": 0.9453919910863714
+      },
+      "dsr": {
+        "hurdle": 0.7647080275085355,
+        "observed": 0.38960092452027445,
+        "clears": false
+      },
+      "is": {
+        "cagr": 0.0640447036991767,
+        "sharpe": 0.5372199618645256,
+        "mdd": -0.24728409996851175
+      },
+      "oos": {
+        "cagr": 0.028614709830338425,
+        "sharpe": 0.24358703746271132,
+        "mdd": -0.28863992072884637
+      },
+      "robust": false
+    },
+    {
+      "key": "Momentum + Low-vol",
+      "cfg": {
+        "regime": true,
+        "regimeMaWindow": 200,
+        "regimeBand": 0.03,
+        "volTarget": null,
+        "epsWeight": 0,
+        "lowVolWeight": 0.5
+      },
+      "full": {
+        "cagr": -0.01978514445447399,
+        "sharpe": -0.06680478294750686,
+        "mdd": -0.5104704142726262,
+        "calmar": -0.03875865065101965,
+        "trades": 3221
+      },
+      "ci": {
+        "cagrP5": -0.10147031595371281,
+        "cagrP95": 0.06566076805274523,
+        "sharpeP5": -0.6236267731327026,
+        "sharpeP95": 0.554189148408376
+      },
+      "dsr": {
+        "hurdle": 0.738065369954946,
+        "observed": -0.06680478294750686,
+        "clears": false
+      },
+      "is": {
+        "cagr": 0.002412765719557175,
+        "sharpe": 0.08271176603335575,
+        "mdd": -0.21386256621356714
+      },
+      "oos": {
+        "cagr": 0.012000923279109177,
+        "sharpe": 0.15999205733938843,
+        "mdd": -0.35853640977820256
+      },
+      "robust": false
+    },
+    {
+      "key": "Value+Quality+Low-vol",
+      "cfg": {
+        "regime": true,
+        "regimeMaWindow": 200,
+        "regimeBand": 0.03,
+        "volTarget": null,
+        "epsWeight": 0,
+        "valueWeight": 0.34,
+        "qualityWeight": 0.33,
+        "lowVolWeight": 0.33
+      },
+      "full": {
+        "cagr": 0.01522036313136077,
+        "sharpe": 0.1893514181663315,
+        "mdd": -0.24089787632191018,
+        "calmar": 0.06318180701195515,
+        "trades": 2862
+      },
+      "ci": {
+        "cagrP5": -0.0388362524375403,
+        "cagrP95": 0.07550075556841507,
+        "sharpeP5": -0.2801729308120351,
+        "sharpeP95": 0.6941459038114629
+      },
+      "dsr": {
+        "hurdle": 0.743822189980469,
+        "observed": 0.1893514181663315,
+        "clears": false
+      },
+      "is": {
+        "cagr": 0.025139576133686115,
+        "sharpe": 0.29886951386675165,
+        "mdd": -0.23174468768273282
+      },
+      "oos": {
+        "cagr": -0.004296576119380502,
+        "sharpe": 0.05706109183219189,
+        "mdd": -0.2530378571648061
+      },
+      "robust": false
+    },
+    {
+      "key": "All four (EPS+Val+Q+LV)",
+      "cfg": {
+        "regime": true,
+        "regimeMaWindow": 200,
+        "regimeBand": 0.03,
+        "volTarget": null,
+        "epsWeight": 0.25,
+        "valueWeight": 0.25,
+        "qualityWeight": 0.25,
+        "lowVolWeight": 0.25
+      },
+      "full": {
+        "cagr": 0.01018588485987082,
+        "sharpe": 0.1468122168766612,
+        "mdd": -0.2892123429987007,
+        "calmar": 0.03521939884812102,
+        "trades": 2897
+      },
+      "ci": {
+        "cagrP5": -0.04671320697480963,
+        "cagrP95": 0.07138933001252412,
+        "sharpeP5": -0.3131761955362825,
+        "sharpeP95": 0.6604387968638545
+      },
+      "dsr": {
+        "hurdle": 0.7412052291055339,
+        "observed": 0.1468122168766612,
+        "clears": false
+      },
+      "is": {
+        "cagr": 0.04456190139072058,
+        "sharpe": 0.46908492634058174,
+        "mdd": -0.19882943977062517
+      },
+      "oos": {
+        "cagr": -0.047063027125549106,
+        "sharpe": -0.2270700848790181,
+        "mdd": -0.24672019352310237
+      },
+      "robust": false
+    },
+    {
+      "key": "Low-vol",
+      "cfg": {
+        "regime": true,
+        "regimeMaWindow": 200,
+        "regimeBand": 0.03,
+        "volTarget": null,
+        "epsWeight": 0,
+        "lowVolWeight": 1
+      },
+      "full": {
+        "cagr": -0.01448174857849771,
+        "sharpe": -0.10224718351006327,
+        "mdd": -0.2800884466892001,
+        "calmar": -0.051704198261941774,
+        "trades": 2925
+      },
+      "ci": {
+        "cagrP5": -0.06896609396697495,
+        "cagrP95": 0.04353059476600851,
+        "sharpeP5": -0.6703880226229494,
+        "sharpeP95": 0.5128046660694896
+      },
+      "dsr": {
+        "hurdle": 0.7391676348946109,
+        "observed": -0.10224718351006327,
+        "clears": false
+      },
+      "is": {
+        "cagr": 0.01312579041746953,
+        "sharpe": 0.189651713945062,
+        "mdd": -0.22633825081563397
+      },
+      "oos": {
+        "cagr": -0.07129397697448436,
+        "sharpe": -0.5445050331011132,
+        "mdd": -0.26461796711248164
+      },
+      "robust": false
+    }
+  ]
+}
