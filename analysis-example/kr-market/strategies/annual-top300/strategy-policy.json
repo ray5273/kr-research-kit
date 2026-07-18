@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "name": "annual-top300-minervini-earnings-regime",
   "primaryStrategy": true,
-  "primaryStrategyStatement": "Korean default: Minervini RS + point-in-time EPS/revenue + KOSPI regime + volatility target. Price-only momentum is validation-only.",
+  "primaryStrategyStatement": "Korean default: Minervini RS + point-in-time EPS/revenue + KOSPI SMA200 regime only (R1 adopted 2026-07-18; the volatility target was removed as a return drag). Price-only momentum is validation-only.",
   "representativePerformance": {
     "status": "re-anchored 2026-07-18; provisional pending official strict total return (A2)",
     "note": "The 21.78% CAGR / -16.44% MDD headline is a raw-cache diagnostic inflated by survivorship (price-jump filter drops delisted/crashed names) and in-sample overfitting. It is NOT representative. Use the survivorship-honest, dividend-inclusive bracket below.",
@@ -20,10 +20,10 @@
   },
   "recommendedChange": {
     "id": "R1-drop-vol-target",
-    "status": "adopted-pending-official-confirmation",
+    "status": "adopted (engine default 2026-07-18)",
     "change": "Remove the 60-session 18% volatility target; keep the KOSPI SMA200 +/-3% regime filter only.",
     "evidence": "Ablation attributes all drawdown control to the regime filter (+21pp MDD, ~free); the vol target is a pure return drag (~-3pp CAGR, 0 MDD benefit) and its parameters sit at local CAGR minima (overfit). Regime-only doubles OOS CAGR (2.83%->6.14%) and cuts turnover ~72%, in- and out-of-sample.",
-    "implementation": "flip the runner overlay to regime-only after confirming on the official strict total-return cache (A2)."
+    "implementation": "run-annual-top300-minervini-earnings-regime.js now defaults --vol-target 0 (regime-only). Restore pre-R1 behavior with --vol-target 0.18. Verified: regime-only reproduces 11.80%/0.57/-35.98% on the dividend-inclusive cache."
   },
   "universePolicy": {
     "source": "year-end KOSPI/KOSDAQ common-share market-cap Top 300 ledger",
@@ -39,7 +39,7 @@
     "rebalanceCadenceSessions": 5,
     "maxHoldings": 10,
     "score": "Minervini RS 3/6/12M (40/30/30) percentile 50% + point-in-time EPS/revenue percentile 50%",
-    "overlay": "KOSPI SMA200 +/-3% regime + 60-session 18% volatility target",
+    "overlay": "KOSPI SMA200 +/-3% regime only (R1 adopted 2026-07-18; volatility target removed, restore with --vol-target 0.18)",
     "execution": "signal close to next-session open",
     "costs": "buy 25bp; sell 25bp plus 0.18% securities transaction tax"
   }
