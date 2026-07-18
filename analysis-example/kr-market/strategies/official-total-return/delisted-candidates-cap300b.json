@@ -1,0 +1,396 @@
+{
+  "note": "Union constituents whose marcap price series ends before 2026-06-01 (delisted/merged/terminated in-sample). These are the survivorship-critical names to archive first for the hybrid A2 official cache.",
+  "cutoff": "2026-06-01",
+  "cap300b": [
+    {
+      "ticker": "003940",
+      "lastDate": "2016-01-20",
+      "name": "삼양제넥스"
+    },
+    {
+      "ticker": "111610",
+      "lastDate": "2016-01-22",
+      "name": "승화프리텍"
+    },
+    {
+      "ticker": "008020",
+      "lastDate": "2016-05-18",
+      "name": "경남에너지"
+    },
+    {
+      "ticker": "003450",
+      "lastDate": "2016-10-31",
+      "name": "현대증권"
+    },
+    {
+      "ticker": "068870",
+      "lastDate": "2017-01-16",
+      "name": "LG생명과학"
+    },
+    {
+      "ticker": "037620",
+      "lastDate": "2017-01-19",
+      "name": "미래에셋증권"
+    },
+    {
+      "ticker": "117930",
+      "lastDate": "2017-03-06",
+      "name": "한진해운"
+    },
+    {
+      "ticker": "002550",
+      "lastDate": "2017-07-20",
+      "name": "KB손해보험"
+    },
+    {
+      "ticker": "021960",
+      "lastDate": "2017-07-20",
+      "name": "케이비캐피탈"
+    },
+    {
+      "ticker": "900050",
+      "lastDate": "2017-09-26",
+      "name": "중국원양자원"
+    },
+    {
+      "ticker": "008000",
+      "lastDate": "2018-03-19",
+      "name": "도레이케미칼"
+    },
+    {
+      "ticker": "024660",
+      "lastDate": "2018-07-13",
+      "name": "하림홀딩스"
+    },
+    {
+      "ticker": "130960",
+      "lastDate": "2018-07-17",
+      "name": "CJ E&M"
+    },
+    {
+      "ticker": "016170",
+      "lastDate": "2018-09-17",
+      "name": "로엔"
+    },
+    {
+      "ticker": "192530",
+      "lastDate": "2018-10-25",
+      "name": "광주은행"
+    },
+    {
+      "ticker": "002000",
+      "lastDate": "2018-12-12",
+      "name": "한국유리"
+    },
+    {
+      "ticker": "004130",
+      "lastDate": "2018-12-18",
+      "name": "대덕GDS"
+    },
+    {
+      "ticker": "000030",
+      "lastDate": "2019-02-12",
+      "name": "우리은행"
+    },
+    {
+      "ticker": "123100",
+      "lastDate": "2019-02-19",
+      "name": "테라세미콘"
+    },
+    {
+      "ticker": "065160",
+      "lastDate": "2019-05-02",
+      "name": "에프티이앤이"
+    },
+    {
+      "ticker": "002250",
+      "lastDate": "2019-05-17",
+      "name": "알보젠코리아"
+    },
+    {
+      "ticker": "079440",
+      "lastDate": "2020-02-13",
+      "name": "아이엔지생명"
+    },
+    {
+      "ticker": "011160",
+      "lastDate": "2020-03-23",
+      "name": "두산건설"
+    },
+    {
+      "ticker": "027390",
+      "lastDate": "2020-04-14",
+      "name": "한화갤러리아타임월드"
+    },
+    {
+      "ticker": "108790",
+      "lastDate": "2020-07-15",
+      "name": "인터파크"
+    },
+    {
+      "ticker": "152330",
+      "lastDate": "2020-12-17",
+      "name": "코리아오토글라스"
+    },
+    {
+      "ticker": "057500",
+      "lastDate": "2020-12-22",
+      "name": "SKC 솔믹스"
+    },
+    {
+      "ticker": "023890",
+      "lastDate": "2021-04-16",
+      "name": "아트라스BX"
+    },
+    {
+      "ticker": "073070",
+      "lastDate": "2021-06-03",
+      "name": "에스모"
+    },
+    {
+      "ticker": "028150",
+      "lastDate": "2021-07-15",
+      "name": "GS홈쇼핑"
+    },
+    {
+      "ticker": "065620",
+      "lastDate": "2021-08-06",
+      "name": "제낙스"
+    },
+    {
+      "ticker": "033660",
+      "lastDate": "2021-08-26",
+      "name": "아주캐피탈"
+    },
+    {
+      "ticker": "031390",
+      "lastDate": "2021-11-16",
+      "name": "녹십자셀"
+    },
+    {
+      "ticker": "036490",
+      "lastDate": "2021-12-24",
+      "name": "OCI머티리얼즈"
+    },
+    {
+      "ticker": "101060",
+      "lastDate": "2022-01-17",
+      "name": "SBS미디어홀딩스"
+    },
+    {
+      "ticker": "015350",
+      "lastDate": "2022-01-17",
+      "name": "부산가스"
+    },
+    {
+      "ticker": "114570",
+      "lastDate": "2022-02-22",
+      "name": "지스마트글로벌"
+    },
+    {
+      "ticker": "138250",
+      "lastDate": "2022-03-21",
+      "name": "엔에스쇼핑"
+    },
+    {
+      "ticker": "041140",
+      "lastDate": "2022-04-14",
+      "name": "넥슨지티"
+    },
+    {
+      "ticker": "950180",
+      "lastDate": "2022-05-17",
+      "name": "SNK"
+    },
+    {
+      "ticker": "220630",
+      "lastDate": "2022-05-30",
+      "name": "해마로푸드서비스"
+    },
+    {
+      "ticker": "002270",
+      "lastDate": "2022-07-19",
+      "name": "롯데푸드"
+    },
+    {
+      "ticker": "131390",
+      "lastDate": "2022-11-28",
+      "name": "피앤이솔루션"
+    },
+    {
+      "ticker": "290510",
+      "lastDate": "2022-12-15",
+      "name": "코리아센터"
+    },
+    {
+      "ticker": "048260",
+      "lastDate": "2023-08-11",
+      "name": "오스템임플란트"
+    },
+    {
+      "ticker": "010050",
+      "lastDate": "2023-08-25",
+      "name": "우리종금"
+    },
+    {
+      "ticker": "298870",
+      "lastDate": "2023-08-25",
+      "name": "케이티비네트워크"
+    },
+    {
+      "ticker": "069110",
+      "lastDate": "2023-10-19",
+      "name": "코스온"
+    },
+    {
+      "ticker": "085370",
+      "lastDate": "2023-10-26",
+      "name": "루트로닉"
+    },
+    {
+      "ticker": "046140",
+      "lastDate": "2023-12-15",
+      "name": "SBS콘텐츠허브"
+    },
+    {
+      "ticker": "091990",
+      "lastDate": "2024-01-11",
+      "name": "셀트리온헬스케어"
+    },
+    {
+      "ticker": "068400",
+      "lastDate": "2024-01-30",
+      "name": "SK렌터카"
+    },
+    {
+      "ticker": "114120",
+      "lastDate": "2024-02-14",
+      "name": "크루셜텍"
+    },
+    {
+      "ticker": "001880",
+      "lastDate": "2024-02-29",
+      "name": "삼호"
+    },
+    {
+      "ticker": "003410",
+      "lastDate": "2024-07-08",
+      "name": "쌍용양회"
+    },
+    {
+      "ticker": "136510",
+      "lastDate": "2024-07-24",
+      "name": "에디슨EV"
+    },
+    {
+      "ticker": "119860",
+      "lastDate": "2024-09-23",
+      "name": "다나와"
+    },
+    {
+      "ticker": "287410",
+      "lastDate": "2024-11-06",
+      "name": "제이시스메디칼"
+    },
+    {
+      "ticker": "138580",
+      "lastDate": "2024-11-21",
+      "name": "비즈니스온"
+    },
+    {
+      "ticker": "115390",
+      "lastDate": "2024-12-06",
+      "name": "락앤락"
+    },
+    {
+      "ticker": "268600",
+      "lastDate": "2025-03-06",
+      "name": "셀리버리"
+    },
+    {
+      "ticker": "214870",
+      "lastDate": "2025-03-28",
+      "name": "뉴지랩"
+    },
+    {
+      "ticker": "029960",
+      "lastDate": "2025-06-13",
+      "name": "코엔텍"
+    },
+    {
+      "ticker": "950110",
+      "lastDate": "2025-07-23",
+      "name": "SBI핀테크솔루션즈"
+    },
+    {
+      "ticker": "049770",
+      "lastDate": "2025-07-30",
+      "name": "동원F&B"
+    },
+    {
+      "ticker": "093230",
+      "lastDate": "2025-09-10",
+      "name": "이아이디"
+    },
+    {
+      "ticker": "005390",
+      "lastDate": "2025-09-29",
+      "name": "신성통상"
+    },
+    {
+      "ticker": "006390",
+      "lastDate": "2025-11-20",
+      "name": "현대시멘트"
+    },
+    {
+      "ticker": "014200",
+      "lastDate": "2025-11-25",
+      "name": "광림"
+    },
+    {
+      "ticker": "151910",
+      "lastDate": "2025-11-25",
+      "name": "나노스"
+    },
+    {
+      "ticker": "335890",
+      "lastDate": "2025-12-09",
+      "name": "비올"
+    },
+    {
+      "ticker": "010620",
+      "lastDate": "2025-12-12",
+      "name": "현대미포조선"
+    },
+    {
+      "ticker": "450140",
+      "lastDate": "2026-01-06",
+      "name": "코오롱모빌리티그룹"
+    },
+    {
+      "ticker": "003560",
+      "lastDate": "2026-01-14",
+      "name": "IHQ"
+    },
+    {
+      "ticker": "033180",
+      "lastDate": "2026-01-14",
+      "name": "필룩스"
+    },
+    {
+      "ticker": "042670",
+      "lastDate": "2026-01-23",
+      "name": "두산인프라코어"
+    },
+    {
+      "ticker": "208340",
+      "lastDate": "2026-01-26",
+      "name": "파멥신"
+    },
+    {
+      "ticker": "138490",
+      "lastDate": "2026-04-15",
+      "name": "코오롱플라스틱"
+    }
+  ]
+}
