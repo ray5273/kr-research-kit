@@ -1,0 +1,328 @@
+{
+  "generatedAt": "2026-07-18T09:47:54.677Z",
+  "label": "marcap-total-return",
+  "period": {
+    "start": "2017-01-02",
+    "end": "2026-07-16"
+  },
+  "priceCache": ".tmp/kr-strategy-backtest/marcap-total-return",
+  "dartPanel": ".tmp/kr-strategy-backtest/dart-quarterly-panel",
+  "base": {
+    "epsWeight": 0.5,
+    "regime": true,
+    "regimeMaWindow": 200,
+    "regimeBand": 0.03,
+    "volTarget": 0.18,
+    "volWindow": 60
+  },
+  "note": "Universe held fixed to DART-covered names; delisted series forward-fill last close (carry). Relative decomposition valid; absolute levels are split-only carry diagnostic, not official total-return.",
+  "ablation": [
+    {
+      "key": "A. RS only (no overlay)",
+      "totalReturn": 1.113868275843919,
+      "cagr": 0.0816819240248714,
+      "annualizedVolatility": 0.3876735252991245,
+      "sharpeZeroRf": 0.40313125932692223,
+      "maxDrawdown": -0.6736392850064805,
+      "calmar": 0.12125469200342971,
+      "tradeCount": 5462,
+      "turnover": 193.4663477589756
+    },
+    {
+      "key": "B. RS + EPS (no overlay)",
+      "totalReturn": 2.024453490015275,
+      "cagr": 0.12309949521702568,
+      "annualizedVolatility": 0.33158272336777,
+      "sharpeZeroRf": 0.5271530112489988,
+      "maxDrawdown": -0.5730918016303973,
+      "calmar": 0.21479891156498507,
+      "tradeCount": 5460,
+      "turnover": 190.44718000636854
+    },
+    {
+      "key": "C. + KOSPI regime",
+      "totalReturn": 1.8952109059534328,
+      "cagr": 0.11796623997015798,
+      "annualizedVolatility": 0.26409920295631417,
+      "sharpeZeroRf": 0.567614063558292,
+      "maxDrawdown": -0.35982370619850956,
+      "calmar": 0.3278445470323673,
+      "tradeCount": 2958,
+      "turnover": 108.67914607614863
+    },
+    {
+      "key": "D. + vol target (FULL)",
+      "totalReturn": 1.2379457169188441,
+      "cagr": 0.08817321579596493,
+      "annualizedVolatility": 0.19200007800292146,
+      "sharpeZeroRf": 0.5496619623204004,
+      "maxDrawdown": -0.3647976411809576,
+      "calmar": 0.24170445705329185,
+      "tradeCount": 10615,
+      "turnover": 104.09788291655401
+    },
+    {
+      "key": "E. RS only + FULL overlay",
+      "totalReturn": 1.0592253206975935,
+      "cagr": 0.0787143914961006,
+      "annualizedVolatility": 0.20824452755304124,
+      "sharpeZeroRf": 0.47924892108351064,
+      "maxDrawdown": -0.27445525740682375,
+      "calmar": 0.2868022723988946,
+      "tradeCount": 11626,
+      "turnover": 103.176636693994
+    },
+    {
+      "key": "F. EPS only + FULL overlay",
+      "totalReturn": 2.112579292777765,
+      "cagr": 0.1264882376481633,
+      "annualizedVolatility": 0.1722857798521601,
+      "sharpeZeroRf": 0.7984787953167001,
+      "maxDrawdown": -0.30996169192398737,
+      "calmar": 0.40807700094495003,
+      "tradeCount": 9777,
+      "turnover": 77.00364365981947
+    }
+  ],
+  "sensitivity": {
+    "regimeMaWindow": [
+      {
+        "value": 150,
+        "totalReturn": 1.908686850277217,
+        "cagr": 0.11851095098557773,
+        "annualizedVolatility": 0.1912537919087976,
+        "sharpeZeroRf": 0.6990833345601544,
+        "maxDrawdown": -0.3177761358029061,
+        "calmar": 0.3729384860387428,
+        "tradeCount": 10404,
+        "turnover": 113.36308150567258
+      },
+      {
+        "value": 175,
+        "totalReturn": 2.182048403006389,
+        "cagr": 0.12909955900897652,
+        "annualizedVolatility": 0.1888542353053677,
+        "sharpeZeroRf": 0.7569016211458817,
+        "maxDrawdown": -0.2797872641912772,
+        "calmar": 0.46142042734553246,
+        "tradeCount": 10224,
+        "turnover": 105.87636729556051
+      },
+      {
+        "value": 200,
+        "totalReturn": 1.2379457169188441,
+        "cagr": 0.08817321579596493,
+        "annualizedVolatility": 0.19200007800292146,
+        "sharpeZeroRf": 0.5496619623204004,
+        "maxDrawdown": -0.3647976411809576,
+        "calmar": 0.24170445705329185,
+        "tradeCount": 10615,
+        "turnover": 104.09788291655401
+      },
+      {
+        "value": 225,
+        "totalReturn": 0.9663737685737992,
+        "cagr": 0.07350624631507396,
+        "annualizedVolatility": 0.19222018034362154,
+        "sharpeZeroRf": 0.47655557282853067,
+        "maxDrawdown": -0.37593434982859486,
+        "calmar": 0.19552947568794585,
+        "tradeCount": 10679,
+        "turnover": 105.86460248621825
+      },
+      {
+        "value": 250,
+        "totalReturn": 0.83287231872306,
+        "cagr": 0.06561831782179173,
+        "annualizedVolatility": 0.19352598965204373,
+        "sharpeZeroRf": 0.4354287878362497,
+        "maxDrawdown": -0.4264840268653517,
+        "calmar": 0.1538587935029711,
+        "tradeCount": 10931,
+        "turnover": 106.47851109405201
+      }
+    ],
+    "regimeBand": [
+      {
+        "value": 0,
+        "totalReturn": 1.0827388100924904,
+        "cagr": 0.07999989121598294,
+        "annualizedVolatility": 0.19343851294054684,
+        "sharpeZeroRf": 0.506866935625322,
+        "maxDrawdown": -0.371865390080221,
+        "calmar": 0.21513131727242724,
+        "tradeCount": 10650,
+        "turnover": 146.72028785172316
+      },
+      {
+        "value": 0.02,
+        "totalReturn": 1.8976470374805636,
+        "cagr": 0.11806487863386828,
+        "annualizedVolatility": 0.1943371615588074,
+        "sharpeZeroRf": 0.6889191067227083,
+        "maxDrawdown": -0.29577959949058996,
+        "calmar": 0.3991650500480999,
+        "tradeCount": 11151,
+        "turnover": 117.14793915159214
+      },
+      {
+        "value": 0.03,
+        "totalReturn": 1.2379457169188441,
+        "cagr": 0.08817321579596493,
+        "annualizedVolatility": 0.19200007800292146,
+        "sharpeZeroRf": 0.5496619623204004,
+        "maxDrawdown": -0.3647976411809576,
+        "calmar": 0.24170445705329185,
+        "tradeCount": 10615,
+        "turnover": 104.09788291655401
+      },
+      {
+        "value": 0.05,
+        "totalReturn": 0.9576680041832728,
+        "cagr": 0.07300670781698626,
+        "annualizedVolatility": 0.19251090038543972,
+        "sharpeZeroRf": 0.47366374312941817,
+        "maxDrawdown": -0.4253501282504232,
+        "calmar": 0.1716390873497136,
+        "tradeCount": 10731,
+        "turnover": 101.21076070738465
+      },
+      {
+        "value": 0.08,
+        "totalReturn": 1.2622684910215027,
+        "cagr": 0.0894077976269223,
+        "annualizedVolatility": 0.18456698812061523,
+        "sharpeZeroRf": 0.5703844520031064,
+        "maxDrawdown": -0.21878651328068555,
+        "calmar": 0.40865314907331274,
+        "tradeCount": 10226,
+        "turnover": 91.79022607740663
+      }
+    ],
+    "volTarget": [
+      {
+        "value": 0.12,
+        "totalReturn": 1.0106254396495773,
+        "cagr": 0.07601521442410397,
+        "annualizedVolatility": 0.15900957813153413,
+        "sharpeZeroRf": 0.5542226117414998,
+        "maxDrawdown": -0.300189066474442,
+        "calmar": 0.25322446056034453,
+        "tradeCount": 12015,
+        "turnover": 91.60274563269871
+      },
+      {
+        "value": 0.15,
+        "totalReturn": 1.1123868924083187,
+        "cagr": 0.08160238379446016,
+        "annualizedVolatility": 0.1766844019657994,
+        "sharpeZeroRf": 0.54589633430152,
+        "maxDrawdown": -0.3396824705913889,
+        "calmar": 0.24023136564094696,
+        "tradeCount": 11545,
+        "turnover": 98.79635725341359
+      },
+      {
+        "value": 0.18,
+        "totalReturn": 1.2379457169188441,
+        "cagr": 0.08817321579596493,
+        "annualizedVolatility": 0.19200007800292146,
+        "sharpeZeroRf": 0.5496619623204004,
+        "maxDrawdown": -0.3647976411809576,
+        "calmar": 0.24170445705329185,
+        "tradeCount": 10615,
+        "turnover": 104.09788291655401
+      },
+      {
+        "value": 0.22,
+        "totalReturn": 1.4000578785825426,
+        "cagr": 0.09618528881447608,
+        "annualizedVolatility": 0.20829020460557993,
+        "sharpeZeroRf": 0.5586807738412765,
+        "maxDrawdown": -0.36234681752179354,
+        "calmar": 0.2654508999756593,
+        "tradeCount": 9342,
+        "turnover": 108.43101716499854
+      },
+      {
+        "value": 0.3,
+        "totalReturn": 1.5655837526346965,
+        "cagr": 0.10388096701140337,
+        "annualizedVolatility": 0.2331864748978254,
+        "sharpeZeroRf": 0.5536915458414962,
+        "maxDrawdown": -0.3644773642614605,
+        "calmar": 0.28501349383355284,
+        "tradeCount": 7184,
+        "turnover": 113.3022865634979
+      },
+      {
+        "value": null,
+        "totalReturn": 1.8952109059534328,
+        "cagr": 0.11796623997015798,
+        "annualizedVolatility": 0.26409920295631417,
+        "sharpeZeroRf": 0.567614063558292,
+        "maxDrawdown": -0.35982370619850956,
+        "calmar": 0.3278445470323673,
+        "tradeCount": 2958,
+        "turnover": 108.67914607614863
+      }
+    ],
+    "volWindow": [
+      {
+        "value": 30,
+        "totalReturn": 1.6075529544773763,
+        "cagr": 0.10576145097663314,
+        "annualizedVolatility": 0.18543065769783568,
+        "sharpeZeroRf": 0.6513113515240763,
+        "maxDrawdown": -0.28478413210858944,
+        "calmar": 0.3713741007743572,
+        "tradeCount": 10825,
+        "turnover": 110.27224391487152
+      },
+      {
+        "value": 45,
+        "totalReturn": 1.3170974535433326,
+        "cagr": 0.09214781268519268,
+        "annualizedVolatility": 0.18809657767543525,
+        "sharpeZeroRf": 0.5769442282540128,
+        "maxDrawdown": -0.34363114450417753,
+        "calmar": 0.26815908324652,
+        "tradeCount": 10661,
+        "turnover": 105.84318008226552
+      },
+      {
+        "value": 60,
+        "totalReturn": 1.2379457169188441,
+        "cagr": 0.08817321579596493,
+        "annualizedVolatility": 0.19200007800292146,
+        "sharpeZeroRf": 0.5496619623204004,
+        "maxDrawdown": -0.3647976411809576,
+        "calmar": 0.24170445705329185,
+        "tradeCount": 10615,
+        "turnover": 104.09788291655401
+      },
+      {
+        "value": 90,
+        "totalReturn": 1.5791602871242318,
+        "cagr": 0.10449227502041003,
+        "annualizedVolatility": 0.19049186575808277,
+        "sharpeZeroRf": 0.6328638617495913,
+        "maxDrawdown": -0.32261600931344436,
+        "calmar": 0.32389054480829677,
+        "tradeCount": 10246,
+        "turnover": 103.48960668698636
+      },
+      {
+        "value": 120,
+        "totalReturn": 1.6411554705484894,
+        "cagr": 0.10724762570154467,
+        "annualizedVolatility": 0.19334756746879794,
+        "sharpeZeroRf": 0.639629969242687,
+        "maxDrawdown": -0.3133007848552889,
+        "calmar": 0.3423152155558164,
+        "tradeCount": 10126,
+        "turnover": 102.76829575430817
+      }
+    ]
+  }
+}
