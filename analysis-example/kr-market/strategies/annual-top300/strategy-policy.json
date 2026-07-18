@@ -29,6 +29,14 @@
     "evidence": "Ablation attributes all drawdown control to the regime filter (+21pp MDD, ~free); the vol target is a pure return drag (~-3pp CAGR, 0 MDD benefit) and its parameters sit at local CAGR minima (overfit). Regime-only doubles OOS CAGR (2.83%->6.14%) and cuts turnover ~72%, in- and out-of-sample.",
     "implementation": "run-annual-top300-minervini-earnings-regime.js now defaults --vol-target 0 (regime-only). Restore pre-R1 behavior with --vol-target 0.18. Verified: regime-only reproduces 11.80%/0.57/-35.98% on the dividend-inclusive cache."
   },
+  "returnSeekingVariant": {
+    "id": "pure-eps-tilt",
+    "status": "adopted as a calculated BET (2026-07-18), not the conservative default",
+    "config": "--eps-weight 1.0 --holdings 15 (pure EPS/revenue improvement tilt, RS momentum dropped) + binary SMA200 regime, vol off",
+    "honestPerformance": { "fullSampleCagr": 0.1129, "fullSampleSharpe": 0.66, "fullSampleMdd": -0.3175, "oosCagr": 0.101, "oosSharpe": 0.52 },
+    "caveat": "Selection does NOT clear the Deflated Sharpe hurdle -- not distinguishable from luck; returns are lumpy (2017/2020/2025 spikes) and config-fragile. The regime overlay protects the downside but the selection alpha may not persist. Adding RS momentum HURTS (dilutes EPS). Aggressive dial: --holdings 10 -> ~14.8% full / 8.7% OOS.",
+    "report": "annual-top300-return-seeking-eps-2017-01-02-through-2026-07-16.md"
+  },
   "universePolicy": {
     "source": "year-end KOSPI/KOSDAQ common-share market-cap Top 300 ledger",
     "rankingSnapshot": "last trading session of year t",
