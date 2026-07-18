@@ -1,0 +1,175 @@
+{
+  "generatedAt": "2026-07-18T12:16:26.791Z",
+  "label": "marcap-total-return",
+  "period": {
+    "start": "2017-01-02",
+    "end": "2026-07-16"
+  },
+  "oosStart": "2023-01-02",
+  "priceCache": ".tmp/kr-strategy-backtest/marcap-total-return",
+  "note": "Broad EW basket + regime overlay, monthly cadence. Ranked by Calmar (risk-adjusted). Split+dividend honest cache, not strict official.",
+  "marketBaseline": {
+    "key": "Market (broad, NO regime)",
+    "cfg": {
+      "epsWeight": 0,
+      "holdings": 200,
+      "cadence": 21,
+      "regime": false
+    },
+    "cagr": 0.05984325584124961,
+    "sharpe": 0.3865641654489065,
+    "mdd": -0.5281749004471143,
+    "calmar": 0.11330196832638331,
+    "turnover": 36.587767359715336,
+    "oosCagr": 0.22414849568124984,
+    "oosMdd": -0.24521083111966757,
+    "oosSharpe": 1.0074396168583672
+  },
+  "ranked": [
+    {
+      "key": "Breadth 20 + graduated",
+      "cfg": {
+        "epsWeight": 0,
+        "holdings": 20,
+        "cadence": 21,
+        "regime": true,
+        "regimeMode": "graduated"
+      },
+      "cagr": 0.09185711470378499,
+      "sharpe": 0.4840208666282135,
+      "mdd": -0.2994847467430861,
+      "calmar": 0.30671717241941837,
+      "turnover": 95.38905956245547,
+      "oosCagr": 0.19826314497115094,
+      "oosMdd": -0.2930642669261926,
+      "oosSharpe": 0.7050018005971247
+    },
+    {
+      "key": "Breadth 60 + graduated",
+      "cfg": {
+        "epsWeight": 0,
+        "holdings": 60,
+        "cadence": 21,
+        "regime": true,
+        "regimeMode": "graduated"
+      },
+      "cagr": 0.07569248560952624,
+      "sharpe": 0.47558532177162177,
+      "mdd": -0.3219816914898731,
+      "calmar": 0.23508319761686483,
+      "turnover": 87.37724501305262,
+      "oosCagr": 0.1824393641551041,
+      "oosMdd": -0.30443518095047417,
+      "oosSharpe": 0.7574640396840049
+    },
+    {
+      "key": "Breadth 120 + graduated",
+      "cfg": {
+        "epsWeight": 0,
+        "holdings": 120,
+        "cadence": 21,
+        "regime": true,
+        "regimeMode": "graduated"
+      },
+      "cagr": 0.07316285900799335,
+      "sharpe": 0.5039485028954023,
+      "mdd": -0.33112612619972437,
+      "calmar": 0.2209516350995026,
+      "turnover": 78.6630189105658,
+      "oosCagr": 0.17502461429635674,
+      "oosMdd": -0.28664838086570377,
+      "oosSharpe": 0.804548481074128
+    },
+    {
+      "key": "Market + binary regime",
+      "cfg": {
+        "epsWeight": 0,
+        "holdings": 200,
+        "cadence": 21,
+        "regime": true,
+        "regimeMode": "binary"
+      },
+      "cagr": 0.0520341475608721,
+      "sharpe": 0.4064779942788475,
+      "mdd": -0.2695539278956629,
+      "calmar": 0.19303798674754657,
+      "turnover": 28.19274662409917,
+      "oosCagr": 0.08486725952290519,
+      "oosMdd": -0.2454689239557708,
+      "oosSharpe": 0.4991544390257164
+    },
+    {
+      "key": "Market + graduated regime",
+      "cfg": {
+        "epsWeight": 0,
+        "holdings": 200,
+        "cadence": 21,
+        "regime": true,
+        "regimeMode": "graduated"
+      },
+      "cagr": 0.04977435416134335,
+      "sharpe": 0.39695716965339567,
+      "mdd": -0.33520918231176344,
+      "calmar": 0.14848744243244028,
+      "turnover": 68.58643282884557,
+      "oosCagr": 0.11380624708677334,
+      "oosMdd": -0.24508016200562477,
+      "oosSharpe": 0.6239251800011774
+    },
+    {
+      "key": "Market (broad, NO regime)",
+      "cfg": {
+        "epsWeight": 0,
+        "holdings": 200,
+        "cadence": 21,
+        "regime": false
+      },
+      "cagr": 0.05984325584124961,
+      "sharpe": 0.3865641654489065,
+      "mdd": -0.5281749004471143,
+      "calmar": 0.11330196832638331,
+      "turnover": 36.587767359715336,
+      "oosCagr": 0.22414849568124984,
+      "oosMdd": -0.24521083111966757,
+      "oosSharpe": 1.0074396168583672
+    },
+    {
+      "key": "Graduated regime + volTgt .15",
+      "cfg": {
+        "epsWeight": 0,
+        "holdings": 200,
+        "cadence": 21,
+        "regime": true,
+        "regimeMode": "graduated",
+        "volTarget": 0.15
+      },
+      "cagr": 0.0343419093080235,
+      "sharpe": 0.3339268336463662,
+      "mdd": -0.33153053716796144,
+      "calmar": 0.10358596104414072,
+      "turnover": 75.03165449800416,
+      "oosCagr": 0.0882052786176184,
+      "oosMdd": -0.1637050132403327,
+      "oosSharpe": 0.6099868593945177
+    },
+    {
+      "key": "Low-vol tilt + graduated",
+      "cfg": {
+        "epsWeight": 0,
+        "lowVolWeight": 1,
+        "holdings": 60,
+        "cadence": 21,
+        "regime": true,
+        "regimeMode": "graduated"
+      },
+      "cagr": 0.03055098463751338,
+      "sharpe": 0.3004619824313068,
+      "mdd": -0.3089507099975267,
+      "calmar": 0.09888627424665233,
+      "turnover": 82.65139920421157,
+      "oosCagr": 0.04062759755677736,
+      "oosMdd": -0.21480693694967512,
+      "oosSharpe": 0.31716752210046656
+    }
+  ]
+}

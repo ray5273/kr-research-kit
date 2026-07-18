@@ -72,6 +72,7 @@ function runConfig(ctx, cfg) {
   const useRegime = cfg.regime !== false;          // apply SMA regime filter
   const maWindow = cfg.regimeMaWindow || 200;
   const band = cfg.regimeBand == null ? 0.03 : cfg.regimeBand;
+  const regimeMode = cfg.regimeMode || 'binary';   // 'binary' (hysteresis on/off) | 'graduated' (ramp 0..1 across the band)
   const volTarget = cfg.volTarget;                 // null/undefined => no vol target
   const volWindow = cfg.volWindow || 60;
 
@@ -132,7 +133,7 @@ function runConfig(ctx, cfg) {
     if (!annualRoll && signal >= startDate && (i - startCalendarIndex + 1) % cadence === 0) select(signal, exec, false);
   }
 
-  const positions = new Map(), equity = []; let cash = INITIAL, tradeCount = 0, turnover = 0, regime = true, exposure = 1;
+  const positions = new Map(), equity = []; let cash = INITIAL, tradeCount = 0, turnover = 0, regime = true, regimeExposure = 1, exposure = 1;
   const value = (date, field) => { let v = cash; for (const [ticker, shares] of positions) { const p = field === 'close' ? L.closePrice(states.get(ticker), date) : L.exactPrice(states.get(ticker), date, field); if (p !== null) v += shares * p; } return v; };
   function rebalance(date, order, desiredExposure) {
     const desiredNames = order ? order.tickers : [...positions.keys()], before = value(date, 'open');
@@ -145,10 +146,14 @@ function runConfig(ctx, cfg) {
     const date = calendar[i];
     const prev = calendar[i - 1] || allCalendar[allCalendar.indexOf(date) - 1], order = orders.get(date);
     const ki = kospi.findIndex(x => x.date === prev);
-    if (useRegime && ki >= maWindow - 1) { const ma = mean(kospi.slice(ki - (maWindow - 1), ki + 1).map(x => x.close)), close = kospi[ki].close; if (close > ma * (1 + band)) regime = true; else if (close < ma * (1 - band)) regime = false; }
+    if (useRegime && ki >= maWindow - 1) {
+      const ma = mean(kospi.slice(ki - (maWindow - 1), ki + 1).map(x => x.close)), close = kospi[ki].close;
+      if (regimeMode === 'graduated') { regimeExposure = Math.max(0, Math.min(1, (close / ma - (1 - band)) / (2 * band))); }
+      else { if (close > ma * (1 + band)) regime = true; else if (close < ma * (1 - band)) regime = false; regimeExposure = regime ? 1 : 0; }
+    }
     const rs = equity.slice(-volWindow).map((x, j, a) => j ? x.equity / a[j - 1].equity - 1 : null).filter(x => x !== null);
     const volScale = (volTarget != null && rs.length >= volWindow - 1) ? Math.min(1, volTarget / (stddev(rs) * Math.sqrt(252))) : 1;
-    const nextExposure = ((useRegime && !regime) ? 0 : 1) * volScale;
+    const nextExposure = (useRegime ? regimeExposure : 1) * volScale;
     if (order) rebalance(date, order, nextExposure);
     else if (Math.abs(nextExposure - exposure) > 1e-9) rebalance(date, null, nextExposure);
     exposure = nextExposure;
