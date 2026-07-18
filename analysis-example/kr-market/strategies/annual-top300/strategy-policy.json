@@ -8,9 +8,13 @@
     "note": "The 21.78% CAGR / -16.44% MDD headline is a raw-cache diagnostic inflated by survivorship (price-jump filter drops delisted/crashed names) and in-sample overfitting. It is NOT representative. Use the survivorship-honest, dividend-inclusive bracket below.",
     "honestDiagnostic": {
       "priceCache": "marcap delisted-inclusive + OpenDART annual dividend reinvestment (split+dividend adjusted; not strict official)",
-      "fullSample": { "cagr": 0.0882, "sharpe": 0.55, "maxDrawdown": -0.3648, "period": "2017-01-02..2026-07-16" },
-      "outOfSample": { "cagr": 0.0283, "maxDrawdown": -0.3433, "period": "2023-01-02..2026-07-16", "note": "the -16% headline MDD is in-sample only; forward MDD is ~-34%" },
-      "biasDecomposition": "headline 21.78% = honest 8.82% + ~4pp survivorship + ~9pp data-selection/price-jump filter + ~6pp IS->OOS overfit"
+      "design": "R1 regime-only (adopted engine default 2026-07-18)",
+      "fullSample": { "cagr": 0.1180, "sharpe": 0.57, "maxDrawdown": -0.3598, "trades": 2958, "period": "2017-01-02..2026-07-16", "benchmarkEqualWeightTotalReturnCagr": 0.0886 },
+      "outOfSample": { "cagr": 0.0614, "maxDrawdown": -0.3209, "period": "2023-01-02..2026-07-16", "note": "the -16% headline MDD is in-sample only; forward MDD is ~-32%" },
+      "deflatedSharpe": { "hurdleAnnualizedSharpe": 0.79, "observed": 0.57, "clears": false, "note": "does NOT clear the ~50-config multiple-testing hurdle; risk-adjusted edge is not distinguishable from luck. CAGR 90% CI -1.8% to 29.3%." },
+      "priorVolTargetDesign": { "fullSampleCagr": 0.0882, "oosCagr": 0.0283, "note": "pre-R1 (vol target on)" },
+      "biasDecomposition": "headline 21.78% (raw-cache, vol-on) = honest ~8.8% + ~4pp survivorship + ~9pp data-selection/price-jump filter + ~6pp IS->OOS overfit; dropping the vol target (R1) lifts honest full-sample to 11.80%",
+      "representativeReport": "annual-top300-R1-total-return-2017-01-02-through-2026-07-16.md"
     },
     "supportingReports": [
       "overlay-ablation-sensitivity-marcap-split-2017-01-02-through-2026-07-16.md",
