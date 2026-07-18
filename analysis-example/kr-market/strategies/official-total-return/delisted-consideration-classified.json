@@ -1,0 +1,2244 @@
+{
+  "generatedAt": "2026-07-18T11:17:00.164Z",
+  "source": "OpenDART list.json disclosure-title classification around termination date",
+  "input": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-market/strategies/official-total-return/delisted-candidates-cap300b.json",
+  "counts": {
+    "MERGER_OR_SUCCESSION": 53,
+    "BANKRUPTCY_TOTAL_LOSS": 20,
+    "UNKNOWN": 4,
+    "GOING_PRIVATE_TENDER": 1
+  },
+  "totalLossTickers": [
+    "111610",
+    "117930",
+    "002000",
+    "065160",
+    "073070",
+    "065620",
+    "114570",
+    "950180",
+    "114120",
+    "136510",
+    "268600",
+    "214870",
+    "950110",
+    "093230",
+    "014200",
+    "151910",
+    "335890",
+    "003560",
+    "033180",
+    "208340"
+  ],
+  "note": "BANKRUPTCY_TOTAL_LOSS => consideration ~0 (carry-at-last-close overstates). MERGER/GOING_PRIVATE => carry ~ deal value, no hybrid correction. UNSPECIFIED/UNKNOWN need manual review. Exact merger exchange ratios still require document reading for a strict official ledger.",
+  "results": [
+    {
+      "ticker": "003940",
+      "name": "삼양제넥스",
+      "lastDate": "2016-01-20",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20151001",
+          "title": "[기재정정]주요사항보고서(합병결정)",
+          "rcept_no": "20151001000246"
+        },
+        {
+          "date": "20150911",
+          "title": "주요사항보고서(합병결정)",
+          "rcept_no": "20150911000347"
+        },
+        {
+          "date": "20150911",
+          "title": "[기재정정]회사합병결정",
+          "rcept_no": "20150911800481"
+        },
+        {
+          "date": "20150911",
+          "title": "[기재정정]매매거래정지및정지해제(중요내용공시)",
+          "rcept_no": "20150911800465"
+        },
+        {
+          "date": "20150911",
+          "title": "매매거래정지및정지해제(중요내용공시)",
+          "rcept_no": "20150911800438"
+        }
+      ]
+    },
+    {
+      "ticker": "111610",
+      "name": "승화프리텍",
+      "lastDate": "2016-01-22",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20160112",
+          "title": "기타시장안내(코스닥시장위원회 개최 결과 및 상장폐지 결정)",
+          "rcept_no": "20160112900438"
+        },
+        {
+          "date": "20160112",
+          "title": "주권매매거래정지해제(상장폐지에 따른 정리매매 개시)",
+          "rcept_no": "20160112900459"
+        },
+        {
+          "date": "20151218",
+          "title": "기타시장안내(상장폐지 관련 이의신청서 접수)",
+          "rcept_no": "20151218900639"
+        },
+        {
+          "date": "20151208",
+          "title": "주권매매거래정지기간변경(상장폐지사유 발생)",
+          "rcept_no": "20151208900572"
+        },
+        {
+          "date": "20151208",
+          "title": "기타시장안내(기업심사위원회 심의결과 및 상장폐지 결정 안내 )",
+          "rcept_no": "20151208900555"
+        }
+      ]
+    },
+    {
+      "ticker": "008020",
+      "name": "경남에너지",
+      "lastDate": "2016-05-18",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20160518",
+          "title": "기타경영사항(자율공시)(상장폐지 후 투자자보호대책(장외매수))",
+          "rcept_no": "20160518800215"
+        },
+        {
+          "date": "20160502",
+          "title": "기타경영사항(자율공시)(상장폐지결정 및 정리매매)",
+          "rcept_no": "20160502800560"
+        },
+        {
+          "date": "20160414",
+          "title": "기타경영사항(자율공시)(유가증권시장 상장폐지 신청서 제출 및 소액주주 보호대책)",
+          "rcept_no": "20160414800533"
+        },
+        {
+          "date": "20160407",
+          "title": "[기재정정]상장폐지결정",
+          "rcept_no": "20160407800174"
+        },
+        {
+          "date": "20160302",
+          "title": "매매거래정지및정지해제(중요내용공시)",
+          "rcept_no": "20160302800564"
+        }
+      ]
+    },
+    {
+      "ticker": "003450",
+      "name": "현대증권",
+      "lastDate": "2016-10-31",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20161019",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20161019000168"
+        }
+      ]
+    },
+    {
+      "ticker": "068870",
+      "name": "LG생명과학",
+      "lastDate": "2017-01-16",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20161214",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20161214000402"
+        },
+        {
+          "date": "20160912",
+          "title": "매매거래정지및정지해제(중요내용공시)",
+          "rcept_no": "20160912800028"
+        },
+        {
+          "date": "20160912",
+          "title": "주요사항보고서(회사합병결정)",
+          "rcept_no": "20160912000005"
+        }
+      ]
+    },
+    {
+      "ticker": "037620",
+      "name": "미래에셋증권",
+      "lastDate": "2017-01-19",
+      "classification": "UNKNOWN",
+      "assumedConsideration": null,
+      "keyDisclosures": []
+    },
+    {
+      "ticker": "117930",
+      "name": "한진해운",
+      "lastDate": "2017-03-06",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20170220",
+          "title": "주요사항보고서(해산사유발생)",
+          "rcept_no": "20170217000435"
+        },
+        {
+          "date": "20170217",
+          "title": "파산선고",
+          "rcept_no": "20170217800644"
+        },
+        {
+          "date": "20170203",
+          "title": "파산신청",
+          "rcept_no": "20170203800828"
+        },
+        {
+          "date": "20170202",
+          "title": "회생절차폐지결정",
+          "rcept_no": "20170202800638"
+        },
+        {
+          "date": "20170202",
+          "title": "매매거래정지및정지해제(풍문등조회공시)",
+          "rcept_no": "20170202800150"
+        }
+      ]
+    },
+    {
+      "ticker": "002550",
+      "name": "KB손해보험",
+      "lastDate": "2017-07-20",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20170707",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20170707000576"
+        },
+        {
+          "date": "20170530",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20170530000327"
+        },
+        {
+          "date": "20170525",
+          "title": "[첨부정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20170525000022"
+        },
+        {
+          "date": "20170519",
+          "title": "공개매수결과보고서",
+          "rcept_no": "20170519000102"
+        },
+        {
+          "date": "20170516",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20170516000224"
+        }
+      ]
+    },
+    {
+      "ticker": "021960",
+      "name": "케이비캐피탈",
+      "lastDate": "2017-07-20",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20170707",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20170707000395"
+        },
+        {
+          "date": "20170530",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20170530000329"
+        },
+        {
+          "date": "20170525",
+          "title": "[첨부정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20170525000272"
+        },
+        {
+          "date": "20170519",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20170519000098"
+        },
+        {
+          "date": "20170519",
+          "title": "공개매수결과보고서",
+          "rcept_no": "20170519000103"
+        }
+      ]
+    },
+    {
+      "ticker": "900050",
+      "name": "중국원양자원",
+      "lastDate": "2017-09-26",
+      "classification": "UNKNOWN",
+      "assumedConsideration": null,
+      "keyDisclosures": []
+    },
+    {
+      "ticker": "008000",
+      "name": "도레이케미칼",
+      "lastDate": "2018-03-19",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20180226",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20180226000367"
+        },
+        {
+          "date": "20180209",
+          "title": "소송등의제기ㆍ신청(자율공시:합병ㆍ분할등관련무효ㆍ취소)",
+          "rcept_no": "20180209801024"
+        },
+        {
+          "date": "20180116",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20180116000002"
+        },
+        {
+          "date": "20180103",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20180103000025"
+        },
+        {
+          "date": "20171229",
+          "title": "주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20171229000786"
+        }
+      ]
+    },
+    {
+      "ticker": "024660",
+      "name": "하림홀딩스",
+      "lastDate": "2018-07-13",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20180625",
+          "title": "주권매매거래정지(피흡수합병에 따른 구주권 제출)",
+          "rcept_no": "20180625900554"
+        },
+        {
+          "date": "20180418",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20180418000596"
+        },
+        {
+          "date": "20180405",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20180405001847"
+        },
+        {
+          "date": "20180404",
+          "title": "주권매매거래정지(합병)",
+          "rcept_no": "20180404900585"
+        },
+        {
+          "date": "20180404",
+          "title": "주요사항보고서(회사합병결정)",
+          "rcept_no": "20180404001917"
+        }
+      ]
+    },
+    {
+      "ticker": "130960",
+      "name": "CJ E&M",
+      "lastDate": "2018-07-17",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20180625",
+          "title": "주권매매거래정지(피흡수합병에 따른 구주권 제출)",
+          "rcept_no": "20180625900512"
+        },
+        {
+          "date": "20180620",
+          "title": "기타경영사항(자율공시)(씨제이이앤엠과 씨제이오쇼핑의 합병 진행 상황)",
+          "rcept_no": "20180620900001"
+        },
+        {
+          "date": "20180409",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20180409001238"
+        }
+      ]
+    },
+    {
+      "ticker": "016170",
+      "name": "로엔",
+      "lastDate": "2018-09-17",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20180827",
+          "title": "주권매매거래정지(피흡수합병에 따른 구주권 제출)",
+          "rcept_no": "20180827900354"
+        },
+        {
+          "date": "20180726",
+          "title": "기타경영사항(자율공시)(주식회사 카카오와 주식회사 카카오엠의 합병 진행 상황 안내)",
+          "rcept_no": "20180726900530"
+        },
+        {
+          "date": "20180521",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20180518000350"
+        },
+        {
+          "date": "20180517",
+          "title": "주권매매거래정지(합병)",
+          "rcept_no": "20180517900375"
+        },
+        {
+          "date": "20180517",
+          "title": "주요사항보고서(회사합병결정)",
+          "rcept_no": "20180517000211"
+        }
+      ]
+    },
+    {
+      "ticker": "192530",
+      "name": "광주은행",
+      "lastDate": "2018-10-25",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20181010",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20181010000689"
+        },
+        {
+          "date": "20180713",
+          "title": "주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20180713000123"
+        },
+        {
+          "date": "20180713",
+          "title": "매매거래정지및정지해제(중요내용공시)",
+          "rcept_no": "20180713800155"
+        }
+      ]
+    },
+    {
+      "ticker": "002000",
+      "name": "한국유리",
+      "lastDate": "2018-12-12",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20181212",
+          "title": "기타경영사항(자율공시)(상장폐지 후 투자자보호대책(장외매수))",
+          "rcept_no": "20181212800585"
+        },
+        {
+          "date": "20181128",
+          "title": "기타경영사항(자율공시)(상장폐지결정 및 정리매매)",
+          "rcept_no": "20181128800728"
+        },
+        {
+          "date": "20181001",
+          "title": "[기재정정]상장폐지결정",
+          "rcept_no": "20181001800507"
+        },
+        {
+          "date": "20180919",
+          "title": "매매거래정지및정지해제(중요내용공시)",
+          "rcept_no": "20180919800447"
+        },
+        {
+          "date": "20180919",
+          "title": "상장폐지결정",
+          "rcept_no": "20180919800435"
+        }
+      ]
+    },
+    {
+      "ticker": "004130",
+      "name": "대덕GDS",
+      "lastDate": "2018-12-18",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20181001",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20181001000251"
+        },
+        {
+          "date": "20180808",
+          "title": "매매거래정지및정지해제(중요내용공시)",
+          "rcept_no": "20180808800381"
+        },
+        {
+          "date": "20180808",
+          "title": "주요사항보고서(회사합병결정)",
+          "rcept_no": "20180808000273"
+        }
+      ]
+    },
+    {
+      "ticker": "000030",
+      "name": "우리은행",
+      "lastDate": "2019-02-12",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20190111",
+          "title": "[첨부추가]주요사항보고서(해외증권시장주권등상장폐지)",
+          "rcept_no": "20190111000457"
+        },
+        {
+          "date": "20190111",
+          "title": "증권발행실적보고서(합병등)",
+          "rcept_no": "20190111000398"
+        },
+        {
+          "date": "20181126",
+          "title": "[첨부정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20181126000101"
+        },
+        {
+          "date": "20181126",
+          "title": "[기재정정]증권신고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20181126000093"
+        },
+        {
+          "date": "20181121",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20181121000025"
+        }
+      ]
+    },
+    {
+      "ticker": "123100",
+      "name": "테라세미콘",
+      "lastDate": "2019-02-19",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20190125",
+          "title": "주권매매거래정지(피흡수합병에 따른 구주권 제출)",
+          "rcept_no": "20190125900616"
+        },
+        {
+          "date": "20181109",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20181109000237"
+        },
+        {
+          "date": "20181029",
+          "title": "주권매매거래정지(합병)",
+          "rcept_no": "20181029900756"
+        },
+        {
+          "date": "20181029",
+          "title": "주요사항보고서(회사합병결정)",
+          "rcept_no": "20181029000244"
+        }
+      ]
+    },
+    {
+      "ticker": "065160",
+      "name": "에프티이앤이",
+      "lastDate": "2019-05-02",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20190430",
+          "title": "기타경영사항(자율공시)(상장폐지 가처분결정 취소에 대한 즉시항고 및 가처분효력정지신청)",
+          "rcept_no": "20190430900233"
+        },
+        {
+          "date": "20190426",
+          "title": "주권매매거래정지해제(상장폐지금지 가처분 결정 취소에 따른 정리매매 재개)",
+          "rcept_no": "20190426901134"
+        },
+        {
+          "date": "20190426",
+          "title": "기타시장안내(상장폐지금지 가처분 결정 취소 안내)",
+          "rcept_no": "20190426901132"
+        },
+        {
+          "date": "20190329",
+          "title": "기타시장안내(상장폐지 관련 이의신청서 접수)",
+          "rcept_no": "20190329903820"
+        },
+        {
+          "date": "20190327",
+          "title": "주권매매거래정지기간변경(회생절차 개시결정)",
+          "rcept_no": "20190327901548"
+        }
+      ]
+    },
+    {
+      "ticker": "002250",
+      "name": "알보젠코리아",
+      "lastDate": "2019-05-17",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20190424",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20190424000301"
+        },
+        {
+          "date": "20190329",
+          "title": "투자유의안내(상장폐지기준 해당)",
+          "rcept_no": "20190329801058"
+        },
+        {
+          "date": "20190215",
+          "title": "주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20190215000605"
+        }
+      ]
+    },
+    {
+      "ticker": "079440",
+      "name": "아이엔지생명",
+      "lastDate": "2020-02-13",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20200129",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20200129000290"
+        },
+        {
+          "date": "20191204",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20191204000479"
+        },
+        {
+          "date": "20191119",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20191119000180"
+        },
+        {
+          "date": "20191114",
+          "title": "[첨부추가]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20191114002655"
+        },
+        {
+          "date": "20191114",
+          "title": "매매거래정지및정지해제(중요내용공시)",
+          "rcept_no": "20191114802794"
+        }
+      ]
+    },
+    {
+      "ticker": "011160",
+      "name": "두산건설",
+      "lastDate": "2020-03-23",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20200310",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20200310000661"
+        },
+        {
+          "date": "20200204",
+          "title": "[첨부정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20200204000309"
+        },
+        {
+          "date": "20200121",
+          "title": "투자유의안내(두산건설 3WR의 신주인수권행사기간 만료 및 상장폐지 예고)",
+          "rcept_no": "20200121800573"
+        },
+        {
+          "date": "20200106",
+          "title": "공개매수결과보고서",
+          "rcept_no": "20200106000315"
+        },
+        {
+          "date": "20191224",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20191224000172"
+        }
+      ]
+    },
+    {
+      "ticker": "027390",
+      "name": "한화갤러리아타임월드",
+      "lastDate": "2020-04-14",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20200409",
+          "title": "기타안내사항(안내공시)(상장폐지 후 투자자 보호대책(신주인수권증권 장외매수 결정))",
+          "rcept_no": "20200409800524"
+        },
+        {
+          "date": "20200409",
+          "title": "기타경영사항(자율공시)(유가증권시장 상장폐지 신청)",
+          "rcept_no": "20200409800519"
+        },
+        {
+          "date": "20200303",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20200303000363"
+        },
+        {
+          "date": "20191227",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20191227000446"
+        },
+        {
+          "date": "20191227",
+          "title": "공개매수결과보고서",
+          "rcept_no": "20191227000195"
+        }
+      ]
+    },
+    {
+      "ticker": "108790",
+      "name": "인터파크",
+      "lastDate": "2020-07-15",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20200629",
+          "title": "출자법인의회생절차및파산절차관련사실등발생",
+          "rcept_no": "20200629900078"
+        },
+        {
+          "date": "20200624",
+          "title": "주권매매거래정지(주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20200624900321"
+        },
+        {
+          "date": "20200608",
+          "title": "출자법인의회생절차및파산절차관련사실등발생",
+          "rcept_no": "20200608900477"
+        },
+        {
+          "date": "20200410",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20200410003181"
+        },
+        {
+          "date": "20200401",
+          "title": "주권매매거래정지(합병)",
+          "rcept_no": "20200401900826"
+        }
+      ]
+    },
+    {
+      "ticker": "152330",
+      "name": "코리아오토글라스",
+      "lastDate": "2020-12-17",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20200909",
+          "title": "주요사항보고서(회사합병결정)",
+          "rcept_no": "20200909000340"
+        },
+        {
+          "date": "20200909",
+          "title": "매매거래정지및정지해제(중요내용공시)",
+          "rcept_no": "20200909800331"
+        }
+      ]
+    },
+    {
+      "ticker": "057500",
+      "name": "SKC 솔믹스",
+      "lastDate": "2020-12-22",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20201208",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20201208000342"
+        },
+        {
+          "date": "20201201",
+          "title": "주권매매거래정지(주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20201201900559"
+        },
+        {
+          "date": "20201105",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20201105000223"
+        },
+        {
+          "date": "20201008",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20201008000865"
+        },
+        {
+          "date": "20200908",
+          "title": "[첨부정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20200908000246"
+        }
+      ]
+    },
+    {
+      "ticker": "023890",
+      "name": "아트라스BX",
+      "lastDate": "2021-04-16",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20210325",
+          "title": "주권매매거래정지(주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20210325901524"
+        },
+        {
+          "date": "20210113",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20210113000513"
+        }
+      ]
+    },
+    {
+      "ticker": "073070",
+      "name": "에스모",
+      "lastDate": "2021-06-03",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20210525",
+          "title": "기타경영사항(자율공시)(상장폐지결정등 효력정지 가처분 신청 기각에 따른 즉시항고장 접수)",
+          "rcept_no": "20210525900056"
+        },
+        {
+          "date": "20210524",
+          "title": "주권매매거래정지해제(상장폐지결정등 가처분 기각결정에 따른 정리매매 개시)",
+          "rcept_no": "20210524900472"
+        },
+        {
+          "date": "20210524",
+          "title": "기타경영사항(자율공시)(상장폐지결정등 효력정지 가처분 신청 기각 결정)",
+          "rcept_no": "20210524900401"
+        },
+        {
+          "date": "20210323",
+          "title": "기타시장안내(감사의견 거절 관련 상장폐지 절차 미진행)",
+          "rcept_no": "20210323901703"
+        }
+      ]
+    },
+    {
+      "ticker": "028150",
+      "name": "GS홈쇼핑",
+      "lastDate": "2021-07-15",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20210624",
+          "title": "주권매매거래정지(주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20210624900394"
+        },
+        {
+          "date": "20210429",
+          "title": "[첨부정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20210429000785"
+        }
+      ]
+    },
+    {
+      "ticker": "065620",
+      "name": "제낙스",
+      "lastDate": "2021-08-06",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20210727",
+          "title": "주권매매거래정지해제(상장폐지에 따른 정리매매 개시)",
+          "rcept_no": "20210727900586"
+        },
+        {
+          "date": "20210727",
+          "title": "기타시장안내(상장폐지결정 등 효력정지 가처분 신청 기각결정에 따른 정리매매절차 재개)",
+          "rcept_no": "20210727900567"
+        },
+        {
+          "date": "20210526",
+          "title": "주권매매거래정지(투자자 보호)",
+          "rcept_no": "20210526900396"
+        },
+        {
+          "date": "20210526",
+          "title": "기타시장안내(정리매매 보류 관련)",
+          "rcept_no": "20210526900402"
+        },
+        {
+          "date": "20210526",
+          "title": "기타경영사항(자율공시)(상장폐지결정등 효력정지 가처분신청)",
+          "rcept_no": "20210526900391"
+        }
+      ]
+    },
+    {
+      "ticker": "033660",
+      "name": "아주캐피탈",
+      "lastDate": "2021-08-26",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20210810",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20210810000020"
+        },
+        {
+          "date": "20210803",
+          "title": "기타안내사항(안내공시)((주)우리금융지주와의 포괄적 주식교환으로 인한 주식매수청구권 행사결과 안내)",
+          "rcept_no": "20210803800184"
+        },
+        {
+          "date": "20210723",
+          "title": "투자판단관련주요경영사항(주식교환 승인)",
+          "rcept_no": "20210723800443"
+        },
+        {
+          "date": "20210702",
+          "title": "[첨부정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20210702000528"
+        },
+        {
+          "date": "20210617",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20210617000233"
+        }
+      ]
+    },
+    {
+      "ticker": "031390",
+      "name": "녹십자셀",
+      "lastDate": "2021-11-16",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20211025",
+          "title": "주권매매거래정지(주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20211025900447"
+        },
+        {
+          "date": "20210813",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20210813001172"
+        },
+        {
+          "date": "20210812",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20210812000519"
+        },
+        {
+          "date": "20210730",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20210730000298"
+        },
+        {
+          "date": "20210727",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20210727000384"
+        }
+      ]
+    },
+    {
+      "ticker": "036490",
+      "name": "OCI머티리얼즈",
+      "lastDate": "2021-12-24",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20211207",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20211207000349"
+        },
+        {
+          "date": "20211201",
+          "title": "합병등종료보고서(분할)",
+          "rcept_no": "20211201000482"
+        },
+        {
+          "date": "20211124",
+          "title": "주권매매거래정지(주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20211124900628"
+        },
+        {
+          "date": "20210823",
+          "title": "[첨부정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20210823000320"
+        },
+        {
+          "date": "20210820",
+          "title": "주권매매거래정지(합병)",
+          "rcept_no": "20210820900451"
+        }
+      ]
+    },
+    {
+      "ticker": "101060",
+      "name": "SBS미디어홀딩스",
+      "lastDate": "2022-01-17",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20211005",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20211005000324"
+        }
+      ]
+    },
+    {
+      "ticker": "015350",
+      "name": "부산가스",
+      "lastDate": "2022-01-17",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20211228",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20211228000065"
+        },
+        {
+          "date": "20211222",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20211222000388"
+        },
+        {
+          "date": "20211214",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20211214000089"
+        },
+        {
+          "date": "20211020",
+          "title": "공개매수결과보고서",
+          "rcept_no": "20211020000014"
+        },
+        {
+          "date": "20211019",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20211019000042"
+        }
+      ]
+    },
+    {
+      "ticker": "114570",
+      "name": "지스마트글로벌",
+      "lastDate": "2022-02-22",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20220210",
+          "title": "주권매매거래정지해제(상장폐지에 따른 정리매매 개시)",
+          "rcept_no": "20220210901378"
+        },
+        {
+          "date": "20220210",
+          "title": "기타경영사항(자율공시)(상장폐지결정 등 효력정지가처분 기각결정)",
+          "rcept_no": "20220210901261"
+        },
+        {
+          "date": "20220117",
+          "title": "기타시장안내(회생절차 개시신청 관련 시장조치사항 안내)",
+          "rcept_no": "20220117900688"
+        },
+        {
+          "date": "20220117",
+          "title": "주요사항보고서(회생절차개시신청)",
+          "rcept_no": "20220117000200"
+        },
+        {
+          "date": "20211126",
+          "title": "주권매매거래정지(투자자 보호)",
+          "rcept_no": "20211126900530"
+        }
+      ]
+    },
+    {
+      "ticker": "138250",
+      "name": "엔에스쇼핑",
+      "lastDate": "2022-03-21",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20220302",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20220302000519"
+        },
+        {
+          "date": "20220223",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20220223003251"
+        },
+        {
+          "date": "20220223",
+          "title": "[기재정정]주요사항보고서(감자결정)",
+          "rcept_no": "20220223003243"
+        },
+        {
+          "date": "20220218",
+          "title": "[기재정정]주요사항보고서(감자결정)",
+          "rcept_no": "20220218000737"
+        },
+        {
+          "date": "20220218",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20220218000937"
+        }
+      ]
+    },
+    {
+      "ticker": "041140",
+      "name": "넥슨지티",
+      "lastDate": "2022-04-14",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20220324",
+          "title": "주권매매거래정지(주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20220324901179"
+        },
+        {
+          "date": "20211227",
+          "title": "[첨부정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20211227000249"
+        },
+        {
+          "date": "20211216",
+          "title": "주권매매거래정지(합병)",
+          "rcept_no": "20211216901321"
+        },
+        {
+          "date": "20211216",
+          "title": "주요사항보고서(회사합병결정)",
+          "rcept_no": "20211216000394"
+        }
+      ]
+    },
+    {
+      "ticker": "950180",
+      "name": "SNK",
+      "lastDate": "2022-05-17",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20220506",
+          "title": "기타주요경영사항(코스닥시장 상장폐지 결정 및 정리매매)",
+          "rcept_no": "20220506900103"
+        },
+        {
+          "date": "20220504",
+          "title": "기타시장안내(상장폐지결정 및 주권매매거래정지의 해제)",
+          "rcept_no": "20220504900696"
+        },
+        {
+          "date": "20220504",
+          "title": "주권매매거래정지해제(상장폐지에 따른 정리매매 개시)",
+          "rcept_no": "20220504900690"
+        },
+        {
+          "date": "20220414",
+          "title": "기타경영사항(자율공시)(코스닥시장 상장폐지 및 투자자 보호대책-특별지배주주에 의한 매도청구)",
+          "rcept_no": "20220414900667"
+        },
+        {
+          "date": "20220414",
+          "title": "기타경영사항(자율공시)(상장폐지신청서접수)",
+          "rcept_no": "20220414900662"
+        }
+      ]
+    },
+    {
+      "ticker": "220630",
+      "name": "해마로푸드서비스",
+      "lastDate": "2022-05-30",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20220530",
+          "title": "기타경영사항(자율공시)(상장폐지 후 투자자보호대책(장외매수))",
+          "rcept_no": "20220530900628"
+        },
+        {
+          "date": "20220519",
+          "title": "기타주요경영사항(주식회사 맘스터치앤컴퍼니 상장폐지 결정 및 정리매매 안내)",
+          "rcept_no": "20220519900269"
+        },
+        {
+          "date": "20220518",
+          "title": "주권매매거래정지해제(상장폐지에 따른 정리매매 개시)",
+          "rcept_no": "20220518900431"
+        },
+        {
+          "date": "20220426",
+          "title": "주권매매거래정지기간변경(주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20220426900484"
+        },
+        {
+          "date": "20220330",
+          "title": "기타경영사항(자율공시)(상장폐지신청서 한국거래소 제출 접수)",
+          "rcept_no": "20220330901049"
+        }
+      ]
+    },
+    {
+      "ticker": "002270",
+      "name": "롯데푸드",
+      "lastDate": "2022-07-19",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20220617",
+          "title": "[기재정정]주요사항보고서(감자결정)",
+          "rcept_no": "20220617000223"
+        },
+        {
+          "date": "20220617",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20220617000213"
+        },
+        {
+          "date": "20220323",
+          "title": "주요사항보고서(감자결정)",
+          "rcept_no": "20220323000698"
+        },
+        {
+          "date": "20220323",
+          "title": "주요사항보고서(회사합병결정)",
+          "rcept_no": "20220323000694"
+        },
+        {
+          "date": "20220323",
+          "title": "매매거래정지및정지해제(중요내용공시)",
+          "rcept_no": "20220323800821"
+        }
+      ]
+    },
+    {
+      "ticker": "131390",
+      "name": "피앤이솔루션",
+      "lastDate": "2022-11-28",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20221101",
+          "title": "주권매매거래정지(주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20221101900511"
+        },
+        {
+          "date": "20220919",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20220919000197"
+        },
+        {
+          "date": "20220822",
+          "title": "감자결정(종속회사의주요경영사항)",
+          "rcept_no": "20220822900426"
+        },
+        {
+          "date": "20220822",
+          "title": "주요사항보고서(회사합병결정)",
+          "rcept_no": "20220822000374"
+        },
+        {
+          "date": "20220822",
+          "title": "주권매매거래정지(합병)",
+          "rcept_no": "20220822900365"
+        }
+      ]
+    },
+    {
+      "ticker": "290510",
+      "name": "코리아센터",
+      "lastDate": "2022-12-15",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20221123",
+          "title": "주권매매거래정지(주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20221123900482"
+        },
+        {
+          "date": "20220825",
+          "title": "[기재정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20220825000147"
+        },
+        {
+          "date": "20220816",
+          "title": "주권매매거래정지(합병)",
+          "rcept_no": "20220816902034"
+        },
+        {
+          "date": "20220816",
+          "title": "주요사항보고서(회사합병결정)",
+          "rcept_no": "20220816001779"
+        }
+      ]
+    },
+    {
+      "ticker": "048260",
+      "name": "오스템임플란트",
+      "lastDate": "2023-08-11",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20230811",
+          "title": "기타경영사항(자율공시)(상장폐지 후 투자자보호대책(장외매수))",
+          "rcept_no": "20230811901418"
+        },
+        {
+          "date": "20230802",
+          "title": "기타주요경영사항(상장폐지결정 및 정리매매 안내)",
+          "rcept_no": "20230802900118"
+        },
+        {
+          "date": "20230801",
+          "title": "주권매매거래정지해제(상장폐지에 따른 정리매매 개시)",
+          "rcept_no": "20230801900582"
+        },
+        {
+          "date": "20230801",
+          "title": "기타시장안내(상장폐지결정 및 주권매매거래정지의 해제)",
+          "rcept_no": "20230801900584"
+        },
+        {
+          "date": "20230724",
+          "title": "주권매매거래정지기간변경(액면병합 주권 변경상장)",
+          "rcept_no": "20230724900580"
+        }
+      ]
+    },
+    {
+      "ticker": "010050",
+      "name": "우리종금",
+      "lastDate": "2023-08-25",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20230808",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20230808000214"
+        },
+        {
+          "date": "20230616",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20230616000314"
+        },
+        {
+          "date": "20230601",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20230601000202"
+        },
+        {
+          "date": "20230526",
+          "title": "매매거래정지및정지해제(중요내용공시)",
+          "rcept_no": "20230526800406"
+        },
+        {
+          "date": "20230526",
+          "title": "주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20230526000440"
+        }
+      ]
+    },
+    {
+      "ticker": "298870",
+      "name": "케이티비네트워크",
+      "lastDate": "2023-08-25",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20230808",
+          "title": "[기재정정]합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20230808000109"
+        },
+        {
+          "date": "20230808",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20230808000086"
+        },
+        {
+          "date": "20230801",
+          "title": "주권매매거래정지(주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20230801900501"
+        },
+        {
+          "date": "20230616",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20230616000309"
+        },
+        {
+          "date": "20230601",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20230601000215"
+        }
+      ]
+    },
+    {
+      "ticker": "069110",
+      "name": "코스온",
+      "lastDate": "2023-10-19",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20231010",
+          "title": "기타경영사항(자율공시)(정리매매절차 진행중지 가처분 신청)",
+          "rcept_no": "20231010900790"
+        },
+        {
+          "date": "20231010",
+          "title": "주권매매거래정지해제(상장폐지에 따른 정리매매 개시)",
+          "rcept_no": "20231010900699"
+        },
+        {
+          "date": "20231010",
+          "title": "기타경영사항(자율공시)(상장폐지결정 등 효력정지 가처분 신청 기각결정에 따른 항고)",
+          "rcept_no": "20231010900240"
+        },
+        {
+          "date": "20230925",
+          "title": "기타시장안내(상장폐지결정등 효력정지 가처분 신청 기각결정 및 정리매매절차 재개)",
+          "rcept_no": "20230925900742"
+        },
+        {
+          "date": "20230918",
+          "title": "감자완료(2차 감자)",
+          "rcept_no": "20230918900330"
+        }
+      ]
+    },
+    {
+      "ticker": "085370",
+      "name": "루트로닉",
+      "lastDate": "2023-10-26",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20231024",
+          "title": "[기재정정]합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20231024000203"
+        },
+        {
+          "date": "20231024",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20231024000187"
+        },
+        {
+          "date": "20231016",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20231016000291"
+        },
+        {
+          "date": "20231005",
+          "title": "주권매매거래정지(주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20231005900659"
+        },
+        {
+          "date": "20230913",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20230913000447"
+        }
+      ]
+    },
+    {
+      "ticker": "046140",
+      "name": "SBS콘텐츠허브",
+      "lastDate": "2023-12-15",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20231214",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20231213000590"
+        },
+        {
+          "date": "20231204",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20231204000307"
+        },
+        {
+          "date": "20231127",
+          "title": "주권매매거래정지(주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20231127900488"
+        },
+        {
+          "date": "20230905",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20230905000177"
+        },
+        {
+          "date": "20230824",
+          "title": "[첨부추가]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20230824000411"
+        }
+      ]
+    },
+    {
+      "ticker": "091990",
+      "name": "셀트리온헬스케어",
+      "lastDate": "2024-01-11",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20231213",
+          "title": "주권매매거래정지(주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20231213900816"
+        }
+      ]
+    },
+    {
+      "ticker": "068400",
+      "name": "SK렌터카",
+      "lastDate": "2024-01-30",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20240116",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20240116000190"
+        },
+        {
+          "date": "20230913",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20230913000226"
+        },
+        {
+          "date": "20230913",
+          "title": "공개매수결과보고서",
+          "rcept_no": "20230913000214"
+        }
+      ]
+    },
+    {
+      "ticker": "114120",
+      "name": "크루셜텍",
+      "lastDate": "2024-02-14",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20240131",
+          "title": "기타시장안내(상장폐지결정 효력정지 등 가처분 신청 기각에 따른 정리매매절차 재개)",
+          "rcept_no": "20240131901074"
+        },
+        {
+          "date": "20240131",
+          "title": "주권매매거래정지해제(상장폐지에 따른 정리매매 개시)",
+          "rcept_no": "20240131901005"
+        },
+        {
+          "date": "20231218",
+          "title": "기타시장안내(정리매매 보류 관련)",
+          "rcept_no": "20231218900477"
+        },
+        {
+          "date": "20231218",
+          "title": "주권매매거래정지(투자자 보호)",
+          "rcept_no": "20231218900469"
+        },
+        {
+          "date": "20231218",
+          "title": "기타경영사항(자율공시)(상장폐지결정 효력정지 가처분 신청)",
+          "rcept_no": "20231218900405"
+        }
+      ]
+    },
+    {
+      "ticker": "001880",
+      "name": "삼호",
+      "lastDate": "2024-02-29",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20240214",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20240214001677"
+        },
+        {
+          "date": "20231020",
+          "title": "[첨부정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20231020000164"
+        },
+        {
+          "date": "20231018",
+          "title": "주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20231018000300"
+        },
+        {
+          "date": "20231018",
+          "title": "매매거래정지및정지해제(중요내용공시)",
+          "rcept_no": "20231018800293"
+        }
+      ]
+    },
+    {
+      "ticker": "003410",
+      "name": "쌍용양회",
+      "lastDate": "2024-07-08",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20240625",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20240625000452"
+        },
+        {
+          "date": "20240425",
+          "title": "[첨부정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20240425000313"
+        },
+        {
+          "date": "20240423",
+          "title": "주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20240423000168"
+        },
+        {
+          "date": "20240423",
+          "title": "매매거래정지및정지해제(중요내용공시)              ",
+          "rcept_no": "20240423800141"
+        },
+        {
+          "date": "20240308",
+          "title": "공개매수결과보고서",
+          "rcept_no": "20240308000152"
+        }
+      ]
+    },
+    {
+      "ticker": "136510",
+      "name": "에디슨EV",
+      "lastDate": "2024-07-24",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20240712",
+          "title": "기타경영사항(자율공시)              (상장폐지결정 효력정지 등 가처분 신청 기각결정에 대한 즉시항고)",
+          "rcept_no": "20240712900674"
+        },
+        {
+          "date": "20240712",
+          "title": "주권매매거래정지해제              (상장폐지에 따른 정리매매 개시)",
+          "rcept_no": "20240712900663"
+        },
+        {
+          "date": "20240712",
+          "title": "기타시장안내              (상장폐지결정 효력정지 가처분 신청 기각결정에 따른 정리매매절차 재개)",
+          "rcept_no": "20240712900647"
+        },
+        {
+          "date": "20240329",
+          "title": "기타시장안내              ('23사업연도 감사의견 거절 관련 상장폐지 절차 미진행)",
+          "rcept_no": "20240329903827"
+        }
+      ]
+    },
+    {
+      "ticker": "119860",
+      "name": "다나와",
+      "lastDate": "2024-09-23",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20240909",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20240909000188"
+        },
+        {
+          "date": "20240903",
+          "title": "감자완료              ",
+          "rcept_no": "20240903900383"
+        },
+        {
+          "date": "20240830",
+          "title": "주권매매거래정지              (주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20240830900691"
+        },
+        {
+          "date": "20240808",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20240808000241"
+        },
+        {
+          "date": "20240805",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20240805000095"
+        }
+      ]
+    },
+    {
+      "ticker": "287410",
+      "name": "제이시스메디칼",
+      "lastDate": "2024-11-06",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20241023",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20241023000083"
+        },
+        {
+          "date": "20241016",
+          "title": "주권매매거래정지              (주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20241016900490"
+        },
+        {
+          "date": "20240821",
+          "title": "[첨부정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20240821000292"
+        },
+        {
+          "date": "20240819",
+          "title": "주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20240819000288"
+        },
+        {
+          "date": "20240819",
+          "title": "주권매매거래정지              (주식교환, 이전)",
+          "rcept_no": "20240819900513"
+        }
+      ]
+    },
+    {
+      "ticker": "138580",
+      "name": "비즈니스온",
+      "lastDate": "2024-11-21",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20241111",
+          "title": "주요사항보고서(회사분할결정)",
+          "rcept_no": "20241111000345"
+        },
+        {
+          "date": "20241108",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20241108000266"
+        },
+        {
+          "date": "20241107",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20241107000175"
+        },
+        {
+          "date": "20241101",
+          "title": "주권매매거래정지              (주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20241101900556"
+        },
+        {
+          "date": "20240906",
+          "title": "[첨부정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20240906000268"
+        }
+      ]
+    },
+    {
+      "ticker": "115390",
+      "name": "락앤락",
+      "lastDate": "2024-12-06",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20241122",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20241122000419"
+        },
+        {
+          "date": "20240830",
+          "title": "주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20240830002126"
+        },
+        {
+          "date": "20240830",
+          "title": "매매거래정지및정지해제(중요내용공시)              ",
+          "rcept_no": "20240830800716"
+        }
+      ]
+    },
+    {
+      "ticker": "268600",
+      "name": "셀리버리",
+      "lastDate": "2025-03-06",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20250221",
+          "title": "주권매매거래정지해제              (상장폐지에 따른 정리매매 개시)",
+          "rcept_no": "20250221901208"
+        },
+        {
+          "date": "20250221",
+          "title": "기타시장안내              (상장폐지결정 효력정지 가처분 기각결정에 따른 정리매매절차 재개)",
+          "rcept_no": "20250221901209"
+        }
+      ]
+    },
+    {
+      "ticker": "214870",
+      "name": "뉴지랩",
+      "lastDate": "2025-03-28",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20250320",
+          "title": "기타시장안내              ('24사업연도 감사의견 거절 관련 상장폐지 절차 미진행)",
+          "rcept_no": "20250320901297"
+        },
+        {
+          "date": "20250318",
+          "title": "주권매매거래정지해제              (상장폐지에 따른 정리매매 개시)",
+          "rcept_no": "20250318900312"
+        },
+        {
+          "date": "20250318",
+          "title": "기타시장안내              (상장폐지결정 효력정지 등 가처분 신청 기각에 따른 정리매매절차 재개)",
+          "rcept_no": "20250318900314"
+        },
+        {
+          "date": "20250313",
+          "title": "기타시장안내              (상장폐지사유 추가 우려 및 관리종목 지정사유 추가 우려 안내)",
+          "rcept_no": "20250313900890"
+        },
+        {
+          "date": "20250313",
+          "title": "내부결산시점관리종목지정ㆍ형식적상장폐지ㆍ상장적격성실질심사사유발생              ",
+          "rcept_no": "20250313900883"
+        }
+      ]
+    },
+    {
+      "ticker": "029960",
+      "name": "코엔텍",
+      "lastDate": "2025-06-13",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20250613",
+          "title": "[기재정정]합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20250613000412"
+        },
+        {
+          "date": "20250530",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20250530001046"
+        },
+        {
+          "date": "20250523",
+          "title": "주권매매거래정지              (주식의 병합, 분할 등 전자등록 변경, 말소)",
+          "rcept_no": "20250523900393"
+        },
+        {
+          "date": "20250508",
+          "title": "감자완료              ",
+          "rcept_no": "20250508900692"
+        },
+        {
+          "date": "20250318",
+          "title": "주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20250318000008"
+        }
+      ]
+    },
+    {
+      "ticker": "950110",
+      "name": "SBI핀테크솔루션즈",
+      "lastDate": "2025-07-23",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20250723",
+          "title": "기타경영사항(자율공시)              (코스닥시장 상장폐지에 따른 투자자보호대책)",
+          "rcept_no": "20250723900291"
+        },
+        {
+          "date": "20250714",
+          "title": "기타주요경영사항              (상장폐지 결정 및 정리매매)",
+          "rcept_no": "20250714900546"
+        },
+        {
+          "date": "20250711",
+          "title": "기타시장안내              (상장폐지결정 및 주권매매거래정지의 해제)",
+          "rcept_no": "20250711900548"
+        },
+        {
+          "date": "20250711",
+          "title": "주권매매거래정지해제              (상장폐지에 따른 정리매매 개시)",
+          "rcept_no": "20250711900544"
+        },
+        {
+          "date": "20250626",
+          "title": "기타경영사항(자율공시)              (상장폐지 후 투자자 보호대책 (특별지배주주에 의한 매도청구))",
+          "rcept_no": "20250626900316"
+        }
+      ]
+    },
+    {
+      "ticker": "049770",
+      "name": "동원F&B",
+      "lastDate": "2025-07-30",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20250714",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20250714000285"
+        },
+        {
+          "date": "20250515",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20250515002976"
+        },
+        {
+          "date": "20250508",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20250508000631"
+        },
+        {
+          "date": "20250414",
+          "title": "주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20250414002134"
+        },
+        {
+          "date": "20250414",
+          "title": "매매거래정지및정지해제(중요내용공시)              ",
+          "rcept_no": "20250414800677"
+        }
+      ]
+    },
+    {
+      "ticker": "093230",
+      "name": "이아이디",
+      "lastDate": "2025-09-10",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20250828",
+          "title": "기타시장안내              (상장폐지결정 효력정지 가처분 신청 기각결정에 따른 정리매매절차 재개)",
+          "rcept_no": "20250828800064"
+        }
+      ]
+    },
+    {
+      "ticker": "005390",
+      "name": "신성통상",
+      "lastDate": "2025-09-29",
+      "classification": "GOING_PRIVATE_TENDER",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20250929",
+          "title": "기타경영사항(자율공시)              (상장폐지 후 장외매수)",
+          "rcept_no": "20250929800334"
+        },
+        {
+          "date": "20250826",
+          "title": "기타경영사항(자율공시)              (상장폐지신청서 제출)",
+          "rcept_no": "20250826800452"
+        },
+        {
+          "date": "20250801",
+          "title": "[기재정정]상장폐지결정              ",
+          "rcept_no": "20250801801163"
+        },
+        {
+          "date": "20250717",
+          "title": "상장폐지결정              ",
+          "rcept_no": "20250717800316"
+        },
+        {
+          "date": "20250717",
+          "title": "매매거래정지및정지해제(중요내용공시)              (상장폐지신청)",
+          "rcept_no": "20250717800321"
+        }
+      ]
+    },
+    {
+      "ticker": "006390",
+      "name": "현대시멘트",
+      "lastDate": "2025-11-20",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20250718",
+          "title": "[첨부정정]주요사항보고서(회사합병결정)",
+          "rcept_no": "20250718000434"
+        },
+        {
+          "date": "20250717",
+          "title": "주요사항보고서(회사합병결정)",
+          "rcept_no": "20250717000323"
+        },
+        {
+          "date": "20250717",
+          "title": "매매거래정지및정지해제(중요내용공시)              ",
+          "rcept_no": "20250717800415"
+        }
+      ]
+    },
+    {
+      "ticker": "014200",
+      "name": "광림",
+      "lastDate": "2025-11-25",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20251113",
+          "title": "기타경영사항(자율공시)              (상장폐지결정효력정지 가처분 기각 결정에 대한 즉시 항고장 제출)",
+          "rcept_no": "20251113901196"
+        },
+        {
+          "date": "20251113",
+          "title": "주권매매거래정지해제              (상장폐지에 따른 정리매매 재개)",
+          "rcept_no": "20251113900329"
+        },
+        {
+          "date": "20251113",
+          "title": "기타시장안내              (상장폐지결정 효력정지 가처분 신청 기각에 따른 정리매매절차 재개)",
+          "rcept_no": "20251113900346"
+        }
+      ]
+    },
+    {
+      "ticker": "151910",
+      "name": "나노스",
+      "lastDate": "2025-11-25",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20251113",
+          "title": "기타경영사항(자율공시)              (상장폐지결정 효력정지 등 가처분 신청 기각결정에 대한 즉시항고)",
+          "rcept_no": "20251113901197"
+        },
+        {
+          "date": "20251113",
+          "title": "주권매매거래정지해제              (상장폐지에 따른 정리매매 재개)",
+          "rcept_no": "20251113900304"
+        },
+        {
+          "date": "20251113",
+          "title": "기타시장안내              (상장폐지결정 효력정지 가처분 신청 기각에 따른 정리매매절차 재개)",
+          "rcept_no": "20251113900303"
+        }
+      ]
+    },
+    {
+      "ticker": "335890",
+      "name": "비올",
+      "lastDate": "2025-12-09",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20251209",
+          "title": "기타경영사항(자율공시)              (상장폐지 후 투자자보호대책(장외매수))",
+          "rcept_no": "20251209900558"
+        },
+        {
+          "date": "20251128",
+          "title": "기타경영사항(자율공시)              (상장폐지 결정 및 정리매매)",
+          "rcept_no": "20251128900109"
+        },
+        {
+          "date": "20251127",
+          "title": "기타시장안내              (상장폐지결정 및 주권매매거래정지의 해제)",
+          "rcept_no": "20251127900987"
+        },
+        {
+          "date": "20251127",
+          "title": "주권매매거래정지해제              (상장폐지에 따른 정리매매 개시)",
+          "rcept_no": "20251127900982"
+        },
+        {
+          "date": "20251106",
+          "title": "주권매매거래정지              (자진상장폐지 신청)",
+          "rcept_no": "20251106900405"
+        }
+      ]
+    },
+    {
+      "ticker": "010620",
+      "name": "현대미포조선",
+      "lastDate": "2025-12-12",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20250827",
+          "title": "주요사항보고서(회사합병결정)",
+          "rcept_no": "20250827000428"
+        },
+        {
+          "date": "20250827",
+          "title": "매매거래정지및정지해제(중요내용공시)              ",
+          "rcept_no": "20250827800310"
+        }
+      ]
+    },
+    {
+      "ticker": "450140",
+      "name": "코오롱모빌리티그룹",
+      "lastDate": "2026-01-06",
+      "classification": "MERGER_OR_SUCCESSION",
+      "assumedConsideration": null,
+      "keyDisclosures": [
+        {
+          "date": "20251217",
+          "title": "합병등종료보고서(주식의포괄적교환ㆍ이전)",
+          "rcept_no": "20251217000538"
+        },
+        {
+          "date": "20250910",
+          "title": "[기재정정]주요사항보고서(주식교환ㆍ이전결정)",
+          "rcept_no": "20250910000258"
+        },
+        {
+          "date": "20250910",
+          "title": "공개매수결과보고서",
+          "rcept_no": "20250910000170"
+        },
+        {
+          "date": "20250903",
+          "title": "회사합병결정(종속회사의주요경영사항)              ",
+          "rcept_no": "20250903800277"
+        }
+      ]
+    },
+    {
+      "ticker": "003560",
+      "name": "IHQ",
+      "lastDate": "2026-01-14",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20251230",
+          "title": "기타시장안내              (상장폐지결정 효력정지 가처분 신청 기각결정에 따른 정리매매절차 재개)",
+          "rcept_no": "20251230800872"
+        }
+      ]
+    },
+    {
+      "ticker": "033180",
+      "name": "필룩스",
+      "lastDate": "2026-01-14",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20251230",
+          "title": "기타시장안내              (상장폐지결정 효력정지 가처분 신청 기각결정에 따른 정리매매절차 재개)",
+          "rcept_no": "20251230800867"
+        }
+      ]
+    },
+    {
+      "ticker": "042670",
+      "name": "두산인프라코어",
+      "lastDate": "2026-01-23",
+      "classification": "UNKNOWN",
+      "assumedConsideration": null,
+      "keyDisclosures": []
+    },
+    {
+      "ticker": "208340",
+      "name": "파멥신",
+      "lastDate": "2026-01-26",
+      "classification": "BANKRUPTCY_TOTAL_LOSS",
+      "assumedConsideration": 0,
+      "keyDisclosures": [
+        {
+          "date": "20260114",
+          "title": "주권매매거래정지해제              (상장폐지에 따른 정리매매 개시)",
+          "rcept_no": "20260114900268"
+        },
+        {
+          "date": "20260114",
+          "title": "기타시장안내              (상장폐지결정 등 효력정지 가처분 신청 기각에 따른 정리매매절차 재개)",
+          "rcept_no": "20260114900267"
+        },
+        {
+          "date": "20250916",
+          "title": "[기재정정]기타경영사항(자율공시)              (상장폐지결정효력정지 가처분 신청)",
+          "rcept_no": "20250916900400"
+        }
+      ]
+    },
+    {
+      "ticker": "138490",
+      "name": "코오롱플라스틱",
+      "lastDate": "2026-04-15",
+      "classification": "UNKNOWN",
+      "assumedConsideration": null,
+      "keyDisclosures": []
+    }
+  ]
+}
