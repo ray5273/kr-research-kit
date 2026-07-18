@@ -37,6 +37,16 @@
     "caveat": "Selection does NOT clear the Deflated Sharpe hurdle -- not distinguishable from luck; returns are lumpy (2017/2020/2025 spikes) and config-fragile. The regime overlay protects the downside but the selection alpha may not persist. Adding RS momentum HURTS (dilutes EPS). Aggressive dial: --holdings 10 -> ~14.8% full / 8.7% OOS.",
     "report": "annual-top300-return-seeking-eps-2017-01-02-through-2026-07-16.md"
   },
+  "bestRobustVariant": {
+    "id": "52w-high-momentum",
+    "status": "STRONGEST FOUND (2026-07-18): the only selection factor that clears the Deflated Sharpe hurdle on the honest cache",
+    "config": "--eps-weight 0 --momentum-type high52w --holdings 15 --hold-buffer-rank 45 --soft-annual-roll --cadence 21 + binary SMA200 regime",
+    "insight": "The original strategy's RS 3/6/12 blend was a weak momentum formulation (9.9% CAGR/0.51 Sharpe). Proximity to the 52-week high (George-Hwang 2004; the Minervini core idea) is far stronger: 16.41% CAGR / 0.90 Sharpe / -26% MDD.",
+    "honestPerformance": { "fullSampleCagr": 0.1641, "fullSampleSharpe": 0.90, "fullSampleMdd": -0.2601, "oosCagr": 0.140, "cagrCi90": [0.055, 0.299], "deflatedSharpeHurdle": 0.87, "clearsHurdle": true },
+    "robustness": "Annual returns are broadly positive (not a single-year artifact); Sharpe 0.55-0.90 across cadence {5,21} x holdings {10,15,20}; CAGR CI lower bound is POSITIVE (+5.5%). Distinguishes it from the rejected EPS/quality/value leads.",
+    "caveat": "50+ configs were tried this session, so the full multiple-testing hurdle is higher than the nTrials=50 used; treat the clearance as strong evidence, not proof. Turnover ~660%/yr; split+dividend cache, not strict official.",
+    "report": "live-52w-high-momentum-2026-07-16.md"
+  },
   "universePolicy": {
     "source": "year-end KOSPI/KOSDAQ common-share market-cap Top 300 ledger",
     "rankingSnapshot": "last trading session of year t",

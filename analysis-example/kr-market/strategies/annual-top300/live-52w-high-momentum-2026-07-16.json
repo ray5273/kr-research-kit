@@ -1,0 +1,163 @@
+{
+  "generatedAt": "2026-07-18T13:04:08.687Z",
+  "asOf": "2026-07-16",
+  "nextWeekStart": "2026-08-03",
+  "modelOnly": true,
+  "validationStatus": "standard-model-artifact",
+  "sourceArtifact": ".tmp/h52/h52-full.json",
+  "signalDate": "2026-07-13",
+  "executionDate": "2026-07-14",
+  "nextScheduledSignal": "2026-08-03",
+  "nextScheduledExecution": "2026-07-21",
+  "universe": {
+    "rankingYear": 2025,
+    "snapshotDate": "2025-12-30",
+    "marketCapThreshold": null,
+    "label": "2025년말 Top 300"
+  },
+  "overlay": {
+    "exposure": 1,
+    "investedWeightPerHolding": 0.06666666666666667,
+    "cashWeight": 0,
+    "note": "Regime-only: exposure 1 when KOSPI>SMA200*1.03, 0 when <SMA200*0.97. Selection: 52-week-high proximity momentum, top15, band45+soft roll, monthly."
+  },
+  "holdings": [
+    {
+      "rank": 1,
+      "ticker": "086790",
+      "name": "하나금융지주",
+      "score": 1,
+      "rs": 1,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 2,
+      "ticker": "105560",
+      "name": "KB금융",
+      "score": 0.9961389961389961,
+      "rs": 1,
+      "reportFilingDate": "2026-06-19",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 3,
+      "ticker": "089860",
+      "name": "롯데렌탈",
+      "score": 0.9922779922779923,
+      "rs": 0.9956331877729258,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 4,
+      "ticker": "055550",
+      "name": "신한지주",
+      "score": 0.9884169884169884,
+      "rs": 0.9945054945054945,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 5,
+      "ticker": "010950",
+      "name": "S-Oil",
+      "score": 0.9845559845559846,
+      "rs": 0.9872611464968153,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 6,
+      "ticker": "161890",
+      "name": "한국콜마",
+      "score": 0.9806949806949807,
+      "rs": 0.9830220713073005,
+      "reportFilingDate": "2026-05-14",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 7,
+      "ticker": "078930",
+      "name": "GS",
+      "score": 0.9768339768339769,
+      "rs": 0.9683313032886723,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 8,
+      "ticker": "003690",
+      "name": "코리안리",
+      "score": 0.972972972972973,
+      "rs": 0.9580467675378267,
+      "reportFilingDate": "2026-05-29",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 9,
+      "ticker": "001800",
+      "name": "오리온홀딩스",
+      "score": 0.9691119691119691,
+      "rs": 0.9469964664310954,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 10,
+      "ticker": "001450",
+      "name": "현대해상",
+      "score": 0.9652509652509652,
+      "rs": 0.9345454545454546,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 11,
+      "ticker": "383220",
+      "name": "F&F",
+      "score": 0.9613899613899614,
+      "rs": 0.9279907084785134,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 12,
+      "ticker": "033780",
+      "name": "KT&G",
+      "score": 0.9575289575289575,
+      "rs": 0.9222222222222223,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 13,
+      "ticker": "073240",
+      "name": "금호타이어",
+      "score": 0.9536679536679536,
+      "rs": 0.9179487179487179,
+      "reportFilingDate": "2026-05-14",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 14,
+      "ticker": "271560",
+      "name": "오리온",
+      "score": 0.9498069498069498,
+      "rs": 0.9157534246575343,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 15,
+      "ticker": "007070",
+      "name": "GS리테일",
+      "score": 0.9459459459459459,
+      "rs": 0.9032258064516129,
+      "reportFilingDate": "2022-05-16",
+      "targetWeight": 0.06666666666666667
+    }
+  ],
+  "strategyVariant": "52-week-high momentum (v3, STRONGEST). Backtest honest total-return: 16.41% CAGR / 0.90 Sharpe / -26% MDD. ONLY factor to clear the Deflated Sharpe hurdle (0.90 vs 0.87).",
+  "cadence": "monthly; hold-buffer-rank 45; soft annual roll; momentum-type high52w"
+}

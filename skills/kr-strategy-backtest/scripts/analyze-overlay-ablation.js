@@ -62,6 +62,7 @@ function runConfig(ctx, cfg) {
   const { annualUniverse, states, coverageLedger, series, kospi, allCalendar, calendar, startDate } = ctx;
   const buyCost = cfg.buyCost != null ? cfg.buyCost : COST, sellTax = cfg.sellTax != null ? cfg.sellTax : SELL_TAX;
   const epsWeight = cfg.epsWeight;                 // 0 => RS only
+  const momentumType = cfg.momentumType || 'blend'; // blend(3/6/12) | r12_1(12mo skip last mo) | riskadj(12-1/vol) | high52w(proximity to 52w high)
   const lowVolWeight = cfg.lowVolWeight || 0;      // 0 => no low-vol sleeve
   const lowVolWindow = cfg.lowVolWindow || 60;
   const valueWeight = cfg.valueWeight || 0;        // E/P (earnings yield) sleeve
@@ -90,7 +91,12 @@ function runConfig(ctx, cfg) {
       const f = L.fundamentalAt(series.get(ticker) || [], fundamentalAsOf);
       if (i < 252 || state.bars[i].date !== signalDate) continue;
       if (!f) continue;                            // universe held fixed to DART-covered names across all configs
-      const rs = .4 * (state.bars[i].close / state.bars[i - 63].close - 1) + .3 * (state.bars[i].close / state.bars[i - 126].close - 1) + .3 * (state.bars[i].close / state.bars[i - 252].close - 1);
+      const b = state.bars;
+      let rs;
+      if (momentumType === 'r12_1') rs = b[i - 21].close / b[i - 252].close - 1;              // 11mo return, skip last month (no short-term reversal)
+      else if (momentumType === 'riskadj') { const m = b[i - 21].close / b[i - 252].close - 1, vv = trailingVol(b, i, 126); rs = vv ? m / vv : m; }  // risk-adjusted 12-1
+      else if (momentumType === 'high52w') { let hi = 0; for (let k = i - 251; k <= i; k++) if (b[k].close > hi) hi = b[k].close; rs = hi > 0 ? b[i].close / hi : 0; }  // proximity to 52w high
+      else rs = .4 * (b[i].close / b[i - 63].close - 1) + .3 * (b[i].close / b[i - 126].close - 1) + .3 * (b[i].close / b[i - 252].close - 1);  // blend (default)
       const v = trailingVol(state.bars, i, lowVolWindow);
       // Value E/P and quality ROA use the same point-in-time DART series. EPS is
       // nominal (per raw share) so E/P = ttmEPS * adjustmentFactor / adjustedClose

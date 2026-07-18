@@ -58,9 +58,15 @@ function main() {
   // calculated bet). --holdings sets the concentration.
   const epsWeight = Number(arg('--eps-weight', '0.5')), holdingsN = Number(arg('--holdings', String(N)));
   if (!Number.isFinite(epsWeight) || epsWeight < 0 || epsWeight > 1 || !Number.isInteger(holdingsN) || holdingsN < 1) throw new Error('--eps-weight must be 0..1 and --holdings a positive integer');
+  // Momentum formulation for the RS sleeve. 'high52w' (proximity to 52-week high,
+  // George-Hwang 2004 / Minervini) is the only selection factor that cleared the
+  // Deflated Sharpe hurdle on the honest cache; the default 'blend' (3/6/12) is weak.
+  const momentumType = arg('--momentum-type', 'blend');
+  if (!['blend', 'r12_1', 'riskadj', 'high52w'].includes(momentumType)) throw new Error('--momentum-type must be blend|r12_1|riskadj|high52w');
+  const momLabelKo = { blend: '3/6/12개월 RS(40/30/30)', r12_1: '12-1 모멘텀', riskadj: '위험조정 모멘텀', high52w: '52주 신고가 근접 모멘텀' }[momentumType];
   const rsPctW = Math.round((1 - epsWeight) * 100), epsPctW = Math.round(epsWeight * 100);
-  const selectionLabelKo = epsWeight >= 1 ? '순수 DART EPS·매출 개선(실적 틸트)' : epsWeight <= 0 ? '3/6/12개월 RS(40/30/30) 모멘텀' : `3/6/12개월 RS(40/30/30) ${rsPctW}% + DART EPS·매출 개선 ${epsPctW}%`;
-  const selectionLabelEn = `5-session RS(3/6/12M 40/30/30) ${rsPctW}% + point-in-time EPS/revenue ${epsPctW}% percentile, top ${holdingsN}`;
+  const selectionLabelKo = epsWeight >= 1 ? '순수 DART EPS·매출 개선(실적 틸트)' : epsWeight <= 0 ? `${momLabelKo} 모멘텀` : `${momLabelKo} ${rsPctW}% + DART EPS·매출 개선 ${epsPctW}%`;
+  const selectionLabelEn = `${momLabelKo} ${rsPctW}% + point-in-time EPS/revenue ${epsPctW}% percentile, top ${holdingsN}`;
   // Rebalancing band + soft annual roll: keep an incumbent until its fresh rank
   // falls past --hold-buffer-rank, and (if --soft-annual-roll) do not force-
   // liquidate survivors at the year boundary. Cuts turnover/cost and, on the
@@ -84,7 +90,10 @@ function main() {
       const threeMonthReturn = state.bars[i].close / state.bars[i - 63].close - 1;
       const sixMonthReturn = state.bars[i].close / state.bars[i - 126].close - 1;
       const twelveMonthReturn = state.bars[i].close / state.bars[i - 252].close - 1;
-      const rs = .4 * threeMonthReturn + .3 * sixMonthReturn + .3 * twelveMonthReturn;
+      const rs = momentumType === 'r12_1' ? state.bars[i - 21].close / state.bars[i - 252].close - 1
+        : momentumType === 'high52w' ? (() => { let hi = 0; for (let k = i - 251; k <= i; k++) if (state.bars[k].close > hi) hi = state.bars[k].close; return hi > 0 ? state.bars[i].close / hi : 0; })()
+        : momentumType === 'riskadj' ? (() => { const m = state.bars[i - 21].close / state.bars[i - 252].close - 1, r = []; for (let k = i - 125; k <= i; k++) { const p0 = state.bars[k - 1].close, p1 = state.bars[k].close; if (p0 > 0 && p1 > 0) r.push(p1 / p0 - 1); } const vv = r.length ? stddev(r) : null; return vv ? m / vv : m; })()
+        : .4 * threeMonthReturn + .3 * sixMonthReturn + .3 * twelveMonthReturn;
       rows.push({ ticker, name: state.name, rs, threeMonthReturn, sixMonthReturn, twelveMonthReturn, fundamental: f });
     }
     L.percentile(rows, 'rs'); L.attachFundamentalComposite(rows);
