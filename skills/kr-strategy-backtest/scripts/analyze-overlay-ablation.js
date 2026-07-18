@@ -65,7 +65,10 @@ function runConfig(ctx, cfg) {
   const lowVolWeight = cfg.lowVolWeight || 0;      // 0 => no low-vol sleeve
   const lowVolWindow = cfg.lowVolWindow || 60;
   const valueWeight = cfg.valueWeight || 0;        // E/P (earnings yield) sleeve
-  const qualityWeight = cfg.qualityWeight || 0;    // ROA (TTM net / assets) sleeve
+  const qualityWeight = cfg.qualityWeight || 0;    // quality sleeve (see qualityMetric)
+  const qualityMetric = cfg.qualityMetric || 'roa'; // roa | roe | gp (gross/assets) | cfoa (cfo/assets)
+  const cadence = cfg.cadence || CADENCE;          // rebalance spacing in sessions
+  const holdings = cfg.holdings || N;              // number of names held
   const useRegime = cfg.regime !== false;          // apply SMA regime filter
   const maWindow = cfg.regimeMaWindow || 200;
   const band = cfg.regimeBand == null ? 0.03 : cfg.regimeBand;
@@ -93,8 +96,16 @@ function runConfig(ctx, cfg) {
       const adjF = state.bars[i].adjustmentFactor == null ? 1 : state.bars[i].adjustmentFactor;
       const epsTtm = L.ttmFlow(fseries, fundamentalAsOf, 'eps');
       const ep = (epsTtm && Number.isFinite(epsTtm.value) && state.bars[i].close > 0) ? epsTtm.value * adjF / state.bars[i].close : null;
-      const netTtm = L.ttmFlow(fseries, fundamentalAsOf, 'net'), assets = L.latestSnapshot(fseries, fundamentalAsOf, 'assets');
-      const roa = (netTtm && assets && assets.value > 0) ? netTtm.value / assets.value : null;
+      let roa = null;
+      if (qualityWeight > 0) {
+        const assets = L.latestSnapshot(fseries, fundamentalAsOf, 'assets');
+        if (assets && assets.value > 0) {
+          if (qualityMetric === 'gp') { const g = L.ttmFlow(fseries, fundamentalAsOf, 'gross'); roa = g ? g.value / assets.value : null; }
+          else if (qualityMetric === 'cfoa') { const c = L.ttmFlow(fseries, fundamentalAsOf, 'cfo'); roa = c ? c.value / assets.value : null; }
+          else if (qualityMetric === 'roe') { const n = L.ttmFlow(fseries, fundamentalAsOf, 'net'), liab = L.latestSnapshot(fseries, fundamentalAsOf, 'liab'), eq = liab ? assets.value - liab.value : null; roa = (n && eq && eq > 0) ? n.value / eq : null; }
+          else { const n = L.ttmFlow(fseries, fundamentalAsOf, 'net'); roa = n ? n.value / assets.value : null; }
+        }
+      }
       rows.push({ ticker, name: state.name, rs, fundamental: f, lowVol: v == null ? null : -v, ep, roa });
     }
     L.percentile(rows, 'rs'); L.attachFundamentalComposite(rows);
@@ -110,7 +121,7 @@ function runConfig(ctx, cfg) {
       r.score = (fundOk && lvOk && valOk && qOk) ? rsWeight * r.rsPct + epsWeight * (r.fundamentalScore || 0) + lowVolWeight * (r.lowVolPct || 0) + valueWeight * (r.epPct || 0) + qualityWeight * (r.roaPct || 0) : null;
     }
     const ranked = rows.filter(r => r.score !== null).sort((a, b) => b.score - a.score || b.rs - a.rs);
-    orders.set(executionDate, { signalDate, forcedAnnualRoll, tickers: ranked.slice(0, N).map(x => x.ticker) });
+    orders.set(executionDate, { signalDate, forcedAnnualRoll, tickers: ranked.slice(0, holdings).map(x => x.ticker) });
   }
   const startCalendarIndex = allCalendar.indexOf(startDate);
   for (let i = 0; i < allCalendar.length - 1; i++) {
@@ -118,7 +129,7 @@ function runConfig(ctx, cfg) {
     if (exec < startDate) continue;
     const annualRoll = exec.slice(0, 4) !== signal.slice(0, 4);
     if (annualRoll) select(signal, exec, true);
-    if (!annualRoll && signal >= startDate && (i - startCalendarIndex + 1) % CADENCE === 0) select(signal, exec, false);
+    if (!annualRoll && signal >= startDate && (i - startCalendarIndex + 1) % cadence === 0) select(signal, exec, false);
   }
 
   const positions = new Map(), equity = []; let cash = INITIAL, tradeCount = 0, turnover = 0, regime = true, exposure = 1;
