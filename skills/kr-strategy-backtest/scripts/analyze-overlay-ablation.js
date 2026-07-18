@@ -69,6 +69,8 @@ function runConfig(ctx, cfg) {
   const qualityMetric = cfg.qualityMetric || 'roa'; // roa | roe | gp (gross/assets) | cfoa (cfo/assets)
   const cadence = cfg.cadence || CADENCE;          // rebalance spacing in sessions
   const holdings = cfg.holdings || N;              // number of names held
+  const holdBufferRank = cfg.holdBufferRank || holdings; // rebalancing band: keep an incumbent until its rank falls past this (>holdings enables it)
+  const softAnnualRoll = cfg.softAnnualRoll || false;    // if true, the annual roll does not force-liquidate survivors (keeps names still selected)
   const useRegime = cfg.regime !== false;          // apply SMA regime filter
   const maWindow = cfg.regimeMaWindow || 200;
   const band = cfg.regimeBand == null ? 0.03 : cfg.regimeBand;
@@ -122,7 +124,7 @@ function runConfig(ctx, cfg) {
       r.score = (fundOk && lvOk && valOk && qOk) ? rsWeight * r.rsPct + epsWeight * (r.fundamentalScore || 0) + lowVolWeight * (r.lowVolPct || 0) + valueWeight * (r.epPct || 0) + qualityWeight * (r.roaPct || 0) : null;
     }
     const ranked = rows.filter(r => r.score !== null).sort((a, b) => b.score - a.score || b.rs - a.rs);
-    orders.set(executionDate, { signalDate, forcedAnnualRoll, tickers: ranked.slice(0, holdings).map(x => x.ticker) });
+    orders.set(executionDate, { signalDate, forcedAnnualRoll, tickers: ranked.slice(0, holdings).map(x => x.ticker), rankedTickers: ranked.slice(0, Math.max(holdings, holdBufferRank)).map(x => x.ticker) });
   }
   const startCalendarIndex = allCalendar.indexOf(startDate);
   for (let i = 0; i < allCalendar.length - 1; i++) {
@@ -137,7 +139,7 @@ function runConfig(ctx, cfg) {
   const value = (date, field) => { let v = cash; for (const [ticker, shares] of positions) { const p = field === 'close' ? L.closePrice(states.get(ticker), date) : L.exactPrice(states.get(ticker), date, field); if (p !== null) v += shares * p; } return v; };
   function rebalance(date, order, desiredExposure) {
     const desiredNames = order ? order.tickers : [...positions.keys()], before = value(date, 'open');
-    if (order?.forcedAnnualRoll) for (const [ticker, shares] of [...positions]) { const p = L.exactPrice(states.get(ticker), date, 'open'); if (p === null) continue; const notional = shares * p; cash += notional - notional * (buyCost + sellTax); turnover += notional / Math.max(before, 1); positions.delete(ticker); tradeCount++; }
+    if (order?.forcedAnnualRoll && !softAnnualRoll) for (const [ticker, shares] of [...positions]) { const p = L.exactPrice(states.get(ticker), date, 'open'); if (p === null) continue; const notional = shares * p; cash += notional - notional * (buyCost + sellTax); turnover += notional / Math.max(before, 1); positions.delete(ticker); tradeCount++; }
     const all = new Set([...positions.keys(), ...desiredNames]), names = desiredNames.filter(t => L.exactPrice(states.get(t), date, 'open') !== null); let lo = 0, hi = before;
     for (let z = 0; z < 34; z++) { const invest = (lo + hi) / 2; let after = cash; for (const t of all) { const p = L.exactPrice(states.get(t), date, 'open'); if (p === null) continue; const target = names.includes(t) ? desiredExposure * invest / names.length / p : 0, delta = target - (positions.get(t) || 0); after -= delta * p + Math.abs(delta) * p * (delta > 0 ? buyCost : buyCost + sellTax); } if (after >= 0) lo = invest; else hi = invest; }
     for (const t of all) { const p = L.exactPrice(states.get(t), date, 'open'); if (p === null) continue; const target = names.includes(t) ? desiredExposure * lo / names.length / p : 0, delta = target - (positions.get(t) || 0); if (Math.abs(delta) < 1e-8) continue; const notional = Math.abs(delta) * p; cash -= delta * p + notional * (delta > 0 ? buyCost : buyCost + sellTax); turnover += notional / Math.max(before, 1); if (target) positions.set(t, target); else positions.delete(t); tradeCount++; }
@@ -154,8 +156,18 @@ function runConfig(ctx, cfg) {
     const rs = equity.slice(-volWindow).map((x, j, a) => j ? x.equity / a[j - 1].equity - 1 : null).filter(x => x !== null);
     const volScale = (volTarget != null && rs.length >= volWindow - 1) ? Math.min(1, volTarget / (stddev(rs) * Math.sqrt(252))) : 1;
     const nextExposure = (useRegime ? regimeExposure : 1) * volScale;
-    if (order) rebalance(date, order, nextExposure);
-    else if (Math.abs(nextExposure - exposure) > 1e-9) rebalance(date, null, nextExposure);
+    if (order) {
+      // Rebalancing band: keep incumbents whose fresh rank is still within
+      // holdBufferRank; only fill freed slots from the top of the new ranking.
+      // Skipped on the forced annual roll (a full reselection).
+      if (holdBufferRank > holdings && (!order.forcedAnnualRoll || softAnnualRoll)) {
+        const rankOf = new Map(order.rankedTickers.map((t, r) => [t, r + 1]));
+        const kept = [...positions.keys()].filter(t => (rankOf.get(t) || Infinity) <= holdBufferRank);
+        const fill = order.rankedTickers.filter(t => !kept.includes(t)).slice(0, Math.max(0, holdings - kept.length));
+        order.tickers = [...kept, ...fill].slice(0, holdings);
+      }
+      rebalance(date, order, nextExposure);
+    } else if (Math.abs(nextExposure - exposure) > 1e-9) rebalance(date, null, nextExposure);
     exposure = nextExposure;
     equity.push({ date, equity: value(date, 'close') });
   }

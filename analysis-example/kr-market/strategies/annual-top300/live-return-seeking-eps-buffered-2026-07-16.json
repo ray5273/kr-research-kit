@@ -1,0 +1,163 @@
+{
+  "generatedAt": "2026-07-18T12:50:36.705Z",
+  "asOf": "2026-07-16",
+  "nextWeekStart": "2026-08-03",
+  "modelOnly": true,
+  "validationStatus": "standard-model-artifact",
+  "sourceArtifact": ".tmp/live-gen2/rs-buffered-full.json",
+  "signalDate": "2026-07-13",
+  "executionDate": "2026-07-14",
+  "nextScheduledSignal": "2026-08-03",
+  "nextScheduledExecution": "2026-07-21",
+  "universe": {
+    "rankingYear": 2025,
+    "snapshotDate": "2025-12-30",
+    "marketCapThreshold": null,
+    "label": "2025년말 Top 300"
+  },
+  "overlay": {
+    "exposure": 1,
+    "investedWeightPerHolding": 0.06666666666666667,
+    "cashWeight": 0,
+    "note": "Regime-only (R1): exposure 1 when KOSPI>SMA200*1.03, 0 when <SMA200*0.97. Selection: pure EPS/revenue percentile, top15, rebalancing band rank 45 + soft annual roll, monthly."
+  },
+  "holdings": [
+    {
+      "rank": 1,
+      "ticker": "458870",
+      "name": "씨어스테크놀로지",
+      "score": 0.9634776384177275,
+      "rs": -0.23911671878342444,
+      "reportFilingDate": "2026-05-12",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 2,
+      "ticker": "000660",
+      "name": "SK하이닉스",
+      "score": 0.9262779204196527,
+      "rs": 2.449555161762932,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 3,
+      "ticker": "036570",
+      "name": "엔씨소프트",
+      "score": 0.9212573050070483,
+      "rs": 0.10075075479067963,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 4,
+      "ticker": "005930",
+      "name": "삼성전자",
+      "score": 0.9062775903279157,
+      "rs": 1.3348606634262594,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 5,
+      "ticker": "018670",
+      "name": "SK가스",
+      "score": 0.8949486592591694,
+      "rs": -0.09047780350514611,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 6,
+      "ticker": "003540",
+      "name": "대신증권",
+      "score": 0.8880205275723934,
+      "rs": -0.10188732047554154,
+      "reportFilingDate": "2026-05-14",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 7,
+      "ticker": "067310",
+      "name": "하나마이크론",
+      "score": 0.8834187395734812,
+      "rs": 0.8733215304544065,
+      "reportFilingDate": "2026-05-14",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 8,
+      "ticker": "298040",
+      "name": "효성중공업",
+      "score": 0.8757279587461032,
+      "rs": 0.6910110023402088,
+      "reportFilingDate": "2023-08-11",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 9,
+      "ticker": "006120",
+      "name": "SK디스커버리",
+      "score": 0.8638467844414438,
+      "rs": -0.1929182588854229,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 10,
+      "ticker": "030610",
+      "name": "교보증권",
+      "score": 0.8625266166053568,
+      "rs": -0.04623073651019504,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 11,
+      "ticker": "108490",
+      "name": "로보티즈",
+      "score": 0.8553726323548303,
+      "rs": 0.4594583462053342,
+      "reportFilingDate": "2026-07-08",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 12,
+      "ticker": "377300",
+      "name": "카카오페이",
+      "score": 0.8421467528742435,
+      "rs": -0.31138386526090145,
+      "reportFilingDate": "2026-05-14",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 13,
+      "ticker": "010130",
+      "name": "고려아연",
+      "score": 0.8366085042302092,
+      "rs": -0.08738931240347166,
+      "reportFilingDate": "2026-06-01",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 14,
+      "ticker": "023590",
+      "name": "다우기술",
+      "score": 0.8275767614696063,
+      "rs": -0.13529734372996213,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    },
+    {
+      "rank": 15,
+      "ticker": "450080",
+      "name": "에코프로머티",
+      "score": 0.8238536300898505,
+      "rs": -0.36212560561812607,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.06666666666666667
+    }
+  ],
+  "cadence": "monthly; hold-buffer-rank 45; soft annual roll",
+  "strategyVariant": "return-seeking pure-EPS + rebalancing band (v2). Backtest honest total-return: 9.96% CAGR / 0.60 Sharpe / -28.65% MDD / net (cost drag -1.54pp). Selection does not clear Deflated Sharpe hurdle (bet)."
+}
