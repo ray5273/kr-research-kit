@@ -1,0 +1,224 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-18T11:34:32.094Z",
+  "methodology": "annual-top300",
+  "parameters": {
+    "startDate": "2017-01-02",
+    "endDate": "2026-07-16",
+    "lookbackDays": 252,
+    "topN": 20,
+    "execution": "month-end close signal -> next session open",
+    "costs": {
+      "buyBps": 25,
+      "sellBps": 43,
+      "sellTaxBps": 18
+    },
+    "allowUnvalidatedPrice": true
+  },
+  "universe": {
+    "label": "연도별 Top 300",
+    "marketCapThreshold": null,
+    "file": "analysis-example/kr-market/strategies/annual-top300/universe-ledger-2015-2025.json",
+    "sourceSha256": "fff593528d90266664387d690994059fd296545401a824421b800d6fb29f3013",
+    "unionCount": 604,
+    "coverage": [
+      {
+        "rankingYear": 2015,
+        "asOfDate": "2015-12-30",
+        "rawTop300Count": 300,
+        "commonShareCount": 300,
+        "priceAvailable": 299,
+        "priceCoverage": 0.9966666666666667,
+        "dartAvailable": 300,
+        "priceCoveragePass": true
+      },
+      {
+        "rankingYear": 2016,
+        "asOfDate": "2016-12-29",
+        "rawTop300Count": 300,
+        "commonShareCount": 300,
+        "priceAvailable": 300,
+        "priceCoverage": 1,
+        "dartAvailable": 300,
+        "priceCoveragePass": true
+      },
+      {
+        "rankingYear": 2017,
+        "asOfDate": "2017-12-28",
+        "rawTop300Count": 300,
+        "commonShareCount": 300,
+        "priceAvailable": 300,
+        "priceCoverage": 1,
+        "dartAvailable": 300,
+        "priceCoveragePass": true
+      },
+      {
+        "rankingYear": 2018,
+        "asOfDate": "2018-12-28",
+        "rawTop300Count": 300,
+        "commonShareCount": 300,
+        "priceAvailable": 300,
+        "priceCoverage": 1,
+        "dartAvailable": 300,
+        "priceCoveragePass": true
+      },
+      {
+        "rankingYear": 2019,
+        "asOfDate": "2019-12-30",
+        "rawTop300Count": 300,
+        "commonShareCount": 300,
+        "priceAvailable": 300,
+        "priceCoverage": 1,
+        "dartAvailable": 300,
+        "priceCoveragePass": true
+      },
+      {
+        "rankingYear": 2020,
+        "asOfDate": "2020-12-30",
+        "rawTop300Count": 300,
+        "commonShareCount": 300,
+        "priceAvailable": 300,
+        "priceCoverage": 1,
+        "dartAvailable": 300,
+        "priceCoveragePass": true
+      },
+      {
+        "rankingYear": 2021,
+        "asOfDate": "2021-12-30",
+        "rawTop300Count": 300,
+        "commonShareCount": 300,
+        "priceAvailable": 300,
+        "priceCoverage": 1,
+        "dartAvailable": 300,
+        "priceCoveragePass": true
+      },
+      {
+        "rankingYear": 2022,
+        "asOfDate": "2022-12-29",
+        "rawTop300Count": 300,
+        "commonShareCount": 300,
+        "priceAvailable": 300,
+        "priceCoverage": 1,
+        "dartAvailable": 300,
+        "priceCoveragePass": true
+      },
+      {
+        "rankingYear": 2023,
+        "asOfDate": "2023-12-28",
+        "rawTop300Count": 300,
+        "commonShareCount": 300,
+        "priceAvailable": 300,
+        "priceCoverage": 1,
+        "dartAvailable": 300,
+        "priceCoveragePass": true
+      },
+      {
+        "rankingYear": 2024,
+        "asOfDate": "2024-12-30",
+        "rawTop300Count": 300,
+        "commonShareCount": 300,
+        "priceAvailable": 300,
+        "priceCoverage": 1,
+        "dartAvailable": 300,
+        "priceCoveragePass": true
+      },
+      {
+        "rankingYear": 2025,
+        "asOfDate": "2025-12-30",
+        "rawTop300Count": 300,
+        "commonShareCount": 298,
+        "priceAvailable": 293,
+        "priceCoverage": 0.9832214765100671,
+        "dartAvailable": 298,
+        "priceCoveragePass": true
+      }
+    ],
+    "rule": "signal year y uses ranking snapshot y-1"
+  },
+  "strategy": {
+    "name": "연도별 Top 300 12M + 2/3/4M positive momentum",
+    "summary": {
+      "startEquity": 100000000,
+      "endEquity": 135628548.3587579,
+      "totalReturn": 0.35628548358757905,
+      "cagr": 0.03248365051922453,
+      "annualizedVolatility": 0.300039129097834,
+      "sharpeZeroRf": 0.25665683923643895,
+      "maxDrawdown": -0.6233549920932302,
+      "sessions": 2334,
+      "tradeCount": 3378,
+      "turnover": 112.11195996576954
+    },
+    "annualReturns": {
+      "2017": null,
+      "2018": -0.2894077074451743,
+      "2019": -0.16021874653875745,
+      "2020": 0.46084003825508235,
+      "2021": 0.05866081038885862,
+      "2022": -0.3961516588224545,
+      "2023": 0.10209123494704975,
+      "2024": 0.10436650299967232,
+      "2025": 0.5580844380346042,
+      "2026": 0.1331937638557108
+    }
+  },
+  "benchmarkTotalReturn": {
+    "name": "연도별 Top 300 동일가중 총수익",
+    "summary": {
+      "startEquity": 100000000,
+      "endEquity": 224582254.26013345,
+      "totalReturn": 1.2458225426013345,
+      "cagr": 0.08857433923601898,
+      "annualizedVolatility": 0.215331594220051,
+      "sharpeZeroRf": 0.5143137262653416,
+      "maxDrawdown": -0.506044629292781,
+      "sessions": 2334
+    },
+    "annualReturns": {
+      "2017": null,
+      "2018": -0.14518945776899572,
+      "2019": -0.007328437446122882,
+      "2020": 0.2981680181882902,
+      "2021": 0.07297559260373387,
+      "2022": -0.23868900694515294,
+      "2023": 0.2574923640098703,
+      "2024": -0.041942566487843114,
+      "2025": 0.5053956940415583,
+      "2026": 0.12589023431808122
+    }
+  },
+  "comparisonWithCurrentUniverseBaseline": {
+    "baselineFile": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-market/strategies/trend-following-10y/largecap-momentum-backtest-2026-07-10.json",
+    "baselineMethodology": "latest-universe survivorship-biased baseline",
+    "baselineSummary": {
+      "startEquity": 100000000,
+      "endEquity": 1539429939.5855105,
+      "totalReturn": 14.394299395855105,
+      "cagr": 0.31457320295383706,
+      "annualizedVolatility": 0.30620265942101305,
+      "sharpeZeroRf": 1.072985671027669,
+      "maxDrawdown": -0.48754984410231417,
+      "monthWinRate": 0.6166666666666667,
+      "sessions": 2449,
+      "tradeCount": 3388,
+      "turnover": 106.02887128633984
+    },
+    "annualTop300Summary": {
+      "startEquity": 100000000,
+      "endEquity": 135628548.3587579,
+      "totalReturn": 0.35628548358757905,
+      "cagr": 0.03248365051922453,
+      "annualizedVolatility": 0.300039129097834,
+      "sharpeZeroRf": 0.25665683923643895,
+      "maxDrawdown": -0.6233549920932302,
+      "sessions": 2334,
+      "tradeCount": 3378,
+      "turnover": 112.11195996576954
+    }
+  },
+  "limitations": [
+    "Annual membership reduces current-constituent survivorship bias but does not restore delisted final returns, trading halts, or historic liquidity.",
+    "INVALID RESEARCH RUN: raw KRX prices with unresolved corporate actions were allowed solely for a preliminary diagnostic; do not use its returns or CAGR for decisions.",
+    "DART is not required for this price-only strategy; fundamental variants must record per-signal DART availability and exclude only missing candidates."
+  ]
+}
