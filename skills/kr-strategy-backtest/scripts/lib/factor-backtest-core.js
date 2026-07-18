@@ -18,9 +18,11 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const AnnualUniverse = require('./annual-top300-universe.js');
+const DartPanel = require('./dart-quarterly-panel.js');
 
 const ROOT = path.resolve(__dirname, '..', '..', '..', '..');
-const DATA = path.join(ROOT, '.tmp/kr-strategy-backtest/2026-07-10');
+const DATA = process.env.KR_BACKTEST_DATA || path.join(ROOT, '.tmp/kr-strategy-backtest/2026-07-10');
 const PANEL = path.join(ROOT, '.tmp/kr-strategy-backtest/dart-quarterly-panel');
 const OUT = path.join(ROOT, 'analysis-example/kr-market/strategies/trend-following-10y');
 const TOP_FILE = path.join(OUT, 'largecap-momentum-backtest-2026-07-10.json');
@@ -45,13 +47,7 @@ const pctText = x => `${(x * 100).toFixed(2)}%`;
 // ---- Universe -------------------------------------------------------------
 
 function ordinaryShare(x) {
-  const n = x.name || '';
-  if (!/^\d{6}$/.test(x.ticker)) return false;
-  if (/(^|\s)(KODEX|TIGER|ACE|RISE|ARIRANG|HANARO|KBSTAR|SOL|PLUS|TIME|KOSEF|KIWOOM)\b/i.test(n)) return false;
-  if (/(ETF|ETN|SPAC|스팩|레버리지|인버스|커버드콜|머니마켓|채권|금현물|CD금리|KOFR|MSCI|S&P|나스닥|혼합|액티브)/i.test(n)) return false;
-  if (/(^|\s)리츠$|REIT/i.test(n)) return false;
-  if (/(우선|[1-3]?우(?:B|C)?$)/.test(n)) return false;
-  return x.market === 'KOSPI' || x.market === 'KOSDAQ';
+  return AnnualUniverse.ordinaryShare(x);
 }
 function quality(bars) { return bars.length >= 273 && !bars.some((x, i) => i && (x.close / bars[i - 1].close < 0.6 || x.close / bars[i - 1].close > 1.4)); }
 
@@ -67,6 +63,36 @@ function loadPriceStates(limit) {
     if (quality(x.bars)) states.set(u.ticker, { ...u, bars: x.bars, rawSha256: x.rawSha256 || '' });
   }
   return { top, states };
+}
+
+// Shared point-in-time universe entrypoint for every factor sleeve.  Callers
+// retain the returned `annualUniverse` and use statesForSignal() inside their
+// rebalance loop; a signal in calendar year y can see only snapshot y-1.
+// Price coverage is checked before a run so a partial cache cannot quietly
+// turn into a smaller or selectively available universe.
+function loadAnnualPriceStates(universeFile, limit, allowUnvalidatedPrice = false, allowUndercoverage = false, cacheDir = DATA) {
+  const annualUniverse = AnnualUniverse.loadAnnualUniverse(universeFile);
+  const tickers = AnnualUniverse.universeUnion(annualUniverse);
+  const states = new Map();
+  for (const ticker of tickers) {
+    const f = path.join(cacheDir, 'normalized', `${ticker}.json`);
+    if (!fs.existsSync(f)) continue;
+    const x = read(f);
+    if (x.bars.length >= 273 && (allowUnvalidatedPrice || quality(x.bars))) states.set(ticker, { ticker, name: x.name || ticker, market: x.market || null, bars: x.bars, rawSha256: x.rawSha256 || '' });
+  }
+  const ledger = AnnualUniverse.coverageLedger(annualUniverse, ticker => states.has(ticker));
+  if (!allowUndercoverage) AnnualUniverse.assertPriceCoverage(ledger);
+  if (limit) {
+    const allowed = new Set([...states.keys()].slice(0, limit));
+    for (const ticker of states.keys()) if (!allowed.has(ticker)) states.delete(ticker);
+  }
+  return { annualUniverse, states, coverageLedger: ledger };
+}
+
+function statesForSignal(states, annualUniverse, signalDate) {
+  if (!annualUniverse) return states;
+  const tickers = AnnualUniverse.eligibleTickers(annualUniverse, signalDate);
+  return new Map([...states].filter(([ticker]) => tickers.has(ticker)));
 }
 
 // Trading calendar comes from the benchmark daily series (same as prior studies).
@@ -142,45 +168,22 @@ function runBacktest(states, calendar, orders) {
 // cfo, eps) are cumulative YTD in quarterly filings and de-cumulated into
 // standalone quarters; balance-sheet accounts are point-in-time snapshots.
 
-const FLOW_KINDS = ['revenue', 'gross', 'net', 'cfo', 'eps'];
-const SNAP_KINDS = ['assets', 'liab', 'currentAssets', 'currentLiabilities'];
+const { FLOW_KINDS, SNAP_KINDS } = DartPanel;
+const chooseAccount = DartPanel.chooseAccount;
 
-function chooseAccount(list, kind) {
-  const c = list.filter(a => {
-    const id = a.account_id || '', nm = a.account_nm || '';
-    if (kind === 'revenue') { if (/CostOfSales|OtherRevenue|InvestmentIncome|기타수익|매출원가/.test(id + '|' + nm)) return false; return id === 'ifrs-full_Revenue' || id === 'ifrs_Revenue' || /^(매출액|수익\(매출액\)|영업수익|매출)$/.test(nm); }
-    if (kind === 'eps') return (/BasicEarningsLossPerShare/.test(id) || /기본.*주당.*이익/.test(nm)) && !/Preferred|FromContinuing|FromDiscontinued|우선|희석|중단|계속/.test(id + '|' + nm);
-    if (kind === 'gross') return id === 'ifrs-full_GrossProfit' || id === 'ifrs_GrossProfit' || /^매출총이익/.test(nm);
-    if (kind === 'net') return id === 'ifrs-full_ProfitLoss' || id === 'ifrs_ProfitLoss' || /^(당기순이익|당기순이익\(손실\)|분기순이익)$/.test(nm);
-    if (kind === 'cfo') return /CashFlowsFromUsedInOperatingActivities/.test(id) || /영업활동.*현금흐름/.test(nm);
-    if (kind === 'assets') return id === 'ifrs-full_Assets' || id === 'ifrs_Assets' || /^자산총계$/.test(nm);
-    if (kind === 'liab') return id === 'ifrs-full_Liabilities' || id === 'ifrs_Liabilities' || /^부채총계$/.test(nm);
-    if (kind === 'currentAssets') return id === 'ifrs-full_CurrentAssets' || id === 'ifrs_CurrentAssets' || /^유동자산$/.test(nm);
-    if (kind === 'currentLiabilities') return id === 'ifrs-full_CurrentLiabilities' || id === 'ifrs_CurrentLiabilities' || /^유동부채$/.test(nm);
-    return false;
-  });
-  const rank = a => { const id = a.account_id || ''; return id.startsWith('ifrs-full_') ? 0 : id.startsWith('ifrs_') ? 1 : 2; };
-  return c.sort((a, b) => rank(a) - rank(b))[0] || null;
-}
-
-function loadRawReports() {
-  const raw = new Map(), files = fs.readdirSync(PANEL).filter(f => f.endsWith('.json'));
+function loadRawReports(panelDir = PANEL) {
+  const raw = new Map(), files = fs.readdirSync(panelDir).filter(f => f.endsWith('.json'));
   const manifest = [];
   for (const f of files) {
     const m = f.match(/^(\d+)-(\d+)-(\d+)\.json$/); if (!m) continue;
-    const x = read(path.join(PANEL, f));
-    const status = x.response?.status || 'error'; manifest.push(`${f}|${status}|${x.fsDiv || 'CFS'}|${x.fetchedAt || ''}`);
+    const x = read(path.join(panelDir, f));
+    const successful = (x.attempts || []).find(attempt => attempt.response?.status === '000');
+    const response = successful?.response || x.response;
+    const fsDiv = successful?.fsDiv || x.fsDiv || 'CFS';
+    const status = response?.status || 'error'; manifest.push(`${f}|${status}|${fsDiv}|${x.fetchedAt || ''}`);
     if (status !== '000') continue;
-    const list = x.response.list || [];
-    const accounts = {}; for (const k of [...FLOW_KINDS, ...SNAP_KINDS]) accounts[k] = chooseAccount(list, k);
-    if (!Object.values(accounts).some(Boolean)) continue;
-    const receipts = list.map(a => a.rcept_no).filter(Boolean).map(String).sort(); const filingRaw = (receipts.at(-1) || '').slice(0, 8); if (!/^\d{8}$/.test(filingRaw)) continue;
-    const filing = `${filingRaw.slice(0, 4)}-${filingRaw.slice(4, 6)}-${filingRaw.slice(6, 8)}`;
-    const metric = a => a ? { direct: num(a.thstrm_amount), cumulative: num(a.thstrm_add_amount) ?? num(a.thstrm_amount) } : { direct: null, cumulative: null };
-    const point = a => a ? (num(a.thstrm_amount) ?? num(a.thstrm_add_amount)) : null;
-    const entry = { filing, fsDiv: x.fsDiv || 'CFS' };
-    for (const k of FLOW_KINDS) entry[k] = metric(accounts[k]);
-    for (const k of SNAP_KINDS) entry[k] = point(accounts[k]);
+    const entry = DartPanel.parseReport({ ticker: m[1], fsDiv, response });
+    if (!entry) continue;
     const ticker = m[1], year = Number(m[2]), report = m[3];
     if (!raw.has(ticker)) raw.set(ticker, new Map());
     if (!raw.get(ticker).has(year)) raw.get(ticker).set(year, new Map());
@@ -191,32 +194,10 @@ function loadRawReports() {
 
 // Build a per-ticker time-ordered quarterly series. Flow fields carry standalone
 // quarter values; snapshot fields carry the reported balance at quarter end.
-function buildSeries(years) {
-  const out = [];
-  for (let y = 2015; y <= 2026; y++) {
-    const q = [years.get(y)?.get('11013'), years.get(y)?.get('11012'), years.get(y)?.get('11014')]; const annualRep = years.get(y)?.get('11011');
-    const prior = {}; for (const k of FLOW_KINDS) prior[k] = null;
-    for (let i = 0; i < q.length; i++) {
-      const r = q[i]; if (!r) continue;
-      const flow = k => r[k].direct ?? (r[k].cumulative !== null && prior[k] !== null ? r[k].cumulative - prior[k] : r[k].cumulative);
-      const row = { year: y, quarter: i + 1, filing: r.filing };
-      for (const k of FLOW_KINDS) row[k] = flow(k);
-      for (const k of SNAP_KINDS) row[k] = r[k];
-      out.push(row);
-      for (const k of FLOW_KINDS) if (r[k].cumulative !== null) prior[k] = r[k].cumulative;
-    }
-    if (annualRep) {
-      const row = { year: y, quarter: 4, filing: annualRep.filing };
-      for (const k of FLOW_KINDS) { const v = annualRep[k].direct !== null && prior[k] !== null ? annualRep[k].direct - prior[k] : annualRep[k].direct; row[k] = v; }
-      for (const k of SNAP_KINDS) row[k] = annualRep[k];
-      out.push(row);
-    }
-  }
-  return out.sort((a, b) => (a.year - b.year) || (a.quarter - b.quarter));
-}
+const buildSeries = DartPanel.buildSeries;
 
-function loadSeriesByTicker() {
-  const loaded = loadRawReports();
+function loadSeriesByTicker(panelDir = PANEL) {
+  const loaded = loadRawReports(panelDir);
   return { series: new Map([...loaded.raw].map(([t, years]) => [t, buildSeries(years)])), manifestHash: loaded.manifestHash, files: loaded.files };
 }
 
@@ -229,7 +210,12 @@ function fundamentalAt(series, date) {
   for (const r of reports) {
     const same = series.find(x => x.year === r.year - 1 && x.quarter === r.quarter && x.revenue !== null && x.eps !== null);
     const idx = series.indexOf(r), prev = idx > 0 ? series[idx - 1] : null;
-    const metrics = { revenueYoY: improvement(r.revenue, same?.revenue ?? null), revenueQoQ: improvement(r.revenue, prev?.revenue ?? null), epsYoY: improvement(r.eps, same?.eps ?? null), epsQoQ: improvement(r.eps, prev?.eps ?? null) };
+    const metrics = {
+      revenueYoY: DartPanel.sameMetric(r, same, 'revenue') ? improvement(r.revenue, same.revenue) : null,
+      revenueQoQ: DartPanel.sameMetric(r, prev, 'revenue') ? improvement(r.revenue, prev.revenue) : null,
+      epsYoY: DartPanel.sameMetric(r, same, 'eps') ? improvement(r.eps, same.eps) : null,
+      epsQoQ: DartPanel.sameMetric(r, prev, 'eps') ? improvement(r.eps, prev.eps) : null,
+    };
     if (Object.values(metrics).filter(x => x !== null).length >= 3) return { report: r, metrics };
   }
   return null;
@@ -490,7 +476,7 @@ module.exports = {
   ROOT, DATA, PANEL, OUT, TOP_FILE, BASE_FILE,
   START, CUTOFF, OOS_START, COST, SELL_TAX, INITIAL, MAX_HOLDINGS,
   read, write, num, clamp, sha, pctText,
-  ordinaryShare, quality, loadPriceStates, loadCalendar, monthEnds,
+  ordinaryShare, quality, loadPriceStates, loadAnnualPriceStates, statesForSignal, loadCalendar, monthEnds,
   lastIndex, exactPrice, closePrice, stddev, realizedVol, trailingReturn, percentile,
   stats, annual, runBacktest,
   chooseAccount, loadRawReports, buildSeries, loadSeriesByTicker,

@@ -46,6 +46,119 @@ It fixes the test window at 2016-07-11 through 2026-07-10, with 2015-07-01 as wa
 
 Use `--limit N` only for a technical smoke run. The result remains current-universe based and must carry the survivor-bias warning.
 
+## Annual Top-300 point-in-time universe
+
+The current-universe reports above are retained as the **"latest-universe
+survivorship-biased baseline"**.  Do not overwrite them when running the
+point-in-time comparison.  First extract a 2015–2025 workbook with
+`extract_top300_marcap.py` (common shares only), then normalize it and run the
+annual strategy into its separate directory:
+
+```bash
+node skills/kr-strategy-backtest/scripts/build-annual-top300-universe.js \
+  --input 한국_시가총액_상위300_2015-2025.xlsx \
+  --out analysis-example/kr-market/strategies/annual-top300/universe-ledger.json
+
+node skills/kr-strategy-backtest/scripts/run-annual-top300-momentum.js \
+  --universe-file analysis-example/kr-market/strategies/annual-top300/universe-ledger.json \
+  --out-dir analysis-example/kr-market/strategies/annual-top300
+
+# For a fundamental sleeve, expand the DART panel to the same annual union.
+OPENDART_API_KEY=... node skills/kr-strategy-backtest/scripts/collect-dart-quarterly-panel.js \
+  --annual-universe-file analysis-example/kr-market/strategies/annual-top300/universe-ledger.json
+```
+
+The snapshot at the last session of year `t` is usable only for signals in
+`t+1`; thus 2015 is required for the existing 2016-07 start.  The runner stops
+when an annual common-share snapshot has under 90% usable price coverage.  It
+records ranking year, snapshot date, raw and filtered counts, exclusions,
+selection, and the mandatory first-trading-day annual roll in the rebalancing
+ledger.  Price-only runs leave DART availability null; fundamental sleeves must
+exclude only missing-DART candidates and record their per-signal coverage.
+
+For the repository's **RS + EPS/revenue + regime main strategy**, annual
+reconstitution is the required universe policy.  It is not a once-off
+backtest switch: append each new year-end snapshot to the ledger, then run:
+
+```bash
+node skills/kr-strategy-backtest/scripts/run-annual-top300-minervini-earnings-regime.js \
+  --universe-file analysis-example/kr-market/strategies/annual-top300/universe-ledger.json \
+  --out-dir analysis-example/kr-market/strategies/annual-top300
+```
+
+On the first trading session of `t+1`, this runner **sells every existing
+position**, including names that remain eligible, charges the sell cost/tax,
+and then rebuilds the top-10 portfolio from snapshot `t`.  Between annual
+rolls it keeps the normal five-session signal/rebalance cadence.
+
+Treat the price-only annual momentum runner as a **validation helper only**:
+it verifies point-in-time membership, annual rolls, price coverage, and the
+same-universe benchmark. Do not present it as the Korean default strategy or
+use it to generate the model portfolio; those always use RS + EPS/revenue +
+regime + volatility targeting.
+
+### Coverage-rebuild release gate
+
+For the reproducible 2026-07-16 rebuild or a latest-trading-day extension, use
+the orchestrator rather than running individual reports against a stale cache:
+
+```bash
+OPENDART_API_KEY=... node skills/kr-strategy-backtest/scripts/rebuild-annual-top300-suite.js \
+  --universe-file analysis-example/kr-market/strategies/annual-top300/universe-ledger.json \
+  --cache-dir .tmp/kr-strategy-backtest/2026-07-16 \
+  --end-date 2026-07-16 \
+  --raw-workbook 한국_시가총액_상위300_2015-2025.xlsx
+```
+
+It refreshes the 2015-onward Yahoo cache, validates the 90% annual coverage
+gate and each signal close/273-session requirement, then requires every DART
+job to be either `000` or CFS+OFS-confirmed `013`.  Any unresolved network/API
+record stops publication.  It archives replaced non-official artifacts below
+`archive/pre-coverage-rebuild-2026-07-18/` and emits a fixed-date delta report.
+Use `--end-date latest` only for the separately named latest extension.  This
+orchestrator never runs or overwrites official-total-return artifacts.
+
+## Official total-return 3,000억원 universe
+
+The committed `annual-cap300b` raw-KRX artifacts are deliberately retained as
+**corporate-action-unverified diagnostics**.  They are not an official
+total-return result.  For the fixed 3,000억원 universe, first archive official
+KRX raw OHLC and the official KRX/DART documents.  Finalize the
+KRX/DART-cross-checked event ledger, then generate a separate cache and run
+the strict mode:
+
+```bash
+node skills/kr-strategy-backtest/scripts/build-official-corporate-action-ledger.js \
+  --input path/to/candidate-corporate-actions-with-archived-sources.json \
+  --out path/to/krx-dart-corporate-actions.json
+
+node skills/kr-strategy-backtest/scripts/prepare-official-total-return-cache.js \
+  --input path/to/official-krx-raw-prices.json \
+  --event-ledger path/to/krx-dart-corporate-actions.json \
+  --out-cache .tmp/kr-strategy-backtest/official-total-return
+
+node skills/kr-strategy-backtest/scripts/run-annual-top300-minervini-earnings-regime.js \
+  --universe annual-cap300b \
+  --price-mode official-total-return \
+  --strict-events \
+  --universe-file analysis-example/kr-market/strategies/annual-cap300b/universe-ledger-yearend-cap300b-2015-2025.json \
+  --price-cache .tmp/kr-strategy-backtest/official-total-return \
+  --event-ledger path/to/krx-dart-corporate-actions.json \
+  --calendar-security-id KOSPI_INDEX \
+  --compare-universe-file analysis-example/kr-market/strategies/annual-top300/universe-ledger-2015-2025.json \
+  --out-dir analysis-example/kr-market/strategies/official-total-return
+```
+
+`--strict-events` is mandatory.  The run fails before writing any successful
+result when a relevant action is unverified, a delisting consideration is
+missing, the official price contract is incomplete, or any annual snapshot has
+under 90% usable price coverage.  The cache records `rawOHLC`,
+`totalReturnOHLC`, `adjustmentFactor`, persistent `securityId`, event
+references, and its verification status.  The runner applies events to actual
+cash/shares/successor securities while using total-return OHLC only for
+signals.  It writes solely under `official-total-return`; never overwrite the
+Yahoo or raw-KRX diagnostics.
+
 ## Tracking the ex-heavyweights index on its own
 
 To follow the "KOSPI minus 삼성전자·삼성전자우·SK하이닉스" index over time **without** the full ~2,470-ticker run, use the standalone tracker. It fetches only `^KS11` and the excluded tickers from Yahoo, sources weights from Naver (with a committed market-cap snapshot as an offline fallback), and reuses the same `reconstructExKospi` engine:

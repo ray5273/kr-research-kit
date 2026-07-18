@@ -12,6 +12,33 @@ JSON may be an array of the same objects or `{ "bars": [...] }`. Dates use `YYYY
 
 The engine validates the input but cannot establish point-in-time membership, delisting coverage, or adjusted-price provenance. Put those source facts in `dataNotes`.
 
+## Official total-return cache (strict annual-cap300b mode)
+
+`--price-mode official-total-return --strict-events` does not accept the
+generic CSV above. Build its cache with
+`prepare-official-total-return-cache.js`; each security artifact must contain:
+
+```json
+{
+  "securityId": "persistent-security-identifier",
+  "ticker": "005930",
+  "rawOHLC": [{ "date": "2026-01-02", "open": 1, "high": 1, "low": 1, "close": 1 }],
+  "totalReturnOHLC": [{ "date": "2026-01-02", "open": 1, "high": 1, "low": 1, "close": 1 }],
+  "adjustmentFactor": [{ "date": "2026-01-02", "factor": 1 }],
+  "eventReferences": ["krx-dart-event-id"],
+  "eventVerificationStatus": "verified-complete"
+}
+```
+
+The companion event ledger has `schemaVersion: 1`; every event that can affect
+an eligible security must have an immutable id, effective date, verified status,
+and hashed HTTPS source records from both `KRX` and `DART`.  Supported types:
+split/reverse split, capital reduction, rights issue, cash/stock dividend,
+merger, spin-off, ticker change, and delisting.  A delisting requires explicit
+cash consideration.  Do not infer an action from an OHLC discontinuity.  The
+strict runner uses `totalReturnOHLC` for signals but applies the event ledger
+to actual cash, shares, and successor securities at the event date.
+
 ## Configuration
 
 ```json

@@ -1,0 +1,2336 @@
+{
+  "generatedAt": "2026-07-18T02:19:07.229Z",
+  "startDate": "2016-07-11",
+  "endDate": "2026-07-16",
+  "universeFile": "analysis-example/kr-market/strategies/annual-top300/universe-ledger-2015-2025.json",
+  "cacheDir": ".tmp/kr-strategy-backtest/2026-07-16",
+  "unionCount": 604,
+  "usableCount": 564,
+  "coverage": [
+    {
+      "rankingYear": 2015,
+      "asOfDate": "2015-12-30",
+      "rawTop300Count": 300,
+      "commonShareCount": 300,
+      "priceAvailable": 265,
+      "priceCoverage": 0.8833333333333333,
+      "dartAvailable": 300,
+      "priceCoveragePass": false
+    },
+    {
+      "rankingYear": 2016,
+      "asOfDate": "2016-12-29",
+      "rawTop300Count": 300,
+      "commonShareCount": 300,
+      "priceAvailable": 265,
+      "priceCoverage": 0.8833333333333333,
+      "dartAvailable": 300,
+      "priceCoveragePass": false
+    },
+    {
+      "rankingYear": 2017,
+      "asOfDate": "2017-12-28",
+      "rawTop300Count": 300,
+      "commonShareCount": 300,
+      "priceAvailable": 262,
+      "priceCoverage": 0.8733333333333333,
+      "dartAvailable": 300,
+      "priceCoveragePass": false
+    },
+    {
+      "rankingYear": 2018,
+      "asOfDate": "2018-12-28",
+      "rawTop300Count": 300,
+      "commonShareCount": 300,
+      "priceAvailable": 267,
+      "priceCoverage": 0.89,
+      "dartAvailable": 300,
+      "priceCoveragePass": false
+    },
+    {
+      "rankingYear": 2019,
+      "asOfDate": "2019-12-30",
+      "rawTop300Count": 300,
+      "commonShareCount": 300,
+      "priceAvailable": 270,
+      "priceCoverage": 0.9,
+      "dartAvailable": 300,
+      "priceCoveragePass": true
+    },
+    {
+      "rankingYear": 2020,
+      "asOfDate": "2020-12-30",
+      "rawTop300Count": 300,
+      "commonShareCount": 300,
+      "priceAvailable": 273,
+      "priceCoverage": 0.91,
+      "dartAvailable": 300,
+      "priceCoveragePass": true
+    },
+    {
+      "rankingYear": 2021,
+      "asOfDate": "2021-12-30",
+      "rawTop300Count": 300,
+      "commonShareCount": 300,
+      "priceAvailable": 262,
+      "priceCoverage": 0.8733333333333333,
+      "dartAvailable": 300,
+      "priceCoveragePass": false
+    },
+    {
+      "rankingYear": 2022,
+      "asOfDate": "2022-12-29",
+      "rawTop300Count": 300,
+      "commonShareCount": 300,
+      "priceAvailable": 275,
+      "priceCoverage": 0.9166666666666666,
+      "dartAvailable": 300,
+      "priceCoveragePass": true
+    },
+    {
+      "rankingYear": 2023,
+      "asOfDate": "2023-12-28",
+      "rawTop300Count": 300,
+      "commonShareCount": 300,
+      "priceAvailable": 276,
+      "priceCoverage": 0.92,
+      "dartAvailable": 300,
+      "priceCoveragePass": true
+    },
+    {
+      "rankingYear": 2024,
+      "asOfDate": "2024-12-30",
+      "rawTop300Count": 300,
+      "commonShareCount": 300,
+      "priceAvailable": 276,
+      "priceCoverage": 0.92,
+      "dartAvailable": 300,
+      "priceCoveragePass": true
+    },
+    {
+      "rankingYear": 2025,
+      "asOfDate": "2025-12-30",
+      "rawTop300Count": 300,
+      "commonShareCount": 298,
+      "priceAvailable": 265,
+      "priceCoverage": 0.889261744966443,
+      "dartAvailable": 298,
+      "priceCoveragePass": false
+    }
+  ],
+  "failures": [
+    {
+      "ticker": "130960",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "037620",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "016170",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "008560",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "002550",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "000060",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "003450",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "049770",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "002270",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "036490",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "003410",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "048260",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "028150",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "010620",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "068870",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "042670",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "117930",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "108790",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "115390",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "111610",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "138250",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "027390",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "101060",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "021960",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "065620",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "023890",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "091990",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "079440",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "151910",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "090460",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "006390",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "033180",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "073070",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "031390",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "208340",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "033660",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "268600",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "121800",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "015350",
+      "reason": "missing-cache-file"
+    },
+    {
+      "ticker": "119860",
+      "reason": "missing-cache-file"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "130960",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "037620",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "079550",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "016170",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "008560",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "002550",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "000060",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "003450",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "049770",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "214320",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "226320",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "002270",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "036490",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "003410",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "048260",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "028150",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "214370",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "084110",
+      "requiredDate": "2016-07-11",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "010620",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "068870",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "042670",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "047770",
+      "requiredDate": "2016-07-11",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "030530",
+      "requiredDate": "2016-07-11",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "117930",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "192080",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "206640",
+      "requiredDate": "2016-07-11",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "108790",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "210980",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "115390",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "214450",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "145020",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "111610",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "138250",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "027390",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "101060",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "207940",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "000030",
+      "requiredDate": "2017-01-02",
+      "reason": "missing-signal-close"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "241560",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "130960",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "037620",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "016170",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "036490",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "042670",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "008560",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "000060",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "002550",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "010620",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "003410",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "028150",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "068870",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "240810",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "145020",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "008000",
+      "requiredDate": "2017-01-02",
+      "reason": "missing-signal-close"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "002270",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "048260",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "237690",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "215600",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "115390",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "049770",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "226320",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "123890",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "222040",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "021960",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "192530",
+      "requiredDate": "2017-01-02",
+      "reason": "missing-signal-close"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "101530",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "030530",
+      "requiredDate": "2017-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "138250",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "237880",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "065620",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "023890",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "251270",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "091990",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "215600",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "267250",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "009540",
+      "requiredDate": "2018-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "079440",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "271560",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "130960",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "282330",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "241560",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "950160",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "263750",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "016170",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "008560",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "000060",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "036490",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "003410",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "253450",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "042670",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "267270",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "010620",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "115390",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "042660",
+      "requiredDate": "2018-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "028150",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "003380",
+      "requiredDate": "2018-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "267260",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "151910",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "049770",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "090460",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "048260",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "272450",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "272290",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "065620",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "145720",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "271980",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "002270",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "280360",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "030530",
+      "requiredDate": "2018-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "091990",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "009540",
+      "requiredDate": "2019-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "042660",
+      "requiredDate": "2019-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "282330",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "003410",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "008560",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "253450",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "000060",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "010620",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "079440",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "294870",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "036490",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "042670",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "018250",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "028150",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "115390",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "049770",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "003380",
+      "requiredDate": "2019-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "042000",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "298380",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "038540",
+      "requiredDate": "2019-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "285130",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "002270",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "298020",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "284740",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "048260",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "006390",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "033180",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "263050",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "073070",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "031390",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "272450",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2018,
+      "ticker": "208340",
+      "requiredDate": "2019-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "009540",
+      "requiredDate": "2020-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "316140",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "091990",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "042660",
+      "requiredDate": "2020-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "003410",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "008560",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "079440",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "000060",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "036490",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "010620",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "013890",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "042670",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "272210",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "298380",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "247540",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "307950",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "028150",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "084850",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "214150",
+      "requiredDate": "2020-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "049770",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "003380",
+      "requiredDate": "2020-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "016380",
+      "requiredDate": "2020-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "115390",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "090460",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "033660",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "336370",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "278280",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "048260",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "033180",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2019,
+      "ticker": "031390",
+      "requiredDate": "2020-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "091990",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "326030",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "009540",
+      "requiredDate": "2021-01-04",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "352820",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "036490",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "293490",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "003410",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "042660",
+      "requiredDate": "2021-01-04",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "008560",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "235980",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "357780",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "010620",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "009900",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "000060",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "042670",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "268600",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "323990",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "016380",
+      "requiredDate": "2021-01-04",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "314130",
+      "requiredDate": "2021-01-04",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "363280",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "214150",
+      "requiredDate": "2021-01-04",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "230360",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "028150",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "003380",
+      "requiredDate": "2021-01-04",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "092190",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "090460",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2020,
+      "ticker": "048260",
+      "requiredDate": "2021-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "323410",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "377300",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "259960",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "302440",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "091990",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "361610",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "402340",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "329180",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "383220",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "009540",
+      "requiredDate": "2022-01-04",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "137310",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "000060",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "003410",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "008560",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "086520",
+      "requiredDate": "2022-01-04",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "010620",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "042660",
+      "requiredDate": "2022-01-04",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "375500",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "048260",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "271940",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "376300",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "381970",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "009900",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "195940",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "348370",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "020560",
+      "requiredDate": "2022-01-04",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "042670",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "089860",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "007700",
+      "requiredDate": "2022-01-04",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "950210",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "214150",
+      "requiredDate": "2022-01-04",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "383310",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "248070",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "121800",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "215000",
+      "requiredDate": "2022-01-04",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "016380",
+      "requiredDate": "2022-01-04",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "950220",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2021,
+      "ticker": "015350",
+      "requiredDate": "2022-01-04",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "373220",
+      "requiredDate": "2023-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "091990",
+      "requiredDate": "2023-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "000060",
+      "requiredDate": "2023-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "009540",
+      "requiredDate": "2023-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "402340",
+      "requiredDate": "2023-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "008560",
+      "requiredDate": "2023-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "010620",
+      "requiredDate": "2023-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "003410",
+      "requiredDate": "2023-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "086520",
+      "requiredDate": "2023-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "048260",
+      "requiredDate": "2023-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "042660",
+      "requiredDate": "2023-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "042670",
+      "requiredDate": "2023-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "393890",
+      "requiredDate": "2023-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "365340",
+      "requiredDate": "2023-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "214150",
+      "requiredDate": "2023-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "007700",
+      "requiredDate": "2023-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "403870",
+      "requiredDate": "2023-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "020560",
+      "requiredDate": "2023-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "377740",
+      "requiredDate": "2023-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "003380",
+      "requiredDate": "2023-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "121600",
+      "requiredDate": "2023-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "090460",
+      "requiredDate": "2023-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "119860",
+      "requiredDate": "2023-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "016380",
+      "requiredDate": "2023-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2022,
+      "ticker": "403550",
+      "requiredDate": "2023-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "086520",
+      "requiredDate": "2024-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "450080",
+      "requiredDate": "2024-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "091990",
+      "requiredDate": "2024-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "009540",
+      "requiredDate": "2024-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "042660",
+      "requiredDate": "2024-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "454910",
+      "requiredDate": "2024-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "010620",
+      "requiredDate": "2024-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "417200",
+      "requiredDate": "2024-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "003410",
+      "requiredDate": "2024-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "214150",
+      "requiredDate": "2024-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "017860",
+      "requiredDate": "2024-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "003620",
+      "requiredDate": "2024-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "042670",
+      "requiredDate": "2024-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "121600",
+      "requiredDate": "2024-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "140410",
+      "requiredDate": "2024-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "440110",
+      "requiredDate": "2024-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "003030",
+      "requiredDate": "2024-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "420770",
+      "requiredDate": "2024-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "016790",
+      "requiredDate": "2024-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "016380",
+      "requiredDate": "2024-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "457190",
+      "requiredDate": "2024-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "003380",
+      "requiredDate": "2024-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "418550",
+      "requiredDate": "2024-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2023,
+      "ticker": "020560",
+      "requiredDate": "2024-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "009540",
+      "requiredDate": "2025-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "042660",
+      "requiredDate": "2025-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "086520",
+      "requiredDate": "2025-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "443060",
+      "requiredDate": "2025-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "010620",
+      "requiredDate": "2025-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "462870",
+      "requiredDate": "2025-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "214150",
+      "requiredDate": "2025-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "020560",
+      "requiredDate": "2025-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "062040",
+      "requiredDate": "2025-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "012510",
+      "requiredDate": "2025-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "278470",
+      "requiredDate": "2025-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "950160",
+      "requiredDate": "2025-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "489790",
+      "requiredDate": "2025-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "082740",
+      "requiredDate": "2025-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "018290",
+      "requiredDate": "2025-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "036930",
+      "requiredDate": "2025-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "042670",
+      "requiredDate": "2025-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "415640",
+      "requiredDate": "2025-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "457190",
+      "requiredDate": "2025-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "140410",
+      "requiredDate": "2025-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "071970",
+      "requiredDate": "2025-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "417200",
+      "requiredDate": "2025-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "003030",
+      "requiredDate": "2025-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2024,
+      "ticker": "003620",
+      "requiredDate": "2025-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "042660",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "009540",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "086520",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "950160",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "064400",
+      "requiredDate": "2026-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "108490",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "030530",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "082740",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "214150",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "031210",
+      "requiredDate": "2026-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "071970",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "140410",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "042670",
+      "requiredDate": "2026-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "012510",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "439260",
+      "requiredDate": "2026-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "475830",
+      "requiredDate": "2026-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "476830",
+      "requiredDate": "2026-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "319400",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "445680",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "097230",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "483650",
+      "requiredDate": "2026-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "457190",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "020560",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "077970",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "036930",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "484870",
+      "requiredDate": "2026-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "491000",
+      "requiredDate": "2026-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "415640",
+      "requiredDate": "2026-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "468530",
+      "requiredDate": "2026-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "003380",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "456160",
+      "requiredDate": "2026-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "115180",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    },
+    {
+      "rankingYear": 2025,
+      "ticker": "319660",
+      "requiredDate": "2026-01-02",
+      "reason": "unresolved-price-jump"
+    }
+  ],
+  "pass": false
+}
