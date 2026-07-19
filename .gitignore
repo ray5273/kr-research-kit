@@ -13,3 +13,19 @@ node_modules/
 !.env.telegram.example
 .gstack/
 .tmp/
+
+# --- data caches & raw sources (never commit; large / regenerable) ---
+tmp/
+marcap/
+.omx/
+__pycache__/
+*.pyc
+
+# --- editor/office junk & local backups ---
+*.BACKUP.pptx
+~$*
+*.inspect.ndjson
+
+# --- oversized regenerable diagnostic dumps (>50MB; keep out of history) ---
+/analysis-example/kr-market/strategies/annual-top300-marcap-split-diagnostic/annual-top300-marcap-split-partial-*.json
+/analysis-example/kr-market/strategies/annual-top300-yahoo-adjusted-comparison/annual-top300-yahoo-adjusted-2016-07-11-through-2026-07-16.json
