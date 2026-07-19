@@ -1,0 +1,21 @@
+{
+  "company": "한화엔진",
+  "ticker": "082740",
+  "discoveredAt": "2026-07-12",
+  "bloggers": [],
+  "meta": {
+    "rawCandidatesFound": 25,
+    "rawQualifiedBeforeBodyReview": 1,
+    "qualified": 0,
+    "bodyLevelExclusions": [
+      {
+        "blogId": "csj4032",
+        "repeatRelevantPosts": 3,
+        "dates": ["2026-04-17", "2026-04-27", "2026-07-06"],
+        "reason": "세 게시물이 단기 차트·매매 신호 중심이어서 비트레이딩 블로거 기준에서 제외"
+      }
+    ],
+    "rawDiscoveryPath": ".tmp/naver-blog-cache/bloggers/082740/2026-07-12.json",
+    "generatedBy": "kr-naver-blogger/discover-bloggers.js; memo eligibility review"
+  }
+}

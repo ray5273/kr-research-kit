@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "reportPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/한화솔루션/source.md",
+    "reportSha256": "868bb7b99cdb836ab6be7bda850ce1358b1fb8b46273504acb309f714a919a87",
+    "asOfDate": "2026-07-04"
+  },
+  "post": {
+    "company": "한화솔루션",
+    "ticker": "009830",
+    "title": "한화솔루션 | Qcells 매출과 미국 비중을 DART로 확인 | 2026-07-04",
+    "issue": "Qcells DART 매출과 미국 비중",
+    "category": null,
+    "tags": [],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/한화솔루션/naver-post.md",
+    "markdownSha256": "e755ffc41959dacc32f2a723319f9e760a4dc72c71555bd160922ba98b623525",
+    "images": [],
+    "thumbnail": {
+      "prompt": "한화솔루션 | Qcells 매출과 미국 비중을 DART로 확인 | 2026-07-04 블로그 썸네일 만들어줘",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/한화솔루션/assets/naver-thumbnail.png",
+      "sha256": "dde09c47219d793a46f4cf198e26a212405dee5777bdfa3c01ffe89d7b738c10",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-04T15:55:00.000Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-04T14:31:34.762Z",
+    "expiresAt": "2026-07-04T15:01:34.761Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/한화솔루션/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "c5da425b1053257cca16de6fb1a7a70b3c55d325ee1ecfd5617e2d836cb766d1",
+    "approvalTokenHash": "6b256f8c4b3515e8a5b4c1c942b1c0e9d24cec8755cd9ba380773034a5a0d3d5",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

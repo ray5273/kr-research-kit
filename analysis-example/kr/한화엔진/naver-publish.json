@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/한화엔진/memo.md",
+    "memoSha256": "710df336a6ba7694c915a6e4d5122c95eb7afa40ca4f38987b69fe9d3fd26e1b",
+    "asOfDate": "2026-07-12"
+  },
+  "post": {
+    "company": "한화엔진",
+    "ticker": "082740",
+    "title": "한화엔진 | 대규모 수주잔고가 실제 이익과 현금흐름으로 이어지는가 | 2026-07-12",
+    "issue": "대규모 수주잔고가 실제 이익과 현금흐름으로 이어지는가",
+    "category": null,
+    "tags": [
+      "한화엔진",
+      "082740",
+      "주식분석"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/한화엔진/naver-post.md",
+    "markdownSha256": "fe5d6930bd66ede631bee1e68b231427bf3981ca4291491a6a6f85cea1f17ad0",
+    "images": [
+      {
+        "order": 1,
+        "alt": "한화엔진 main trend",
+        "relativePath": "../assets/한화엔진-chart.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/한화엔진-chart.png",
+        "sha256": "5c9e9e7f3a1db8859504b11c730833bb048931b4cdbe16e348e0b0c608fe5824",
+        "section": "Chart and Positioning"
+      },
+      {
+        "order": 2,
+        "alt": "한화엔진 overlay",
+        "relativePath": "../assets/한화엔진-chart-overlay.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/한화엔진-chart-overlay.png",
+        "sha256": "1eec28e9b5be1605639909c63084263efb535695e37b24b6ec3c23f5eae83f49",
+        "section": "Chart and Positioning"
+      },
+      {
+        "order": 3,
+        "alt": "한화엔진 momentum",
+        "relativePath": "../assets/한화엔진-chart-momentum.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/한화엔진-chart-momentum.png",
+        "sha256": "37093a186335cfc26c27048dc462ebcd9b690147ef64dfa869ca5b47686d823f",
+        "section": "Chart and Positioning"
+      },
+      {
+        "order": 4,
+        "alt": "한화엔진 structure",
+        "relativePath": "../assets/한화엔진-chart-structure.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/한화엔진-chart-structure.png",
+        "sha256": "31c1704609ecf9901ad80c8bdf8817d15eade41adb0c9b33c165e4f02d3411cb",
+        "section": "Chart and Positioning"
+      }
+    ],
+    "thumbnail": {
+      "prompt": "한화엔진 | 대규모 수주잔고가 실제 이익과 현금흐름으로 이어지는가 | 2026-07-12 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/한화엔진/assets/naver-thumbnail.png",
+      "sha256": "8a1a0a20941aa4d306d96954b3046cbce1d0d3ac312d8a8ec48be409b36557b2",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-12T03:49:42.224Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-12T03:51:10.095Z",
+    "expiresAt": "2026-07-12T04:21:10.095Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/한화엔진/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "4e8d08677f41172fb90cc269950baca6d1f919de8394f94b7f44d82c7f074d6a",
+    "approvalTokenHash": "04446953dd6765186ce09f89c93f3aaae4a56089559aeaa1e521e7ff737ca949",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

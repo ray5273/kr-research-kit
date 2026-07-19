@@ -1,0 +1,227 @@
+{
+  "verifiedAt": "2026-07-11T11:39:19.365Z",
+  "sourceLineCount": 43938,
+  "tocCount": 19,
+  "parsedCount": 17,
+  "partialCount": 2,
+  "missingCount": 0,
+  "needsReviewCount": 0,
+  "completionRate": 0.8947,
+  "items": [
+    {
+      "title": "I. 회사의 개요",
+      "level": 1,
+      "lineNumber": 10,
+      "status": "parsed",
+      "matchedSectionId": "section-001",
+      "contentLength": 24866,
+      "tableCount": 249,
+      "numericBlockCount": 762,
+      "preview": "[1. 회사의 개요]\n가. 연결대상 종속회사 개황\n당사의 연결대상 종속회사는 21개社이며 주요 종속회사는 6개社입니다. 연결대상 종속회사의 개요 및 주요사업의 내용은 'XII. 상세표 1. 연결대상 종속회사 현황(상세)'를 참고하여 주시기 바랍니다.연결대상 종속회사 현황(요약)\n| (단위 : 사) |\n| 구분 | 연결대상회사수 | 주요종속회사수 |\n| 기초 | 증가 | 감소 | 기말 |\n-\n-\n-\n-\n-\n| 상장 |\n16\n5\n-\n21\n6\n| 비상장 |\n16\n5\n-\n21\n6\n| 합계 |\n| ※상세 "
+    },
+    {
+      "title": "II. 사업의 내용",
+      "level": 1,
+      "lineNumber": 11,
+      "status": "parsed",
+      "matchedSectionId": "section-002",
+      "contentLength": 42962,
+      "tableCount": 233,
+      "numericBlockCount": 1044,
+      "preview": "[1. 사업의 개요]\n당사는 LNG 운반선, 원유 운반선, 컨테이너선, LPG 운반선 등 각종 선박과 부유식 원유생산저장 하역설비(FPSO), 고정식 플랫폼(Fixed Platform), 원유 시추설비(RIG, Drillship) 등 해양제품 그리고 잠수함, 구축함, 구난함, 경비함 등 특수선을 건조하는 종합 조선ㆍ해양 전문회사입니다. 또한 2024년 7월 1일부터 (주)한화로부터 플랜트 사업을 양수하여, 석유화학(Petrochemicals), 정유(Refinery), 발전/담수(Power & W"
+    },
+    {
+      "title": "III. 재무에 관한 사항",
+      "level": 1,
+      "lineNumber": 12,
+      "status": "parsed",
+      "matchedSectionId": "section-003",
+      "contentLength": 344788,
+      "tableCount": 1600,
+      "numericBlockCount": 13317,
+      "preview": "[1. 요약재무정보]\n가. 요약 연결재무정보\n| (단위 : 백만원 ) |\n| 구 분 | 제26기 | 제25기 | 제24기 |\n| (2025.12.31) | (2024.12.31) | (2023.12.31) |\n| [유동자산] | 12,082,155 | 11,246,034 | 9,217,524 |\n| ㆍ현금및현금성자산 | 778,471 | 588,260 | 1,799,308 |\n| ㆍ매출채권및기타채권 | 965,182 | 894,491 | 332,546 |\n| ㆍ계약자산 | 5,506,125 | 4"
+    },
+    {
+      "title": "IV. 이사의 경영진단 및 분석의견",
+      "level": 1,
+      "lineNumber": 13,
+      "status": "parsed",
+      "matchedSectionId": "section-004",
+      "contentLength": 12107,
+      "tableCount": 141,
+      "numericBlockCount": 520,
+      "preview": "[1. 예측정보에 대한 주의사항]\n당사가 동 사업보고서에서 미래에 발생할 것으로 예상·예측한 활동, 사건 또는 현상은, 당해 공시서류 작성시점의 사건 및 재무성과에 대하여 회사의 견해를 반영한 것입니다. 동 예측정보는 미래 사업환경과 관련된 다양한 가정에 기초하고 있으며 합리적 근거나 가정에 근거하여 성실하게 작성되었지만, 동 가정들은 결과적으로 부정확한 것으로 판명될 수도 있습니다. 또한, 이러한 가정들에는 예측정보에서 기재한 예상치와 실제 결과 간에 중요한 차이를 초래할 수 있는 위험, 불확실"
+    },
+    {
+      "title": "XI. 그 밖에 투자자 보호를 위하여 필요한 사항 중 2. 우발부채 등에 관한 사항'을 참고하여 주시기 바랍니다.",
+      "level": 1,
+      "lineNumber": 14,
+      "status": "parsed",
+      "matchedSectionId": "section-005",
+      "contentLength": 460,
+      "tableCount": 0,
+      "numericBlockCount": 6,
+      "preview": "[6. 그 밖에 투자의사결정에 필요한 사항]\n가. 중요한 회계정책 및 추정에 관한 사항\n연결회사는 국제회계기준위원회의 국제회계기준을 채택하여 정한 회계처리 기준인 한국채택국제회계기준에 따라 재무제표를 작성하고 있으며, 'Ⅲ. 재무에 관한 사항 중 3. 연결재무제표 주석과 5. 재무제표 주석' 참조하여 주시기 바랍니다.\n나. 환경 및 종업원 등에 관한 사항\n'XI. 그 밖에 투자자 보호를 위하여 필요한 사항 중 3. 제재 등과 관련된 사항' 참조하여 주시기 바랍니다. 연결회사는 당기 중 주요 핵심인"
+    },
+    {
+      "title": "V. 회계감사인의 감사의견 등",
+      "level": 1,
+      "lineNumber": 15,
+      "status": "parsed",
+      "matchedSectionId": "section-006",
+      "contentLength": 8546,
+      "tableCount": 65,
+      "numericBlockCount": 450,
+      "preview": "[1. 외부감사에 관한 사항]\n가. 회계감사인의 명칭 및 감사의견 등\n| 사업연도 | 구분 | 감사인 | 감사의견 | 의견변형사유 | 계속기업 관련중요한 불확실성 | 강조사항 | 핵심감사사항 |\n제26기(당기)\n삼일회계법인\n-\n해당사항 없음\n러시아에 대한 국제 제재 조치에 따른 신용 위험의 증가 및 대금 수령시기의 불확실성\n[1. 투입법에 따른 수익인식2. 플랜트 및 풍력사업부 현금창출단위 영업권 손상]\n| 감사보고서 | 적정의견 |\n삼일회계법인\n-\n해당사항 없음\n러시아에 대한 국제 제재 조치에 "
+    },
+    {
+      "title": "VI. 이사회 등 회사의 기관에 관한 사항",
+      "level": 1,
+      "lineNumber": 16,
+      "status": "parsed",
+      "matchedSectionId": "section-007",
+      "contentLength": 40745,
+      "tableCount": 490,
+      "numericBlockCount": 731,
+      "preview": "[1. 이사회에 관한 사항]\n가. 이사회 구성 개요\n제26기 사업보고서 작성기준일 현재(2025년 12월 31일) 당사 이사회는 2명의 사내이사와 1명의 기타비상무이사 및 5명의 사외이사로 구성되어 있습니다. 또한, 이사회 내 내부거래위원회, ESG위원회, 감사위원회, 사외이사후보추천위원회 및 보상위원회를 설치하여 운영 중입니다. 당사는 이사회 운영규정 제5조(구성) '이사회의 의장은 이사회 결의를 거쳐 이사 중에서 선임한다'에 의거하여 대표이사가 이사회 의장으로 선임되었습니다.※ 각 이사의 주요"
+    },
+    {
+      "title": "VII. 주주에 관한 사항",
+      "level": 1,
+      "lineNumber": 17,
+      "status": "parsed",
+      "matchedSectionId": "section-008",
+      "contentLength": 6871,
+      "tableCount": 106,
+      "numericBlockCount": 304,
+      "preview": "[1. 최대주주 및 특수관계인의 주식소유 현황]\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 주, %) |\n| 성 명 | 관 계 | 주식의종류 | 소유주식수 및 지분율 | 비고 |\n| 기 초 | 기 말 |\n| 주식수 | 지분율 | 주식수 | 지분율 |\n한화에어로스페이스(주)\n최대주주\n보통주식\n70,901,820\n23.14\n93,277,036\n30.44\n특별관계자 간 주식매매계약 거래- 체결일: 2025년 02월 10일- 매도인: Hanwha Impact Partners Inc"
+    },
+    {
+      "title": "VIII. 임원 및 직원 등에 관한 사항",
+      "level": 1,
+      "lineNumber": 18,
+      "status": "parsed",
+      "matchedSectionId": "section-009",
+      "contentLength": 23252,
+      "tableCount": 201,
+      "numericBlockCount": 757,
+      "preview": "[1. 임원 및 직원 등의 현황]\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 주) |\n| 성명 | 성별 | 출생년월 | 직위 | 등기임원여부 | 상근여부 | 담당업무 | 주요경력 | 소유주식수 | 최대주주와의관계 | 재직기간 | 임기만료일 |\n| 의결권있는 주식 | 의결권없는 주식 |\n김희철\n대표이사\n대표이사\nWashington University in St.Louis MBA서울대 화학공학 학/석사전) 한화에너지㈜ 대표이사전) 한화임팩트㈜ 대표이사전) 한화솔루션㈜ 큐셀부문 "
+    },
+    {
+      "title": "IX. 계열회사 등에 관한 사항",
+      "level": 1,
+      "lineNumber": 19,
+      "status": "parsed",
+      "matchedSectionId": "section-010",
+      "contentLength": 50029,
+      "tableCount": 1343,
+      "numericBlockCount": 666,
+      "preview": "[1. 계열회사 현황]\n가. 계열회사 현황(요약)\n당사는 독점규제 및 공정거래에 관한 법률 상 한화그룹에 속한 계열회사입니다. 2025년 12월 말 기준 한화그룹은 당사를 포함한 국내 119개(하기 표 참고), 해외 861개 계열회사가 소속되어 있습니다.\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 사) |\n| 기업집단의 명칭 | 계열회사의 수 |\n| 상장 | 비상장 | 계 |\n한화\n12\n107\n119\n| ※상세 현황은 '상세표-2. 계열회사 현황(상세)' 참조 |\n나. 계통"
+    },
+    {
+      "title": "X. 대주주 등과의 거래내용",
+      "level": 1,
+      "lineNumber": 20,
+      "status": "parsed",
+      "matchedSectionId": "section-011",
+      "contentLength": 4933,
+      "tableCount": 24,
+      "numericBlockCount": 142,
+      "preview": "[1. 대주주 등에 대한 신용공여 등]\n가. 대주주 등과의 채무보증 내역\n당사의 채무보증내역에 관한 자세한 사항은 본 보고서의\n'XI. 그 밖에 투자자 보호를 위하여 필요한 사항' 중 '2. 우발부채 등에 관한 사항'의 '다. 채무보증 내역'을 참고하여 주시기 바랍니다.\n나. 대여금\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 백만USD, 백만원) |\n| 구 분 | 대여상대 | 관 계 | 거래금액 | 이사회 승인 |\n| 대여금 | Tidal Action LLC | 계열회사 |"
+    },
+    {
+      "title": "XI. 그 밖에 투자자 보호를 위하여 필요한 사항",
+      "level": 1,
+      "lineNumber": 21,
+      "status": "parsed",
+      "matchedSectionId": "section-012",
+      "contentLength": 33696,
+      "tableCount": 258,
+      "numericBlockCount": 1847,
+      "preview": "[1. 공시내용 진행 및 변경사항]\n가. 진행 사항 (2025.12.31일 기준)\n| 한국거래소공시일자(최근일기준) | 계약내역(한국거래소 공시내용) | 판매공급금액(매출인식)(단위: 백만원) | 대금수령금액(단위: 백만원) |\n| 계약명 | 계약상대방 | 계약기간(시작일) | 계약기간(종료일) | 주요계약조건(대금지급 조건 등) | 계약금액(단위: 백만원,억원 미만에서반올림) | 당기('25.01.01~12.31) | 누적(~25.12.31) | 당기('25.01.01~12.31) | 누적(~2"
+    },
+    {
+      "title": "XII. 상세표",
+      "level": 1,
+      "lineNumber": 22,
+      "status": "parsed",
+      "matchedSectionId": "section-013",
+      "contentLength": 40145,
+      "tableCount": 912,
+      "numericBlockCount": 927,
+      "preview": "[1. 연결대상 종속회사 현황(상세)]\n| ☞ 본문 위치로 이동 |\n| (단위 : 백만원) |\n| 상호 | 설립일 | 주소 | 주요사업 | 최근사업연도말자산총액 | 지배관계 근거 | 주요종속회사 여부 |\n한화해양공정(산동)유한공사\n2005.09\nQingdao Street 2-1,Yantai Economic & Technical Development Zone, Shandong Prov. China\n선박블럭 및 부품제작\n343,445\n의결권의 과반수 소유(기업회계기준서 제1110호 문단번호 5~18)"
+    },
+    {
+      "title": "【Z-1. OpenDART 주주 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 23,
+      "status": "partial",
+      "matchedSectionId": "section-015",
+      "contentLength": 61,
+      "tableCount": 0,
+      "numericBlockCount": 1,
+      "preview": "에러: status=101 잘못된 URL입니다. 확인해주세요(/api/majorshareholder.json)"
+    },
+    {
+      "title": "【Z-2. OpenDART 배당에 관한 사항 (구조화)】",
+      "level": 1,
+      "lineNumber": 24,
+      "status": "parsed",
+      "matchedSectionId": "section-016",
+      "contentLength": 644,
+      "tableCount": 17,
+      "numericBlockCount": 13,
+      "preview": "※ 출처: OpenDART alotMatter.json (15건)\n| 구분 | 주식 종류 | 당기 | 전기 | 전전기 |\n| --- | --- | --- | --- | --- |\n| 주당액면가액(원) | - | 5,000 | 5,000 | 5,000 |\n| (연결)당기순이익(백만원) | - | 1,245,922 | 528,213 | 160,044 |\n| (별도)당기순이익(백만원) | - | 1,344,199 | 497,550 | 109,832 |\n| (연결)주당순이익(원) | - | 4,007 |"
+    },
+    {
+      "title": "【Z-3. OpenDART 자기주식 취득 및 처분 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 25,
+      "status": "parsed",
+      "matchedSectionId": "section-017",
+      "contentLength": 804,
+      "tableCount": 20,
+      "numericBlockCount": 5,
+      "preview": "※ 출처: OpenDART tesstkAcqsDspsSttus.json (18건)\n| 구분 | 주식종류 | 기초 수량 | 변동 수량 | 기말 수량 | 비고 |\n| --- | --- | --- | --- | --- | --- |\n| 배당가능이익범위 이내 취득 | - | - | - | - | - |\n| 배당가능이익범위 이내 취득 | - | - | - | - | - |\n| 배당가능이익범위 이내 취득 | - | - | - | - | - |\n| 배당가능이익범위 이내 취득 | - | - | - | - | -"
+    },
+    {
+      "title": "【Z-4. OpenDART 증자 / 감자 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 26,
+      "status": "parsed",
+      "matchedSectionId": "section-018",
+      "contentLength": 387,
+      "tableCount": 2,
+      "numericBlockCount": 24,
+      "preview": "※ 출처: OpenDART irdsSttus.json (4건)\n| 결의일 | 발행 형태 | 종류 | 수량 | 액면가액 | 발행가액 |\n| --- | --- | --- | --- | --- | --- |\n| 2023.05.24 | 유상증자(제3자배정) | 기명식\n보통주식 | 104,438,643 | 5,000 | 19,150 |\n| 2023.06.02 | 유상증자(제3자배정) | 기명식\n보통주식 | 5,144,087 | 5,000 | 27,467 |\n| 2023.11.17 | 유상증자(주주배정) |"
+    },
+    {
+      "title": "【Z-5. OpenDART 임원 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 27,
+      "status": "partial",
+      "matchedSectionId": "section-019",
+      "contentLength": 62,
+      "tableCount": 0,
+      "numericBlockCount": 1,
+      "preview": "에러: status=101 잘못된 URL입니다. 확인해주세요(/api/cpndlhCmpsBoardCo.json)"
+    },
+    {
+      "title": "【Z-6. OpenDART 단일회사 전체 재무제표 (구조화)】",
+      "level": 1,
+      "lineNumber": 28,
+      "status": "parsed",
+      "matchedSectionId": "section-020",
+      "contentLength": 14012,
+      "tableCount": 206,
+      "numericBlockCount": 523,
+      "preview": "※ 출처: OpenDART fnlttSinglAcntAll.json (CFS 연결, 204건)\n| 재무제표 | 계정 | 당기 | 전기 | 전전기 |\n| --- | --- | --- | --- | --- |\n| 재무상태표 | 자산총계 | 20,140,914,014,349 | 17,843,809,161,295 | 13,944,772,692,394 |\n| 재무상태표 | 유동자산 | 12,082,155,480,715 | 11,246,034,307,660 | 9,217,523,943,523 |\n| 재무상태"
+    }
+  ],
+  "partialSections": [
+    "【Z-1. OpenDART 주주 현황 (구조화)】",
+    "【Z-5. OpenDART 임원 현황 (구조화)】"
+  ],
+  "missingSections": [],
+  "needsReviewSections": []
+}

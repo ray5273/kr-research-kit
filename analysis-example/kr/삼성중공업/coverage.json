@@ -1,0 +1,216 @@
+{
+  "verifiedAt": "2026-07-11T11:39:12.094Z",
+  "sourceLineCount": 36836,
+  "tocCount": 18,
+  "parsedCount": 16,
+  "partialCount": 2,
+  "missingCount": 0,
+  "needsReviewCount": 0,
+  "completionRate": 0.8889,
+  "items": [
+    {
+      "title": "I. 회사의 개요",
+      "level": 1,
+      "lineNumber": 10,
+      "status": "parsed",
+      "matchedSectionId": "section-001",
+      "contentLength": 20235,
+      "tableCount": 300,
+      "numericBlockCount": 777,
+      "preview": "[1. 회사의 개요]\n가. 연결대상 종속회사 현황(요약)\n2025년 12월 31일 현재 회사의 연결대상 종속회사는 9개사입니다.\n| (단위 : 사) |\n| 구분 | 연결대상회사수 | 주요종속회사수 |\n| 기초 | 증가 | 감소 | 기말 |\n-\n-\n-\n-\n-\n| 상장 |\n10\n1\n2\n9\n3\n| 비상장 |\n10\n1\n2\n9\n3\n| 합계 |\n| ※상세 현황은 '상세표-1. 연결대상 종속회사 현황(상세)' 참조 |\n나. 연결대상회사의 변동내용\n| 구 분 | 자회사 | 사 유 |\nSVIC73호 신기술사업투자"
+    },
+    {
+      "title": "II. 사업의 내용",
+      "level": 1,
+      "lineNumber": 11,
+      "status": "parsed",
+      "matchedSectionId": "section-002",
+      "contentLength": 20286,
+      "tableCount": 178,
+      "numericBlockCount": 443,
+      "preview": "[1. 사업의 개요]\n회사는 수익을 창출하는 재화와 용역의 성격, 이익창출단위, 제품 제조공정의 특징, 시장 및 판매방법의 특징, 사업부문 구분의 계속성 등을 고려하여 회사의 실태를적절히 반영할 수 있도록 조선해양부문, 토건부문으로 사업을 구분하고 있습니다.조선해양부문은 초대형컨테이너선, LNG선, 원유운반선 등 선박 및 LNG-FPSO, FPU 등 해양플랫폼을 건조, 판매하고 있으며, 토건부문은 건축 및 토목공사,하이테크 공사를 수행하고 있습니다.\n| 구분 | 주요 재화 | 주요고객 | 사업내용"
+    },
+    {
+      "title": "III. 재무에 관한 사항",
+      "level": 1,
+      "lineNumber": 12,
+      "status": "parsed",
+      "matchedSectionId": "section-003",
+      "contentLength": 241882,
+      "tableCount": 1400,
+      "numericBlockCount": 9687,
+      "preview": "[1. 요약재무정보]\n가. 요약연결재무정보\n| (단위 : 백만원) |\n| 구 분 | 제52기 | 제51기 | 제50기 |\n| [유동자산] | 7,407,077 | 9,369,985 | 9,245,492 |\n| ㆍ현금및현금성자산 | 772,615 | 955,962 | 583,812 |\n| ㆍ단기금융상품 | 311,797 | 47,755 | 155,368 |\n| ㆍ매출채권 | 1,309,960 | 1,030,466 | 388,277 |\n| ㆍ계약자산 | 2,176,503 | 3,572,703 | 3,"
+    },
+    {
+      "title": "IV. 이사의 경영진단 및 분석의견",
+      "level": 1,
+      "lineNumber": 13,
+      "status": "parsed",
+      "matchedSectionId": "section-004",
+      "contentLength": 6969,
+      "tableCount": 76,
+      "numericBlockCount": 245,
+      "preview": "[1. 예측정보에 대한 주의사항]\n본 자료는 미래에 대한 \"예측정보\"를 포함하고 있습니다. 이는 과거가 아닌 미래의 사건과 관계된 것으로 회사의 향후 예상되는 경영현황 및 재무실적을 의미하고, 표현상으로는 '예상', '전망', '계획', '기대' 등과 같은 단어를 포함합니다.\"예측정보\"는 그 성격상 불확실한 사건들을 언급하는데, 회사의 향후 경영현황 및 재무실적에 긍정적 또는 부정적으로 영향을 미칠 수 있는 불확실성에는 다음과 같은 것들이 포함됩니다.·환율, 이자율 등의 변동을 포함한, 국내/외 "
+    },
+    {
+      "title": "V. 회계감사인의 감사의견 등",
+      "level": 1,
+      "lineNumber": 14,
+      "status": "parsed",
+      "matchedSectionId": "section-005",
+      "contentLength": 6125,
+      "tableCount": 52,
+      "numericBlockCount": 250,
+      "preview": "[1. 외부감사에 관한 사항]\n회사는 제50기부터 삼일회계법인이 감사를 수행하였으며, 제49기 감사는 삼정회계법인이 수행하였습니다.감사와 관련하여 제51기 및 제52기에 대한 감사의견은 적정이며, 제 52기 검토 결과 한국채택국제회계기준 제 1034호 \"중간재무보고\"에 따라 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 아니하였습니다.\n가. 회계감사인의 명칭 및 감사의견\n| 사업연도 | 구분 | 감사인 | 감사의견 | 의견변형사유 | 계속기업 관련중요한 불확실성 | 강조사항 | 핵심감사"
+    },
+    {
+      "title": "VI. 이사회 등 회사의 기관에 관한 사항",
+      "level": 1,
+      "lineNumber": 15,
+      "status": "parsed",
+      "matchedSectionId": "section-006",
+      "contentLength": 17954,
+      "tableCount": 194,
+      "numericBlockCount": 635,
+      "preview": "[1. 이사회에 관한 사항]\n가. 이사회 구성 개요\n보고서 작성 기준일 현재 회사의 이사회는 3인의 사내이사, 4인의 사외이사 등 7인의 이사로 구성되어 있습니다. 또한 이사회 내에는 경영위원회, 감사위원회, 내부거래위원회, 사외이사후보추천위원회, 보상위원회, ESG위원회 등 6개의 소위원회가 있습니다.\n| (기준일 : 2025년 12월 31일) |\n| 구 분 | 구 성 | 소속 이사명 | 의장/위원장 | 주요 역할 |\n| 이사회 | 사내이사 3명사외이사 4명 | 최성안, 이왕근, 김경희조현욱, "
+    },
+    {
+      "title": "VII. 주주에 관한 사항",
+      "level": 1,
+      "lineNumber": 16,
+      "status": "parsed",
+      "matchedSectionId": "section-007",
+      "contentLength": 4549,
+      "tableCount": 56,
+      "numericBlockCount": 184,
+      "preview": "[1. 주주의 분포]\n가. 최대주주 및 그 특수관계인의 주식소유 현황\n보고서 작성 기준일 현재 회사의 최대주주는 삼성전자주식회사이며, 그 소유주식(지분율)은 134,027,281주(15.23%)로서 특수관계인을 포함하여 183,568,843주(20.86%)를 보유하고 있습니다. 상세 내역은 아래 표를 참고하시기 바랍니다.\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 주, %) |\n| 성 명 | 관 계 | 주식의종류 | 소유주식수 및 지분율 | 비고 |\n| 기 초 | 기 말 |"
+    },
+    {
+      "title": "VIII. 임원 및 직원 등에 관한 사항",
+      "level": 1,
+      "lineNumber": 17,
+      "status": "parsed",
+      "matchedSectionId": "section-008",
+      "contentLength": 10102,
+      "tableCount": 113,
+      "numericBlockCount": 415,
+      "preview": "[1. 임원 및 직원 등의 현황]\n가. 임원 현황\n보고서 작성 기준일 현재 회사의 임원은 총 42명으로, 등기임원 7명, 미등기임원 35명이며, 세부현황은 아래의 표를 참고하시기 바랍니다.\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 주) |\n| 성명 | 성별 | 출생년월 | 직위 | 등기임원여부 | 상근여부 | 담당업무 | 주요경력 | 소유주식수 | 최대주주와의관계 | 재직기간 | 임기만료일 |\n| 의결권있는 주식 | 의결권없는 주식 |\n최성안\n부 회 장\n대표이사\n서울대 기"
+    },
+    {
+      "title": "IX. 계열회사 등에 관한 사항",
+      "level": 1,
+      "lineNumber": 18,
+      "status": "parsed",
+      "matchedSectionId": "section-009",
+      "contentLength": 56982,
+      "tableCount": 933,
+      "numericBlockCount": 1068,
+      "preview": "[1. 계열회사 현황(요약)]\n가. 기업집단에 소속된 회사\n당사는「독점규제 및 공정거래에 관한 법률」상 삼성그룹에 속한 계열회사로서,2025년 말 현재 삼성그룹에는 전년말 대비 4개 회사(디앤엠세일즈앤마케팅코리아㈜, 삼성노블라이프㈜, 삼성에피스홀딩스㈜, 에피스넥스랩㈜)가 증가하여, 67개의 국내 계열회사가 있습니다. 이 중 상장사는 당사를 포함하여 총 18개사이며 비상장사는 49개사입니다.\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 사) |\n| 기업집단의 명칭 | 계열회사의"
+    },
+    {
+      "title": "X. 대주주 등과의 거래내용",
+      "level": 1,
+      "lineNumber": 19,
+      "status": "parsed",
+      "matchedSectionId": "section-010",
+      "contentLength": 1379,
+      "tableCount": 21,
+      "numericBlockCount": 62,
+      "preview": "[1. 채무보증 내역]\n| (기준일 : 2025년 12월 31일) | (단위 : 천CNY, 천USD, 천INR) |\n| 법인명 | 관계 | 여신기관 | 통화 | 담보 및 보증금액(한도) | 실행액 | 비고 |\n| 기초 | 증가 | 감소 | 기말 |\n| 삼성중공업(영성)유한공사 | 계열회사 | SC은행 외 | CNY | 276,000 | 220,806 | - | 496,806 | 244,010 | 주1) |\n| USD | 68,000 | - | 33,000 | 35,000 | 30,000 |\n| S"
+    },
+    {
+      "title": "XI. 그 밖에 투자자 보호를 위하여 필요한 사항",
+      "level": 1,
+      "lineNumber": 20,
+      "status": "parsed",
+      "matchedSectionId": "section-011",
+      "contentLength": 21206,
+      "tableCount": 164,
+      "numericBlockCount": 1229,
+      "preview": "[1. 공시내용 진행 및 변경사항]\n가. 단일판매ㆍ공급계약 해지 공시\n| 신고일자 | 제 목 | 신 고 내 용 | 신고사항의 진행상황 |\n| 2020-11-23 | 단일판매ㆍ공급계약 체결 | 블록 및 기자재공급계약 수주 | - 2020-11-20, 선주사로부터 쇄빙LNG 10척에 대한 블록 및 기자재 공급계약 수주- 2022-02-24~2024-06-10, 미국정부 및 대한민국 정부의 대 러시아 관련 제재 및 수출 통제 조치 시행, 선주사의 SDN (Specially Designated Natio"
+    },
+    {
+      "title": "XII. 상세표",
+      "level": 1,
+      "lineNumber": 21,
+      "status": "parsed",
+      "matchedSectionId": "section-012",
+      "contentLength": 49873,
+      "tableCount": 848,
+      "numericBlockCount": 1546,
+      "preview": "[1. 연결대상 종속회사 현황(상세)]\n| ☞ 본문 위치로 이동 |\n| (단위 : 백만원) |\n| 상호 | 설립일 | 주소 | 주요사업 | 최근사업연도말자산총액 | 지배관계 근거 | 주요종속회사 여부 |\n삼성중공업(영성)유한공사\n2006.02.28\n중국 산동성 영성시\n선박부품가공\n388,979\n의결권 과반수이상 소유(지분율 100%)\nO\nSamsung HeavyIndustries India Pvt. Ltd.\n2007.04.17\n인도 노이다\n해양설비상세설계\n13,847\n의결권 과반수이상 소유(지분율"
+    },
+    {
+      "title": "【Z-1. OpenDART 주주 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 22,
+      "status": "partial",
+      "matchedSectionId": "section-014",
+      "contentLength": 61,
+      "tableCount": 0,
+      "numericBlockCount": 1,
+      "preview": "에러: status=101 잘못된 URL입니다. 확인해주세요(/api/majorshareholder.json)"
+    },
+    {
+      "title": "【Z-2. OpenDART 배당에 관한 사항 (구조화)】",
+      "level": 1,
+      "lineNumber": 23,
+      "status": "parsed",
+      "matchedSectionId": "section-015",
+      "contentLength": 635,
+      "tableCount": 17,
+      "numericBlockCount": 13,
+      "preview": "※ 출처: OpenDART alotMatter.json (15건)\n| 구분 | 주식 종류 | 당기 | 전기 | 전전기 |\n| --- | --- | --- | --- | --- |\n| 주당액면가액(원) | - | 1,000 | 1,000 | 1,000 |\n| (연결)당기순이익(백만원) | - | 545,540 | 63,876 | -148,273 |\n| (별도)당기순이익(백만원) | - | 540,324 | 15,687 | -89,045 |\n| (연결)주당순이익(원) | - | 639 | 75 | -"
+    },
+    {
+      "title": "【Z-3. OpenDART 자기주식 취득 및 처분 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 24,
+      "status": "parsed",
+      "matchedSectionId": "section-016",
+      "contentLength": 874,
+      "tableCount": 20,
+      "numericBlockCount": 7,
+      "preview": "※ 출처: OpenDART tesstkAcqsDspsSttus.json (18건)\n| 구분 | 주식종류 | 기초 수량 | 변동 수량 | 기말 수량 | 비고 |\n| --- | --- | --- | --- | --- | --- |\n| 배당가능이익범위 이내 취득 | 보통주 | 25,964,429 | - | 25,964,429 | - |\n| 배당가능이익범위 이내 취득 | 우선주 | - | - | - | - |\n| 배당가능이익범위 이내 취득 | 보통주 | - | - | - | - |\n| 배당가능이익범위 이"
+    },
+    {
+      "title": "【Z-4. OpenDART 증자 / 감자 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 25,
+      "status": "parsed",
+      "matchedSectionId": "section-017",
+      "contentLength": 264,
+      "tableCount": 5,
+      "numericBlockCount": 12,
+      "preview": "※ 출처: OpenDART irdsSttus.json (3건)\n| 결의일 | 발행 형태 | 종류 | 수량 | 액면가액 | 발행가액 |\n| --- | --- | --- | --- | --- | --- |\n| 2021.07.26 | 무상감자 | 보통주 | - | 1,000 | - |\n| 2021.07.26 | 무상감자 | 우선주 | - | 1,000 | - |\n| 2021.11.08 | 유상증자(주주배정) | 보통주 | 250,000,000 | 1,000 | 5,130 |"
+    },
+    {
+      "title": "【Z-5. OpenDART 임원 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 26,
+      "status": "partial",
+      "matchedSectionId": "section-018",
+      "contentLength": 62,
+      "tableCount": 0,
+      "numericBlockCount": 1,
+      "preview": "에러: status=101 잘못된 URL입니다. 확인해주세요(/api/cpndlhCmpsBoardCo.json)"
+    },
+    {
+      "title": "【Z-6. OpenDART 단일회사 전체 재무제표 (구조화)】",
+      "level": 1,
+      "lineNumber": 27,
+      "status": "parsed",
+      "matchedSectionId": "section-019",
+      "contentLength": 15030,
+      "tableCount": 240,
+      "numericBlockCount": 653,
+      "preview": "※ 출처: OpenDART fnlttSinglAcntAll.json (CFS 연결, 238건)\n| 재무제표 | 계정 | 당기 | 전기 | 전전기 |\n| --- | --- | --- | --- | --- |\n| 재무상태표 | 자산총계 | 14,948,871,093,928 | 17,194,637,128,138 | 15,593,389,152,394 |\n| 재무상태표 | 유동자산 | 7,407,076,766,362 | 9,369,985,101,261 | 9,245,491,743,301 |\n| 재무상태표 "
+    }
+  ],
+  "partialSections": [
+    "【Z-1. OpenDART 주주 현황 (구조화)】",
+    "【Z-5. OpenDART 임원 현황 (구조화)】"
+  ],
+  "missingSections": [],
+  "needsReviewSections": []
+}

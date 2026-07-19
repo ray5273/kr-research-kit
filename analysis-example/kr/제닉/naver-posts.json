@@ -1,0 +1,16 @@
+{
+  "company": "제닉",
+  "aliases": [],
+  "ticker": "123330",
+  "fetchedAt": "2026-07-03",
+  "posts": [],
+  "meta": {
+    "totalFetched": 0,
+    "fromCache": 0,
+    "errors": [],
+    "companyTerms": [
+      "제닉"
+    ],
+    "generatedBy": "kr-naver-insight/fetch-blog-posts.js"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "ticker": "108380",
+  "symbol": "108380.KQ",
+  "name": "대양전기공업",
+  "latestDate": "2026-07-10",
+  "rsCacheDate": "2026-07-10",
+  "minervini": {
+    "rules": [
+      {
+        "label": "현재가 > SMA50/SMA150/SMA200",
+        "value": false,
+        "detail": "현재가 17420.00 / SMA50 21816.40 / SMA150 26044.47 / SMA200 26676.60"
+      },
+      {
+        "label": "SMA150 > SMA200",
+        "value": false,
+        "detail": "SMA150 26044.47 / SMA200 26676.60"
+      },
+      {
+        "label": "SMA50 > SMA150 and SMA200",
+        "value": false,
+        "detail": "SMA50 21816.40 / SMA150 26044.47 / SMA200 26676.60"
+      },
+      {
+        "label": "SMA200이 최근 20거래일 전보다 상승",
+        "value": false,
+        "detail": "현재 SMA200 26676.60 / 20거래일 전 27627.25"
+      },
+      {
+        "label": "현재가 >= 52주 저가의 130%",
+        "value": false,
+        "detail": "현재가/52주 저가 109.4%"
+      },
+      {
+        "label": "현재가 >= 52주 고가의 75%",
+        "value": false,
+        "detail": "현재가/52주 고가 50.6%"
+      },
+      {
+        "label": "RS percentile >= 70",
+        "value": false,
+        "detail": "RS percentile 29.8"
+      }
+    ],
+    "status": "fail",
+    "unavailableCount": 0,
+    "failedCount": 7,
+    "passedCount": 0
+  },
+  "leadership": {
+    "components": [
+      {
+        "label": "52주 고가 근접도",
+        "maxPoints": 25,
+        "points": 0,
+        "detail": "현재가/52주 고가 50.6%"
+      },
+      {
+        "label": "최근 신고가 recency",
+        "maxPoints": 25,
+        "points": 10,
+        "detail": "마지막 신고가 이후 94거래일"
+      },
+      {
+        "label": "최근 60거래일 신고가 경신 빈도",
+        "maxPoints": 15,
+        "points": 0,
+        "detail": "0회"
+      },
+      {
+        "label": "통합 KRX RS percentile",
+        "maxPoints": 20,
+        "points": 0,
+        "detail": "RS percentile 29.8"
+      },
+      {
+        "label": "추세/거래량 확인",
+        "maxPoints": 15,
+        "points": 0,
+        "detail": "정배열 no / 거래량 64.9%"
+      }
+    ],
+    "status": "complete",
+    "visiblePoints": 10,
+    "visibleMaxPoints": 100,
+    "score100": 10,
+    "grade": "D",
+    "unavailableCount": 0
+  },
+  "interpretation": "Minervini Trend Template 기준으로는 7개 조건이 미충족이라 아직 엄격한 통과 구간은 아닙니다. 한국형 52주 신고가 리더십 점수는 10/100, 등급 D입니다. 차트 흐름은 bearish continuation 쪽으로 읽히며, RS percentile 29.8 기준 시장 내 상대강도까지 함께 확인됩니다."
+}

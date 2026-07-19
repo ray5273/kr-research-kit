@@ -1,0 +1,217 @@
+{
+  "verifiedAt": "2026-07-11T11:38:52.421Z",
+  "sourceLineCount": 39393,
+  "tocCount": 18,
+  "parsedCount": 15,
+  "partialCount": 3,
+  "missingCount": 0,
+  "needsReviewCount": 0,
+  "completionRate": 0.8333,
+  "items": [
+    {
+      "title": "I. 회사의 개요",
+      "level": 1,
+      "lineNumber": 10,
+      "status": "parsed",
+      "matchedSectionId": "section-001",
+      "contentLength": 22789,
+      "tableCount": 352,
+      "numericBlockCount": 592,
+      "preview": "[1. 회사의 개요]\n가. 연결대상 종속회사 개황\n| (단위 : 사) |\n| 구분 | 연결대상회사수 | 주요종속회사수 |\n| 기초 | 증가 | 감소 | 기말 |\n4\n-\n1\n3\n3\n| 상장 |\n21\n3\n1\n23\n9\n| 비상장 |\n25\n3\n2\n26\n12\n| 합계 |\n| ※상세 현황은 '상세표-1. 연결대상 종속회사 현황(상세)' 참조 |\n※주요종속회사 판단기준 : 최근사업연도말 자산 총액 750억원 이상\n- 연결대상회사의 변동내용\n| 구 분 | 자회사 | 사 유 |\nHD현대엠엔에스㈜\n신규설립\n| 신규"
+    },
+    {
+      "title": "II. 사업의 내용",
+      "level": 1,
+      "lineNumber": 11,
+      "status": "parsed",
+      "matchedSectionId": "section-002",
+      "contentLength": 73770,
+      "tableCount": 439,
+      "numericBlockCount": 1306,
+      "preview": "[1. 사업의 개요]\n가. 지주회사 현황\n지주회사(持株會社, Holding Company)란 다른 회사의 주식을 소유한 회사이며 단순히 주식을 소유하는 것만이 아니라, 해당회사의 주식(의결권)을 법적기준 이상 보유함으로써 그 회사에 대하여 실질적인 지배권을 취득하는 것을 사업의 목적으로 하는 회사입니다. 당사는 '19년 6월 3일(분할등기일 기준) 독점규제 및 공정거래에 관한 법률에 따른 지주회사 요건을 충족함에 따라 공정거래위원회에 지주회사로의 전환을신고하였으며, '19년 8월 13일 공정거래위"
+    },
+    {
+      "title": "III. 재무에 관한 사항",
+      "level": 1,
+      "lineNumber": 12,
+      "status": "parsed",
+      "matchedSectionId": "section-003",
+      "contentLength": 269815,
+      "tableCount": 1957,
+      "numericBlockCount": 10746,
+      "preview": "[1. 요약재무정보]\n가. 요약연결재무정보\n| (단위 : 백만원) |\n| 구 분 | 제 52 기 | 제 51 기 | 제 50 기 |\n| (2025년 12월말) | (2024년 12월말) | (2023년 12월말) |\n| [유동자산] | 23,424,478 | 20,431,356 | 17,735,127 |\n| ㆍ현금 및 현금성자산 | 3,742,016 | 3,717,319 | 3,018,391 |\n| ㆍ단기금융자산 | 4,434,581 | 1,922,179 | 1,595,619 |\n| ㆍ매출채권 및"
+    },
+    {
+      "title": "IV. 이사의 경영진단 및 분석의견",
+      "level": 1,
+      "lineNumber": 13,
+      "status": "parsed",
+      "matchedSectionId": "section-004",
+      "contentLength": 15365,
+      "tableCount": 133,
+      "numericBlockCount": 594,
+      "preview": "[1. 예측정보에 대한 주의사항]\n회사가 동 사업보고서에서 미래에 발생할 것으로 예상ㆍ예측한 활동, 사건 또는 현상은 예측정보로서 당해 공시서류 작성시점의 사건 및 재무성과에 대한 회사의 견해를 반영한 것입니다. 동 예측정보는 미래 사업환경과 관련된 합리적인 근거나 다양한 가정에 기초하여 성실하게 작성되었지만, 이러한 가정들에는 실제 결과와의 차이를 발생시킬 수 있는 위험, 불확실성 및 기타 요인(회사 내부경영 및 외부환경에 관한 요인이 포함되어 있으며, 이에 한하지 않음)이 포함되어 있기 때문에"
+    },
+    {
+      "title": "V. 회계감사인의 감사의견 등",
+      "level": 1,
+      "lineNumber": 14,
+      "status": "parsed",
+      "matchedSectionId": "section-005",
+      "contentLength": 6448,
+      "tableCount": 53,
+      "numericBlockCount": 216,
+      "preview": "[1. 외부감사에 관한 사항]\n가. 회계감사인의 명칭 및 감사의견\n-재무제표 및 연결재무제표에 대한 회계감사인의 명칭 및 감사의견\n| 사업연도 | 구분 | 감사인 | 감사의견 | 의견변형사유 | 계속기업 관련중요한 불확실성 | 강조사항 | 핵심감사사항 |\n제52기 (당기)\n삼정회계법인\n해당없음\n해당없음\n해당없음\nㆍ종속기업투자주식의 손상평가\n| 감사보고서 | 적정의견 |\n삼정회계법인\n해당없음\n해당없음\n해당없음\nㆍ총계약원가에 대한 추정의 불확실성ㆍ산정된 공사진행률의 적정성ㆍ공사변경에 따른 회계처리의 "
+    },
+    {
+      "title": "VI. 이사회 등 회사의 기관에 관한 사항",
+      "level": 1,
+      "lineNumber": 15,
+      "status": "parsed",
+      "matchedSectionId": "section-006",
+      "contentLength": 18383,
+      "tableCount": 156,
+      "numericBlockCount": 516,
+      "preview": "[1. 이사회에 관한 사항]\n가. 이사회 구성 개요\n보고서 작성기준일 현재 당사의 이사회는 사내이사 2인(김성준(의장), 정기선), 사외이사 3인(김홍기, 김성한, 조영희)으로 구성되어 있으며, 이사회 의장은 대표이사를 겸직하고 있습니다. 당사는 '25년 당기말 기준으로 5개의 이사회 내 위원회(사외이사후보추천위원회, 감사위원회, 내부거래위원회, ESG위원회, 보상위원회)를 설치하여 운영중입니다.\n1) 이사회 의장 선임배경\n| 성 명 | 선 임 배 경 | 비 고 |\n| 김 성 준(이사회 의장) |"
+    },
+    {
+      "title": "VII. 주주에 관한 사항",
+      "level": 1,
+      "lineNumber": 16,
+      "status": "parsed",
+      "matchedSectionId": "section-007",
+      "contentLength": 6022,
+      "tableCount": 97,
+      "numericBlockCount": 382,
+      "preview": "[1. 최대주주 및 특수관계인의 주식소유 현황]\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 주, %) |\n| 성 명 | 관 계 | 주식의종류 | 소유주식수 및 지분율 | 비고 |\n| 기 초 | 기 말 |\n| 주식수 | 지분율 | 주식수 | 지분율 |\nHD현대㈜\n최대주주\n보통주\n24,807,124\n35.05\n24,807,124\n35.05\n-\n(재)아산사회복지재단\n계열비영리법인\n보통주\n694,436\n0.98\n694,436\n0.98\n-\n(재)아산나눔재단\n계열비영리법인\n보통주\n43"
+    },
+    {
+      "title": "VIII. 임원 및 직원 등에 관한 사항",
+      "level": 1,
+      "lineNumber": 17,
+      "status": "parsed",
+      "matchedSectionId": "section-008",
+      "contentLength": 14434,
+      "tableCount": 187,
+      "numericBlockCount": 373,
+      "preview": "[1. 임원 및 직원 등의 현황]\n가. 임원 현황\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 주) |\n| 성명 | 성별 | 출생년월 | 직위 | 등기임원여부 | 상근여부 | 담당업무 | 주요경력 | 소유주식수 | 최대주주와의관계 | 재직기간 | 임기만료일 |\n| 의결권있는 주식 | 의결권없는 주식 |\n정기선\n회장\n대표이사(전략부문)\n스탠퍼드(석)\n前\n)HD현대㈜ 경영지원실장\n544\n-\n계열회사 임원\n2022.03월 (선임일)\n| 남 | 1982.05 | 사내이사 | 상근 |"
+    },
+    {
+      "title": "IX. 계열회사 등에 관한 사항",
+      "level": 1,
+      "lineNumber": 18,
+      "status": "parsed",
+      "matchedSectionId": "section-009",
+      "contentLength": 11692,
+      "tableCount": 152,
+      "numericBlockCount": 235,
+      "preview": "[1. 계열회사의 현황]\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 사) |\n| 기업집단의 명칭 | 계열회사의 수 |\n| 상장 | 비상장 | 계 |\nHD현대\n9\n21\n30\n| ※상세 현황은 '상세표-2. 계열회사 현황(상세)' 참조 |\n가. 회사가 속해있는 기업집단의 명칭 : HD현대\n| 상장여부 | 업 종 | 회 사 명 | 회사수 | 비 고 |\n| 상 장 | 비금융 지주회사비금융 지주회사 선박건조업 건설 및 광업용 기계장비 제조업 건설 및 광업용 기계장비 제조업 전동기, "
+    },
+    {
+      "title": "X. 대주주 등과의 거래내용",
+      "level": 1,
+      "lineNumber": 19,
+      "status": "parsed",
+      "matchedSectionId": "section-010",
+      "contentLength": 3807,
+      "tableCount": 48,
+      "numericBlockCount": 139,
+      "preview": "[1. 대주주등에 대한 신용공여등]\n가. 채무보증 내역\n보고서 작성기준일 현재 당사는 연결실체 내의 국내 계열사 및 해외 계열사의 원활한 자금조달 및 비용 최소화와 보증서 발급을 목적으로 국내외 금융기관으로부터의 채무 및 계약이행 등에 대해 지급보증을 제공하고 있습니다. 당사는 이사회 규정에 의거하여 건별보증 금액이 별도 자기자본의 1.5%이상인 경우 이사회 의결 후 집행하고 있고, 자기자본의 1.5% 미만인 경우 그 결정과 집행을 대표이사에게 위임하고 있습니다.\n| (단위 : 천미불, 천유로) "
+    },
+    {
+      "title": "XI. 그 밖에 투자자 보호를 위하여 필요한 사항",
+      "level": 1,
+      "lineNumber": 20,
+      "status": "parsed",
+      "matchedSectionId": "section-011",
+      "contentLength": 15348,
+      "tableCount": 109,
+      "numericBlockCount": 541,
+      "preview": "[1. 공시내용 진행 및 변경사항]\n가. 공시사항의 진행상황\n| (단위 : 백만원) |\n| 신고일자 | 계약내역(*1) | 계약금액총액 | 판매ㆍ공급금액 | 대금수령금액 |\n| 당기 | 누적 | 당기 | 누적 |\n| '15.10.14 | 계약명: ZOR 계약상대방: KIPIC 계약기간: 2015-10-28~2019-07-27 주요계약조건: 공사진척에 따른 수금 | 1,327,000 | (19,783) | 1,256,538 | 6,451 | 1,558,960 |\n(*1) 해당 공사는 물적분할 전 舊"
+    },
+    {
+      "title": "XII. 상세표",
+      "level": 1,
+      "lineNumber": 21,
+      "status": "parsed",
+      "matchedSectionId": "section-012",
+      "contentLength": 13114,
+      "tableCount": 122,
+      "numericBlockCount": 674,
+      "preview": "[1. 연결대상 종속회사 현황(상세)]\n| ☞ 본문 위치로 이동 |\n| (단위 : 백만원) |\n| 상호 | 설립일 | 주소 | 주요사업 | 최근사업연도말자산총액 | 지배관계 근거 | 주요종속회사 여부 |\nHD현대중공업㈜\n2019.06.03\n울산광역시 동구 방어진순환도로 1000 (전하동, HD현대중공업)\n선박 건조업\n26,199,062\n의결권의 과반수 소유\n○\nHD현대삼호㈜\n1998.11.04\n전라남도 영암군 삼호읍 대불로 93\n선박 건조업\n7,952,808\n의결권의 과반수 소유\n○\nHD현대이엔티"
+    },
+    {
+      "title": "【Z-1. OpenDART 주주 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 22,
+      "status": "partial",
+      "matchedSectionId": "section-014",
+      "contentLength": 61,
+      "tableCount": 0,
+      "numericBlockCount": 1,
+      "preview": "에러: status=101 잘못된 URL입니다. 확인해주세요(/api/majorshareholder.json)"
+    },
+    {
+      "title": "【Z-2. OpenDART 배당에 관한 사항 (구조화)】",
+      "level": 1,
+      "lineNumber": 23,
+      "status": "parsed",
+      "matchedSectionId": "section-015",
+      "contentLength": 707,
+      "tableCount": 17,
+      "numericBlockCount": 21,
+      "preview": "※ 출처: OpenDART alotMatter.json (15건)\n| 구분 | 주식 종류 | 당기 | 전기 | 전전기 |\n| --- | --- | --- | --- | --- |\n| 주당액면가액(원) | - | 5,000 | 5,000 | 5,000 |\n| (연결)당기순이익(백만원) | - | 2,168,412 | 1,172,336 | 221,711 |\n| (별도)당기순이익(백만원) | - | 614,335 | 165,598 | 301,457 |\n| (연결)주당순이익(원) | - | 30,664 "
+    },
+    {
+      "title": "【Z-3. OpenDART 자기주식 취득 및 처분 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 24,
+      "status": "parsed",
+      "matchedSectionId": "section-016",
+      "contentLength": 1286,
+      "tableCount": 29,
+      "numericBlockCount": 5,
+      "preview": "※ 출처: OpenDART tesstkAcqsDspsSttus.json (27건)\n| 구분 | 주식종류 | 기초 수량 | 변동 수량 | 기말 수량 | 비고 |\n| --- | --- | --- | --- | --- | --- |\n| 배당가능이익범위 이내 취득 | 보통주식 | - | - | - | - |\n| 배당가능이익범위 이내 취득 | 보통주식 | - | - | - | - |\n| 배당가능이익범위 이내 취득 | 배당우선전환주식 | - | - | - | - |\n| 배당가능이익범위 이내 취득 | 배당우선"
+    },
+    {
+      "title": "【Z-4. OpenDART 증자 / 감자 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 25,
+      "status": "partial",
+      "matchedSectionId": "section-017",
+      "contentLength": 138,
+      "tableCount": 3,
+      "numericBlockCount": 1,
+      "preview": "※ 출처: OpenDART irdsSttus.json (1건)\n| 결의일 | 발행 형태 | 종류 | 수량 | 액면가액 | 발행가액 |\n| --- | --- | --- | --- | --- | --- |\n| - | - | - | - | - | - |"
+    },
+    {
+      "title": "【Z-5. OpenDART 임원 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 26,
+      "status": "partial",
+      "matchedSectionId": "section-018",
+      "contentLength": 62,
+      "tableCount": 0,
+      "numericBlockCount": 1,
+      "preview": "에러: status=101 잘못된 URL입니다. 확인해주세요(/api/cpndlhCmpsBoardCo.json)"
+    },
+    {
+      "title": "【Z-6. OpenDART 단일회사 전체 재무제표 (구조화)】",
+      "level": 1,
+      "lineNumber": 27,
+      "status": "parsed",
+      "matchedSectionId": "section-019",
+      "contentLength": 15663,
+      "tableCount": 242,
+      "numericBlockCount": 721,
+      "preview": "※ 출처: OpenDART fnlttSinglAcntAll.json (CFS 연결, 240건)\n| 재무제표 | 계정 | 당기 | 전기 | 전전기 |\n| --- | --- | --- | --- | --- |\n| 재무상태표 | 자산총계 | 39,542,213,288,000 | 36,719,137,422,000 | 32,242,568,184,000 |\n| 재무상태표 | 유동자산 | 23,424,477,841,000 | 20,431,356,435,000 | 17,735,127,271,000 |\n| 재무상"
+    }
+  ],
+  "partialSections": [
+    "【Z-1. OpenDART 주주 현황 (구조화)】",
+    "【Z-4. OpenDART 증자 / 감자 현황 (구조화)】",
+    "【Z-5. OpenDART 임원 현황 (구조화)】"
+  ],
+  "missingSections": [],
+  "needsReviewSections": []
+}

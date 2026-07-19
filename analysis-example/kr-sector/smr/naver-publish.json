@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/smr/source.md",
+    "memoSha256": "300460416111947aaec7000962222452bb377f98b355a722552a15a3b64b3c1e",
+    "asOfDate": "2026-07-04"
+  },
+  "post": {
+    "company": "SMR",
+    "ticker": "",
+    "title": "SMR 1편 | 작은 원전이 아니라 에너지 산업화 프로젝트다",
+    "issue": "SMR 투자 프레임",
+    "category": null,
+    "tags": [
+      "SMR",
+      "소형모듈원자로",
+      "원전",
+      "두산에너빌리티",
+      "NuScale",
+      "BWRX300",
+      "HALEU",
+      "빅테크전력",
+      "에너지인프라",
+      "주식분석"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/smr/naver-post.md",
+    "markdownSha256": "5fa2158625d4eae4a63b5c7a7769d4ee959f9e653589ff0dc2ac0bf1dc4269cf",
+    "images": [],
+    "thumbnail": {
+      "prompt": "SMR 1편 | 작은 원전이 아니라 에너지 산업화 프로젝트다 블로그 썸네일 만들어줘",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/smr/assets/naver-thumbnail.png",
+      "sha256": "ca7ba1ddf21bc160324b6a71d7262d41ad4cdd14c108b029ab55e58a9ac6318d",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-04T01:51:15Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-04T01:53:16.674Z",
+    "expiresAt": "2026-07-04T02:23:16.672Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/smr/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "126725ebeea4c3f612702716cd563b1a0d483fe273c2927b246ed692bedd4670",
+    "approvalTokenHash": "61a659953aa31175f3109f5f4ed8d9891d69c842d1ae675367ff1f2c3d61ecee",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

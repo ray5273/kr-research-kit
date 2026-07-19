@@ -1,0 +1,218 @@
+{
+  "verifiedAt": "2026-07-12T01:36:24.063Z",
+  "sourceLineCount": 16888,
+  "tocCount": 18,
+  "parsedCount": 14,
+  "partialCount": 4,
+  "missingCount": 0,
+  "needsReviewCount": 0,
+  "completionRate": 0.7778,
+  "items": [
+    {
+      "title": "I. 회사의 개요",
+      "level": 1,
+      "lineNumber": 10,
+      "status": "parsed",
+      "matchedSectionId": "section-001",
+      "contentLength": 471,
+      "tableCount": 0,
+      "numericBlockCount": 5,
+      "preview": "[1. 회사의 개요]\n기업공시서식 작성기준에 의거하여 본 항목을 분기보고서에는 작성하지 아니하며, 관련 내용은 당사 사업보고서 또는 반기보고서를 참고하시기 바랍니다.\n[2. 회사의 연혁]\n기업공시서식 작성기준에 의거하여 본 항목을 분기보고서에는 작성하지 아니하며, 관련 내용은 당사 사업보고서 또는 반기보고서를 참고하시기 바랍니다.\n[3. 자본금 변동사항]\n기업공시서식 작성기준에 의거하여 본 항목을 분기보고서에는 작성하지 아니하며, 관련 내용은 당사 사업보고서 또는 반기보고서를 참고하시기 바랍니다."
+    },
+    {
+      "title": "II. 사업의 내용",
+      "level": 1,
+      "lineNumber": 11,
+      "status": "parsed",
+      "matchedSectionId": "section-002",
+      "contentLength": 27943,
+      "tableCount": 228,
+      "numericBlockCount": 729,
+      "preview": "[1. 사업의 개요]\n가. 사업의 개요당사는 조선 산업의 핵심 기자재인 대형 선박용 엔진 제작을 중심으로 엔진 부품의 판매와 서비스를 제공하고 있으며, 디젤엔진을 이용한 발전시설을 공급하는 종합 엔진메이커입니다. 단기간에 누계 저속엔진 생산 1억마력을 달성하였으며, 2014년 세계 최초 선박용 이중연료(DF) 엔진 상용화 및 독자 기술로 친환경 탈질시스템(DelNOx)을 개발하는 등 기술개발을 선도하고 있습니다.(1) 선박엔진 및 SCR사업세계 선박용 엔진 생산 Top Maker로서 대형 상선에 "
+    },
+    {
+      "title": "III. 재무에 관한 사항",
+      "level": 1,
+      "lineNumber": 12,
+      "status": "parsed",
+      "matchedSectionId": "section-003",
+      "contentLength": 140273,
+      "tableCount": 1300,
+      "numericBlockCount": 6522,
+      "preview": "[1. 요약재무정보]\n| 구분 | 제28기(당기) | 제27기(전기) | 제26기(전전기) |\n| 회계처리기준 | K-IFRS연결재무제표 | K-IFRS연결재무제표 | K-IFRS재무제표 |\n가. 요약연결재무제표\n| (단위 : 백만원) |\n| 구 분 | 제28기 1분기 | 제27기 | 제26기 |\n| 2026년 3월말 | 2025년 12월말 | 2024년 12월말 |\n| [유동자산] | 856,529 | 1,031,851 | 785,001 |\n| ㆍ당좌자산 | 465,447 | 675,685 | "
+    },
+    {
+      "title": "IV. 이사의 경영진단 및 분석의견",
+      "level": 1,
+      "lineNumber": 13,
+      "status": "parsed",
+      "matchedSectionId": "section-004",
+      "contentLength": 362,
+      "tableCount": 0,
+      "numericBlockCount": 6,
+      "preview": "[1. 예측정보에 대한 주의사항]\n※ 기업공시서식 작성기준에 따라 분ㆍ반기보고서에 본 항목을 기재하지 않습니다.\n[2. 개요]\n※ 기업공시서식 작성기준에 따라 분ㆍ반기보고서에 본 항목을 기재하지 않습니다.\n[3. 재무상태 및 영업실적]\n※ 기업공시서식 작성기준에 따라 분ㆍ반기보고서에 본 항목을 기재하지 않습니다.\n[4. 유동성 및 자금조달과 지출]\n※ 기업공시서식 작성기준에 따라 분ㆍ반기보고서에 본 항목을 기재하지 않습니다.\n[5. 부외거래]\n※ 기업공시서식 작성기준에 따라 분ㆍ반기보고서에 본 항"
+    },
+    {
+      "title": "V. 회계감사인의 감사의견 등",
+      "level": 1,
+      "lineNumber": 14,
+      "status": "parsed",
+      "matchedSectionId": "section-005",
+      "contentLength": 2064,
+      "tableCount": 17,
+      "numericBlockCount": 50,
+      "preview": "[1. 외부감사에 관한 사항]\n삼정회계법인은 당사의 제28기 1분기 검토를 수행하였으며, 검토 결과 재무제표가 중요성의 관점에서 한국채택국제회계기준 제1034호(중간재무보고)에 따라 작성되지않은 사항이 발견되지 아니하였습니다.다산회계법인은 당사의 제27기 및 제26기 감사를 수행하였고, 감사의견은 모두 적정의견을 받았습니다.\n가. 회계감사인의 명칭 및 감사의견\n| 사업연도 | 구분 | 감사인 | 감사의견 | 의견변형사유 | 계속기업 관련중요한 불확실성 | 강조사항 | 핵심감사사항 |\n제28기1분기"
+    },
+    {
+      "title": "VI. 이사회 등 회사의 기관에 관한 사항",
+      "level": 1,
+      "lineNumber": 15,
+      "status": "parsed",
+      "matchedSectionId": "section-006",
+      "contentLength": 5255,
+      "tableCount": 40,
+      "numericBlockCount": 197,
+      "preview": "[1. 이사회에 관한 사항]\n기업공시서식 작성기준에 의거하여 본 항목을 분기보고서에는 작성하지 아니하며, 관련 내용은 당사 사업보고서 또는 반기보고서를 참고하시기 바랍니다.\n[2. 감사제도에 관한 사항]\n기업공시서식 작성기준에 의거하여 본 항목을 분기보고서에는 작성하지 아니하며, 관련 내용은 당사 사업보고서 또는 반기보고서를 참고하시기 바랍니다.\n[3. 주주총회 등에 관한 사항]\n가. 투표제도 현황\n| (기준일 : | 2026년 03월 31일 | ) |\n| 투표제도 종류 | 집중투표제 | 서면투표"
+    },
+    {
+      "title": "VII. 주주에 관한 사항",
+      "level": 1,
+      "lineNumber": 16,
+      "status": "parsed",
+      "matchedSectionId": "section-007",
+      "contentLength": 1621,
+      "tableCount": 30,
+      "numericBlockCount": 63,
+      "preview": "[1. 최대주주 및 특수관계인의 주식소유 현황]\n가. 최대주주 및 그 특수관계인의 주식소유 현황당사의 당분기말 현재 최대주주는 한화임팩트(주)이며, 총 32.77%를 보유하고 있습니다.\n| (기준일 : | 2026년 03월 31일 | ) | (단위 : 주, %) |\n| 성 명 | 관 계 | 주식의종류 | 소유주식수 및 지분율 | 비고 |\n| 기 초 | 기 말 |\n| 주식수 | 지분율 | 주식수 | 지분율 |\n한화임팩트㈜\n최대주주\n보통주\n27,345,628\n32.77\n27,345,628\n32.77\n"
+    },
+    {
+      "title": "VIII. 임원 및 직원 등에 관한 사항",
+      "level": 1,
+      "lineNumber": 17,
+      "status": "parsed",
+      "matchedSectionId": "section-008",
+      "contentLength": 2920,
+      "tableCount": 27,
+      "numericBlockCount": 89,
+      "preview": "[1. 임원 및 직원 등의 현황]\n가. 임원 현황\n| (기준일 : | 2026년 03월 31일 | ) | (단위 : 주) |\n| 성명 | 성별 | 출생년월 | 직위 | 등기임원여부 | 상근여부 | 담당업무 | 주요경력 | 소유주식수 | 최대주주와의관계 | 재직기간 | 임기만료일 |\n| 의결권있는 주식 | 의결권없는 주식 |\n김종서\n대표이사\n대표이사\n서강대 화학공학 학사前) 한화토탈에너지스㈜ 대표이사前) 한화오션㈜ 상선사업부장現) 한화엔진㈜ 대표이사\n-\n-\n발행회사 임원\n5개월\n| 남 | 1967년"
+    },
+    {
+      "title": "IX. 계열회사 등에 관한 사항",
+      "level": 1,
+      "lineNumber": 18,
+      "status": "partial",
+      "matchedSectionId": "section-009",
+      "contentLength": 80,
+      "tableCount": 0,
+      "numericBlockCount": 0,
+      "preview": "기업공시서식 작성기준에 의거하여 본 항목을 분기보고서에는 작성하지 아니하며, 관련 내용은 당사 사업보고서 또는 반기보고서를 참고하시기 바랍니다."
+    },
+    {
+      "title": "X. 대주주 등과의 거래내용",
+      "level": 1,
+      "lineNumber": 19,
+      "status": "parsed",
+      "matchedSectionId": "section-010",
+      "contentLength": 3872,
+      "tableCount": 45,
+      "numericBlockCount": 100,
+      "preview": "[1. 대주주 등에 대한 신용공여등 - 해당사항 없음]\n[2. 대주주와의 자산양수도 등[특수관계인에 대한 영업양수]]\n- 거래상대방 : 한화에어로스페이스㈜(계열회사)- 양수목적물 : 한화에어로스페이스㈜ 민수선박용 ESS 사업- 양수가액 : 약 155억원- 거래일자 : 2026년 3월 31일- 양수목적 : 선박용 ESS사업 관련 역량 집중을 통한 사업 경쟁력 확대- 이사회 결의일 : 2026년 2월 9일\n[3. 대주주와의 영업거래 - 특수관계자 등의 현황]\n| 구분 | 회사명 |\n| 지배주주 | 한"
+    },
+    {
+      "title": "XI. 그 밖에 투자자 보호를 위하여 필요한 사항",
+      "level": 1,
+      "lineNumber": 20,
+      "status": "parsed",
+      "matchedSectionId": "section-011",
+      "contentLength": 3458,
+      "tableCount": 63,
+      "numericBlockCount": 106,
+      "preview": "[1. 공시내용 진행 및 변경사항]\n기업공시서식 작성기준에 의거하여 본 항목을 분기보고서에는 작성하지 아니하며, 관련 내용은 당사 사업보고서 또는 반기보고서를 참고하시기 바랍니다.\n[2. 우발부채 등에 관한 사항]\n가. 중요한 소송사건당분기말 현재 당사가 피고로서 계류중인 소송사건은 총 4건, 17,477 백만원이며, 원고로서 계류중인 소송사건은 총 1건, 3,589백만원입니다. 당분기말 현재로서는 소송의 결과를 예측할 수 없습니다.\n나. 견질 또는 담보용 어음ㆍ수표 현황\n| (기준일 : 2026"
+    },
+    {
+      "title": "XII. 상세표",
+      "level": 1,
+      "lineNumber": 21,
+      "status": "parsed",
+      "matchedSectionId": "section-012",
+      "contentLength": 299,
+      "tableCount": 0,
+      "numericBlockCount": 3,
+      "preview": "[1. 연결대상 종속회사 현황(상세)]\n기업공시서식 작성기준에 의거하여 본 항목을 분기보고서에는 작성하지 아니하며, 관련 내용은 당사 사업보고서 또는 반기보고서를 참고하시기 바랍니다.\n[2. 계열회사 현황(상세)]\n기업공시서식 작성기준에 의거하여 본 항목을 분기보고서에는 작성하지 아니하며, 관련 내용은 당사 사업보고서 또는 반기보고서를 참고하시기 바랍니다.\n[3. 타법인출자 현황(상세)]\n기업공시서식 작성기준에 의거하여 본 항목을 분기보고서에는 작성하지 아니하며, 관련 내용은 당사 사업보고서 또는"
+    },
+    {
+      "title": "【Z-1. OpenDART 주주 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 22,
+      "status": "partial",
+      "matchedSectionId": "section-014",
+      "contentLength": 61,
+      "tableCount": 0,
+      "numericBlockCount": 1,
+      "preview": "에러: status=101 잘못된 URL입니다. 확인해주세요(/api/majorshareholder.json)"
+    },
+    {
+      "title": "【Z-2. OpenDART 배당에 관한 사항 (구조화)】",
+      "level": 1,
+      "lineNumber": 23,
+      "status": "parsed",
+      "matchedSectionId": "section-015",
+      "contentLength": 629,
+      "tableCount": 17,
+      "numericBlockCount": 12,
+      "preview": "※ 출처: OpenDART alotMatter.json (15건)\n| 구분 | 주식 종류 | 당기 | 전기 | 전전기 |\n| --- | --- | --- | --- | --- |\n| 주당액면가액(원) | - | 1,000 | 1,000 | 1,000 |\n| (연결)당기순이익(백만원) | - | 52,853 | 173,753 | 79,160 |\n| (별도)당기순이익(백만원) | - | 52,878 | 173,753 | - |\n| (연결)주당순이익(원) | - | 631 | 2,071 | 968 |\n"
+    },
+    {
+      "title": "【Z-3. OpenDART 자기주식 취득 및 처분 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 24,
+      "status": "partial",
+      "matchedSectionId": "section-016",
+      "contentLength": 151,
+      "tableCount": 3,
+      "numericBlockCount": 1,
+      "preview": "※ 출처: OpenDART tesstkAcqsDspsSttus.json (1건)\n| 구분 | 주식종류 | 기초 수량 | 변동 수량 | 기말 수량 | 비고 |\n| --- | --- | --- | --- | --- | --- |\n| - | - | - | - | - | - |"
+    },
+    {
+      "title": "【Z-4. OpenDART 증자 / 감자 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 25,
+      "status": "parsed",
+      "matchedSectionId": "section-017",
+      "contentLength": 296,
+      "tableCount": 5,
+      "numericBlockCount": 17,
+      "preview": "※ 출처: OpenDART irdsSttus.json (3건)\n| 결의일 | 발행 형태 | 종류 | 수량 | 액면가액 | 발행가액 |\n| --- | --- | --- | --- | --- | --- |\n| 2022.08.09 | 유상증자(주주배정) | 보통주 | 12,900,000 | 1,000 | 6,980 |\n| 2022.08.11 | 무상증자 | 보통주 | 11,922,748 | 1,000 | 1,000 |\n| 2024.02.28 | 유상증자(제3자배정) | 보통주 | 11,903,148 |"
+    },
+    {
+      "title": "【Z-5. OpenDART 임원 현황 (구조화)】",
+      "level": 1,
+      "lineNumber": 26,
+      "status": "partial",
+      "matchedSectionId": "section-018",
+      "contentLength": 62,
+      "tableCount": 0,
+      "numericBlockCount": 1,
+      "preview": "에러: status=101 잘못된 URL입니다. 확인해주세요(/api/cpndlhCmpsBoardCo.json)"
+    },
+    {
+      "title": "【Z-6. OpenDART 단일회사 전체 재무제표 (구조화)】",
+      "level": 1,
+      "lineNumber": 27,
+      "status": "parsed",
+      "matchedSectionId": "section-019",
+      "contentLength": 6951,
+      "tableCount": 141,
+      "numericBlockCount": 184,
+      "preview": "※ 출처: OpenDART fnlttSinglAcntAll.json (CFS 연결, 139건)\n| 재무제표 | 계정 | 당기 | 전기 | 전전기 |\n| --- | --- | --- | --- | --- |\n| 재무상태표 | 자산총계 | 1,910,569,648,022 | 1,695,690,258,649 | - |\n| 재무상태표 | 유동자산 | 856,528,607,194 | 1,031,851,253,359 | - |\n| 재무상태표 | 파생상품자산 | 5,381,295,205 | 3,147,322,"
+    }
+  ],
+  "partialSections": [
+    "IX. 계열회사 등에 관한 사항",
+    "【Z-1. OpenDART 주주 현황 (구조화)】",
+    "【Z-3. OpenDART 자기주식 취득 및 처분 현황 (구조화)】",
+    "【Z-5. OpenDART 임원 현황 (구조화)】"
+  ],
+  "missingSections": [],
+  "needsReviewSections": []
+}

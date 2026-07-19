@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "reportPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/datacenter-solar-panels/source.md",
+    "reportSha256": "55d251ae9e60423e1c6783d9d3b9415d89765c6e22631725d66c5b29fb6f5f74",
+    "asOfDate": "2026-07-04"
+  },
+  "post": {
+    "company": "데이터센터 태양광 패널",
+    "ticker": "",
+    "title": "데이터센터 태양광 패널 | Qcells와 First Solar가 양대 축인 이유 | 2026-07-04",
+    "issue": "Qcells vs First Solar",
+    "category": null,
+    "tags": [],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/datacenter-solar-panels/naver-post.md",
+    "markdownSha256": "13354adf74cc7290391783d9dc9daca33b7e7579d07209ae398fb97b78608d02",
+    "images": [],
+    "thumbnail": {
+      "prompt": "데이터센터 태양광 패널 | Qcells와 First Solar가 양대 축인 이유 | 2026-07-04 블로그 썸네일 만들어줘",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/datacenter-solar-panels/assets/naver-thumbnail.png",
+      "sha256": "dde09c47219d793a46f4cf198e26a212405dee5777bdfa3c01ffe89d7b738c10",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-04T13:49:00.000Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-04T13:53:39.279Z",
+    "expiresAt": "2026-07-04T14:23:39.278Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/datacenter-solar-panels/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "189156eea7634c2e054bcda8aff0c90daac9e18339c9bf569af84698610ab71c",
+    "approvalTokenHash": "041d6e657deb01eef17a899e02116b49324dce01e8cb7359750baf24719d25ab",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/대양전기공업/memo.md",
+    "memoSha256": "00a5ce0497ec49f62f39faccb54f846edbd53c8472beae39729d90d83cdba7a2",
+    "asOfDate": "2026-07-11"
+  },
+  "post": {
+    "company": "대양전기공업",
+    "ticker": "108380",
+    "title": "대양전기공업(108380) | 수주잔고·대양전장 인수·배당 가능성 | 2026-07-11",
+    "issue": "수주잔고·대양전장 인수·배당 가능성",
+    "category": null,
+    "tags": [
+      "대양전기공업",
+      "108380",
+      "주식분석",
+      "수주잔고",
+      "대양전장",
+      "배당",
+      "조선기자재",
+      "방산"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/대양전기공업/naver-post.md",
+    "markdownSha256": "8cb4e34398b86d77b2ca1b845bffb9e06c8b39a3bb01e6c37329855be4dc3caa",
+    "images": [
+      {
+        "order": 1,
+        "alt": "대양전기공업 추세 차트",
+        "relativePath": "../assets/대양전기공업-chart.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/대양전기공업-chart.png",
+        "sha256": "719ef76ca6ea8f1ae03f9bd087bfd908729b0672945d3c224050b87083d54ad9",
+        "section": "Chart and Positioning"
+      },
+      {
+        "order": 2,
+        "alt": "대양전기공업 오버레이 차트",
+        "relativePath": "../assets/대양전기공업-chart-overlay.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/대양전기공업-chart-overlay.png",
+        "sha256": "fbabbe30ca5461adaf1ca687f0d8accfb81cf343fa3188b9637d4375a209556a",
+        "section": "Chart and Positioning"
+      },
+      {
+        "order": 3,
+        "alt": "대양전기공업 모멘텀 차트",
+        "relativePath": "../assets/대양전기공업-chart-momentum.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/대양전기공업-chart-momentum.png",
+        "sha256": "587b6f8263d56e4720526a71b5e346c8cc48a0be3003043e50898b1d5d64b910",
+        "section": "Chart and Positioning"
+      }
+    ],
+    "thumbnail": {
+      "prompt": "대양전기공업(108380) | 수주잔고·대양전장 인수·배당 가능성 | 2026-07-11 블로그 썸네일 만들어줘",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/대양전기공업/assets/naver-thumbnail.png",
+      "sha256": "53e389f0b0a66d1c4e873cd69afd96387a8face0072bc226aeb2f04b5ba7d2c4",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-11T15:20:59.963Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-11T15:22:35.861Z",
+    "expiresAt": "2026-07-11T15:52:35.861Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/대양전기공업/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "85e55f0279fa9437178381d84996c8b86cd13ff097f3eaadec0755e4173f2cfb",
+    "approvalTokenHash": "0e980fafd1197b62af3ebeecbd263fff07abb8d51948a8df270c679ad9460b57",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

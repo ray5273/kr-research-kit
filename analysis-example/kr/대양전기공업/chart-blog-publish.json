@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/대양전기공업/chart-blog.md",
+    "memoSha256": "42f85e36dd3647462c71f03cedd167b1795bb204277bef7764a0952f5c9accb4",
+    "asOfDate": "2026-07-10"
+  },
+  "post": {
+    "company": "대양전기공업",
+    "ticker": "108380",
+    "title": "대양전기공업 | 15,430원 지지·19,540원 회복 확인·15,430원 무효화가 핵심이다. | 2026-07-10",
+    "issue": "15,430원 지지·19,540원 회복 확인·15,430원 무효화가 핵심이다.",
+    "category": null,
+    "tags": [
+      "대양전기공업",
+      "108380",
+      "주식분석",
+      "기술적분석",
+      "스윙트레이딩",
+      "지지저항",
+      "이동평균",
+      "거래량"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/대양전기공업/chart-blog-post.md",
+    "markdownSha256": "f43086eacd05e3b01578d5bd706995a7e4291664483d1771c963332ba06aed06",
+    "images": [
+      {
+        "order": 1,
+        "alt": "대양전기공업 추세 차트",
+        "relativePath": "../assets/대양전기공업-chart.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/대양전기공업-chart.png",
+        "sha256": "719ef76ca6ea8f1ae03f9bd087bfd908729b0672945d3c224050b87083d54ad9",
+        "section": "가격 추세와 이동평균"
+      },
+      {
+        "order": 2,
+        "alt": "대양전기공업 수평 구조 차트",
+        "relativePath": "../assets/대양전기공업-chart-structure.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/대양전기공업-chart-structure.png",
+        "sha256": "bc4dfced59fce371311c34f25588ad8f1cb030a39dd2bf7c02d34ba7266d7ea5",
+        "section": "수평 지지·저항"
+      },
+      {
+        "order": 3,
+        "alt": "대양전기공업 일목·볼린저 오버레이 차트",
+        "relativePath": "../assets/대양전기공업-chart-overlay.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/대양전기공업-chart-overlay.png",
+        "sha256": "fbabbe30ca5461adaf1ca687f0d8accfb81cf343fa3188b9637d4375a209556a",
+        "section": "수평 지지·저항"
+      },
+      {
+        "order": 4,
+        "alt": "대양전기공업 거래량 차트",
+        "relativePath": "../assets/대양전기공업-chart-volume.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/대양전기공업-chart-volume.png",
+        "sha256": "db7b05bb726f9ef48657e3fd842dea77b858041435a2e081e5beee44f3adb641",
+        "section": "거래량과 모멘텀"
+      },
+      {
+        "order": 5,
+        "alt": "대양전기공업 모멘텀 차트",
+        "relativePath": "../assets/대양전기공업-chart-momentum.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/대양전기공업-chart-momentum.png",
+        "sha256": "587b6f8263d56e4720526a71b5e346c8cc48a0be3003043e50898b1d5d64b910",
+        "section": "거래량과 모멘텀"
+      }
+    ],
+    "thumbnail": {
+      "prompt": "대양전기공업 | 15,430원 지지·19,540원 회복 확인·15,430원 무효화가 핵심이다. | 2026-07-10 블로그 썸네일 만들어줘",
+      "relativePath": "assets/chart-blog-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/대양전기공업/assets/chart-blog-thumbnail.png",
+      "sha256": "2999df9da9260fb86ad2b12bbf2809bece72eca92f5e9cd1b047e9c1bb2be145",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-12T00:00:00.000Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-12T07:01:51.069Z",
+    "expiresAt": "2026-07-12T07:31:51.068Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/대양전기공업/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "a5568df9ed457c95a79f7b83022da9c6b8fd0a1d64eed06358994a59b828facf",
+    "approvalTokenHash": "b34fbf06a8cf20e33531db0c5450bfd220dcfa2d3f0d98da41f421ce40ae5449",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

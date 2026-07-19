@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "reportPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/두산에너빌리티/smr-data-pack.md",
+    "reportSha256": "ce220e935fd0f6d77bff59c5878c3047fd9152206c257b12d037add93603b646",
+    "asOfDate": "2026-07-04"
+  },
+  "post": {
+    "company": "두산에너빌리티",
+    "ticker": "034020",
+    "title": "두산에너빌리티 | SMR 수혜주는 맞지만 순수주는 아니다 | 2026-07-04",
+    "issue": "SMR 수혜주는 맞지만 순수주는 아니다",
+    "category": null,
+    "tags": [
+      "두산에너빌리티",
+      "034020",
+      "주식분석",
+      "SMR",
+      "원전",
+      "가스터빈",
+      "뉴스케일",
+      "엑스에너지"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/두산에너빌리티/naver-post.md",
+    "markdownSha256": "5fa97687d6587d830472dab224fc213a22a68bbfc0ff4cf9022db120e2e327d8",
+    "images": [
+      {
+        "order": 1,
+        "alt": "두산에너빌리티 main trend chart",
+        "relativePath": "../assets/두산에너빌리티-chart.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/두산에너빌리티-chart.png",
+        "sha256": "6321adf83a7c81db5e79eb267bfc9e6728828a30138068d9586b3fcaeafd55d5",
+        "section": "주가는 이미 많이 반영했나"
+      },
+      {
+        "order": 2,
+        "alt": "두산에너빌리티 overlay chart",
+        "relativePath": "../assets/두산에너빌리티-chart-overlay.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/두산에너빌리티-chart-overlay.png",
+        "sha256": "6c09c2f30e9ed3d6028e3450bb508a6ff5fe7b89b55dcb65bcd885797e72e2e2",
+        "section": "주가는 이미 많이 반영했나"
+      },
+      {
+        "order": 3,
+        "alt": "두산에너빌리티 momentum chart",
+        "relativePath": "../assets/두산에너빌리티-chart-momentum.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/두산에너빌리티-chart-momentum.png",
+        "sha256": "d69abfe74660db1421956714df6bd7b68d0e62c9a7cd371ec3634a1e61cadc2c",
+        "section": "주가는 이미 많이 반영했나"
+      }
+    ],
+    "thumbnail": {
+      "prompt": "두산에너빌리티 | SMR 수혜주는 맞지만 순수주는 아니다 | 2026-07-04 블로그 썸네일 만들어줘",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/두산에너빌리티/assets/naver-thumbnail.png",
+      "sha256": "6321adf83a7c81db5e79eb267bfc9e6728828a30138068d9586b3fcaeafd55d5",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-04T06:37:34.191Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-04T06:37:52.372Z",
+    "expiresAt": "2026-07-04T07:07:52.372Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/두산에너빌리티/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "cbfc6f65b4b3824d6582d6c72e955aa8de323bd2de16d46d75e8b1949dec65d3",
+    "approvalTokenHash": "e21f0e1fc64a307c5ca14ce65fb6dc300ade13eff1e6a35c59f4ee578bb614f8",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

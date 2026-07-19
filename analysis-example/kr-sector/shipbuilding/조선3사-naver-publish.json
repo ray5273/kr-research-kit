@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "reportPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/조선3사-수주현황-DART분석.md",
+    "reportSha256": "81c5dd3b2b9e8dcd3661b3efde0e3551dc96fd2688eb6b354e0d7793de5531b7",
+    "asOfDate": "2026-07-11"
+  },
+  "post": {
+    "company": "조선 3사(HD한국조선해양·삼성중공업·한화오션)",
+    "ticker": "009540/010140/042660",
+    "title": "조선 3사 | 수주잔고 2.6~3년치, 주가는 이미 3~4배 뛰었는데 아직 자리가 남았을까 | 2026-07-11",
+    "issue": "DART 공시 기반 조선 3사 수주잔고·가동률·영업이익률 비교 + 5년 분기별 주가 연동 분석",
+    "category": null,
+    "tags": [
+      "HD한국조선해양",
+      "삼성중공업",
+      "한화오션",
+      "조선업",
+      "수주잔고",
+      "DART공시",
+      "주식분석"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/조선3사-naver-post.md",
+    "markdownSha256": "89f4fa42ec0bdb3a6f15feabf548eb50c09aaab7ac57a65342bb5749c5d48684",
+    "images": [
+      {
+        "relativePath": "assets/HD한국조선해양-수주잔고-주가.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/assets/HD한국조선해양-수주잔고-주가.png",
+        "sha256": "5d7010edda7c273624d0179d30cc7d3a092cd803ebaa6847ff53a5a076c54027"
+      },
+      {
+        "relativePath": "assets/HD한국조선해양-매출영업이익-주가.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/assets/HD한국조선해양-매출영업이익-주가.png",
+        "sha256": "839c7b8b015378a96be3f6ec2a84fdce57a044d7488b7bffb2ea263e1673964c"
+      },
+      {
+        "relativePath": "assets/삼성중공업-수주잔고-주가.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/assets/삼성중공업-수주잔고-주가.png",
+        "sha256": "25346737c16622de4bcc6be18a64ac18c5359c89498038a4f740929d5dd132fa"
+      },
+      {
+        "relativePath": "assets/삼성중공업-매출영업이익-주가.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/assets/삼성중공업-매출영업이익-주가.png",
+        "sha256": "ee58025908ef5a0d2469c175b1f5bbd6a45c70c18e4dc748fcdf969d8468e5c8"
+      },
+      {
+        "relativePath": "assets/한화오션-수주잔고-주가.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/assets/한화오션-수주잔고-주가.png",
+        "sha256": "1e182343047f8842f5cda1914ff186e692558a5ccd26ce747859cf3853d5cf43"
+      },
+      {
+        "relativePath": "assets/한화오션-매출영업이익-주가.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/assets/한화오션-매출영업이익-주가.png",
+        "sha256": "8f9d1249409990dffa337072198be9f701d1505193465ee70e565a4f01506add"
+      }
+    ],
+    "thumbnail": {
+      "prompt": "조선 3사 | 수주잔고 2.6~3년치, 주가는 이미 3~4배 뛰었는데 아직 자리가 남았을까 | 2026-07-11 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.",
+      "relativePath": "assets/조선3사-naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/assets/조선3사-naver-thumbnail.png",
+      "sha256": "9083e0c377b1172d6bc2172f5add91f27751572991118ccf129fab2b384c1d70",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-11T13:07:04.470Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-11T13:11:56.409Z",
+    "expiresAt": "2026-07-11T13:41:56.409Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/조선3사-naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "0606dc0b84c0c7e59a696361961f97e4a5780f88f9e363b532ca8eb87a7c44d2",
+    "approvalTokenHash": "6c928073d8ebbfd890776349f89b49decfa26833d4ede8ffeb821a9068fcf77b",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

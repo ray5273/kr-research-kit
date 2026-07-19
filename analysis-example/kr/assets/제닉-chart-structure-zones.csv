@@ -1,0 +1,8 @@
+type,zone_low,zone_high,center_price,touch_count,last_touch_date,score,status
+support,23150,23550,23350,32,2026-07-01,0.9238,active
+support,19900,20450,20175,33,2026-06-25,0.7722,active
+resistance,26450,27600,27025,19,2026-07-03,0.7129,active
+support,18770,18960,18865,22,2026-06-24,0.5207,active
+support,15570,17390,16470,30,2026-06-23,0.6073,active
+support,18570,18620,18595,21,2026-06-24,0.4971,active
+resistance,33250,34400,33825,7,2026-04-17,0.0957,active

@@ -1,0 +1,20 @@
+{
+  "ticker": "108380.KQ",
+  "name": "대양전기공업",
+  "asOf": "2026-07-10",
+  "historyYears": 5,
+  "methodology": "Annual points use the last adjusted close of each fiscal year divided by the same fiscal year's consolidated EPS and BPS. The 2026-07-10 point is a current-price snapshot divided by FY2025 actual EPS and BPS, not an FY2026 estimate.",
+  "sources": [
+    "FnGuide Company Guide investment indicators for FY2021-FY2024 adjusted price, consolidated EPS, and BPS",
+    "DART FY2025 annual report / FY2025 earnings for EPS and equity; FY2025-12-30 adjusted close from Yahoo Finance chart data",
+    "Yahoo Finance chart data for 2026-07-10 close"
+  ],
+  "series": [
+    { "date": "2021-12-30", "price": 15000, "eps": 924, "bps": 23974, "pe": 16.24, "pbr": 0.63 },
+    { "date": "2022-12-29", "price": 12000, "eps": -784, "bps": 23112, "pe": null, "pbr": 0.52 },
+    { "date": "2023-12-28", "price": 11720, "eps": 876, "bps": 23964, "pe": 13.38, "pbr": 0.49 },
+    { "date": "2024-12-30", "price": 12850, "eps": 2049, "bps": 26010, "pe": 6.27, "pbr": 0.49 },
+    { "date": "2025-12-30", "price": 27700, "eps": 2591, "bps": 29042, "pe": 10.69, "pbr": 0.95 },
+    { "date": "2026-07-10", "price": 17420, "eps": 2591, "bps": 29042, "pe": 6.72, "pbr": 0.60 }
+  ]
+}

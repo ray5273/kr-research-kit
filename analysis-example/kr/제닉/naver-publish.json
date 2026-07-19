@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/제닉/memo.md",
+    "memoSha256": "a7bc05e133787b6fc05f7195d45dee3e027826a69632cd504ea8b6c49304ae05",
+    "asOfDate": "2026-07-03"
+  },
+  "post": {
+    "company": "제닉",
+    "ticker": "123330",
+    "title": "제닉 | 하이드로겔 ODM 성장성과 1Q26 마진 검증 | 2026-07-03",
+    "issue": "하이드로겔 ODM 성장성과 1Q26 마진 검증",
+    "category": null,
+    "tags": [
+      "제닉",
+      "123330",
+      "주식분석"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/제닉/naver-post.md",
+    "markdownSha256": "b75a939a0bc6ce3c07f8f406bf23a58867158d32ea0ea29520a30a9d7c49f7ad",
+    "images": [
+      {
+        "order": 1,
+        "alt": "제닉 main trend chart",
+        "relativePath": "../assets/제닉-chart.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/제닉-chart.png",
+        "sha256": "2d963ca4aaa7a250a66bd1915ca053501dd74436e952b807c43eefffcc10046e",
+        "section": "Chart and Positioning"
+      },
+      {
+        "order": 2,
+        "alt": "제닉 volume chart",
+        "relativePath": "../assets/제닉-chart-volume.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/제닉-chart-volume.png",
+        "sha256": "0efbf715f0127eba8defc47fcc25cfec62578c390622ccb3011f6f7bea6415ea",
+        "section": "Chart and Positioning"
+      },
+      {
+        "order": 3,
+        "alt": "제닉 overlay chart",
+        "relativePath": "../assets/제닉-chart-overlay.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/제닉-chart-overlay.png",
+        "sha256": "6c8b21e76233d15064dfbdf473b5d6c8ca72cecdf3fd1c1cc1db6170877a41f3",
+        "section": "Chart and Positioning"
+      },
+      {
+        "order": 4,
+        "alt": "제닉 momentum chart",
+        "relativePath": "../assets/제닉-chart-momentum.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/제닉-chart-momentum.png",
+        "sha256": "8294bd24805450a82c47dbf666f149bd735d555ea30067010f084c7ed92a4c63",
+        "section": "Chart and Positioning"
+      },
+      {
+        "order": 5,
+        "alt": "제닉 structure chart",
+        "relativePath": "../assets/제닉-chart-structure.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/제닉-chart-structure.png",
+        "sha256": "c6f0b5d2a8d114536cd4d7d00f659abf712f1e8ebb495934abc2f5665d68bcfb",
+        "section": "Chart and Positioning"
+      },
+      {
+        "order": 6,
+        "alt": "제닉 pattern wave chart",
+        "relativePath": "../assets/제닉-chart-pattern.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/assets/제닉-chart-pattern.png",
+        "sha256": "905c5cbab9312a6e169b4509d8b12584004da8864b2dbb6983b284fe014518dd",
+        "section": "Chart and Positioning"
+      }
+    ],
+    "thumbnail": {
+      "prompt": "제닉 | 하이드로겔 ODM 성장성과 1Q26 마진 검증 | 2026-07-03 블로그 썸네일 만들어줘",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/제닉/assets/naver-thumbnail.png",
+      "sha256": "3596b9b7809d1fc071d6bc896a618a0daa4d4813867df60641c0c1782dc06c06",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-03T14:06:42.477Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-03T14:07:46.072Z",
+    "expiresAt": "2026-07-03T14:37:46.071Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/제닉/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "e09441aa18f5f1a0c436d21fb5c9f6a8b07a96f970b3d87f48b0fa2b4f9856c6",
+    "approvalTokenHash": "ea37e678e1d5c4b00b5945a0af66313b9126190a3745525e30e192052a6b3bcd",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

@@ -1,0 +1,142 @@
+{
+  "company": "대양전기공업",
+  "ticker": "108380",
+  "discoveredAt": "2026-07-11",
+  "bloggers": [
+    {
+      "blogId": "mangdungada",
+      "displayName": null,
+      "blogTitle": null,
+      "subscriberCount": null,
+      "relevantPostCount": 2,
+      "dedicatedPostCount": 2,
+      "deepTechPostCount": 0,
+      "tradingTitleCount": 0,
+      "listicleTitleCount": 0,
+      "isTradingBlog": false,
+      "searchHitCount": 4,
+      "nicknameHitCount": 0,
+      "nicknameAnchors": [],
+      "roundupMentioned": false,
+      "roundupSources": [],
+      "inBlogPage1Total": 2,
+      "inBlogPaginationPages": 1,
+      "generalPostCount": 11,
+      "stockPostRatio": 0.7272727272727273,
+      "bracketedTitleRatio": 0,
+      "formulaicTitleRatio": 0.18181818181818182,
+      "dedicatedFormulaicRatio": 0,
+      "datedPostCount": 2,
+      "staleCoverageRatio": 0,
+      "latestRelevantPostDate": "2026-06-15",
+      "latestPostDate": "2026-06-15",
+      "categories": [],
+      "profileSnippet": null
+    },
+    {
+      "blogId": "1noon-",
+      "displayName": null,
+      "blogTitle": null,
+      "subscriberCount": null,
+      "relevantPostCount": 1,
+      "dedicatedPostCount": 1,
+      "deepTechPostCount": 0,
+      "tradingTitleCount": 0,
+      "listicleTitleCount": 0,
+      "isTradingBlog": false,
+      "searchHitCount": 3,
+      "nicknameHitCount": 0,
+      "nicknameAnchors": [],
+      "roundupMentioned": false,
+      "roundupSources": [],
+      "inBlogPage1Total": 3,
+      "inBlogPaginationPages": 1,
+      "generalPostCount": 5,
+      "stockPostRatio": 0.8,
+      "bracketedTitleRatio": 0,
+      "formulaicTitleRatio": 0.6,
+      "dedicatedFormulaicRatio": 1,
+      "datedPostCount": 1,
+      "staleCoverageRatio": 0,
+      "latestRelevantPostDate": "2026-06-22",
+      "latestPostDate": "2026-06-22",
+      "categories": [],
+      "profileSnippet": null
+    },
+    {
+      "blogId": "youea1",
+      "displayName": null,
+      "blogTitle": null,
+      "subscriberCount": null,
+      "relevantPostCount": 1,
+      "dedicatedPostCount": 1,
+      "deepTechPostCount": 0,
+      "tradingTitleCount": 0,
+      "listicleTitleCount": 0,
+      "isTradingBlog": false,
+      "searchHitCount": 1,
+      "nicknameHitCount": 0,
+      "nicknameAnchors": [],
+      "roundupMentioned": false,
+      "roundupSources": [],
+      "inBlogPage1Total": 2,
+      "inBlogPaginationPages": 1,
+      "generalPostCount": 15,
+      "stockPostRatio": 0.5333333333333333,
+      "bracketedTitleRatio": 0,
+      "formulaicTitleRatio": 0,
+      "dedicatedFormulaicRatio": 0,
+      "datedPostCount": 1,
+      "staleCoverageRatio": 0,
+      "latestRelevantPostDate": "2026-04-18",
+      "latestPostDate": "2026-04-18",
+      "categories": [],
+      "profileSnippet": null
+    }
+  ],
+  "meta": {
+    "searchQueries": 5,
+    "candidatesFound": 22,
+    "qualified": 3,
+    "skipped": 0,
+    "querySet": {
+      "queries": [
+        {
+          "text": "대양전기공업 투자 분석",
+          "source": "base"
+        },
+        {
+          "text": "대양전기공업 실적",
+          "source": "base"
+        },
+        {
+          "text": "대양전기공업 열림",
+          "source": "news-trend"
+        },
+        {
+          "text": "대양전기공업 전력",
+          "source": "news-trend"
+        },
+        {
+          "text": "대양전기공업 인프라",
+          "source": "news-trend"
+        }
+      ],
+      "meta": {
+        "newsHeadlinesScanned": 30,
+        "newsListicleDropped": 5,
+        "dartProductsExtracted": 0,
+        "contextFileUsed": null,
+        "generatedBy": "kr-naver-blogger/build-query-set.js"
+      }
+    },
+    "relatedQueries": [],
+    "nicknameQueries": [],
+    "eventQueries": [],
+    "nicknameAnchoredCount": 0,
+    "roundupFetched": [],
+    "deepMode": false,
+    "blogFilterApplied": false,
+    "generatedBy": "kr-naver-blogger/discover-bloggers.js"
+  }
+}

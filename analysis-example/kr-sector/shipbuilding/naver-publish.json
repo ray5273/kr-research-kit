@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "reportPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/source.md",
+    "reportSha256": "a8316ebfba02d9628031b96f32f448333cac073710707c5a8770c785d6bfa3c4",
+    "asOfDate": "2026-07-11"
+  },
+  "post": {
+    "company": "글로벌 조선업",
+    "ticker": "",
+    "title": "글로벌 조선업 지도 | 중국 72% vs 한국 19%, 그래도 한국이 이기는 구간은 따로 있다 | 2026-07-11",
+    "issue": "국가별·선종별 조선업 점유율 및 군함·친환경 전환 리서치 노트",
+    "category": null,
+    "tags": [
+      "조선업",
+      "HD한국조선해양",
+      "한화오션",
+      "삼성중공업",
+      "LNG운반선",
+      "친환경선박",
+      "K방산",
+      "주식분석"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/naver-post.md",
+    "markdownSha256": "928a276f05258846478944e0db741a66a8cafff765f80f32f34eeda1f0aa726a",
+    "images": [],
+    "thumbnail": {
+      "prompt": "글로벌 조선업 지도 | 중국 72% vs 한국 19%, 그래도 한국이 이기는 구간은 따로 있다 | 2026-07-11 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/assets/naver-thumbnail.png",
+      "sha256": "e6907e9715be2be4294c3ac6c9da8b0c5ebd0c3706f02d045668ebced47bd419",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-11T10:46:10.848Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-11T13:03:59.924Z",
+    "expiresAt": "2026-07-11T13:33:59.924Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "1f725ea648065fd0046e692c1c10b4832f0cbfa61b9ad5e7c826e2dbf19fff50",
+    "approvalTokenHash": "4fe0434fe16eaa32fb76683f6c153be938a540cf8834c6f0a5f3ca215276c599",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

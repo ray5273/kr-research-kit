@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "reportPath": "/Users/sanghyeok/workspace/stock-analysis-skill/output/pdf/ceraweek2026_summary.md",
+    "reportSha256": "6c57ee6800b535808200d45b8e83f0cd44f5dd56bd3ce1915727b6c19eb3a0b8",
+    "asOfDate": "2026-04-08"
+  },
+  "post": {
+    "company": "CERAWeek 2026",
+    "ticker": "",
+    "title": "CERAWeek 2026 요약 | 에너지 전환보다 먼저 온 에너지 안보와 AI 전력 병목",
+    "issue": "에너지 안보와 AI 전력 병목",
+    "category": null,
+    "tags": [],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/output/pdf/naver-post.md",
+    "markdownSha256": "a89b09d8b09ad1c5fd23d0a9c55779b26dfb951dbe284a0d2fba7ae2b8e61fde",
+    "images": [],
+    "thumbnail": {
+      "prompt": "CERAWeek 2026 요약 | 에너지 전환보다 먼저 온 에너지 안보와 AI 전력 병목 블로그 썸네일 만들어줘",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/output/pdf/assets/naver-thumbnail.png",
+      "sha256": "b8480bdb5ea820f1a8f3a31077f6761b24512b3d13d98c3a587a76fec577b3cf",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-04T07:53:07.347Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-04T07:58:15.152Z",
+    "expiresAt": "2026-07-04T08:28:15.152Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/output/pdf/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "b72e6d74b6821299de4a456a4953e317af41410c686c4350b65582239d232c94",
+    "approvalTokenHash": "daf4702c4343035058af18e8a21f0c93b096ad3223a78b81609f72b5b5bd4275",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

@@ -1,0 +1,79 @@
+{
+  "passed": true,
+  "timestamp": "2026-07-03T14:06:37.812Z",
+  "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/제닉/memo.md",
+  "checks": [
+    {
+      "id": "required-sections",
+      "severity": "error",
+      "passed": true,
+      "message": "All 16 required sections present",
+      "details": {
+        "missing": []
+      }
+    },
+    {
+      "id": "base-date-present",
+      "severity": "error",
+      "passed": true,
+      "message": "기준일 found: 기준일: 2026-07-03"
+    },
+    {
+      "id": "base-date-staleness",
+      "severity": "warn",
+      "passed": true,
+      "message": "기준일 is 0 days old (within 14-day window)"
+    },
+    {
+      "id": "no-empty-sections",
+      "severity": "warn",
+      "passed": true,
+      "message": "No empty sections",
+      "details": {
+        "emptySections": []
+      }
+    },
+    {
+      "id": "chart-pngs-exist",
+      "severity": "error",
+      "passed": true,
+      "message": "All 6 image references resolve",
+      "details": {
+        "total": 6,
+        "missing": []
+      }
+    },
+    {
+      "id": "dart-recheck-table",
+      "severity": "warn",
+      "passed": true,
+      "message": "DART Recheck table found"
+    },
+    {
+      "id": "dart-recheck-claims",
+      "severity": "warn",
+      "passed": true,
+      "message": "6 claim(s) in DART Recheck table"
+    },
+    {
+      "id": "valuation-metrics",
+      "severity": "warn",
+      "passed": true,
+      "message": "All valuation metrics present",
+      "details": {
+        "missing": []
+      }
+    },
+    {
+      "id": "source-dates",
+      "severity": "warn",
+      "passed": true,
+      "message": "12 source date annotations found"
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "passed": 9
+  }
+}

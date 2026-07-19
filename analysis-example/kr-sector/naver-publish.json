@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/800Vdc 전력인프라.md",
+    "memoSha256": "35d64ea33b9646f597337c072e35f227e7b553471be351cd948732e039fb429d",
+    "asOfDate": "2026-06-29"
+  },
+  "post": {
+    "company": "800Vdc 전력 인프라",
+    "ticker": "",
+    "title": "800Vdc 전력 인프라 | 전압을 2배로 올리면 전류는 절반 — AI 데이터센터와 전기차를 같은 방향으로 미는 전환 | 2026-06-29",
+    "issue": "전압을 2배로 올리면 전류는 절반 — AI 데이터센터와 전기차를 같은 방향으로 미는 전환",
+    "category": null,
+    "tags": [
+      "800Vdc",
+      "AI데이터센터",
+      "전기차",
+      "SiC",
+      "GaN",
+      "전력반도체",
+      "변압기",
+      "엔비디아",
+      "테마주",
+      "주식분석"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/naver-post.md",
+    "markdownSha256": "c39a378d3d753e0967aa9e42532f9b378d6812c0758fbab9326946f183d69466",
+    "images": [],
+    "thumbnail": {
+      "prompt": "800Vdc 전력 인프라 | 전압을 2배로 올리면 전류는 절반 — AI 데이터센터와 전기차를 같은 방향으로 미는 전환 | 2026-06-29 블로그 썸네일 만들어줘",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/assets/naver-thumbnail.png",
+      "sha256": "1ce610983b33c0ff12f498cfc32c3709cea794fd0177e102b22c0f78d5df65d0",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-06-29T14:28:34.983Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-02T11:05:41.229Z",
+    "expiresAt": "2026-07-02T11:35:41.224Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "300477386ee3df6a0590f2ce62d1ba3a5c407d2ee63fd3c1af8413f02904f070",
+    "approvalTokenHash": "382d3350c830ac6db89ba4bf89c2fe501603946449ae964732ed5dbae654583c",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

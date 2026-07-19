@@ -1,0 +1,19 @@
+{
+  "company": "제닉",
+  "ticker": "123330",
+  "fetchedAt": "2026-07-03",
+  "queries": [
+    "제닉 외국계",
+    "제닉 외국계 리포트",
+    "제닉 목표주가",
+    "제닉 모건스탠리 OR 골드만 OR JP모건 OR 노무라 OR 씨티 OR UBS OR HSBC OR 맥쿼리"
+  ],
+  "coverage": [],
+  "meta": {
+    "totalArticlesInspected": 0,
+    "totalCoverageRecords": 0,
+    "fromCache": 0,
+    "errors": [],
+    "generatedBy": "kr-foreign-analyst/fetch-analyst-coverage.js"
+  }
+}

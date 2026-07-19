@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/KRX-월간전략/memo.md",
+    "memoSha256": "ef9d6a46fecf88489902743feeb8a383c77070373d4a6a28da055ef4490e2d5f",
+    "asOfDate": "2026-07-10"
+  },
+  "post": {
+    "company": "KRX 월간 팩터 포트폴리오",
+    "ticker": "KRX-FACTOR",
+    "title": "KRX 월간 팩터 포트폴리오 | 핵심 질문은 KOSPI·KOSDAQ에서 어떤 추세·재무 조합이 장기 수익률과 감내 가능한 낙폭을 함께 만들 수 있느냐이다. | 2026-07-10",
+    "issue": "핵심 질문은 KOSPI·KOSDAQ에서 어떤 추세·재무 조합이 장기 수익률과 감내 가능한 낙폭을 함께 만들 수 있느냐이다.",
+    "category": null,
+    "tags": [
+      "모멘텀전략",
+      "포트폴리오",
+      "자산관리",
+      "주식분석"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/KRX-월간전략/naver-post.md",
+    "markdownSha256": "6b3f1679415405e6a6407441d3ba954b3eff219a5398cd1b800fb937a8ef9165",
+    "images": [],
+    "thumbnail": {
+      "prompt": "KRX 월간 팩터 포트폴리오 | 핵심 질문은 KOSPI·KOSDAQ에서 어떤 추세·재무 조합이 장기 수익률과 감내 가능한 낙폭을 함께 만들 수 있느냐이다. | 2026-07-10 블로그 썸네일 만들어줘",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/KRX-월간전략/assets/naver-thumbnail.png",
+      "sha256": "451b565bf733d1c26e441dcdfbb7fd16e845314a01311f5921afdae92c6a4e83",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-12T12:20:39.415Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-12T13:20:25.472Z",
+    "expiresAt": "2026-07-12T13:50:25.471Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/KRX-월간전략/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "f5a2683e168c028dc38460fa1e9490c60cc0b613a3fa83d1233dae5fba25b9ae",
+    "approvalTokenHash": "156a27c255ff40bd375f8b12752fca3568737d589d35da403867c573a1734c36",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

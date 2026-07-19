@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/smr/haleu-triso.md",
+    "memoSha256": "aedea53be698e937de3d7173364b6618efc3c6021bce8146b53755b2422cdfa9",
+    "asOfDate": "2026-07-04"
+  },
+  "post": {
+    "company": "SMR",
+    "ticker": "",
+    "title": "SMR 3편 | HALEU와 TRISO: 작은 원전의 진짜 병목은 연료다",
+    "issue": "HALEU와 TRISO 연료 병목",
+    "category": null,
+    "tags": [
+      "SMR",
+      "소형모듈원자로",
+      "HALEU",
+      "TRISO",
+      "원전연료",
+      "Xenergy",
+      "TerraPower",
+      "KairosPower",
+      "두산에너빌리티",
+      "주식분석"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/smr/naver-post-haleu-triso.md",
+    "markdownSha256": "af12dafbfad0309de15ec2500d49f88b4cf013870be805e21a6ef198f45e8764",
+    "images": [],
+    "thumbnail": {
+      "prompt": "SMR 3편 | HALEU와 TRISO: 작은 원전의 진짜 병목은 연료다 블로그 썸네일 만들어줘",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/smr/assets/naver-thumbnail.png",
+      "sha256": "ca7ba1ddf21bc160324b6a71d7262d41ad4cdd14c108b029ab55e58a9ac6318d",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-04T07:29:45.993Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-04T07:29:52.653Z",
+    "expiresAt": "2026-07-04T07:59:52.653Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/smr/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "10cfe3d63b59e5ecc3fd77ba1298833dbec7d95a8594126e0ff7766076c2a728",
+    "approvalTokenHash": "0d6f0178b47e44a49a0a41f8851004e080fa17e91dace495f2d4aa58ca5c5c26",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

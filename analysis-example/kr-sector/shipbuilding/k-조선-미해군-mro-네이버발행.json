@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/k-조선-미해군-mro-네이버초안.md",
+    "memoSha256": "8daeb48745cf315c50d3485e950bef7c86905249f01d350345ce9d1c374f65df",
+    "asOfDate": "2026-07-16"
+  },
+  "post": {
+    "company": "K-조선 미 해군 MRO",
+    "ticker": "",
+    "title": "K-조선 미 해군 MRO | 미 해군 MRO가 조선사의 연결 실적을 바꿀 만큼 수익성이 큰가 | 2026-07-16",
+    "issue": "미 해군 MRO가 조선사의 연결 실적을 바꿀 만큼 수익성이 큰가",
+    "category": null,
+    "tags": [
+      "K조선",
+      "미해군MRO",
+      "한화오션",
+      "HD현대중공업",
+      "조선주",
+      "특수선"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/k-조선-미해군-mro-네이버포스트.md",
+    "markdownSha256": "5a9a924e5d4b977f48b2330110d37211a499c3294c39c09e512b4df2f41037ad",
+    "images": [],
+    "thumbnail": {
+      "prompt": "K-조선 미 해군 MRO | 미 해군 MRO가 조선사의 연결 실적을 바꿀 만큼 수익성이 큰가 | 2026-07-16 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/assets/naver-thumbnail.png",
+      "sha256": "e6907e9715be2be4294c3ac6c9da8b0c5ebd0c3706f02d045668ebced47bd419",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-15T15:15:32.200Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-15T15:16:12.056Z",
+    "expiresAt": "2026-07-15T15:46:12.056Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/shipbuilding/k-조선-미해군-mro-네이버미리보기.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "2d8aca0ab9d6411966c9381ffa462dec848b85a81e917831c04bd8ace5d8f8f8",
+    "approvalTokenHash": "0157d5c003985214564df1f68475a3c6d368dabee9a0111f095f5350cfce3219",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

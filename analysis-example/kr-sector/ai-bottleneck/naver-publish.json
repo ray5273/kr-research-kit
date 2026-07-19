@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/# [리포트 분석] AI 인프라 2막의 병목 — \"다음 알파는 GPU 옆",
+    "memoSha256": "20f08677d6f262c23a82893a6b428f8c9be1901d8374f40aa5f2838c73c14c31",
+    "asOfDate": "2026-07-02"
+  },
+  "post": {
+    "company": "AI 인프라",
+    "ticker": "",
+    "title": "[리포트 분석] AI 인프라 2막의 병목 — 다음 알파는 GPU 아래에서 나온다",
+    "issue": "미래에셋 AI Bottleneck Issue 리포트 분석",
+    "category": null,
+    "tags": [
+      "AI인프라",
+      "AI병목",
+      "미래에셋증권",
+      "전력반도체",
+      "CPO",
+      "NPO",
+      "InP",
+      "패키징",
+      "반도체",
+      "주식분석"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/ai-bottleneck/naver-post.md",
+    "markdownSha256": "c43bc98191821b930af7cbdfed9fb23f9e33e9fc348c9ea7609678d0f9b2d841",
+    "images": [],
+    "thumbnail": {
+      "prompt": "[리포트 분석] AI 인프라 2막의 병목 — 다음 알파는 GPU 아래에서 나온다 블로그 썸네일 만들어줘",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/ai-bottleneck/assets/naver-thumbnail.png",
+      "sha256": "d1fa42030d2152b3a06e9f556577430ce8ab7b3e8a04641cdbce342609cd8dc2",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-02T11:11:30.483Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-02T11:15:02.106Z",
+    "expiresAt": "2026-07-02T11:45:02.105Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-sector/ai-bottleneck/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "ebce49efddd4f0376e21ead6cc0d80b31aa3bfc44ece72bb75856ea9f6431399",
+    "approvalTokenHash": "14436308f26966889d90afe55bb9a9d012913bb6e7e1374e424c0189eb9ed030",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}
