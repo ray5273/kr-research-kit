@@ -1,5 +1,10 @@
 # AGENTS
 
+## External Agent Targets
+
+- A request referring to the **Hermes agent** means the remote Hermes runtime at `sanghyeok@192.168.50.252` unless the user explicitly names another target.
+- Inspect the remote runtime and its active configuration before changing Hermes behavior. Keep source and the installed `~/.hermes` runtime copy aligned when a scheduled Hermes script is changed.
+
 ## Repository Rules
 
 - When you add or update a stock analysis example, keep it under `analysis-example/<market>/<company>/`.
