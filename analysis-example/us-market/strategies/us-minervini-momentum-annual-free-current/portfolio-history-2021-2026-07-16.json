@@ -1,0 +1,901 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-17T04:24:16.245Z",
+  "strategy": "Weekly Minervini trend template + 3/6/12-month price RS; top 10 equal target weights; SPY 200-day +/-3% hysteresis; 60-day 18% volatility cap; next adjusted open; 10bp one-way cost",
+  "universe": "Supplied market-cap Top 500 of year t, applied during year t+1",
+  "snapshots": [
+    {
+      "year": "2021",
+      "signalDate": "2021-12-30",
+      "executionDate": "2021-12-31",
+      "regime": true,
+      "sourceRankingYear": "2020",
+      "holdings": [
+        {
+          "year": "2021",
+          "signalDate": "2021-12-30",
+          "executionDate": "2021-12-31",
+          "regime": true,
+          "momentumRank": 1,
+          "ticker": "ON",
+          "company": "ON Semiconductor Corporation",
+          "score": 1,
+          "sourceRankingYear": "2020",
+          "sourceMarketCapRank": 483
+        },
+        {
+          "year": "2021",
+          "signalDate": "2021-12-30",
+          "executionDate": "2021-12-31",
+          "regime": true,
+          "momentumRank": 2,
+          "ticker": "ANET",
+          "company": "Arista Networks, Inc.",
+          "score": 0.9943181818181818,
+          "sourceRankingYear": "2020",
+          "sourceMarketCapRank": 324
+        },
+        {
+          "year": "2021",
+          "signalDate": "2021-12-30",
+          "executionDate": "2021-12-31",
+          "regime": true,
+          "momentumRank": 3,
+          "ticker": "F",
+          "company": "Ford Motor Company",
+          "score": 0.9886363636363636,
+          "sourceRankingYear": "2020",
+          "sourceMarketCapRank": 211
+        },
+        {
+          "year": "2021",
+          "signalDate": "2021-12-30",
+          "executionDate": "2021-12-31",
+          "regime": true,
+          "momentumRank": 4,
+          "ticker": "NVDA",
+          "company": "NVIDIA Corporation",
+          "score": 0.9829545454545454,
+          "sourceRankingYear": "2020",
+          "sourceMarketCapRank": 12
+        },
+        {
+          "year": "2021",
+          "signalDate": "2021-12-30",
+          "executionDate": "2021-12-31",
+          "regime": true,
+          "momentumRank": 5,
+          "ticker": "FTNT",
+          "company": "Fortinet, Inc.",
+          "score": 0.9772727272727273,
+          "sourceRankingYear": "2020",
+          "sourceMarketCapRank": 303
+        },
+        {
+          "year": "2021",
+          "signalDate": "2021-12-30",
+          "executionDate": "2021-12-31",
+          "regime": true,
+          "momentumRank": 6,
+          "ticker": "MRVL",
+          "company": "Marvell Technology, Inc.",
+          "score": 0.9715909090909091,
+          "sourceRankingYear": "2020",
+          "sourceMarketCapRank": 234
+        },
+        {
+          "year": "2021",
+          "signalDate": "2021-12-30",
+          "executionDate": "2021-12-31",
+          "regime": true,
+          "momentumRank": 7,
+          "ticker": "EXR",
+          "company": "Extra Space Storage Inc.",
+          "score": 0.9659090909090909,
+          "sourceRankingYear": "2020",
+          "sourceMarketCapRank": 297
+        },
+        {
+          "year": "2021",
+          "signalDate": "2021-12-30",
+          "executionDate": "2021-12-31",
+          "regime": true,
+          "momentumRank": 8,
+          "ticker": "DDOG",
+          "company": "Datadog, Inc.",
+          "score": 0.9602272727272727,
+          "sourceRankingYear": "2020",
+          "sourceMarketCapRank": 214
+        },
+        {
+          "year": "2021",
+          "signalDate": "2021-12-30",
+          "executionDate": "2021-12-31",
+          "regime": true,
+          "momentumRank": 9,
+          "ticker": "AMD",
+          "company": "Advanced Micro Devices, Inc.",
+          "score": 0.9545454545454546,
+          "sourceRankingYear": "2020",
+          "sourceMarketCapRank": 46
+        },
+        {
+          "year": "2021",
+          "signalDate": "2021-12-30",
+          "executionDate": "2021-12-31",
+          "regime": true,
+          "momentumRank": 10,
+          "ticker": "PFE",
+          "company": "Pfizer Inc.",
+          "score": 0.9488636363636364,
+          "sourceRankingYear": "2020",
+          "sourceMarketCapRank": 25
+        }
+      ]
+    },
+    {
+      "year": "2022",
+      "signalDate": "2022-12-28",
+      "executionDate": "2022-12-29",
+      "regime": false,
+      "sourceRankingYear": "2021",
+      "holdings": []
+    },
+    {
+      "year": "2023",
+      "signalDate": "2023-12-27",
+      "executionDate": "2023-12-28",
+      "regime": true,
+      "sourceRankingYear": "2022",
+      "holdings": [
+        {
+          "year": "2023",
+          "signalDate": "2023-12-27",
+          "executionDate": "2023-12-28",
+          "regime": true,
+          "momentumRank": 1,
+          "ticker": "CRWD",
+          "company": "CrowdStrike Holdings, Inc.",
+          "score": 1,
+          "sourceRankingYear": "2022",
+          "sourceMarketCapRank": 194
+        },
+        {
+          "year": "2023",
+          "signalDate": "2023-12-27",
+          "executionDate": "2023-12-28",
+          "regime": true,
+          "momentumRank": 2,
+          "ticker": "SNAP",
+          "company": "Snap Inc.",
+          "score": 0.9924242424242424,
+          "sourceRankingYear": "2022",
+          "sourceMarketCapRank": 441
+        },
+        {
+          "year": "2023",
+          "signalDate": "2023-12-27",
+          "executionDate": "2023-12-28",
+          "regime": true,
+          "momentumRank": 3,
+          "ticker": "NVDA",
+          "company": "NVIDIA Corporation",
+          "score": 0.9848484848484849,
+          "sourceRankingYear": "2022",
+          "sourceMarketCapRank": 16
+        },
+        {
+          "year": "2023",
+          "signalDate": "2023-12-27",
+          "executionDate": "2023-12-28",
+          "regime": true,
+          "momentumRank": 4,
+          "ticker": "META",
+          "company": "Meta Platforms, Inc.",
+          "score": 0.9772727272727273,
+          "sourceRankingYear": "2022",
+          "sourceMarketCapRank": 18
+        },
+        {
+          "year": "2023",
+          "signalDate": "2023-12-27",
+          "executionDate": "2023-12-28",
+          "regime": true,
+          "momentumRank": 5,
+          "ticker": "UBER",
+          "company": "Uber Technologies, Inc.",
+          "score": 0.9696969696969697,
+          "sourceRankingYear": "2022",
+          "sourceMarketCapRank": 152
+        },
+        {
+          "year": "2023",
+          "signalDate": "2023-12-27",
+          "executionDate": "2023-12-28",
+          "regime": true,
+          "momentumRank": 6,
+          "ticker": "RCL",
+          "company": "Royal Caribbean Cruises Ltd.",
+          "score": 0.9621212121212122,
+          "sourceRankingYear": "2022",
+          "sourceMarketCapRank": 472
+        },
+        {
+          "year": "2023",
+          "signalDate": "2023-12-27",
+          "executionDate": "2023-12-28",
+          "regime": true,
+          "momentumRank": 7,
+          "ticker": "ZS",
+          "company": "Zscaler, Inc.",
+          "score": 0.9545454545454546,
+          "sourceRankingYear": "2022",
+          "sourceMarketCapRank": 308
+        },
+        {
+          "year": "2023",
+          "signalDate": "2023-12-27",
+          "executionDate": "2023-12-28",
+          "regime": true,
+          "momentumRank": 8,
+          "ticker": "AMD",
+          "company": "Advanced Micro Devices, Inc.",
+          "score": 0.946969696969697,
+          "sourceRankingYear": "2022",
+          "sourceMarketCapRank": 74
+        },
+        {
+          "year": "2023",
+          "signalDate": "2023-12-27",
+          "executionDate": "2023-12-28",
+          "regime": true,
+          "momentumRank": 9,
+          "ticker": "SHOP",
+          "company": "Shopify Inc.",
+          "score": 0.9393939393939394,
+          "sourceRankingYear": "2022",
+          "sourceMarketCapRank": 172
+        },
+        {
+          "year": "2023",
+          "signalDate": "2023-12-27",
+          "executionDate": "2023-12-28",
+          "regime": true,
+          "momentumRank": 10,
+          "ticker": "INTC",
+          "company": "Intel Corporation",
+          "score": 0.9318181818181818,
+          "sourceRankingYear": "2022",
+          "sourceMarketCapRank": 53
+        }
+      ]
+    },
+    {
+      "year": "2024",
+      "signalDate": "2024-12-24",
+      "executionDate": "2024-12-26",
+      "regime": true,
+      "sourceRankingYear": "2023",
+      "holdings": [
+        {
+          "year": "2024",
+          "signalDate": "2024-12-24",
+          "executionDate": "2024-12-26",
+          "regime": true,
+          "momentumRank": 1,
+          "ticker": "MSTR",
+          "company": "Strategy Inc",
+          "score": 1,
+          "sourceRankingYear": "2023",
+          "sourceMarketCapRank": 369
+        },
+        {
+          "year": "2024",
+          "signalDate": "2024-12-24",
+          "executionDate": "2024-12-26",
+          "regime": true,
+          "momentumRank": 2,
+          "ticker": "PLTR",
+          "company": "Palantir Technologies Inc.",
+          "score": 0.9903846153846154,
+          "sourceRankingYear": "2023",
+          "sourceMarketCapRank": 218
+        },
+        {
+          "year": "2024",
+          "signalDate": "2024-12-24",
+          "executionDate": "2024-12-26",
+          "regime": true,
+          "momentumRank": 3,
+          "ticker": "INVUP",
+          "company": "Investview, Inc.",
+          "score": 0.9807692307692307,
+          "sourceRankingYear": "2023",
+          "sourceMarketCapRank": 479
+        },
+        {
+          "year": "2024",
+          "signalDate": "2024-12-24",
+          "executionDate": "2024-12-26",
+          "regime": true,
+          "momentumRank": 4,
+          "ticker": "FREJP",
+          "company": "Federal Home Loan Mortgage Corporation PFD 5.30%",
+          "score": 0.9711538461538461,
+          "sourceRankingYear": "2023",
+          "sourceMarketCapRank": 473
+        },
+        {
+          "year": "2024",
+          "signalDate": "2024-12-24",
+          "executionDate": "2024-12-26",
+          "regime": true,
+          "momentumRank": 5,
+          "ticker": "AXON",
+          "company": "Axon Enterprise, Inc.",
+          "score": 0.9615384615384616,
+          "sourceRankingYear": "2023",
+          "sourceMarketCapRank": 374
+        },
+        {
+          "year": "2024",
+          "signalDate": "2024-12-24",
+          "executionDate": "2024-12-26",
+          "regime": true,
+          "momentumRank": 6,
+          "ticker": "TSLA",
+          "company": "Tesla, Inc.",
+          "score": 0.9519230769230769,
+          "sourceRankingYear": "2023",
+          "sourceMarketCapRank": 6
+        },
+        {
+          "year": "2024",
+          "signalDate": "2024-12-24",
+          "executionDate": "2024-12-26",
+          "regime": true,
+          "momentumRank": 7,
+          "ticker": "MRVL",
+          "company": "Marvell Technology, Inc.",
+          "score": 0.9423076923076923,
+          "sourceRankingYear": "2023",
+          "sourceMarketCapRank": 224
+        },
+        {
+          "year": "2024",
+          "signalDate": "2024-12-24",
+          "executionDate": "2024-12-26",
+          "regime": true,
+          "momentumRank": 8,
+          "ticker": "AVGO",
+          "company": "Broadcom Inc.",
+          "score": 0.9326923076923077,
+          "sourceRankingYear": "2023",
+          "sourceMarketCapRank": 17
+        },
+        {
+          "year": "2024",
+          "signalDate": "2024-12-24",
+          "executionDate": "2024-12-26",
+          "regime": true,
+          "momentumRank": 9,
+          "ticker": "NVDA",
+          "company": "NVIDIA Corporation",
+          "score": 0.9230769230769231,
+          "sourceRankingYear": "2023",
+          "sourceMarketCapRank": 5
+        },
+        {
+          "year": "2024",
+          "signalDate": "2024-12-24",
+          "executionDate": "2024-12-26",
+          "regime": true,
+          "momentumRank": 10,
+          "ticker": "AFRM",
+          "company": "Affirm Holdings, Inc.",
+          "score": 0.9134615384615384,
+          "sourceRankingYear": "2023",
+          "sourceMarketCapRank": 450
+        }
+      ]
+    },
+    {
+      "year": "2025",
+      "signalDate": "2025-12-24",
+      "executionDate": "2025-12-26",
+      "regime": true,
+      "sourceRankingYear": "2024",
+      "holdings": [
+        {
+          "year": "2025",
+          "signalDate": "2025-12-24",
+          "executionDate": "2025-12-26",
+          "regime": true,
+          "momentumRank": 1,
+          "ticker": "WDC",
+          "company": "Western Digital Corporation",
+          "score": 1,
+          "sourceRankingYear": "2024",
+          "sourceMarketCapRank": 409
+        },
+        {
+          "year": "2025",
+          "signalDate": "2025-12-24",
+          "executionDate": "2025-12-26",
+          "regime": true,
+          "momentumRank": 2,
+          "ticker": "MU",
+          "company": "Micron Technology, Inc.",
+          "score": 0.9929078014184397,
+          "sourceRankingYear": "2024",
+          "sourceMarketCapRank": 90
+        },
+        {
+          "year": "2025",
+          "signalDate": "2025-12-24",
+          "executionDate": "2025-12-26",
+          "regime": true,
+          "momentumRank": 3,
+          "ticker": "WBD",
+          "company": "Warner Bros. Discovery, Inc.",
+          "score": 0.9858156028368794,
+          "sourceRankingYear": "2024",
+          "sourceMarketCapRank": 354
+        },
+        {
+          "year": "2025",
+          "signalDate": "2025-12-24",
+          "executionDate": "2025-12-26",
+          "regime": true,
+          "momentumRank": 4,
+          "ticker": "STX",
+          "company": "Seagate Technology Holdings plc",
+          "score": 0.9787234042553191,
+          "sourceRankingYear": "2024",
+          "sourceMarketCapRank": 439
+        },
+        {
+          "year": "2025",
+          "signalDate": "2025-12-24",
+          "executionDate": "2025-12-26",
+          "regime": true,
+          "momentumRank": 5,
+          "ticker": "COHR",
+          "company": "Coherent Corp.",
+          "score": 0.9716312056737588,
+          "sourceRankingYear": "2024",
+          "sourceMarketCapRank": 467
+        },
+        {
+          "year": "2025",
+          "signalDate": "2025-12-24",
+          "executionDate": "2025-12-26",
+          "regime": true,
+          "momentumRank": 6,
+          "ticker": "NEM",
+          "company": "Newmont Corporation",
+          "score": 0.9645390070921985,
+          "sourceRankingYear": "2024",
+          "sourceMarketCapRank": 251
+        },
+        {
+          "year": "2025",
+          "signalDate": "2025-12-24",
+          "executionDate": "2025-12-26",
+          "regime": true,
+          "momentumRank": 7,
+          "ticker": "LRCX",
+          "company": "Lam Research Corporation",
+          "score": 0.9574468085106383,
+          "sourceRankingYear": "2024",
+          "sourceMarketCapRank": 108
+        },
+        {
+          "year": "2025",
+          "signalDate": "2025-12-24",
+          "executionDate": "2025-12-26",
+          "regime": true,
+          "momentumRank": 8,
+          "ticker": "TER",
+          "company": "Teradyne, Inc.",
+          "score": 0.950354609929078,
+          "sourceRankingYear": "2024",
+          "sourceMarketCapRank": 431
+        },
+        {
+          "year": "2025",
+          "signalDate": "2025-12-24",
+          "executionDate": "2025-12-26",
+          "regime": true,
+          "momentumRank": 9,
+          "ticker": "APP",
+          "company": "AppLovin Corporation",
+          "score": 0.9432624113475178,
+          "sourceRankingYear": "2024",
+          "sourceMarketCapRank": 93
+        },
+        {
+          "year": "2025",
+          "signalDate": "2025-12-24",
+          "executionDate": "2025-12-26",
+          "regime": true,
+          "momentumRank": 10,
+          "ticker": "MDB",
+          "company": "MongoDB, Inc.",
+          "score": 0.9361702127659575,
+          "sourceRankingYear": "2024",
+          "sourceMarketCapRank": 402
+        }
+      ]
+    },
+    {
+      "year": "2026",
+      "signalDate": "2026-07-13",
+      "executionDate": "2026-07-14",
+      "regime": true,
+      "sourceRankingYear": "2025",
+      "holdings": [
+        {
+          "year": "2026",
+          "signalDate": "2026-07-13",
+          "executionDate": "2026-07-14",
+          "regime": true,
+          "momentumRank": 1,
+          "ticker": "MU",
+          "company": "Micron Technology, Inc.",
+          "score": 1,
+          "sourceRankingYear": "2025",
+          "sourceMarketCapRank": 38
+        },
+        {
+          "year": "2026",
+          "signalDate": "2026-07-13",
+          "executionDate": "2026-07-14",
+          "regime": true,
+          "momentumRank": 2,
+          "ticker": "DELL",
+          "company": "Dell Technologies Inc.",
+          "score": 0.99,
+          "sourceRankingYear": "2025",
+          "sourceMarketCapRank": 104
+        },
+        {
+          "year": "2026",
+          "signalDate": "2026-07-13",
+          "executionDate": "2026-07-14",
+          "regime": true,
+          "momentumRank": 3,
+          "ticker": "AMD",
+          "company": "Advanced Micro Devices, Inc.",
+          "score": 0.98,
+          "sourceRankingYear": "2025",
+          "sourceMarketCapRank": 24
+        },
+        {
+          "year": "2026",
+          "signalDate": "2026-07-13",
+          "executionDate": "2026-07-14",
+          "regime": true,
+          "momentumRank": 4,
+          "ticker": "HPE",
+          "company": "Hewlett Packard Enterprise Company",
+          "score": 0.97,
+          "sourceRankingYear": "2025",
+          "sourceMarketCapRank": 334
+        },
+        {
+          "year": "2026",
+          "signalDate": "2026-07-13",
+          "executionDate": "2026-07-14",
+          "regime": true,
+          "momentumRank": 5,
+          "ticker": "AMAT",
+          "company": "Applied Materials, Inc.",
+          "score": 0.96,
+          "sourceRankingYear": "2025",
+          "sourceMarketCapRank": 57
+        },
+        {
+          "year": "2026",
+          "signalDate": "2026-07-13",
+          "executionDate": "2026-07-14",
+          "regime": true,
+          "momentumRank": 6,
+          "ticker": "CRDO",
+          "company": "Credo Technology Group Holding Ltd",
+          "score": 0.95,
+          "sourceRankingYear": "2025",
+          "sourceMarketCapRank": 311
+        },
+        {
+          "year": "2026",
+          "signalDate": "2026-07-13",
+          "executionDate": "2026-07-14",
+          "regime": true,
+          "momentumRank": 7,
+          "ticker": "FTNT",
+          "company": "Fortinet, Inc.",
+          "score": 0.94,
+          "sourceRankingYear": "2025",
+          "sourceMarketCapRank": 193
+        },
+        {
+          "year": "2026",
+          "signalDate": "2026-07-13",
+          "executionDate": "2026-07-14",
+          "regime": true,
+          "momentumRank": 8,
+          "ticker": "CNC",
+          "company": "Centene Corporation",
+          "score": 0.93,
+          "sourceRankingYear": "2025",
+          "sourceMarketCapRank": 460
+        },
+        {
+          "year": "2026",
+          "signalDate": "2026-07-13",
+          "executionDate": "2026-07-14",
+          "regime": true,
+          "momentumRank": 9,
+          "ticker": "TWLO",
+          "company": "Twilio Inc.",
+          "score": 0.92,
+          "sourceRankingYear": "2025",
+          "sourceMarketCapRank": 442
+        },
+        {
+          "year": "2026",
+          "signalDate": "2026-07-13",
+          "executionDate": "2026-07-14",
+          "regime": true,
+          "momentumRank": 10,
+          "ticker": "NTAP",
+          "company": "NetApp, Inc.",
+          "score": 0.91,
+          "sourceRankingYear": "2025",
+          "sourceMarketCapRank": 423
+        }
+      ]
+    }
+  ],
+  "currentTop30": [
+    {
+      "momentumRank": 1,
+      "ticker": "MU",
+      "company": "Micron Technology, Inc.",
+      "score": 1,
+      "sourceMarketCapRank": 38
+    },
+    {
+      "momentumRank": 2,
+      "ticker": "DELL",
+      "company": "Dell Technologies Inc.",
+      "score": 0.99,
+      "sourceMarketCapRank": 104
+    },
+    {
+      "momentumRank": 3,
+      "ticker": "AMD",
+      "company": "Advanced Micro Devices, Inc.",
+      "score": 0.98,
+      "sourceMarketCapRank": 24
+    },
+    {
+      "momentumRank": 4,
+      "ticker": "HPE",
+      "company": "Hewlett Packard Enterprise Company",
+      "score": 0.97,
+      "sourceMarketCapRank": 334
+    },
+    {
+      "momentumRank": 5,
+      "ticker": "AMAT",
+      "company": "Applied Materials, Inc.",
+      "score": 0.96,
+      "sourceMarketCapRank": 57
+    },
+    {
+      "momentumRank": 6,
+      "ticker": "CRDO",
+      "company": "Credo Technology Group Holding Ltd",
+      "score": 0.95,
+      "sourceMarketCapRank": 311
+    },
+    {
+      "momentumRank": 7,
+      "ticker": "FTNT",
+      "company": "Fortinet, Inc.",
+      "score": 0.94,
+      "sourceMarketCapRank": 193
+    },
+    {
+      "momentumRank": 8,
+      "ticker": "CNC",
+      "company": "Centene Corporation",
+      "score": 0.93,
+      "sourceMarketCapRank": 460
+    },
+    {
+      "momentumRank": 9,
+      "ticker": "TWLO",
+      "company": "Twilio Inc.",
+      "score": 0.92,
+      "sourceMarketCapRank": 442
+    },
+    {
+      "momentumRank": 10,
+      "ticker": "NTAP",
+      "company": "NetApp, Inc.",
+      "score": 0.91,
+      "sourceMarketCapRank": 423
+    },
+    {
+      "momentumRank": 11,
+      "ticker": "CAT",
+      "company": "Caterpillar Inc.",
+      "score": 0.9,
+      "sourceMarketCapRank": 36
+    },
+    {
+      "momentumRank": 12,
+      "ticker": "CSCO",
+      "company": "Cisco Systems, Inc.",
+      "score": 0.89,
+      "sourceMarketCapRank": 32
+    },
+    {
+      "momentumRank": 13,
+      "ticker": "ILMN",
+      "company": "Illumina, Inc.",
+      "score": 0.88,
+      "sourceMarketCapRank": 451
+    },
+    {
+      "momentumRank": 14,
+      "ticker": "VLO",
+      "company": "Valero Energy Corporation",
+      "score": 0.87,
+      "sourceMarketCapRank": 228
+    },
+    {
+      "momentumRank": 15,
+      "ticker": "MPC",
+      "company": "Marathon Petroleum Corporation",
+      "score": 0.86,
+      "sourceMarketCapRank": 232
+    },
+    {
+      "momentumRank": 16,
+      "ticker": "GEV",
+      "company": "GE Vernova Inc.",
+      "score": 0.85,
+      "sourceMarketCapRank": 59
+    },
+    {
+      "momentumRank": 17,
+      "ticker": "JBHT",
+      "company": "J.B. Hunt Transport Services, Inc.",
+      "score": 0.84,
+      "sourceMarketCapRank": 494
+    },
+    {
+      "momentumRank": 18,
+      "ticker": "TRGP",
+      "company": "Targa Resources Corp.",
+      "score": 0.83,
+      "sourceMarketCapRank": 277
+    },
+    {
+      "momentumRank": 19,
+      "ticker": "ANET",
+      "company": "Arista Networks, Inc.",
+      "score": 0.82,
+      "sourceMarketCapRank": 67
+    },
+    {
+      "momentumRank": 20,
+      "ticker": "CVS",
+      "company": "CVS Health Corporation",
+      "score": 0.81,
+      "sourceMarketCapRank": 113
+    },
+    {
+      "momentumRank": 21,
+      "ticker": "CHRW",
+      "company": "C.H. Robinson Worldwide, Inc.",
+      "score": 0.8,
+      "sourceMarketCapRank": 483
+    },
+    {
+      "momentumRank": 22,
+      "ticker": "WST",
+      "company": "West Pharmaceutical Services, Inc.",
+      "score": 0.79,
+      "sourceMarketCapRank": 469
+    },
+    {
+      "momentumRank": 23,
+      "ticker": "STT",
+      "company": "State Street Corporation",
+      "score": 0.78,
+      "sourceMarketCapRank": 304
+    },
+    {
+      "momentumRank": 24,
+      "ticker": "NTRA",
+      "company": "Natera, Inc.",
+      "score": 0.77,
+      "sourceMarketCapRank": 332
+    },
+    {
+      "momentumRank": 25,
+      "ticker": "IBKR",
+      "company": "Interactive Brokers Group, Inc.",
+      "score": 0.76,
+      "sourceMarketCapRank": 353
+    },
+    {
+      "momentumRank": 26,
+      "ticker": "CASY",
+      "company": "Casey's General Stores, Inc.",
+      "score": 0.75,
+      "sourceMarketCapRank": 482
+    },
+    {
+      "momentumRank": 27,
+      "ticker": "MNST",
+      "company": "Monster Beverage Corporation",
+      "score": 0.74,
+      "sourceMarketCapRank": 156
+    },
+    {
+      "momentumRank": 28,
+      "ticker": "PSX",
+      "company": "Phillips 66",
+      "score": 0.73,
+      "sourceMarketCapRank": 219
+    },
+    {
+      "momentumRank": 29,
+      "ticker": "CSX",
+      "company": "CSX Corporation",
+      "score": 0.72,
+      "sourceMarketCapRank": 173
+    },
+    {
+      "momentumRank": 30,
+      "ticker": "ADM",
+      "company": "Archer-Daniels-Midland Company",
+      "score": 0.71,
+      "sourceMarketCapRank": 366
+    }
+  ],
+  "annualPerformance": [
+    {
+      "year": "2021",
+      "strategyReturn": 0.1272306870637845,
+      "spyReturn": 0.30505482902418546
+    },
+    {
+      "year": "2022",
+      "strategyReturn": -0.01860427516313623,
+      "spyReturn": -0.18646389437380761
+    },
+    {
+      "year": "2023",
+      "strategyReturn": 0.1078286831814752,
+      "spyReturn": 0.26709231405918654
+    },
+    {
+      "year": "2024",
+      "strategyReturn": 0.40758725183576194,
+      "spyReturn": 0.2558927904737054
+    },
+    {
+      "year": "2025",
+      "strategyReturn": 0.16118986328338747,
+      "spyReturn": 0.1800900577179798
+    }
+  ],
+  "currentDataWarning": "STX cache ends 2025-12-31; 2026 realized performance and final weights are excluded. The latest 2026 signal candidates all have price data through 2026-07-16."
+}

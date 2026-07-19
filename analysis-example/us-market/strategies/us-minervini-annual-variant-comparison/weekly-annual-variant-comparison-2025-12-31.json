@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-17T04:05:35.199Z",
+  "method": {
+    "period": "2021-01-04 to 2025-12-31",
+    "oos": "2024-01-02 to 2025-12-31",
+    "universe": "Supplied year t market-cap Top 500 applied to year t+1; free-data cached partial sample",
+    "commonRules": "Minervini template, top 10 equal weight, next adjusted open execution, 10bp one-way cost, 60-day 18% volatility cap"
+  },
+  "benchmark": {
+    "fullPeriod": {
+      "startEquity": 1000000,
+      "endEquity": 1980847.2937239935,
+      "totalReturn": 0.9808472937239934,
+      "cagr": 0.14685545941404055,
+      "annualizedVolatility": 0.17111020370163568,
+      "sharpeZeroRf": 0.8882807611288439,
+      "maxDrawdown": -0.24496388734674468,
+      "sessions": 1255
+    },
+    "outOfSample": {
+      "startEquity": 1339835.7700352722,
+      "endEquity": 1980847.2937239935,
+      "totalReturn": 0.4784254443899838,
+      "cagr": 0.216394380002922,
+      "annualizedVolatility": 0.16377633765579858,
+      "sharpeZeroRf": 1.282384171024292,
+      "maxDrawdown": -0.18755226260622682,
+      "sessions": 502
+    }
+  },
+  "variants": [
+    {
+      "name": "모멘텀 + 레짐",
+      "source": "us-minervini-momentum-annual-free-partial/weekly-annual-ranked-price-only-free-partial-2025-12-31.json",
+      "fullCagr": 0.13899220931770984,
+      "fullVol": 0.21666753155195267,
+      "fullSharpe": 0.7103020344798505,
+      "fullMdd": -0.24076454525254853,
+      "oosCagr": 0.280148749810609,
+      "oosMdd": -0.24076454525254853,
+      "turnover": 92.9257293701064,
+      "trades": 2555,
+      "eligibleAverage": 124.07171314741036
+    },
+    {
+      "name": "모멘텀, 레짐 없음",
+      "source": "us-minervini-momentum-annual-free-partial/weekly-annual-ranked-price-only-always-on-free-partial-2025-12-31.json",
+      "fullCagr": 0.14587259550901654,
+      "fullVol": 0.2376392514182789,
+      "fullSharpe": 0.693174923607686,
+      "fullMdd": -0.31209578224341983,
+      "oosCagr": 0.369222758529115,
+      "oosMdd": -0.23860770762514227,
+      "turnover": 115.29508037345178,
+      "trades": 3178,
+      "eligibleAverage": 124.07171314741036
+    },
+    {
+      "name": "가격 + 공시 실적 성장 + 레짐",
+      "source": "us-minervini-earnings-regime-annual-free-partial/weekly-annual-ranked-free-partial-2025-12-31.json",
+      "fullCagr": 0.08794954063091254,
+      "fullVol": 0.19056752482220168,
+      "fullSharpe": 0.5388929065202157,
+      "fullMdd": -0.24806802292516839,
+      "oosCagr": 0.15211871713543923,
+      "oosMdd": -0.2111809584433989,
+      "turnover": 105.83604340176485,
+      "trades": 2594,
+      "eligibleAverage": 88.6812749003984
+    },
+    {
+      "name": "가격 + 퀄리티·실적 성장 + 레짐",
+      "source": "us-minervini-quality-earnings-annual-free-partial/weekly-annual-ranked-price-quality-growth-hysteresis-free-partial-2025-12-31.json",
+      "fullCagr": 0.0681522550335587,
+      "fullVol": 0.18506633005106188,
+      "fullSharpe": 0.449975182488379,
+      "fullMdd": -0.2579418675562267,
+      "oosCagr": 0.10535741750668626,
+      "oosMdd": -0.217139576335042,
+      "turnover": 104.82341973410178,
+      "trades": 2576,
+      "eligibleAverage": 84.56972111553785
+    }
+  ]
+}

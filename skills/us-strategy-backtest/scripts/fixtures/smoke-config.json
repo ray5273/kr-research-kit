@@ -1,0 +1,10 @@
+{
+  "name": "offline-and-live-smoke-momentum",
+  "strategy": { "type": "cross-sectional-momentum", "lookbackDays": 20, "topN": 2, "rebalanceEvery": 21 },
+  "startDate": "2025-01-02",
+  "outOfSampleStart": "2025-10-01",
+  "initialCapital": 100000,
+  "tradingCostBps": 10,
+  "minAdjustedClose": 5,
+  "minAverageDollarVolume": 1000000
+}

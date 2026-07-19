@@ -1,0 +1,7 @@
+{
+  "sourcePeriod": { "start": "2026-01-02", "end": "2026-01-05" },
+  "dailyEquity": [
+    { "date": "2026-01-02", "equity": 100.0 },
+    { "date": "2026-01-05", "equity": 110.0 }
+  ]
+}

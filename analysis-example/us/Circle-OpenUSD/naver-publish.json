@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us/Circle-OpenUSD/memo.md",
+    "memoSha256": "98c6b8ca053bc98725714f660d57ef0cb342ded4bbee11741b25df738bd57e37",
+    "asOfDate": "2026-06-30"
+  },
+  "post": {
+    "company": "서클(Circle) · OpenUSD",
+    "ticker": "",
+    "title": "서클(Circle) · OpenUSD | 140개 기업 컨소시엄 OpenUSD가 서클(USDC) 수익모델을 정조준했다 | 2026-06-30",
+    "issue": "140개 기업 컨소시엄 OpenUSD가 서클(USDC) 수익모델을 정조준했다",
+    "category": null,
+    "tags": [
+      "서클",
+      "Circle",
+      "CRCL",
+      "OpenUSD",
+      "스테이블코인",
+      "USDC",
+      "GENIUS법",
+      "코인베이스",
+      "크립토",
+      "주식분석"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us/Circle-OpenUSD/naver-post.md",
+    "markdownSha256": "74f5ce61c4524b63e8dafad4de6fd3a85e6a6eeed4e1956248ed4eaa2cad1399",
+    "images": [],
+    "thumbnail": {
+      "prompt": "서클(Circle) · OpenUSD | 140개 기업 컨소시엄 OpenUSD가 서클(USDC) 수익모델을 정조준했다 | 2026-06-30 블로그 썸네일 만들어줘",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us/Circle-OpenUSD/assets/naver-thumbnail.png",
+      "sha256": "44ec20ca20ee0c7018950c4300dba7b5c1dd6b829f359634fe1adcfc13fbe65f",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-01T10:48:57.802Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-01T10:50:25.199Z",
+    "expiresAt": "2026-07-01T11:20:25.199Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us/Circle-OpenUSD/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "76bdfc641e309071088cc5b5db8006af58ce876ded36b1064ca4c85ca6c03165",
+    "approvalTokenHash": "851c52d5632ea3df44dcafcde43c1a0cb3ee750f9bcd85956488d3b5035de1c1",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

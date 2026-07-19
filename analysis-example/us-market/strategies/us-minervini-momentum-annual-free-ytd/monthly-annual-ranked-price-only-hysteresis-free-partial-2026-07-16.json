@@ -1,0 +1,5819 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-17T04:34:23.285Z",
+  "provenance": {
+    "rankingFile": "us_marketcap_rankings.csv",
+    "rankingSha256": "1662a736261ab742218374ee70cc92318200a818134ecd85469a80085cd1984f",
+    "cache": ".tmp/us-strategy-backtest/2026-07-17/top500",
+    "mode": "free-annual-ranked-price-only-hysteresis-partial"
+  },
+  "cadence": "monthly",
+  "factorMode": "price-only",
+  "regimeMode": "hysteresis",
+  "sourcePeriod": {
+    "start": "2026-01-02",
+    "end": "2026-07-16"
+  },
+  "outOfSampleStart": "2026-01-02",
+  "universeCoverage": {
+    "2006": {
+      "rankedTop500": 118,
+      "usable": 118,
+      "missing": 0
+    },
+    "2010": {
+      "rankedTop500": 500,
+      "usable": 364,
+      "missing": 136
+    },
+    "2011": {
+      "rankedTop500": 500,
+      "usable": 368,
+      "missing": 132
+    },
+    "2012": {
+      "rankedTop500": 500,
+      "usable": 381,
+      "missing": 119
+    },
+    "2013": {
+      "rankedTop500": 500,
+      "usable": 384,
+      "missing": 116
+    },
+    "2014": {
+      "rankedTop500": 500,
+      "usable": 388,
+      "missing": 112
+    },
+    "2015": {
+      "rankedTop500": 500,
+      "usable": 402,
+      "missing": 98
+    },
+    "2016": {
+      "rankedTop500": 500,
+      "usable": 407,
+      "missing": 93
+    },
+    "2017": {
+      "rankedTop500": 500,
+      "usable": 426,
+      "missing": 74
+    },
+    "2018": {
+      "rankedTop500": 500,
+      "usable": 445,
+      "missing": 55
+    },
+    "2019": {
+      "rankedTop500": 500,
+      "usable": 462,
+      "missing": 38
+    },
+    "2020": {
+      "rankedTop500": 500,
+      "usable": 491,
+      "missing": 9
+    },
+    "2021": {
+      "rankedTop500": 500,
+      "usable": 493,
+      "missing": 7
+    },
+    "2022": {
+      "rankedTop500": 500,
+      "usable": 495,
+      "missing": 5
+    },
+    "2023": {
+      "rankedTop500": 500,
+      "usable": 494,
+      "missing": 6
+    },
+    "2024": {
+      "rankedTop500": 500,
+      "usable": 494,
+      "missing": 6
+    },
+    "2025": {
+      "rankedTop500": 500,
+      "usable": 473,
+      "missing": 27
+    }
+  },
+  "dailyEquity": [
+    {
+      "date": "2026-01-02",
+      "equity": 1000000,
+      "cash": 1000000,
+      "holdings": []
+    },
+    {
+      "date": "2026-01-05",
+      "equity": 989508.5543215333,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-06",
+      "equity": 1069130.2959312953,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-07",
+      "equity": 1037807.2748124546,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-08",
+      "equity": 994723.7480857056,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-09",
+      "equity": 1036440.361630133,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-12",
+      "equity": 1052972.9942107461,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-13",
+      "equity": 1055774.1273136707,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-14",
+      "equity": 1046821.2403244206,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-15",
+      "equity": 1072675.1788679666,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-16",
+      "equity": 1101023.8539875683,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-20",
+      "equity": 1100791.3460651778,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-21",
+      "equity": 1111181.662186833,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-22",
+      "equity": 1126280.2894511533,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-23",
+      "equity": 1115847.2097674676,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-26",
+      "equity": 1095853.3576462825,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-27",
+      "equity": 1157840.933294784,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-28",
+      "equity": 1209852.6941791754,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-29",
+      "equity": 1199750.8501654093,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-01-30",
+      "equity": 1136119.1878279068,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-02-02",
+      "equity": 1159926.0330594033,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-02-03",
+      "equity": 1196492.1368478485,
+      "cash": 1996.0079840316903,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "WBD",
+        "RKLB",
+        "COHR",
+        "LRCX",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-02-04",
+      "equity": 1171752.0912947548,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-02-05",
+      "equity": 1167545.7032956812,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-02-06",
+      "equity": 1196601.0337967174,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-02-09",
+      "equity": 1208348.8020333091,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-02-10",
+      "equity": 1195139.9240915116,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-02-11",
+      "equity": 1206350.077752404,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-02-12",
+      "equity": 1196585.406647027,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-02-13",
+      "equity": 1198352.5453419911,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-02-17",
+      "equity": 1202209.6879912796,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-02-18",
+      "equity": 1213581.3108480333,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-02-19",
+      "equity": 1218902.9724876778,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-02-20",
+      "equity": 1225998.716669286,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-02-23",
+      "equity": 1229067.4765256736,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-02-24",
+      "equity": 1236260.5440828144,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-02-25",
+      "equity": 1251044.5410207037,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-02-26",
+      "equity": 1236694.0102803528,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-02-27",
+      "equity": 1231766.672867403,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-03-02",
+      "equity": 1250296.7723945803,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-03-03",
+      "equity": 1220551.5970713717,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-03-04",
+      "equity": 1232414.7429885005,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-03-05",
+      "equity": 1210477.2731283314,
+      "cash": 783971.6826949166,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "ASTS",
+        "COHR",
+        "LRCX",
+        "BE",
+        "TER",
+        "FTAI"
+      ]
+    },
+    {
+      "date": "2026-03-06",
+      "equity": 1169127.5781063912,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-09",
+      "equity": 1213881.8983190577,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-10",
+      "equity": 1233258.1047060527,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-11",
+      "equity": 1239295.7409300576,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-12",
+      "equity": 1218282.7757732342,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-13",
+      "equity": 1227374.0382165592,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-16",
+      "equity": 1248268.8606770085,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-17",
+      "equity": 1263838.5113762338,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-18",
+      "equity": 1274071.1196504694,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-19",
+      "equity": 1298009.8902561106,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-20",
+      "equity": 1251860.9780174263,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-23",
+      "equity": 1259830.7496446422,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-24",
+      "equity": 1285989.159023523,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-25",
+      "equity": 1284150.8737004118,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-26",
+      "equity": 1223927.4035863657,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-27",
+      "equity": 1230249.376678972,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-30",
+      "equity": 1183169.5006722882,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-03-31",
+      "equity": 1225808.3079357205,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-04-01",
+      "equity": 1261254.6395244345,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-04-02",
+      "equity": 1277768.2853466133,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "equity": 1276185.3892225523,
+      "cash": 645407.2860385755,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "MU",
+        "CIEN",
+        "COHR",
+        "BE",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW"
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "equity": 1284539.9506652458,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "equity": 1343982.6423204136,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "equity": 1353458.710313076,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-10",
+      "equity": 1368561.752433675,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "equity": 1382444.2008346017,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "equity": 1377662.1263741397,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "equity": 1364494.2899708846,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "equity": 1378051.2977410716,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-17",
+      "equity": 1390675.3306749167,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "equity": 1389772.2407154292,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "equity": 1385202.3158971115,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "equity": 1403054.3306988985,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "equity": 1404772.6202448704,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-24",
+      "equity": 1416363.229457521,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "equity": 1411700.6914470468,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "equity": 1365936.7314846613,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "equity": 1365713.4760634482,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "equity": 1415192.5383186513,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-05-01",
+      "equity": 1427023.3520827538,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "equity": 1437515.2333342147,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "equity": 1467643.013264644,
+      "cash": 628489.4992562662,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "GLW",
+        "ASTS",
+        "VRT"
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "equity": 1497175.8221307602,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "equity": 1445834.3845853237,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-05-08",
+      "equity": 1500564.5739448,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "equity": 1562137.1865071882,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "equity": 1526991.8610745957,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "equity": 1549613.5123562198,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "equity": 1539616.9362791348,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-05-15",
+      "equity": 1495405.0426991994,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "equity": 1444480.638820255,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "equity": 1452317.3020093888,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-05-20",
+      "equity": 1479640.0406348933,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-05-21",
+      "equity": 1528977.801466763,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-05-22",
+      "equity": 1520822.0636609655,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-05-26",
+      "equity": 1571049.9834841904,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-05-27",
+      "equity": 1564012.0333277099,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-05-28",
+      "equity": 1559240.081210798,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-05-29",
+      "equity": 1556145.7787000632,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-06-01",
+      "equity": 1564728.2249094846,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-06-02",
+      "equity": 1626597.662959374,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-06-03",
+      "equity": 1632151.0468762799,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-06-04",
+      "equity": 1602390.3996507868,
+      "cash": 555166.4191973076,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "COHR",
+        "TER",
+        "SNDK",
+        "FIX",
+        "BE",
+        "MU",
+        "INTC"
+      ]
+    },
+    {
+      "date": "2026-06-05",
+      "equity": 1501107.614715285,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-06-08",
+      "equity": 1532928.201340527,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-06-09",
+      "equity": 1506530.2432886348,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-06-10",
+      "equity": 1481525.5803848929,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-06-11",
+      "equity": 1544767.4358586785,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-06-12",
+      "equity": 1570671.0641329018,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-06-15",
+      "equity": 1630778.549015164,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-06-16",
+      "equity": 1587204.3252075012,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-06-17",
+      "equity": 1604490.5121361013,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-06-18",
+      "equity": 1657550.1805368261,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-06-22",
+      "equity": 1690364.0283571049,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-06-23",
+      "equity": 1619073.8183175954,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-06-24",
+      "equity": 1615496.603272143,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-06-25",
+      "equity": 1655740.1767169186,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-06-26",
+      "equity": 1588558.8421149792,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-06-29",
+      "equity": 1619801.2296103605,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-06-30",
+      "equity": 1663130.3924601653,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-07-01",
+      "equity": 1594623.5438157052,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-07-02",
+      "equity": 1523824.9569943089,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-07-06",
+      "equity": 1552022.536758323,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-07-07",
+      "equity": 1501822.1360345986,
+      "cash": 712727.7394749529,
+      "holdings": [
+        "LITE",
+        "WDC",
+        "CIEN",
+        "SNDK",
+        "BE",
+        "MU",
+        "INTC",
+        "MRVL",
+        "DELL",
+        "AMD"
+      ]
+    },
+    {
+      "date": "2026-07-08",
+      "equity": 1509099.0236364044,
+      "cash": 812289.3528321539,
+      "holdings": [
+        "MU",
+        "DELL",
+        "AMD",
+        "ALAB",
+        "CRDO",
+        "AMAT",
+        "LRCX",
+        "HPE",
+        "FTNT",
+        "CNC"
+      ]
+    },
+    {
+      "date": "2026-07-09",
+      "equity": 1542285.9453460735,
+      "cash": 812289.3528321539,
+      "holdings": [
+        "MU",
+        "DELL",
+        "AMD",
+        "ALAB",
+        "CRDO",
+        "AMAT",
+        "LRCX",
+        "HPE",
+        "FTNT",
+        "CNC"
+      ]
+    },
+    {
+      "date": "2026-07-10",
+      "equity": 1534725.977432531,
+      "cash": 812289.3528321539,
+      "holdings": [
+        "MU",
+        "DELL",
+        "AMD",
+        "ALAB",
+        "CRDO",
+        "AMAT",
+        "LRCX",
+        "HPE",
+        "FTNT",
+        "CNC"
+      ]
+    },
+    {
+      "date": "2026-07-13",
+      "equity": 1504948.6830248479,
+      "cash": 812289.3528321539,
+      "holdings": [
+        "MU",
+        "DELL",
+        "AMD",
+        "ALAB",
+        "CRDO",
+        "AMAT",
+        "LRCX",
+        "HPE",
+        "FTNT",
+        "CNC"
+      ]
+    },
+    {
+      "date": "2026-07-14",
+      "equity": 1527470.4388931089,
+      "cash": 812289.3528321539,
+      "holdings": [
+        "MU",
+        "DELL",
+        "AMD",
+        "ALAB",
+        "CRDO",
+        "AMAT",
+        "LRCX",
+        "HPE",
+        "FTNT",
+        "CNC"
+      ]
+    },
+    {
+      "date": "2026-07-15",
+      "equity": 1496466.68931632,
+      "cash": 812289.3528321539,
+      "holdings": [
+        "MU",
+        "DELL",
+        "AMD",
+        "ALAB",
+        "CRDO",
+        "AMAT",
+        "LRCX",
+        "HPE",
+        "FTNT",
+        "CNC"
+      ]
+    },
+    {
+      "date": "2026-07-16",
+      "equity": 1461533.273751255,
+      "cash": 812289.3528321539,
+      "holdings": [
+        "MU",
+        "DELL",
+        "AMD",
+        "ALAB",
+        "CRDO",
+        "AMAT",
+        "LRCX",
+        "HPE",
+        "FTNT",
+        "CNC"
+      ]
+    }
+  ],
+  "spyDailyEquity": [
+    {
+      "date": "2026-01-02",
+      "equity": 1000000
+    },
+    {
+      "date": "2026-01-05",
+      "equity": 1006660.2071082446
+    },
+    {
+      "date": "2026-01-06",
+      "equity": 1012646.9747135951
+    },
+    {
+      "date": "2026-01-07",
+      "equity": 1009382.7960187852
+    },
+    {
+      "date": "2026-01-08",
+      "equity": 1009280.3160944317
+    },
+    {
+      "date": "2026-01-09",
+      "equity": 1015955.0733759851
+    },
+    {
+      "date": "2026-01-12",
+      "equity": 1017550.5627504067
+    },
+    {
+      "date": "2026-01-13",
+      "equity": 1015515.9635160691
+    },
+    {
+      "date": "2026-01-14",
+      "equity": 1010524.4457282128
+    },
+    {
+      "date": "2026-01-15",
+      "equity": 1013276.4044330247
+    },
+    {
+      "date": "2026-01-16",
+      "equity": 1012427.3748756949
+    },
+    {
+      "date": "2026-01-20",
+      "equity": 991817.5932791851
+    },
+    {
+      "date": "2026-01-21",
+      "equity": 1003264.2685106945
+    },
+    {
+      "date": "2026-01-22",
+      "equity": 1008504.5762989533
+    },
+    {
+      "date": "2026-01-23",
+      "equity": 1008870.3963970179
+    },
+    {
+      "date": "2026-01-26",
+      "equity": 1013993.6740876143
+    },
+    {
+      "date": "2026-01-27",
+      "equity": 1018033.5925779027
+    },
+    {
+      "date": "2026-01-28",
+      "equity": 1017931.1126535492
+    },
+    {
+      "date": "2026-01-29",
+      "equity": 1015911.153408405
+    },
+    {
+      "date": "2026-01-30",
+      "equity": 1012881.2145406888
+    },
+    {
+      "date": "2026-02-02",
+      "equity": 1017916.4726643559
+    },
+    {
+      "date": "2026-02-03",
+      "equity": 1009309.5960728184
+    },
+    {
+      "date": "2026-02-04",
+      "equity": 1004420.6480252002
+    },
+    {
+      "date": "2026-02-05",
+      "equity": 991876.1532359585
+    },
+    {
+      "date": "2026-02-06",
+      "equity": 1010905.08544724
+    },
+    {
+      "date": "2026-02-09",
+      "equity": 1015779.3935056649
+    },
+    {
+      "date": "2026-02-10",
+      "equity": 1013100.7245627044
+    },
+    {
+      "date": "2026-02-11",
+      "equity": 1012866.5745514954
+    },
+    {
+      "date": "2026-02-12",
+      "equity": 997218.9409485707
+    },
+    {
+      "date": "2026-02-13",
+      "equity": 997921.4807980824
+    },
+    {
+      "date": "2026-02-17",
+      "equity": 999531.6101616974
+    },
+    {
+      "date": "2026-02-18",
+      "equity": 1004566.9581012491
+    },
+    {
+      "date": "2026-02-19",
+      "equity": 1001917.5691366753
+    },
+    {
+      "date": "2026-02-20",
+      "equity": 1009163.2859967696
+    },
+    {
+      "date": "2026-02-23",
+      "equity": 998858.3502905724
+    },
+    {
+      "date": "2026-02-24",
+      "equity": 1006118.5275080906
+    },
+    {
+      "date": "2026-02-25",
+      "equity": 1014608.4638178505
+    },
+    {
+      "date": "2026-02-26",
+      "equity": 1008972.8763213713
+    },
+    {
+      "date": "2026-02-27",
+      "equity": 1004127.8482413332
+    },
+    {
+      "date": "2026-03-02",
+      "equity": 1004698.7180039893
+    },
+    {
+      "date": "2026-03-03",
+      "equity": 995843.0514120494
+    },
+    {
+      "date": "2026-03-04",
+      "equity": 1002869.0786183587
+    },
+    {
+      "date": "2026-03-05",
+      "equity": 997277.4110894596
+    },
+    {
+      "date": "2026-03-06",
+      "equity": 984205.9665051418
+    },
+    {
+      "date": "2026-03-09",
+      "equity": 992827.5729017572
+    },
+    {
+      "date": "2026-03-10",
+      "equity": 991232.0835273357
+    },
+    {
+      "date": "2026-03-11",
+      "equity": 989987.9538935545
+    },
+    {
+      "date": "2026-03-12",
+      "equity": 974955.0202049814
+    },
+    {
+      "date": "2026-03-13",
+      "equity": 969436.6424379336
+    },
+    {
+      "date": "2026-03-16",
+      "equity": 979302.4682842148
+    },
+    {
+      "date": "2026-03-17",
+      "equity": 981878.5674869372
+    },
+    {
+      "date": "2026-03-18",
+      "equity": 968177.7829990746
+    },
+    {
+      "date": "2026-03-19",
+      "equity": 965791.8240240965
+    },
+    {
+      "date": "2026-03-20",
+      "equity": 951946.5257778774
+    },
+    {
+      "date": "2026-03-23",
+      "equity": 961941.9559456678
+    },
+    {
+      "date": "2026-03-24",
+      "equity": 958712.8952617451
+    },
+    {
+      "date": "2026-03-25",
+      "equity": 964055.503342588
+    },
+    {
+      "date": "2026-03-26",
+      "equity": 946838.6964194359
+    },
+    {
+      "date": "2026-03-27",
+      "equity": 930693.3031839372
+    },
+    {
+      "date": "2026-03-30",
+      "equity": 927581.6318612151
+    },
+    {
+      "date": "2026-03-31",
+      "equity": 954544.4502405629
+    },
+    {
+      "date": "2026-04-01",
+      "equity": 961736.4572016532
+    },
+    {
+      "date": "2026-04-02",
+      "equity": 962602.4619611766
+    },
+    {
+      "date": "2026-04-06",
+      "equity": 967152.5346761168
+    },
+    {
+      "date": "2026-04-07",
+      "equity": 967578.0823374548
+    },
+    {
+      "date": "2026-04-08",
+      "equity": 992221.9443917525
+    },
+    {
+      "date": "2026-04-09",
+      "equity": 997946.0903504688
+    },
+    {
+      "date": "2026-04-10",
+      "equity": 997285.6741508447
+    },
+    {
+      "date": "2026-04-13",
+      "equity": 1007031.5957911558
+    },
+    {
+      "date": "2026-04-14",
+      "equity": 1019302.152132301
+    },
+    {
+      "date": "2026-04-15",
+      "equity": 1027345.4340478367
+    },
+    {
+      "date": "2026-04-16",
+      "equity": 1029869.9789327862
+    },
+    {
+      "date": "2026-04-17",
+      "equity": 1042316.6642236746
+    },
+    {
+      "date": "2026-04-20",
+      "equity": 1040232.3069892565
+    },
+    {
+      "date": "2026-04-21",
+      "equity": 1033422.0175378089
+    },
+    {
+      "date": "2026-04-22",
+      "equity": 1043887.1847821714
+    },
+    {
+      "date": "2026-04-23",
+      "equity": 1039836.1291221898
+    },
+    {
+      "date": "2026-04-24",
+      "equity": 1047894.1408428035
+    },
+    {
+      "date": "2026-04-27",
+      "equity": 1049699.4401237017
+    },
+    {
+      "date": "2026-04-28",
+      "equity": 1044591.6107652601
+    },
+    {
+      "date": "2026-04-29",
+      "equity": 1044430.2116205947
+    },
+    {
+      "date": "2026-04-30",
+      "equity": 1054821.9094713365
+    },
+    {
+      "date": "2026-05-01",
+      "equity": 1057742.811855122
+    },
+    {
+      "date": "2026-05-04",
+      "equity": 1053867.8851448838
+    },
+    {
+      "date": "2026-05-05",
+      "equity": 1062322.2543643336
+    },
+    {
+      "date": "2026-05-06",
+      "equity": 1077087.8959802722
+    },
+    {
+      "date": "2026-05-07",
+      "equity": 1073785.4557186132
+    },
+    {
+      "date": "2026-05-08",
+      "equity": 1082650.7326102077
+    },
+    {
+      "date": "2026-05-11",
+      "equity": 1085116.5379066144
+    },
+    {
+      "date": "2026-05-12",
+      "equity": 1083472.6377703818
+    },
+    {
+      "date": "2026-05-13",
+      "equity": 1089534.491455276
+    },
+    {
+      "date": "2026-05-14",
+      "equity": 1098135.6198301977
+    },
+    {
+      "date": "2026-05-15",
+      "equity": 1084925.7689676778
+    },
+    {
+      "date": "2026-05-18",
+      "equity": 1084162.5135801618
+    },
+    {
+      "date": "2026-05-19",
+      "equity": 1076941.1368248002
+    },
+    {
+      "date": "2026-05-20",
+      "equity": 1087978.7007018572
+    },
+    {
+      "date": "2026-05-21",
+      "equity": 1090136.257882242
+    },
+    {
+      "date": "2026-05-22",
+      "equity": 1094422.1820805096
+    },
+    {
+      "date": "2026-05-26",
+      "equity": 1101687.6584352204
+    },
+    {
+      "date": "2026-05-27",
+      "equity": 1101496.7996803992
+    },
+    {
+      "date": "2026-05-28",
+      "equity": 1107573.2933544868
+    },
+    {
+      "date": "2026-05-29",
+      "equity": 1110332.706777722
+    },
+    {
+      "date": "2026-06-01",
+      "equity": 1113356.2687176303
+    },
+    {
+      "date": "2026-06-02",
+      "equity": 1114868.139503469
+    },
+    {
+      "date": "2026-06-03",
+      "equity": 1107044.9065052567
+    },
+    {
+      "date": "2026-06-04",
+      "equity": 1111228.0813315168
+    },
+    {
+      "date": "2026-06-05",
+      "equity": 1082547.9832382004
+    },
+    {
+      "date": "2026-06-08",
+      "equity": 1084999.0587295291
+    },
+    {
+      "date": "2026-06-09",
+      "equity": 1081814.0976449556
+    },
+    {
+      "date": "2026-06-10",
+      "equity": 1064758.689866469
+    },
+    {
+      "date": "2026-06-11",
+      "equity": 1082856.2313542224
+    },
+    {
+      "date": "2026-06-12",
+      "equity": 1088712.586295102
+    },
+    {
+      "date": "2026-06-15",
+      "equity": 1107910.9112647802
+    },
+    {
+      "date": "2026-06-16",
+      "equity": 1101306.0307414625
+    },
+    {
+      "date": "2026-06-17",
+      "equity": 1087553.0632246346
+    },
+    {
+      "date": "2026-06-18",
+      "equity": 1098860.344203211
+    },
+    {
+      "date": "2026-06-22",
+      "equity": 1095402.2530135026
+    },
+    {
+      "date": "2026-06-23",
+      "equity": 1079494.8718722516
+    },
+    {
+      "date": "2026-06-24",
+      "equity": 1078994.5075790237
+    },
+    {
+      "date": "2026-06-25",
+      "equity": 1080554.3400472503
+    },
+    {
+      "date": "2026-06-26",
+      "equity": 1072740.4479010387
+    },
+    {
+      "date": "2026-06-29",
+      "equity": 1090413.6991498386
+    },
+    {
+      "date": "2026-06-30",
+      "equity": 1098904.5336184448
+    },
+    {
+      "date": "2026-07-01",
+      "equity": 1097418.2603597234
+    },
+    {
+      "date": "2026-07-02",
+      "equity": 1095976.1765162358
+    },
+    {
+      "date": "2026-07-06",
+      "equity": 1105541.2089649187
+    },
+    {
+      "date": "2026-07-07",
+      "equity": 1100287.7880575052
+    },
+    {
+      "date": "2026-07-08",
+      "equity": 1096888.526272224
+    },
+    {
+      "date": "2026-07-09",
+      "equity": 1106173.9618720792
+    },
+    {
+      "date": "2026-07-10",
+      "equity": 1110941.7482913425
+    },
+    {
+      "date": "2026-07-13",
+      "equity": 1102436.1840176585
+    },
+    {
+      "date": "2026-07-14",
+      "equity": 1106350.5399012456
+    },
+    {
+      "date": "2026-07-15",
+      "equity": 1110735.7106520203
+    },
+    {
+      "date": "2026-07-16",
+      "equity": 1104717.0584076291
+    }
+  ],
+  "trades": [
+    {
+      "date": "2026-01-05",
+      "signalDate": "2026-01-02",
+      "ticker": "LITE",
+      "side": "BUY",
+      "notional": 99700.69850309374,
+      "cost": 99.70069850309373
+    },
+    {
+      "date": "2026-01-05",
+      "signalDate": "2026-01-02",
+      "ticker": "WDC",
+      "side": "BUY",
+      "notional": 99700.69850309372,
+      "cost": 99.70069850309372
+    },
+    {
+      "date": "2026-01-05",
+      "signalDate": "2026-01-02",
+      "ticker": "MU",
+      "side": "BUY",
+      "notional": 99700.69850309374,
+      "cost": 99.70069850309373
+    },
+    {
+      "date": "2026-01-05",
+      "signalDate": "2026-01-02",
+      "ticker": "CIEN",
+      "side": "BUY",
+      "notional": 99700.69850309374,
+      "cost": 99.70069850309373
+    },
+    {
+      "date": "2026-01-05",
+      "signalDate": "2026-01-02",
+      "ticker": "ASTS",
+      "side": "BUY",
+      "notional": 99700.69850309372,
+      "cost": 99.70069850309372
+    },
+    {
+      "date": "2026-01-05",
+      "signalDate": "2026-01-02",
+      "ticker": "WBD",
+      "side": "BUY",
+      "notional": 99700.69850309372,
+      "cost": 99.70069850309372
+    },
+    {
+      "date": "2026-01-05",
+      "signalDate": "2026-01-02",
+      "ticker": "RKLB",
+      "side": "BUY",
+      "notional": 99700.69850309374,
+      "cost": 99.70069850309373
+    },
+    {
+      "date": "2026-01-05",
+      "signalDate": "2026-01-02",
+      "ticker": "COHR",
+      "side": "BUY",
+      "notional": 99700.69850309374,
+      "cost": 99.70069850309373
+    },
+    {
+      "date": "2026-01-05",
+      "signalDate": "2026-01-02",
+      "ticker": "LRCX",
+      "side": "BUY",
+      "notional": 99700.69850309372,
+      "cost": 99.70069850309372
+    },
+    {
+      "date": "2026-01-05",
+      "signalDate": "2026-01-02",
+      "ticker": "NEM",
+      "side": "BUY",
+      "notional": 99700.69850309372,
+      "cost": 99.70069850309372
+    },
+    {
+      "date": "2026-02-04",
+      "signalDate": "2026-02-03",
+      "ticker": "LITE",
+      "side": "SELL",
+      "notional": 79484.1500802986,
+      "cost": 79.4841500802986
+    },
+    {
+      "date": "2026-02-04",
+      "signalDate": "2026-02-03",
+      "ticker": "WDC",
+      "side": "SELL",
+      "notional": 105305.22852107673,
+      "cost": 105.30522852107673
+    },
+    {
+      "date": "2026-02-04",
+      "signalDate": "2026-02-03",
+      "ticker": "MU",
+      "side": "SELL",
+      "notional": 83924.29342999574,
+      "cost": 83.92429342999574
+    },
+    {
+      "date": "2026-02-04",
+      "signalDate": "2026-02-03",
+      "ticker": "CIEN",
+      "side": "SELL",
+      "notional": 68355.6592862385,
+      "cost": 68.3556592862385
+    },
+    {
+      "date": "2026-02-04",
+      "signalDate": "2026-02-03",
+      "ticker": "ASTS",
+      "side": "SELL",
+      "notional": 97012.557951952,
+      "cost": 97.012557951952
+    },
+    {
+      "date": "2026-02-04",
+      "signalDate": "2026-02-03",
+      "ticker": "WBD",
+      "side": "SELL",
+      "notional": 94953.05063235803,
+      "cost": 94.95305063235804
+    },
+    {
+      "date": "2026-02-04",
+      "signalDate": "2026-02-03",
+      "ticker": "RKLB",
+      "side": "SELL",
+      "notional": 108692.72812331798,
+      "cost": 108.69272812331799
+    },
+    {
+      "date": "2026-02-04",
+      "signalDate": "2026-02-03",
+      "ticker": "COHR",
+      "side": "SELL",
+      "notional": 75367.2337764754,
+      "cost": 75.3672337764754
+    },
+    {
+      "date": "2026-02-04",
+      "signalDate": "2026-02-03",
+      "ticker": "LRCX",
+      "side": "SELL",
+      "notional": 78563.36908055426,
+      "cost": 78.56336908055425
+    },
+    {
+      "date": "2026-02-04",
+      "signalDate": "2026-02-03",
+      "ticker": "NEM",
+      "side": "SELL",
+      "notional": 117300.08452421705,
+      "cost": 117.30008452421706
+    },
+    {
+      "date": "2026-02-04",
+      "signalDate": "2026-02-03",
+      "ticker": "BE",
+      "side": "BUY",
+      "notional": 41982.59152187574,
+      "cost": 41.98259152187575
+    },
+    {
+      "date": "2026-02-04",
+      "signalDate": "2026-02-03",
+      "ticker": "TER",
+      "side": "BUY",
+      "notional": 41982.59152187574,
+      "cost": 41.98259152187575
+    },
+    {
+      "date": "2026-02-04",
+      "signalDate": "2026-02-03",
+      "ticker": "FTAI",
+      "side": "BUY",
+      "notional": 41982.59152187574,
+      "cost": 41.98259152187575
+    },
+    {
+      "date": "2026-03-06",
+      "signalDate": "2026-03-05",
+      "ticker": "LITE",
+      "side": "BUY",
+      "notional": 538.9200363602472,
+      "cost": 0.5389200363602472
+    },
+    {
+      "date": "2026-03-06",
+      "signalDate": "2026-03-05",
+      "ticker": "WDC",
+      "side": "BUY",
+      "notional": 17913.384397314934,
+      "cost": 17.913384397314935
+    },
+    {
+      "date": "2026-03-06",
+      "signalDate": "2026-03-05",
+      "ticker": "MU",
+      "side": "BUY",
+      "notional": 15838.028958208184,
+      "cost": 15.838028958208184
+    },
+    {
+      "date": "2026-03-06",
+      "signalDate": "2026-03-05",
+      "ticker": "CIEN",
+      "side": "BUY",
+      "notional": 10033.287161843078,
+      "cost": 10.033287161843079
+    },
+    {
+      "date": "2026-03-06",
+      "signalDate": "2026-03-05",
+      "ticker": "ASTS",
+      "side": "SELL",
+      "notional": 33605.16304510102,
+      "cost": 33.60516304510102
+    },
+    {
+      "date": "2026-03-06",
+      "signalDate": "2026-03-05",
+      "ticker": "COHR",
+      "side": "BUY",
+      "notional": 11497.451947000152,
+      "cost": 11.497451947000153
+    },
+    {
+      "date": "2026-03-06",
+      "signalDate": "2026-03-05",
+      "ticker": "LRCX",
+      "side": "SELL",
+      "notional": 37567.57220043085,
+      "cost": 37.567572200430845
+    },
+    {
+      "date": "2026-03-06",
+      "signalDate": "2026-03-05",
+      "ticker": "BE",
+      "side": "BUY",
+      "notional": 16472.984478510236,
+      "cost": 16.472984478510238
+    },
+    {
+      "date": "2026-03-06",
+      "signalDate": "2026-03-05",
+      "ticker": "TER",
+      "side": "BUY",
+      "notional": 11310.975487751126,
+      "cost": 11.310975487751126
+    },
+    {
+      "date": "2026-03-06",
+      "signalDate": "2026-03-05",
+      "ticker": "FTAI",
+      "side": "SELL",
+      "notional": 38346.53724743085,
+      "cost": 38.34653724743085
+    },
+    {
+      "date": "2026-03-06",
+      "signalDate": "2026-03-05",
+      "ticker": "SNDK",
+      "side": "BUY",
+      "notional": 54707.13032878993,
+      "cost": 54.70713032878993
+    },
+    {
+      "date": "2026-03-06",
+      "signalDate": "2026-03-05",
+      "ticker": "FIX",
+      "side": "BUY",
+      "notional": 54707.13032878993,
+      "cost": 54.70713032878993
+    },
+    {
+      "date": "2026-03-06",
+      "signalDate": "2026-03-05",
+      "ticker": "GLW",
+      "side": "BUY",
+      "notional": 54707.13032878993,
+      "cost": 54.70713032878993
+    },
+    {
+      "date": "2026-04-07",
+      "signalDate": "2026-04-06",
+      "ticker": "LITE",
+      "side": "SELL",
+      "notional": 5480.421887243848,
+      "cost": 5.480421887243848
+    },
+    {
+      "date": "2026-04-07",
+      "signalDate": "2026-04-06",
+      "ticker": "WDC",
+      "side": "SELL",
+      "notional": 862.6988305027038,
+      "cost": 0.8626988305027038
+    },
+    {
+      "date": "2026-04-07",
+      "signalDate": "2026-04-06",
+      "ticker": "MU",
+      "side": "SELL",
+      "notional": 53864.82638637824,
+      "cost": 53.86482638637824
+    },
+    {
+      "date": "2026-04-07",
+      "signalDate": "2026-04-06",
+      "ticker": "CIEN",
+      "side": "SELL",
+      "notional": 16457.572325043566,
+      "cost": 16.457572325043564
+    },
+    {
+      "date": "2026-04-07",
+      "signalDate": "2026-04-06",
+      "ticker": "COHR",
+      "side": "BUY",
+      "notional": 6771.486803564903,
+      "cost": 6.771486803564904
+    },
+    {
+      "date": "2026-04-07",
+      "signalDate": "2026-04-06",
+      "ticker": "BE",
+      "side": "SELL",
+      "notional": 48253.11811057052,
+      "cost": 48.25311811057052
+    },
+    {
+      "date": "2026-04-07",
+      "signalDate": "2026-04-06",
+      "ticker": "TER",
+      "side": "BUY",
+      "notional": 5637.713800621473,
+      "cost": 5.637713800621473
+    },
+    {
+      "date": "2026-04-07",
+      "signalDate": "2026-04-06",
+      "ticker": "SNDK",
+      "side": "SELL",
+      "notional": 7099.917471897939,
+      "cost": 7.09991747189794
+    },
+    {
+      "date": "2026-04-07",
+      "signalDate": "2026-04-06",
+      "ticker": "FIX",
+      "side": "BUY",
+      "notional": 3516.2391105577954,
+      "cost": 3.5162391105577955
+    },
+    {
+      "date": "2026-04-07",
+      "signalDate": "2026-04-06",
+      "ticker": "GLW",
+      "side": "BUY",
+      "notional": 4097.800715137628,
+      "cost": 4.097800715137628
+    },
+    {
+      "date": "2026-04-07",
+      "signalDate": "2026-04-06",
+      "ticker": "ASTS",
+      "side": "BUY",
+      "notional": 64316.213570740634,
+      "cost": 64.31621357074063
+    },
+    {
+      "date": "2026-04-07",
+      "signalDate": "2026-04-06",
+      "ticker": "VRT",
+      "side": "BUY",
+      "notional": 64316.21357074064,
+      "cost": 64.31621357074064
+    },
+    {
+      "date": "2026-05-06",
+      "signalDate": "2026-05-05",
+      "ticker": "LITE",
+      "side": "BUY",
+      "notional": 11823.06386273795,
+      "cost": 11.82306386273795
+    },
+    {
+      "date": "2026-05-06",
+      "signalDate": "2026-05-05",
+      "ticker": "WDC",
+      "side": "SELL",
+      "notional": 7853.768343878112,
+      "cost": 7.853768343878112
+    },
+    {
+      "date": "2026-05-06",
+      "signalDate": "2026-05-05",
+      "ticker": "CIEN",
+      "side": "BUY",
+      "notional": 10886.453624132797,
+      "cost": 10.886453624132796
+    },
+    {
+      "date": "2026-05-06",
+      "signalDate": "2026-05-05",
+      "ticker": "COHR",
+      "side": "BUY",
+      "notional": 6765.98943054142,
+      "cost": 6.7659894305414205
+    },
+    {
+      "date": "2026-05-06",
+      "signalDate": "2026-05-05",
+      "ticker": "TER",
+      "side": "BUY",
+      "notional": 18693.75390396481,
+      "cost": 18.69375390396481
+    },
+    {
+      "date": "2026-05-06",
+      "signalDate": "2026-05-05",
+      "ticker": "SNDK",
+      "side": "SELL",
+      "notional": 35097.26387798127,
+      "cost": 35.09726387798127
+    },
+    {
+      "date": "2026-05-06",
+      "signalDate": "2026-05-05",
+      "ticker": "FIX",
+      "side": "BUY",
+      "notional": 4543.879690887051,
+      "cost": 4.543879690887051
+    },
+    {
+      "date": "2026-05-06",
+      "signalDate": "2026-05-05",
+      "ticker": "GLW",
+      "side": "SELL",
+      "notional": 85487.12653416091,
+      "cost": 85.48712653416091
+    },
+    {
+      "date": "2026-05-06",
+      "signalDate": "2026-05-05",
+      "ticker": "ASTS",
+      "side": "SELL",
+      "notional": 45781.26022861851,
+      "cost": 45.78126022861851
+    },
+    {
+      "date": "2026-05-06",
+      "signalDate": "2026-05-05",
+      "ticker": "VRT",
+      "side": "SELL",
+      "notional": 87990.8434918261,
+      "cost": 87.99084349182611
+    },
+    {
+      "date": "2026-05-06",
+      "signalDate": "2026-05-05",
+      "ticker": "BE",
+      "side": "BUY",
+      "notional": 94074.35185486867,
+      "cost": 94.07435185486867
+    },
+    {
+      "date": "2026-05-06",
+      "signalDate": "2026-05-05",
+      "ticker": "MU",
+      "side": "BUY",
+      "notional": 94074.35185486867,
+      "cost": 94.07435185486867
+    },
+    {
+      "date": "2026-05-06",
+      "signalDate": "2026-05-05",
+      "ticker": "INTC",
+      "side": "BUY",
+      "notional": 94074.35185486867,
+      "cost": 94.07435185486867
+    },
+    {
+      "date": "2026-06-05",
+      "signalDate": "2026-06-04",
+      "ticker": "LITE",
+      "side": "SELL",
+      "notional": 1786.1830768802752,
+      "cost": 1.7861830768802751
+    },
+    {
+      "date": "2026-06-05",
+      "signalDate": "2026-06-04",
+      "ticker": "WDC",
+      "side": "SELL",
+      "notional": 24289.40326399115,
+      "cost": 24.28940326399115
+    },
+    {
+      "date": "2026-06-05",
+      "signalDate": "2026-06-04",
+      "ticker": "CIEN",
+      "side": "SELL",
+      "notional": 1191.5707101457845,
+      "cost": 1.1915707101457844
+    },
+    {
+      "date": "2026-06-05",
+      "signalDate": "2026-06-04",
+      "ticker": "COHR",
+      "side": "SELL",
+      "notional": 111507.44679693037,
+      "cost": 111.50744679693037
+    },
+    {
+      "date": "2026-06-05",
+      "signalDate": "2026-06-04",
+      "ticker": "TER",
+      "side": "SELL",
+      "notional": 99480.51353245087,
+      "cost": 99.48051353245087
+    },
+    {
+      "date": "2026-06-05",
+      "signalDate": "2026-06-04",
+      "ticker": "SNDK",
+      "side": "SELL",
+      "notional": 25465.884812954653,
+      "cost": 25.465884812954652
+    },
+    {
+      "date": "2026-06-05",
+      "signalDate": "2026-06-04",
+      "ticker": "FIX",
+      "side": "SELL",
+      "notional": 88088.86024491048,
+      "cost": 88.08886024491048
+    },
+    {
+      "date": "2026-06-05",
+      "signalDate": "2026-06-04",
+      "ticker": "BE",
+      "side": "SELL",
+      "notional": 3683.6358333354315,
+      "cost": 3.6836358333354315
+    },
+    {
+      "date": "2026-06-05",
+      "signalDate": "2026-06-04",
+      "ticker": "MU",
+      "side": "SELL",
+      "notional": 50123.673614624844,
+      "cost": 50.12367361462484
+    },
+    {
+      "date": "2026-06-05",
+      "signalDate": "2026-06-04",
+      "ticker": "INTC",
+      "side": "SELL",
+      "notional": 5847.09242095771,
+      "cost": 5.8470924209577095
+    },
+    {
+      "date": "2026-06-05",
+      "signalDate": "2026-06-04",
+      "ticker": "MRVL",
+      "side": "BUY",
+      "notional": 84412.74717456834,
+      "cost": 84.41274717456834
+    },
+    {
+      "date": "2026-06-05",
+      "signalDate": "2026-06-04",
+      "ticker": "DELL",
+      "side": "BUY",
+      "notional": 84412.74717456836,
+      "cost": 84.41274717456837
+    },
+    {
+      "date": "2026-06-05",
+      "signalDate": "2026-06-04",
+      "ticker": "AMD",
+      "side": "BUY",
+      "notional": 84412.74717456834,
+      "cost": 84.41274717456834
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "LITE",
+      "side": "SELL",
+      "notional": 63719.77811197426,
+      "cost": 63.71977811197426
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "WDC",
+      "side": "SELL",
+      "notional": 81432.56306982659,
+      "cost": 81.43256306982659
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "CIEN",
+      "side": "SELL",
+      "notional": 69074.41225469764,
+      "cost": 69.07441225469765
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "SNDK",
+      "side": "SELL",
+      "notional": 80034.43645966412,
+      "cost": 80.03443645966412
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "BE",
+      "side": "SELL",
+      "notional": 79165.59088338813,
+      "cost": 79.16559088338813
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "MU",
+      "side": "SELL",
+      "notional": 13082.184700358894,
+      "cost": 13.082184700358894
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "INTC",
+      "side": "SELL",
+      "notional": 85855.5643163184,
+      "cost": 85.85556431631841
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "MRVL",
+      "side": "SELL",
+      "notional": 63460.347617977255,
+      "cost": 63.460347617977256
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "DELL",
+      "side": "SELL",
+      "notional": 20361.79957224932,
+      "cost": 20.36179957224932
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "AMD",
+      "side": "SELL",
+      "notional": 17694.62252356566,
+      "cost": 17.69462252356566
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "ALAB",
+      "side": "BUY",
+      "notional": 67610.36176014123,
+      "cost": 67.61036176014123
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "CRDO",
+      "side": "BUY",
+      "notional": 67610.36176014123,
+      "cost": 67.61036176014123
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "AMAT",
+      "side": "BUY",
+      "notional": 67610.36176014123,
+      "cost": 67.61036176014123
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "LRCX",
+      "side": "BUY",
+      "notional": 67610.36176014123,
+      "cost": 67.61036176014123
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "HPE",
+      "side": "BUY",
+      "notional": 67610.36176014123,
+      "cost": 67.61036176014123
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "FTNT",
+      "side": "BUY",
+      "notional": 67610.36176014123,
+      "cost": 67.61036176014123
+    },
+    {
+      "date": "2026-07-08",
+      "signalDate": "2026-07-07",
+      "ticker": "CNC",
+      "side": "BUY",
+      "notional": 67610.36176014123,
+      "cost": 67.61036176014123
+    }
+  ],
+  "universeLedger": [
+    {
+      "signalDate": "2026-01-02",
+      "executionDate": "2026-01-05",
+      "sourceRankingYear": "2025",
+      "regime": true,
+      "rankedTop500": 500,
+      "cachedCandidates": 473,
+      "eligible": 140,
+      "topCandidates": [
+        {
+          "ticker": "LITE",
+          "rank": 364,
+          "price": 2.5403012443827357,
+          "priceRank": 1,
+          "score": 1
+        },
+        {
+          "ticker": "WDC",
+          "rank": 249,
+          "price": 1.6806236190248771,
+          "priceRank": 0.9928057553956835,
+          "score": 0.9928057553956835
+        },
+        {
+          "ticker": "MU",
+          "rank": 38,
+          "price": 1.5754836060593729,
+          "priceRank": 0.9856115107913669,
+          "score": 0.9856115107913669
+        },
+        {
+          "ticker": "CIEN",
+          "rank": 374,
+          "price": 1.420149620000681,
+          "priceRank": 0.9784172661870504,
+          "score": 0.9784172661870504
+        },
+        {
+          "ticker": "ASTS",
+          "rank": 446,
+          "price": 1.201943222140394,
+          "priceRank": 0.9712230215827338,
+          "score": 0.9712230215827338
+        },
+        {
+          "ticker": "WBD",
+          "rank": 166,
+          "price": 1.1688193309579122,
+          "priceRank": 0.9640287769784173,
+          "score": 0.9640287769784173
+        },
+        {
+          "ticker": "RKLB",
+          "rank": 265,
+          "price": 1.0847375329862974,
+          "priceRank": 0.9568345323741008,
+          "score": 0.9568345323741008
+        },
+        {
+          "ticker": "COHR",
+          "rank": 310,
+          "price": 0.945236716783446,
+          "priceRank": 0.9496402877697842,
+          "score": 0.9496402877697842
+        },
+        {
+          "ticker": "LRCX",
+          "rank": 44,
+          "price": 0.8448577761308167,
+          "priceRank": 0.9424460431654677,
+          "score": 0.9424460431654677
+        },
+        {
+          "ticker": "NEM",
+          "rank": 106,
+          "price": 0.8145362333723266,
+          "priceRank": 0.935251798561151,
+          "score": 0.935251798561151
+        },
+        {
+          "ticker": "FIX",
+          "rank": 327,
+          "price": 0.7434128698535342,
+          "priceRank": 0.9280575539568345,
+          "score": 0.9280575539568345
+        },
+        {
+          "ticker": "TER",
+          "rank": 344,
+          "price": 0.7387720750160655,
+          "priceRank": 0.920863309352518,
+          "score": 0.920863309352518
+        },
+        {
+          "ticker": "MDB",
+          "rank": 351,
+          "price": 0.5698097728642098,
+          "priceRank": 0.9136690647482014,
+          "score": 0.9136690647482014
+        },
+        {
+          "ticker": "FTAI",
+          "rank": 462,
+          "price": 0.5448905765393443,
+          "priceRank": 0.9064748201438849,
+          "score": 0.9064748201438849
+        },
+        {
+          "ticker": "INTC",
+          "rank": 56,
+          "price": 0.5436704096816589,
+          "priceRank": 0.8992805755395683,
+          "score": 0.8992805755395683
+        },
+        {
+          "ticker": "GLW",
+          "rank": 155,
+          "price": 0.5432009255649608,
+          "priceRank": 0.8920863309352518,
+          "score": 0.8920863309352518
+        },
+        {
+          "ticker": "GOOGL",
+          "rank": 3,
+          "price": 0.5371771104646961,
+          "priceRank": 0.8848920863309353,
+          "score": 0.8848920863309353
+        },
+        {
+          "ticker": "APH",
+          "rank": 66,
+          "price": 0.48359033913551686,
+          "priceRank": 0.8776978417266187,
+          "score": 0.8776978417266187
+        },
+        {
+          "ticker": "TPR",
+          "rank": 377,
+          "price": 0.47851598082454433,
+          "priceRank": 0.8705035971223022,
+          "score": 0.8705035971223022
+        },
+        {
+          "ticker": "CHRW",
+          "rank": 483,
+          "price": 0.47841388832998044,
+          "priceRank": 0.8633093525179856,
+          "score": 0.8633093525179856
+        },
+        {
+          "ticker": "KLAC",
+          "rank": 69,
+          "price": 0.4719100972895952,
+          "priceRank": 0.8561151079136691,
+          "score": 0.8561151079136691
+        },
+        {
+          "ticker": "GM",
+          "rank": 162,
+          "price": 0.46564245762532586,
+          "priceRank": 0.8489208633093526,
+          "score": 0.8489208633093526
+        },
+        {
+          "ticker": "DG",
+          "rank": 440,
+          "price": 0.46293336665830354,
+          "priceRank": 0.841726618705036,
+          "score": 0.841726618705036
+        },
+        {
+          "ticker": "EXPE",
+          "rank": 312,
+          "price": 0.4622780451018534,
+          "priceRank": 0.8345323741007195,
+          "score": 0.8345323741007195
+        },
+        {
+          "ticker": "GEV",
+          "rank": 59,
+          "price": 0.461476623592777,
+          "priceRank": 0.8273381294964028,
+          "score": 0.8273381294964028
+        },
+        {
+          "ticker": "DLTR",
+          "rank": 474,
+          "price": 0.45433728868026246,
+          "priceRank": 0.8201438848920863,
+          "score": 0.8201438848920863
+        },
+        {
+          "ticker": "RIVN",
+          "rank": 407,
+          "price": 0.44815237560355337,
+          "priceRank": 0.8129496402877698,
+          "score": 0.8129496402877698
+        },
+        {
+          "ticker": "CAT",
+          "rank": 36,
+          "price": 0.44551596216670186,
+          "priceRank": 0.8057553956834532,
+          "score": 0.8057553956834532
+        },
+        {
+          "ticker": "SCCO",
+          "rank": 96,
+          "price": 0.43307052286389536,
+          "priceRank": 0.7985611510791367,
+          "score": 0.7985611510791367
+        },
+        {
+          "ticker": "CAH",
+          "rank": 229,
+          "price": 0.429165431809167,
+          "priceRank": 0.7913669064748201,
+          "score": 0.7913669064748201
+        }
+      ],
+      "selected": [
+        {
+          "ticker": "LITE",
+          "rank": 364,
+          "price": 2.5403012443827357,
+          "priceRank": 1,
+          "score": 1
+        },
+        {
+          "ticker": "WDC",
+          "rank": 249,
+          "price": 1.6806236190248771,
+          "priceRank": 0.9928057553956835,
+          "score": 0.9928057553956835
+        },
+        {
+          "ticker": "MU",
+          "rank": 38,
+          "price": 1.5754836060593729,
+          "priceRank": 0.9856115107913669,
+          "score": 0.9856115107913669
+        },
+        {
+          "ticker": "CIEN",
+          "rank": 374,
+          "price": 1.420149620000681,
+          "priceRank": 0.9784172661870504,
+          "score": 0.9784172661870504
+        },
+        {
+          "ticker": "ASTS",
+          "rank": 446,
+          "price": 1.201943222140394,
+          "priceRank": 0.9712230215827338,
+          "score": 0.9712230215827338
+        },
+        {
+          "ticker": "WBD",
+          "rank": 166,
+          "price": 1.1688193309579122,
+          "priceRank": 0.9640287769784173,
+          "score": 0.9640287769784173
+        },
+        {
+          "ticker": "RKLB",
+          "rank": 265,
+          "price": 1.0847375329862974,
+          "priceRank": 0.9568345323741008,
+          "score": 0.9568345323741008
+        },
+        {
+          "ticker": "COHR",
+          "rank": 310,
+          "price": 0.945236716783446,
+          "priceRank": 0.9496402877697842,
+          "score": 0.9496402877697842
+        },
+        {
+          "ticker": "LRCX",
+          "rank": 44,
+          "price": 0.8448577761308167,
+          "priceRank": 0.9424460431654677,
+          "score": 0.9424460431654677
+        },
+        {
+          "ticker": "NEM",
+          "rank": 106,
+          "price": 0.8145362333723266,
+          "priceRank": 0.935251798561151,
+          "score": 0.935251798561151
+        }
+      ]
+    },
+    {
+      "signalDate": "2026-02-03",
+      "executionDate": "2026-02-04",
+      "sourceRankingYear": "2025",
+      "regime": true,
+      "rankedTop500": 500,
+      "cachedCandidates": 473,
+      "eligible": 141,
+      "topCandidates": [
+        {
+          "ticker": "BE",
+          "rank": 412,
+          "price": 3.0634140592080676,
+          "priceRank": 1,
+          "score": 1
+        },
+        {
+          "ticker": "WDC",
+          "rank": 249,
+          "price": 2.677790373656583,
+          "priceRank": 0.9928571428571429,
+          "score": 0.9928571428571429
+        },
+        {
+          "ticker": "LITE",
+          "rank": 364,
+          "price": 2.572599267194869,
+          "priceRank": 0.9857142857142858,
+          "score": 0.9857142857142858
+        },
+        {
+          "ticker": "MU",
+          "rank": 38,
+          "price": 2.3025251651743854,
+          "priceRank": 0.9785714285714285,
+          "score": 0.9785714285714285
+        },
+        {
+          "ticker": "ASTS",
+          "rank": 446,
+          "price": 1.9687122429606254,
+          "priceRank": 0.9714285714285714,
+          "score": 0.9714285714285714
+        },
+        {
+          "ticker": "CIEN",
+          "rank": 374,
+          "price": 1.429554263291119,
+          "priceRank": 0.9642857142857143,
+          "score": 0.9642857142857143
+        },
+        {
+          "ticker": "TER",
+          "rank": 344,
+          "price": 1.1640145886732112,
+          "priceRank": 0.9571428571428572,
+          "score": 0.9571428571428572
+        },
+        {
+          "ticker": "LRCX",
+          "rank": 44,
+          "price": 1.148983407693171,
+          "priceRank": 0.95,
+          "score": 0.95
+        },
+        {
+          "ticker": "FTAI",
+          "rank": 462,
+          "price": 1.137671775809784,
+          "priceRank": 0.9428571428571428,
+          "score": 0.9428571428571428
+        },
+        {
+          "ticker": "COHR",
+          "rank": 310,
+          "price": 1.0986178666949489,
+          "priceRank": 0.9357142857142857,
+          "score": 0.9357142857142857
+        },
+        {
+          "ticker": "SCCO",
+          "rank": 96,
+          "price": 1.094102854289802,
+          "priceRank": 0.9285714285714286,
+          "score": 0.9285714285714286
+        },
+        {
+          "ticker": "INTC",
+          "rank": 56,
+          "price": 1.0107374586533613,
+          "priceRank": 0.9214285714285714,
+          "score": 0.9214285714285714
+        },
+        {
+          "ticker": "NEM",
+          "rank": 106,
+          "price": 0.9574527107098505,
+          "priceRank": 0.9142857142857143,
+          "score": 0.9142857142857143
+        },
+        {
+          "ticker": "RKLB",
+          "rank": 265,
+          "price": 0.9028365053815792,
+          "priceRank": 0.9071428571428571,
+          "score": 0.9071428571428571
+        },
+        {
+          "ticker": "FIX",
+          "rank": 327,
+          "price": 0.8554839145614082,
+          "priceRank": 0.9,
+          "score": 0.9
+        },
+        {
+          "ticker": "LUV",
+          "rank": 454,
+          "price": 0.7110665860699253,
+          "priceRank": 0.8928571428571429,
+          "score": 0.8928571428571429
+        },
+        {
+          "ticker": "GLW",
+          "rank": 155,
+          "price": 0.7072029086322228,
+          "priceRank": 0.8857142857142857,
+          "score": 0.8857142857142857
+        },
+        {
+          "ticker": "CHRW",
+          "rank": 483,
+          "price": 0.661733019063293,
+          "priceRank": 0.8785714285714286,
+          "score": 0.8785714285714286
+        },
+        {
+          "ticker": "FCX",
+          "rank": 164,
+          "price": 0.653488783292344,
+          "priceRank": 0.8714285714285714,
+          "score": 0.8714285714285714
+        },
+        {
+          "ticker": "DG",
+          "rank": 440,
+          "price": 0.6459965694883543,
+          "priceRank": 0.8642857142857143,
+          "score": 0.8642857142857143
+        },
+        {
+          "ticker": "AMAT",
+          "rank": 57,
+          "price": 0.6087531975348597,
+          "priceRank": 0.8571428571428571,
+          "score": 0.8571428571428571
+        },
+        {
+          "ticker": "WWD",
+          "rank": 500,
+          "price": 0.6005997365645679,
+          "priceRank": 0.85,
+          "score": 0.85
+        },
+        {
+          "ticker": "CMI",
+          "rank": 169,
+          "price": 0.5756201606848652,
+          "priceRank": 0.8428571428571429,
+          "score": 0.8428571428571429
+        },
+        {
+          "ticker": "CAT",
+          "rank": 36,
+          "price": 0.5524474776934649,
+          "priceRank": 0.8357142857142857,
+          "score": 0.8357142857142857
+        },
+        {
+          "ticker": "GEV",
+          "rank": 59,
+          "price": 0.5165794053841648,
+          "priceRank": 0.8285714285714286,
+          "score": 0.8285714285714286
+        },
+        {
+          "ticker": "GM",
+          "rank": 162,
+          "price": 0.5119721480334665,
+          "priceRank": 0.8214285714285714,
+          "score": 0.8214285714285714
+        },
+        {
+          "ticker": "GOOGL",
+          "rank": 3,
+          "price": 0.5083762169751426,
+          "priceRank": 0.8142857142857143,
+          "score": 0.8142857142857143
+        },
+        {
+          "ticker": "FDX",
+          "rank": 176,
+          "price": 0.4627607359512346,
+          "priceRank": 0.8071428571428572,
+          "score": 0.8071428571428572
+        },
+        {
+          "ticker": "APH",
+          "rank": 66,
+          "price": 0.4585624072333574,
+          "priceRank": 0.8,
+          "score": 0.8
+        },
+        {
+          "ticker": "KLAC",
+          "rank": 69,
+          "price": 0.4507458800688701,
+          "priceRank": 0.7928571428571428,
+          "score": 0.7928571428571428
+        }
+      ],
+      "selected": [
+        {
+          "ticker": "BE",
+          "rank": 412,
+          "price": 3.0634140592080676,
+          "priceRank": 1,
+          "score": 1
+        },
+        {
+          "ticker": "WDC",
+          "rank": 249,
+          "price": 2.677790373656583,
+          "priceRank": 0.9928571428571429,
+          "score": 0.9928571428571429
+        },
+        {
+          "ticker": "LITE",
+          "rank": 364,
+          "price": 2.572599267194869,
+          "priceRank": 0.9857142857142858,
+          "score": 0.9857142857142858
+        },
+        {
+          "ticker": "MU",
+          "rank": 38,
+          "price": 2.3025251651743854,
+          "priceRank": 0.9785714285714285,
+          "score": 0.9785714285714285
+        },
+        {
+          "ticker": "ASTS",
+          "rank": 446,
+          "price": 1.9687122429606254,
+          "priceRank": 0.9714285714285714,
+          "score": 0.9714285714285714
+        },
+        {
+          "ticker": "CIEN",
+          "rank": 374,
+          "price": 1.429554263291119,
+          "priceRank": 0.9642857142857143,
+          "score": 0.9642857142857143
+        },
+        {
+          "ticker": "TER",
+          "rank": 344,
+          "price": 1.1640145886732112,
+          "priceRank": 0.9571428571428572,
+          "score": 0.9571428571428572
+        },
+        {
+          "ticker": "LRCX",
+          "rank": 44,
+          "price": 1.148983407693171,
+          "priceRank": 0.95,
+          "score": 0.95
+        },
+        {
+          "ticker": "FTAI",
+          "rank": 462,
+          "price": 1.137671775809784,
+          "priceRank": 0.9428571428571428,
+          "score": 0.9428571428571428
+        },
+        {
+          "ticker": "COHR",
+          "rank": 310,
+          "price": 1.0986178666949489,
+          "priceRank": 0.9357142857142857,
+          "score": 0.9357142857142857
+        }
+      ]
+    },
+    {
+      "signalDate": "2026-03-05",
+      "executionDate": "2026-03-06",
+      "sourceRankingYear": "2025",
+      "regime": true,
+      "rankedTop500": 500,
+      "cachedCandidates": 473,
+      "eligible": 109,
+      "topCandidates": [
+        {
+          "ticker": "SNDK",
+          "rank": 487,
+          "price": 6.787401593483978,
+          "priceRank": 1,
+          "score": 1
+        },
+        {
+          "ticker": "LITE",
+          "rank": 364,
+          "price": 4.315095014930561,
+          "priceRank": 0.9907407407407407,
+          "score": 0.9907407407407407
+        },
+        {
+          "ticker": "BE",
+          "rank": 412,
+          "price": 2.6389911365253287,
+          "priceRank": 0.9814814814814815,
+          "score": 0.9814814814814815
+        },
+        {
+          "ticker": "WDC",
+          "rank": 249,
+          "price": 2.3029509669627135,
+          "priceRank": 0.9722222222222222,
+          "score": 0.9722222222222222
+        },
+        {
+          "ticker": "MU",
+          "rank": 38,
+          "price": 1.9781541892777725,
+          "priceRank": 0.9629629629629629,
+          "score": 0.9629629629629629
+        },
+        {
+          "ticker": "CIEN",
+          "rank": 374,
+          "price": 1.7464784389890458,
+          "priceRank": 0.9537037037037037,
+          "score": 0.9537037037037037
+        },
+        {
+          "ticker": "COHR",
+          "rank": 310,
+          "price": 1.5714601412140818,
+          "priceRank": 0.9444444444444444,
+          "score": 0.9444444444444444
+        },
+        {
+          "ticker": "FIX",
+          "rank": 327,
+          "price": 1.3506338786153398,
+          "priceRank": 0.9351851851851852,
+          "score": 0.9351851851851852
+        },
+        {
+          "ticker": "TER",
+          "rank": 344,
+          "price": 1.2698805596995562,
+          "priceRank": 0.9259259259259259,
+          "score": 0.9259259259259259
+        },
+        {
+          "ticker": "GLW",
+          "rank": 155,
+          "price": 1.113660734867599,
+          "priceRank": 0.9166666666666666,
+          "score": 0.9166666666666666
+        },
+        {
+          "ticker": "VRT",
+          "rank": 187,
+          "price": 1.0177070391064817,
+          "priceRank": 0.9074074074074074,
+          "score": 0.9074074074074074
+        },
+        {
+          "ticker": "FTAI",
+          "rank": 462,
+          "price": 0.914825215491107,
+          "priceRank": 0.8981481481481481,
+          "score": 0.8981481481481481
+        },
+        {
+          "ticker": "AMAT",
+          "rank": 57,
+          "price": 0.8766703978597747,
+          "priceRank": 0.8888888888888888,
+          "score": 0.8888888888888888
+        },
+        {
+          "ticker": "SCCO",
+          "rank": 96,
+          "price": 0.8752494308731975,
+          "priceRank": 0.8796296296296297,
+          "score": 0.8796296296296297
+        },
+        {
+          "ticker": "GEV",
+          "rank": 59,
+          "price": 0.7493426921130556,
+          "priceRank": 0.8703703703703703,
+          "score": 0.8703703703703703
+        },
+        {
+          "ticker": "UI",
+          "rank": 319,
+          "price": 0.7038729068236314,
+          "priceRank": 0.8611111111111112,
+          "score": 0.8611111111111112
+        },
+        {
+          "ticker": "CAT",
+          "rank": 36,
+          "price": 0.6561520094519164,
+          "priceRank": 0.8518518518518519,
+          "score": 0.8518518518518519
+        },
+        {
+          "ticker": "WWD",
+          "rank": 500,
+          "price": 0.6478412515668952,
+          "priceRank": 0.8425925925925926,
+          "score": 0.8425925925925926
+        },
+        {
+          "ticker": "INTC",
+          "rank": 56,
+          "price": 0.6434682087232423,
+          "priceRank": 0.8333333333333334,
+          "score": 0.8333333333333334
+        },
+        {
+          "ticker": "KEYS",
+          "rank": 338,
+          "price": 0.6388525636522907,
+          "priceRank": 0.8240740740740741,
+          "score": 0.8240740740740741
+        },
+        {
+          "ticker": "PWR",
+          "rank": 185,
+          "price": 0.5843399195656915,
+          "priceRank": 0.8148148148148148,
+          "score": 0.8148148148148148
+        },
+        {
+          "ticker": "DG",
+          "rank": 440,
+          "price": 0.5562034908072861,
+          "priceRank": 0.8055555555555556,
+          "score": 0.8055555555555556
+        },
+        {
+          "ticker": "HWM",
+          "rank": 141,
+          "price": 0.5466955188683904,
+          "priceRank": 0.7962962962962963,
+          "score": 0.7962962962962963
+        },
+        {
+          "ticker": "TPR",
+          "rank": 377,
+          "price": 0.5436395477971265,
+          "priceRank": 0.7870370370370371,
+          "score": 0.7870370370370371
+        },
+        {
+          "ticker": "FCX",
+          "rank": 164,
+          "price": 0.5401334749112537,
+          "priceRank": 0.7777777777777778,
+          "score": 0.7777777777777778
+        },
+        {
+          "ticker": "FDX",
+          "rank": 176,
+          "price": 0.5207877943683711,
+          "priceRank": 0.7685185185185185,
+          "score": 0.7685185185185185
+        },
+        {
+          "ticker": "VLO",
+          "rank": 228,
+          "price": 0.511622384669183,
+          "priceRank": 0.7592592592592593,
+          "score": 0.7592592592592593
+        },
+        {
+          "ticker": "LMT",
+          "rank": 102,
+          "price": 0.48912933883033427,
+          "priceRank": 0.75,
+          "score": 0.75
+        },
+        {
+          "ticker": "CHRW",
+          "rank": 483,
+          "price": 0.47537211499100585,
+          "priceRank": 0.7407407407407407,
+          "score": 0.7407407407407407
+        },
+        {
+          "ticker": "LHX",
+          "rank": 201,
+          "price": 0.45638259594877606,
+          "priceRank": 0.7314814814814815,
+          "score": 0.7314814814814815
+        }
+      ],
+      "selected": [
+        {
+          "ticker": "SNDK",
+          "rank": 487,
+          "price": 6.787401593483978,
+          "priceRank": 1,
+          "score": 1
+        },
+        {
+          "ticker": "LITE",
+          "rank": 364,
+          "price": 4.315095014930561,
+          "priceRank": 0.9907407407407407,
+          "score": 0.9907407407407407
+        },
+        {
+          "ticker": "BE",
+          "rank": 412,
+          "price": 2.6389911365253287,
+          "priceRank": 0.9814814814814815,
+          "score": 0.9814814814814815
+        },
+        {
+          "ticker": "WDC",
+          "rank": 249,
+          "price": 2.3029509669627135,
+          "priceRank": 0.9722222222222222,
+          "score": 0.9722222222222222
+        },
+        {
+          "ticker": "MU",
+          "rank": 38,
+          "price": 1.9781541892777725,
+          "priceRank": 0.9629629629629629,
+          "score": 0.9629629629629629
+        },
+        {
+          "ticker": "CIEN",
+          "rank": 374,
+          "price": 1.7464784389890458,
+          "priceRank": 0.9537037037037037,
+          "score": 0.9537037037037037
+        },
+        {
+          "ticker": "COHR",
+          "rank": 310,
+          "price": 1.5714601412140818,
+          "priceRank": 0.9444444444444444,
+          "score": 0.9444444444444444
+        },
+        {
+          "ticker": "FIX",
+          "rank": 327,
+          "price": 1.3506338786153398,
+          "priceRank": 0.9351851851851852,
+          "score": 0.9351851851851852
+        },
+        {
+          "ticker": "TER",
+          "rank": 344,
+          "price": 1.2698805596995562,
+          "priceRank": 0.9259259259259259,
+          "score": 0.9259259259259259
+        },
+        {
+          "ticker": "GLW",
+          "rank": 155,
+          "price": 1.113660734867599,
+          "priceRank": 0.9166666666666666,
+          "score": 0.9166666666666666
+        }
+      ]
+    },
+    {
+      "signalDate": "2026-04-06",
+      "executionDate": "2026-04-07",
+      "sourceRankingYear": "2025",
+      "regime": true,
+      "rankedTop500": 500,
+      "cachedCandidates": 473,
+      "eligible": 90,
+      "topCandidates": [
+        {
+          "ticker": "SNDK",
+          "rank": 487,
+          "price": 6.364537955598996,
+          "priceRank": 1,
+          "score": 1
+        },
+        {
+          "ticker": "LITE",
+          "rank": 364,
+          "price": 4.632201859589683,
+          "priceRank": 0.9887640449438202,
+          "score": 0.9887640449438202
+        },
+        {
+          "ticker": "CIEN",
+          "rank": 374,
+          "price": 2.5626806542142155,
+          "priceRank": 0.9775280898876404,
+          "score": 0.9775280898876404
+        },
+        {
+          "ticker": "WDC",
+          "rank": 249,
+          "price": 2.537877690251399,
+          "priceRank": 0.9662921348314607,
+          "score": 0.9662921348314607
+        },
+        {
+          "ticker": "TER",
+          "rank": 344,
+          "price": 1.3994904342332624,
+          "priceRank": 0.9550561797752809,
+          "score": 0.9550561797752809
+        },
+        {
+          "ticker": "FIX",
+          "rank": 327,
+          "price": 1.3494251616839472,
+          "priceRank": 0.9438202247191011,
+          "score": 0.9438202247191011
+        },
+        {
+          "ticker": "COHR",
+          "rank": 310,
+          "price": 1.3194893290773217,
+          "priceRank": 0.9325842696629213,
+          "score": 0.9325842696629213
+        },
+        {
+          "ticker": "ASTS",
+          "rank": 446,
+          "price": 1.1534653081944022,
+          "priceRank": 0.9213483146067416,
+          "score": 0.9213483146067416
+        },
+        {
+          "ticker": "GLW",
+          "rank": 155,
+          "price": 1.1415020176885347,
+          "priceRank": 0.9101123595505618,
+          "score": 0.9101123595505618
+        },
+        {
+          "ticker": "VRT",
+          "rank": 187,
+          "price": 1.077804411417796,
+          "priceRank": 0.898876404494382,
+          "score": 0.898876404494382
+        },
+        {
+          "ticker": "GEV",
+          "rank": 59,
+          "price": 0.7899841935331787,
+          "priceRank": 0.8876404494382022,
+          "score": 0.8876404494382022
+        },
+        {
+          "ticker": "UI",
+          "rank": 319,
+          "price": 0.746840767753221,
+          "priceRank": 0.8764044943820225,
+          "score": 0.8764044943820225
+        },
+        {
+          "ticker": "AMAT",
+          "rank": 57,
+          "price": 0.7222780322043691,
+          "priceRank": 0.8651685393258427,
+          "score": 0.8651685393258427
+        },
+        {
+          "ticker": "KEYS",
+          "rank": 338,
+          "price": 0.648078965320406,
+          "priceRank": 0.8539325842696629,
+          "score": 0.8539325842696629
+        },
+        {
+          "ticker": "VLO",
+          "rank": 228,
+          "price": 0.6183368789022943,
+          "priceRank": 0.8426966292134831,
+          "score": 0.8426966292134831
+        },
+        {
+          "ticker": "INTC",
+          "rank": 56,
+          "price": 0.6172976425723473,
+          "priceRank": 0.8314606741573034,
+          "score": 0.8314606741573034
+        },
+        {
+          "ticker": "CAT",
+          "rank": 36,
+          "price": 0.5820357374065486,
+          "priceRank": 0.8202247191011236,
+          "score": 0.8202247191011236
+        },
+        {
+          "ticker": "KLAC",
+          "rank": 69,
+          "price": 0.5691495751378569,
+          "priceRank": 0.8089887640449438,
+          "score": 0.8089887640449438
+        },
+        {
+          "ticker": "WWD",
+          "rank": 500,
+          "price": 0.5360320589025989,
+          "priceRank": 0.797752808988764,
+          "score": 0.797752808988764
+        },
+        {
+          "ticker": "PWR",
+          "rank": 185,
+          "price": 0.5292208988779059,
+          "priceRank": 0.7865168539325843,
+          "score": 0.7865168539325843
+        },
+        {
+          "ticker": "MPWR",
+          "rank": 254,
+          "price": 0.4908882609373512,
+          "priceRank": 0.7752808988764045,
+          "score": 0.7752808988764045
+        },
+        {
+          "ticker": "MPC",
+          "rank": 232,
+          "price": 0.4683148448323391,
+          "priceRank": 0.7640449438202247,
+          "score": 0.7640449438202247
+        },
+        {
+          "ticker": "DELL",
+          "rank": 104,
+          "price": 0.45485917196322995,
+          "priceRank": 0.7528089887640449,
+          "score": 0.7528089887640449
+        },
+        {
+          "ticker": "CASY",
+          "rank": 482,
+          "price": 0.44613866274239417,
+          "priceRank": 0.7415730337078652,
+          "score": 0.7415730337078652
+        },
+        {
+          "ticker": "HAL",
+          "rank": 420,
+          "price": 0.4377483183743327,
+          "priceRank": 0.7303370786516854,
+          "score": 0.7303370786516854
+        },
+        {
+          "ticker": "AMD",
+          "rank": 24,
+          "price": 0.42483218521587895,
+          "priceRank": 0.7191011235955056,
+          "score": 0.7191011235955056
+        },
+        {
+          "ticker": "OXY",
+          "rank": 273,
+          "price": 0.4198080620156702,
+          "priceRank": 0.7078651685393258,
+          "score": 0.7078651685393258
+        },
+        {
+          "ticker": "ROST",
+          "rank": 225,
+          "price": 0.4183963230364396,
+          "priceRank": 0.6966292134831461,
+          "score": 0.6966292134831461
+        },
+        {
+          "ticker": "EME",
+          "rank": 371,
+          "price": 0.4108612914791804,
+          "priceRank": 0.6853932584269663,
+          "score": 0.6853932584269663
+        },
+        {
+          "ticker": "XOM",
+          "rank": 17,
+          "price": 0.4107477203125639,
+          "priceRank": 0.6741573033707865,
+          "score": 0.6741573033707865
+        }
+      ],
+      "selected": [
+        {
+          "ticker": "SNDK",
+          "rank": 487,
+          "price": 6.364537955598996,
+          "priceRank": 1,
+          "score": 1
+        },
+        {
+          "ticker": "LITE",
+          "rank": 364,
+          "price": 4.632201859589683,
+          "priceRank": 0.9887640449438202,
+          "score": 0.9887640449438202
+        },
+        {
+          "ticker": "CIEN",
+          "rank": 374,
+          "price": 2.5626806542142155,
+          "priceRank": 0.9775280898876404,
+          "score": 0.9775280898876404
+        },
+        {
+          "ticker": "WDC",
+          "rank": 249,
+          "price": 2.537877690251399,
+          "priceRank": 0.9662921348314607,
+          "score": 0.9662921348314607
+        },
+        {
+          "ticker": "TER",
+          "rank": 344,
+          "price": 1.3994904342332624,
+          "priceRank": 0.9550561797752809,
+          "score": 0.9550561797752809
+        },
+        {
+          "ticker": "FIX",
+          "rank": 327,
+          "price": 1.3494251616839472,
+          "priceRank": 0.9438202247191011,
+          "score": 0.9438202247191011
+        },
+        {
+          "ticker": "COHR",
+          "rank": 310,
+          "price": 1.3194893290773217,
+          "priceRank": 0.9325842696629213,
+          "score": 0.9325842696629213
+        },
+        {
+          "ticker": "ASTS",
+          "rank": 446,
+          "price": 1.1534653081944022,
+          "priceRank": 0.9213483146067416,
+          "score": 0.9213483146067416
+        },
+        {
+          "ticker": "GLW",
+          "rank": 155,
+          "price": 1.1415020176885347,
+          "priceRank": 0.9101123595505618,
+          "score": 0.9101123595505618
+        },
+        {
+          "ticker": "VRT",
+          "rank": 187,
+          "price": 1.077804411417796,
+          "priceRank": 0.898876404494382,
+          "score": 0.898876404494382
+        }
+      ]
+    },
+    {
+      "signalDate": "2026-05-05",
+      "executionDate": "2026-05-06",
+      "sourceRankingYear": "2025",
+      "regime": true,
+      "rankedTop500": 500,
+      "cachedCandidates": 473,
+      "eligible": 102,
+      "topCandidates": [
+        {
+          "ticker": "SNDK",
+          "rank": 487,
+          "price": 14.189787259272348,
+          "priceRank": 1,
+          "score": 1
+        },
+        {
+          "ticker": "LITE",
+          "rank": 364,
+          "price": 6.141169275492284,
+          "priceRank": 0.9900990099009901,
+          "score": 0.9900990099009901
+        },
+        {
+          "ticker": "BE",
+          "rank": 412,
+          "price": 5.757255597967576,
+          "priceRank": 0.9801980198019802,
+          "score": 0.9801980198019802
+        },
+        {
+          "ticker": "WDC",
+          "rank": 249,
+          "price": 3.708656239980311,
+          "priceRank": 0.9702970297029703,
+          "score": 0.9702970297029703
+        },
+        {
+          "ticker": "CIEN",
+          "rank": 374,
+          "price": 2.891810246903873,
+          "priceRank": 0.9603960396039604,
+          "score": 0.9603960396039604
+        },
+        {
+          "ticker": "MU",
+          "rank": 38,
+          "price": 2.854815174599339,
+          "priceRank": 0.9504950495049505,
+          "score": 0.9504950495049505
+        },
+        {
+          "ticker": "INTC",
+          "rank": 56,
+          "price": 2.2631757713571727,
+          "priceRank": 0.9405940594059405,
+          "score": 0.9405940594059405
+        },
+        {
+          "ticker": "COHR",
+          "rank": 310,
+          "price": 1.7551259829101005,
+          "priceRank": 0.9306930693069307,
+          "score": 0.9306930693069307
+        },
+        {
+          "ticker": "FIX",
+          "rank": 327,
+          "price": 1.6322657726774508,
+          "priceRank": 0.9207920792079208,
+          "score": 0.9207920792079208
+        },
+        {
+          "ticker": "TER",
+          "rank": 344,
+          "price": 1.5121448421105423,
+          "priceRank": 0.9108910891089109,
+          "score": 0.9108910891089109
+        },
+        {
+          "ticker": "VRT",
+          "rank": 187,
+          "price": 1.3265695829081001,
+          "priceRank": 0.900990099009901,
+          "score": 0.900990099009901
+        },
+        {
+          "ticker": "MRVL",
+          "rank": 148,
+          "price": 1.249135275653787,
+          "priceRank": 0.8910891089108911,
+          "score": 0.8910891089108911
+        },
+        {
+          "ticker": "GLW",
+          "rank": 155,
+          "price": 1.2034823720535859,
+          "priceRank": 0.8811881188118812,
+          "score": 0.8811881188118812
+        },
+        {
+          "ticker": "LRCX",
+          "rank": 44,
+          "price": 1.125421708416486,
+          "priceRank": 0.8712871287128713,
+          "score": 0.8712871287128713
+        },
+        {
+          "ticker": "AMD",
+          "rank": 24,
+          "price": 1.0817898012455132,
+          "priceRank": 0.8613861386138614,
+          "score": 0.8613861386138614
+        },
+        {
+          "ticker": "ON",
+          "rank": 444,
+          "price": 1.0409993454585553,
+          "priceRank": 0.8514851485148515,
+          "score": 0.8514851485148515
+        },
+        {
+          "ticker": "UI",
+          "rank": 319,
+          "price": 0.9949068874920509,
+          "priceRank": 0.8415841584158416,
+          "score": 0.8415841584158416
+        },
+        {
+          "ticker": "GEV",
+          "rank": 59,
+          "price": 0.954924868660951,
+          "priceRank": 0.8316831683168316,
+          "score": 0.8316831683168316
+        },
+        {
+          "ticker": "KEYS",
+          "rank": 338,
+          "price": 0.929320621566079,
+          "priceRank": 0.8217821782178217,
+          "score": 0.8217821782178217
+        },
+        {
+          "ticker": "PWR",
+          "rank": 185,
+          "price": 0.8689642094223315,
+          "priceRank": 0.8118811881188119,
+          "score": 0.8118811881188119
+        },
+        {
+          "ticker": "AMAT",
+          "rank": 57,
+          "price": 0.848465727040975,
+          "priceRank": 0.801980198019802,
+          "score": 0.801980198019802
+        },
+        {
+          "ticker": "DELL",
+          "rank": 104,
+          "price": 0.8409679412548023,
+          "priceRank": 0.7920792079207921,
+          "score": 0.7920792079207921
+        },
+        {
+          "ticker": "CAT",
+          "rank": 36,
+          "price": 0.8353579039910228,
+          "priceRank": 0.7821782178217822,
+          "score": 0.7821782178217822
+        },
+        {
+          "ticker": "RKLB",
+          "rank": 265,
+          "price": 0.790564111181382,
+          "priceRank": 0.7722772277227723,
+          "score": 0.7722772277227723
+        },
+        {
+          "ticker": "MPWR",
+          "rank": 254,
+          "price": 0.776014793852422,
+          "priceRank": 0.7623762376237624,
+          "score": 0.7623762376237624
+        },
+        {
+          "ticker": "TWLO",
+          "rank": 442,
+          "price": 0.7355516774843405,
+          "priceRank": 0.7524752475247525,
+          "score": 0.7524752475247525
+        },
+        {
+          "ticker": "KLAC",
+          "rank": 69,
+          "price": 0.6936661131996845,
+          "priceRank": 0.7425742574257426,
+          "score": 0.7425742574257426
+        },
+        {
+          "ticker": "JBL",
+          "rank": 436,
+          "price": 0.6817161002314159,
+          "priceRank": 0.7326732673267327,
+          "score": 0.7326732673267327
+        },
+        {
+          "ticker": "ADI",
+          "rank": 99,
+          "price": 0.6646521566584244,
+          "priceRank": 0.7227722772277227,
+          "score": 0.7227722772277227
+        },
+        {
+          "ticker": "VLO",
+          "rank": 228,
+          "price": 0.6426359933617046,
+          "priceRank": 0.7128712871287128,
+          "score": 0.7128712871287128
+        }
+      ],
+      "selected": [
+        {
+          "ticker": "SNDK",
+          "rank": 487,
+          "price": 14.189787259272348,
+          "priceRank": 1,
+          "score": 1
+        },
+        {
+          "ticker": "LITE",
+          "rank": 364,
+          "price": 6.141169275492284,
+          "priceRank": 0.9900990099009901,
+          "score": 0.9900990099009901
+        },
+        {
+          "ticker": "BE",
+          "rank": 412,
+          "price": 5.757255597967576,
+          "priceRank": 0.9801980198019802,
+          "score": 0.9801980198019802
+        },
+        {
+          "ticker": "WDC",
+          "rank": 249,
+          "price": 3.708656239980311,
+          "priceRank": 0.9702970297029703,
+          "score": 0.9702970297029703
+        },
+        {
+          "ticker": "CIEN",
+          "rank": 374,
+          "price": 2.891810246903873,
+          "priceRank": 0.9603960396039604,
+          "score": 0.9603960396039604
+        },
+        {
+          "ticker": "MU",
+          "rank": 38,
+          "price": 2.854815174599339,
+          "priceRank": 0.9504950495049505,
+          "score": 0.9504950495049505
+        },
+        {
+          "ticker": "INTC",
+          "rank": 56,
+          "price": 2.2631757713571727,
+          "priceRank": 0.9405940594059405,
+          "score": 0.9405940594059405
+        },
+        {
+          "ticker": "COHR",
+          "rank": 310,
+          "price": 1.7551259829101005,
+          "priceRank": 0.9306930693069307,
+          "score": 0.9306930693069307
+        },
+        {
+          "ticker": "FIX",
+          "rank": 327,
+          "price": 1.6322657726774508,
+          "priceRank": 0.9207920792079208,
+          "score": 0.9207920792079208
+        },
+        {
+          "ticker": "TER",
+          "rank": 344,
+          "price": 1.5121448421105423,
+          "priceRank": 0.9108910891089109,
+          "score": 0.9108910891089109
+        }
+      ]
+    },
+    {
+      "signalDate": "2026-06-04",
+      "executionDate": "2026-06-05",
+      "sourceRankingYear": "2025",
+      "regime": true,
+      "rankedTop500": 500,
+      "cachedCandidates": 473,
+      "eligible": 110,
+      "topCandidates": [
+        {
+          "ticker": "SNDK",
+          "rank": 487,
+          "price": 16.477356381855596,
+          "priceRank": 1,
+          "score": 1
+        },
+        {
+          "ticker": "BE",
+          "rank": 412,
+          "price": 4.84370970495136,
+          "priceRank": 0.9908256880733946,
+          "score": 0.9908256880733946
+        },
+        {
+          "ticker": "WDC",
+          "rank": 249,
+          "price": 4.193972629964636,
+          "priceRank": 0.981651376146789,
+          "score": 0.981651376146789
+        },
+        {
+          "ticker": "MU",
+          "rank": 38,
+          "price": 4.181745518319784,
+          "priceRank": 0.9724770642201835,
+          "score": 0.9724770642201835
+        },
+        {
+          "ticker": "LITE",
+          "rank": 364,
+          "price": 4.168471988958126,
+          "priceRank": 0.963302752293578,
+          "score": 0.963302752293578
+        },
+        {
+          "ticker": "MRVL",
+          "rank": 148,
+          "price": 3.222887534843986,
+          "priceRank": 0.9541284403669725,
+          "score": 0.9541284403669725
+        },
+        {
+          "ticker": "CIEN",
+          "rank": 374,
+          "price": 2.439335942511677,
+          "priceRank": 0.944954128440367,
+          "score": 0.944954128440367
+        },
+        {
+          "ticker": "INTC",
+          "rank": 56,
+          "price": 2.3972214309214874,
+          "priceRank": 0.9357798165137615,
+          "score": 0.9357798165137615
+        },
+        {
+          "ticker": "DELL",
+          "rank": 104,
+          "price": 2.2427725494648034,
+          "priceRank": 0.926605504587156,
+          "score": 0.926605504587156
+        },
+        {
+          "ticker": "AMD",
+          "rank": 24,
+          "price": 2.116511468843348,
+          "priceRank": 0.9174311926605505,
+          "score": 0.9174311926605505
+        },
+        {
+          "ticker": "COHR",
+          "rank": 310,
+          "price": 2.0046504280228477,
+          "priceRank": 0.908256880733945,
+          "score": 0.908256880733945
+        },
+        {
+          "ticker": "RKLB",
+          "rank": 265,
+          "price": 1.8910030621101825,
+          "priceRank": 0.8990825688073395,
+          "score": 0.8990825688073395
+        },
+        {
+          "ticker": "HPE",
+          "rank": 334,
+          "price": 1.6842722044697047,
+          "priceRank": 0.8899082568807339,
+          "score": 0.8899082568807339
+        },
+        {
+          "ticker": "TER",
+          "rank": 344,
+          "price": 1.6783001717792483,
+          "priceRank": 0.8807339449541285,
+          "score": 0.8807339449541285
+        },
+        {
+          "ticker": "LRCX",
+          "rank": 44,
+          "price": 1.4817999330425908,
+          "priceRank": 0.8715596330275229,
+          "score": 0.8715596330275229
+        },
+        {
+          "ticker": "GLW",
+          "rank": 155,
+          "price": 1.4794825102434237,
+          "priceRank": 0.8623853211009175,
+          "score": 0.8623853211009175
+        },
+        {
+          "ticker": "ON",
+          "rank": 444,
+          "price": 1.4695384149740014,
+          "priceRank": 0.8532110091743119,
+          "score": 0.8532110091743119
+        },
+        {
+          "ticker": "FIX",
+          "rank": 327,
+          "price": 1.341773625170745,
+          "priceRank": 0.8440366972477065,
+          "score": 0.8440366972477065
+        },
+        {
+          "ticker": "ASTS",
+          "rank": 446,
+          "price": 1.3012866547158866,
+          "priceRank": 0.8348623853211009,
+          "score": 0.8348623853211009
+        },
+        {
+          "ticker": "AMAT",
+          "rank": 57,
+          "price": 1.0858963331408757,
+          "priceRank": 0.8256880733944955,
+          "score": 0.8256880733944955
+        },
+        {
+          "ticker": "CRDO",
+          "rank": 311,
+          "price": 1.0117581719298054,
+          "priceRank": 0.8165137614678899,
+          "score": 0.8165137614678899
+        },
+        {
+          "ticker": "KLAC",
+          "rank": 69,
+          "price": 0.965253451392008,
+          "priceRank": 0.8073394495412844,
+          "score": 0.8073394495412844
+        },
+        {
+          "ticker": "VRT",
+          "rank": 187,
+          "price": 0.9222794564747152,
+          "priceRank": 0.7981651376146789,
+          "score": 0.7981651376146789
+        },
+        {
+          "ticker": "TWLO",
+          "rank": 442,
+          "price": 0.9057015059997781,
+          "priceRank": 0.7889908256880734,
+          "score": 0.7889908256880734
+        },
+        {
+          "ticker": "DDOG",
+          "rank": 231,
+          "price": 0.8792405459806221,
+          "priceRank": 0.7798165137614679,
+          "score": 0.7798165137614679
+        },
+        {
+          "ticker": "MPWR",
+          "rank": 254,
+          "price": 0.8652452407566473,
+          "priceRank": 0.7706422018348624,
+          "score": 0.7706422018348624
+        },
+        {
+          "ticker": "CAT",
+          "rank": 36,
+          "price": 0.8365032126251531,
+          "priceRank": 0.7614678899082569,
+          "score": 0.7614678899082569
+        },
+        {
+          "ticker": "CSCO",
+          "rank": 32,
+          "price": 0.7861834033477041,
+          "priceRank": 0.7522935779816514,
+          "score": 0.7522935779816514
+        },
+        {
+          "ticker": "JBL",
+          "rank": 436,
+          "price": 0.7712830294249612,
+          "priceRank": 0.7431192660550459,
+          "score": 0.7431192660550459
+        },
+        {
+          "ticker": "NUE",
+          "rank": 292,
+          "price": 0.7564818263226988,
+          "priceRank": 0.7339449541284404,
+          "score": 0.7339449541284404
+        }
+      ],
+      "selected": [
+        {
+          "ticker": "SNDK",
+          "rank": 487,
+          "price": 16.477356381855596,
+          "priceRank": 1,
+          "score": 1
+        },
+        {
+          "ticker": "BE",
+          "rank": 412,
+          "price": 4.84370970495136,
+          "priceRank": 0.9908256880733946,
+          "score": 0.9908256880733946
+        },
+        {
+          "ticker": "WDC",
+          "rank": 249,
+          "price": 4.193972629964636,
+          "priceRank": 0.981651376146789,
+          "score": 0.981651376146789
+        },
+        {
+          "ticker": "MU",
+          "rank": 38,
+          "price": 4.181745518319784,
+          "priceRank": 0.9724770642201835,
+          "score": 0.9724770642201835
+        },
+        {
+          "ticker": "LITE",
+          "rank": 364,
+          "price": 4.168471988958126,
+          "priceRank": 0.963302752293578,
+          "score": 0.963302752293578
+        },
+        {
+          "ticker": "MRVL",
+          "rank": 148,
+          "price": 3.222887534843986,
+          "priceRank": 0.9541284403669725,
+          "score": 0.9541284403669725
+        },
+        {
+          "ticker": "CIEN",
+          "rank": 374,
+          "price": 2.439335942511677,
+          "priceRank": 0.944954128440367,
+          "score": 0.944954128440367
+        },
+        {
+          "ticker": "INTC",
+          "rank": 56,
+          "price": 2.3972214309214874,
+          "priceRank": 0.9357798165137615,
+          "score": 0.9357798165137615
+        },
+        {
+          "ticker": "DELL",
+          "rank": 104,
+          "price": 2.2427725494648034,
+          "priceRank": 0.926605504587156,
+          "score": 0.926605504587156
+        },
+        {
+          "ticker": "AMD",
+          "rank": 24,
+          "price": 2.116511468843348,
+          "priceRank": 0.9174311926605505,
+          "score": 0.9174311926605505
+        }
+      ]
+    },
+    {
+      "signalDate": "2026-07-07",
+      "executionDate": "2026-07-08",
+      "sourceRankingYear": "2025",
+      "regime": true,
+      "rankedTop500": 500,
+      "cachedCandidates": 473,
+      "eligible": 101,
+      "topCandidates": [
+        {
+          "ticker": "MU",
+          "rank": 38,
+          "price": 3.1946807650794566,
+          "priceRank": 1,
+          "score": 1
+        },
+        {
+          "ticker": "ALAB",
+          "rank": 357,
+          "price": 2.202811129968161,
+          "priceRank": 0.99,
+          "score": 0.99
+        },
+        {
+          "ticker": "DELL",
+          "rank": 104,
+          "price": 1.9685617975804321,
+          "priceRank": 0.98,
+          "score": 0.98
+        },
+        {
+          "ticker": "AMD",
+          "rank": 24,
+          "price": 1.7531831634533264,
+          "priceRank": 0.97,
+          "score": 0.97
+        },
+        {
+          "ticker": "CRDO",
+          "rank": 311,
+          "price": 1.2677245649850615,
+          "priceRank": 0.96,
+          "score": 0.96
+        },
+        {
+          "ticker": "AMAT",
+          "rank": 57,
+          "price": 1.127131734289219,
+          "priceRank": 0.95,
+          "score": 0.95
+        },
+        {
+          "ticker": "LRCX",
+          "rank": 44,
+          "price": 1.1169809116503169,
+          "priceRank": 0.94,
+          "score": 0.94
+        },
+        {
+          "ticker": "HPE",
+          "rank": 334,
+          "price": 0.877930157234776,
+          "priceRank": 0.93,
+          "score": 0.93
+        },
+        {
+          "ticker": "FTNT",
+          "rank": 193,
+          "price": 0.8329929321860552,
+          "priceRank": 0.92,
+          "score": 0.92
+        },
+        {
+          "ticker": "CNC",
+          "rank": 460,
+          "price": 0.8173881429490986,
+          "priceRank": 0.91,
+          "score": 0.91
+        },
+        {
+          "ticker": "CAT",
+          "rank": 36,
+          "price": 0.7122491672911521,
+          "priceRank": 0.9,
+          "score": 0.9
+        },
+        {
+          "ticker": "TWLO",
+          "rank": 442,
+          "price": 0.6329693527063334,
+          "priceRank": 0.89,
+          "score": 0.89
+        },
+        {
+          "ticker": "ILMN",
+          "rank": 451,
+          "price": 0.5993789303208664,
+          "priceRank": 0.88,
+          "score": 0.88
+        },
+        {
+          "ticker": "NTAP",
+          "rank": 423,
+          "price": 0.5970784755173323,
+          "priceRank": 0.87,
+          "score": 0.87
+        },
+        {
+          "ticker": "GEV",
+          "rank": 59,
+          "price": 0.583375483022953,
+          "priceRank": 0.86,
+          "score": 0.86
+        },
+        {
+          "ticker": "CSCO",
+          "rank": 32,
+          "price": 0.4965267307677784,
+          "priceRank": 0.85,
+          "score": 0.85
+        },
+        {
+          "ticker": "VLO",
+          "rank": 228,
+          "price": 0.49060512258421285,
+          "priceRank": 0.84,
+          "score": 0.84
+        },
+        {
+          "ticker": "STT",
+          "rank": 304,
+          "price": 0.4806585532094162,
+          "priceRank": 0.83,
+          "score": 0.83
+        },
+        {
+          "ticker": "JBHT",
+          "rank": 494,
+          "price": 0.4727106843421714,
+          "priceRank": 0.82,
+          "score": 0.82
+        },
+        {
+          "ticker": "IBKR",
+          "rank": 353,
+          "price": 0.46628256267477963,
+          "priceRank": 0.81,
+          "score": 0.81
+        },
+        {
+          "ticker": "CVS",
+          "rank": 113,
+          "price": 0.4529056664116182,
+          "priceRank": 0.8,
+          "score": 0.8
+        },
+        {
+          "ticker": "DAL",
+          "rank": 245,
+          "price": 0.44843056814645277,
+          "priceRank": 0.79,
+          "score": 0.79
+        },
+        {
+          "ticker": "NTRA",
+          "rank": 332,
+          "price": 0.4395445334786525,
+          "priceRank": 0.78,
+          "score": 0.78
+        },
+        {
+          "ticker": "WST",
+          "rank": 469,
+          "price": 0.42429170839734526,
+          "priceRank": 0.77,
+          "score": 0.77
+        },
+        {
+          "ticker": "CHRW",
+          "rank": 483,
+          "price": 0.3993713452878499,
+          "priceRank": 0.76,
+          "score": 0.76
+        },
+        {
+          "ticker": "MPC",
+          "rank": 232,
+          "price": 0.39382436172938967,
+          "priceRank": 0.75,
+          "score": 0.75
+        },
+        {
+          "ticker": "ANET",
+          "rank": 67,
+          "price": 0.3882904549499814,
+          "priceRank": 0.74,
+          "score": 0.74
+        },
+        {
+          "ticker": "MS",
+          "rank": 34,
+          "price": 0.37962223221861785,
+          "priceRank": 0.73,
+          "score": 0.73
+        },
+        {
+          "ticker": "TRGP",
+          "rank": 277,
+          "price": 0.3765264692711839,
+          "priceRank": 0.72,
+          "score": 0.72
+        },
+        {
+          "ticker": "MNST",
+          "rank": 156,
+          "price": 0.3654752140882932,
+          "priceRank": 0.71,
+          "score": 0.71
+        }
+      ],
+      "selected": [
+        {
+          "ticker": "MU",
+          "rank": 38,
+          "price": 3.1946807650794566,
+          "priceRank": 1,
+          "score": 1
+        },
+        {
+          "ticker": "ALAB",
+          "rank": 357,
+          "price": 2.202811129968161,
+          "priceRank": 0.99,
+          "score": 0.99
+        },
+        {
+          "ticker": "DELL",
+          "rank": 104,
+          "price": 1.9685617975804321,
+          "priceRank": 0.98,
+          "score": 0.98
+        },
+        {
+          "ticker": "AMD",
+          "rank": 24,
+          "price": 1.7531831634533264,
+          "priceRank": 0.97,
+          "score": 0.97
+        },
+        {
+          "ticker": "CRDO",
+          "rank": 311,
+          "price": 1.2677245649850615,
+          "priceRank": 0.96,
+          "score": 0.96
+        },
+        {
+          "ticker": "AMAT",
+          "rank": 57,
+          "price": 1.127131734289219,
+          "priceRank": 0.95,
+          "score": 0.95
+        },
+        {
+          "ticker": "LRCX",
+          "rank": 44,
+          "price": 1.1169809116503169,
+          "priceRank": 0.94,
+          "score": 0.94
+        },
+        {
+          "ticker": "HPE",
+          "rank": 334,
+          "price": 0.877930157234776,
+          "priceRank": 0.93,
+          "score": 0.93
+        },
+        {
+          "ticker": "FTNT",
+          "rank": 193,
+          "price": 0.8329929321860552,
+          "priceRank": 0.92,
+          "score": 0.92
+        },
+        {
+          "ticker": "CNC",
+          "rank": 460,
+          "price": 0.8173881429490986,
+          "priceRank": 0.91,
+          "score": 0.91
+        }
+      ]
+    }
+  ],
+  "finalHoldings": [
+    {
+      "ticker": "HPE",
+      "shares": 1561.0796494187155,
+      "close": 45.130001068115234,
+      "value": 70451.52624567959,
+      "weight": 0.04820384695372325
+    },
+    {
+      "ticker": "AMAT",
+      "shares": 123.57953715448687,
+      "close": 560.9299926757812,
+      "value": 69319.46887094276,
+      "weight": 0.04742927863217472
+    },
+    {
+      "ticker": "FTNT",
+      "shares": 430.63924687988043,
+      "close": 160.77999877929688,
+      "value": 69238.1775876645,
+      "weight": 0.04737365808303073
+    },
+    {
+      "ticker": "AMD",
+      "shares": 133.93229549161936,
+      "close": 500.94000244140625,
+      "value": 67092.04443055495,
+      "weight": 0.04590524597387555
+    },
+    {
+      "ticker": "LRCX",
+      "shares": 207.73146989449955,
+      "close": 320.9599914550781,
+      "value": 66673.4908022894,
+      "weight": 0.04561886615907238
+    },
+    {
+      "ticker": "CNC",
+      "shares": 1019.3028779397243,
+      "close": 63.88999938964844,
+      "value": 65123.26024943589,
+      "weight": 0.04455817833164127
+    },
+    {
+      "ticker": "MU",
+      "shares": 74.9029077627079,
+      "close": 853.2000122070312,
+      "value": 63907.16181748451,
+      "weight": 0.043726108029998344
+    },
+    {
+      "ticker": "DELL",
+      "shares": 159.88072497983737,
+      "close": 391.3800048828125,
+      "value": 62574.11892327635,
+      "weight": 0.042814022812268954
+    },
+    {
+      "ticker": "CRDO",
+      "shares": 279.2662538440119,
+      "close": 207.97000122070312,
+      "value": 58079.00315284034,
+      "weight": 0.03973840636810919
+    },
+    {
+      "ticker": "ALAB",
+      "shares": 177.59952015169466,
+      "close": 319.739990234375,
+      "value": 56785.668838932535,
+      "weight": 0.03885349027544422
+    }
+  ],
+  "warnings": [],
+  "fullPeriod": {
+    "strategy": {
+      "startEquity": 1000000,
+      "endEquity": 1461533.273751255,
+      "totalReturn": 0.46153327375125497,
+      "cagr": 1.0356325467753429,
+      "annualizedVolatility": 0.38490200505008776,
+      "sharpeZeroRf": 2.0617015316573033,
+      "maxDrawdown": -0.1353736537024245,
+      "sessions": 134
+    },
+    "spy": {
+      "startEquity": 1000000,
+      "endEquity": 1104717.0584076291,
+      "totalReturn": 0.10471705840762913,
+      "cagr": 0.2050707986672906,
+      "annualizedVolatility": 0.13879377579702273,
+      "sharpeZeroRf": 1.4289016007162907,
+      "maxDrawdown": -0.08884968175523733,
+      "sessions": 134
+    },
+    "turnover": 3.9049786083430145,
+    "annualReturns": [
+      {
+        "year": "2026",
+        "return": 0.46153327375125497
+      }
+    ]
+  },
+  "outOfSample": {
+    "strategy": {
+      "startEquity": 1000000,
+      "endEquity": 1461533.273751255,
+      "totalReturn": 0.46153327375125497,
+      "cagr": 1.0356325467753429,
+      "annualizedVolatility": 0.38490200505008776,
+      "sharpeZeroRf": 2.0617015316573033,
+      "maxDrawdown": -0.1353736537024245,
+      "sessions": 134
+    },
+    "spy": {
+      "startEquity": 1000000,
+      "endEquity": 1104717.0584076291,
+      "totalReturn": 0.10471705840762913,
+      "cagr": 0.2050707986672906,
+      "annualizedVolatility": 0.13879377579702273,
+      "sharpeZeroRf": 1.4289016007162907,
+      "maxDrawdown": -0.08884968175523733,
+      "sessions": 134
+    }
+  }
+}

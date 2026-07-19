@@ -1,0 +1,315 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-17T04:11:42.306Z",
+  "method": {
+    "strategy": "Weekly Minervini template + 3/6/12-month price RS, top 10, 200-day SPY +/-3% hysteresis regime, next adjusted open, 10bp one-way cost, 60-day 18% volatility cap",
+    "universe": "Supplied year t market-cap Top 500 used during year t+1",
+    "historicalPeriod": {
+      "start": "2021-01-04",
+      "end": "2025-12-31"
+    },
+    "oosStart": "2024-01-02",
+    "currentSignal": "2026-07-13 close; executed 2026-07-14 adjusted open; prices observed through 2026-07-16"
+  },
+  "oosPerformance": {
+    "strategy": {
+      "startEquity": 1169137.852069173,
+      "endEquity": 1914018.3614792312,
+      "totalReturn": 0.6371194877419697,
+      "cagr": 0.280148749810609,
+      "annualizedVolatility": 0.24086740895905243,
+      "sharpeZeroRf": 1.1501077883896051,
+      "maxDrawdown": -0.24076454525254853,
+      "sessions": 502
+    },
+    "spy": {
+      "startEquity": 1339835.7700352722,
+      "endEquity": 1980847.2937239935,
+      "totalReturn": 0.4784254443899838,
+      "cagr": 0.216394380002922,
+      "annualizedVolatility": 0.16377633765579858,
+      "sharpeZeroRf": 1.282384171024292,
+      "maxDrawdown": -0.18755226260622682,
+      "sessions": 502
+    }
+  },
+  "annualReturns": [
+    {
+      "year": "2024",
+      "strategyReturn": 0.40758725183576194
+    },
+    {
+      "year": "2025",
+      "strategyReturn": 0.16118986328338747
+    }
+  ],
+  "yearEndOrCurrentSnapshots": [
+    {
+      "year": "2024",
+      "signalDate": "2024-12-24",
+      "executionDate": "2024-12-26",
+      "regime": true,
+      "holdings": [
+        {
+          "ticker": "MSTR",
+          "company": "Strategy Inc",
+          "score": 1
+        },
+        {
+          "ticker": "PLTR",
+          "company": "Palantir Technologies Inc.",
+          "score": 0.9903846153846154
+        },
+        {
+          "ticker": "INVUP",
+          "company": "Investview, Inc.",
+          "score": 0.9807692307692307
+        },
+        {
+          "ticker": "FREJP",
+          "company": "Federal Home Loan Mortgage Corporation PFD 5.30%",
+          "score": 0.9711538461538461
+        },
+        {
+          "ticker": "AXON",
+          "company": "Axon Enterprise, Inc.",
+          "score": 0.9615384615384616
+        },
+        {
+          "ticker": "TSLA",
+          "company": "Tesla, Inc.",
+          "score": 0.9519230769230769
+        },
+        {
+          "ticker": "MRVL",
+          "company": "Marvell Technology, Inc.",
+          "score": 0.9423076923076923
+        },
+        {
+          "ticker": "AVGO",
+          "company": "Broadcom Inc.",
+          "score": 0.9326923076923077
+        },
+        {
+          "ticker": "NVDA",
+          "company": "NVIDIA Corporation",
+          "score": 0.9230769230769231
+        },
+        {
+          "ticker": "AFRM",
+          "company": "Affirm Holdings, Inc.",
+          "score": 0.9134615384615384
+        }
+      ]
+    },
+    {
+      "year": "2025",
+      "signalDate": "2025-12-24",
+      "executionDate": "2025-12-26",
+      "regime": true,
+      "holdings": [
+        {
+          "ticker": "WDC",
+          "company": "Western Digital Corporation",
+          "score": 1
+        },
+        {
+          "ticker": "MU",
+          "company": "Micron Technology, Inc.",
+          "score": 0.9929078014184397
+        },
+        {
+          "ticker": "WBD",
+          "company": "Warner Bros. Discovery, Inc.",
+          "score": 0.9858156028368794
+        },
+        {
+          "ticker": "STX",
+          "company": "Seagate Technology Holdings plc",
+          "score": 0.9787234042553191
+        },
+        {
+          "ticker": "COHR",
+          "company": "Coherent Corp.",
+          "score": 0.9716312056737588
+        },
+        {
+          "ticker": "NEM",
+          "company": "Newmont Corporation",
+          "score": 0.9645390070921985
+        },
+        {
+          "ticker": "LRCX",
+          "company": "Lam Research Corporation",
+          "score": 0.9574468085106383
+        },
+        {
+          "ticker": "TER",
+          "company": "Teradyne, Inc.",
+          "score": 0.950354609929078
+        },
+        {
+          "ticker": "APP",
+          "company": "AppLovin Corporation",
+          "score": 0.9432624113475178
+        },
+        {
+          "ticker": "MDB",
+          "company": "MongoDB, Inc.",
+          "score": 0.9361702127659575
+        }
+      ]
+    },
+    {
+      "year": "2026",
+      "signalDate": "2026-07-13",
+      "executionDate": "2026-07-14",
+      "regime": true,
+      "holdings": [
+        {
+          "ticker": "MU",
+          "company": "Micron Technology, Inc.",
+          "score": 1
+        },
+        {
+          "ticker": "DELL",
+          "company": "Dell Technologies Inc.",
+          "score": 0.99
+        },
+        {
+          "ticker": "AMD",
+          "company": "Advanced Micro Devices, Inc.",
+          "score": 0.98
+        },
+        {
+          "ticker": "HPE",
+          "company": "Hewlett Packard Enterprise Company",
+          "score": 0.97
+        },
+        {
+          "ticker": "AMAT",
+          "company": "Applied Materials, Inc.",
+          "score": 0.96
+        },
+        {
+          "ticker": "CRDO",
+          "company": "Credo Technology Group Holding Ltd",
+          "score": 0.95
+        },
+        {
+          "ticker": "FTNT",
+          "company": "Fortinet, Inc.",
+          "score": 0.94
+        },
+        {
+          "ticker": "CNC",
+          "company": "Centene Corporation",
+          "score": 0.93
+        },
+        {
+          "ticker": "TWLO",
+          "company": "Twilio Inc.",
+          "score": 0.92
+        },
+        {
+          "ticker": "NTAP",
+          "company": "NetApp, Inc.",
+          "score": 0.91
+        }
+      ]
+    }
+  ],
+  "mostFrequentOosHoldings": [
+    {
+      "ticker": "PLTR",
+      "company": "Palantir Technologies Inc.",
+      "signals": 62,
+      "frequency": 0.62
+    },
+    {
+      "ticker": "FREJP",
+      "company": "Federal Home Loan Mortgage Corporation PFD 5.30%",
+      "signals": 46,
+      "frequency": 0.46
+    },
+    {
+      "ticker": "NVDA",
+      "company": "NVIDIA Corporation",
+      "signals": 40,
+      "frequency": 0.4
+    },
+    {
+      "ticker": "MSTR",
+      "company": "Strategy Inc",
+      "signals": 34,
+      "frequency": 0.34
+    },
+    {
+      "ticker": "HOOD",
+      "company": "Robinhood Markets, Inc.",
+      "signals": 33,
+      "frequency": 0.33
+    },
+    {
+      "ticker": "VRT",
+      "company": "Vertiv Holdings Co",
+      "signals": 31,
+      "frequency": 0.31
+    },
+    {
+      "ticker": "INVUP",
+      "company": "Investview, Inc.",
+      "signals": 30,
+      "frequency": 0.3
+    },
+    {
+      "ticker": "HWM",
+      "company": "Howmet Aerospace Inc.",
+      "signals": 27,
+      "frequency": 0.27
+    },
+    {
+      "ticker": "AXON",
+      "company": "Axon Enterprise, Inc.",
+      "signals": 24,
+      "frequency": 0.24
+    },
+    {
+      "ticker": "MU",
+      "company": "Micron Technology, Inc.",
+      "signals": 22,
+      "frequency": 0.22
+    },
+    {
+      "ticker": "WDC",
+      "company": "Western Digital Corporation",
+      "signals": 22,
+      "frequency": 0.22
+    },
+    {
+      "ticker": "APP",
+      "company": "AppLovin Corporation",
+      "signals": 21,
+      "frequency": 0.21
+    },
+    {
+      "ticker": "RBLX",
+      "company": "Roblox Corporation",
+      "signals": 21,
+      "frequency": 0.21
+    },
+    {
+      "ticker": "SOFI",
+      "company": "SoFi Technologies, Inc.",
+      "signals": 21,
+      "frequency": 0.21
+    },
+    {
+      "ticker": "UI",
+      "company": "Ubiquiti Inc.",
+      "signals": 21,
+      "frequency": 0.21
+    }
+  ],
+  "dataWarning": "STX price cache ends on 2025-12-31. The 2026 simulation retains that stale historical position and therefore its 2026 realized performance and exact final weights are not reported here. The current 10-stock signal list does not include STX and each listed current candidate has a current price bar."
+}

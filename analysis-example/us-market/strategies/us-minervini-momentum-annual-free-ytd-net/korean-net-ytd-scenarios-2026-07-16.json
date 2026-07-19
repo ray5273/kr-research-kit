@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-17T04:39:18.614Z",
+  "period": "2026-01-02 to 2026-07-16",
+  "strategy": "Weekly Minervini price momentum; 2026 starts in cash to avoid the stale STX position from the 2025 portfolio.",
+  "assumptions": {
+    "tax": "Full liquidation on 2026-07-16; KRW/USD-neutral approximation; annual net gain is assumed equal to the fully liquidated portfolio profit; Korean overseas-stock capital-gains basic deduction KRW 2.5m then 22% combined tax.",
+    "costs": "One-way all-in transaction-cost sensitivity. It replaces, rather than adds to, the original 10bp one-way model cost. It includes no separately modeled USD/KRW conversion spread.",
+    "excluded": "Actual daily KRW conversion, tax-lot method, other 2026 capital gains/losses, dividend withholding/tax, and broker-specific commission/FX schedule."
+  },
+  "scenarios": [
+    {
+      "label": "편도 10bp",
+      "cost": 0.001,
+      "dir": "us-minervini-momentum-annual-free-ytd",
+      "sourceFile": "us-minervini-momentum-annual-free-ytd/weekly-annual-ranked-price-only-hysteresis-free-partial-2026-07-16.json",
+      "preLiquidationReturn": 0.20668886190732838,
+      "liquidatedReturn": 0.20617100751556583,
+      "exitCostFraction": 0.0005178543917627441,
+      "turnover": 7.575222459667632,
+      "maxDrawdown": -0.1307435680228869,
+      "afterTax": [
+        {
+          "principal": 10000000,
+          "preTaxProfit": 2061710.0751556582,
+          "tax": 0,
+          "afterTaxProfit": 2061710.0751556582,
+          "afterTaxReturn": 0.20617100751556583
+        },
+        {
+          "principal": 50000000,
+          "preTaxProfit": 10308550.375778291,
+          "tax": 1717881.0826712241,
+          "afterTaxProfit": 8590669.293107066,
+          "afterTaxReturn": 0.17181338586214132
+        },
+        {
+          "principal": 100000000,
+          "preTaxProfit": 20617100.751556583,
+          "tax": 3985762.1653424483,
+          "afterTaxProfit": 16631338.586214134,
+          "afterTaxReturn": 0.16631338586214134
+        },
+        {
+          "principal": 500000000,
+          "preTaxProfit": 103085503.75778292,
+          "tax": 22128810.826712243,
+          "afterTaxProfit": 80956692.93107069,
+          "afterTaxReturn": 0.16191338586214138
+        }
+      ]
+    },
+    {
+      "label": "편도 20bp",
+      "cost": 0.002,
+      "dir": "us-minervini-momentum-annual-free-ytd-fee20bp",
+      "sourceFile": "us-minervini-momentum-annual-free-ytd-fee20bp/weekly-annual-ranked-price-only-hysteresis-free-partial-2026-07-16.json",
+      "preLiquidationReturn": 0.19740489125186378,
+      "liquidatedReturn": 0.19637870988398332,
+      "exitCostFraction": 0.001026181367880374,
+      "turnover": 7.563307127102831,
+      "maxDrawdown": -0.13145445288417512,
+      "afterTax": [
+        {
+          "principal": 10000000,
+          "preTaxProfit": 1963787.0988398332,
+          "tax": 0,
+          "afterTaxProfit": 1963787.0988398332,
+          "afterTaxReturn": 0.19637870988398332
+        },
+        {
+          "principal": 50000000,
+          "preTaxProfit": 9818935.494199166,
+          "tax": 1610165.8087238166,
+          "afterTaxProfit": 8208769.685475349,
+          "afterTaxReturn": 0.16417539370950698
+        },
+        {
+          "principal": 100000000,
+          "preTaxProfit": 19637870.988398332,
+          "tax": 3770331.6174476333,
+          "afterTaxProfit": 15867539.370950699,
+          "afterTaxReturn": 0.15867539370950698
+        },
+        {
+          "principal": 500000000,
+          "preTaxProfit": 98189354.94199166,
+          "tax": 21051658.087238166,
+          "afterTaxProfit": 77137696.8547535,
+          "afterTaxReturn": 0.154275393709507
+        }
+      ]
+    },
+    {
+      "label": "편도 30bp",
+      "cost": 0.003,
+      "dir": "us-minervini-momentum-annual-free-ytd-fee30bp",
+      "sourceFile": "us-minervini-momentum-annual-free-ytd-fee30bp/weekly-annual-ranked-price-only-hysteresis-free-partial-2026-07-16.json",
+      "preLiquidationReturn": 0.1882142510053748,
+      "liquidatedReturn": 0.1866891221362148,
+      "exitCostFraction": 0.0015251288691599785,
+      "turnover": 7.551297057938556,
+      "maxDrawdown": -0.1321602111688971,
+      "afterTax": [
+        {
+          "principal": 10000000,
+          "preTaxProfit": 1866891.221362148,
+          "tax": 0,
+          "afterTaxProfit": 1866891.221362148,
+          "afterTaxReturn": 0.1866891221362148
+        },
+        {
+          "principal": 50000000,
+          "preTaxProfit": 9334456.10681074,
+          "tax": 1503580.3434983627,
+          "afterTaxProfit": 7830875.763312377,
+          "afterTaxReturn": 0.15661751526624754
+        },
+        {
+          "principal": 100000000,
+          "preTaxProfit": 18668912.21362148,
+          "tax": 3557160.6869967254,
+          "afterTaxProfit": 15111751.526624754,
+          "afterTaxReturn": 0.15111751526624753
+        },
+        {
+          "principal": 500000000,
+          "preTaxProfit": 93344561.0681074,
+          "tax": 19985803.434983626,
+          "afterTaxProfit": 73358757.63312377,
+          "afterTaxReturn": 0.14671751526624754
+        }
+      ]
+    }
+  ]
+}

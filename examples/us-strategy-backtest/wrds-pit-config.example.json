@@ -1,0 +1,12 @@
+{
+  "startDate": "2016-07-18",
+  "endDate": "2026-07-16",
+  "outOfSampleStart": "2024-07-17",
+  "initialCapital": 1000000,
+  "tradingCostBps": 10,
+  "topUniverse": 500,
+  "topHoldings": 10,
+  "sharesOutstandingScale": 1000,
+  "targetAnnualVolatility": 0.18,
+  "fundamentalAvailabilityLagSessions": 1
+}

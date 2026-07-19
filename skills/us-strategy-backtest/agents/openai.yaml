@@ -1,0 +1,4 @@
+interface:
+  display_name: "U.S. Strategy Backtest"
+  short_description: "Reproducible U.S. common-stock daily-bar backtests"
+  default_prompt: "Run a reproducible U.S. common-stock daily-bar backtest with a SPY comparison and save the report artifacts."
