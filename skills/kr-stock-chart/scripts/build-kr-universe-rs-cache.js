@@ -498,6 +498,8 @@ module.exports = {
   computeReturnFromBars,
   computeRsRawScore,
   assignPercentiles,
+  fetchKindMarketListings,
+  dedupeListings,
   fetchYahooChart,
   buildUniverseCache,
 };

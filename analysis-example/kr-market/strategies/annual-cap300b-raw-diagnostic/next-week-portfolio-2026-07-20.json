@@ -1,0 +1,116 @@
+{
+  "generatedAt": "2026-07-17T11:39:32.932Z",
+  "asOf": "2026-07-16",
+  "nextWeekStart": "2026-07-20",
+  "modelOnly": true,
+  "validationStatus": "corporate-actions-unverified-diagnostic",
+  "sourceArtifact": "analysis-example/kr-market/strategies/annual-cap300b/annual-top300-minervini-earnings-regime-2017-01-02-through-2026-07-16.json",
+  "signalDate": "2026-07-13",
+  "executionDate": "2026-07-14",
+  "nextScheduledSignal": "2026-07-20",
+  "nextScheduledExecution": "2026-07-21",
+  "universe": {
+    "rankingYear": 2025,
+    "snapshotDate": "2025-12-30",
+    "marketCapThreshold": 300000000000,
+    "label": "2025년말 시가총액 3,000억원 이상 보통주"
+  },
+  "overlay": {
+    "exposure": 0.42539807502226695,
+    "investedWeightPerHolding": 0.0425398075022267,
+    "cashWeight": 0.574601924977733,
+    "note": "Exposure is recalculated each completed session from the KOSPI regime and trailing strategy volatility."
+  },
+  "holdings": [
+    {
+      "rank": 1,
+      "ticker": "080220",
+      "name": "제주반도체",
+      "score": 0.968143238144233,
+      "rs": 2.026762074148229,
+      "reportFilingDate": "2026-05-14",
+      "targetWeight": 0.0425398075022267
+    },
+    {
+      "rank": 2,
+      "ticker": "089970",
+      "name": "브이엠",
+      "score": 0.9547712245857487,
+      "rs": 3.22656765683241,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.0425398075022267
+    },
+    {
+      "rank": 3,
+      "ticker": "000660",
+      "name": "SK하이닉스",
+      "score": 0.9438892857351469,
+      "rs": 2.4405796801517234,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.0425398075022267
+    },
+    {
+      "rank": 4,
+      "ticker": "440110",
+      "name": "파두",
+      "score": 0.9262212868061719,
+      "rs": 2.3933954678225873,
+      "reportFilingDate": "2026-05-12",
+      "targetWeight": 0.0425398075022267
+    },
+    {
+      "rank": 5,
+      "ticker": "005930",
+      "name": "삼성전자",
+      "score": 0.9197718430290245,
+      "rs": 1.3169680590102333,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.0425398075022267
+    },
+    {
+      "rank": 6,
+      "ticker": "131290",
+      "name": "티에스이",
+      "score": 0.9162227649288858,
+      "rs": 2.9498366741855646,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.0425398075022267
+    },
+    {
+      "rank": 7,
+      "ticker": "067310",
+      "name": "하나마이크론",
+      "score": 0.8977755276981405,
+      "rs": 0.8707008662130465,
+      "reportFilingDate": "2026-05-14",
+      "targetWeight": 0.0425398075022267
+    },
+    {
+      "rank": 8,
+      "ticker": "281820",
+      "name": "케이씨텍",
+      "score": 0.8888710732181897,
+      "rs": 1.3770823492064097,
+      "reportFilingDate": "2026-05-13",
+      "targetWeight": 0.0425398075022267
+    },
+    {
+      "rank": 9,
+      "ticker": "043260",
+      "name": "성호전자",
+      "score": 0.8626813370133668,
+      "rs": 4.463392502552877,
+      "reportFilingDate": "2026-06-09",
+      "targetWeight": 0.0425398075022267
+    },
+    {
+      "rank": 10,
+      "ticker": "000500",
+      "name": "가온전선",
+      "score": 0.8610304915659226,
+      "rs": 2.029266624981444,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.0425398075022267
+    }
+  ]
+}

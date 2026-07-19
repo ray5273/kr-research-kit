@@ -1,7 +1,8 @@
 {
-  "generatedAt": "2026-07-18T02:19:07.229Z",
+  "generatedAt": "2026-07-18T03:42:54.503Z",
   "startDate": "2016-07-11",
   "endDate": "2026-07-16",
+  "enforcePriceJump": false,
   "universeFile": "analysis-example/kr-market/strategies/annual-top300/universe-ledger-2015-2025.json",
   "cacheDir": ".tmp/kr-strategy-backtest/2026-07-16",
   "unionCount": 604,
@@ -12,8 +13,8 @@
       "asOfDate": "2015-12-30",
       "rawTop300Count": 300,
       "commonShareCount": 300,
-      "priceAvailable": 265,
-      "priceCoverage": 0.8833333333333333,
+      "priceAvailable": 269,
+      "priceCoverage": 0.8966666666666666,
       "dartAvailable": 300,
       "priceCoveragePass": false
     },
@@ -22,8 +23,8 @@
       "asOfDate": "2016-12-29",
       "rawTop300Count": 300,
       "commonShareCount": 300,
-      "priceAvailable": 265,
-      "priceCoverage": 0.8833333333333333,
+      "priceAvailable": 266,
+      "priceCoverage": 0.8866666666666667,
       "dartAvailable": 300,
       "priceCoveragePass": false
     },
@@ -32,8 +33,8 @@
       "asOfDate": "2017-12-28",
       "rawTop300Count": 300,
       "commonShareCount": 300,
-      "priceAvailable": 262,
-      "priceCoverage": 0.8733333333333333,
+      "priceAvailable": 266,
+      "priceCoverage": 0.8866666666666667,
       "dartAvailable": 300,
       "priceCoveragePass": false
     },
@@ -42,44 +43,14 @@
       "asOfDate": "2018-12-28",
       "rawTop300Count": 300,
       "commonShareCount": 300,
-      "priceAvailable": 267,
-      "priceCoverage": 0.89,
+      "priceAvailable": 271,
+      "priceCoverage": 0.9033333333333333,
       "dartAvailable": 300,
-      "priceCoveragePass": false
+      "priceCoveragePass": true
     },
     {
       "rankingYear": 2019,
       "asOfDate": "2019-12-30",
-      "rawTop300Count": 300,
-      "commonShareCount": 300,
-      "priceAvailable": 270,
-      "priceCoverage": 0.9,
-      "dartAvailable": 300,
-      "priceCoveragePass": true
-    },
-    {
-      "rankingYear": 2020,
-      "asOfDate": "2020-12-30",
-      "rawTop300Count": 300,
-      "commonShareCount": 300,
-      "priceAvailable": 273,
-      "priceCoverage": 0.91,
-      "dartAvailable": 300,
-      "priceCoveragePass": true
-    },
-    {
-      "rankingYear": 2021,
-      "asOfDate": "2021-12-30",
-      "rawTop300Count": 300,
-      "commonShareCount": 300,
-      "priceAvailable": 262,
-      "priceCoverage": 0.8733333333333333,
-      "dartAvailable": 300,
-      "priceCoveragePass": false
-    },
-    {
-      "rankingYear": 2022,
-      "asOfDate": "2022-12-29",
       "rawTop300Count": 300,
       "commonShareCount": 300,
       "priceAvailable": 275,
@@ -88,12 +59,42 @@
       "priceCoveragePass": true
     },
     {
+      "rankingYear": 2020,
+      "asOfDate": "2020-12-30",
+      "rawTop300Count": 300,
+      "commonShareCount": 300,
+      "priceAvailable": 279,
+      "priceCoverage": 0.93,
+      "dartAvailable": 300,
+      "priceCoveragePass": true
+    },
+    {
+      "rankingYear": 2021,
+      "asOfDate": "2021-12-30",
+      "rawTop300Count": 300,
+      "commonShareCount": 300,
+      "priceAvailable": 270,
+      "priceCoverage": 0.9,
+      "dartAvailable": 300,
+      "priceCoveragePass": true
+    },
+    {
+      "rankingYear": 2022,
+      "asOfDate": "2022-12-29",
+      "rawTop300Count": 300,
+      "commonShareCount": 300,
+      "priceAvailable": 284,
+      "priceCoverage": 0.9466666666666667,
+      "dartAvailable": 300,
+      "priceCoveragePass": true
+    },
+    {
       "rankingYear": 2023,
       "asOfDate": "2023-12-28",
       "rawTop300Count": 300,
       "commonShareCount": 300,
-      "priceAvailable": 276,
-      "priceCoverage": 0.92,
+      "priceAvailable": 288,
+      "priceCoverage": 0.96,
       "dartAvailable": 300,
       "priceCoveragePass": true
     },
@@ -102,8 +103,8 @@
       "asOfDate": "2024-12-30",
       "rawTop300Count": 300,
       "commonShareCount": 300,
-      "priceAvailable": 276,
-      "priceCoverage": 0.92,
+      "priceAvailable": 291,
+      "priceCoverage": 0.97,
       "dartAvailable": 300,
       "priceCoveragePass": true
     },
@@ -112,10 +113,10 @@
       "asOfDate": "2025-12-30",
       "rawTop300Count": 300,
       "commonShareCount": 298,
-      "priceAvailable": 265,
-      "priceCoverage": 0.889261744966443,
+      "priceAvailable": 286,
+      "priceCoverage": 0.959731543624161,
       "dartAvailable": 298,
-      "priceCoveragePass": false
+      "priceCoveragePass": true
     }
   ],
   "failures": [
@@ -383,12 +384,6 @@
     },
     {
       "rankingYear": 2015,
-      "ticker": "084110",
-      "requiredDate": "2016-07-11",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2015,
       "ticker": "010620",
       "requiredDate": "2016-07-11",
       "reason": "fewer-than-273-bars"
@@ -407,18 +402,6 @@
     },
     {
       "rankingYear": 2015,
-      "ticker": "047770",
-      "requiredDate": "2016-07-11",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2015,
-      "ticker": "030530",
-      "requiredDate": "2016-07-11",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2015,
       "ticker": "117930",
       "requiredDate": "2016-07-11",
       "reason": "fewer-than-273-bars"
@@ -428,12 +411,6 @@
       "ticker": "192080",
       "requiredDate": "2016-07-11",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2015,
-      "ticker": "206640",
-      "requiredDate": "2016-07-11",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2015,
@@ -671,12 +648,6 @@
     },
     {
       "rankingYear": 2016,
-      "ticker": "030530",
-      "requiredDate": "2017-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2016,
       "ticker": "138250",
       "requiredDate": "2017-01-02",
       "reason": "fewer-than-273-bars"
@@ -722,12 +693,6 @@
       "ticker": "267250",
       "requiredDate": "2018-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2017,
-      "ticker": "009540",
-      "requiredDate": "2018-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2017,
@@ -833,21 +798,9 @@
     },
     {
       "rankingYear": 2017,
-      "ticker": "042660",
-      "requiredDate": "2018-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2017,
       "ticker": "028150",
       "requiredDate": "2018-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2017,
-      "ticker": "003380",
-      "requiredDate": "2018-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2017,
@@ -922,28 +875,10 @@
       "reason": "fewer-than-273-bars"
     },
     {
-      "rankingYear": 2017,
-      "ticker": "030530",
-      "requiredDate": "2018-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
       "rankingYear": 2018,
       "ticker": "091990",
       "requiredDate": "2019-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2018,
-      "ticker": "009540",
-      "requiredDate": "2019-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2018,
-      "ticker": "042660",
-      "requiredDate": "2019-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2018,
@@ -1031,12 +966,6 @@
     },
     {
       "rankingYear": 2018,
-      "ticker": "003380",
-      "requiredDate": "2019-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2018,
       "ticker": "042000",
       "requiredDate": "2019-01-02",
       "reason": "fewer-than-273-bars"
@@ -1046,12 +975,6 @@
       "ticker": "298380",
       "requiredDate": "2019-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2018,
-      "ticker": "038540",
-      "requiredDate": "2019-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2018,
@@ -1127,12 +1050,6 @@
     },
     {
       "rankingYear": 2019,
-      "ticker": "009540",
-      "requiredDate": "2020-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2019,
       "ticker": "316140",
       "requiredDate": "2020-01-02",
       "reason": "fewer-than-273-bars"
@@ -1142,12 +1059,6 @@
       "ticker": "091990",
       "requiredDate": "2020-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2019,
-      "ticker": "042660",
-      "requiredDate": "2020-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2019,
@@ -1235,27 +1146,9 @@
     },
     {
       "rankingYear": 2019,
-      "ticker": "214150",
-      "requiredDate": "2020-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2019,
       "ticker": "049770",
       "requiredDate": "2020-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2019,
-      "ticker": "003380",
-      "requiredDate": "2020-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2019,
-      "ticker": "016380",
-      "requiredDate": "2020-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2019,
@@ -1319,12 +1212,6 @@
     },
     {
       "rankingYear": 2020,
-      "ticker": "009540",
-      "requiredDate": "2021-01-04",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2020,
       "ticker": "352820",
       "requiredDate": "2021-01-04",
       "reason": "fewer-than-273-bars"
@@ -1346,12 +1233,6 @@
       "ticker": "003410",
       "requiredDate": "2021-01-04",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2020,
-      "ticker": "042660",
-      "requiredDate": "2021-01-04",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2020,
@@ -1409,27 +1290,9 @@
     },
     {
       "rankingYear": 2020,
-      "ticker": "016380",
-      "requiredDate": "2021-01-04",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2020,
-      "ticker": "314130",
-      "requiredDate": "2021-01-04",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2020,
       "ticker": "363280",
       "requiredDate": "2021-01-04",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2020,
-      "ticker": "214150",
-      "requiredDate": "2021-01-04",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2020,
@@ -1442,12 +1305,6 @@
       "ticker": "028150",
       "requiredDate": "2021-01-04",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2020,
-      "ticker": "003380",
-      "requiredDate": "2021-01-04",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2020,
@@ -1523,12 +1380,6 @@
     },
     {
       "rankingYear": 2021,
-      "ticker": "009540",
-      "requiredDate": "2022-01-04",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2021,
       "ticker": "137310",
       "requiredDate": "2022-01-04",
       "reason": "fewer-than-273-bars"
@@ -1553,21 +1404,9 @@
     },
     {
       "rankingYear": 2021,
-      "ticker": "086520",
-      "requiredDate": "2022-01-04",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2021,
       "ticker": "010620",
       "requiredDate": "2022-01-04",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2021,
-      "ticker": "042660",
-      "requiredDate": "2022-01-04",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2021,
@@ -1619,12 +1458,6 @@
     },
     {
       "rankingYear": 2021,
-      "ticker": "020560",
-      "requiredDate": "2022-01-04",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2021,
       "ticker": "042670",
       "requiredDate": "2022-01-04",
       "reason": "fewer-than-273-bars"
@@ -1637,21 +1470,9 @@
     },
     {
       "rankingYear": 2021,
-      "ticker": "007700",
-      "requiredDate": "2022-01-04",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2021,
       "ticker": "950210",
       "requiredDate": "2022-01-04",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2021,
-      "ticker": "214150",
-      "requiredDate": "2022-01-04",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2021,
@@ -1670,18 +1491,6 @@
       "ticker": "121800",
       "requiredDate": "2022-01-04",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2021,
-      "ticker": "215000",
-      "requiredDate": "2022-01-04",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2021,
-      "ticker": "016380",
-      "requiredDate": "2022-01-04",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2021,
@@ -1715,12 +1524,6 @@
     },
     {
       "rankingYear": 2022,
-      "ticker": "009540",
-      "requiredDate": "2023-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2022,
       "ticker": "402340",
       "requiredDate": "2023-01-02",
       "reason": "fewer-than-273-bars"
@@ -1745,21 +1548,9 @@
     },
     {
       "rankingYear": 2022,
-      "ticker": "086520",
-      "requiredDate": "2023-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2022,
       "ticker": "048260",
       "requiredDate": "2023-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2022,
-      "ticker": "042660",
-      "requiredDate": "2023-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2022,
@@ -1781,45 +1572,15 @@
     },
     {
       "rankingYear": 2022,
-      "ticker": "214150",
-      "requiredDate": "2023-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2022,
-      "ticker": "007700",
-      "requiredDate": "2023-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2022,
       "ticker": "403870",
       "requiredDate": "2023-01-02",
       "reason": "fewer-than-273-bars"
     },
     {
       "rankingYear": 2022,
-      "ticker": "020560",
-      "requiredDate": "2023-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2022,
       "ticker": "377740",
       "requiredDate": "2023-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2022,
-      "ticker": "003380",
-      "requiredDate": "2023-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2022,
-      "ticker": "121600",
-      "requiredDate": "2023-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2022,
@@ -1835,21 +1596,9 @@
     },
     {
       "rankingYear": 2022,
-      "ticker": "016380",
-      "requiredDate": "2023-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2022,
       "ticker": "403550",
       "requiredDate": "2023-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2023,
-      "ticker": "086520",
-      "requiredDate": "2024-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2023,
@@ -1862,18 +1611,6 @@
       "ticker": "091990",
       "requiredDate": "2024-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2023,
-      "ticker": "009540",
-      "requiredDate": "2024-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2023,
-      "ticker": "042660",
-      "requiredDate": "2024-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2023,
@@ -1901,21 +1638,9 @@
     },
     {
       "rankingYear": 2023,
-      "ticker": "214150",
-      "requiredDate": "2024-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2023,
       "ticker": "017860",
       "requiredDate": "2024-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2023,
-      "ticker": "003620",
-      "requiredDate": "2024-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2023,
@@ -1925,27 +1650,9 @@
     },
     {
       "rankingYear": 2023,
-      "ticker": "121600",
-      "requiredDate": "2024-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2023,
-      "ticker": "140410",
-      "requiredDate": "2024-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2023,
       "ticker": "440110",
       "requiredDate": "2024-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2023,
-      "ticker": "003030",
-      "requiredDate": "2024-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2023,
@@ -1955,57 +1662,15 @@
     },
     {
       "rankingYear": 2023,
-      "ticker": "016790",
-      "requiredDate": "2024-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2023,
-      "ticker": "016380",
-      "requiredDate": "2024-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2023,
       "ticker": "457190",
       "requiredDate": "2024-01-02",
       "reason": "fewer-than-273-bars"
     },
     {
       "rankingYear": 2023,
-      "ticker": "003380",
-      "requiredDate": "2024-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2023,
       "ticker": "418550",
       "requiredDate": "2024-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2023,
-      "ticker": "020560",
-      "requiredDate": "2024-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2024,
-      "ticker": "009540",
-      "requiredDate": "2025-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2024,
-      "ticker": "042660",
-      "requiredDate": "2025-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2024,
-      "ticker": "086520",
-      "requiredDate": "2025-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2024,
@@ -2027,27 +1692,9 @@
     },
     {
       "rankingYear": 2024,
-      "ticker": "214150",
-      "requiredDate": "2025-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2024,
-      "ticker": "020560",
-      "requiredDate": "2025-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2024,
       "ticker": "062040",
       "requiredDate": "2025-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2024,
-      "ticker": "012510",
-      "requiredDate": "2025-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2024,
@@ -2057,33 +1704,9 @@
     },
     {
       "rankingYear": 2024,
-      "ticker": "950160",
-      "requiredDate": "2025-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2024,
       "ticker": "489790",
       "requiredDate": "2025-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2024,
-      "ticker": "082740",
-      "requiredDate": "2025-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2024,
-      "ticker": "018290",
-      "requiredDate": "2025-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2024,
-      "ticker": "036930",
-      "requiredDate": "2025-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2024,
@@ -2099,63 +1722,9 @@
     },
     {
       "rankingYear": 2024,
-      "ticker": "457190",
-      "requiredDate": "2025-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2024,
-      "ticker": "140410",
-      "requiredDate": "2025-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2024,
-      "ticker": "071970",
-      "requiredDate": "2025-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2024,
       "ticker": "417200",
       "requiredDate": "2025-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2024,
-      "ticker": "003030",
-      "requiredDate": "2025-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2024,
-      "ticker": "003620",
-      "requiredDate": "2025-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "042660",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "009540",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "086520",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "950160",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2025,
@@ -2165,57 +1734,15 @@
     },
     {
       "rankingYear": 2025,
-      "ticker": "108490",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "030530",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "082740",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "214150",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
       "ticker": "031210",
       "requiredDate": "2026-01-02",
       "reason": "fewer-than-273-bars"
     },
     {
       "rankingYear": 2025,
-      "ticker": "071970",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "140410",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
       "ticker": "042670",
       "requiredDate": "2026-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "012510",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2025,
@@ -2237,51 +1764,9 @@
     },
     {
       "rankingYear": 2025,
-      "ticker": "319400",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "445680",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "097230",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
       "ticker": "483650",
       "requiredDate": "2026-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "457190",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "020560",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "077970",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "036930",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
     },
     {
       "rankingYear": 2025,
@@ -2309,27 +1794,9 @@
     },
     {
       "rankingYear": 2025,
-      "ticker": "003380",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
       "ticker": "456160",
       "requiredDate": "2026-01-02",
       "reason": "fewer-than-273-bars"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "115180",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
-    },
-    {
-      "rankingYear": 2025,
-      "ticker": "319660",
-      "requiredDate": "2026-01-02",
-      "reason": "unresolved-price-jump"
     }
   ],
   "pass": false

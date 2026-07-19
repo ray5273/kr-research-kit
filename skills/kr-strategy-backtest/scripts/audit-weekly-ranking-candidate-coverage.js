@@ -55,7 +55,7 @@ function fundamentalDiagnostic(series, asOf) {
 
 const ROOT = path.resolve(__dirname, '..', '..', '..');
 const rankingFile = arg('--ranking-file', path.join(ROOT, 'analysis-example/kr-market/strategies/annual-top300/weekly-full-ranking-2026-07-13.json'));
-const universeFile = arg('--universe-file', path.join(ROOT, 'analysis-example/kr-market/strategies/annual-top300/universe-ledger-2016-2025-partial.json'));
+const universeFile = arg('--universe-file', path.join(ROOT, 'analysis-example/kr-market/strategies/annual-top300/universe-ledger-2015-2025.json'));
 const rawWorkbook = arg('--raw-workbook', path.join(ROOT, '한국_시가총액_상위300_2016-2025.xlsx'));
 const outputBase = arg('--output-base', path.join(ROOT, 'analysis-example/kr-market/strategies/annual-top300/candidate-coverage-2026-07-13'));
 const ranking = read(rankingFile), signalDate = ranking.signalDate, rankingYear = Number(ranking.universe?.rankingYear || Number(signalDate.slice(0, 4)) - 1);

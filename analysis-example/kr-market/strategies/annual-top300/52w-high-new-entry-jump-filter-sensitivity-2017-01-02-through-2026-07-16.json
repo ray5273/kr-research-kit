@@ -1,0 +1,4440 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-19T08:53:52.698Z",
+  "researchOnly": true,
+  "operatingAdoption": {
+    "status": "adopted after research",
+    "adoptedAt": "2026-07-19",
+    "runnerDefault": "--new-entry-jump-threshold-pct 25 for high52w; 0 disables",
+    "liveAndHermes": "deployed; existing July holdings preserved and ledger metadata backfilled"
+  },
+  "period": {
+    "start": "2017-01-02",
+    "end": "2026-07-16"
+  },
+  "oosPeriod": {
+    "start": "2023-01-02",
+    "end": "2026-07-16"
+  },
+  "rules": {
+    "baseStrategy": {
+      "epsWeight": 0,
+      "momentumType": "high52w",
+      "holdings": 15,
+      "holdBufferRank": 45,
+      "softAnnualRoll": true,
+      "cadence": 21,
+      "regime": true,
+      "regimeMaWindow": 200,
+      "regimeBand": 0.03,
+      "volTarget": null,
+      "buyCost": 0.0025,
+      "sellTax": 0.0018
+    },
+    "entryJumpFilter": "new candidates only; exclude when signal-close return versus the stock previous trading close is >= threshold",
+    "incumbentRule": "keep incumbents ranked 45 or better regardless of one-day return",
+    "replacementRule": "scan down the fresh ranking until 15 target names are filled",
+    "informationCutoff": "signal-date close and earlier only",
+    "execution": "next market session open",
+    "forwardReturnDefinition": "signal close to exact close 1, 5, and 21 KOSPI trading sessions later"
+  },
+  "inputs": {
+    "universeFile": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-market/strategies/annual-top300/universe-ledger-2015-2025.json",
+    "priceCache": "/Users/sanghyeok/workspace/stock-analysis-skill/.tmp/kr-strategy-backtest/marcap-total-return",
+    "dartPanel": "/Users/sanghyeok/workspace/stock-analysis-skill/.tmp/kr-strategy-backtest/dart-quarterly-panel"
+  },
+  "thresholds": [
+    null,
+    0.15,
+    0.2,
+    0.25
+  ],
+  "baselineParity": {
+    "passes": true,
+    "allowed": {
+      "maxAbsoluteEquityDifference": 0.01,
+      "metricAbsoluteDifference": 1e-12
+    },
+    "dateMismatchCount": 0,
+    "maxAbsoluteEquityDifference": 0,
+    "deltas": {
+      "cagr": 0,
+      "sharpeZeroRf": 0,
+      "maxDrawdown": 0,
+      "turnover": 0,
+      "tradeCount": 0
+    }
+  },
+  "comparisons": [
+    {
+      "threshold": null,
+      "role": "baseline",
+      "fullSample": {
+        "totalReturn": 3.258463691145586,
+        "cagr": 0.1641434577942158,
+        "annualizedVolatility": 0.19610027334194274,
+        "sharpeZeroRf": 0.8966203219486146,
+        "maxDrawdown": -0.26014797039629134,
+        "calmar": 0.6309619004298633,
+        "tradeCount": 1412,
+        "turnover": 62.924759491197854,
+        "annualizedTurnover": 6.600594027616316,
+        "screenedExclusionCount": 0,
+        "causalPortfolioExclusionCount": 0,
+        "executableEntryBlockCount": 0,
+        "affectedSignalCount": 0,
+        "maxCausalExclusionsOnOneSignal": 0,
+        "maxSingleSignalShareOfCausalExclusions": null,
+        "incumbentJumpExemptionCount": 0,
+        "replacementForwardPerformance": {
+          "excludedCandidates": {
+            "count": 0,
+            "averageForwardReturns": {
+              "1d": {
+                "observations": 0,
+                "mean": null
+              },
+              "5d": {
+                "observations": 0,
+                "mean": null
+              },
+              "21d": {
+                "observations": 0,
+                "mean": null
+              }
+            }
+          },
+          "replacementCandidates": {
+            "count": 0,
+            "averageForwardReturns": {
+              "1d": {
+                "observations": 0,
+                "mean": null
+              },
+              "5d": {
+                "observations": 0,
+                "mean": null
+              },
+              "21d": {
+                "observations": 0,
+                "mean": null
+              }
+            }
+          }
+        }
+      },
+      "oos": {
+        "totalReturn": 0.5888692135169702,
+        "cagr": 0.13996601189844804,
+        "annualizedVolatility": 0.23579427276735315,
+        "sharpeZeroRf": 0.6923452010485075,
+        "maxDrawdown": -0.19192970322087233,
+        "calmar": 0.7292566473537211,
+        "tradeCount": 666,
+        "turnover": 32.70516955708635,
+        "annualizedTurnover": 9.252953664388682,
+        "screenedExclusionCount": 0,
+        "causalPortfolioExclusionCount": 0,
+        "executableEntryBlockCount": 0,
+        "affectedSignalCount": 0,
+        "maxCausalExclusionsOnOneSignal": 0,
+        "maxSingleSignalShareOfCausalExclusions": null,
+        "incumbentJumpExemptionCount": 0,
+        "replacementForwardPerformance": {
+          "excludedCandidates": {
+            "count": 0,
+            "averageForwardReturns": {
+              "1d": {
+                "observations": 0,
+                "mean": null
+              },
+              "5d": {
+                "observations": 0,
+                "mean": null
+              },
+              "21d": {
+                "observations": 0,
+                "mean": null
+              }
+            }
+          },
+          "replacementCandidates": {
+            "count": 0,
+            "averageForwardReturns": {
+              "1d": {
+                "observations": 0,
+                "mean": null
+              },
+              "5d": {
+                "observations": 0,
+                "mean": null
+              },
+              "21d": {
+                "observations": 0,
+                "mean": null
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "threshold": 0.15,
+      "role": "sensitivity-only",
+      "fullSample": {
+        "totalReturn": 4.137166816711955,
+        "cagr": 0.18727822908642078,
+        "annualizedVolatility": 0.19429715230353625,
+        "sharpeZeroRf": 1.007354581272907,
+        "maxDrawdown": -0.20986175754652803,
+        "calmar": 0.892388547946377,
+        "tradeCount": 1409,
+        "turnover": 62.60009959241439,
+        "annualizedTurnover": 6.566538304459895,
+        "screenedExclusionCount": 24,
+        "causalPortfolioExclusionCount": 22,
+        "executableEntryBlockCount": 19,
+        "affectedSignalCount": 17,
+        "maxCausalExclusionsOnOneSignal": 4,
+        "maxSingleSignalShareOfCausalExclusions": 0.18181818181818182,
+        "incumbentJumpExemptionCount": 2,
+        "replacementForwardPerformance": {
+          "excludedCandidates": {
+            "count": 22,
+            "averageForwardReturns": {
+              "1d": {
+                "observations": 22,
+                "mean": -0.022326302282509144
+              },
+              "5d": {
+                "observations": 22,
+                "mean": -0.0999391297245983
+              },
+              "21d": {
+                "observations": 22,
+                "mean": -0.10329572929626013
+              }
+            }
+          },
+          "replacementCandidates": {
+            "count": 22,
+            "averageForwardReturns": {
+              "1d": {
+                "observations": 22,
+                "mean": 0.009795457792509248
+              },
+              "5d": {
+                "observations": 22,
+                "mean": -0.012828461672225249
+              },
+              "21d": {
+                "observations": 21,
+                "mean": 0.03454974666776819
+              }
+            }
+          }
+        }
+      },
+      "oos": {
+        "totalReturn": 0.5955400041797219,
+        "cagr": 0.14131806072303044,
+        "annualizedVolatility": 0.22886842461085483,
+        "sharpeZeroRf": 0.7116516221182557,
+        "maxDrawdown": -0.18634654881531554,
+        "calmar": 0.7583615667767909,
+        "tradeCount": 665,
+        "turnover": 32.56466615413632,
+        "annualizedTurnover": 9.21320241115282,
+        "screenedExclusionCount": 15,
+        "causalPortfolioExclusionCount": 14,
+        "executableEntryBlockCount": 10,
+        "affectedSignalCount": 12,
+        "maxCausalExclusionsOnOneSignal": 3,
+        "maxSingleSignalShareOfCausalExclusions": 0.21428571428571427,
+        "incumbentJumpExemptionCount": 3,
+        "replacementForwardPerformance": {
+          "excludedCandidates": {
+            "count": 14,
+            "averageForwardReturns": {
+              "1d": {
+                "observations": 14,
+                "mean": -0.030210557723948372
+              },
+              "5d": {
+                "observations": 14,
+                "mean": -0.0006401687856260528
+              },
+              "21d": {
+                "observations": 14,
+                "mean": 0.0687612932858946
+              }
+            }
+          },
+          "replacementCandidates": {
+            "count": 14,
+            "averageForwardReturns": {
+              "1d": {
+                "observations": 14,
+                "mean": -0.0012998895714151834
+              },
+              "5d": {
+                "observations": 14,
+                "mean": -0.0382725830805068
+              },
+              "21d": {
+                "observations": 14,
+                "mean": -0.03677537110919699
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "threshold": 0.2,
+      "role": "sensitivity-only",
+      "fullSample": {
+        "totalReturn": 3.653064768928502,
+        "cagr": 0.17501542674702497,
+        "annualizedVolatility": 0.19473863767145047,
+        "sharpeZeroRf": 0.9505832780527658,
+        "maxDrawdown": -0.22485354172295757,
+        "calmar": 0.7783529910445519,
+        "tradeCount": 1411,
+        "turnover": 62.82919970722771,
+        "annualizedTurnover": 6.590570130116289,
+        "screenedExclusionCount": 14,
+        "causalPortfolioExclusionCount": 13,
+        "executableEntryBlockCount": 11,
+        "affectedSignalCount": 10,
+        "maxCausalExclusionsOnOneSignal": 4,
+        "maxSingleSignalShareOfCausalExclusions": 0.3076923076923077,
+        "incumbentJumpExemptionCount": 1,
+        "replacementForwardPerformance": {
+          "excludedCandidates": {
+            "count": 13,
+            "averageForwardReturns": {
+              "1d": {
+                "observations": 13,
+                "mean": -0.018038004591601712
+              },
+              "5d": {
+                "observations": 13,
+                "mean": -0.13422776750343626
+              },
+              "21d": {
+                "observations": 13,
+                "mean": -0.1664636123345461
+              }
+            }
+          },
+          "replacementCandidates": {
+            "count": 13,
+            "averageForwardReturns": {
+              "1d": {
+                "observations": 13,
+                "mean": -0.005637570564650725
+              },
+              "5d": {
+                "observations": 13,
+                "mean": -0.022671554186587027
+              },
+              "21d": {
+                "observations": 12,
+                "mean": -0.010959237582187828
+              }
+            }
+          }
+        }
+      },
+      "oos": {
+        "totalReturn": 0.552348257906456,
+        "cagr": 0.1324908301277128,
+        "annualizedVolatility": 0.2291154860458688,
+        "sharpeZeroRf": 0.6760913767017535,
+        "maxDrawdown": -0.18359955307504905,
+        "calmar": 0.7216293716878232,
+        "tradeCount": 666,
+        "turnover": 32.691810741036704,
+        "annualizedTurnover": 9.249174185254574,
+        "screenedExclusionCount": 8,
+        "causalPortfolioExclusionCount": 8,
+        "executableEntryBlockCount": 5,
+        "affectedSignalCount": 6,
+        "maxCausalExclusionsOnOneSignal": 3,
+        "maxSingleSignalShareOfCausalExclusions": 0.375,
+        "incumbentJumpExemptionCount": 1,
+        "replacementForwardPerformance": {
+          "excludedCandidates": {
+            "count": 8,
+            "averageForwardReturns": {
+              "1d": {
+                "observations": 8,
+                "mean": -0.0424720571973225
+              },
+              "5d": {
+                "observations": 8,
+                "mean": 0.03218333667373266
+              },
+              "21d": {
+                "observations": 8,
+                "mean": 0.008231605208703557
+              }
+            }
+          },
+          "replacementCandidates": {
+            "count": 8,
+            "averageForwardReturns": {
+              "1d": {
+                "observations": 8,
+                "mean": 0.0005457211683403407
+              },
+              "5d": {
+                "observations": 8,
+                "mean": -0.0018745253151954133
+              },
+              "21d": {
+                "observations": 8,
+                "mean": -0.017845349115824166
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "threshold": 0.25,
+      "role": "preselected-candidate",
+      "fullSample": {
+        "totalReturn": 3.4330023332907427,
+        "cagr": 0.16905898590113488,
+        "annualizedVolatility": 0.19565857596901426,
+        "sharpeZeroRf": 0.9202916353208188,
+        "maxDrawdown": -0.2337721014446702,
+        "calmar": 0.7231786207865707,
+        "tradeCount": 1412,
+        "turnover": 62.94764883345848,
+        "annualizedTurnover": 6.602995042050749,
+        "screenedExclusionCount": 8,
+        "causalPortfolioExclusionCount": 8,
+        "executableEntryBlockCount": 7,
+        "affectedSignalCount": 6,
+        "maxCausalExclusionsOnOneSignal": 3,
+        "maxSingleSignalShareOfCausalExclusions": 0.375,
+        "incumbentJumpExemptionCount": 1,
+        "replacementForwardPerformance": {
+          "excludedCandidates": {
+            "count": 8,
+            "averageForwardReturns": {
+              "1d": {
+                "observations": 8,
+                "mean": -0.018210053160307604
+              },
+              "5d": {
+                "observations": 8,
+                "mean": -0.17441245315499682
+              },
+              "21d": {
+                "observations": 8,
+                "mean": -0.1432355830859482
+              }
+            }
+          },
+          "replacementCandidates": {
+            "count": 8,
+            "averageForwardReturns": {
+              "1d": {
+                "observations": 8,
+                "mean": 0.00047267555563690333
+              },
+              "5d": {
+                "observations": 8,
+                "mean": -0.03355504626883141
+              },
+              "21d": {
+                "observations": 7,
+                "mean": -0.08925701854789761
+              }
+            }
+          }
+        }
+      },
+      "oos": {
+        "totalReturn": 0.5704603263424382,
+        "cagr": 0.13621362470095866,
+        "annualizedVolatility": 0.23365733973194933,
+        "sharpeZeroRf": 0.6819719350593192,
+        "maxDrawdown": -0.1841930857930627,
+        "calmar": 0.7395154064251466,
+        "tradeCount": 666,
+        "turnover": 32.70448294005437,
+        "annualizedTurnover": 9.252759406549076,
+        "screenedExclusionCount": 5,
+        "causalPortfolioExclusionCount": 5,
+        "executableEntryBlockCount": 3,
+        "affectedSignalCount": 5,
+        "maxCausalExclusionsOnOneSignal": 1,
+        "maxSingleSignalShareOfCausalExclusions": 0.2,
+        "incumbentJumpExemptionCount": 1,
+        "replacementForwardPerformance": {
+          "excludedCandidates": {
+            "count": 5,
+            "averageForwardReturns": {
+              "1d": {
+                "observations": 5,
+                "mean": -0.032291389258717954
+              },
+              "5d": {
+                "observations": 5,
+                "mean": 0.03430316203416504
+              },
+              "21d": {
+                "observations": 5,
+                "mean": 0.06445898196248163
+              }
+            }
+          },
+          "replacementCandidates": {
+            "count": 5,
+            "averageForwardReturns": {
+              "1d": {
+                "observations": 5,
+                "mean": 0.023999227646958055
+              },
+              "5d": {
+                "observations": 5,
+                "mean": -0.002790234729010832
+              },
+              "21d": {
+                "observations": 5,
+                "mean": -0.03532467987845156
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "exclusionLedgers": {
+    "15": [
+      {
+        "signalDate": "2018-05-21",
+        "executionDate": "2018-05-23",
+        "rankingYear": 2017,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "012510",
+          "039130",
+          "214370",
+          "081660",
+          "089590",
+          "069260",
+          "086900",
+          "078340",
+          "049950",
+          "002270",
+          "006360",
+          "004170",
+          "098460",
+          "024720",
+          "003410"
+        ],
+        "keptIncumbents": [
+          "214370",
+          "081660",
+          "089590",
+          "069260",
+          "086900",
+          "078340",
+          "002270",
+          "006360",
+          "004170",
+          "098460"
+        ],
+        "unfilteredTarget": [
+          "214370",
+          "081660",
+          "089590",
+          "069260",
+          "086900",
+          "078340",
+          "002270",
+          "006360",
+          "004170",
+          "098460",
+          "007700",
+          "145720",
+          "003230",
+          "009410",
+          "036460"
+        ],
+        "filteredTarget": [
+          "214370",
+          "081660",
+          "089590",
+          "069260",
+          "086900",
+          "078340",
+          "002270",
+          "006360",
+          "004170",
+          "098460",
+          "145720",
+          "003230",
+          "009410",
+          "036460",
+          "071840"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "007700",
+            "name": "F&F홀딩스",
+            "originalRank": 1,
+            "signalClose": 52506.925411944285,
+            "previousTradingDate": "2018-05-18",
+            "previousTradingClose": 44894.718762436714,
+            "oneDayReturn": 0.16955684007707128,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.054365733113673764,
+              "5d": -0.02471169686985175,
+              "21d": 0.2965403624382208
+            },
+            "replacement": {
+              "ticker": "071840",
+              "name": "롯데하이마트",
+              "originalRank": 8,
+              "oneDayReturn": -0.006329113924050556,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.020382165605095537,
+                "5d": -0.003821656050955413,
+                "21d": -0.031847133757961776
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "071840",
+            "name": "롯데하이마트",
+            "originalRank": 8,
+            "oneDayReturn": -0.006329113924050556,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.020382165605095537,
+              "5d": -0.003821656050955413,
+              "21d": -0.031847133757961776
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2019-09-02",
+        "executionDate": "2019-09-03",
+        "rankingYear": 2018,
+        "regimeExposureAtExecution": 0,
+        "holdingsBefore": [],
+        "keptIncumbents": [],
+        "unfilteredTarget": [
+          "218410",
+          "039030",
+          "036570",
+          "035720",
+          "012330",
+          "012450",
+          "004800",
+          "000270",
+          "267980",
+          "011790",
+          "007070",
+          "000660",
+          "006400",
+          "012750",
+          "033780"
+        ],
+        "filteredTarget": [
+          "039030",
+          "036570",
+          "035720",
+          "012330",
+          "012450",
+          "004800",
+          "000270",
+          "267980",
+          "011790",
+          "007070",
+          "000660",
+          "006400",
+          "012750",
+          "033780",
+          "028670"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "218410",
+            "name": "RFHIC",
+            "originalRank": 1,
+            "signalClose": 36919.7965481845,
+            "previousTradingDate": "2019-08-30",
+            "previousTradingClose": 31933.226624793348,
+            "oneDayReturn": 0.1561561561561562,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": false,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.027272727272727115,
+              "5d": 0.10129870129870122,
+              "21d": 0.06493506493506507
+            },
+            "replacement": {
+              "ticker": "028670",
+              "name": "팬오션",
+              "originalRank": 16,
+              "oneDayReturn": 0.015432098765431945,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.010131712259371928,
+                "5d": -0.023302938196555267,
+                "21d": -0.1114488348530902
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "028670",
+            "name": "팬오션",
+            "originalRank": 16,
+            "oneDayReturn": 0.015432098765431945,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.010131712259371928,
+              "5d": -0.023302938196555267,
+              "21d": -0.1114488348530902
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2020-03-09",
+        "executionDate": "2020-03-10",
+        "rankingYear": 2019,
+        "regimeExposureAtExecution": 0,
+        "holdingsBefore": [],
+        "keptIncumbents": [],
+        "unfilteredTarget": [
+          "096530",
+          "033640",
+          "036570",
+          "086450",
+          "237690",
+          "034310",
+          "213420",
+          "058470",
+          "051910",
+          "210980",
+          "000100",
+          "035720",
+          "196170",
+          "004370",
+          "005930"
+        ],
+        "filteredTarget": [
+          "033640",
+          "036570",
+          "086450",
+          "237690",
+          "034310",
+          "213420",
+          "058470",
+          "051910",
+          "210980",
+          "000100",
+          "035720",
+          "196170",
+          "004370",
+          "005930",
+          "028260"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "096530",
+            "name": "씨젠",
+            "originalRank": 1,
+            "signalClose": 53067.67568539788,
+            "previousTradingDate": "2020-03-06",
+            "previousTradingClose": 40857.04011765904,
+            "oneDayReturn": 0.2988624612202688,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": false,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.12898089171974525,
+              "5d": -0.07643312101910826,
+              "21d": 0.41242038216560517
+            },
+            "replacement": {
+              "ticker": "028260",
+              "name": "삼성물산",
+              "originalRank": 16,
+              "oneDayReturn": -0.04166666666666663,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.004830917874396157,
+                "5d": -0.13333333333333341,
+                "21d": -0.14009661835748788
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "028260",
+            "name": "삼성물산",
+            "originalRank": 16,
+            "oneDayReturn": -0.04166666666666663,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.004830917874396157,
+              "5d": -0.13333333333333341,
+              "21d": -0.14009661835748788
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2020-04-07",
+        "executionDate": "2020-04-08",
+        "rankingYear": 2019,
+        "regimeExposureAtExecution": 0,
+        "holdingsBefore": [],
+        "keptIncumbents": [],
+        "unfilteredTarget": [
+          "237690",
+          "180640",
+          "006280",
+          "271560",
+          "004370",
+          "003230",
+          "036570",
+          "285130",
+          "003000",
+          "091990",
+          "068270",
+          "031390",
+          "058470",
+          "218410",
+          "196170"
+        ],
+        "filteredTarget": [
+          "237690",
+          "006280",
+          "271560",
+          "004370",
+          "003230",
+          "036570",
+          "285130",
+          "003000",
+          "091990",
+          "068270",
+          "058470",
+          "218410",
+          "196170",
+          "078340",
+          "086450"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "180640",
+            "name": "한진칼",
+            "originalRank": 2,
+            "signalClose": 84701.80223449934,
+            "previousTradingDate": "2020-04-06",
+            "previousTradingClose": 68764.87777225905,
+            "oneDayReturn": 0.23175965665236054,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": false,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.07433217189314756,
+              "5d": -0.020905923344947785,
+              "21d": 0.06271777003484313
+            },
+            "replacement": {
+              "ticker": "078340",
+              "name": "컴투스",
+              "originalRank": 16,
+              "oneDayReturn": 0.008307372793354029,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.022657054582904346,
+                "5d": 0.012358393408856916,
+                "21d": 0.1987641606591144
+              }
+            }
+          },
+          {
+            "ticker": "031390",
+            "name": "녹십자셀",
+            "originalRank": 12,
+            "signalClose": 45900,
+            "previousTradingDate": "2020-04-06",
+            "previousTradingClose": 39050,
+            "oneDayReturn": 0.17541613316261206,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": false,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.065359477124183,
+              "5d": -0.10675381263616557,
+              "21d": -0.09150326797385622
+            },
+            "replacement": {
+              "ticker": "086450",
+              "name": "동국제약",
+              "originalRank": 17,
+              "oneDayReturn": -0.008235294117647007,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.027283511269276528,
+                "5d": -0.016607354685646558,
+                "21d": 0.16844602609727155
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "078340",
+            "name": "컴투스",
+            "originalRank": 16,
+            "oneDayReturn": 0.008307372793354029,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.022657054582904346,
+              "5d": 0.012358393408856916,
+              "21d": 0.1987641606591144
+            }
+          },
+          {
+            "ticker": "086450",
+            "name": "동국제약",
+            "originalRank": 17,
+            "oneDayReturn": -0.008235294117647007,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.027283511269276528,
+              "5d": -0.016607354685646558,
+              "21d": 0.16844602609727155
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2020-06-10",
+        "executionDate": "2020-06-11",
+        "rankingYear": 2019,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [],
+        "keptIncumbents": [],
+        "unfilteredTarget": [
+          "016380",
+          "247540",
+          "141080",
+          "039200",
+          "183490",
+          "091990",
+          "005290",
+          "086450",
+          "001230",
+          "001060",
+          "014680",
+          "058470",
+          "095700",
+          "069080",
+          "192080"
+        ],
+        "filteredTarget": [
+          "016380",
+          "247540",
+          "039200",
+          "183490",
+          "091990",
+          "005290",
+          "086450",
+          "001230",
+          "001060",
+          "014680",
+          "058470",
+          "095700",
+          "069080",
+          "192080",
+          "011790"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "141080",
+            "name": "리가켐바이오",
+            "originalRank": 3,
+            "signalClose": 128400,
+            "previousTradingDate": "2020-06-09",
+            "previousTradingClose": 98800,
+            "oneDayReturn": 0.2995951417004048,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.06542056074766356,
+              "5d": -0.49065420560747663,
+              "21d": -0.6366822429906542
+            },
+            "replacement": {
+              "ticker": "011790",
+              "name": "SKC",
+              "originalRank": 16,
+              "oneDayReturn": 0.009933774834437026,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.021311475409836134,
+                "5d": -0.04590163934426228,
+                "21d": 0.14098360655737707
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "011790",
+            "name": "SKC",
+            "originalRank": 16,
+            "oneDayReturn": 0.009933774834437026,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.021311475409836134,
+              "5d": -0.04590163934426228,
+              "21d": 0.14098360655737707
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2020-09-08",
+        "executionDate": "2020-09-09",
+        "rankingYear": 2019,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "247540",
+          "005290",
+          "014680",
+          "058470",
+          "095700",
+          "069080",
+          "192080",
+          "011790",
+          "278280",
+          "112610",
+          "285130",
+          "035900",
+          "271560",
+          "031390",
+          "000250"
+        ],
+        "keptIncumbents": [
+          "058470",
+          "095700",
+          "192080",
+          "278280",
+          "035900"
+        ],
+        "unfilteredTarget": [
+          "058470",
+          "095700",
+          "192080",
+          "278280",
+          "035900",
+          "039200",
+          "003520",
+          "022100",
+          "006650",
+          "026960",
+          "139480",
+          "093370",
+          "041510",
+          "009450",
+          "042670"
+        ],
+        "filteredTarget": [
+          "058470",
+          "095700",
+          "192080",
+          "278280",
+          "035900",
+          "039200",
+          "003520",
+          "006650",
+          "026960",
+          "139480",
+          "093370",
+          "041510",
+          "009450",
+          "042670",
+          "251270"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "022100",
+            "name": "포스코DX",
+            "originalRank": 4,
+            "signalClose": 5311.651360166799,
+            "previousTradingDate": "2020-09-07",
+            "previousTradingClose": 4089.5866450559597,
+            "oneDayReturn": 0.2988235294117647,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.13949275362318847,
+              "5d": 0.11956521739130443,
+              "21d": 0.4148550724637683
+            },
+            "replacement": {
+              "ticker": "251270",
+              "name": "넷마블",
+              "originalRank": 12,
+              "oneDayReturn": -0.0025839793281653423,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.020725388601036232,
+                "5d": -0.04404145077720201,
+                "21d": -0.2046632124352331
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "251270",
+            "name": "넷마블",
+            "originalRank": 12,
+            "oneDayReturn": -0.0025839793281653423,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.020725388601036232,
+              "5d": -0.04404145077720201,
+              "21d": -0.2046632124352331
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2020-12-30",
+        "executionDate": "2021-01-04",
+        "rankingYear": 2020,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "039200",
+          "307950",
+          "000270",
+          "011200",
+          "058820",
+          "005930",
+          "017670",
+          "001120",
+          "004020",
+          "112610",
+          "000250",
+          "263750",
+          "010780",
+          "003410",
+          "006360"
+        ],
+        "keptIncumbents": [
+          "005930",
+          "017670",
+          "112610",
+          "010780",
+          "003410",
+          "006360"
+        ],
+        "unfilteredTarget": [
+          "005930",
+          "017670",
+          "112610",
+          "010780",
+          "003410",
+          "006360",
+          "222800",
+          "144510",
+          "033640",
+          "247540",
+          "294870",
+          "042700",
+          "064760",
+          "253450",
+          "001230"
+        ],
+        "filteredTarget": [
+          "005930",
+          "017670",
+          "112610",
+          "010780",
+          "003410",
+          "006360",
+          "222800",
+          "144510",
+          "247540",
+          "294870",
+          "042700",
+          "064760",
+          "253450",
+          "001230",
+          "004490"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "033640",
+            "name": "네패스",
+            "originalRank": 3,
+            "signalClose": 42500,
+            "previousTradingDate": "2020-12-29",
+            "previousTradingClose": 35000,
+            "oneDayReturn": 0.2142857142857142,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.01764705882352935,
+              "5d": 0.028235294117647136,
+              "21d": 0.04235294117647048
+            },
+            "replacement": {
+              "ticker": "004490",
+              "name": "세방전지",
+              "originalRank": 10,
+              "oneDayReturn": 0.028202295863114735,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.08853410740203205,
+                "5d": 0.3033381712626997,
+                "21d": 0.8287373004354135
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "004490",
+            "name": "세방전지",
+            "originalRank": 10,
+            "oneDayReturn": 0.028202295863114735,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.08853410740203205,
+              "5d": 0.3033381712626997,
+              "21d": 0.8287373004354135
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2021-02-15",
+        "executionDate": "2021-02-16",
+        "rankingYear": 2020,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "005930",
+          "003410",
+          "006360",
+          "222800",
+          "247540",
+          "294870",
+          "042700",
+          "064760",
+          "253450",
+          "001230",
+          "084370",
+          "218410",
+          "020150",
+          "098460",
+          "006040"
+        ],
+        "keptIncumbents": [
+          "003410",
+          "222800",
+          "042700",
+          "064760",
+          "084370",
+          "020150",
+          "006040"
+        ],
+        "unfilteredTarget": [
+          "003410",
+          "222800",
+          "042700",
+          "064760",
+          "084370",
+          "020150",
+          "006040",
+          "036540",
+          "086520",
+          "178920",
+          "282330",
+          "053030",
+          "241560",
+          "014680",
+          "056190"
+        ],
+        "filteredTarget": [
+          "003410",
+          "222800",
+          "042700",
+          "064760",
+          "084370",
+          "020150",
+          "006040",
+          "086520",
+          "178920",
+          "282330",
+          "053030",
+          "241560",
+          "014680",
+          "056190",
+          "011790"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "036540",
+            "name": "SFA반도체",
+            "originalRank": 1,
+            "signalClose": 8910,
+            "previousTradingDate": "2021-02-10",
+            "previousTradingClose": 7040,
+            "oneDayReturn": 0.265625,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.015712682379348974,
+              "5d": -0.041526374859708226,
+              "21d": -0.0718294051627385
+            },
+            "replacement": {
+              "ticker": "011790",
+              "name": "SKC",
+              "originalRank": 10,
+              "oneDayReturn": 0.041984732824427606,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0,
+                "5d": -0.03296703296703307,
+                "21d": null
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "011790",
+            "name": "SKC",
+            "originalRank": 10,
+            "oneDayReturn": 0.041984732824427606,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0,
+              "5d": -0.03296703296703307,
+              "21d": null
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2021-12-30",
+        "executionDate": "2022-01-04",
+        "rankingYear": 2021,
+        "regimeExposureAtExecution": 0,
+        "holdingsBefore": [
+          "028150"
+        ],
+        "keptIncumbents": [],
+        "unfilteredTarget": [
+          "222800",
+          "140410",
+          "063080",
+          "005290",
+          "108320",
+          "079550",
+          "011070",
+          "166090",
+          "263750",
+          "278280",
+          "215200",
+          "140860",
+          "036930",
+          "053800",
+          "033780"
+        ],
+        "filteredTarget": [
+          "222800",
+          "140410",
+          "063080",
+          "005290",
+          "108320",
+          "079550",
+          "011070",
+          "166090",
+          "263750",
+          "278280",
+          "215200",
+          "140860",
+          "036930",
+          "033780",
+          "020150"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "053800",
+            "name": "안랩",
+            "originalRank": 14,
+            "signalClose": 91380.20072655944,
+            "previousTradingDate": "2021-12-29",
+            "previousTradingClose": 74374.28166536469,
+            "oneDayReturn": 0.22865322098450913,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": false,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.0758341759352883,
+              "5d": 0.15773508594539942,
+              "21d": -0.2810920121334681
+            },
+            "replacement": {
+              "ticker": "020150",
+              "name": "롯데에너지머티리얼즈",
+              "originalRank": 16,
+              "oneDayReturn": 0.013488150947173594,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.04814814814814816,
+                "5d": -0.17407407407407405,
+                "21d": -0.2733333333333333
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "020150",
+            "name": "롯데에너지머티리얼즈",
+            "originalRank": 16,
+            "oneDayReturn": 0.013488150947173594,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.04814814814814816,
+              "5d": -0.17407407407407405,
+              "21d": -0.2733333333333333
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2023-05-02",
+        "executionDate": "2023-05-03",
+        "rankingYear": 2022,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "028150",
+          "140860",
+          "005070",
+          "145720",
+          "086520",
+          "066970",
+          "241560",
+          "028050",
+          "022100",
+          "004370",
+          "001800",
+          "001040",
+          "005490",
+          "017390",
+          "012450",
+          "048260"
+        ],
+        "keptIncumbents": [
+          "140860",
+          "005070",
+          "145720",
+          "086520",
+          "241560",
+          "028050",
+          "004370",
+          "001800",
+          "012450",
+          "048260"
+        ],
+        "unfilteredTarget": [
+          "140860",
+          "005070",
+          "145720",
+          "086520",
+          "241560",
+          "028050",
+          "004370",
+          "001800",
+          "012450",
+          "048260",
+          "064550",
+          "352820",
+          "214150",
+          "035900",
+          "122870"
+        ],
+        "filteredTarget": [
+          "140860",
+          "005070",
+          "145720",
+          "086520",
+          "241560",
+          "028050",
+          "004370",
+          "001800",
+          "012450",
+          "048260",
+          "352820",
+          "214150",
+          "035900",
+          "122870",
+          "042670"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "064550",
+            "name": "바이오니아",
+            "originalRank": 1,
+            "signalClose": 73300,
+            "previousTradingDate": "2023-04-28",
+            "previousTradingClose": 58100,
+            "oneDayReturn": 0.26161790017211706,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.012278308321964637,
+              "5d": -0.3015006821282401,
+              "21d": -0.2796725784447476
+            },
+            "replacement": {
+              "ticker": "042670",
+              "name": "HD현대인프라코어",
+              "originalRank": 7,
+              "oneDayReturn": 0.03549695740365122,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.008814887365328206,
+                "5d": -0.046033300685602296,
+                "21d": -0.022526934378060748
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "042670",
+            "name": "HD현대인프라코어",
+            "originalRank": 7,
+            "oneDayReturn": 0.03549695740365122,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.008814887365328206,
+              "5d": -0.046033300685602296,
+              "21d": -0.022526934378060748
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2024-02-07",
+        "executionDate": "2024-02-08",
+        "rankingYear": 2023,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "028150"
+        ],
+        "keptIncumbents": [],
+        "unfilteredTarget": [
+          "065350",
+          "294870",
+          "028300",
+          "073240",
+          "001740",
+          "078930",
+          "021240",
+          "023530",
+          "034730",
+          "017670",
+          "028260",
+          "015760",
+          "005380",
+          "081660",
+          "003410"
+        ],
+        "filteredTarget": [
+          "294870",
+          "028300",
+          "073240",
+          "001740",
+          "078930",
+          "021240",
+          "023530",
+          "034730",
+          "017670",
+          "028260",
+          "015760",
+          "005380",
+          "081660",
+          "003410",
+          "067630"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "065350",
+            "name": "신성델타테크",
+            "originalRank": 1,
+            "signalClose": 116930.55354232577,
+            "previousTradingDate": "2024-02-06",
+            "previousTradingClose": 100283.15163135526,
+            "oneDayReturn": 0.1660039761431411,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.023017902813299296,
+              "5d": -0.002557544757033292,
+              "21d": -0.08866155157715272
+            },
+            "replacement": {
+              "ticker": "067630",
+              "name": "HLB생명과학",
+              "originalRank": 16,
+              "oneDayReturn": -0.0017441860465116088,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.02795573675014562,
+                "5d": -0.1852067559697146,
+                "21d": -0.05765870704717535
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "067630",
+            "name": "HLB생명과학",
+            "originalRank": 16,
+            "oneDayReturn": -0.0017441860465116088,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.02795573675014562,
+              "5d": -0.1852067559697146,
+              "21d": -0.05765870704717535
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2025-07-30",
+        "executionDate": "2025-07-31",
+        "rankingYear": 2024,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "028150",
+          "003410",
+          "298040",
+          "003540",
+          "122870",
+          "006040",
+          "041510",
+          "009970",
+          "023590",
+          "010620",
+          "039490",
+          "089860",
+          "383220",
+          "352820",
+          "267260",
+          "282330",
+          "018670"
+        ],
+        "keptIncumbents": [
+          "298040",
+          "009970",
+          "010620",
+          "267260"
+        ],
+        "unfilteredTarget": [
+          "298040",
+          "009970",
+          "010620",
+          "267260",
+          "071970",
+          "007660",
+          "300720",
+          "007390",
+          "042660",
+          "012750",
+          "004800",
+          "008930",
+          "336260",
+          "329180",
+          "014680"
+        ],
+        "filteredTarget": [
+          "298040",
+          "009970",
+          "010620",
+          "267260",
+          "071970",
+          "007660",
+          "300720",
+          "042660",
+          "012750",
+          "004800",
+          "008930",
+          "336260",
+          "329180",
+          "014680",
+          "267270"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "007390",
+            "name": "네이처셀",
+            "originalRank": 4,
+            "signalClose": 36900,
+            "previousTradingDate": "2025-07-29",
+            "previousTradingClose": 29900,
+            "oneDayReturn": 0.234113712374582,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.024390243902439046,
+              "5d": -0.3292682926829268,
+              "21d": -0.4295392953929539
+            },
+            "replacement": {
+              "ticker": "267270",
+              "name": "HD현대건설기계",
+              "originalRank": 13,
+              "oneDayReturn": -0.011578947368421022,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.013844515441959526,
+                "5d": 0.03727369542066028,
+                "21d": -0.06922257720979763
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "267270",
+            "name": "HD현대건설기계",
+            "originalRank": 13,
+            "oneDayReturn": -0.011578947368421022,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.013844515441959526,
+              "5d": 0.03727369542066028,
+              "21d": -0.06922257720979763
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2025-08-29",
+        "executionDate": "2025-09-01",
+        "rankingYear": 2024,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "028150",
+          "003410",
+          "298040",
+          "009970",
+          "010620",
+          "267260",
+          "071970",
+          "007660",
+          "300720",
+          "042660",
+          "012750",
+          "004800",
+          "008930",
+          "336260",
+          "329180",
+          "014680",
+          "267270"
+        ],
+        "keptIncumbents": [
+          "298040",
+          "009970",
+          "010620",
+          "267260",
+          "071970",
+          "007660",
+          "042660",
+          "012750",
+          "004800",
+          "336260",
+          "329180",
+          "014680"
+        ],
+        "unfilteredTarget": [
+          "298040",
+          "009970",
+          "010620",
+          "267260",
+          "071970",
+          "007660",
+          "042660",
+          "012750",
+          "004800",
+          "336260",
+          "329180",
+          "014680",
+          "082740",
+          "443060",
+          "002380"
+        ],
+        "filteredTarget": [
+          "298040",
+          "009970",
+          "010620",
+          "267260",
+          "071970",
+          "007660",
+          "042660",
+          "012750",
+          "004800",
+          "336260",
+          "329180",
+          "014680",
+          "443060",
+          "002380",
+          "012330"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "082740",
+            "name": "한화엔진",
+            "originalRank": 2,
+            "signalClose": 47500,
+            "previousTradingDate": "2025-08-28",
+            "previousTradingClose": 40850,
+            "oneDayReturn": 0.16279069767441867,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.0368421052631579,
+              "5d": -0.040000000000000036,
+              "21d": -0.11473684210526314
+            },
+            "replacement": {
+              "ticker": "012330",
+              "name": "현대모비스",
+              "originalRank": 8,
+              "oneDayReturn": 0.05289256198347103,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.009419152276295195,
+                "5d": 0.014128728414442682,
+                "21d": -0.07064364207221341
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "012330",
+            "name": "현대모비스",
+            "originalRank": 8,
+            "oneDayReturn": 0.05289256198347103,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.009419152276295195,
+              "5d": 0.014128728414442682,
+              "21d": -0.07064364207221341
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2025-11-04",
+        "executionDate": "2025-11-05",
+        "rankingYear": 2024,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "028150",
+          "003410",
+          "009970",
+          "267260",
+          "007660",
+          "012750",
+          "329180",
+          "014680",
+          "443060",
+          "064760",
+          "111770",
+          "012450",
+          "034220",
+          "032640",
+          "069960",
+          "140410",
+          "010950"
+        ],
+        "keptIncumbents": [
+          "267260",
+          "007660",
+          "014680",
+          "443060",
+          "010950"
+        ],
+        "unfilteredTarget": [
+          "267260",
+          "007660",
+          "014680",
+          "443060",
+          "010950",
+          "204270",
+          "103590",
+          "278470",
+          "310210",
+          "440110",
+          "277810",
+          "302440",
+          "196170",
+          "307950",
+          "068760"
+        ],
+        "filteredTarget": [
+          "267260",
+          "007660",
+          "014680",
+          "443060",
+          "010950",
+          "204270",
+          "103590",
+          "278470",
+          "310210",
+          "440110",
+          "277810",
+          "196170",
+          "307950",
+          "068760",
+          "240810"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "302440",
+            "name": "SK바이오사이언스",
+            "originalRank": 8,
+            "signalClose": 60100,
+            "previousTradingDate": "2025-11-03",
+            "previousTradingClose": 50800,
+            "oneDayReturn": 0.18307086614173218,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.043261231281197965,
+              "5d": -0.09317803660565727,
+              "21d": -0.09317803660565727
+            },
+            "replacement": {
+              "ticker": "240810",
+              "name": "원익IPS",
+              "originalRank": 12,
+              "oneDayReturn": 0.05384615384615388,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.013138686131386912,
+                "5d": 0.033576642335766405,
+                "21d": -0.09635036496350369
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "240810",
+            "name": "원익IPS",
+            "originalRank": 12,
+            "oneDayReturn": 0.05384615384615388,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.013138686131386912,
+              "5d": 0.033576642335766405,
+              "21d": -0.09635036496350369
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2026-03-11",
+        "executionDate": "2026-03-12",
+        "rankingYear": 2025,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "028150",
+          "003410",
+          "001430",
+          "001120",
+          "139130",
+          "003690",
+          "323280",
+          "445680",
+          "103590",
+          "082740",
+          "457190",
+          "290650",
+          "272210",
+          "000250",
+          "086520",
+          "036930",
+          "020150"
+        ],
+        "keptIncumbents": [
+          "003690",
+          "323280",
+          "272210",
+          "000250",
+          "036930"
+        ],
+        "unfilteredTarget": [
+          "003690",
+          "323280",
+          "272210",
+          "000250",
+          "036930",
+          "017960",
+          "278470",
+          "004000",
+          "120110",
+          "012510",
+          "047050",
+          "012630",
+          "310210",
+          "047040",
+          "237690"
+        ],
+        "filteredTarget": [
+          "003690",
+          "323280",
+          "272210",
+          "000250",
+          "036930",
+          "017960",
+          "278470",
+          "004000",
+          "012510",
+          "047050",
+          "012630",
+          "310210",
+          "047040",
+          "237690",
+          "006800"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "120110",
+            "name": "코오롱인더",
+            "originalRank": 4,
+            "signalClose": 71900,
+            "previousTradingDate": "2026-03-10",
+            "previousTradingClose": 61800,
+            "oneDayReturn": 0.1634304207119741,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.008344923504867818,
+              "5d": -0.012517385257301838,
+              "21d": 0.25173852573018074
+            },
+            "replacement": {
+              "ticker": "006800",
+              "name": "미래에셋증권",
+              "originalRank": 12,
+              "oneDayReturn": 0.10526315789473695,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.014005602240896309,
+                "5d": -0.021008403361344574,
+                "21d": -0.051820728291316565
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "006800",
+            "name": "미래에셋증권",
+            "originalRank": 12,
+            "oneDayReturn": 0.10526315789473695,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.014005602240896309,
+              "5d": -0.021008403361344574,
+              "21d": -0.051820728291316565
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2026-05-12",
+        "executionDate": "2026-05-13",
+        "rankingYear": 2025,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "028150",
+          "003410",
+          "278470",
+          "004000",
+          "012510",
+          "047040",
+          "006800",
+          "095340",
+          "222800",
+          "282330",
+          "241560",
+          "028050",
+          "120110",
+          "000150",
+          "079550",
+          "009150",
+          "006400"
+        ],
+        "keptIncumbents": [
+          "012510",
+          "222800",
+          "241560",
+          "009150"
+        ],
+        "unfilteredTarget": [
+          "012510",
+          "222800",
+          "241560",
+          "009150",
+          "397030",
+          "000500",
+          "329180",
+          "178320",
+          "950160",
+          "011070",
+          "000880",
+          "023530",
+          "066570",
+          "033780",
+          "017670"
+        ],
+        "filteredTarget": [
+          "012510",
+          "222800",
+          "241560",
+          "009150",
+          "397030",
+          "329180",
+          "178320",
+          "950160",
+          "011070",
+          "000880",
+          "023530",
+          "033780",
+          "017670",
+          "004170",
+          "012330"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "000500",
+            "name": "가온전선",
+            "originalRank": 2,
+            "signalClose": 564000,
+            "previousTradingDate": "2026-05-08",
+            "previousTradingClose": 477000,
+            "oneDayReturn": 0.1823899371069182,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.10460992907801414,
+              "5d": -0.3120567375886525,
+              "21d": -0.5531914893617021
+            },
+            "replacement": {
+              "ticker": "004170",
+              "name": "신세계",
+              "originalRank": 14,
+              "oneDayReturn": -0.008978675645342271,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.09286523216308051,
+                "5d": 0.14609286523216314,
+                "21d": 0.5741789354473386
+              }
+            }
+          },
+          {
+            "ticker": "066570",
+            "name": "LG전자",
+            "originalRank": 10,
+            "signalClose": 184900,
+            "previousTradingDate": "2026-05-11",
+            "previousTradingClose": 156700,
+            "oneDayReturn": 0.17996171027440977,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.03515413737155226,
+              "5d": 0.0367766360194699,
+              "21d": 0.21957815035154127
+            },
+            "replacement": {
+              "ticker": "012330",
+              "name": "현대모비스",
+              "originalRank": 15,
+              "oneDayReturn": -0.009041591320072317,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.18430656934306566,
+                "5d": -0.041970802919708006,
+                "21d": 0.10766423357664223
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "004170",
+            "name": "신세계",
+            "originalRank": 14,
+            "oneDayReturn": -0.008978675645342271,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.09286523216308051,
+              "5d": 0.14609286523216314,
+              "21d": 0.5741789354473386
+            }
+          },
+          {
+            "ticker": "012330",
+            "name": "현대모비스",
+            "originalRank": 15,
+            "oneDayReturn": -0.009041591320072317,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.18430656934306566,
+              "5d": -0.041970802919708006,
+              "21d": 0.10766423357664223
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2026-06-12",
+        "executionDate": "2026-06-15",
+        "rankingYear": 2025,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "028150",
+          "003410",
+          "012510",
+          "222800",
+          "241560",
+          "009150",
+          "397030",
+          "329180",
+          "178320",
+          "950160",
+          "011070",
+          "000880",
+          "023530",
+          "033780",
+          "017670",
+          "004170",
+          "012330"
+        ],
+        "keptIncumbents": [
+          "012510",
+          "222800",
+          "329180",
+          "178320",
+          "023530",
+          "033780",
+          "004170"
+        ],
+        "unfilteredTarget": [
+          "012510",
+          "222800",
+          "329180",
+          "178320",
+          "023530",
+          "033780",
+          "004170",
+          "319660",
+          "403870",
+          "140860",
+          "084370",
+          "240810",
+          "039030",
+          "001450",
+          "402340"
+        ],
+        "filteredTarget": [
+          "012510",
+          "222800",
+          "329180",
+          "178320",
+          "023530",
+          "033780",
+          "004170",
+          "319660",
+          "084370",
+          "001450",
+          "402340",
+          "383220",
+          "192080",
+          "069960",
+          "105560"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "403870",
+            "name": "HPSP",
+            "originalRank": 2,
+            "signalClose": 71500,
+            "previousTradingDate": "2026-06-11",
+            "previousTradingClose": 55000,
+            "oneDayReturn": 0.30000000000000004,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.16783216783216792,
+              "5d": -0.20839160839160842,
+              "21d": -0.413986013986014
+            },
+            "replacement": {
+              "ticker": "383220",
+              "name": "F&F",
+              "originalRank": 9,
+              "oneDayReturn": 0.03245192307692313,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.04889406286379516,
+                "5d": -0.0535506402793946,
+                "21d": -0.06984866123399303
+              }
+            }
+          },
+          {
+            "ticker": "140860",
+            "name": "파크시스템스",
+            "originalRank": 3,
+            "signalClose": 339500,
+            "previousTradingDate": "2026-06-11",
+            "previousTradingClose": 264000,
+            "oneDayReturn": 0.2859848484848484,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.23858615611192935,
+              "5d": -0.24742268041237114,
+              "21d": -0.25184094256259204
+            },
+            "replacement": {
+              "ticker": "192080",
+              "name": "더블유게임즈",
+              "originalRank": 15,
+              "oneDayReturn": -0.04825737265415553,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.015492957746478853,
+                "5d": -0.08732394366197183,
+                "21d": -0.1394366197183099
+              }
+            }
+          },
+          {
+            "ticker": "240810",
+            "name": "원익IPS",
+            "originalRank": 5,
+            "signalClose": 183300,
+            "previousTradingDate": "2026-06-11",
+            "previousTradingClose": 141000,
+            "oneDayReturn": 0.30000000000000004,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.04800872885979268,
+              "5d": -0.14893617021276595,
+              "21d": -0.3191489361702128
+            },
+            "replacement": {
+              "ticker": "069960",
+              "name": "현대백화점",
+              "originalRank": 16,
+              "oneDayReturn": -0.052378407268840244,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.03327693175408908,
+                "5d": 0.0981387478849407,
+                "21d": -0.10941906373378452
+              }
+            }
+          },
+          {
+            "ticker": "039030",
+            "name": "이오테크닉스",
+            "originalRank": 6,
+            "signalClose": 612000,
+            "previousTradingDate": "2026-06-11",
+            "previousTradingClose": 504000,
+            "oneDayReturn": 0.2142857142857142,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.13235294117647056,
+              "5d": -0.1854575163398693,
+              "21d": -0.4125816993464052
+            },
+            "replacement": {
+              "ticker": "105560",
+              "name": "KB금융",
+              "originalRank": 19,
+              "oneDayReturn": 0.06402640264026394,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.05210918114143914,
+                "5d": -0.01799007444168732,
+                "21d": 0.1550868486352357
+              }
+            }
+          },
+          {
+            "ticker": "051600",
+            "name": "한전KPS",
+            "originalRank": 17,
+            "signalClose": 63900,
+            "previousTradingDate": "2026-06-11",
+            "previousTradingClose": 49300,
+            "oneDayReturn": 0.29614604462474636,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": false,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.15492957746478875,
+              "5d": -0.2222222222222222,
+              "21d": -0.31064162754303604
+            },
+            "replacement": null
+          },
+          {
+            "ticker": "012750",
+            "name": "에스원",
+            "originalRank": 18,
+            "signalClose": 88700,
+            "previousTradingDate": "2026-06-11",
+            "previousTradingClose": 76700,
+            "oneDayReturn": 0.15645371577574974,
+            "threshold": 0.15,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": false,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.12626832018038336,
+              "5d": -0.20518602029312294,
+              "21d": -0.19165727170236757
+            },
+            "replacement": null
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "383220",
+            "name": "F&F",
+            "originalRank": 9,
+            "oneDayReturn": 0.03245192307692313,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.04889406286379516,
+              "5d": -0.0535506402793946,
+              "21d": -0.06984866123399303
+            }
+          },
+          {
+            "ticker": "192080",
+            "name": "더블유게임즈",
+            "originalRank": 15,
+            "oneDayReturn": -0.04825737265415553,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.015492957746478853,
+              "5d": -0.08732394366197183,
+              "21d": -0.1394366197183099
+            }
+          },
+          {
+            "ticker": "069960",
+            "name": "현대백화점",
+            "originalRank": 16,
+            "oneDayReturn": -0.052378407268840244,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.03327693175408908,
+              "5d": 0.0981387478849407,
+              "21d": -0.10941906373378452
+            }
+          },
+          {
+            "ticker": "105560",
+            "name": "KB금융",
+            "originalRank": 19,
+            "oneDayReturn": 0.06402640264026394,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.05210918114143914,
+              "5d": -0.01799007444168732,
+              "21d": 0.1550868486352357
+            }
+          }
+        ]
+      }
+    ],
+    "20": [
+      {
+        "signalDate": "2020-03-09",
+        "executionDate": "2020-03-10",
+        "rankingYear": 2019,
+        "regimeExposureAtExecution": 0,
+        "holdingsBefore": [],
+        "keptIncumbents": [],
+        "unfilteredTarget": [
+          "096530",
+          "033640",
+          "036570",
+          "086450",
+          "237690",
+          "034310",
+          "213420",
+          "058470",
+          "051910",
+          "210980",
+          "000100",
+          "035720",
+          "196170",
+          "004370",
+          "005930"
+        ],
+        "filteredTarget": [
+          "033640",
+          "036570",
+          "086450",
+          "237690",
+          "034310",
+          "213420",
+          "058470",
+          "051910",
+          "210980",
+          "000100",
+          "035720",
+          "196170",
+          "004370",
+          "005930",
+          "028260"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "096530",
+            "name": "씨젠",
+            "originalRank": 1,
+            "signalClose": 53067.67568539788,
+            "previousTradingDate": "2020-03-06",
+            "previousTradingClose": 40857.04011765904,
+            "oneDayReturn": 0.2988624612202688,
+            "threshold": 0.2,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": false,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.12898089171974525,
+              "5d": -0.07643312101910826,
+              "21d": 0.41242038216560517
+            },
+            "replacement": {
+              "ticker": "028260",
+              "name": "삼성물산",
+              "originalRank": 16,
+              "oneDayReturn": -0.04166666666666663,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.004830917874396157,
+                "5d": -0.13333333333333341,
+                "21d": -0.14009661835748788
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "028260",
+            "name": "삼성물산",
+            "originalRank": 16,
+            "oneDayReturn": -0.04166666666666663,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.004830917874396157,
+              "5d": -0.13333333333333341,
+              "21d": -0.14009661835748788
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2020-04-07",
+        "executionDate": "2020-04-08",
+        "rankingYear": 2019,
+        "regimeExposureAtExecution": 0,
+        "holdingsBefore": [],
+        "keptIncumbents": [],
+        "unfilteredTarget": [
+          "237690",
+          "180640",
+          "006280",
+          "271560",
+          "004370",
+          "003230",
+          "036570",
+          "285130",
+          "003000",
+          "091990",
+          "068270",
+          "031390",
+          "058470",
+          "218410",
+          "196170"
+        ],
+        "filteredTarget": [
+          "237690",
+          "006280",
+          "271560",
+          "004370",
+          "003230",
+          "036570",
+          "285130",
+          "003000",
+          "091990",
+          "068270",
+          "031390",
+          "058470",
+          "218410",
+          "196170",
+          "078340"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "180640",
+            "name": "한진칼",
+            "originalRank": 2,
+            "signalClose": 84701.80223449934,
+            "previousTradingDate": "2020-04-06",
+            "previousTradingClose": 68764.87777225905,
+            "oneDayReturn": 0.23175965665236054,
+            "threshold": 0.2,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": false,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.07433217189314756,
+              "5d": -0.020905923344947785,
+              "21d": 0.06271777003484313
+            },
+            "replacement": {
+              "ticker": "078340",
+              "name": "컴투스",
+              "originalRank": 16,
+              "oneDayReturn": 0.008307372793354029,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.022657054582904346,
+                "5d": 0.012358393408856916,
+                "21d": 0.1987641606591144
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "078340",
+            "name": "컴투스",
+            "originalRank": 16,
+            "oneDayReturn": 0.008307372793354029,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.022657054582904346,
+              "5d": 0.012358393408856916,
+              "21d": 0.1987641606591144
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2020-06-10",
+        "executionDate": "2020-06-11",
+        "rankingYear": 2019,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [],
+        "keptIncumbents": [],
+        "unfilteredTarget": [
+          "016380",
+          "247540",
+          "141080",
+          "039200",
+          "183490",
+          "091990",
+          "005290",
+          "086450",
+          "001230",
+          "001060",
+          "014680",
+          "058470",
+          "095700",
+          "069080",
+          "192080"
+        ],
+        "filteredTarget": [
+          "016380",
+          "247540",
+          "039200",
+          "183490",
+          "091990",
+          "005290",
+          "086450",
+          "001230",
+          "001060",
+          "014680",
+          "058470",
+          "095700",
+          "069080",
+          "192080",
+          "011790"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "141080",
+            "name": "리가켐바이오",
+            "originalRank": 3,
+            "signalClose": 128400,
+            "previousTradingDate": "2020-06-09",
+            "previousTradingClose": 98800,
+            "oneDayReturn": 0.2995951417004048,
+            "threshold": 0.2,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.06542056074766356,
+              "5d": -0.49065420560747663,
+              "21d": -0.6366822429906542
+            },
+            "replacement": {
+              "ticker": "011790",
+              "name": "SKC",
+              "originalRank": 16,
+              "oneDayReturn": 0.009933774834437026,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.021311475409836134,
+                "5d": -0.04590163934426228,
+                "21d": 0.14098360655737707
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "011790",
+            "name": "SKC",
+            "originalRank": 16,
+            "oneDayReturn": 0.009933774834437026,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.021311475409836134,
+              "5d": -0.04590163934426228,
+              "21d": 0.14098360655737707
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2020-09-08",
+        "executionDate": "2020-09-09",
+        "rankingYear": 2019,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "247540",
+          "005290",
+          "014680",
+          "058470",
+          "095700",
+          "069080",
+          "192080",
+          "011790",
+          "278280",
+          "112610",
+          "285130",
+          "035900",
+          "271560",
+          "031390",
+          "000250"
+        ],
+        "keptIncumbents": [
+          "058470",
+          "095700",
+          "192080",
+          "278280",
+          "035900"
+        ],
+        "unfilteredTarget": [
+          "058470",
+          "095700",
+          "192080",
+          "278280",
+          "035900",
+          "039200",
+          "003520",
+          "022100",
+          "006650",
+          "026960",
+          "139480",
+          "093370",
+          "041510",
+          "009450",
+          "042670"
+        ],
+        "filteredTarget": [
+          "058470",
+          "095700",
+          "192080",
+          "278280",
+          "035900",
+          "039200",
+          "003520",
+          "006650",
+          "026960",
+          "139480",
+          "093370",
+          "041510",
+          "009450",
+          "042670",
+          "251270"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "022100",
+            "name": "포스코DX",
+            "originalRank": 4,
+            "signalClose": 5311.651360166799,
+            "previousTradingDate": "2020-09-07",
+            "previousTradingClose": 4089.5866450559597,
+            "oneDayReturn": 0.2988235294117647,
+            "threshold": 0.2,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.13949275362318847,
+              "5d": 0.11956521739130443,
+              "21d": 0.4148550724637683
+            },
+            "replacement": {
+              "ticker": "251270",
+              "name": "넷마블",
+              "originalRank": 12,
+              "oneDayReturn": -0.0025839793281653423,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.020725388601036232,
+                "5d": -0.04404145077720201,
+                "21d": -0.2046632124352331
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "251270",
+            "name": "넷마블",
+            "originalRank": 12,
+            "oneDayReturn": -0.0025839793281653423,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.020725388601036232,
+              "5d": -0.04404145077720201,
+              "21d": -0.2046632124352331
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2020-12-30",
+        "executionDate": "2021-01-04",
+        "rankingYear": 2020,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "039200",
+          "307950",
+          "000270",
+          "011200",
+          "058820",
+          "005930",
+          "017670",
+          "001120",
+          "004020",
+          "112610",
+          "000250",
+          "263750",
+          "010780",
+          "003410",
+          "006360"
+        ],
+        "keptIncumbents": [
+          "005930",
+          "017670",
+          "112610",
+          "010780",
+          "003410",
+          "006360"
+        ],
+        "unfilteredTarget": [
+          "005930",
+          "017670",
+          "112610",
+          "010780",
+          "003410",
+          "006360",
+          "222800",
+          "144510",
+          "033640",
+          "247540",
+          "294870",
+          "042700",
+          "064760",
+          "253450",
+          "001230"
+        ],
+        "filteredTarget": [
+          "005930",
+          "017670",
+          "112610",
+          "010780",
+          "003410",
+          "006360",
+          "222800",
+          "144510",
+          "247540",
+          "294870",
+          "042700",
+          "064760",
+          "253450",
+          "001230",
+          "004490"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "033640",
+            "name": "네패스",
+            "originalRank": 3,
+            "signalClose": 42500,
+            "previousTradingDate": "2020-12-29",
+            "previousTradingClose": 35000,
+            "oneDayReturn": 0.2142857142857142,
+            "threshold": 0.2,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.01764705882352935,
+              "5d": 0.028235294117647136,
+              "21d": 0.04235294117647048
+            },
+            "replacement": {
+              "ticker": "004490",
+              "name": "세방전지",
+              "originalRank": 10,
+              "oneDayReturn": 0.028202295863114735,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.08853410740203205,
+                "5d": 0.3033381712626997,
+                "21d": 0.8287373004354135
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "004490",
+            "name": "세방전지",
+            "originalRank": 10,
+            "oneDayReturn": 0.028202295863114735,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.08853410740203205,
+              "5d": 0.3033381712626997,
+              "21d": 0.8287373004354135
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2021-02-15",
+        "executionDate": "2021-02-16",
+        "rankingYear": 2020,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "005930",
+          "003410",
+          "006360",
+          "222800",
+          "247540",
+          "294870",
+          "042700",
+          "064760",
+          "253450",
+          "001230",
+          "084370",
+          "218410",
+          "020150",
+          "098460",
+          "006040"
+        ],
+        "keptIncumbents": [
+          "003410",
+          "222800",
+          "042700",
+          "064760",
+          "084370",
+          "020150",
+          "006040"
+        ],
+        "unfilteredTarget": [
+          "003410",
+          "222800",
+          "042700",
+          "064760",
+          "084370",
+          "020150",
+          "006040",
+          "036540",
+          "086520",
+          "178920",
+          "282330",
+          "053030",
+          "241560",
+          "014680",
+          "056190"
+        ],
+        "filteredTarget": [
+          "003410",
+          "222800",
+          "042700",
+          "064760",
+          "084370",
+          "020150",
+          "006040",
+          "086520",
+          "178920",
+          "282330",
+          "053030",
+          "241560",
+          "014680",
+          "056190",
+          "011790"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "036540",
+            "name": "SFA반도체",
+            "originalRank": 1,
+            "signalClose": 8910,
+            "previousTradingDate": "2021-02-10",
+            "previousTradingClose": 7040,
+            "oneDayReturn": 0.265625,
+            "threshold": 0.2,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.015712682379348974,
+              "5d": -0.041526374859708226,
+              "21d": -0.0718294051627385
+            },
+            "replacement": {
+              "ticker": "011790",
+              "name": "SKC",
+              "originalRank": 10,
+              "oneDayReturn": 0.041984732824427606,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0,
+                "5d": -0.03296703296703307,
+                "21d": null
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "011790",
+            "name": "SKC",
+            "originalRank": 10,
+            "oneDayReturn": 0.041984732824427606,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0,
+              "5d": -0.03296703296703307,
+              "21d": null
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2021-12-30",
+        "executionDate": "2022-01-04",
+        "rankingYear": 2021,
+        "regimeExposureAtExecution": 0,
+        "holdingsBefore": [
+          "028150"
+        ],
+        "keptIncumbents": [],
+        "unfilteredTarget": [
+          "222800",
+          "140410",
+          "063080",
+          "005290",
+          "108320",
+          "079550",
+          "011070",
+          "166090",
+          "263750",
+          "278280",
+          "215200",
+          "140860",
+          "036930",
+          "053800",
+          "033780"
+        ],
+        "filteredTarget": [
+          "222800",
+          "140410",
+          "063080",
+          "005290",
+          "108320",
+          "079550",
+          "011070",
+          "166090",
+          "263750",
+          "278280",
+          "215200",
+          "140860",
+          "036930",
+          "033780",
+          "020150"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "053800",
+            "name": "안랩",
+            "originalRank": 14,
+            "signalClose": 91380.20072655944,
+            "previousTradingDate": "2021-12-29",
+            "previousTradingClose": 74374.28166536469,
+            "oneDayReturn": 0.22865322098450913,
+            "threshold": 0.2,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": false,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.0758341759352883,
+              "5d": 0.15773508594539942,
+              "21d": -0.2810920121334681
+            },
+            "replacement": {
+              "ticker": "020150",
+              "name": "롯데에너지머티리얼즈",
+              "originalRank": 16,
+              "oneDayReturn": 0.013488150947173594,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.04814814814814816,
+                "5d": -0.17407407407407405,
+                "21d": -0.2733333333333333
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "020150",
+            "name": "롯데에너지머티리얼즈",
+            "originalRank": 16,
+            "oneDayReturn": 0.013488150947173594,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.04814814814814816,
+              "5d": -0.17407407407407405,
+              "21d": -0.2733333333333333
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2023-05-02",
+        "executionDate": "2023-05-03",
+        "rankingYear": 2022,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "028150",
+          "140860",
+          "005070",
+          "145720",
+          "086520",
+          "066970",
+          "241560",
+          "028050",
+          "022100",
+          "004370",
+          "001800",
+          "001040",
+          "005490",
+          "017390",
+          "012450",
+          "048260"
+        ],
+        "keptIncumbents": [
+          "140860",
+          "005070",
+          "145720",
+          "086520",
+          "241560",
+          "028050",
+          "004370",
+          "001800",
+          "012450",
+          "048260"
+        ],
+        "unfilteredTarget": [
+          "140860",
+          "005070",
+          "145720",
+          "086520",
+          "241560",
+          "028050",
+          "004370",
+          "001800",
+          "012450",
+          "048260",
+          "064550",
+          "352820",
+          "214150",
+          "035900",
+          "122870"
+        ],
+        "filteredTarget": [
+          "140860",
+          "005070",
+          "145720",
+          "086520",
+          "241560",
+          "028050",
+          "004370",
+          "001800",
+          "012450",
+          "048260",
+          "352820",
+          "214150",
+          "035900",
+          "122870",
+          "042670"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "064550",
+            "name": "바이오니아",
+            "originalRank": 1,
+            "signalClose": 73300,
+            "previousTradingDate": "2023-04-28",
+            "previousTradingClose": 58100,
+            "oneDayReturn": 0.26161790017211706,
+            "threshold": 0.2,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.012278308321964637,
+              "5d": -0.3015006821282401,
+              "21d": -0.2796725784447476
+            },
+            "replacement": {
+              "ticker": "042670",
+              "name": "HD현대인프라코어",
+              "originalRank": 7,
+              "oneDayReturn": 0.03549695740365122,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.008814887365328206,
+                "5d": -0.046033300685602296,
+                "21d": -0.022526934378060748
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "042670",
+            "name": "HD현대인프라코어",
+            "originalRank": 7,
+            "oneDayReturn": 0.03549695740365122,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.008814887365328206,
+              "5d": -0.046033300685602296,
+              "21d": -0.022526934378060748
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2025-07-30",
+        "executionDate": "2025-07-31",
+        "rankingYear": 2024,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "028150",
+          "003410",
+          "298040",
+          "003540",
+          "122870",
+          "006040",
+          "041510",
+          "009970",
+          "023590",
+          "010620",
+          "039490",
+          "089860",
+          "383220",
+          "352820",
+          "267260",
+          "282330",
+          "018670"
+        ],
+        "keptIncumbents": [
+          "298040",
+          "009970",
+          "010620",
+          "267260"
+        ],
+        "unfilteredTarget": [
+          "298040",
+          "009970",
+          "010620",
+          "267260",
+          "071970",
+          "007660",
+          "300720",
+          "007390",
+          "042660",
+          "012750",
+          "004800",
+          "008930",
+          "336260",
+          "329180",
+          "014680"
+        ],
+        "filteredTarget": [
+          "298040",
+          "009970",
+          "010620",
+          "267260",
+          "071970",
+          "007660",
+          "300720",
+          "042660",
+          "012750",
+          "004800",
+          "008930",
+          "336260",
+          "329180",
+          "014680",
+          "267270"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "007390",
+            "name": "네이처셀",
+            "originalRank": 4,
+            "signalClose": 36900,
+            "previousTradingDate": "2025-07-29",
+            "previousTradingClose": 29900,
+            "oneDayReturn": 0.234113712374582,
+            "threshold": 0.2,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.024390243902439046,
+              "5d": -0.3292682926829268,
+              "21d": -0.4295392953929539
+            },
+            "replacement": {
+              "ticker": "267270",
+              "name": "HD현대건설기계",
+              "originalRank": 13,
+              "oneDayReturn": -0.011578947368421022,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.013844515441959526,
+                "5d": 0.03727369542066028,
+                "21d": -0.06922257720979763
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "267270",
+            "name": "HD현대건설기계",
+            "originalRank": 13,
+            "oneDayReturn": -0.011578947368421022,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.013844515441959526,
+              "5d": 0.03727369542066028,
+              "21d": -0.06922257720979763
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2026-06-12",
+        "executionDate": "2026-06-15",
+        "rankingYear": 2025,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "028150",
+          "003410",
+          "012510",
+          "222800",
+          "241560",
+          "009150",
+          "397030",
+          "000500",
+          "329180",
+          "178320",
+          "950160",
+          "011070",
+          "000880",
+          "023530",
+          "066570",
+          "033780",
+          "017670"
+        ],
+        "keptIncumbents": [
+          "012510",
+          "222800",
+          "329180",
+          "178320",
+          "023530",
+          "033780"
+        ],
+        "unfilteredTarget": [
+          "012510",
+          "222800",
+          "329180",
+          "178320",
+          "023530",
+          "033780",
+          "319660",
+          "403870",
+          "140860",
+          "084370",
+          "240810",
+          "039030",
+          "001450",
+          "402340",
+          "383220"
+        ],
+        "filteredTarget": [
+          "012510",
+          "222800",
+          "329180",
+          "178320",
+          "023530",
+          "033780",
+          "319660",
+          "084370",
+          "001450",
+          "402340",
+          "383220",
+          "004170",
+          "192080",
+          "069960",
+          "012750"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "403870",
+            "name": "HPSP",
+            "originalRank": 2,
+            "signalClose": 71500,
+            "previousTradingDate": "2026-06-11",
+            "previousTradingClose": 55000,
+            "oneDayReturn": 0.30000000000000004,
+            "threshold": 0.2,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.16783216783216792,
+              "5d": -0.20839160839160842,
+              "21d": -0.413986013986014
+            },
+            "replacement": {
+              "ticker": "004170",
+              "name": "신세계",
+              "originalRank": 13,
+              "oneDayReturn": -0.026610644257703098,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.014388489208633004,
+                "5d": 0.02302158273381294,
+                "21d": -0.14964028776978422
+              }
+            }
+          },
+          {
+            "ticker": "140860",
+            "name": "파크시스템스",
+            "originalRank": 3,
+            "signalClose": 339500,
+            "previousTradingDate": "2026-06-11",
+            "previousTradingClose": 264000,
+            "oneDayReturn": 0.2859848484848484,
+            "threshold": 0.2,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.23858615611192935,
+              "5d": -0.24742268041237114,
+              "21d": -0.25184094256259204
+            },
+            "replacement": {
+              "ticker": "192080",
+              "name": "더블유게임즈",
+              "originalRank": 15,
+              "oneDayReturn": -0.04825737265415553,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.015492957746478853,
+                "5d": -0.08732394366197183,
+                "21d": -0.1394366197183099
+              }
+            }
+          },
+          {
+            "ticker": "240810",
+            "name": "원익IPS",
+            "originalRank": 5,
+            "signalClose": 183300,
+            "previousTradingDate": "2026-06-11",
+            "previousTradingClose": 141000,
+            "oneDayReturn": 0.30000000000000004,
+            "threshold": 0.2,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.04800872885979268,
+              "5d": -0.14893617021276595,
+              "21d": -0.3191489361702128
+            },
+            "replacement": {
+              "ticker": "069960",
+              "name": "현대백화점",
+              "originalRank": 16,
+              "oneDayReturn": -0.052378407268840244,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.03327693175408908,
+                "5d": 0.0981387478849407,
+                "21d": -0.10941906373378452
+              }
+            }
+          },
+          {
+            "ticker": "039030",
+            "name": "이오테크닉스",
+            "originalRank": 6,
+            "signalClose": 612000,
+            "previousTradingDate": "2026-06-11",
+            "previousTradingClose": 504000,
+            "oneDayReturn": 0.2142857142857142,
+            "threshold": 0.2,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.13235294117647056,
+              "5d": -0.1854575163398693,
+              "21d": -0.4125816993464052
+            },
+            "replacement": {
+              "ticker": "012750",
+              "name": "에스원",
+              "originalRank": 18,
+              "oneDayReturn": 0.15645371577574974,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.12626832018038336,
+                "5d": -0.20518602029312294,
+                "21d": -0.19165727170236757
+              }
+            }
+          },
+          {
+            "ticker": "051600",
+            "name": "한전KPS",
+            "originalRank": 17,
+            "signalClose": 63900,
+            "previousTradingDate": "2026-06-11",
+            "previousTradingClose": 49300,
+            "oneDayReturn": 0.29614604462474636,
+            "threshold": 0.2,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": false,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.15492957746478875,
+              "5d": -0.2222222222222222,
+              "21d": -0.31064162754303604
+            },
+            "replacement": null
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "004170",
+            "name": "신세계",
+            "originalRank": 13,
+            "oneDayReturn": -0.026610644257703098,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.014388489208633004,
+              "5d": 0.02302158273381294,
+              "21d": -0.14964028776978422
+            }
+          },
+          {
+            "ticker": "192080",
+            "name": "더블유게임즈",
+            "originalRank": 15,
+            "oneDayReturn": -0.04825737265415553,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.015492957746478853,
+              "5d": -0.08732394366197183,
+              "21d": -0.1394366197183099
+            }
+          },
+          {
+            "ticker": "069960",
+            "name": "현대백화점",
+            "originalRank": 16,
+            "oneDayReturn": -0.052378407268840244,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.03327693175408908,
+              "5d": 0.0981387478849407,
+              "21d": -0.10941906373378452
+            }
+          },
+          {
+            "ticker": "012750",
+            "name": "에스원",
+            "originalRank": 18,
+            "oneDayReturn": 0.15645371577574974,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.12626832018038336,
+              "5d": -0.20518602029312294,
+              "21d": -0.19165727170236757
+            }
+          }
+        ]
+      }
+    ],
+    "25": [
+      {
+        "signalDate": "2020-03-09",
+        "executionDate": "2020-03-10",
+        "rankingYear": 2019,
+        "regimeExposureAtExecution": 0,
+        "holdingsBefore": [],
+        "keptIncumbents": [],
+        "unfilteredTarget": [
+          "096530",
+          "033640",
+          "036570",
+          "086450",
+          "237690",
+          "034310",
+          "213420",
+          "058470",
+          "051910",
+          "210980",
+          "000100",
+          "035720",
+          "196170",
+          "004370",
+          "005930"
+        ],
+        "filteredTarget": [
+          "033640",
+          "036570",
+          "086450",
+          "237690",
+          "034310",
+          "213420",
+          "058470",
+          "051910",
+          "210980",
+          "000100",
+          "035720",
+          "196170",
+          "004370",
+          "005930",
+          "028260"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "096530",
+            "name": "씨젠",
+            "originalRank": 1,
+            "signalClose": 53067.67568539788,
+            "previousTradingDate": "2020-03-06",
+            "previousTradingClose": 40857.04011765904,
+            "oneDayReturn": 0.2988624612202688,
+            "threshold": 0.25,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": false,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.12898089171974525,
+              "5d": -0.07643312101910826,
+              "21d": 0.41242038216560517
+            },
+            "replacement": {
+              "ticker": "028260",
+              "name": "삼성물산",
+              "originalRank": 16,
+              "oneDayReturn": -0.04166666666666663,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.004830917874396157,
+                "5d": -0.13333333333333341,
+                "21d": -0.14009661835748788
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "028260",
+            "name": "삼성물산",
+            "originalRank": 16,
+            "oneDayReturn": -0.04166666666666663,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.004830917874396157,
+              "5d": -0.13333333333333341,
+              "21d": -0.14009661835748788
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2020-06-10",
+        "executionDate": "2020-06-11",
+        "rankingYear": 2019,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [],
+        "keptIncumbents": [],
+        "unfilteredTarget": [
+          "016380",
+          "247540",
+          "141080",
+          "039200",
+          "183490",
+          "091990",
+          "005290",
+          "086450",
+          "001230",
+          "001060",
+          "014680",
+          "058470",
+          "095700",
+          "069080",
+          "192080"
+        ],
+        "filteredTarget": [
+          "016380",
+          "247540",
+          "039200",
+          "183490",
+          "091990",
+          "005290",
+          "086450",
+          "001230",
+          "001060",
+          "014680",
+          "058470",
+          "095700",
+          "069080",
+          "192080",
+          "011790"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "141080",
+            "name": "리가켐바이오",
+            "originalRank": 3,
+            "signalClose": 128400,
+            "previousTradingDate": "2020-06-09",
+            "previousTradingClose": 98800,
+            "oneDayReturn": 0.2995951417004048,
+            "threshold": 0.25,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.06542056074766356,
+              "5d": -0.49065420560747663,
+              "21d": -0.6366822429906542
+            },
+            "replacement": {
+              "ticker": "011790",
+              "name": "SKC",
+              "originalRank": 16,
+              "oneDayReturn": 0.009933774834437026,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.021311475409836134,
+                "5d": -0.04590163934426228,
+                "21d": 0.14098360655737707
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "011790",
+            "name": "SKC",
+            "originalRank": 16,
+            "oneDayReturn": 0.009933774834437026,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.021311475409836134,
+              "5d": -0.04590163934426228,
+              "21d": 0.14098360655737707
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2020-09-08",
+        "executionDate": "2020-09-09",
+        "rankingYear": 2019,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "247540",
+          "005290",
+          "014680",
+          "058470",
+          "095700",
+          "069080",
+          "192080",
+          "011790",
+          "278280",
+          "112610",
+          "285130",
+          "035900",
+          "271560",
+          "031390",
+          "000250"
+        ],
+        "keptIncumbents": [
+          "058470",
+          "095700",
+          "192080",
+          "278280",
+          "035900"
+        ],
+        "unfilteredTarget": [
+          "058470",
+          "095700",
+          "192080",
+          "278280",
+          "035900",
+          "039200",
+          "003520",
+          "022100",
+          "006650",
+          "026960",
+          "139480",
+          "093370",
+          "041510",
+          "009450",
+          "042670"
+        ],
+        "filteredTarget": [
+          "058470",
+          "095700",
+          "192080",
+          "278280",
+          "035900",
+          "039200",
+          "003520",
+          "006650",
+          "026960",
+          "139480",
+          "093370",
+          "041510",
+          "009450",
+          "042670",
+          "251270"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "022100",
+            "name": "포스코DX",
+            "originalRank": 4,
+            "signalClose": 5311.651360166799,
+            "previousTradingDate": "2020-09-07",
+            "previousTradingClose": 4089.5866450559597,
+            "oneDayReturn": 0.2988235294117647,
+            "threshold": 0.25,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.13949275362318847,
+              "5d": 0.11956521739130443,
+              "21d": 0.4148550724637683
+            },
+            "replacement": {
+              "ticker": "251270",
+              "name": "넷마블",
+              "originalRank": 12,
+              "oneDayReturn": -0.0025839793281653423,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.020725388601036232,
+                "5d": -0.04404145077720201,
+                "21d": -0.2046632124352331
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "251270",
+            "name": "넷마블",
+            "originalRank": 12,
+            "oneDayReturn": -0.0025839793281653423,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.020725388601036232,
+              "5d": -0.04404145077720201,
+              "21d": -0.2046632124352331
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2021-02-15",
+        "executionDate": "2021-02-16",
+        "rankingYear": 2020,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "005930",
+          "003410",
+          "006360",
+          "222800",
+          "033640",
+          "247540",
+          "294870",
+          "042700",
+          "064760",
+          "253450",
+          "001230",
+          "084370",
+          "218410",
+          "020150",
+          "098460"
+        ],
+        "keptIncumbents": [
+          "003410",
+          "222800",
+          "033640",
+          "042700",
+          "064760",
+          "084370",
+          "020150"
+        ],
+        "unfilteredTarget": [
+          "003410",
+          "222800",
+          "033640",
+          "042700",
+          "064760",
+          "084370",
+          "020150",
+          "036540",
+          "086520",
+          "178920",
+          "282330",
+          "053030",
+          "241560",
+          "014680",
+          "056190"
+        ],
+        "filteredTarget": [
+          "003410",
+          "222800",
+          "033640",
+          "042700",
+          "064760",
+          "084370",
+          "020150",
+          "086520",
+          "178920",
+          "282330",
+          "053030",
+          "241560",
+          "014680",
+          "056190",
+          "011790"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "036540",
+            "name": "SFA반도체",
+            "originalRank": 1,
+            "signalClose": 8910,
+            "previousTradingDate": "2021-02-10",
+            "previousTradingClose": 7040,
+            "oneDayReturn": 0.265625,
+            "threshold": 0.25,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.015712682379348974,
+              "5d": -0.041526374859708226,
+              "21d": -0.0718294051627385
+            },
+            "replacement": {
+              "ticker": "011790",
+              "name": "SKC",
+              "originalRank": 10,
+              "oneDayReturn": 0.041984732824427606,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0,
+                "5d": -0.03296703296703307,
+                "21d": null
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "011790",
+            "name": "SKC",
+            "originalRank": 10,
+            "oneDayReturn": 0.041984732824427606,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0,
+              "5d": -0.03296703296703307,
+              "21d": null
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2023-05-02",
+        "executionDate": "2023-05-03",
+        "rankingYear": 2022,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "028150",
+          "140860",
+          "005070",
+          "145720",
+          "086520",
+          "066970",
+          "241560",
+          "028050",
+          "022100",
+          "004370",
+          "001800",
+          "001040",
+          "005490",
+          "017390",
+          "012450",
+          "048260"
+        ],
+        "keptIncumbents": [
+          "140860",
+          "005070",
+          "145720",
+          "086520",
+          "241560",
+          "028050",
+          "004370",
+          "001800",
+          "012450",
+          "048260"
+        ],
+        "unfilteredTarget": [
+          "140860",
+          "005070",
+          "145720",
+          "086520",
+          "241560",
+          "028050",
+          "004370",
+          "001800",
+          "012450",
+          "048260",
+          "064550",
+          "352820",
+          "214150",
+          "035900",
+          "122870"
+        ],
+        "filteredTarget": [
+          "140860",
+          "005070",
+          "145720",
+          "086520",
+          "241560",
+          "028050",
+          "004370",
+          "001800",
+          "012450",
+          "048260",
+          "352820",
+          "214150",
+          "035900",
+          "122870",
+          "042670"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "064550",
+            "name": "바이오니아",
+            "originalRank": 1,
+            "signalClose": 73300,
+            "previousTradingDate": "2023-04-28",
+            "previousTradingClose": 58100,
+            "oneDayReturn": 0.26161790017211706,
+            "threshold": 0.25,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.012278308321964637,
+              "5d": -0.3015006821282401,
+              "21d": -0.2796725784447476
+            },
+            "replacement": {
+              "ticker": "042670",
+              "name": "HD현대인프라코어",
+              "originalRank": 7,
+              "oneDayReturn": 0.03549695740365122,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.008814887365328206,
+                "5d": -0.046033300685602296,
+                "21d": -0.022526934378060748
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "042670",
+            "name": "HD현대인프라코어",
+            "originalRank": 7,
+            "oneDayReturn": 0.03549695740365122,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.008814887365328206,
+              "5d": -0.046033300685602296,
+              "21d": -0.022526934378060748
+            }
+          }
+        ]
+      },
+      {
+        "signalDate": "2026-06-12",
+        "executionDate": "2026-06-15",
+        "rankingYear": 2025,
+        "regimeExposureAtExecution": 1,
+        "holdingsBefore": [
+          "028150",
+          "003410",
+          "012510",
+          "222800",
+          "241560",
+          "009150",
+          "397030",
+          "000500",
+          "329180",
+          "178320",
+          "950160",
+          "011070",
+          "000880",
+          "023530",
+          "066570",
+          "033780",
+          "017670"
+        ],
+        "keptIncumbents": [
+          "012510",
+          "222800",
+          "329180",
+          "178320",
+          "023530",
+          "033780"
+        ],
+        "unfilteredTarget": [
+          "012510",
+          "222800",
+          "329180",
+          "178320",
+          "023530",
+          "033780",
+          "319660",
+          "403870",
+          "140860",
+          "084370",
+          "240810",
+          "039030",
+          "001450",
+          "402340",
+          "383220"
+        ],
+        "filteredTarget": [
+          "012510",
+          "222800",
+          "329180",
+          "178320",
+          "023530",
+          "033780",
+          "319660",
+          "084370",
+          "039030",
+          "001450",
+          "402340",
+          "383220",
+          "004170",
+          "192080",
+          "069960"
+        ],
+        "excludedCandidates": [
+          {
+            "ticker": "403870",
+            "name": "HPSP",
+            "originalRank": 2,
+            "signalClose": 71500,
+            "previousTradingDate": "2026-06-11",
+            "previousTradingClose": 55000,
+            "oneDayReturn": 0.30000000000000004,
+            "threshold": 0.25,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.16783216783216792,
+              "5d": -0.20839160839160842,
+              "21d": -0.413986013986014
+            },
+            "replacement": {
+              "ticker": "004170",
+              "name": "신세계",
+              "originalRank": 13,
+              "oneDayReturn": -0.026610644257703098,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.014388489208633004,
+                "5d": 0.02302158273381294,
+                "21d": -0.14964028776978422
+              }
+            }
+          },
+          {
+            "ticker": "140860",
+            "name": "파크시스템스",
+            "originalRank": 3,
+            "signalClose": 339500,
+            "previousTradingDate": "2026-06-11",
+            "previousTradingClose": 264000,
+            "oneDayReturn": 0.2859848484848484,
+            "threshold": 0.25,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.23858615611192935,
+              "5d": -0.24742268041237114,
+              "21d": -0.25184094256259204
+            },
+            "replacement": {
+              "ticker": "192080",
+              "name": "더블유게임즈",
+              "originalRank": 15,
+              "oneDayReturn": -0.04825737265415553,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": -0.015492957746478853,
+                "5d": -0.08732394366197183,
+                "21d": -0.1394366197183099
+              }
+            }
+          },
+          {
+            "ticker": "240810",
+            "name": "원익IPS",
+            "originalRank": 5,
+            "signalClose": 183300,
+            "previousTradingDate": "2026-06-11",
+            "previousTradingClose": 141000,
+            "oneDayReturn": 0.30000000000000004,
+            "threshold": 0.25,
+            "boundaryRule": "exclude when oneDayReturn >= threshold",
+            "causedPortfolioReplacement": true,
+            "wouldHaveExecutableEntry": true,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.04800872885979268,
+              "5d": -0.14893617021276595,
+              "21d": -0.3191489361702128
+            },
+            "replacement": {
+              "ticker": "069960",
+              "name": "현대백화점",
+              "originalRank": 16,
+              "oneDayReturn": -0.052378407268840244,
+              "executionOpenAvailable": true,
+              "forwardReturnsFromSignalClose": {
+                "1d": 0.03327693175408908,
+                "5d": 0.0981387478849407,
+                "21d": -0.10941906373378452
+              }
+            }
+          }
+        ],
+        "addedByFilter": [
+          {
+            "ticker": "004170",
+            "name": "신세계",
+            "originalRank": 13,
+            "oneDayReturn": -0.026610644257703098,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.014388489208633004,
+              "5d": 0.02302158273381294,
+              "21d": -0.14964028776978422
+            }
+          },
+          {
+            "ticker": "192080",
+            "name": "더블유게임즈",
+            "originalRank": 15,
+            "oneDayReturn": -0.04825737265415553,
+            "forwardReturnsFromSignalClose": {
+              "1d": -0.015492957746478853,
+              "5d": -0.08732394366197183,
+              "21d": -0.1394366197183099
+            }
+          },
+          {
+            "ticker": "069960",
+            "name": "현대백화점",
+            "originalRank": 16,
+            "oneDayReturn": -0.052378407268840244,
+            "forwardReturnsFromSignalClose": {
+              "1d": 0.03327693175408908,
+              "5d": 0.0981387478849407,
+              "21d": -0.10941906373378452
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "incumbentJumpExemptions25Pct": [
+    {
+      "signalDate": "2017-11-13",
+      "executionDate": "2017-11-14",
+      "ticker": "068760",
+      "name": "셀트리온제약",
+      "rank": 4,
+      "oneDayReturn": 0.27921279212792127
+    }
+  ],
+  "sOilCase": {
+    "ticker": "010950",
+    "name": "S-Oil",
+    "jumpDate": "2026-03-03",
+    "previousTradingDate": "2026-02-27",
+    "previousClose": 110000,
+    "jumpClose": 141300,
+    "oneDayReturn": 0.28454545454545443,
+    "jumpDateWasScheduledSignal": false,
+    "firstScheduledSignalAfterJump": {
+      "signalDate": "2026-03-11",
+      "executionDate": "2026-03-12",
+      "heldBeforeSignal": false,
+      "keptAsIncumbent": false,
+      "selectedTarget": false,
+      "excludedByFilter": false,
+      "rank": 138,
+      "oneDayReturn": -0.027989821882951627
+    },
+    "filtered25ViewOnThatSignal": {
+      "signalDate": "2026-03-11",
+      "executionDate": "2026-03-12",
+      "heldBeforeSignal": false,
+      "keptAsIncumbent": false,
+      "selectedTarget": false,
+      "excludedByFilter": false,
+      "rank": 138,
+      "oneDayReturn": -0.027989821882951627
+    },
+    "sOilExclusionsAt25Pct": [],
+    "baselineTradesInCaseWindow": [],
+    "filtered25TradesInCaseWindow": [],
+    "conclusion": "The +28.45% day was not a scheduled signal, so that historical jump alone does not trigger the new-entry filter or change the modeled trade ledger."
+  },
+  "limitations": [
+    "This is a split-and-dividend total-return research cache, not the strict official corporate-action ledger.",
+    "DART coverage is held identical to the existing research engine even though the selected factor has zero EPS weight.",
+    "15% and 20% are sensitivity references; 25% is the fixed candidate and is not selected from the realized best result.",
+    "A small or event-concentrated exclusion sample cannot establish a live trading edge.",
+    "The 25% rule was later adopted as a chase-risk constraint by explicit user decision; the small sample and weaker OOS CAGR remain binding caveats."
+  ]
+}

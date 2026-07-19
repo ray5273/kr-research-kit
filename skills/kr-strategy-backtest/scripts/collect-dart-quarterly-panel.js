@@ -109,7 +109,14 @@ async function main() {
   }
   const key = process.env.OPENDART_API_KEY; if (!key) throw new Error('OPENDART_API_KEY required unless --verify-only is used');
   fs.mkdirSync(outDir, { recursive: true });
-  const queue = jobs.filter(job => recordStatus(fs.existsSync(path.join(outDir, `${job.ticker}-${job.year}-${job.report}.json`)) ? readJson(path.join(outDir, `${job.ticker}-${job.year}-${job.report}.json`)) : null) === 'incomplete');
+  // Retry every non-terminal record.  A previous transport/API error is no
+  // more final than a CFS-only 013; excluding it here left holes permanently
+  // stranded after an interrupted run.
+  const queue = jobs.filter(job => {
+    const file = path.join(outDir, `${job.ticker}-${job.year}-${job.report}.json`);
+    const status = recordStatus(fs.existsSync(file) ? readJson(file) : null);
+    return status !== 'complete-data' && status !== 'complete-no-data';
+  });
   let written = 0;
   async function worker() {
     while (queue.length && (maxNew === null || written < maxNew)) {

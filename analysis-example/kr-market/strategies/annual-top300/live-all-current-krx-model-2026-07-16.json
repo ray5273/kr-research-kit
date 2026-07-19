@@ -1,0 +1,1579 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-17T07:21:38.363Z",
+  "modelOnly": true,
+  "asOf": "2026-07-16",
+  "signalDate": "2026-07-16",
+  "expectedExecution": "2026-07-17",
+  "universe": {
+    "policy": "all currently listed KOSPI/KOSDAQ ordinary shares",
+    "currentSource": "Naver Finance marketValue API",
+    "currentSourceAsOf": "2026-07-16T16:10:21+09:00",
+    "currentFetchedAt": "2026-07-17T07:21:24.002Z",
+    "rankingYear": null,
+    "yearEndSnapshotDate": null,
+    "currentTop300Count": null,
+    "currentListingCount": 2530,
+    "yearEndTop300Count": null,
+    "unionCount": 2530,
+    "overlapCount": 0,
+    "currentOnlyCount": 2530,
+    "yearEndOnlyCount": 0
+  },
+  "rules": {
+    "selection": "3/6/12-month RS (40/30/30) percentile 50% + point-in-time EPS/revenue improvement percentile 50%, top 10",
+    "filingAvailabilityLagSessions": 1,
+    "execution": "signal close -> next trading session open",
+    "overlay": "KOSPI SMA200 +3% ON threshold (standalone screen) and 60-session 18% volatility target",
+    "rankingOnly": false
+  },
+  "coverage": {
+    "unionCount": 2530,
+    "priceUsable": 2194,
+    "priceCoverage": 0.867193675889328,
+    "dartCandidateCount": 172,
+    "excluded": {
+      "noExactPrice": 1931,
+      "noDart": 91
+    },
+    "missingPrice": [
+      {
+        "ticker": "042660",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "009540",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "086520",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "036930",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "319660",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "950160",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "082740",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "108490",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "214150",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "279570",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "319400",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "071970",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "457190",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "439260",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "140410",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "020560",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "097230",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "415640",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "030530",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "003380",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "077970",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "491000",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "388210",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "083450",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "090710",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "445680",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "115180",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "490470",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "317450",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "006380",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "005180",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "052400",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "007700",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "003620",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "121600",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "456160",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "016380",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "211050",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "033790",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "009410",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "336570",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "477850",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "035890",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "008060",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "476830",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "161000",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "000070",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "003280",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "018290",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "003030",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "016590",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "486990",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "439960",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "084110",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "029460",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "024850",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "009160",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "092730",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "217590",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "025900",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "493280",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "125490",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "107640",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "309710",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "468530",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "182400",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "121800",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "377460",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "484590",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "091810",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "314930",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "215000",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "061090",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "290690",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "000480",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "187660",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "488900",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "298000",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "318060",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "114190",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "380540",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "365270",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "117580",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "484120",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "900290",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "016790",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "220100",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "010580",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "024060",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "126600",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "475040",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "000300",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "245620",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "243840",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "038390",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "314130",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "066410",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "046070",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "459510",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "005960",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "101970",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "199820",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "040350",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "357880",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "260970",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "048870",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "403850",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "012210",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "114840",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "004090",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "138360",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "005990",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "394420",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "269620",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "270660",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "474650",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "013520",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "101360",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "478340",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "413630",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "077500",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "469610",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "012200",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "307750",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "011690",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "340450",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "002780",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "073010",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "038540",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "056090",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "011810",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "002620",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "047770",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "220260",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "494120",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "217270",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "210980",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "052260",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "488280",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "119650",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "387690",
+        "reason": "cache-file-missing"
+      },
+      {
+        "ticker": "487580",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "380550",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "025620",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "156100",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "066790",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "049080",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "352090",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "005860",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "002210",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "037030",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "333430",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "153890",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "192410",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "226400",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "209640",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "033290",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "357230",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "007610",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "052420",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "263800",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "088130",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "000440",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "086710",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "005740",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "044990",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "189330",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "950250",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "173130",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "001470",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "475230",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "493330",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "009180",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "019550",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "001260",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "331380",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "900260",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "109070",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "475430",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "095720",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "234030",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "215100",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "024830",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "365660",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "321370",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "000230",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "036630",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "073640",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "149980",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "196490",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "464490",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "307870",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "432470",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "214270",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "277880",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "331740",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "408470",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "089850",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "288180",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "099520",
+        "reason": "cache-file-missing"
+      },
+      {
+        "ticker": "214330",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "016250",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "168330",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "117670",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "014950",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "053050",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "217480",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "043710",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "205470",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "123010",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "463020",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "002410",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "256630",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "393970",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "192250",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "145170",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "033540",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "321260",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "069460",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "294140",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "094940",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "005030",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "074610",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "225190",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "178780",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "276730",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "261520",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "218150",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "042940",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "097870",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "315640",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "219420",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "207760",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "203450",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "284620",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "068940",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "064520",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "263920",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "013000",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "011330",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "032960",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "446070",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "220180",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "458350",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "408900",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "332290",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "002420",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "215090",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "310870",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "003060",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "351320",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "038880",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "097780",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "406820",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "109820",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "462310",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "043220",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "114630",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "197140",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "340440",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "121890",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "187220",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "459550",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "450520",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "013720",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "017000",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "021880",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "356890",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "016670",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "219750",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "397810",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "430690",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "053950",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "277410",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "208350",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "224060",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "363260",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "131100",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "193250",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "032790",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "318020",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "009310",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "056730",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "065150",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "000040",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "342870",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "058450",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "210120",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "065650",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "090150",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "080720",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "014100",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "078590",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "258790",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "192390",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "455180",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "101680",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "038530",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "021040",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "015020",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "154030",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "054220",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "031860",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "103230",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "069330",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "008600",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "225590",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "060900",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "142760",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "241820",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "344860",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "083470",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "900110",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "101000",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "030350",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "012170",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "303030",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "377220",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "148780",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "009620",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "352770",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "177350",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "244460",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "009730",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "042040",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "043100",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "900100",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "084180",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "106080",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "145210",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "065420",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "069920",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "225430",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "900120",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "035290",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "043090",
+        "reason": "insufficient-or-discontinuous-history"
+      }
+    ]
+  },
+  "overlay": {
+    "kospiClose": 6820.60009765625,
+    "kospiSma200": 5584.327564697265,
+    "distanceToSma200": 0.22138252433012595,
+    "regimeOn": true,
+    "realizedVolatility": 0.7768502895573127,
+    "targetVolatility": 0.18,
+    "exposure": 0.231704875983985,
+    "cashWeight": 0.768295124016015,
+    "perHoldingTargetWeight": 0.0231704875983985
+  },
+  "holdings": [
+    {
+      "rank": 1,
+      "ticker": "000660",
+      "name": "SK하이닉스",
+      "market": "KOSPI",
+      "close": 1842000,
+      "score": 0.9717291595000572,
+      "rs": 2.4048375113131426,
+      "rsPercentile": 0.9824561403508771,
+      "fundamentalScore": 0.9610021786492374,
+      "reportFilingDate": "2026-05-15",
+      "inCurrentTop300": true,
+      "currentRank": 2,
+      "inYearEndTop300": false,
+      "yearEndRank": null,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 2,
+      "ticker": "005930",
+      "name": "삼성전자",
+      "market": "KOSPI",
+      "close": 255000,
+      "score": 0.9463364293085654,
+      "rs": 1.25821473496158,
+      "rsPercentile": 0.9473684210526315,
+      "fundamentalScore": 0.9453044375644994,
+      "reportFilingDate": "2026-05-15",
+      "inCurrentTop300": true,
+      "currentRank": 1,
+      "inYearEndTop300": false,
+      "yearEndRank": null,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 3,
+      "ticker": "067310",
+      "name": "하나마이크론",
+      "market": "KOSDAQ",
+      "close": 35750,
+      "score": 0.8966230936819171,
+      "rs": 0.68209899354433,
+      "rsPercentile": 0.8888888888888888,
+      "fundamentalScore": 0.9043572984749454,
+      "reportFilingDate": "2026-05-14",
+      "inCurrentTop300": true,
+      "currentRank": 186,
+      "inYearEndTop300": false,
+      "yearEndRank": null,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 4,
+      "ticker": "222800",
+      "name": "심텍",
+      "market": "KOSDAQ",
+      "close": 107400,
+      "score": 0.8731338149294806,
+      "rs": 1.7693529022851862,
+      "rsPercentile": 0.9707602339181286,
+      "fundamentalScore": 0.7755073959408326,
+      "reportFilingDate": "2026-05-14",
+      "inCurrentTop300": true,
+      "currentRank": 117,
+      "inYearEndTop300": false,
+      "yearEndRank": null,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 5,
+      "ticker": "278470",
+      "name": "에이피알",
+      "market": "KOSPI",
+      "close": 393000,
+      "score": 0.867411994037381,
+      "rs": 0.7500090437159157,
+      "rsPercentile": 0.9122807017543859,
+      "fundamentalScore": 0.8225432863203762,
+      "reportFilingDate": "2026-05-15",
+      "inCurrentTop300": true,
+      "currentRank": 52,
+      "inYearEndTop300": false,
+      "yearEndRank": null,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 6,
+      "ticker": "009150",
+      "name": "삼성전기",
+      "market": "KOSPI",
+      "close": 1277000,
+      "score": 0.8407694071780758,
+      "rs": 4.031733668383154,
+      "rsPercentile": 1,
+      "fundamentalScore": 0.6815388143561517,
+      "reportFilingDate": "2026-05-15",
+      "inCurrentTop300": true,
+      "currentRank": 4,
+      "inYearEndTop300": false,
+      "yearEndRank": null,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 7,
+      "ticker": "000500",
+      "name": "가온전선",
+      "market": "KOSPI",
+      "close": 196700,
+      "score": 0.8261839238619424,
+      "rs": 3.205145958433415,
+      "rsPercentile": 0.9941520467836257,
+      "fundamentalScore": 0.6582158009402591,
+      "reportFilingDate": "2026-05-15",
+      "inCurrentTop300": true,
+      "currentRank": 139,
+      "inYearEndTop300": false,
+      "yearEndRank": null,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 8,
+      "ticker": "006800",
+      "name": "미래에셋증권",
+      "market": "KOSPI",
+      "close": 40050,
+      "score": 0.8245327370714368,
+      "rs": 0.23389952555236992,
+      "rsPercentile": 0.7076023391812866,
+      "fundamentalScore": 0.941463134961587,
+      "reportFilingDate": "2026-05-15",
+      "inCurrentTop300": true,
+      "currentRank": 32,
+      "inYearEndTop300": false,
+      "yearEndRank": null,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 9,
+      "ticker": "402340",
+      "name": "SK스퀘어",
+      "market": "KOSPI",
+      "close": 1212000,
+      "score": 0.8138573558078201,
+      "rs": 2.7233636408902853,
+      "rsPercentile": 0.9883040935672515,
+      "fundamentalScore": 0.639410618048389,
+      "reportFilingDate": "2026-05-14",
+      "inCurrentTop300": true,
+      "currentRank": 3,
+      "inYearEndTop300": false,
+      "yearEndRank": null,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 10,
+      "ticker": "034730",
+      "name": "SK",
+      "market": "KOSPI",
+      "close": 580000,
+      "score": 0.8095975232198143,
+      "rs": 1.1337533291420772,
+      "rsPercentile": 0.9415204678362573,
+      "fundamentalScore": 0.6776745786033711,
+      "reportFilingDate": "2026-05-15",
+      "inCurrentTop300": true,
+      "currentRank": 17,
+      "inYearEndTop300": false,
+      "yearEndRank": null,
+      "targetWeight": 0.0231704875983985
+    }
+  ],
+  "data": {
+    "priceCache": "/Users/sanghyeok/workspace/stock-analysis-skill/.tmp/kr-strategy-backtest/2026-07-10",
+    "dartPanel": "/Users/sanghyeok/workspace/stock-analysis-skill/.tmp/kr-strategy-backtest/dart-quarterly-panel",
+    "dartPanelManifestSha256": "1fdf173fd0667282fb2c03d092af9f1c6e81666ef338f14c6c2a40a92ba483c3"
+  },
+  "limitations": [
+    "This is a live model screen, not investment advice or an order.",
+    "The current-listing universe must not be applied retrospectively in a backtest because it has survivorship bias.",
+    "Only existing cached daily prices and DART panel records are usable; missing items are logged rather than silently substituted."
+  ]
+}

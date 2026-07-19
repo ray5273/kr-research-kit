@@ -1,0 +1,2451 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-12T08:20:41.805Z",
+  "asOf": "2026-07-10",
+  "universe": {
+    "source": "/Users/sanghyeok/workspace/stock-analysis-skill/.tmp/kr-strategy-backtest/2026-07-10/universe.json",
+    "ordinaryStocksWithUsableData": 2196
+  },
+  "strictTemplate": [
+    {
+      "ticker": "089970",
+      "name": "브이엠",
+      "market": "KOSDAQ",
+      "close": 103400,
+      "rsPercentile": 99.72665148063781,
+      "return252": 7.173913043478262,
+      "ma50": 76242,
+      "ma150": 49283,
+      "ma200": 42394.8,
+      "vcp": {
+        "pivot": 122100,
+        "breakout": false,
+        "volumeExpansion": true,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.498159509202454,
+        "prior20Range": 1.0764818355640537,
+        "volumeRatio50": 2.178455281224389
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "420770",
+      "name": "기가비스",
+      "market": "KOSDAQ",
+      "close": 164500,
+      "rsPercentile": 99.68109339407745,
+      "return252": 5.469640070964479,
+      "ma50": 137040,
+      "ma150": 84830.52049479166,
+      "ma200": 72157.80034179687,
+      "vcp": {
+        "pivot": 206000,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.5895061728395061,
+        "prior20Range": 0.6396135265700482,
+        "volumeRatio50": 0.9067730568543741
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "131290",
+      "name": "티에스이",
+      "market": "KOSDAQ",
+      "close": 269500,
+      "rsPercentile": 99.63553530751709,
+      "return252": 5.824396425896464,
+      "ma50": 218798,
+      "ma150": 133423.03447916667,
+      "ma200": 112766.305625,
+      "vcp": {
+        "pivot": 282500,
+        "breakout": false,
+        "volumeExpansion": true,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.3472222222222223,
+        "prior20Range": 0.6263672999424295,
+        "volumeRatio50": 1.8334274387708949
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "095610",
+      "name": "테스",
+      "market": "KOSDAQ",
+      "close": 177700,
+      "rsPercentile": 99.58997722095671,
+      "return252": 6.063716019088456,
+      "ma50": 140316,
+      "ma150": 87242.05119791666,
+      "ma200": 76142.02869140625,
+      "vcp": {
+        "pivot": 236500,
+        "breakout": false,
+        "volumeExpansion": true,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.7741935483870968,
+        "prior20Range": 1.0109235352532275,
+        "volumeRatio50": 1.818156357272097
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "002990",
+      "name": "금호건설",
+      "market": "KOSPI",
+      "close": 16820,
+      "rsPercentile": 99.498861047836,
+      "return252": 4.181540809002041,
+      "ma50": 6167,
+      "ma150": 5043.085834960937,
+      "ma200": 4656.706959228515,
+      "vcp": {
+        "pivot": 18900,
+        "breakout": false,
+        "volumeExpansion": true,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 1.6475409836065573,
+        "prior20Range": 0.7818696883852692,
+        "volumeRatio50": 5.716800982161068
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "219130",
+      "name": "타이거일렉",
+      "market": "KOSDAQ",
+      "close": 72300,
+      "rsPercentile": 99.3621867881549,
+      "return252": 4.661707126076743,
+      "ma50": 61346,
+      "ma150": 40204.666666666664,
+      "ma200": 35660.55,
+      "vcp": {
+        "pivot": 82000,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.30175438596491233,
+        "prior20Range": 0.7787418655097613,
+        "volumeRatio50": 1.0042983119830937
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "064290",
+      "name": "인텍플러스",
+      "market": "KOSDAQ",
+      "close": 45000,
+      "rsPercentile": 99.08883826879271,
+      "return252": 3.966887417218543,
+      "ma50": 38098,
+      "ma150": 24188.933333333334,
+      "ma200": 21936.6,
+      "vcp": {
+        "pivot": 54100,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.45625841184387617,
+        "prior20Range": 0.47626112759643924,
+        "volumeRatio50": 0.7335939779377827
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "019210",
+      "name": "와이지-원",
+      "market": "KOSDAQ",
+      "close": 22500,
+      "rsPercentile": 98.99772209567197,
+      "return252": 2.8633646636445564,
+      "ma50": 18079.2,
+      "ma150": 12105.492337239584,
+      "ma200": 10325.954055175782,
+      "vcp": {
+        "pivot": 28500,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.6202387720295623,
+        "prior20Range": 0.9658119658119657,
+        "volumeRatio50": 0.8853667972888737
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "170920",
+      "name": "엘티씨",
+      "market": "KOSDAQ",
+      "close": 50300,
+      "rsPercentile": 98.54214123006834,
+      "return252": 3.158800365923274,
+      "ma50": 46552,
+      "ma150": 32478.56048828125,
+      "ma200": 28954.0620703125,
+      "vcp": {
+        "pivot": 60700,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.49350649350649345,
+        "prior20Range": 0.6675824175824177,
+        "volumeRatio50": 1.0759593149246054
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "281820",
+      "name": "케이씨텍",
+      "market": "KOSPI",
+      "close": 97400,
+      "rsPercentile": 98.49658314350798,
+      "return252": 2.6148779983749693,
+      "ma50": 78176,
+      "ma150": 55774.482057291665,
+      "ma200": 51534.7364453125,
+      "vcp": {
+        "pivot": 124800,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.5256723716381417,
+        "prior20Range": 0.7655417406749556,
+        "volumeRatio50": 1.37523700288417
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "004170",
+      "name": "신세계",
+      "market": "KOSPI",
+      "close": 629000,
+      "rsPercentile": 98.35990888382688,
+      "return252": 2.3903526712965664,
+      "ma50": 597335.13625,
+      "ma150": 402038.6169791667,
+      "ma200": 348639.811328125,
+      "vcp": {
+        "pivot": 792000,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.33673469387755106,
+        "prior20Range": 0.5871743486973948,
+        "volumeRatio50": 0.570855470995475
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "031980",
+      "name": "피에스케이홀딩스",
+      "market": "KOSDAQ",
+      "close": 136200,
+      "rsPercentile": 98.22323462414579,
+      "return252": 2.989965580779432,
+      "ma50": 127112,
+      "ma150": 94234.02015625,
+      "ma200": 82381.49740234375,
+      "vcp": {
+        "pivot": 173000,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.5727272727272728,
+        "prior20Range": 0.6035196687370601,
+        "volumeRatio50": 1.0899230587095894
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "127120",
+      "name": "제이에스링크",
+      "market": "KOSDAQ",
+      "close": 38950,
+      "rsPercentile": 97.76765375854214,
+      "return252": 2.898898898898899,
+      "ma50": 37458,
+      "ma150": 32332.333333333332,
+      "ma200": 29363.35,
+      "vcp": {
+        "pivot": 40000,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.17647058823529416,
+        "prior20Range": 0.5420393559928445,
+        "volumeRatio50": 0.6239212472104594
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "069960",
+      "name": "현대백화점",
+      "market": "KOSPI",
+      "close": 167100,
+      "rsPercentile": 97.58542141230069,
+      "return252": 1.2751186553177365,
+      "ma50": 149504,
+      "ma150": 110193.78223958334,
+      "ma200": 103715.0962109375,
+      "vcp": {
+        "pivot": 222000,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.3251106894370652,
+        "prior20Range": 1.1325648414985592,
+        "volumeRatio50": 0.5350369113597037
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "222040",
+      "name": "코스맥스엔비티",
+      "market": "KOSDAQ",
+      "close": 8170,
+      "rsPercentile": 97.40318906605923,
+      "return252": 0.7254487856388596,
+      "ma50": 6841,
+      "ma150": 4668.566666666667,
+      "ma200": 4354.325,
+      "vcp": {
+        "pivot": 8080,
+        "breakout": true,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.46194690265486726,
+        "prior20Range": 0.5151515151515151,
+        "volumeRatio50": 1.0226040358807922
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "041830",
+      "name": "인바디",
+      "market": "KOSDAQ",
+      "close": 52500,
+      "rsPercentile": 96.90205011389523,
+      "return252": 1.2432248226179152,
+      "ma50": 45096,
+      "ma150": 35358.93993489583,
+      "ma200": 33525.41338867188,
+      "vcp": {
+        "pivot": 64200,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.4219269102990033,
+        "prior20Range": 0.37741046831955916,
+        "volumeRatio50": 0.6998732478351829
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "005950",
+      "name": "이수화학",
+      "market": "KOSPI",
+      "close": 13550,
+      "rsPercentile": 96.44646924829156,
+      "return252": 1.1040372670807455,
+      "ma50": 12717.4,
+      "ma150": 10058.4,
+      "ma200": 9552.55,
+      "vcp": {
+        "pivot": 17990,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.4494485294117647,
+        "prior20Range": 0.7264875239923225,
+        "volumeRatio50": 0.28123794178786177
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "144960",
+      "name": "뉴파워프라즈마",
+      "market": "KOSDAQ",
+      "close": 9560,
+      "rsPercentile": 96.26423690205011,
+      "return252": 0.9191932261738822,
+      "ma50": 8567.6,
+      "ma150": 6631.205413411459,
+      "ma200": 6413.042578125,
+      "vcp": {
+        "pivot": 10490,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.4201438848920864,
+        "prior20Range": 0.5050215208034434,
+        "volumeRatio50": 1.4918678559004397
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "094840",
+      "name": "슈프리마에이치큐",
+      "market": "KOSDAQ",
+      "close": 12410,
+      "rsPercentile": 95.8997722095672,
+      "return252": 0.6712086950763887,
+      "ma50": 11001.48271484375,
+      "ma150": 8509.604557291666,
+      "ma200": 7977.007534179687,
+      "vcp": {
+        "pivot": 12760,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": true,
+        "nearBaseHigh": true,
+        "recent10Range": 0.11733800350262702,
+        "prior20Range": 0.38265895546041606,
+        "volumeRatio50": 0.8831945055347848
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "037710",
+      "name": "광주신세계",
+      "market": "KOSPI",
+      "close": 49800,
+      "rsPercentile": 95.39863325740319,
+      "return252": 0.7938500609649837,
+      "ma50": 38366.517265625,
+      "ma150": 34470.209986979164,
+      "ma200": 32881.0021875,
+      "vcp": {
+        "pivot": 59600,
+        "breakout": false,
+        "volumeExpansion": true,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.5935828877005347,
+        "prior20Range": 0.5180722891566265,
+        "volumeRatio50": 5.867066965041556
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "066980",
+      "name": "한성크린텍",
+      "market": "KOSDAQ",
+      "close": 2185,
+      "rsPercentile": 94.98861047835992,
+      "return252": 0.4965753424657535,
+      "ma50": 1853.18,
+      "ma150": 1513.2933333333333,
+      "ma200": 1470.765,
+      "vcp": {
+        "pivot": 2745,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.6626287098728043,
+        "prior20Range": 0.600126742712294,
+        "volumeRatio50": 0.5938629096277831
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "009420",
+      "name": "한올바이오파마",
+      "market": "KOSPI",
+      "close": 57400,
+      "rsPercentile": 94.80637813211845,
+      "return252": 1.3524590163934427,
+      "ma50": 53368,
+      "ma150": 51966,
+      "ma200": 48364.25,
+      "vcp": {
+        "pivot": 70000,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.2727272727272727,
+        "prior20Range": 0.4989293361884368,
+        "volumeRatio50": 0.7202091181612473
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "011560",
+      "name": "세보엠이씨",
+      "market": "KOSDAQ",
+      "close": 23700,
+      "rsPercentile": 94.71526195899771,
+      "return252": 0.9671212694987266,
+      "ma50": 23042,
+      "ma150": 18571.771595052083,
+      "ma200": 17193.498901367188,
+      "vcp": {
+        "pivot": 29300,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.32879818594104315,
+        "prior20Range": 0.25505050505050497,
+        "volumeRatio50": 0.6806857425581468
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "311320",
+      "name": "지오엘리먼트",
+      "market": "KOSDAQ",
+      "close": 10580,
+      "rsPercentile": 94.12300683371299,
+      "return252": 0.594290531795618,
+      "ma50": 9079.481845703125,
+      "ma150": 7846.94310546875,
+      "ma200": 7616.260021972656,
+      "vcp": {
+        "pivot": 11907.947033772554,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.3257142857142856,
+        "prior20Range": 0.8742137535854055,
+        "volumeRatio50": 0.7963117190559593
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "049430",
+      "name": "코메론",
+      "market": "KOSDAQ",
+      "close": 19800,
+      "rsPercentile": 93.84965831435079,
+      "return252": 1.0618172998747668,
+      "ma50": 19160.6,
+      "ma150": 17176.585846354166,
+      "ma200": 15537.427426757813,
+      "vcp": {
+        "pivot": 20750,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": true,
+        "nearBaseHigh": true,
+        "recent10Range": 0.0736842105263158,
+        "prior20Range": 0.20639534883720922,
+        "volumeRatio50": 0.9058555323795925
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "204610",
+      "name": "티쓰리",
+      "market": "KOSDAQ",
+      "close": 3055,
+      "rsPercentile": 93.80410022779043,
+      "return252": 0.5504025994340842,
+      "ma50": 2828.1643896484375,
+      "ma150": 2368.2328068033853,
+      "ma200": 2247.634128417969,
+      "vcp": {
+        "pivot": 3115,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.28189300411522633,
+        "prior20Range": 0.3395348837209302,
+        "volumeRatio50": 0.43802135519798696
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "071200",
+      "name": "인피니트헬스케어",
+      "market": "KOSDAQ",
+      "close": 8860,
+      "rsPercentile": 93.75854214123007,
+      "return252": 0.3953330999739777,
+      "ma50": 7320.853974609375,
+      "ma150": 6567.756611328125,
+      "ma200": 6386.290078125,
+      "vcp": {
+        "pivot": 8460,
+        "breakout": true,
+        "volumeExpansion": true,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.48519736842105265,
+        "prior20Range": 0.31362889983579634,
+        "volumeRatio50": 2.9044564389350516
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "057050",
+      "name": "현대홈쇼핑",
+      "market": "KOSPI",
+      "close": 87300,
+      "rsPercentile": 93.62186788154897,
+      "return252": 0.6022518475099132,
+      "ma50": 83370,
+      "ma150": 71975.32026041667,
+      "ma200": 67107.83828125,
+      "vcp": {
+        "pivot": 88000,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": true,
+        "nearBaseHigh": true,
+        "recent10Range": 0,
+        "prior20Range": 0.21883656509695282,
+        "volumeRatio50": 0
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "078930",
+      "name": "GS",
+      "market": "KOSPI",
+      "close": 80200,
+      "rsPercentile": 93.57630979498862,
+      "return252": 0.819858055822678,
+      "ma50": 74184,
+      "ma150": 66612.54799479166,
+      "ma200": 62037.00837890625,
+      "vcp": {
+        "pivot": 82300,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.31469648562300323,
+        "prior20Range": 0.2603174603174603,
+        "volumeRatio50": 0.9226965587766737
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "001540",
+      "name": "안국약품",
+      "market": "KOSDAQ",
+      "close": 11200,
+      "rsPercentile": 93.53075170842826,
+      "return252": 0.5534585508589107,
+      "ma50": 10072,
+      "ma150": 8820.059645182291,
+      "ma200": 8455.38370361328,
+      "vcp": {
+        "pivot": 11600,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.24574468085106393,
+        "prior20Range": 0.23406478578892376,
+        "volumeRatio50": 0.42374867902545466
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "105560",
+      "name": "KB금융",
+      "market": "KOSPI",
+      "close": 184400,
+      "rsPercentile": 93.43963553530752,
+      "return252": 0.7211342749724055,
+      "ma50": 159197.3975,
+      "ma150": 147108.1221875,
+      "ma200": 139482.5402734375,
+      "vcp": {
+        "pivot": 182700,
+        "breakout": true,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.29890560875513006,
+        "prior20Range": 0.24539877300613488,
+        "volumeRatio50": 1.4463404944978806
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "055550",
+      "name": "신한지주",
+      "market": "KOSPI",
+      "close": 109200,
+      "rsPercentile": 93.39407744874715,
+      "return252": 0.8639709037257082,
+      "ma50": 98865.2,
+      "ma150": 91163.9771875,
+      "ma200": 86448.808515625,
+      "vcp": {
+        "pivot": 111000,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.22992299229922986,
+        "prior20Range": 0.21758241758241748,
+        "volumeRatio50": 1.047996237405959
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "000810",
+      "name": "삼성화재해상보험",
+      "market": "KOSPI",
+      "close": 648000,
+      "rsPercentile": 93.34851936218679,
+      "return252": 0.5513943133946693,
+      "ma50": 600880,
+      "ma150": 518688.220625,
+      "ma200": 500255.8071875,
+      "vcp": {
+        "pivot": 737000,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.1675041876046901,
+        "prior20Range": 0.4202626641651033,
+        "volumeRatio50": 0.5366938797667377
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "005430",
+      "name": "한국공항",
+      "market": "KOSPI",
+      "close": 81700,
+      "rsPercentile": 93.12072892938497,
+      "return252": 0.5751289405617617,
+      "ma50": 76298,
+      "ma150": 67020.14513020833,
+      "ma200": 65742.08021484375,
+      "vcp": {
+        "pivot": 95900,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.2735723771580345,
+        "prior20Range": 0.3298969072164948,
+        "volumeRatio50": 0.34115499451092973
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "161390",
+      "name": "한국타이어앤테크놀로지",
+      "market": "KOSPI",
+      "close": 71500,
+      "rsPercentile": 93.0751708428246,
+      "return252": 0.888692608674118,
+      "ma50": 65306,
+      "ma150": 62089.28078125,
+      "ma200": 57902.02916015625,
+      "vcp": {
+        "pivot": 76000,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.23202614379084974,
+        "prior20Range": 0.27516778523489926,
+        "volumeRatio50": 0.8553567133600953
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "137080",
+      "name": "나래나노텍",
+      "market": "KOSDAQ",
+      "close": 5690,
+      "rsPercentile": 92.9384965831435,
+      "return252": 0.8625204582651391,
+      "ma50": 5262.4,
+      "ma150": 4725.466666666666,
+      "ma200": 4352.925,
+      "vcp": {
+        "pivot": 6140,
+        "breakout": false,
+        "volumeExpansion": true,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.1785028790786949,
+        "prior20Range": 0.405,
+        "volumeRatio50": 1.5691619202603744
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "161890",
+      "name": "한국콜마",
+      "market": "KOSPI",
+      "close": 106500,
+      "rsPercentile": 92.89293849658314,
+      "return252": 0.17414028375229118,
+      "ma50": 92620,
+      "ma150": 77740.02536458333,
+      "ma200": 76503.32265625,
+      "vcp": {
+        "pivot": 124600,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.35287730727470135,
+        "prior20Range": 0.23258869908015778,
+        "volumeRatio50": 1.0437444080474518
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "339950",
+      "name": "아이비김영",
+      "market": "KOSDAQ",
+      "close": 2750,
+      "rsPercentile": 92.71070615034168,
+      "return252": 0.5466147686606748,
+      "ma50": 2619.4,
+      "ma150": 2234.3925423177084,
+      "ma200": 2104.8770861816406,
+      "vcp": {
+        "pivot": 2855,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.19396551724137923,
+        "prior20Range": 0.1970649895178198,
+        "volumeRatio50": 0.2730297597815762
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "069730",
+      "name": "DSR제강",
+      "market": "KOSPI",
+      "close": 5520,
+      "rsPercentile": 92.48291571753985,
+      "return252": 0.6837606334775246,
+      "ma50": 5308.6,
+      "ma150": 4612.0994905598955,
+      "ma200": 4278.557169189453,
+      "vcp": {
+        "pivot": 5800,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.1530815109343937,
+        "prior20Range": 0.14915966386554613,
+        "volumeRatio50": 0.47711750445747925
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "007070",
+      "name": "GS리테일",
+      "market": "KOSPI",
+      "close": 25950,
+      "rsPercentile": 92.34624145785877,
+      "return252": 0.6032457811234775,
+      "ma50": 24757,
+      "ma150": 22342.363059895833,
+      "ma200": 21247.949658203124,
+      "vcp": {
+        "pivot": 26250,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.22401847575057743,
+        "prior20Range": 0.22831050228310512,
+        "volumeRatio50": 0.870484695738945
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "084870",
+      "name": "티비에이치글로벌",
+      "market": "KOSPI",
+      "close": 1960,
+      "rsPercentile": 91.84510250569477,
+      "return252": 0.5163191349975933,
+      "ma50": 1931.08,
+      "ma150": 1704.3886385091146,
+      "ma200": 1603.7203631591797,
+      "vcp": {
+        "pivot": 1994,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.12022471910112364,
+        "prior20Range": 0.17939609236234455,
+        "volumeRatio50": 0.6221716989318202
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "086790",
+      "name": "하나금융지주",
+      "market": "KOSPI",
+      "close": 128500,
+      "rsPercentile": 91.79954441913439,
+      "return252": 0.5886289402063942,
+      "ma50": 120876.3603125,
+      "ma150": 110810.01307291667,
+      "ma200": 104871.4920703125,
+      "vcp": {
+        "pivot": 136000,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.2007332722273143,
+        "prior20Range": 0.22522522522522515,
+        "volumeRatio50": 1.2538887445539557
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "094860",
+      "name": "네오리진",
+      "market": "KOSDAQ",
+      "close": 1475,
+      "rsPercentile": 91.70842824601367,
+      "return252": 0.4735264735264735,
+      "ma50": 1394.94,
+      "ma150": 1303.5533333333333,
+      "ma200": 1249.98,
+      "vcp": {
+        "pivot": 1450,
+        "breakout": true,
+        "volumeExpansion": true,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.24197530864197536,
+        "prior20Range": 0.1630695443645085,
+        "volumeRatio50": 1.5757450679141156
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "001450",
+      "name": "현대해상",
+      "market": "KOSPI",
+      "close": 38150,
+      "rsPercentile": 91.25284738041002,
+      "return252": 0.4315196998123827,
+      "ma50": 35476,
+      "ma150": 32041.333333333332,
+      "ma200": 31092.25,
+      "vcp": {
+        "pivot": 43250,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.17113095238095233,
+        "prior20Range": 0.29685157421289365,
+        "volumeRatio50": 0.7096401997944012
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "036800",
+      "name": "나이스정보통신",
+      "market": "KOSDAQ",
+      "close": 30100,
+      "rsPercentile": 91.1617312072893,
+      "return252": 0.46513070305966964,
+      "ma50": 28651,
+      "ma150": 25946.972526041667,
+      "ma200": 25023.45689453125,
+      "vcp": {
+        "pivot": 32000,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.16363636363636358,
+        "prior20Range": 0.19367588932806323,
+        "volumeRatio50": 0.47208048660958807
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "001800",
+      "name": "오리온홀딩스",
+      "market": "KOSPI",
+      "close": 26800,
+      "rsPercentile": 90.61503416856492,
+      "return252": 0.29737207838125745,
+      "ma50": 25234,
+      "ma150": 22876.6078125,
+      "ma200": 21918.54470703125,
+      "vcp": {
+        "pivot": 28500,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.20659340659340653,
+        "prior20Range": 0.2727272727272727,
+        "volumeRatio50": 0.8607996615189338
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "052330",
+      "name": "코텍",
+      "market": "KOSDAQ",
+      "close": 11990,
+      "rsPercentile": 90.43280182232346,
+      "return252": 0.37605840214507014,
+      "ma50": 11572.2,
+      "ma150": 10318.522278645833,
+      "ma200": 9833.90197265625,
+      "vcp": {
+        "pivot": 11850,
+        "breakout": true,
+        "volumeExpansion": false,
+        "contraction": true,
+        "nearBaseHigh": true,
+        "recent10Range": 0.11742777260018644,
+        "prior20Range": 0.14492753623188404,
+        "volumeRatio50": 0.5523466799866432
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "017890",
+      "name": "한국알콜",
+      "market": "KOSDAQ",
+      "close": 13400,
+      "rsPercentile": 90.38724373576311,
+      "return252": 0.38269739860502905,
+      "ma50": 12342.4,
+      "ma150": 11639.948359375,
+      "ma200": 11134.5474609375,
+      "vcp": {
+        "pivot": 13750,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.25,
+        "prior20Range": 0.1826654240447343,
+        "volumeRatio50": 0.79812775706138
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "290720",
+      "name": "푸드나무",
+      "market": "KOSDAQ",
+      "close": 3170,
+      "rsPercentile": 90.1138952164009,
+      "return252": 0.37826086956521743,
+      "ma50": 2959.4,
+      "ma150": 2633.66,
+      "ma200": 2492.36,
+      "vcp": {
+        "pivot": 3430,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.6161616161616161,
+        "prior20Range": 0.6802884615384615,
+        "volumeRatio50": 1.2015690367739322
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "093320",
+      "name": "케이아이엔엑스",
+      "market": "KOSDAQ",
+      "close": 132800,
+      "rsPercentile": 89.97722095671982,
+      "return252": 0.35650266442200196,
+      "ma50": 114988,
+      "ma150": 114972.53848958333,
+      "ma200": 109066.4899609375,
+      "vcp": {
+        "pivot": 139900,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.3829365079365079,
+        "prior20Range": 0.3451923076923078,
+        "volumeRatio50": 0.6286735289340224
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "093190",
+      "name": "빅솔론",
+      "market": "KOSDAQ",
+      "close": 8040,
+      "rsPercentile": 89.79498861047836,
+      "return252": 0.4373338680225005,
+      "ma50": 7933.4,
+      "ma150": 7259.257438151041,
+      "ma200": 6824.472756347656,
+      "vcp": {
+        "pivot": 8970,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": true,
+        "nearBaseHigh": false,
+        "recent10Range": 0.0980392156862746,
+        "prior20Range": 0.2777777777777777,
+        "volumeRatio50": 0.34655091396630283
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "003690",
+      "name": "코리안리",
+      "market": "KOSPI",
+      "close": 13850,
+      "rsPercentile": 89.38496583143508,
+      "return252": 0.40613960623252665,
+      "ma50": 13131,
+      "ma150": 12239.958515625,
+      "ma200": 11828.417646484375,
+      "vcp": {
+        "pivot": 14350,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.1596707818930041,
+        "prior20Range": 0.16951915240423787,
+        "volumeRatio50": 0.4548989376713287
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "415640",
+      "name": "KB발해인프라",
+      "market": "KOSPI",
+      "close": 10940,
+      "rsPercentile": 89.06605922551253,
+      "return252": 0.4478569440992568,
+      "ma50": 9772.3635546875,
+      "ma150": 9632.164947916666,
+      "ma200": 9456.372583007813,
+      "vcp": {
+        "pivot": 11380,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.1600407747196737,
+        "prior20Range": 0.10463861920172612,
+        "volumeRatio50": 0.7845419107454871
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "072870",
+      "name": "메가스터디",
+      "market": "KOSDAQ",
+      "close": 13140,
+      "rsPercentile": 88.9749430523918,
+      "return252": 0.33468395172531173,
+      "ma50": 12959.2,
+      "ma150": 11512.436380208334,
+      "ma200": 11172.111748046875,
+      "vcp": {
+        "pivot": 13680,
+        "breakout": false,
+        "volumeExpansion": true,
+        "contraction": true,
+        "nearBaseHigh": true,
+        "recent10Range": 0.0987951807228915,
+        "prior20Range": 0.11478117258464082,
+        "volumeRatio50": 1.6703748053305039
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "271560",
+      "name": "오리온",
+      "market": "KOSPI",
+      "close": 137100,
+      "rsPercentile": 88.88382687927107,
+      "return252": 0.3204781947806168,
+      "ma50": 135434,
+      "ma150": 124405.84848958334,
+      "ma200": 118615.1444921875,
+      "vcp": {
+        "pivot": 145300,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.15134706814580023,
+        "prior20Range": 0.16126350789692445,
+        "volumeRatio50": 1.1940514317009296
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "005680",
+      "name": "삼영전자공업",
+      "market": "KOSPI",
+      "close": 14710,
+      "rsPercentile": 88.42824601366742,
+      "return252": 0.35056434754501975,
+      "ma50": 14367,
+      "ma150": 12993.6709765625,
+      "ma200": 12315.364291992188,
+      "vcp": {
+        "pivot": 17000,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.1964285714285714,
+        "prior20Range": 0.4131338320864506,
+        "volumeRatio50": 0.5061999833147579
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "092230",
+      "name": "KPX홀딩스",
+      "market": "KOSPI",
+      "close": 86000,
+      "rsPercentile": 88.33712984054671,
+      "return252": 0.37199557366907676,
+      "ma50": 84124,
+      "ma150": 78856.73739583333,
+      "ma200": 75492.85341796876,
+      "vcp": {
+        "pivot": 89400,
+        "breakout": false,
+        "volumeExpansion": true,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.15803108808290145,
+        "prior20Range": 0.12890625,
+        "volumeRatio50": 1.7482284716777372
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "138930",
+      "name": "BNK금융지주",
+      "market": "KOSPI",
+      "close": 17850,
+      "rsPercentile": 88.2004555808656,
+      "return252": 0.4917869450360606,
+      "ma50": 17459.17875,
+      "ma150": 17279.597890625,
+      "ma200": 16519.320356445314,
+      "vcp": {
+        "pivot": 19050,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.22115384615384626,
+        "prior20Range": 0.18800749531542782,
+        "volumeRatio50": 0.9600982878323718
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "088790",
+      "name": "진도",
+      "market": "KOSPI",
+      "close": 2600,
+      "rsPercentile": 88.01822323462414,
+      "return252": 0.4239914669621905,
+      "ma50": 2549.4,
+      "ma150": 2321.943419596354,
+      "ma200": 2199.5151312255857,
+      "vcp": {
+        "pivot": 2700,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.23696682464454977,
+        "prior20Range": 0.41549295774647876,
+        "volumeRatio50": 0.4459609448579893
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "453340",
+      "name": "현대그린푸드",
+      "market": "KOSPI",
+      "close": 18840,
+      "rsPercentile": 87.92710706150342,
+      "return252": 0.1481808816256278,
+      "ma50": 17365.4,
+      "ma150": 16091.240032552083,
+      "ma200": 15878.343608398438,
+      "vcp": {
+        "pivot": 18690,
+        "breakout": true,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.18006230529595024,
+        "prior20Range": 0.13752333540759176,
+        "volumeRatio50": 0.8341802855947809
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "236200",
+      "name": "슈프리마",
+      "market": "KOSDAQ",
+      "close": 47700,
+      "rsPercentile": 87.74487471526196,
+      "return252": 0.39978827560395036,
+      "ma50": 45481.65296875,
+      "ma150": 44181.52796875,
+      "ma200": 41342.135146484376,
+      "vcp": {
+        "pivot": 47750,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.21871049304677626,
+        "prior20Range": 0.2389381348930788,
+        "volumeRatio50": 0.8820028550977707
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "003650",
+      "name": "미창석유공업",
+      "market": "KOSPI",
+      "close": 139200,
+      "rsPercentile": 87.6993166287016,
+      "return252": 0.3076132791850783,
+      "ma50": 125750,
+      "ma150": 121995.43276041666,
+      "ma200": 117851.835078125,
+      "vcp": {
+        "pivot": 142500,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.1604234527687296,
+        "prior20Range": 0.18454935622317592,
+        "volumeRatio50": 0.816693335737306
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "101160",
+      "name": "월덱스",
+      "market": "KOSDAQ",
+      "close": 29350,
+      "rsPercentile": 87.56264236902051,
+      "return252": 0.36205277392536184,
+      "ma50": 28344,
+      "ma150": 27188.577513020835,
+      "ma200": 26445.625703125,
+      "vcp": {
+        "pivot": 31200,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.18181818181818188,
+        "prior20Range": 0.3672566371681416,
+        "volumeRatio50": 0.6349346273866013
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "025890",
+      "name": "한국주강",
+      "market": "KOSPI",
+      "close": 2210,
+      "rsPercentile": 87.15261958997722,
+      "return252": 0.18181818181818188,
+      "ma50": 2081.46,
+      "ma150": 1893.1733333333334,
+      "ma200": 1884.59,
+      "vcp": {
+        "pivot": 2300,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": true,
+        "nearBaseHigh": true,
+        "recent10Range": 0.07981220657277,
+        "prior20Range": 0.22460496613995495,
+        "volumeRatio50": 0.3679703212020973
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "192440",
+      "name": "슈피겐코리아",
+      "market": "KOSDAQ",
+      "close": 29600,
+      "rsPercentile": 86.97038724373576,
+      "return252": 0.1316907767261435,
+      "ma50": 29477,
+      "ma150": 25723.199973958333,
+      "ma200": 24909.977734375,
+      "vcp": {
+        "pivot": 32300,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": true,
+        "nearBaseHigh": false,
+        "recent10Range": 0.09090909090909083,
+        "prior20Range": 0.21989528795811508,
+        "volumeRatio50": 0.10454548369924253
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "017650",
+      "name": "대림제지",
+      "market": "KOSDAQ",
+      "close": 9290,
+      "rsPercentile": 86.4236902050114,
+      "return252": 0.30226234296776067,
+      "ma50": 9096.2,
+      "ma150": 8743.884322916667,
+      "ma200": 8352.858896484375,
+      "vcp": {
+        "pivot": 9200,
+        "breakout": true,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.13126491646778038,
+        "prior20Range": 0.12864077669902918,
+        "volumeRatio50": 0.560786301733939
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "033560",
+      "name": "블루콤",
+      "market": "KOSDAQ",
+      "close": 3775,
+      "rsPercentile": 86.05922551252847,
+      "return252": 0.16153846153846163,
+      "ma50": 3534,
+      "ma150": 3258,
+      "ma200": 3226.5,
+      "vcp": {
+        "pivot": 4135,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.1647887323943662,
+        "prior20Range": 0.1934477379095163,
+        "volumeRatio50": 0.5210227674623301
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "383220",
+      "name": "F&F",
+      "market": "KOSPI",
+      "close": 77600,
+      "rsPercentile": 85.96810933940775,
+      "return252": 0.018768779856998208,
+      "ma50": 77470,
+      "ma150": 70743.3828125,
+      "ma200": 69173.20416015625,
+      "vcp": {
+        "pivot": 87500,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.13953488372093026,
+        "prior20Range": 0.2936046511627908,
+        "volumeRatio50": 0.8323575250180771
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "003490",
+      "name": "대한항공",
+      "market": "KOSPI",
+      "close": 26750,
+      "rsPercentile": 85.6492027334852,
+      "return252": 0.18314202300008753,
+      "ma50": 26663,
+      "ma150": 24449.649049479165,
+      "ma200": 23765.89203125,
+      "vcp": {
+        "pivot": 31200,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.125,
+        "prior20Range": 0.31923890063424953,
+        "volumeRatio50": 1.3665482293671234
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "066620",
+      "name": "국보디자인",
+      "market": "KOSDAQ",
+      "close": 24450,
+      "rsPercentile": 85.55808656036447,
+      "return252": 0.30961017902211285,
+      "ma50": 24153,
+      "ma150": 23061.820885416666,
+      "ma200": 22470.351787109375,
+      "vcp": {
+        "pivot": 25750,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": true,
+        "nearBaseHigh": true,
+        "recent10Range": 0.10619469026548667,
+        "prior20Range": 0.14634146341463405,
+        "volumeRatio50": 0.20477488460010684
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "080010",
+      "name": "이상네트웍스",
+      "market": "KOSDAQ",
+      "close": 7280,
+      "rsPercentile": 85.5125284738041,
+      "return252": 0.3011717443652173,
+      "ma50": 7133.4,
+      "ma150": 6956.417740885417,
+      "ma200": 6925.232163085938,
+      "vcp": {
+        "pivot": 7160,
+        "breakout": true,
+        "volumeExpansion": false,
+        "contraction": true,
+        "nearBaseHigh": false,
+        "recent10Range": 0.10470409711684381,
+        "prior20Range": 0.2549019607843137,
+        "volumeRatio50": 0.7835434911406054
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "005830",
+      "name": "DB손해보험",
+      "market": "KOSPI",
+      "close": 155800,
+      "rsPercentile": 85.42141230068337,
+      "return252": 0.3256631390145499,
+      "ma50": 150622,
+      "ma150": 150144.27963541666,
+      "ma200": 144698.2135546875,
+      "vcp": {
+        "pivot": 156500,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.25989138867339023,
+        "prior20Range": 0.18113207547169807,
+        "volumeRatio50": 1.365904775274342
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "096530",
+      "name": "씨젠",
+      "market": "KOSDAQ",
+      "close": 29000,
+      "rsPercentile": 85.19362186788155,
+      "return252": -0.08760733195503545,
+      "ma50": 28607,
+      "ma150": 25726.5335546875,
+      "ma200": 25459.00388671875,
+      "vcp": {
+        "pivot": 31450,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.17132216014897583,
+        "prior20Range": 0.22960151802656537,
+        "volumeRatio50": 0.566431930923805
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "155660",
+      "name": "DSR",
+      "market": "KOSPI",
+      "close": 4490,
+      "rsPercentile": 85.14806378132118,
+      "return252": 0.2132387671921847,
+      "ma50": 4285.4,
+      "ma150": 4077.8041097005207,
+      "ma200": 3948.1662524414064,
+      "vcp": {
+        "pivot": 4630,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.1278928136419002,
+        "prior20Range": 0.10379746835443049,
+        "volumeRatio50": 0.7213021421258499
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "053160",
+      "name": "프리엠스",
+      "market": "KOSDAQ",
+      "close": 9350,
+      "rsPercentile": 84.92027334851936,
+      "return252": 0.09627325032125977,
+      "ma50": 8641.8,
+      "ma150": 7847.883430989584,
+      "ma200": 7764.034252929688,
+      "vcp": {
+        "pivot": 10310,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": true,
+        "recent10Range": 0.14885954381752708,
+        "prior20Range": 0.47285714285714286,
+        "volumeRatio50": 0.30040180371502695
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "134060",
+      "name": "이퓨쳐",
+      "market": "KOSDAQ",
+      "close": 4720,
+      "rsPercentile": 84.69248291571753,
+      "return252": 0.10406595047021727,
+      "ma50": 4359,
+      "ma150": 4171.491282552083,
+      "ma200": 4162.874500732421,
+      "vcp": {
+        "pivot": 4990,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": true,
+        "nearBaseHigh": true,
+        "recent10Range": 0.11363636363636354,
+        "prior20Range": 0.41359773371104813,
+        "volumeRatio50": 0.5402554332058311
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "079940",
+      "name": "가비아",
+      "market": "KOSDAQ",
+      "close": 31650,
+      "rsPercentile": 84.19134396355354,
+      "return252": 0.2071593740453137,
+      "ma50": 31088,
+      "ma150": 30737.393138020834,
+      "ma200": 29974.300224609375,
+      "vcp": {
+        "pivot": 32500,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": true,
+        "nearBaseHigh": true,
+        "recent10Range": 0.11683848797250862,
+        "prior20Range": 0.1573426573426573,
+        "volumeRatio50": 0.2927967594223318
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "950190",
+      "name": "고스트스튜디오",
+      "market": "KOSDAQ",
+      "close": 9440,
+      "rsPercentile": 83.87243735763099,
+      "return252": 0.0041324314324064915,
+      "ma50": 8453.6,
+      "ma150": 8324.668776041666,
+      "ma200": 8292.89608154297,
+      "vcp": {
+        "pivot": 9670,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": true,
+        "nearBaseHigh": true,
+        "recent10Range": 0.10643274853801166,
+        "prior20Range": 0.39739884393063574,
+        "volumeRatio50": 0.9050134083120097
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "096760",
+      "name": "JW홀딩스",
+      "market": "KOSPI",
+      "close": 3905,
+      "rsPercentile": 83.78132118451025,
+      "return252": 0.18915576964567715,
+      "ma50": 3855.9,
+      "ma150": 3813.2701302083333,
+      "ma200": 3658.0165563964842,
+      "vcp": {
+        "pivot": 4030,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": true,
+        "nearBaseHigh": true,
+        "recent10Range": 0.0892608089260809,
+        "prior20Range": 0.12885154061624648,
+        "volumeRatio50": 0.6483223564314639
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "031510",
+      "name": "오스템",
+      "market": "KOSDAQ",
+      "close": 1156,
+      "rsPercentile": 83.5990888382688,
+      "return252": 0.07751993023734238,
+      "ma50": 1077.26,
+      "ma150": 1052.8158666992188,
+      "ma200": 1040.6579843139648,
+      "vcp": {
+        "pivot": 1256,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": false,
+        "nearBaseHigh": false,
+        "recent10Range": 0.20207253886010368,
+        "prior20Range": 0.5558166862514688,
+        "volumeRatio50": 0.8930887999966762
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    },
+    {
+      "ticker": "143240",
+      "name": "사람인",
+      "market": "KOSDAQ",
+      "close": 16000,
+      "rsPercentile": 83.37129840546697,
+      "return252": 0.08916436350461776,
+      "ma50": 15884.8,
+      "ma150": 14626.274544270833,
+      "ma200": 14261.60701171875,
+      "vcp": {
+        "pivot": 17300,
+        "breakout": false,
+        "volumeExpansion": false,
+        "contraction": true,
+        "nearBaseHigh": true,
+        "recent10Range": 0.09194630872483223,
+        "prior20Range": 0.21916842847075402,
+        "volumeRatio50": 0.38134963716359066
+      },
+      "rules": {
+        "priceAboveMA": true,
+        "ma150Above200": true,
+        "ma50Above": true,
+        "ma200Rising": true,
+        "above52Low": true,
+        "near52High": true,
+        "rs70": true
+      }
+    }
+  ],
+  "sepaStyle": [],
+  "definitions": {
+    "strict": "All Trend Template rules pass: price > 50/150/200 SMA, 50 > 150/200, 150 > 200, 200 SMA rising over 20 sessions, price >= 130% of 52-week low, price >= 75% of 52-week high, RS percentile >= 70.",
+    "sepaStyle": "Strict Template plus 20-session pivot breakout, volume >= 1.5x prior 50-session average, 10-session range <= 12% and narrower than prior 20-session range, and close within 10% of 40-session high."
+  },
+  "limitations": [
+    "SEPA-style VCP is an objective proxy, not Mark Minervini discretionary chart reading.",
+    "Current-universe history carries survivorship bias.",
+    "Yahoo-adjusted data and corporate-action quality limits remain."
+  ]
+}

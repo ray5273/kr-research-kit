@@ -1,0 +1,113 @@
+{
+  "generatedAt": "2026-07-17T06:39:43.068Z",
+  "asOf": "2026-07-16",
+  "nextWeekStart": "2026-07-20",
+  "modelOnly": true,
+  "sourceArtifact": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-market/strategies/annual-top300/annual-top300-minervini-earnings-regime-2017-01-02-through-2026-07-16.json",
+  "signalDate": "2026-07-13",
+  "executionDate": "2026-07-14",
+  "nextScheduledSignal": "2026-07-20",
+  "nextScheduledExecution": "2026-07-21",
+  "universe": {
+    "rankingYear": 2025,
+    "snapshotDate": "2025-12-30"
+  },
+  "overlay": {
+    "exposure": 0.4436349721785055,
+    "investedWeightPerHolding": 0.04436349721785055,
+    "cashWeight": 0.5563650278214944,
+    "note": "Exposure is recalculated each completed session from the KOSPI regime and trailing strategy volatility."
+  },
+  "holdings": [
+    {
+      "rank": 1,
+      "ticker": "000660",
+      "name": "SK하이닉스",
+      "score": 0.9605618882321668,
+      "rs": 2.4070029076589567,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.04436349721785055
+    },
+    {
+      "rank": 2,
+      "ticker": "005930",
+      "name": "삼성전자",
+      "score": 0.9392797948525503,
+      "rs": 1.341187137474513,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.04436349721785055
+    },
+    {
+      "rank": 3,
+      "ticker": "067310",
+      "name": "하나마이크론",
+      "score": 0.9013435437971042,
+      "rs": 0.8709692139868775,
+      "reportFilingDate": "2026-05-14",
+      "targetWeight": 0.04436349721785055
+    },
+    {
+      "rank": 4,
+      "ticker": "000500",
+      "name": "가온전선",
+      "score": 0.8740282077743378,
+      "rs": 4.142708179040454,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.04436349721785055
+    },
+    {
+      "rank": 5,
+      "ticker": "222800",
+      "name": "심텍",
+      "score": 0.8649380804953561,
+      "rs": 1.6540373584339094,
+      "reportFilingDate": "2026-05-14",
+      "targetWeight": 0.04436349721785055
+    },
+    {
+      "rank": 6,
+      "ticker": "034730",
+      "name": "SK",
+      "score": 0.8428882478031086,
+      "rs": 1.187463000227809,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.04436349721785055
+    },
+    {
+      "rank": 7,
+      "ticker": "402340",
+      "name": "SK스퀘어",
+      "score": 0.8414004597054132,
+      "rs": 2.543429809283742,
+      "reportFilingDate": "2026-05-14",
+      "targetWeight": 0.04436349721785055
+    },
+    {
+      "rank": 8,
+      "ticker": "047040",
+      "name": "대우건설",
+      "score": 0.8082684429433655,
+      "rs": 1.6757162989558543,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.04436349721785055
+    },
+    {
+      "rank": 9,
+      "ticker": "278470",
+      "name": "에이피알",
+      "score": 0.8066414923226068,
+      "rs": 0.703216291941329,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.04436349721785055
+    },
+    {
+      "rank": 10,
+      "ticker": "009150",
+      "name": "삼성전기",
+      "score": 0.8040396222284767,
+      "rs": 4.339245962905476,
+      "reportFilingDate": "2026-05-15",
+      "targetWeight": 0.04436349721785055
+    }
+  ]
+}

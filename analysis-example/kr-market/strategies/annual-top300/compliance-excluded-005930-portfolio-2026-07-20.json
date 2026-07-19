@@ -1,0 +1,58 @@
+{
+  "generatedAt": "2026-07-17T00:00:00.000Z",
+  "modelOnly": true,
+  "asOf": "2026-07-16",
+  "effectiveFrom": "2026-07-14",
+  "effectiveThrough": "2026-07-20",
+  "nextScheduledSignal": "2026-07-20",
+  "nextScheduledExecution": "2026-07-21",
+  "basePortfolio": "next-week-portfolio-2026-07-20.json",
+  "complianceExclusions": [
+    {
+      "ticker": "005930",
+      "name": "삼성전자",
+      "reason": "user-directed issuer-affiliation compliance exclusion"
+    }
+  ],
+  "treatment": "The full eligible ranking was recomputed for the 2026-07-13 signal with 005930 excluded. The highest-ranked replacement, 108490, receives the excluded security's target weight.",
+  "universe": {
+    "rankingYear": 2025,
+    "snapshotDate": "2025-12-30",
+    "label": "2025년말 Top 300"
+  },
+  "overlay": {
+    "baseExposure": 0.4436349721785055,
+    "stockWeight": 0.4436349721785055,
+    "cashWeight": 0.5563650278214944,
+    "baseWeightPerHolding": 0.04436349721785055
+  },
+  "scoreBreakdown": [
+    { "ticker": "000660", "threeMonthReturn": 0.8486973948, "sixMonthReturn": 1.5413223140, "twelveMonthReturn": 5.4623467601, "revenueYoY": 1.9806602827, "revenueQoQ": 0.6016341051, "epsYoY": 3.8634739707, "epsQoQ": 1.6096581314, "filingDate": "2026-05-15" },
+    { "ticker": "067310", "threeMonthReturn": 0.2818791946, "sixMonthReturn": 0.3217993080, "twelveMonthReturn": 2.2046979866, "revenueYoY": 0.6283534405, "revenueQoQ": 0.1279903190, "epsYoY": 5.0, "epsQoQ": 1.6886543536, "filingDate": "2026-05-14" },
+    { "ticker": "222800", "threeMonthReturn": 0.5804093567, "sixMonthReturn": 1.2450674974, "twelveMonthReturn": 3.5902335456, "revenueYoY": 0.3912217987, "revenueQoQ": 0.0737628219, "epsYoY": 1.3506726457, "epsQoQ": 1.1116823765, "filingDate": "2026-05-14" },
+    { "ticker": "000500", "threeMonthReturn": 1.4504950495, "sixMonthReturn": 1.9569892473, "twelveMonthReturn": 2.8732394366, "revenueYoY": 0.1943992178, "revenueQoQ": 0.2442319108, "epsYoY": 0.2826321467, "epsQoQ": 5.0, "filingDate": "2026-05-15" },
+    { "ticker": "108490", "threeMonthReturn": -0.1726907631, "sixMonthReturn": -0.1726907631, "twelveMonthReturn": 1.9344729345, "revenueYoY": 0.7130380336, "revenueQoQ": 0.2554841120, "epsYoY": 0.9180649008, "epsQoQ": 2.6322580645, "filingDate": "2026-07-08" },
+    { "ticker": "034730", "threeMonthReturn": 0.7172312224, "sixMonthReturn": 1.0278260870, "twelveMonthReturn": 1.6026785714, "revenueYoY": 0.1767960565, "revenueQoQ": 0.2133103265, "epsYoY": 0.4391136124, "epsQoQ": 2.5024971845, "filingDate": "2026-05-15" },
+    { "ticker": "402340", "threeMonthReturn": 1.0732142857, "sixMonthReturn": 1.6875, "twelveMonthReturn": 5.2756756757, "revenueYoY": -0.2543618796, "revenueQoQ": 0.5463574113, "epsYoY": 4.2201887567, "epsQoQ": 1.5586484312, "filingDate": "2026-05-14" },
+    { "ticker": "278470", "threeMonthReturn": 0.0396716826, "sixMonthReturn": 0.7551963048, "twelveMonthReturn": 1.4643320363, "revenueYoY": 1.2303857295, "revenueQoQ": 0.0834881515, "epsYoY": 1.3182827535, "epsQoQ": 0.1854655564, "filingDate": "2026-05-15" },
+    { "ticker": "009150", "threeMonthReturn": 1.4980620155, "sixMonthReturn": 3.8097014925, "twelveMonthReturn": 8.5340236686, "revenueYoY": 0.1717869999, "revenueQoQ": 0.1057728462, "epsYoY": 0.8632768362, "epsQoQ": 0.1183452018, "filingDate": "2026-05-15" },
+    { "ticker": "047040", "threeMonthReturn": -0.3143468951, "sixMonthReturn": 3.1747066493, "twelveMonthReturn": 2.7893491124, "revenueYoY": -0.0603170921, "revenueQoQ": 0.1384946505, "epsYoY": 2.4779411765, "epsQoQ": 1.2230080151, "filingDate": "2026-05-15" }
+  ],
+  "holdings": [
+    { "rank": 1, "ticker": "000660", "name": "SK하이닉스", "targetWeight": 0.04436349721785055, "score": 0.959847961093652 },
+    { "rank": 2, "ticker": "067310", "name": "하나마이크론", "targetWeight": 0.04436349721785055, "score": 0.9125096087827249 },
+    { "rank": 3, "ticker": "222800", "name": "심텍", "targetWeight": 0.04436349721785055, "score": 0.8695234846979392 },
+    { "rank": 4, "ticker": "000500", "name": "가온전선", "targetWeight": 0.04436349721785055, "score": 0.8669074117925646 },
+    { "rank": 5, "ticker": "108490", "name": "로보티즈", "targetWeight": 0.04436349721785055, "score": 0.8557512134434901, "replacementFor": "005930" },
+    { "rank": 6, "ticker": "034730", "name": "SK", "targetWeight": 0.04436349721785055, "score": 0.8439988392114491 },
+    { "rank": 7, "ticker": "402340", "name": "SK스퀘어", "targetWeight": 0.04436349721785055, "score": 0.8415037090496289 },
+    { "rank": 8, "ticker": "278470", "name": "에이피알", "targetWeight": 0.04436349721785055, "score": 0.8173091660052572 },
+    { "rank": 9, "ticker": "009150", "name": "삼성전기", "targetWeight": 0.04436349721785055, "score": 0.8066613258097259 },
+    { "rank": 10, "ticker": "047040", "name": "대우건설", "targetWeight": 0.04436349721785055, "score": 0.8054844581657994 }
+  ],
+  "limitations": [
+    "This is a user-specific compliance overlay, not an execution instruction or investment recommendation.",
+    "The replacement is from a rerun of the full 2026-07-13 eligible ranking with the exclusion applied; no ad-hoc security was selected.",
+    "Confirm issuer-affiliation, blackout, pre-clearance, and account-specific requirements with the applicable compliance function before trading."
+  ]
+}

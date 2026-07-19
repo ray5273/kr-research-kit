@@ -1,0 +1,350 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-17T07:05:12.440Z",
+  "modelOnly": true,
+  "asOf": "2026-07-16",
+  "signalDate": "2026-07-16",
+  "expectedExecution": "2026-07-17",
+  "universe": {
+    "policy": "today ordinary-share Top 300 UNION prior year-end ordinary-share Top 300",
+    "currentSource": "Naver Finance marketValue API",
+    "currentSourceAsOf": "2026-07-16T16:10:21+09:00",
+    "currentFetchedAt": "2026-07-17T07:05:07.644Z",
+    "rankingYear": 2025,
+    "yearEndSnapshotDate": "2025-12-30",
+    "currentTop300Count": 300,
+    "yearEndTop300Count": 288,
+    "unionCount": 328,
+    "overlapCount": 260,
+    "currentOnlyCount": 40,
+    "yearEndOnlyCount": 28
+  },
+  "rules": {
+    "selection": "3/6/12-month RS (40/30/30) percentile 50% + point-in-time EPS/revenue improvement percentile 50%, top 10",
+    "filingAvailabilityLagSessions": 1,
+    "execution": "signal close -> next trading session open",
+    "overlay": "KOSPI SMA200 +3% ON threshold (standalone screen) and 60-session 18% volatility target",
+    "rankingOnly": false
+  },
+  "coverage": {
+    "unionCount": 328,
+    "priceUsable": 299,
+    "priceCoverage": 0.9115853658536586,
+    "dartCandidateCount": 172,
+    "excluded": {
+      "noExactPrice": 36,
+      "noDart": 91
+    },
+    "missingPrice": [
+      {
+        "ticker": "042660",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "009540",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "086520",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "036930",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "319660",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "950160",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "082740",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "108490",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "214150",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "279570",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "319400",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "071970",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "457190",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "439260",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "140410",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "020560",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "097230",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "415640",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "030530",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "003380",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "491000",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "388210",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "083450",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "042670",
+        "reason": "cache-file-missing"
+      },
+      {
+        "ticker": "012510",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "476830",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "445680",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "077970",
+        "reason": "insufficient-or-discontinuous-history"
+      },
+      {
+        "ticker": "468530",
+        "reason": "insufficient-or-discontinuous-history"
+      }
+    ]
+  },
+  "overlay": {
+    "kospiClose": 6820.60009765625,
+    "kospiSma200": 5584.327564697265,
+    "distanceToSma200": 0.22138252433012595,
+    "regimeOn": true,
+    "realizedVolatility": 0.7768502895573127,
+    "targetVolatility": 0.18,
+    "exposure": 0.231704875983985,
+    "cashWeight": 0.768295124016015,
+    "perHoldingTargetWeight": 0.0231704875983985
+  },
+  "holdings": [
+    {
+      "rank": 1,
+      "ticker": "000660",
+      "name": "SK하이닉스",
+      "market": "KOSPI",
+      "close": 1842000,
+      "score": 0.9717291595000572,
+      "rs": 2.4048375113131426,
+      "rsPercentile": 0.9824561403508771,
+      "fundamentalScore": 0.9610021786492374,
+      "reportFilingDate": "2026-05-15",
+      "inCurrentTop300": true,
+      "currentRank": 2,
+      "inYearEndTop300": true,
+      "yearEndRank": 2,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 2,
+      "ticker": "005930",
+      "name": "삼성전자",
+      "market": "KOSPI",
+      "close": 255000,
+      "score": 0.9463364293085654,
+      "rs": 1.25821473496158,
+      "rsPercentile": 0.9473684210526315,
+      "fundamentalScore": 0.9453044375644994,
+      "reportFilingDate": "2026-05-15",
+      "inCurrentTop300": true,
+      "currentRank": 1,
+      "inYearEndTop300": true,
+      "yearEndRank": 1,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 3,
+      "ticker": "067310",
+      "name": "하나마이크론",
+      "market": "KOSDAQ",
+      "close": 35750,
+      "score": 0.8966230936819171,
+      "rs": 0.68209899354433,
+      "rsPercentile": 0.8888888888888888,
+      "fundamentalScore": 0.9043572984749454,
+      "reportFilingDate": "2026-05-14",
+      "inCurrentTop300": true,
+      "currentRank": 186,
+      "inYearEndTop300": true,
+      "yearEndRank": 226,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 4,
+      "ticker": "222800",
+      "name": "심텍",
+      "market": "KOSDAQ",
+      "close": 107400,
+      "score": 0.8731338149294806,
+      "rs": 1.7693529022851862,
+      "rsPercentile": 0.9707602339181286,
+      "fundamentalScore": 0.7755073959408326,
+      "reportFilingDate": "2026-05-14",
+      "inCurrentTop300": true,
+      "currentRank": 117,
+      "inYearEndTop300": true,
+      "yearEndRank": 212,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 5,
+      "ticker": "278470",
+      "name": "에이피알",
+      "market": "KOSPI",
+      "close": 393000,
+      "score": 0.867411994037381,
+      "rs": 0.7500090437159157,
+      "rsPercentile": 0.9122807017543859,
+      "fundamentalScore": 0.8225432863203762,
+      "reportFilingDate": "2026-05-15",
+      "inCurrentTop300": true,
+      "currentRank": 52,
+      "inYearEndTop300": true,
+      "yearEndRank": 75,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 6,
+      "ticker": "009150",
+      "name": "삼성전기",
+      "market": "KOSPI",
+      "close": 1277000,
+      "score": 0.8407694071780758,
+      "rs": 4.031733668383154,
+      "rsPercentile": 1,
+      "fundamentalScore": 0.6815388143561517,
+      "reportFilingDate": "2026-05-15",
+      "inCurrentTop300": true,
+      "currentRank": 4,
+      "inYearEndTop300": true,
+      "yearEndRank": 36,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 7,
+      "ticker": "000500",
+      "name": "가온전선",
+      "market": "KOSPI",
+      "close": 196700,
+      "score": 0.8261839238619424,
+      "rs": 3.205145958433415,
+      "rsPercentile": 0.9941520467836257,
+      "fundamentalScore": 0.6582158009402591,
+      "reportFilingDate": "2026-05-15",
+      "inCurrentTop300": true,
+      "currentRank": 139,
+      "inYearEndTop300": true,
+      "yearEndRank": 262,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 8,
+      "ticker": "006800",
+      "name": "미래에셋증권",
+      "market": "KOSPI",
+      "close": 40050,
+      "score": 0.8245327370714368,
+      "rs": 0.23389952555236992,
+      "rsPercentile": 0.7076023391812866,
+      "fundamentalScore": 0.941463134961587,
+      "reportFilingDate": "2026-05-15",
+      "inCurrentTop300": true,
+      "currentRank": 32,
+      "inYearEndTop300": true,
+      "yearEndRank": 52,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 9,
+      "ticker": "402340",
+      "name": "SK스퀘어",
+      "market": "KOSPI",
+      "close": 1212000,
+      "score": 0.8138573558078201,
+      "rs": 2.7233636408902853,
+      "rsPercentile": 0.9883040935672515,
+      "fundamentalScore": 0.639410618048389,
+      "reportFilingDate": "2026-05-14",
+      "inCurrentTop300": true,
+      "currentRank": 3,
+      "inYearEndTop300": true,
+      "yearEndRank": 8,
+      "targetWeight": 0.0231704875983985
+    },
+    {
+      "rank": 10,
+      "ticker": "034730",
+      "name": "SK",
+      "market": "KOSPI",
+      "close": 580000,
+      "score": 0.8095975232198143,
+      "rs": 1.1337533291420772,
+      "rsPercentile": 0.9415204678362573,
+      "fundamentalScore": 0.6776745786033711,
+      "reportFilingDate": "2026-05-15",
+      "inCurrentTop300": true,
+      "currentRank": 17,
+      "inYearEndTop300": true,
+      "yearEndRank": 37,
+      "targetWeight": 0.0231704875983985
+    }
+  ],
+  "data": {
+    "priceCache": "/Users/sanghyeok/workspace/stock-analysis-skill/.tmp/kr-strategy-backtest/2026-07-10",
+    "dartPanel": "/Users/sanghyeok/workspace/stock-analysis-skill/.tmp/kr-strategy-backtest/dart-quarterly-panel",
+    "dartPanelManifestSha256": "1fdf173fd0667282fb2c03d092af9f1c6e81666ef338f14c6c2a40a92ba483c3"
+  },
+  "limitations": [
+    "This is a live model screen, not investment advice or an order.",
+    "The union intentionally mixes a current constituent list and a prior year-end list; it is not valid for historical performance measurement.",
+    "Only existing cached daily prices and DART panel records are usable; missing items are logged rather than silently substituted."
+  ]
+}

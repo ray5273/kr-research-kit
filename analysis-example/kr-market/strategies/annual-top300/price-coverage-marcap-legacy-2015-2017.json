@@ -1,0 +1,333 @@
+{
+  "generatedAt": "2026-07-18T04:05:28.726Z",
+  "startDate": "2016-07-11",
+  "endDate": "2018-12-28",
+  "enforcePriceJump": false,
+  "universeFile": "analysis-example/kr-market/strategies/annual-top300/universe-ledger-2015-2025.json",
+  "cacheDir": "tmp/annual-top300-marcap-legacy-2015-2018",
+  "unionCount": 604,
+  "usableCount": 516,
+  "coverage": [
+    {
+      "rankingYear": 2015,
+      "asOfDate": "2015-12-30",
+      "rawTop300Count": 300,
+      "commonShareCount": 300,
+      "priceAvailable": 287,
+      "priceCoverage": 0.9566666666666667,
+      "dartAvailable": 300,
+      "priceCoveragePass": true
+    },
+    {
+      "rankingYear": 2016,
+      "asOfDate": "2016-12-29",
+      "rawTop300Count": 300,
+      "commonShareCount": 300,
+      "priceAvailable": 285,
+      "priceCoverage": 0.95,
+      "dartAvailable": 300,
+      "priceCoveragePass": true
+    },
+    {
+      "rankingYear": 2017,
+      "asOfDate": "2017-12-28",
+      "rawTop300Count": 300,
+      "commonShareCount": 300,
+      "priceAvailable": 280,
+      "priceCoverage": 0.9333333333333333,
+      "dartAvailable": 300,
+      "priceCoveragePass": true
+    }
+  ],
+  "failures": [
+    {
+      "rankingYear": 2015,
+      "ticker": "079550",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "001440",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "214320",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "226320",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "214370",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "089590",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "047770",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "192080",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "085620",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "210980",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "214450",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "145020",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2015,
+      "ticker": "111610",
+      "requiredDate": "2016-07-11",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "207940",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "241560",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "037620",
+      "requiredDate": "2017-01-02",
+      "reason": "missing-signal-close"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "001440",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "042660",
+      "requiredDate": "2017-01-02",
+      "reason": "missing-signal-close"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "068870",
+      "requiredDate": "2017-01-02",
+      "reason": "missing-signal-close"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "240810",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "145020",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "237690",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "215600",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "226320",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "123890",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "222040",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "101530",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2016,
+      "ticker": "237880",
+      "requiredDate": "2017-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "251270",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "091990",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "215600",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "267250",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "079440",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "271560",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "282330",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "950160",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "263750",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "006120",
+      "requiredDate": "2018-01-02",
+      "reason": "missing-signal-close"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "253450",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "267270",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "192400",
+      "requiredDate": "2018-01-02",
+      "reason": "missing-signal-close"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "003380",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "267260",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "272450",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "272290",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "145720",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "271980",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    },
+    {
+      "rankingYear": 2017,
+      "ticker": "280360",
+      "requiredDate": "2018-01-02",
+      "reason": "fewer-than-273-bars"
+    }
+  ],
+  "pass": true
+}

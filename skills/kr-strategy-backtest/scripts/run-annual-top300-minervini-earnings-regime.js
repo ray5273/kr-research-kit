@@ -15,7 +15,7 @@ const A = require('./lib/annual-top300-universe.js');
 
 const ROOT = path.resolve(__dirname, '..', '..', '..');
 const START = '2016-07-11', DEFAULT_END = '2026-07-10', N = 10, CADENCE = 5, COST = 0.0025, SELL_TAX = 0.0018, INITIAL = 100000000;
-const defaults = { universe: path.join(ROOT, 'analysis-example/kr-market/strategies/annual-top300/universe-ledger-2016-2025-partial.json'), out: path.join(ROOT, 'analysis-example/kr-market/strategies/annual-top300') };
+const defaults = { universe: path.join(ROOT, 'analysis-example/kr-market/strategies/annual-top300/universe-ledger-2015-2025.json'), out: path.join(ROOT, 'analysis-example/kr-market/strategies/annual-top300') };
 const read = f => JSON.parse(fs.readFileSync(f, 'utf8'));
 const write = (f, x) => { fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, JSON.stringify(x, null, 2) + '\n'); };
 const arg = (n, d) => { const i = process.argv.indexOf(n); return i >= 0 ? process.argv[i + 1] : d; };
@@ -63,6 +63,14 @@ function main() {
   // Deflated Sharpe hurdle on the honest cache; the default 'blend' (3/6/12) is weak.
   const momentumType = arg('--momentum-type', 'blend');
   if (!['blend', 'r12_1', 'riskadj', 'high52w'].includes(momentumType)) throw new Error('--momentum-type must be blend|r12_1|riskadj|high52w');
+  // Adopted 2026-07-19 for the 52w-high operating variant: a NEW candidate
+  // whose signal-close return is >=25% versus its own previous trading close is
+  // skipped. Incumbents that survive the hold band are exempt. Set 0 to disable
+  // and reproduce the pre-adoption baseline.
+  const defaultEntryJumpThresholdPct = momentumType === 'high52w' ? '25' : '0';
+  const newEntryJumpThresholdPct = Number(arg('--new-entry-jump-threshold-pct', defaultEntryJumpThresholdPct));
+  if (!Number.isFinite(newEntryJumpThresholdPct) || newEntryJumpThresholdPct < 0) throw new Error('--new-entry-jump-threshold-pct must be a non-negative number (0 disables)');
+  const newEntryJumpThreshold = newEntryJumpThresholdPct / 100;
   const momLabelKo = { blend: '3/6/12개월 RS(40/30/30)', r12_1: '12-1 모멘텀', riskadj: '위험조정 모멘텀', high52w: '52주 신고가 근접 모멘텀' }[momentumType];
   const rsPctW = Math.round((1 - epsWeight) * 100), epsPctW = Math.round(epsWeight * 100);
   const selectionLabelKo = epsWeight >= 1 ? '순수 DART EPS·매출 개선(실적 틸트)' : epsWeight <= 0 ? `${momLabelKo} 모멘텀` : `${momLabelKo} ${rsPctW}% + DART EPS·매출 개선 ${epsPctW}%`;
@@ -94,7 +102,7 @@ function main() {
         : momentumType === 'high52w' ? (() => { let hi = 0; for (let k = i - 251; k <= i; k++) if (state.bars[k].close > hi) hi = state.bars[k].close; return hi > 0 ? state.bars[i].close / hi : 0; })()
         : momentumType === 'riskadj' ? (() => { const m = state.bars[i - 21].close / state.bars[i - 252].close - 1, r = []; for (let k = i - 125; k <= i; k++) { const p0 = state.bars[k - 1].close, p1 = state.bars[k].close; if (p0 > 0 && p1 > 0) r.push(p1 / p0 - 1); } const vv = r.length ? stddev(r) : null; return vv ? m / vv : m; })()
         : .4 * threeMonthReturn + .3 * sixMonthReturn + .3 * twelveMonthReturn;
-      rows.push({ ticker, name: state.name, rs, threeMonthReturn, sixMonthReturn, twelveMonthReturn, fundamental: f });
+      rows.push({ ticker, name: state.name, rs, oneDayReturn: state.bars[i].close / state.bars[i - 1].close - 1, previousTradingDate: state.bars[i - 1].date, previousTradingClose: state.bars[i - 1].close, signalClose: state.bars[i].close, threeMonthReturn, sixMonthReturn, twelveMonthReturn, fundamental: f });
     }
     L.percentile(rows, 'rs'); L.attachFundamentalComposite(rows);
     for (const r of rows) r.score = r.fundamentalScore === null ? null : (1 - epsWeight) * r.rsPct + epsWeight * r.fundamentalScore;
@@ -107,6 +115,10 @@ function main() {
       rs: r.rs,
       rsPercentile: r.rsPct,
       fundamentalScore: r.fundamentalScore,
+      oneDayReturn: r.oneDayReturn,
+      previousTradingDate: r.previousTradingDate,
+      previousTradingClose: r.previousTradingClose,
+      signalClose: r.signalClose,
       threeMonthReturn: r.threeMonthReturn,
       sixMonthReturn: r.sixMonthReturn,
       twelveMonthReturn: r.twelveMonthReturn,
@@ -118,7 +130,7 @@ function main() {
       reportYear: r.fundamental.report.year,
       reportQuarter: r.fundamental.report.quarter,
     }));
-    const order = { signalDate, executionDate, rankingYear: snapshot.rankingYear, asOfDate: snapshot.asOfDate, rawTop300Count: snapshot.rawTop300Count, commonShareCount: snapshot.commonShareCount, priceAvailable: coverageLedger.find(x => x.rankingYear === snapshot.rankingYear).priceAvailable, dartCandidateCount: rows.length, excluded: { noPrice, noDart, complianceTickers: [...excludedTickers] }, forcedAnnualRoll, tickers: holdings.map(x => x.ticker), rankedTickers: ranked.slice(0, Math.max(holdingsN, holdBufferRank)).map(x => x.ticker) };
+    const order = { signalDate, executionDate, rankingYear: snapshot.rankingYear, asOfDate: snapshot.asOfDate, rawTop300Count: snapshot.rawTop300Count, commonShareCount: snapshot.commonShareCount, priceAvailable: coverageLedger.find(x => x.rankingYear === snapshot.rankingYear).priceAvailable, dartCandidateCount: rows.length, excluded: { noPrice, noDart, complianceTickers: [...excludedTickers], entryJumpCandidates: [] }, forcedAnnualRoll, tickers: holdings.map(x => x.ticker), rankedTickers: ranked.map(x => x.ticker), fullRanking };
     orders.set(executionDate, order); selectionLog.push({ ...order, holdings: holdings.map(x => ({ ticker: x.ticker, name: x.name, score: x.score, rs: x.rs, reportFilingDate: x.fundamental.report.filing })), fullRanking });
   }
   const startCalendarIndex = allCalendar.indexOf(startDate);
@@ -154,7 +166,73 @@ function main() {
     for (const t of all) { const p = L.exactPrice(states.get(t), date, 'open'); if (p === null) continue; const target = names.includes(t) ? desiredExposure * lo / names.length / p : 0, delta = target - (positions.get(t) || 0); if (Math.abs(delta) < 1e-8) continue; const notional = Math.abs(delta) * p, estimatedCost = notional * (delta > 0 ? buyCost : buyCost + sellTax); cash -= delta * p + estimatedCost; turnover += notional / Math.max(before, 1); if (target) positions.set(t, target); else positions.delete(t); trades.push({ date, signalDate: order?.signalDate || null, ticker: t, side: delta > 0 ? 'BUY' : 'SELL', notional, estimatedCost, reason, forcedAnnualRoll: Boolean(order?.forcedAnnualRoll) }); }
     events.push({ date, signalDate: order?.signalDate || null, exposure: desiredExposure, reason, rankingYear: order?.rankingYear || null });
   }
-  for (let i = 0; i < calendar.length; i++) { const date = calendar[i]; cashoutTerminalSeries(date); const prev = calendar[i - 1] || allCalendar[allCalendar.indexOf(date) - 1], order = orders.get(date); const ki = kospi.findIndex(x => x.date === prev); if (ki >= 199) { const ma = mean(kospi.slice(ki - 199, ki + 1).map(x => x.close)), close = kospi[ki].close; if (close > ma * 1.03) regime = true; else if (close < ma * .97) regime = false; } const rs = equity.slice(-volWindow).map((x, j, a) => j ? x.equity / a[j - 1].equity - 1 : null).filter(x => x !== null); const volScale = (volTarget > 0 && rs.length >= volWindow - 1) ? Math.min(1, volTarget / (stddev(rs) * Math.sqrt(252))) : 1; const nextExposure = (regime ? 1 : 0) * volScale; if (order) { if (holdBufferRank > holdingsN && (!order.forcedAnnualRoll || softAnnualRoll)) { const rankOf = new Map(order.rankedTickers.map((t, r) => [t, r + 1])); const kept = [...positions.keys()].filter(t => (rankOf.get(t) || Infinity) <= holdBufferRank); const fill = order.rankedTickers.filter(t => !kept.includes(t)).slice(0, Math.max(0, holdingsN - kept.length)); order.tickers = [...kept, ...fill].slice(0, holdingsN); } rebalance(date, order, nextExposure, order.forcedAnnualRoll ? 'annual-universe-roll' : 'weekly-rank'); } else if (Math.abs(nextExposure - exposure) > 1e-9) rebalance(date, null, nextExposure, 'regime-or-vol-overlay'); exposure = nextExposure; equity.push({ date, equity: value(date, 'close'), cash, holdings: positions.size, exposure }); }
+  function applyNewEntryPolicy(order) {
+    const rankOf = new Map(order.fullRanking.map(row => [row.ticker, row.rank]));
+    const rowByTicker = new Map(order.fullRanking.map(row => [row.ticker, row]));
+    const canKeepIncumbents = !order.forcedAnnualRoll || softAnnualRoll;
+    const kept = canKeepIncumbents
+      ? [...positions.keys()].filter(ticker => (rankOf.get(ticker) || Infinity) <= holdBufferRank)
+      : [];
+    const keptSet = new Set(kept);
+    const vacancies = Math.max(0, holdingsN - kept.length);
+    const fill = [], blocked = [];
+    if (vacancies) {
+      for (const row of order.fullRanking) {
+        if (keptSet.has(row.ticker)) continue;
+        if (newEntryJumpThreshold > 0 && row.oneDayReturn >= newEntryJumpThreshold) {
+          blocked.push({ ticker: row.ticker, name: row.name, originalRank: row.rank, oneDayReturn: row.oneDayReturn, previousTradingDate: row.previousTradingDate, previousTradingClose: row.previousTradingClose, signalClose: row.signalClose });
+          continue;
+        }
+        fill.push(row.ticker);
+        if (fill.length === vacancies) break;
+      }
+    }
+    const target = [...kept, ...fill].slice(0, holdingsN);
+    // Preserve the historical runner's behavior before DART has enough rows at
+    // the very first signals: an intrinsically short ranking may hold cash. Once
+    // the source ranking itself has >=holdingsN names, the filter must backfill.
+    if (order.fullRanking.length >= holdingsN && target.length !== holdingsN) throw new Error(`entry-jump filter produced ${target.length} holdings; expected ${holdingsN} (signal ${order.signalDate}, ranked ${order.fullRanking.length}, kept ${kept.length}, blocked ${blocked.length})`);
+    const unfilteredFill = order.fullRanking.filter(row => !keptSet.has(row.ticker)).slice(0, vacancies).map(row => row.ticker);
+    const targetSet = new Set(target), unfilteredTargetSet = new Set([...kept, ...unfilteredFill]);
+    const removedByFilter = unfilteredFill.filter(ticker => !targetSet.has(ticker));
+    const addedByFilter = fill.filter(ticker => !unfilteredTargetSet.has(ticker));
+    const replacementByTicker = new Map(removedByFilter.map((ticker, index) => [ticker, addedByFilter[index] || null]));
+    for (const item of blocked) {
+      item.causedPortfolioReplacement = replacementByTicker.has(item.ticker);
+      item.replacementTicker = replacementByTicker.get(item.ticker) || null;
+    }
+    const incumbentExemptions = kept.map(ticker => rowByTicker.get(ticker))
+      .filter(row => newEntryJumpThreshold > 0 && row.oneDayReturn >= newEntryJumpThreshold)
+      .map(row => ({ ticker: row.ticker, name: row.name, rank: row.rank, oneDayReturn: row.oneDayReturn }));
+    order.tickers = target;
+    order.excluded.entryJumpCandidates = blocked;
+    order.entryJumpFilter = { enabled: newEntryJumpThreshold > 0, thresholdPct: newEntryJumpThresholdPct, inclusive: true, appliesTo: 'new entries only; hold-band incumbents exempt', keptIncumbents: kept, addedByFilter, incumbentExemptions };
+    const log = selectionLog.find(row => row.executionDate === order.executionDate);
+    if (log) {
+      log.finalHoldings = target.map(ticker => rowByTicker.get(ticker)).filter(Boolean);
+      log.entryJumpFilter = order.entryJumpFilter;
+    }
+  }
+  for (let i = 0; i < calendar.length; i++) {
+    const date = calendar[i];
+    cashoutTerminalSeries(date);
+    const prev = calendar[i - 1] || allCalendar[allCalendar.indexOf(date) - 1], order = orders.get(date);
+    const ki = kospi.findIndex(x => x.date === prev);
+    if (ki >= 199) {
+      const ma = mean(kospi.slice(ki - 199, ki + 1).map(x => x.close)), close = kospi[ki].close;
+      if (close > ma * 1.03) regime = true;
+      else if (close < ma * .97) regime = false;
+    }
+    const rs = equity.slice(-volWindow).map((x, j, a) => j ? x.equity / a[j - 1].equity - 1 : null).filter(x => x !== null);
+    const volScale = (volTarget > 0 && rs.length >= volWindow - 1) ? Math.min(1, volTarget / (stddev(rs) * Math.sqrt(252))) : 1;
+    const nextExposure = (regime ? 1 : 0) * volScale;
+    if (order) {
+      applyNewEntryPolicy(order);
+      rebalance(date, order, nextExposure, order.forcedAnnualRoll ? 'annual-universe-roll' : `${cadence}-session-rank`);
+    } else if (Math.abs(nextExposure - exposure) > 1e-9) rebalance(date, null, nextExposure, 'regime-or-vol-overlay');
+    exposure = nextExposure;
+    equity.push({ date, equity: value(date, 'close'), cash, holdings: positions.size, exposure });
+  }
   const benchmarkFile = arg('--benchmark-file', path.join(outDir, `annual-top300-momentum-${startDate}-through-${endDate}.json`));
   if (!fs.existsSync(benchmarkFile)) throw new Error(`missing matched annual momentum validation artifact: ${benchmarkFile}`);
   const summary = { ...metrics(equity), tradeCount: trades.length, turnover }, benchmark = read(benchmarkFile);
@@ -169,9 +247,9 @@ function main() {
   const partialCapitalActions = terminalCashoutLastClose || allowUnvalidatedPrice;
   const methodologyPrefix = Number.isFinite(universeCapFloor) && universeCapFloor > 0 ? `annual-cap${Math.round(universeCapFloor / 1e8)}m` : 'annual-top300';
   const methodology = partialCapitalActions ? `${methodologyPrefix}-capital-actions-and-terminal-cashout-partial` : (yahooAdjusted ? `${methodologyPrefix}-yahoo-adjusted-comparison` : 'annual-top300-minervini-rs-eps-revenue-regime');
-  const artifact = { schemaVersion: 2, generatedAt: new Date().toISOString(), methodology, period: { start: startDate, end: endDate }, rules: { selection: selectionLabelEn, filingAvailabilityLagSessions: 1, execution: 'signal close -> next session open', overlay: overlayLabel, costs: { buyBps: costBps, sellBps: costBps + sellTaxBps, sellTaxBps }, complianceExcludedTickers: [...excludedTickers], terminalCashoutLastClose, terminalCashoutGraceSessions }, universe: { label: universeLabel, source: universeFile, coverage: coverageLedger, allowUndercoverage, rule: 'execution year y uses snapshot y-1' }, data: { priceMode: yahooAdjusted ? 'yahoo-adjusted' : 'raw-or-official-cache', priceCache: cacheDir, dartPanel: panelDir, dartPanelManifestSha256: manifestHash }, summary, robustness, annualReturns: annualReturns(equity, startDate), dailyEquity: equity, trades, rebalancingLedger: selectionLog, events, benchmarkAnnualTop300TotalReturn: benchmark.benchmarkTotalReturn.summary, limitations: ['DART is missing for some annual-universe names; only those signal candidates are excluded and each rebalance records dartCandidateCount.', 'FORWARD-DRAWDOWN CAUTION: the full-sample maxDrawdown understates forward risk. A walk-forward split (IS 2017-2022 / OOS 2023-2026) puts OOS MDD near -30% to -36%, versus a -16% full-sample figure. Report the OOS bracket, not the full-sample MDD alone. See strategy-redesign-*.md.', 'OVERLAY EVIDENCE: on the survivorship-honest (marcap, delisted-inclusive) cache, ablation attributes the drawdown control entirely to the KOSPI SMA regime; the 60-session 18% volatility target is a return drag (~-3%p CAGR) with no MDD benefit, and the chosen overlay parameters sit at local CAGR minima (overfit signal). A regime-only variant (drop the vol target) improves CAGR and cuts turnover ~70% both in- and out-of-sample. See overlay-ablation-sensitivity-*.md and strategy-redesign-*.md.', ...(yahooAdjusted ? ['COMPARISON RUN: Yahoo adjusted OHLC is used to align this point-in-time universe test with the current-universe baseline. Yahoo adjustment provenance and delisting consideration are not official KRX/DART verification.', allowUndercoverage ? 'Yahoo series missing or failing the baseline price-jump screen is excluded under the user-approved exclusion policy. Coverage is retained per year in the JSON ledger; this run deliberately waives the normal 90% coverage gate.' : 'Yahoo series unavailable for a constituent is excluded; annual coverage remains in the JSON ledger.'] : []), ...(partialCapitalActions ? ['PARTIAL PRICE-RETURN RUN: dividends, rights issues, mergers, and spin-offs are intentionally ignored. Inferred reciprocal price/share events cover split-like capital changes only.', `A terminal price series is assumed to be a delisting only after ${terminalCashoutGraceSessions} consecutive KOSPI sessions, then liquidated at its final close less normal sell costs. Ticker changes and prolonged halts can be misclassified. This is not an official total-return result.`] : ['Annual membership reduces but does not eliminate delisting, halt, and historical-liquidity bias.'])] };
+  const artifact = { schemaVersion: 3, generatedAt: new Date().toISOString(), methodology, period: { start: startDate, end: endDate }, rules: { selection: selectionLabelEn, filingAvailabilityLagSessions: 1, execution: 'signal close -> next session open', overlay: overlayLabel, newEntryJumpFilter: { enabled: newEntryJumpThreshold > 0, thresholdPct: newEntryJumpThresholdPct, inclusive: true, signal: 'signal close / previous trading close - 1', appliesTo: 'new entries only; hold-band incumbents exempt' }, costs: { buyBps: costBps, sellBps: costBps + sellTaxBps, sellTaxBps }, complianceExcludedTickers: [...excludedTickers], terminalCashoutLastClose, terminalCashoutGraceSessions }, universe: { label: universeLabel, source: universeFile, coverage: coverageLedger, allowUndercoverage, rule: 'execution year y uses snapshot y-1' }, data: { priceMode: yahooAdjusted ? 'yahoo-adjusted' : 'raw-or-official-cache', priceCache: cacheDir, dartPanel: panelDir, dartPanelManifestSha256: manifestHash }, summary, robustness, annualReturns: annualReturns(equity, startDate), dailyEquity: equity, trades, rebalancingLedger: selectionLog, events, benchmarkAnnualTop300TotalReturn: benchmark.benchmarkTotalReturn.summary, limitations: ['DART is missing for some annual-universe names; only those signal candidates are excluded and each rebalance records dartCandidateCount.', 'FORWARD-DRAWDOWN CAUTION: the full-sample maxDrawdown understates forward risk. A walk-forward split (IS 2017-2022 / OOS 2023-2026) puts OOS MDD near -30% to -36% for the representative family; report the OOS result for the exact selected variant.', 'The 25% new-entry jump gate changed only eight full-sample targets and reduced OOS CAGR in the adoption study; it is an operational chase-risk constraint, not independently established alpha. See 52w-high-new-entry-jump-filter-sensitivity-*.md.', 'OVERLAY EVIDENCE: on the survivorship-honest (marcap, delisted-inclusive) cache, ablation attributes the drawdown control entirely to the KOSPI SMA regime; the 60-session 18% volatility target is a return drag (~-3%p CAGR) with no MDD benefit, and the chosen overlay parameters sit at local CAGR minima (overfit signal). A regime-only variant (drop the vol target) improves CAGR and cuts turnover ~70% both in- and out-of-sample. See overlay-ablation-sensitivity-*.md and strategy-redesign-*.md.', ...(yahooAdjusted ? ['COMPARISON RUN: Yahoo adjusted OHLC is used to align this point-in-time universe test with the current-universe baseline. Yahoo adjustment provenance and delisting consideration are not official KRX/DART verification.', allowUndercoverage ? 'Yahoo series missing or failing the baseline price-jump screen is excluded under the user-approved exclusion policy. Coverage is retained per year in the JSON ledger; this run deliberately waives the normal 90% coverage gate.' : 'Yahoo series unavailable for a constituent is excluded; annual coverage remains in the JSON ledger.'] : []), ...(partialCapitalActions ? ['PARTIAL PRICE-RETURN RUN: dividends, rights issues, mergers, and spin-offs are intentionally ignored. Inferred reciprocal price/share events cover split-like capital changes only.', `A terminal price series is assumed to be a delisting only after ${terminalCashoutGraceSessions} consecutive KOSPI sessions, then liquidated at its final close less normal sell costs. Ticker changes and prolonged halts can be misclassified. This is not an official total-return result.`] : ['Annual membership reduces but does not eliminate delisting, halt, and historical-liquidity bias.'])] };
   const stem = arg('--artifact-stem', `${partialCapitalActions ? 'annual-cap300b-capital-actions-partial' : (yahooAdjusted ? 'annual-cap300b-yahoo-adjusted' : 'annual-top300-minervini-earnings-regime')}-${startDate}-through-${endDate}`); write(path.join(outDir, `${stem}.json`), artifact);
-  const p = x => `${(x * 100).toFixed(2)}%`; const title = partialCapitalActions ? '3,000억원 자본변동·상폐 종가현금화 부분표본' : (yahooAdjusted ? `${universeLabel} — Yahoo 조정가격 정합 비교` : `${universeLabel} Minervini RS·실적·레짐 백테스트`); const benchmarkLabel = yahooAdjusted ? `${universeLabel} Yahoo 가격가능 동일가중` : `${universeLabel} 동일가중 총수익`; const md = `# ${title}\n\n- 기간: ${startDate}~${endDate}; ${cadence}거래일 리밸런싱${holdBufferRank > holdingsN ? ` (밴드 랭크 ${holdBufferRank})` : ''}${softAnnualRoll ? ' + 연초 롤 완화' : ''}; 상위 ${holdingsN}개 동일비중\n- 신호: ${selectionLabelKo}; 공시 반영 1거래일 지연\n- 오버레이: ${overlayLabelKo}\n- 비용: 매수 ${costBps}bp / 매도 ${costBps + sellTaxBps}bp (매도 거래세 ${sellTaxBps}bp)\n${yahooAdjusted ? `- 가격: Yahoo Finance 조정 OHLC. 현재 유니버스 30% 기준선과 가격 조정 방식은 맞췄지만, Yahoo 미제공 종목은 제외했고 공식 기업행사·상폐 대가 검증 결과는 아니다.${allowUndercoverage ? ' 이 비교본은 사용자 지시에 따라 정상 가격 점프 범위를 벗어난 종목도 제외하며, 90% 커버리지 게이트를 해제했다.' : ''}\n` : ''}${partialCapitalActions ? `- 데이터 처리: 분할·병합·감자 후보의 가격/주식수 비율 추정 보정. 배당·유증·합병·분할승계는 무시하며, 종가가 ${terminalCashoutGraceSessions}거래일 넘게 끊긴 보유종목만 마지막 종가 현금화로 가정.\n` : ''}\n|구분|누적 수익률|CAGR|Sharpe|MDD|거래 수|\n|---|---:|---:|---:|---:|---:|\n|Minervini RS + 실적 + 레짐|${p(summary.totalReturn)}|${p(summary.cagr)}|${summary.sharpeZeroRf.toFixed(2)}|${p(summary.maxDrawdown)}|${summary.tradeCount}|\n|${benchmarkLabel}|${p(benchmark.benchmarkTotalReturn.summary.totalReturn)}|${p(benchmark.benchmarkTotalReturn.summary.cagr)}|${benchmark.benchmarkTotalReturn.summary.sharpeZeroRf.toFixed(2)}|${p(benchmark.benchmarkTotalReturn.summary.maxDrawdown)}|—|\n\nDART 결측은 전체 유니버스를 제거하지 않고 해당 신호 후보만 제외했다. JSON 원장에 연도별 유니버스·DART 후보 수·연초 강제 교체를 보존한다.\n\n${L.statsFootnote({ strategyStats: { main: { ci: robustness.ci, deflated: robustness.deflated } } }, 'main', universeLabel)}\n- **Forward MDD 주의:** 전체표본 MDD는 forward 위험을 과소평가한다. Walk-forward(IS 2017–2022 / OOS 2023–2026) OOS MDD는 −30~−36%대로, 전체표본 −16%가 아니다.\n- **오버레이 근거:** 생존편향-정직 캐시 ablation상 낙폭방어는 전부 KOSPI 레짐 몫이고 60일 18% 변동성 타깃은 순수 수익 드래그(≈−3%p CAGR, MDD 개선 0)다. vol 타깃 제거(레짐 단독)가 IS·OOS 모두에서 CAGR↑·회전율 −72%. 상세: overlay-ablation-sensitivity / strategy-redesign 리포트.\n`; fs.mkdirSync(outDir, { recursive: true }); fs.writeFileSync(path.join(outDir, `${stem}.md`), md); console.log(JSON.stringify({ summary, terminalCashouts: trades.filter(x => x.assumedDelisting).length, dartCoverage: coverageLedger.map(x => ({ rankingYear: x.rankingYear, priceCoverage: x.priceCoverage })), artifact: path.join(outDir, `${stem}.json`) }, null, 2));
+  const p = x => `${(x * 100).toFixed(2)}%`; const title = partialCapitalActions ? '3,000억원 자본변동·상폐 종가현금화 부분표본' : (yahooAdjusted ? `${universeLabel} — Yahoo 조정가격 정합 비교` : `${universeLabel} Minervini RS·실적·레짐 백테스트`); const benchmarkLabel = yahooAdjusted ? `${universeLabel} Yahoo 가격가능 동일가중` : `${universeLabel} 동일가중 총수익`; const md = `# ${title}\n\n- 기간: ${startDate}~${endDate}; ${cadence}거래일 리밸런싱${holdBufferRank > holdingsN ? ` (밴드 랭크 ${holdBufferRank})` : ''}${softAnnualRoll ? ' + 연초 롤 완화' : ''}; 상위 ${holdingsN}개 동일비중\n- 신호: ${selectionLabelKo}; 공시 반영 1거래일 지연\n- 신규진입 급등 필터: ${newEntryJumpThreshold > 0 ? `신호일 1일 수익률 +${newEntryJumpThresholdPct.toFixed(2)}% 이상 제외(기존 밴드 보유 면제)` : '비활성'}\n- 오버레이: ${overlayLabelKo}\n- 비용: 매수 ${costBps}bp / 매도 ${costBps + sellTaxBps}bp (매도 거래세 ${sellTaxBps}bp)\n${yahooAdjusted ? `- 가격: Yahoo Finance 조정 OHLC. 현재 유니버스 30% 기준선과 가격 조정 방식은 맞췄지만, Yahoo 미제공 종목은 제외했고 공식 기업행사·상폐 대가 검증 결과는 아니다.${allowUndercoverage ? ' 이 비교본은 사용자 지시에 따라 정상 가격 점프 범위를 벗어난 종목도 제외하며, 90% 커버리지 게이트를 해제했다.' : ''}\n` : ''}${partialCapitalActions ? `- 데이터 처리: 분할·병합·감자 후보의 가격/주식수 비율 추정 보정. 배당·유증·합병·분할승계는 무시하며, 종가가 ${terminalCashoutGraceSessions}거래일 넘게 끊긴 보유종목만 마지막 종가 현금화로 가정.\n` : ''}\n|구분|누적 수익률|CAGR|Sharpe|MDD|거래 수|\n|---|---:|---:|---:|---:|---:|\n|Minervini RS + 실적 + 레짐|${p(summary.totalReturn)}|${p(summary.cagr)}|${summary.sharpeZeroRf.toFixed(2)}|${p(summary.maxDrawdown)}|${summary.tradeCount}|\n|${benchmarkLabel}|${p(benchmark.benchmarkTotalReturn.summary.totalReturn)}|${p(benchmark.benchmarkTotalReturn.summary.cagr)}|${benchmark.benchmarkTotalReturn.summary.sharpeZeroRf.toFixed(2)}|${p(benchmark.benchmarkTotalReturn.summary.maxDrawdown)}|—|\n\nDART 결측은 전체 유니버스를 제거하지 않고 해당 신호 후보만 제외했다. JSON 원장에 연도별 유니버스·DART 후보 수·급등 제외·연초 교체를 보존한다.\n\n${L.statsFootnote({ strategyStats: { main: { ci: robustness.ci, deflated: robustness.deflated } } }, 'main', universeLabel)}\n- **신규진입 필터 주의:** 25% 규칙은 전체표본 목표 8건만 바꿨고 OOS CAGR은 14.00%→13.62%로 낮아졌다. 추격 위험 제한으로 채택했으며 독립적인 알파로 해석하지 않는다.\n- **Forward MDD 주의:** 전체표본 MDD는 forward 위험을 과소평가한다. exact OOS 결과와 함께 보고한다.\n- **오버레이 근거:** 생존편향-정직 캐시 ablation상 낙폭방어는 전부 KOSPI 레짐 몫이고 60일 18% 변동성 타깃은 순수 수익 드래그(≈−3%p CAGR, MDD 개선 0)다. 상세: overlay-ablation-sensitivity / strategy-redesign 리포트.\n`; fs.mkdirSync(outDir, { recursive: true }); fs.writeFileSync(path.join(outDir, `${stem}.md`), md); console.log(JSON.stringify({ summary, terminalCashouts: trades.filter(x => x.assumedDelisting).length, entryJumpExclusions: selectionLog.reduce((sum, row) => sum + (row.excluded?.entryJumpCandidates?.length || 0), 0), dartCoverage: coverageLedger.map(x => ({ rankingYear: x.rankingYear, priceCoverage: x.priceCoverage })), artifact: path.join(outDir, `${stem}.json`) }, null, 2));
   if (partialCapitalActions) {
     const markdownFile = path.join(outDir, `${stem}.md`);
     const correctedTitle = `# ${universeLabel} 자본변동·상폐 종가현금화 부분 가격수익 진단`;

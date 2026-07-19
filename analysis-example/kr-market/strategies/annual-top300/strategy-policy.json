@@ -39,12 +39,20 @@
   },
   "bestRobustVariant": {
     "id": "52w-high-momentum",
-    "status": "STRONGEST FOUND (2026-07-18): the only selection factor that clears the Deflated Sharpe hurdle on the honest cache",
-    "config": "--eps-weight 0 --momentum-type high52w --holdings 15 --hold-buffer-rank 45 --soft-annual-roll --cadence 21 + binary SMA200 regime",
+    "status": "OPERATING (25% new-entry jump gate adopted 2026-07-19); strongest selection factor found on the honest cache",
+    "config": "--eps-weight 0 --momentum-type high52w --holdings 15 --hold-buffer-rank 45 --soft-annual-roll --cadence 21 --new-entry-jump-threshold-pct 25 + binary SMA200 regime",
     "insight": "The original strategy's RS 3/6/12 blend was a weak momentum formulation (9.9% CAGR/0.51 Sharpe). Proximity to the 52-week high (George-Hwang 2004; the Minervini core idea) is far stronger: 16.41% CAGR / 0.90 Sharpe / -26% MDD.",
     "honestPerformance": { "fullSampleCagr": 0.1641, "fullSampleSharpe": 0.90, "fullSampleMdd": -0.2601, "oosCagr": 0.140, "cagrCi90": [0.055, 0.299], "deflatedSharpeHurdle": 0.87, "clearsHurdle": true },
     "robustness": "Annual returns are broadly positive (not a single-year artifact); Sharpe 0.55-0.90 across cadence {5,21} x holdings {10,15,20}; CAGR CI lower bound is POSITIVE (+5.5%). Distinguishes it from the rejected EPS/quality/value leads.",
-    "caveat": "50+ configs were tried this session, so the full multiple-testing hurdle is higher than the nTrials=50 used; treat the clearance as strong evidence, not proof. Turnover ~660%/yr; split+dividend cache, not strict official.",
+    "caveat": "50+ configs were tried this session, so the full multiple-testing hurdle is higher than the nTrials=50 used; treat the clearance as strong evidence, not proof. Turnover ~660%/yr; split+dividend cache, not strict official. The 25% gate changed only 8 full-sample targets and reduced OOS CAGR, so it is a chase-risk constraint rather than proven alpha.",
+    "newEntryJumpFilter": {
+      "status": "adopted 2026-07-19 in operating runner, live monthly generator, and Hermes",
+      "rule": "Exclude a prospective NEW entry when signal close / that stock's previous trading close - 1 is >=25%; do not apply to incumbents still ranked 45 or better; backfill from the next rank.",
+      "operatingPerformance": { "fullSampleCagr": 0.1691, "fullSampleSharpe": 0.92, "fullSampleMdd": -0.2338, "fullSampleTargetChanges": 8, "oosCagr": 0.1362, "oosSharpe": 0.68, "oosMdd": -0.1842 },
+      "baselineWithoutFilter": { "fullSampleCagr": 0.1641, "fullSampleSharpe": 0.90, "fullSampleMdd": -0.2601, "oosCagr": 0.1400 },
+      "disableForReproduction": "--new-entry-jump-threshold-pct 0",
+      "report": "52w-high-new-entry-jump-filter-sensitivity-2017-01-02-through-2026-07-16.md"
+    },
     "report": "live-52w-high-momentum-2026-07-16.md"
   },
   "universePolicy": {
@@ -55,7 +63,16 @@
     "forcedLiquidation": true,
     "reselectionAfterLiquidation": true,
     "priceCoverageMinimum": 0.9,
-    "dartMissingTreatment": "exclude only the affected signal candidate and record coverage"
+    "dartMissingTreatment": "exclude only the affected signal candidate and record coverage",
+    "canonicalLedger": "universe-ledger-2015-2025.json (survivorship-correct: 2025 year-end = 298 common shares, preferred/ETF/ETN/REIT/SPAC excluded, 메리츠금융지주 kept).",
+    "deprecatedLedger": "universe-ledger-2016-2025-partial.json is BUGGY (loads to 288 for 2025, dropping 메리츠금융지주 rank 33 + 9 tail names; older extraction leaked preferred shares). Do not use. Repointed all consumers to the canonical ledger 2026-07-19."
+  },
+  "liveUniverseRefresh": {
+    "purpose": "Keep the live top300.json the Hermes 52w-high builder consumes equal to the point-in-time year-end backtest snapshot.",
+    "mechanism": "skills/kr-strategy-backtest/scripts/build-live-top300.js (added 2026-07-19). Trading year Y reads the Y-1 year-end snapshot from the canonical ledger; annual + idempotent; --check detects live-file vintage drift; refuses if the prior-year snapshot is absent.",
+    "cadence": "ANNUAL only (year-end / January). Daily or monthly refresh is forbidden — it swaps in a mid-year survivor universe and corrupts the strategy.",
+    "runbook": "annual-universe-refresh-runbook.md",
+    "review": "live-top300.json (2026 trading = 2025-12-30 snapshot, 298 names) is the repo review copy; deploy by writing --out ~/.cache/krx-trend-portfolio-monitor/top300.json on the Hermes box, then --check."
   },
   "portfolioPolicy": {
     "rebalanceCadenceSessions": 5,

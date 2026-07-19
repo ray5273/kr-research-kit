@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Daily regime check + Telegram delivery for the 52-week-high monthly KRX
 portfolio. Regime-only exposure (KOSPI SMA200 +/-3% hysteresis; no volatility
-target). Reads the standing monthly selection from live-weekly-selections.json.
+target). Reads the standing monthly selection from live-52w-high-selections.json
+and displays the adopted >=25% new-entry jump-filter audit on rebalance days.
 Set HERMES_DRYRUN=1 to print the message instead of sending it.
 """
 import json, math, os, re, subprocess, sys, urllib.parse, urllib.request
@@ -31,8 +32,11 @@ def naver(ticker):
     query = urllib.parse.urlencode({"symbol": ticker, "requestType": 1, "startTime": "20260101", "endTime": "20300101", "timeframe": "day"})
     request = urllib.request.Request("https://api.finance.naver.com/siseJson.naver?" + query, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://finance.naver.com/"})
     text = urllib.request.urlopen(request, timeout=20).read().decode("euc-kr", "ignore")
-    rows = re.findall(r'\["(\d{8})",\s*([\d.]+),\s*([\d.]+),\s*([\d.]+),\s*([\d.]+)', text)
-    return [{"date": f"{d[:4]}-{d[4:6]}-{d[6:]}", "close": float(c)} for d, o, _h, _l, c in rows if float(c) > 0]
+    rows = re.findall(r'\["(\d{8})",\s*([-\d.]+),\s*([-\d.]+),\s*([-\d.]+),\s*([-\d.]+),\s*([-\d.]+)', text)
+    return [{"date": f"{d[:4]}-{d[4:6]}-{d[6:]}", "open": float(o), "high": float(h), "low": float(l), "close": float(c), "volume": float(v)} for d, o, h, l, c, v in rows if float(c) > 0]
+
+def tradable(bar):
+    return all(float(bar.get(k, 0)) > 0 for k in ("open", "high", "low", "close", "volume"))
 
 def regime(kospi, prior):
     closes = [float(x["close"]) for x in kospi if x.get("close") is not None]
@@ -60,34 +64,34 @@ def main():
     live = read(LIVE_LEDGER, {})
     selections = sorted(live.get("selections", []), key=lambda item: item.get("executionDate", ""))
     if not selections: raise RuntimeError("52w-high monthly selection ledger is unavailable")
-    latest = selections[-1]
-    tickers = [str(x["ticker"]).zfill(6) for x in latest["holdings"]]
-    if "005930" in tickers: raise RuntimeError("Compliance-excluded ticker 005930 is present")
-    names = {str(x["ticker"]).zfill(6): x["name"] for x in latest["holdings"]}
-    histories = {t: naver(t) for t in tickers}
-    common = set.intersection(*(set(x["date"] for x in rows) for rows in histories.values()))
-    dates = sorted(common)
-    if len(dates) < 2: raise RuntimeError("Insufficient common daily price history")
-    as_of = dates[-1]
-    active = [s for s in selections if s.get("executionDate", "") <= as_of]
+    kospi_bars = read(KOSPI, {}).get("bars", [])
+    close, sma, distance, on = regime(kospi_bars, prior)
+    kospi_date = kospi_bars[-1]["date"] if kospi_bars else None
+    if not kospi_date: raise RuntimeError("KOSPI cache has no dated bars")
+    active = [s for s in selections if s.get("executionDate", "") <= kospi_date]
     # The latest selection is the standing target; if its execution date is still
     # in the next session, report it as the incoming portfolio rather than failing.
     weekly = active[-1] if active else selections[-1]
-    if [str(x["ticker"]).zfill(6) for x in weekly["holdings"]] != tickers:
-        tickers = [str(x["ticker"]).zfill(6) for x in weekly["holdings"]]
-        names = {str(x["ticker"]).zfill(6): x["name"] for x in weekly["holdings"]}
-        histories = {t: naver(t) for t in tickers}
-        common = set.intersection(*(set(x["date"] for x in rows) for rows in histories.values())); dates = sorted(common); as_of = dates[-1]
+    tickers = [str(x["ticker"]).zfill(6) for x in weekly["holdings"]]
+    if "005930" in tickers: raise RuntimeError("Compliance-excluded ticker 005930 is present")
+    names = {str(x["ticker"]).zfill(6): x["name"] for x in weekly["holdings"]}
+    histories = {t: naver(t) for t in tickers}
     by = {t: {x["date"]: x for x in rows} for t, rows in histories.items()}
-
-    close, sma, distance, on = regime(read(KOSPI, {}).get("bars", []), prior)
+    unavailable = [t for t in tickers if kospi_date not in by[t] or not tradable(by[t][kospi_date])]
+    if unavailable:
+        labels = ", ".join(f"{names[t]}({t})" for t in unavailable)
+        raise RuntimeError(f"Holdings lack a tradable {kospi_date} bar: {labels}")
+    as_of = kospi_date
     equity = 1.0 if on else 0.0                    # regime-only: no volatility target (R1)
     ranked = sorted(weekly["holdings"], key=lambda item: float(item.get("score", float("-inf"))), reverse=True)
     rank_by = {str(item["ticker"]).zfill(6): rank for rank, item in enumerate(ranked, start=1)}
     n = len(tickers)
     changes = []
     for t in tickers:
-        row = by[t][as_of]; prev = by[t].get(dates[-2]); change = (row["close"] / prev["close"] - 1) * 100 if prev else 0
+        row = by[t][as_of]
+        previous_rows = [x for x in histories[t] if x["date"] < as_of and tradable(x)]
+        prev = previous_rows[-1] if previous_rows else None
+        change = (row["close"] / prev["close"] - 1) * 100 if prev else 0
         holding = next(item for item in ranked if str(item["ticker"]).zfill(6) == t)
         changes.append(f"- #{rank_by[t]} {names[t]}({t}): {row['close']:,.0f}원 ({change:+.2f}%) · 신고가근접 {float(holding['score']):.3f} · 목표 {equity * 100 / n:.2f}%")
     rebalance_lines = []
@@ -101,19 +105,27 @@ def main():
             rebalance_lines = ["", f"월간 리밸런싱 ({weekly['executionDate']} 적용)",
                                f"- 제외 ({len(removed)}): " + (", ".join(f"{i['name']}({str(i['ticker']).zfill(6)})" for i in removed) or "없음"),
                                f"- 추가 ({len(added)}): " + (", ".join(f"#{rank_by[str(i['ticker']).zfill(6)]} {i['name']}({str(i['ticker']).zfill(6)})" for i in added) or "없음")]
+    jump_filter = weekly.get("entryJumpFilter", {})
+    jump_excluded = jump_filter.get("excludedCandidates", [])
+    if weekly["executionDate"] == as_of and jump_filter.get("enabled"):
+        rebalance_lines.extend([
+            f"- 신규진입 급등필터: +{float(jump_filter.get('thresholdPct', 25)):.2f}% 이상, 기존 밴드 보유 면제",
+            f"- 급등 제외 ({len(jump_excluded)}): " + (", ".join(f"{i['name']}({str(i['ticker']).zfill(6)}, {float(i['oneDayReturn']) * 100:+.2f}%)" for i in jump_excluded) or "없음"),
+        ])
     label = "ON" if on else "OFF"
     action = "레짐 ON 유지 · 다음 거래일 매도 없음" if on else "레짐 OFF · 다음 거래일 시가 전량 매도 후 현금화"
     message = "\n".join([
         f"KRX 52주 신고가 + 레짐 포트폴리오 ({as_of})",
         f"월간 신호 {weekly['signalDate']} → 적용 {weekly['executionDate']} · 매월 첫 거래일 재선정",
-        f"KOSPI {close:,.2f} / SMA200 {sma:,.2f} / 괴리 {distance * 100:+.2f}% / {label}",
+        f"KOSPI {close:,.2f} ({kospi_date}) / SMA200 {sma:,.2f} / 괴리 {distance * 100:+.2f}% / {label}",
         f"확정: 주식 {equity * 100:.2f}% · 현금 {(1 - equity) * 100:.2f}% (변동성 타깃 없음, 레짐 단독)",
+        f"신규진입 급등필터: +{float(jump_filter.get('thresholdPct', 25)):.2f}% 이상 제외 · 기존 밴드 보유 면제",
         f"컴플라이언스 제외: 005930",
         f"행동: {action}",
         "", f"보유 {n}종목 (52주 신고가 근접 순위 / 오늘 종가 / 목표비중)", *changes,
         *rebalance_lines,
     ])
-    key = f"52w:{weekly['executionDate']}:{as_of}:{label}"
+    key = f"52w:{weekly['executionDate']}:{as_of}:{label}:JUMP25"
     if DRYRUN:
         print("=== DRYRUN (not sent) ===\n" + message)
     elif prior.get("sentKey") != key:

@@ -27,3 +27,9 @@ RS·EPS·매출·레짐 메인 전략의 기본 유니버스 정책은
 점수와 포트폴리오를 갱신한다.
 
 생성 명령은 [KRX strategy-backtest skill](../../../../skills/kr-strategy-backtest/SKILL.md)의 “Annual Top-300 point-in-time universe” 절을 따른다.
+
+## 52주 신고가 운영 제약
+
+- [52주 신고가 신규진입 급등 필터 민감도](52w-high-new-entry-jump-filter-sensitivity-2017-01-02-through-2026-07-16.md) — 15%·20%·25% 민감도를 전체표본과 2023~2026 OOS에서 비교한 뒤 25%를 2026-07-19 운영 채택했다. 신규 후보만 제외하고 밴드 45위 이내 기존 보유는 유지한다.
+- [메인 52주 신고가 전략 연도별 승률·손익비](52w-high-yearly-win-payoff-2017-through-2026-07-16.md) — 부분 매수·매도를 FIFO 완결 보유 사이클로 묶어 2017~2026년 승률, 평균 수익/평균 손실 손익비, Profit Factor를 계산한다. 2026년은 7월 16일까지의 실제 청산과 최신 종가 가상청산 참고치를 분리한다.
+- [핵심 5개 전략 연도별 승률·손익비 비교](strategy-yearly-win-payoff-comparison-2017-through-2026-07-16.md) — 52주 최고가 근접, 기본 혼합, 이익성장, 시장 전체+200일선, 구형 전략을 동일한 FIFO 실현 사이클 기준으로 비교한다.

@@ -120,8 +120,9 @@ function standaloneFlow(report, prior, kind, isAnnual) {
   const current = report[kind];
   if (!current || current.metricKind === null) return { value: null, meta: current || null };
   const source = current.direct ?? current.cumulative;
-  const value = isAnnual && prior?.[kind]?.cumulative !== null && current.direct !== null
-    ? current.direct - prior[kind].cumulative
+  const priorCumulative = prior?.[kind]?.cumulative;
+  const value = isAnnual && priorCumulative !== null && priorCumulative !== undefined && current.direct !== null
+    ? current.direct - priorCumulative
     : (current.direct ?? (current.cumulative !== null && prior?.[kind]?.cumulative !== null ? current.cumulative - prior[kind].cumulative : current.cumulative));
   return { value: source === null ? null : value, meta: current };
 }

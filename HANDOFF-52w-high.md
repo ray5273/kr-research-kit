@@ -1,9 +1,10 @@
 # 핸드오프 — 코스피 52주 신고가 전략 + Hermes 배포
 
 ## 1. 최종 전략 (확정)
-**52주 신고가 근접 모멘텀 · 월간 · 연도별 Top-300 · 상위 15 · 밴드45 · 연초롤 완화 · KOSPI SMA200 레짐 · 삼성(005930) 제외**
-- 러너 커맨드: `run-annual-top300-minervini-earnings-regime.js --eps-weight 0 --momentum-type high52w --holdings 15 --hold-buffer-rank 45 --soft-annual-roll --cadence 21`
-- honest 백테스트(생존편향 제거 + 배당 총수익): **CAGR 16.4% / Sharpe 0.90 / MDD −26% / OOS 14.0% / DSR 통과(유일)**
+**52주 신고가 근접 모멘텀 · 월간 · 연도별 Top-300 · 상위 15 · 밴드45 · 연초롤 완화 · 신규진입 +25% 급등 제외 · KOSPI SMA200 레짐 · 삼성(005930) 제외**
+- 러너 커맨드: `run-annual-top300-minervini-earnings-regime.js --eps-weight 0 --momentum-type high52w --holdings 15 --hold-buffer-rank 45 --soft-annual-roll --cadence 21 --new-entry-jump-threshold-pct 25` (`high52w`에는 25가 기본값, 과거 기준 재현은 `0`)
+- 신규진입 필터: 신호일 종가가 해당 종목 직전 거래일 종가 대비 **+25.00% 이상이면 신규 후보만 제외**, 차순위 충원. 밴드 45위 이내 기존 보유는 급등해도 유지.
+- honest 백테스트(생존편향 제거 + 배당 총수익): **CAGR 16.91% / Sharpe 0.92 / MDD −23.38% / OOS 13.62%**. 필터 없는 기준은 16.41% / 0.90 / −26.01% / OOS 14.00%.
 - 비용: 수수료 25bp + 거래세 0.18% 반영됨(net). 슬리피지 20-30bp 추가 시 실전 **~13-14%**.
 - 레짐: 6번 OFF, 전체 45% 시간 현금. 지금 ON(2025-05~).
 
@@ -16,7 +17,8 @@
 - 스크립트: `~/.hermes/scripts/{build-live-krx-52w-monthly.py, krx-52w-high-portfolio.py}` (저장소 소스 정렬 커밋됨).
 - 상태/선택 파일(격리): `~/.cache/krx-trend-portfolio-monitor/live-52w-high-selections.json`, `~/.hermes/config/krx-weekly-regime-vol-portfolio/state-52w-high.json`.
 - 백업: `~/.hermes/backup-52w-*`, `~/.hermes/cron/jobs.json.bak-52w-*`.
-- 첫 라이브 Telegram 발송 성공(2026-07 top15: S-Oil·GS·더존비즈온·... ). Hermes는 **신호 자동화, 실주문은 수동**.
+- 2026-07-19 정정: 네이버가 거래정지 기간에 더존비즈온(012510)의 종가만 반복하고 OHLC·거래량을 0으로 반환해 최초 7월 원장에 잘못 포함됐다. 월간 생성기는 이제 신호일의 실제 거래 가능 봉(OHLC·거래량 모두 양수)을 요구하고, 일간 알림도 KOSPI 기준일에 거래 가능 봉이 없는 보유 종목이 있으면 실패한다. 2026-07-16 신호를 재생성해 더존비즈온을 제외하고 차순위 미스토홀딩스(081660)를 편입했다. Hermes는 **신호 자동화, 실주문은 수동**.
+- 2026-07-19 운영 채택: 월간 생성기와 운영 러너에 신규진입 +25% 급등 필터를 적용하고 Hermes 설치본을 저장소와 체크섬 정렬했다. 7월 원장은 같은 15종목을 유지한 채 필터 메타데이터를 추가했고, 다음 8월 리밸런싱부터 신규 후보에 실질 적용된다. 백업: `~/.hermes/backup-52w-entry-jump-20260719-174647`.
 
 ## 3. 남은 할 일 (TODO)
 1. **[중요/연말 전] top300.json 자동 갱신 — 아직 없음.** 현재 7/12 정체, WRITE 잡 없음. **연 1회(연말/1월)만 갱신해야 백테스트(연간 point-in-time)와 매칭.** 일간/월간 갱신은 전략 변질(유니버스 드리프트)이므로 금지. → 12월/1월에 새 연도 Top-300으로 갱신하는 연간 잡 or 수동 갱신 필요.

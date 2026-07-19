@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-market/strategies/trend-following-10y/weekly-portfolio-performance-and-monthly-comparison-through-2026-07-10.md",
+    "memoSha256": "7cb3e63b46d8278485c97dff6fc7ec6e7297a8d126e72573f294e75477f5c230",
+    "asOfDate": "2026-07-10"
+  },
+  "post": {
+    "company": "KRX 추세추종 포트폴리오",
+    "ticker": "",
+    "title": "KRX 주간 추세추종 포트폴리오 | 월간보다 나았을까 | 2026-07-10 기준",
+    "issue": "주간·월간 리밸런싱과 MDD 관리 비교",
+    "category": null,
+    "tags": [
+      "KRX",
+      "추세추종",
+      "주간리밸런싱",
+      "월간리밸런싱",
+      "포트폴리오",
+      "MDD관리",
+      "Minervini",
+      "주식분석"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-market/strategies/trend-following-10y/naver-post.md",
+    "markdownSha256": "4c4bde71f003084c4e8fc9a47657d2579f46ebd39757175447329ba1200d3cbc",
+    "images": [],
+    "thumbnail": {
+      "prompt": "KRX 주간 추세추종 포트폴리오 | 월간보다 나았을까 | 2026-07-10 기준 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-market/strategies/trend-following-10y/assets/naver-thumbnail.png",
+      "sha256": "6f20be28a76c629946e931475b48c72835041da0f25fe9424e2dfc83fe433550",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-13T11:40:22.064Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-13T11:40:30.167Z",
+    "expiresAt": "2026-07-13T12:10:30.167Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr-market/strategies/trend-following-10y/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "921f85a7844f4ff16d810b1acb2a96777aa382d0940641a9dd5c7a16892cdd36",
+    "approvalTokenHash": "2c967ff7bfdabe20ae6a0bfdaacde54a3f500ab401654072ef2110c8ca229075",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}
