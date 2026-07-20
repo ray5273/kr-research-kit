@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/market-sentiment/memo.md",
+    "memoSha256": "379a640d54e287e2157744883c45dfe1196e914ed33dd934c4b1f4872a867454",
+    "asOfDate": "2026-07-20"
+  },
+  "post": {
+    "company": "한국 증시",
+    "ticker": "",
+    "title": "한국 증시 | 반도체는 사고 나머지는 판다 | 2026-07-20",
+    "issue": "반도체는 사고 나머지는 판다",
+    "category": null,
+    "tags": [
+      "코스피",
+      "코스닥",
+      "투자심리",
+      "VKOSPI",
+      "반도체",
+      "시장분석",
+      "주식분석",
+      "바닥신호"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/market-sentiment/naver-post.md",
+    "markdownSha256": "6afbbe2d4934177f2d56d288b960b35a8881400bfd1c9426f05f57dca75ce017",
+    "images": [],
+    "thumbnail": {
+      "prompt": "한국 증시 | 반도체는 사고 나머지는 판다 | 2026-07-20 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/market-sentiment/assets/naver-thumbnail.png",
+      "sha256": "5ec900959d92945c2af598fc632bd088952d3e9bc6c23acd9a3eab74f8360e35",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-20T12:47:35.476Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-20T12:47:42.636Z",
+    "expiresAt": "2026-07-20T13:17:42.636Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/market-sentiment/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "2c7e6104453fe8f1da5a8debb73395ca50e9f6ccd036d0e1280106d6809db328",
+    "approvalTokenHash": "48ca33fdf04bcde3cd2482a350a5ea34b343d943d947ab4f792034adb7aba43d",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}
