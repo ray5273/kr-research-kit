@@ -29,6 +29,7 @@ bash ./scripts/install-skill.sh kr-analyst-report-discover
 bash ./scripts/install-skill.sh kr-analyst-report-fetch
 bash ./scripts/install-skill.sh kr-analyst-report-insight
 bash ./scripts/install-skill.sh kr-foreign-analyst
+bash ./scripts/install-skill.sh kr-market-sentiment
 ```
 
 **Install all skills (Codex):**
@@ -51,6 +52,7 @@ bash ./scripts/install-claude-skill.sh kr-analyst-report-discover
 bash ./scripts/install-claude-skill.sh kr-analyst-report-fetch
 bash ./scripts/install-claude-skill.sh kr-analyst-report-insight
 bash ./scripts/install-claude-skill.sh kr-foreign-analyst
+bash ./scripts/install-claude-skill.sh kr-market-sentiment
 ```
 
 **Install all skills (Claude Code):**
@@ -78,6 +80,8 @@ node skills/kr-analyst-report-fetch/scripts/fetch-reports.js --input /tmp/analys
 node skills/kr-analyst-report-insight/scripts/summarize-reports.js --input /tmp/analyst-extracted.json --output /tmp/analyst-digest.md
 node skills/kr-foreign-analyst/scripts/fetch-analyst-coverage.js --company "삼성전자" --ticker 005930 --output /tmp/foreign-coverage.json --allow-empty
 node skills/kr-foreign-analyst/scripts/summarize-analyst-views.js --input /tmp/foreign-coverage.json --output /tmp/foreign-views.md
+node skills/kr-market-sentiment/scripts/fetch-market-indicators.js --manual examples/kr-market-sentiment/manual-indicators.json --output /tmp/kr-sentiment/indicators.json
+node skills/kr-market-sentiment/scripts/score-sentiment-bottom.js --input /tmp/kr-sentiment/indicators.json --output /tmp/kr-sentiment/sentiment-report.md --json-out /tmp/kr-sentiment/score.json
 ```
 
 ## Architecture
@@ -122,6 +126,8 @@ All scripts accept JSON via `--input` and output Markdown or PNG. They use only 
 | `summarize-reports.js` | Render a 7-section Markdown digest of sell-side coverage (consensus, broker table, recent reports with verbatim bullets, divergences, TP trajectory, source quality) |
 | `fetch-analyst-coverage.js` | Collect foreign-IB coverage of a KRX company from Korean news and extract broker, rating, target price, date, and snippet metadata |
 | `summarize-analyst-views.js` | Render foreign-IB coverage JSON as a `## Street / Alternative Views` Markdown block |
+| `fetch-market-indicators.js` | kr-market-sentiment: fetch KOSPI(`^KS11`)/KOSDAQ(`^KQ11`)/USDKRW(`KRW=X`) from Yahoo, compute 52w drawdown, 200-day distance, RSI14; merge manual JSON (지수 PBR, 12M fwd PER, VKOSPI, 외국인 수급, 신용잔고, ADR, 예탁금) into one `indicators.json`. Network failure per symbol → `DATA_GAP`, not a crash |
+| `score-sentiment-bottom.js` | kr-market-sentiment: score each indicator −2(과열)…+2(강한 바닥/capitulation) via threshold bands, compute weighted composite + 5-band judgment + confirmation checklist (외국인 순매수 전환 / 20일선 회복 / RSI 회복), render Korean Markdown report + `score.json` |
 
 Input JSON schemas are documented in `references/script-inputs.md` with sample files under `examples/<market>/`.
 

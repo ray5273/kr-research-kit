@@ -1,0 +1,18 @@
+{
+  "_comment": "kr-market-sentiment 수동 입력 지표. 값마다 asOfDate(수집일)와 source(출처)를 채우세요. 자동 수집(KOSPI/KOSDAQ/원달러 기술적 지표)은 fetch-market-indicators.js가 담당합니다. 아래 값은 형식 예시이며, 실제 수집값으로 교체해야 합니다.",
+  "_allowed_values": {
+    "foreign_flow": ["net_buy_turn", "selling_slowing", "large_sustained_selling", "neutral", "buying", "large_buying"],
+    "credit_trend": ["plunging", "falling", "flat", "rising", "surging"],
+    "deposits_trend": ["plunging", "falling", "flat", "rising", "surging"]
+  },
+  "asOfDate": "2026-07-20",
+  "indicators": {
+    "kospi_pbr": { "value": null, "asOfDate": null, "source": "KRX 정보데이터시스템 (지수 > PBR/PER/배당수익률)" },
+    "kospi_fwd_per": { "value": null, "asOfDate": null, "source": "연합인포맥스 / 증권사 컨센서스" },
+    "vkospi": { "value": null, "asOfDate": null, "source": "KRX VKOSPI" },
+    "foreign_flow": { "value": null, "asOfDate": null, "source": "KRX 외국인 매매동향", "detail": "20일 누적 순매수/순매도, 최근 5일 추세" },
+    "credit_trend": { "value": null, "asOfDate": null, "source": "금융투자협회 신용공여 잔고" },
+    "adr20": { "value": null, "asOfDate": null, "source": "네이버 증권 등락비율(20일)" },
+    "deposits_trend": { "value": null, "asOfDate": null, "source": "금융투자협회 투자자예탁금" }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "asOfDate": "2026-07-20",
+  "indicators": {
+    "kospi_pbr": { "value": 0.89, "asOfDate": "2026-07-18", "source": "KRX 정보데이터시스템 (지수 PBR)" },
+    "kospi_fwd_per": { "value": 8.9, "asOfDate": "2026-07-18", "source": "연합인포맥스 컨센서스" },
+    "vkospi": { "value": 29.4, "asOfDate": "2026-07-18", "source": "KRX VKOSPI" },
+    "foreign_flow": { "value": "selling_slowing", "asOfDate": "2026-07-18", "source": "KRX 외국인 매매동향", "detail": "20일 누적 순매도 -3.1조, 최근 5거래일 순매도 규모 축소" },
+    "credit_trend": { "value": "falling", "asOfDate": "2026-07-18", "source": "금융투자협회 신용공여 잔고" },
+    "adr20": { "value": 76, "asOfDate": "2026-07-18", "source": "네이버 증권 등락비율(20일)" },
+    "deposits_trend": { "value": "falling", "asOfDate": "2026-07-18", "source": "금융투자협회 투자자예탁금" }
+  }
+}

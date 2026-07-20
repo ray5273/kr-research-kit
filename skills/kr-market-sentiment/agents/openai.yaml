@@ -1,0 +1,7 @@
+interface:
+  display_name: "KR Market Sentiment Bottom"
+  short_description: "Score Korean (KOSPI/KOSDAQ) valuation, fear, technical, flow, and breadth indicators into a sentiment-bottom judgment."
+  default_prompt: "Use $kr-market-sentiment to gather Korean market sentiment-bottom indicators and judge whether 투심 is at a bottom, using examples/kr-market-sentiment/manual-indicators.json for the manual inputs."
+
+policy:
+  allow_implicit_invocation: true
