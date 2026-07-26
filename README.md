@@ -13,6 +13,10 @@ Recent example: [부국증권 보통주·우선주 결정 메모](<analysis-exam
 
 New sector blog draft: [K-조선 미 해군 MRO, 정비에서 신조까지](<analysis-example/kr-sector/shipbuilding/k-조선-미해군-mro-네이버초안.md>).
 
+Global sector deep dive: [LFP 양극재 3편 — 미국 ESS는 왜 양극재 선택지가 좁은가](<analysis-example/global-sector/us-lfp-cathode-choice-constraints.md>).
+
+Global sector Naver draft: [LFP 양극재 3편 — 미국 ESS는 왜 양극재 선택지가 좁은가](<analysis-example/global-sector/naver-post-us-lfp-cathode-choice-constraints.md>).
+
 Chart/valuation example: [대양전기공업 지지·저항선 및 연단위 PER·PBR](<analysis-example/kr/대양전기공업/technical-levels.md>).
 
 Chart-only Naver draft example: [대양전기공업 스윙 차트 체크리스트](<analysis-example/kr/대양전기공업/chart-blog.md>).

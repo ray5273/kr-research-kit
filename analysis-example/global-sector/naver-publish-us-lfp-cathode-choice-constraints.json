@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/mnt/c/Users/Sanghyeok/Documents/codex_workspace/stock-analysis-skill/analysis-example/global-sector/us-lfp-cathode-choice-constraints.md",
+    "memoSha256": "754bce8740bfc48cbbcc844282732f66a8ae24bed8246302e750b1bb7de85623",
+    "asOfDate": "2026-07-27"
+  },
+  "post": {
+    "company": "LFP 양극재",
+    "ticker": "",
+    "title": "LFP 양극재 3편 | 미국 ESS는 왜 양극재 선택지가 좁은가 | 2026-07-27",
+    "issue": "미국 ESS LFP 양극재 선택 제한",
+    "category": null,
+    "tags": [
+      "LFP",
+      "양극재",
+      "ESS",
+      "미국ESS",
+      "배터리소재",
+      "이차전지",
+      "LG에너지솔루션",
+      "삼성SDI",
+      "엘앤에프",
+      "포스코퓨처엠",
+      "FEOC",
+      "배터리공급망",
+      "주식공부",
+      "주식분석"
+    ],
+    "markdownPath": "/mnt/c/Users/Sanghyeok/Documents/codex_workspace/stock-analysis-skill/analysis-example/global-sector/naver-post-us-lfp-cathode-choice-constraints.md",
+    "markdownSha256": "24a2dea10477c7fd3de778fe46ed1938be0b0169775d54b2a5196b6efa11c7db",
+    "images": [],
+    "thumbnail": {
+      "prompt": "LFP 양극재 3편 | 미국 ESS는 왜 양극재 선택지가 좁은가 | 2026-07-27 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.",
+      "relativePath": "assets/naver-thumbnail-us-lfp-cathode-choice-constraints.png",
+      "absolutePath": "/mnt/c/Users/Sanghyeok/Documents/codex_workspace/stock-analysis-skill/analysis-example/global-sector/assets/naver-thumbnail-us-lfp-cathode-choice-constraints.png",
+      "sha256": "304db8f81928a4a751e83647c2b3fbcb68ab2ec3c43654fb38791ebaf1b1fcd8",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-07-26T11:46:55.000Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-07-26T12:19:48.542Z",
+    "expiresAt": "2026-07-26T12:49:48.541Z",
+    "screenshotPath": "/mnt/c/Users/Sanghyeok/Documents/codex_workspace/stock-analysis-skill/analysis-example/global-sector/naver-preview-us-lfp-cathode-choice-constraints.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "c65b8f650c0e9e0c55d97843c84d46de0eafa8ef2146b02a152498b8186d4946",
+    "approvalTokenHash": "5464b58424a24fdfdd7563230ee5d187d72e97e5951a2d7591df321fe9b8bda4",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

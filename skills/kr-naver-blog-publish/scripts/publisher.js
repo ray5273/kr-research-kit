@@ -49,6 +49,10 @@ function scheduledPublication(manifest) {
 }
 const SELECTORS = {
   title: [
+    ".se-title-text",
+    ".se-title-text [contenteditable='true']",
+    ".se-documentTitle [contenteditable='true']",
+    ".se-documentTitle textarea",
     ".se-documentTitle .se-text-paragraph",
     "textarea.se_textarea",
     "textarea[placeholder*='제목']",
@@ -1105,9 +1109,15 @@ class GstackDriver {
       assert(/dom-clicked/i.test(clicked), `Unable to click ${selector}: ${error.message}`);
     }
   }
-  pasteClipboard(plainText, html) {
+  pasteClipboard(plainText, html, options = {}) {
     const plainBase64 = Buffer.from(plainText, "utf8").toString("base64");
     const htmlBase64 = Buffer.from(html || escapeHtml(plainText), "utf8").toString("base64");
+    this.js(`(() => {
+      try { window.focus(); } catch {}
+      const active = document.activeElement;
+      if (active && typeof active.focus === 'function') active.focus();
+      return document.hasFocus ? String(document.hasFocus()) : 'unknown';
+    })()`);
     const result = this.js(`(() => {
       const decode = value => new TextDecoder().decode(Uint8Array.from(atob(value), c => c.charCodeAt(0)));
       const plain = decode(${JSON.stringify(plainBase64)});
@@ -1124,9 +1134,14 @@ class GstackDriver {
       }
     })()`);
     if (!/clipboard-ok/i.test(result)) {
+      this.js(`(() => {
+        try { window.focus(); } catch {}
+        return document.hasFocus ? String(document.hasFocus()) : 'unknown';
+      })()`);
       const fallback = this.js(`navigator.clipboard.writeText(${JSON.stringify(plainText)}).then(() => 'clipboard-ok').catch(error => 'clipboard-error:' + error.message)`);
-      assert(/clipboard-ok/i.test(fallback), `Browser clipboard rejected text insertion: ${result}; fallback: ${fallback}`);
+      assert(/clipboard-ok/i.test(fallback), `Browser clipboard rejected text insertion after focus retry; focus/clipboard retry needed: ${result}; fallback: ${fallback}`);
     }
+    if (options.refocusSelector) this.clickOrDomClick(options.refocusSelector);
     this.run(["press", process.platform === "darwin" ? "Meta+V" : "Control+V"], 60_000);
     this.dismissPastePopups();
   }
@@ -1162,14 +1177,16 @@ class GstackDriver {
     const selector = this.findSelector("title");
     this.clickOrDomClick(selector);
     this.run(["press", process.platform === "darwin" ? "Meta+A" : "Control+A"], 30_000);
-    this.pasteClipboard(value, escapeHtml(value));
+    this.run(["type", value], 30_000);
   }
   setBody(value, html) {
     const selector = this.findSelector("body");
     this.clickOrDomClick(selector);
     this.run(["press", process.platform === "darwin" ? "Meta+A" : "Control+A"], 30_000);
     this.resetInheritedBodyFormatting();
-    this.pasteClipboard(value, html);
+    this.clickOrDomClick(selector);
+    this.run(["press", process.platform === "darwin" ? "Meta+A" : "Control+A"], 30_000);
+    this.pasteClipboard(value, html, { refocusSelector: selector });
   }
   appendBody(value, html) {
     const selector = this.findSelector("body");
