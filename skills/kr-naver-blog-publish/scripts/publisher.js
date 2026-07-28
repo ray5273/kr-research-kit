@@ -180,7 +180,28 @@ function isPublicNaverPostUrl(value) {
   }
 }
 
-function editorBody(markdown) {
+const COLOR_PALETTE = { red: "#d93025", blue: "#1a73e8", brown: "#8a5a2b" };
+const COLOR_LEGEND_TEXT = "색상 안내 — 빨간색: 좋은 것 · 파란색: 안 좋은 의견 · 갈색: 추측성 의견";
+const COLOR_LEGEND_MARKDOWN = "색상 안내 — [red: 빨간색: 좋은 것] · [blue: 파란색: 안 좋은 의견] · [brown: 갈색: 추측성 의견]";
+const COLOR_MARKER_PATTERN = /\[(?:red|blue|brown):\s*[^\]]+\]/;
+
+function markdownVisibleText(markdown) {
+  return String(markdown || "").replace(/\[(?:red|blue|brown):\s*([^\]]+)\]/g, "$1");
+}
+
+function withColorLegend(markdown) {
+  const source = String(markdown || "");
+  if (!COLOR_MARKER_PATTERN.test(source) || markdownVisibleText(source).includes(COLOR_LEGEND_TEXT)) return source;
+  const eol = source.includes("\r\n") ? "\r\n" : "\n";
+  const title = source.match(/^#\s+.+?[ \t]*(?:\r?\n|$)/m);
+  if (!title) return `${COLOR_LEGEND_MARKDOWN}${eol}${eol}${source.replace(/^(?:\r?\n)+/, "")}`;
+  const titleEnd = title.index + title[0].length;
+  const before = source.slice(0, titleEnd).replace(/\r?\n$/, "");
+  const after = source.slice(titleEnd).replace(/^(?:\r?\n)+/, "");
+  return `${before}${eol}${eol}${COLOR_LEGEND_MARKDOWN}${eol}${eol}${after}`;
+}
+
+function renderEditorBody(markdown) {
   return normalizeText(markdownTablesToTsv(markdown)
     .replace(/^#\s+.+?[ \t]*$/m, "")
     .replace(/^!\[[^\]]*]\([^)]+\.png(?:\?[^)]*)?\)\s*$/gim, "")
@@ -193,6 +214,10 @@ function editorBody(markdown) {
     .replace(/\[([^\]]+)]\((https?:\/\/[^)]+)\)/g, "$1 ($2)"));
 }
 
+function editorBody(markdown) {
+  return renderEditorBody(withColorLegend(markdown));
+}
+
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, "&amp;")
@@ -200,8 +225,6 @@ function escapeHtml(value) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
 }
-
-const COLOR_PALETTE = { red: "#d93025", blue: "#1a73e8", brown: "#8a5a2b" };
 
 function colorMarkerHtml(color, value) {
   return `<span style="color:${COLOR_PALETTE[color]};font-weight:700;">${escapeHtml(value)}</span>`;
@@ -268,7 +291,7 @@ function markdownTablesToTsv(markdown) {
   return output.join("\n");
 }
 
-function editorHtml(markdown) {
+function renderEditorHtml(markdown) {
   const lines = markdown
     .replace(/^#\s+.+?[ \t]*$/m, "")
     .replace(/^!\[[^\]]*]\([^)]+\.png(?:\?[^)]*)?\)\s*$/gim, "")
@@ -360,7 +383,12 @@ function editorHtml(markdown) {
   return `<div>${blocks.join("\n")}</div>`;
 }
 
+function editorHtml(markdown) {
+  return renderEditorHtml(withColorLegend(markdown));
+}
+
 function editorContentChunks(markdown) {
+  markdown = withColorLegend(markdown);
   const chunks = [];
   const lines = markdown.split(/(\r?\n)/);
   const logicalLines = [];
@@ -2019,6 +2047,10 @@ class GstackDriver {
 
 function createDriver(args) { return args.fixture ? new FixtureDriver(path.resolve(args.fixture)) : new GstackDriver(); }
 
+function editorContentFingerprint(inspected) {
+  return contentFingerprint({ title: inspected.title, body: normalizeEditorText(inspected.body), imageCount: inspected.imageCount });
+}
+
 function validateEditor(inspected, manifest, expectedBody, options = {}) {
   assert(normalizeText(inspected.title) === normalizeText(manifest.post.title), "Editor title does not match manifest");
   const linkCards = manifestLinkCards(manifest);
@@ -2048,13 +2080,14 @@ function validateEditor(inspected, manifest, expectedBody, options = {}) {
   assert(/(?:^|\n)출처(?:\n|$)/.test(expectedBody), "Generated post has no Sources section");
   assert(expectedBody.includes("매수·매도를 권유하지 않습니다"), "Generated post has no investment disclaimer");
   if (options.expectedHtml) validateBlockFormatting(inspected.formatBlocks, options.expectedHtml);
-  return contentFingerprint({ title: inspected.title, body: normalizeEditorText(inspected.body), imageCount: inspected.imageCount });
+  return editorContentFingerprint(inspected);
 }
 
 function setBodyAndInlineImages(driver, markdown, manifest) {
-  const chunks = editorContentChunks(markdown);
-  const fullBody = editorBody(markdown);
-  const fullHtml = editorHtml(markdown);
+  const publishingMarkdown = withColorLegend(markdown);
+  const chunks = editorContentChunks(publishingMarkdown);
+  const fullBody = renderEditorBody(publishingMarkdown);
+  const fullHtml = renderEditorHtml(publishingMarkdown);
   let imageIndex = 0;
   let insertedText = false;
   if (!chunks.some((chunk) => chunk.type === "image")) {
@@ -2069,8 +2102,8 @@ function setBodyAndInlineImages(driver, markdown, manifest) {
       imageIndex += 1;
       continue;
     }
-    const text = editorBody(chunk.markdown);
-    const html = editorHtml(chunk.markdown);
+    const text = renderEditorBody(chunk.markdown);
+    const html = renderEditorHtml(chunk.markdown);
     if (!insertedText) {
       driver.setBody(text, html);
       insertedText = true;
@@ -2085,14 +2118,15 @@ function setBodyAndInlineImages(driver, markdown, manifest) {
 }
 
 function setBodyWithDailyLinkCards(driver, markdown, manifest) {
+  const publishingMarkdown = withColorLegend(markdown);
   const linkCards = manifestLinkCards(manifest);
   assert(linkCards.length, "Daily market-news link card list is empty");
   assert(!manifest.post.images.length, "Daily market-news link-card placement does not support inline body images");
   for (const url of linkCards) {
     const linePattern = new RegExp(`(^|\\r?\\n)${escapeRegExp(url)}(?=\\r?\\n|$)`);
-    assert(linePattern.test(markdown), `Daily market-news raw URL is missing from generated post body: ${url}`);
+    assert(linePattern.test(publishingMarkdown), `Daily market-news raw URL is missing from generated post body: ${url}`);
   }
-  driver.setBody(editorBody(markdown), editorHtml(markdown));
+  driver.setBody(renderEditorBody(publishingMarkdown), renderEditorHtml(publishingMarkdown));
   if (typeof driver.pressEnterAfterLinkCard === "function") {
     for (const url of linkCards) driver.pressEnterAfterLinkCard(url);
   }
@@ -2106,7 +2140,7 @@ function prepare(args, manifestPath, manifest) {
   const driver = createDriver(args);
   ensureThumbnailArtifact(manifest, driver);
   writeJsonAtomic(manifestPath, manifest);
-  const markdown = fs.readFileSync(manifest.post.markdownPath, "utf8");
+  const markdown = withColorLegend(fs.readFileSync(manifest.post.markdownPath, "utf8"));
   const body = editorBody(markdown);
   const html = editorHtml(markdown);
   driver.openEditor();
@@ -2177,7 +2211,7 @@ function publish(args, manifestPath, manifest) {
   const driver = createDriver(args);
   driver.openPreparedDraft(manifest.prepare.editorUrl);
   assert(driver.isLoggedIn(), "Naver login expired or CAPTCHA detected; public publish was not attempted");
-  const markdown = fs.readFileSync(manifest.post.markdownPath, "utf8");
+  const markdown = withColorLegend(fs.readFileSync(manifest.post.markdownPath, "utf8"));
   const body = editorBody(markdown);
   const html = editorHtml(markdown);
   let restored;
@@ -2434,6 +2468,7 @@ module.exports = {
   GstackDriver,
   browserStartupRecoveryGuide,
   editorBody,
+  editorContentFingerprint,
   editorHtml,
   expectedTableData,
   isPublicNaverPostUrl,
@@ -2442,9 +2477,12 @@ module.exports = {
   publish,
   reconcilePublication,
   cleanupLegacyBrowser,
+  COLOR_LEGEND_MARKDOWN,
+  COLOR_LEGEND_TEXT,
   renderExcelTableHtml,
   validateBlockFormatting,
   validateEditor,
   validateTables,
   verifyArtifacts,
+  withColorLegend,
 };

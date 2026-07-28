@@ -103,6 +103,7 @@ Daily market-news Naver Markdown should not contain watchlist/관심종목 secti
 - Keep `naver-post.md`, `naver-publish.json`, and `naver-preview.png` under `analysis-example/kr/<company>/`.
 - Keep daily market-news blog artifacts under `analysis-example/kr-market/` with the date in the file name.
 - Preserve core figures, reasoning, contrary views, valuation, catalysts, risks, source URLs, and chart order.
+- When the generated Markdown uses `[red:]`, `[blue:]`, or `[brown:]`, the publisher conditionally inserts the matching red/blue/brown color legend once as the first body block after the title. It leaves marker-free posts unchanged and does not modify the generated Markdown file or its manifest hash.
 - Keep the current Naver category when the user did not specify one.
 - Treat the manifest as the authoritative state record: `converted` → `prepared` → `publishing` → `published` or `scheduled`. Daily scheduled posts default to the next Korean weekday at 08:00 KST unless the manifest supplies a valid `automation.schedule.date`. If the single confirmation click cannot be verified, record `publication-unverified`, clear the token, and never click again until the public blog is reconciled.
 - Never reuse a published manifest or a token from an older preparation.

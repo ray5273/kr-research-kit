@@ -8,7 +8,28 @@ const path = require("path");
 const publisherTestRuntime = fs.mkdtempSync(path.join(os.tmpdir(), "kr-naver-publisher-runtime-"));
 process.env.NAVER_PUBLISH_RUNTIME_DIR = publisherTestRuntime;
 const { buildPost } = require("./memo-to-post");
-const { GstackDriver, browserStartupRecoveryGuide, cleanupLegacyBrowser, editorBody, editorHtml, expectedTableData, isPublicNaverPostUrl, parseLegacyProfileDaemons, prepare, publish, reconcilePublication, renderExcelTableHtml, validateBlockFormatting, validateTables } = require("./publisher");
+const {
+  COLOR_LEGEND_MARKDOWN,
+  COLOR_LEGEND_TEXT,
+  FixtureDriver,
+  GstackDriver,
+  browserStartupRecoveryGuide,
+  cleanupLegacyBrowser,
+  editorBody,
+  editorContentFingerprint,
+  editorHtml,
+  expectedTableData,
+  isPublicNaverPostUrl,
+  parseLegacyProfileDaemons,
+  prepare,
+  publish,
+  reconcilePublication,
+  renderExcelTableHtml,
+  validateBlockFormatting,
+  validateEditor,
+  validateTables,
+  withColorLegend,
+} = require("./publisher");
 const { readJson, sha256, writeJsonAtomic } = require("./lib");
 
 assert(!editorBody("# 제목\n\n## 결론\n\n**강조**\n\n![차트](chart.png)").includes("#"));
@@ -116,7 +137,7 @@ assert.strictEqual((editorHtml("> line 1\n> line 2\n> ✓ item").match(/<p\b/g) 
   ], html), /font size mismatch/);
 }
 {
-  const html = editorHtml([
+  const markedMarkdown = [
     "# 제목",
     "",
     "## 결론",
@@ -125,23 +146,44 @@ assert.strictEqual((editorHtml("> line 1\n> line 2\n> ✓ item").match(/<p\b/g) 
     "",
     "[blue: 환율 리스크가 마진을 압박할 수 있다.]",
     "",
-    "[brown: 현재 스탠스는 중립 관찰이다.]",
+    "[brown: 수주 공백은 고객사의 투자 일정 조정 영향으로 추정된다.]",
     "",
     "**일반 강조** 는 색 없이 굵게만 표시된다.",
-  ].join("\n"));
+  ].join("\n");
+  const publishingMarkdown = withColorLegend(markedMarkdown);
+  const html = editorHtml(markedMarkdown);
+  assert(publishingMarkdown.startsWith(`# 제목\n\n${COLOR_LEGEND_MARKDOWN}\n\n## 결론`));
+  assert.strictEqual((publishingMarkdown.match(/색상 안내 —/g) || []).length, 1);
+  assert.strictEqual((editorBody(markedMarkdown).match(/색상 안내 —/g) || []).length, 1);
+  assert(html.includes(`색상 안내 — <span style="color:#d93025;font-weight:700;">빨간색: 좋은 것</span> · <span style="color:#1a73e8;font-weight:700;">파란색: 안 좋은 의견</span> · <span style="color:#8a5a2b;font-weight:700;">갈색: 추측성 의견</span>`));
   assert(html.includes('<span style="color:#d93025;font-weight:700;">자사주 소각으로 하방이 보강됐다.</span>'));
   assert(html.includes('<span style="color:#1a73e8;font-weight:700;">환율 리스크가 마진을 압박할 수 있다.</span>'));
-  assert(html.includes('<span style="color:#8a5a2b;font-weight:700;">현재 스탠스는 중립 관찰이다.</span>'));
+  assert(html.includes('<span style="color:#8a5a2b;font-weight:700;">수주 공백은 고객사의 투자 일정 조정 영향으로 추정된다.</span>'));
   assert(html.includes("<strong>일반 강조</strong>"));
   assert(!html.includes("<strong>일반 강조</strong>는 색"));
   assert(html.includes("font-size:28px"));
 }
 {
-  const html = editorHtml("# 제목\n\n## 결론\n\n순현금과 배당수익률\n\n역성장과 마진 압축 리스크");
+  const markerFree = "# 제목\n\n## 결론\n\n순현금과 배당수익률\n\n역성장과 마진 압축 리스크";
+  const html = editorHtml(markerFree);
+  assert.strictEqual(withColorLegend(markerFree), markerFree);
+  assert(!editorBody(markerFree).includes(COLOR_LEGEND_TEXT));
   assert(!html.includes("color:#d93025"));
   assert(!html.includes("color:#1a73e8"));
   assert(html.includes("순현금과 배당수익률"));
   assert(html.includes("역성장과 마진 압축 리스크"));
+}
+{
+  const existingLegend = [
+    "# 제목",
+    "",
+    COLOR_LEGEND_MARKDOWN,
+    "",
+    "[red: 긍정 의견이다.]",
+  ].join("\n");
+  assert.strictEqual(withColorLegend(existingLegend), existingLegend);
+  assert.strictEqual((editorBody(existingLegend).match(/색상 안내 —/g) || []).length, 1);
+  assert.strictEqual((editorHtml(existingLegend).match(/빨간색: 좋은 것/g) || []).length, 1);
 }
 {
   const html = editorHtml([
@@ -340,6 +382,9 @@ function makeDailyCase(fixtureOverrides = {}) {
   assert(prepared.approvalToken);
   const preparedFixture = JSON.parse(fs.readFileSync(test.fixture, "utf8"));
   const preparedManifest = readJson(test.manifest);
+  const storedMarkdown = fs.readFileSync(test.post, "utf8");
+  assert(!storedMarkdown.includes(COLOR_LEGEND_TEXT));
+  assert.strictEqual(preparedManifest.post.markdownSha256, sha256(storedMarkdown));
   assert.strictEqual(preparedManifest.post.thumbnail.prompt, `${preparedManifest.post.title} 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.`);
   assert.strictEqual(preparedManifest.post.thumbnail.source, "gemini-web");
   assert.strictEqual(preparedManifest.post.thumbnail.status, "generated");
@@ -360,10 +405,25 @@ function makeDailyCase(fixtureOverrides = {}) {
   assert(preparedFixture.editor.bodyHtml.includes('data-kr-naver-signature="true"'));
   assert(preparedFixture.editor.bodyHtml.includes("color:#d93025"));
   assert(preparedFixture.editor.bodyHtml.includes("color:#1a73e8"));
+  assert(preparedFixture.editor.bodyHtml.includes("color:#8a5a2b"));
+  assert.strictEqual((preparedFixture.editor.body.match(/색상 안내 —/g) || []).length, 1);
+  assert(preparedFixture.editor.body.startsWith(COLOR_LEGEND_TEXT));
+  assert(preparedFixture.editor.body.indexOf(COLOR_LEGEND_TEXT) < preparedFixture.editor.body.indexOf("이 글은"));
   assert(preparedFixture.editor.body.includes("차트 분석"));
   assert(preparedFixture.editor.body.indexOf("차트 분석") < preparedFixture.editor.body.indexOf("투자 판단의 핵심 축"));
   assert(preparedFixture.editor.body.indexOf("차트 4.") < preparedFixture.editor.body.indexOf("투자 판단의 핵심 축"));
   assert(preparedFixture.editor.body.indexOf("차트 4.") < preparedFixture.editor.body.indexOf("판단축\t현재 판정\t왜 중요한가"));
+  const inspected = new FixtureDriver(test.fixture).inspect();
+  assert.strictEqual(preparedManifest.prepare.contentFingerprint, editorContentFingerprint(inspected));
+  const inspectedWithoutLegend = {
+    ...inspected,
+    body: inspected.body.replace(`${COLOR_LEGEND_TEXT}\n\n`, ""),
+  };
+  assert.notStrictEqual(preparedManifest.prepare.contentFingerprint, editorContentFingerprint(inspectedWithoutLegend));
+  assert.throws(
+    () => validateEditor(inspectedWithoutLegend, preparedManifest, editorBody(fs.readFileSync(test.post, "utf8"))),
+    /Editor body does not match generated post/,
+  );
   const published = publish({ fixture: test.fixture, token: prepared.approvalToken, "confirm-public": "yes" }, test.manifest, readJson(test.manifest));
   assert.strictEqual(published.status, "published");
   assert.throws(() => publish({ fixture: test.fixture, token: prepared.approvalToken, "confirm-public": "yes" }, test.manifest, readJson(test.manifest)), /already published/);
