@@ -99,9 +99,58 @@ function validatePathContract() {
   );
 }
 
+// The README used to be an append-only changelog: every new example added one more
+// link until installation sat 147 lines down. Example links now live in the generated
+// docs/ARTIFACTS.md, and this cap makes the wall fail CI if it ever starts regrowing.
+const README_ARTIFACT_LINK_CAP = 10;
+
+function validateReadmeArtifactLinkCap(relativePath) {
+  const text = readNormalized(relativePath);
+  const linkPattern = /\[[^\]]+]\(([^)]+)\)/g;
+  const artifactLinks = [...text.matchAll(linkPattern)]
+    .map((match) => decodeMarkdownTarget(match[1]))
+    .filter((target) => target && target.startsWith("analysis-example/"));
+  assert(
+    artifactLinks.length <= README_ARTIFACT_LINK_CAP,
+    `${relativePath}: ${artifactLinks.length} analysis-example links exceeds the cap of ${README_ARTIFACT_LINK_CAP}. Index new artifacts in docs/ARTIFACTS.md (node scripts/build-artifact-index.js) instead of appending to the README.`
+  );
+}
+
+// "30 skills" sat in both READMEs while skills/ held 34. A claim that drifts silently
+// is worse than no claim, so the number is now checked against the directory count.
+function validateSkillCountClaim() {
+  const actual = fs
+    .readdirSync(path.join(repoRoot, "skills"), { withFileTypes: true })
+    .filter((entry) => entry.isDirectory()).length;
+
+  const claims = [
+    { file: "README.md", pattern: /(\d+)\s+skills/ },
+    { file: "README-kr.md", pattern: /스킬\s+(\d+)|(\d+)개\s*스킬/ },
+  ];
+
+  for (const claim of claims) {
+    const match = readNormalized(claim.file).match(claim.pattern);
+    assert(match, `${claim.file}: missing a skill-count claim to verify against skills/`);
+    if (!match) {
+      continue;
+    }
+    const claimed = Number(match[1] || match[2]);
+    assert(
+      claimed === actual,
+      `${claim.file}: claims ${claimed} skills but skills/ contains ${actual}`
+    );
+  }
+}
+
 validatePathContract();
 validateReadmeLinks("README.md");
 validateReadmeLinks("README-kr.md");
+validateReadmeLinks("docs/ARTIFACTS.md");
+validateReadmeLinks("docs/USAGE.md");
+validateReadmeLinks("docs/EXAMPLES.md");
+validateReadmeArtifactLinkCap("README.md");
+validateReadmeArtifactLinkCap("README-kr.md");
+validateSkillCountClaim();
 
 if (failures.length > 0) {
   for (const failure of failures) {

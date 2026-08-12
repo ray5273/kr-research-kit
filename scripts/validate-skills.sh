@@ -643,6 +643,7 @@ EOF
 done
 
 node "$REPO_ROOT/scripts/validate-contracts.js" >/dev/null
+node "$REPO_ROOT/scripts/build-artifact-index.js" --check >/dev/null
 node "$REPO_ROOT/scripts/audit-analysis-artifacts.js" >/dev/null
 node "$REPO_ROOT/scripts/test-telegram.js" >/dev/null
 

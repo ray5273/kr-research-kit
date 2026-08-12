@@ -9,7 +9,7 @@
 
 - When you add or update a stock analysis example, keep it under `analysis-example/<market>/<company>/`.
 - When a stock-analysis skill is invoked in this repo and the workspace is writable, create or update the matching report file under `analysis-example/<market>/<company>/memo.md` instead of leaving the analysis only in chat.
-- When you add a new example file, update `README.md` with a direct markdown link to it.
+- When you add a new example file, do NOT append a link to `README.md`. Stage the example first (`git add`), then run `node scripts/build-artifact-index.js` to regenerate `docs/ARTIFACTS.md`, and commit the index together with the example. The index deliberately covers only git-tracked files so its links never 404 on a fresh clone. The README carries only a handful of curated representative links; replace one only when the new artifact is a better canonical demonstration, never by appending.
 - When a commit changes a skill's required output shape, refresh any affected example documents so they still match the current skill behavior.
 - When an example document embeds a chart image, refresh the linked PNG asset together with the markdown file so the visual stays in sync with the text.
 - When you update an existing Korean memo with follow-up analysis, preserve the original `기준일`, refresh `최근 업데이트일`, and append or replace a dated block under `## Update Log` instead of rewriting the whole memo by default.

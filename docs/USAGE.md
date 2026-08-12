@@ -186,4 +186,81 @@ Use $kr-sector-update to update analysis-example/kr-sector/국내 데이터센�
 /kr-sector-update update analysis-example/kr-sector/국내 데이터센터.md with policy, regulation, and company developments after the memo date, and append a dated update block.
 ```
 
-For end-to-end scenarios (Naver KOL one-cycle, foreign-IB tracking, contract maturity, leadership screening, sector compare, portfolio health), see the seven scenarios in [MARKETPLACE.md § Use cases](MARKETPLACE.md#use-cases-paste-into-submission-form-%EB%98%90%EB%8A%94-readme).
+## End-to-end scenarios
+
+Full workflows that chain several skills. The two shortest — Naver KOL one-cycle and foreign-IB consensus tracking — live in [README.md § First run](../README.md#first-run). The rest are here.
+
+### DART single-supply contract timeline (5 min)
+
+```text
+/kr-stock-dart-analysis 한미글로벌이 최근 24개월 동안 공시한 단일판매·공급계약을 모두 행별로 정리하고, 현재 유효 계약 금액 중 2027년까지, 2028년까지, 그 이후 연도별로 얼마나 종료되는지 만기 분포 표도 추가해줘. 공시에서 수주잔고를 따로 밝히지 않으면 정식 backlog가 아니라 계약 기간 기준 커버리지라는 점을 분명히 적어줘.
+```
+
+Output: row-by-row contract timeline + maturity distribution + explicit "disclosed vs derived" labels. Sample: [한미글로벌 수주계약리스트](<../analysis-example/kr/한미글로벌/수주계약리스트.md>).
+
+### Daily KOSPI + KOSDAQ leadership screen (2 min)
+
+```text
+/kr-market-leaders 오늘 기준 KOSPI + KOSDAQ 통합 universe에서 단기·중기·구조 lens별 leadership 스크리닝 돌려줘. RS, 거래량, 52주 신고가 트리거 포함하고, 어제 leaders-YYYY-MM-DD.md와 비교해서 오늘 신규 진입한 top-20 종목을 별도 표로 정리해줘.
+```
+
+Output: `analysis-example/kr-market/leaders-<YYYY-MM-DD>.md` + `.json` cache with prior-day diff. Daily artifact, regenerated each run and not kept in the repo.
+
+Optional Telegram delivery is a separate post-processing step, never part of collection or Naver publishing:
+
+```bash
+node skills/telegram-report-sender/scripts/send-telegram.js --input analysis-example/kr-market/leaders-2026-07-04.json --dry-run   # replace with today's artifact
+```
+
+### Undisclosed customer / end-demand reverse tracking (CSV-first)
+
+```text
+/kr-trade-flow-analysis 엘앤에프(066970)의 중국 NCM 관련 수출입 CSV를 trade-flow-data.json으로 정규화하고, DART/peer/기존 공급계약과 교차검증해서 공시 확인 사실과 high-confidence investment inference를 분리한 trade-flow-analysis.md를 작성해줘. Tesla EV LFP는 제외하고 Samsung SDI/미국향 ESS LFP는 별도 thesis로 추적해줘.
+```
+
+Output: `analysis-example/kr/<company>/trade-flow-analysis.md` + `trade-flow-data.json`. Reverse-tracks undisclosed customers and end demand through trade statistics while keeping `Trade Flow Inference` separate from `confirmed disclosure`. Skill files: [kr-trade-flow-analysis](../skills/kr-trade-flow-analysis/SKILL.md), [output format](../skills/kr-trade-flow-analysis/references/output-format.md). Example: [엘앤에프 trade-flow-analysis.md](<../analysis-example/kr/엘앤에프/trade-flow-analysis.md>).
+
+### Korean brokerage report watch
+
+```text
+Use $kr-analyst-report-watch in daily mode for today's Korean brokerage report flow. Summarize the Top 10 public reports, compare narrative changes by topic, and write analysis-example/kr-reports/report-watch-daily-YYYY-MM-DD.md and .json.
+```
+
+Output: `analysis-example/kr-reports/report-watch-<mode>-<YYYY-MM-DD>.md` + `.json`, with topic keys, narrative delta labels, source quality gaps, and links back to public report sources. Skill files: [kr-analyst-report-watch](../skills/kr-analyst-report-watch/SKILL.md), [output format](../skills/kr-analyst-report-watch/references/output-format.md).
+
+To send the summary and attachment to Telegram after generation, configure [`.env.telegram.example`](../.env.telegram.example) values in the `telegram-report-sender` skill folder's gitignored `.env`, then run `node skills/telegram-report-sender/scripts/send-telegram.js --input <artifact>`.
+
+### Daily market-news automation (KR and U.S.)
+
+```text
+Use $kr-daily-market-news to create today's Korean market-wide and sector daily news report for blog publication. Write analysis-example/kr-market/daily-news-YYYY-MM-DD.md and .json, then use $kr-naver-blog-publish in scheduled mode.
+```
+
+Output: `analysis-example/kr-market/daily-news-<YYYY-MM-DD>.md` + `.json` and a dated Naver publish manifest. Sector collection uses the default seed list at [examples/kr/daily-sector-stocks.json](../examples/kr/daily-sector-stocks.json).
+
+U.S. daily market news uses the same artifact contract with U.S. sources, New York date filtering, and GICS-style sector seeds:
+
+```text
+Use $us-daily-market-news to create today's U.S. market-wide and sector daily news report for blog publication. Write analysis-example/us-market/daily-news-YYYY-MM-DD.md and .json, then use $kr-naver-blog-publish in scheduled mode.
+```
+
+Sector collection uses [examples/us/daily-sector-stocks.json](../examples/us/daily-sector-stocks.json) and the optional watchlist compatibility file at [examples/us/daily-watchlist.json](../examples/us/daily-watchlist.json). The evidence-first workflow writes an editorial queue; reviewed Korean copy must cite body evidence IDs using [daily-market-editorial.example.json](../examples/us/daily-market-editorial.example.json).
+
+Telegram delivery is available for Korean/U.S. daily-news JSON or Markdown artifacts as an explicit follow-up command. It sends a short summary plus the matching `.md` file when present:
+
+```bash
+node skills/telegram-report-sender/scripts/send-telegram.js --input analysis-example/kr-market/daily-news-2026-07-02.json --dry-run
+node skills/telegram-report-sender/scripts/send-telegram.js --input analysis-example/us-market/daily-news-2026-07-02.json --summary-only
+```
+
+Remove `--dry-run` only after `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` are set in the sender skill folder `.env` or passed with CLI flags.
+
+### U.S. SEC filing precision
+
+```text
+Use $us-sec-analysis for AAPL and create a Korean SEC evidence pack from the latest 10-K and 10-Q with XBRL facts and Source Map.
+```
+
+Output: `analysis-example/us/<company>/sec-analysis.md` plus optional `sec-reference.md` and `sec-cache.json`. Examples: [Tesla SEC analysis](../analysis-example/us/Tesla/sec-analysis.md) and [Tesla full memo](../analysis-example/us/Tesla/memo.md). Offline validation fixtures: [AAPL submissions sample](../examples/us-sec-analysis/submissions-aapl-sample.json), [AAPL companyfacts sample](../examples/us-sec-analysis/companyfacts-aapl-sample.json), and [AAPL 10-K HTML sample](../examples/us-sec-analysis/filing-10k-aapl-sample.html).
+
+More scenarios (sector compare, portfolio health, post-earnings update) → [MARKETPLACE.md § Use cases](MARKETPLACE.md#use-cases-paste-into-submission-form-%EB%98%90%EB%8A%94-readme).

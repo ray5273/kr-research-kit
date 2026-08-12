@@ -60,6 +60,12 @@ bash ./scripts/install-claude-skill.sh kr-market-sentiment
 bash ./scripts/install-all-claude-skills.sh
 ```
 
+**Regenerate the analysis artifact index (`git add` the new example first — the index covers only git-tracked files so its links never 404 on a fresh clone):**
+```bash
+node scripts/build-artifact-index.js            # writes docs/ARTIFACTS.md
+node scripts/build-artifact-index.js --check    # fails if the committed index is stale
+```
+
 **Run a bundled script directly (Node.js, no npm install needed):**
 ```bash
 node skills/kr-stock-analysis/scripts/chart-basics.js --input examples/kr/chart-sample.json --png-out chart.png

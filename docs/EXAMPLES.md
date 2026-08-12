@@ -4,9 +4,8 @@ Audited golden examples and reusable fixtures, grouped by the question each arti
 
 ## Full decision memos — start here
 
-- [KR — HD현대중공업 Memo](<../analysis-example/kr/HD현대중공업/memo.md>) — full shipbuilding-cycle decision memo with DART recheck, valuation bands, five chart panels, and rule screen.
+- [KR — 한화엔진 Memo](<../analysis-example/kr/한화엔진/memo.md>) — new-buy decision memo running the full chain: data pack, DART analysis, domestic sell-side, foreign-IB views, blogger insight, and a Naver draft.
 - [KR — 리가켐바이오 Memo](<../analysis-example/kr/리가켐바이오/memo.md>) — biotech platform memo that separates disclosed facts, pipeline option value, burn rate, and independent views.
-- [KR — 한화오션 Memo](<../analysis-example/kr/한화오션/memo.md>) — shipbuilding memo with sell-side consensus and alternative-view inputs.
 - [KR — HMM Memo](<../analysis-example/kr/HMM/memo.md>) — cyclical shipping memo backed by data pack, DART work, and analyst-report insight.
 - [KR — 엘앤에프 Memo](<../analysis-example/kr/엘앤에프/memo.md>) — battery-materials memo with chart package and sell-side insight.
 - [KR — LG CNS Memo](<../analysis-example/kr/LG CNS/memo.md>) — IT services / cloud example with DART references and contract-oriented context.
@@ -14,15 +13,15 @@ Audited golden examples and reusable fixtures, grouped by the question each arti
 - [KR — 현대오토에버 Memo](<../analysis-example/kr/현대오토에버/memo.md>) — auto software / IT services example with valuation chart artifacts.
 - [KR — LIG넥스원 Memo](<../analysis-example/kr/LIG넥스원/memo.md>) — defense-stock memo with filing-backed context.
 - [KR — 대양전기공업 Memo](<../analysis-example/kr/대양전기공업/memo.md>) — smaller KRX company example.
-- [KR — 삼성전자 Sell-Side Count Memo](<../analysis-example/kr/삼성전자/memo.md>) and [KR — SK하이닉스 Sell-Side Count Memo](<../analysis-example/kr/SK하이닉스/memo.md>) — semiconductor examples focused on sell-side coverage count and market framing.
+- [KR — 한진칼 Memo](<../analysis-example/kr/한진칼/memo.md>) — holding-company memo with foreign-IB coverage and a separate [long-form version](<../analysis-example/kr/한진칼/fullmemo.md>).
+- [KR — 부국증권 Memo](<../analysis-example/kr/부국증권/memo.md>) — common vs. preferred share-class decision memo.
 - [KR — HD현대 Memo](<../analysis-example/kr/HD현대/memo.md>) — OpenDART-backed holding-company example.
-- [KR — 테스 Memo](<../analysis-example/kr/테스/memo.md>) — fresh Korean equipment-stock memo anchored on DART 1Q results, customer concentration, backlog, valuation, and synchronized chart panels.
 - [US — Tesla Memo](<../analysis-example/us/Tesla/memo.md>) — SEC-grounded U.S. growth-stock memo with XBRL facts, Q2 operating update, valuation, catalysts, risks, and Source Map.
 
 ## Naver blog publishing — memo-to-post transformation
 
-- [KR — SOOP Naver Blog Post](<../analysis-example/kr/SOOP/naver-post.md>) — mobile-friendly blog version that preserves the memo's thesis, figures, contrary views, charts, sources, and investment disclaimer.
-- [KR — 리가켐바이오 Naver Blog Post](<../analysis-example/kr/리가켐바이오/naver-post.md>) and [publish manifest](<../analysis-example/kr/리가켐바이오/naver-publish.json>) — prepared Naver draft backed by the 2026-06-25 full memo.
+- [KR — 한화엔진 Naver Blog Post](<../analysis-example/kr/한화엔진/naver-post.md>) and [publish manifest](<../analysis-example/kr/한화엔진/naver-publish.json>) — mobile-friendly blog version that preserves the memo's thesis, figures, contrary views, charts, sources, and investment disclaimer.
+- [KR — 부국증권 Naver Blog Post](<../analysis-example/kr/부국증권/naver-post.md>) and [publish manifest](<../analysis-example/kr/부국증권/naver-publish.json>) — prepared Naver draft backed by the share-class decision memo.
 
 ## DART filing extraction and data packs
 
@@ -35,7 +34,7 @@ Audited golden examples and reusable fixtures, grouped by the question each arti
 - [KR — HMM Data Pack](<../analysis-example/kr/HMM/data-pack.md>)
 - [KR — HMM DART 분석](<../analysis-example/kr/HMM/dart-analysis.md>)
 - [KR — HMM Analyst Report Insight](<../analysis-example/kr/HMM/analyst-report-insight.md>)
-- [KR — 한화오션 Analyst Report Insight](<../analysis-example/kr/한화오션/analyst-report-insight.md>)
+- [KR — 한화엔진 Analyst Report Insight](<../analysis-example/kr/한화엔진/analyst-report-insight.md>)
 - [KR — HD현대 DART Reference (OpenDART)](<../analysis-example/kr/HD현대/dart-reference.md>)
 - [KR — HD현대 DART Coverage](<../analysis-example/kr/HD현대/dart-coverage.json>)
 - [US — Tesla SEC 분석](<../analysis-example/us/Tesla/sec-analysis.md>) — SEC submissions, latest 10-K/10-Q, latest 8-K Exhibit 99.1, XBRL companyfacts, and Source Map.
@@ -44,8 +43,8 @@ Audited golden examples and reusable fixtures, grouped by the question each arti
 
 - [KR — 엘앤에프 Chart Analysis](<../analysis-example/kr/엘앤에프/chart-analysis.md>) — markdown technical read.
 - [KR — 엘앤에프 Pattern/Wave Chart PNG](<../analysis-example/kr/assets/엘앤에프-chart-pattern.png>) and [Pattern/Wave CSV](<../analysis-example/kr/assets/엘앤에프-chart-pattern-waves.csv>) — wave/Fibonacci sidecar output.
-- [KR — F&F Chart Analysis](<../analysis-example/kr/F&F/chart-analysis.md>) — chart-only KOSPI package built from 500 daily bars with five PNG panels and structure/pattern CSV sidecars.
-- [KR — HD현대중공업 Main Chart PNG](<../analysis-example/kr/HD현대중공업/assets/HD현대중공업-chart.png>), [Overlay](<../analysis-example/kr/HD현대중공업/assets/HD현대중공업-chart-overlay.png>), [Momentum](<../analysis-example/kr/HD현대중공업/assets/HD현대중공업-chart-momentum.png>), [Structure](<../analysis-example/kr/HD현대중공업/assets/HD현대중공업-chart-structure.png>), and [Pattern](<../analysis-example/kr/HD현대중공업/assets/HD현대중공업-chart-pattern.png>) — full five-panel chart package.
+- [KR — 부국증권 Chart Analysis](<../analysis-example/kr/부국증권/chart-analysis.md>) — chart-only KOSPI package built from daily bars with PNG panels and structure/pattern CSV sidecars.
+- [KR — HD현대중공업 Main Chart PNG](<../analysis-example/kr/HD현대중공업/assets/HD현대중공업-chart.png>) and [Momentum](<../analysis-example/kr/HD현대중공업/assets/HD현대중공업-chart-momentum.png>) — the two panels embedded in the README.
 - [KR — HD현대 Chart PNG](<../analysis-example/kr/assets/HD현대-chart.png>)
 - [KR — HD현대 Overlay Chart PNG](<../analysis-example/kr/assets/HD현대-chart-overlay.png>)
 - [KR — HD현대 Momentum Chart PNG](<../analysis-example/kr/assets/HD현대-chart-momentum.png>)
@@ -68,10 +67,11 @@ Audited golden examples and reusable fixtures, grouped by the question each arti
 - [KR — 리가켐바이오 Naver Blogger Candidates](<../analysis-example/kr/리가켐바이오/naver-bloggers.json>)
 - [KR — 삼성SDS Naver Blogger Candidates](<../analysis-example/kr/삼성SDS/naver-bloggers.json>)
 
-## KRX market leadership screens
+## KRX market screens
 
-- [KRX market leaders 2026-06-25](../analysis-example/kr-market/leaders-2026-06-25.md) — integrated KOSPI + KOSDAQ technical leadership screen with short-term, intermediate, structural, and composite lenses.
-- [KRX market leaders 2026-06-26](../analysis-example/kr-market/leaders-2026-06-26.md) — daily full-universe leadership screen with prior-day 신규 진입 comparison across top-20 lenses, RS, volume, and 52-week-high triggers.
+- [KOSPI · KOSDAQ Minervini Strict/SEPA screen 2026-07-10](../analysis-example/kr-market/minervini-screen-2026-07-10.md) — Strict Template passers separated from objectified VCP / pivot-breakout SEPA-style candidates.
+
+Daily `kr-market-leaders` output is regenerated each run and is not kept in the repo.
 
 ## Daily market-news automation
 

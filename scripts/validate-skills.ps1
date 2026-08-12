@@ -538,6 +538,9 @@ if ($sectorExampleCount -lt 2) {
 node (Join-Path $repoRoot "scripts\validate-contracts.js")
 if ($LASTEXITCODE -ne 0) { throw "Contract validation failed." }
 
+node (Join-Path $repoRoot "scripts\build-artifact-index.js") --check
+if ($LASTEXITCODE -ne 0) { throw "Artifact index is stale. Run: node scripts/build-artifact-index.js" }
+
 node (Join-Path $repoRoot "scripts\audit-analysis-artifacts.js")
 if ($LASTEXITCODE -ne 0) { throw "Golden artifact audit failed." }
 
