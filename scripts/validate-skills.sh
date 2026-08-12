@@ -221,6 +221,14 @@ if (!pattern.test(text)) {
             if ! grep -Fq '## Decision Frame' "$REPORT_SAMPLE"; then
                 continue
             fi
+            # Strategy and market-level memos also live under analysis-example/kr/ and reuse
+            # the Decision Frame shape, but they are not single-stock analysis and carry a
+            # pseudo-ticker (KRX-52W-HIGH, KRX-FACTOR) instead of a six-digit KRX code.
+            # The single-stock section contract does not apply to them.
+            MEMO_TICKER=$(grep -m1 -E '^[-*[:space:]]*티커[[:space:]]*:' "$REPORT_SAMPLE" | sed -E 's/.*티커[[:space:]]*:[[:space:]]*//' | tr -d '[:space:]')
+            if [ -n "$MEMO_TICKER" ] && ! printf '%s' "$MEMO_TICKER" | grep -Eq '^[0-9]{6}'; then
+                continue
+            fi
             if ! grep -Fq '## Street / Alternative Views' "$REPORT_SAMPLE"; then
                 echo "Expected stock memo example to include Street / Alternative Views: $REPORT_SAMPLE" >&2
                 exit 1
