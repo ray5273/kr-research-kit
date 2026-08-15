@@ -905,6 +905,159 @@ function parseNewsHeadlines(text) {
   return results;
 }
 
+// --- Structured news search -------------------------------------------------
+//
+// `searchNaverNews` returns headline strings only. Callers that need article
+// URLs, press names, and dates (kr-foreign-analyst) use the structured variant
+// below, which joins two views of the same search page:
+//
+//   browseText  -> press / date / title / snippet, in reading order
+//   browseLinks -> "title새 창 열림 → url" lines, the authoritative URLs
+//
+// The two are joined on the exact title string (both views truncate long titles
+// identically, so equality holds).
+
+const NEWS_ITEM_MARKER = "Keep에 저장Keep에 바로가기새 창 열림";
+const NEWS_LINK_SUFFIX = "새 창 열림";
+
+// "3일 전" / "1주 전" / "2시간 전" / "2026.08.15." -> ISO yyyy-mm-dd.
+// Returns null when no date token is present.
+function parseNewsDateToken(raw, now = new Date()) {
+  if (!raw) return null;
+
+  const absolute = raw.match(/(\d{4})\.(\d{2})\.(\d{2})\./);
+  if (absolute) return `${absolute[1]}-${absolute[2]}-${absolute[3]}`;
+
+  const relative = raw.match(/(\d+)\s*(분|시간|일|주|개월|달|년)\s*전/);
+  if (!relative) return null;
+
+  const amount = Number(relative[1]);
+  if (!Number.isFinite(amount)) return null;
+
+  const d = new Date(now.getTime());
+  switch (relative[2]) {
+    case "분":
+      d.setMinutes(d.getMinutes() - amount);
+      break;
+    case "시간":
+      d.setHours(d.getHours() - amount);
+      break;
+    case "일":
+      d.setDate(d.getDate() - amount);
+      break;
+    case "주":
+      d.setDate(d.getDate() - amount * 7);
+      break;
+    case "개월":
+    case "달":
+      d.setMonth(d.getMonth() - amount);
+      break;
+    case "년":
+      d.setFullYear(d.getFullYear() - amount);
+      break;
+    default:
+      return null;
+  }
+  const pad = (n) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
+
+// Each result block in the text dump reads:
+//   새 창 열림<PRESS>새 창 열림<DATE>[네이버뉴스]<MARKER><TITLE>새 창 열림<SNIPPET>
+// so the press/date for item i sit at the tail of the segment *before* it.
+function parseNewsItemsFromText(text, now = new Date()) {
+  if (!text) return [];
+  const segments = text.split(NEWS_ITEM_MARKER);
+  if (segments.length < 2) return [];
+
+  const items = [];
+  for (let i = 1; i < segments.length; i += 1) {
+    const body = segments[i].split(NEWS_LINK_SUFFIX);
+    const title = (body[0] || "").trim();
+    if (!title) continue;
+
+    const snippet = (body[1] || "").trim();
+
+    // Walk the previous segment backwards to the first part carrying a date
+    // token; the part right before it is the press name.
+    const head = segments[i - 1].split(NEWS_LINK_SUFFIX);
+    let date = null;
+    let press = null;
+    for (let j = head.length - 1; j >= 0; j -= 1) {
+      const parsed = parseNewsDateToken(head[j], now);
+      if (parsed) {
+        date = parsed;
+        press = (head[j - 1] || "").trim() || null;
+        break;
+      }
+    }
+
+    items.push({ title, snippet, press, date });
+  }
+  return items;
+}
+
+// Map exact title -> article URL from the browseLinks dump. Only deep links
+// count; a bare publisher root is the press logo, not an article.
+function parseNewsLinkMap(linksText) {
+  const map = new Map();
+  if (!linksText) return map;
+
+  for (const line of linksText.split(/\r?\n/)) {
+    const arrowIdx = line.indexOf(" → ");
+    if (arrowIdx < 0) continue;
+
+    let title = line.slice(0, arrowIdx).trim();
+    const url = line.slice(arrowIdx + 3).trim();
+    if (!/^https?:/.test(url)) continue;
+    if (!title.endsWith(NEWS_LINK_SUFFIX)) continue;
+
+    title = title.slice(0, -NEWS_LINK_SUFFIX.length).trim();
+    if (!title) continue;
+
+    // Require a path beyond "/" so publisher home pages drop out.
+    let pathname = "";
+    try {
+      pathname = new URL(url).pathname;
+    } catch {
+      continue;
+    }
+    if (!pathname || pathname === "/") continue;
+
+    if (!map.has(title)) map.set(title, url);
+  }
+  return map;
+}
+
+function searchNaverNewsStructured(query, { max = 30, verbose = false } = {}) {
+  const encoded = encodeURIComponent(query);
+  const url = `https://search.naver.com/search.naver?where=news&query=${encoded}&sort=1`;
+
+  const linksRaw = browseLinks(url, { verbose });
+  const textRaw = browseText(url, { verbose });
+
+  const linkMap = parseNewsLinkMap(linksRaw);
+  const items = parseNewsItemsFromText(textRaw);
+
+  const results = [];
+  const seen = new Set();
+  for (const item of items) {
+    const articleUrl = linkMap.get(item.title);
+    if (!articleUrl) continue; // no resolvable URL -> not fetchable downstream
+    if (seen.has(articleUrl)) continue;
+    seen.add(articleUrl);
+    results.push({
+      title: item.title,
+      url: articleUrl,
+      press: item.press,
+      date: item.date,
+      snippet: item.snippet,
+    });
+    if (results.length >= max) break;
+  }
+  return results;
+}
+
 function readBlogPost(blogId, logNo) {
   if (!blogId || !logNo) return null;
   // Naver desktop PostView.naver renders the body inside an iframe (#mainFrame),
@@ -975,6 +1128,7 @@ module.exports = {
   browseLinks,
   searchNaverBlog,
   searchNaverNews,
+  searchNaverNewsStructured,
   readBlogPostList,
   readBlogPost,
   searchWithinBlog,
@@ -986,6 +1140,9 @@ module.exports = {
   parseNaverSearchLinks,
   parseNewsHeadlines,
   parseNewsHeadlinesFromLinks,
+  parseNewsItemsFromText,
+  parseNewsLinkMap,
+  parseNewsDateToken,
   parsePostList,
   parsePostListFromLinks,
   parseBlogSearchResults,

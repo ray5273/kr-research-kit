@@ -20,11 +20,14 @@ const crypto = require("crypto");
 const browseNaver = require("../../kr-naver-browse/scripts/browse-naver.js");
 const {
   extractBrokers,
-  extractTargetPrice,
+  extractTargetPriceForCompany,
   extractRating,
   extractReportDate,
   extractThesisSnippet,
   paragraphAroundBroker,
+  companyAliases,
+  brokerCompanySentences,
+  relevantBrokerWindows,
 } = require("./lib/article-parser.js");
 
 const DEFAULT_MAX_ARTICLES = 20;
@@ -211,16 +214,40 @@ function fetchArticleBody(url, opts) {
   return { text, fromCache: false };
 }
 
-function buildRecords(article, text) {
+function buildRecords(article, text, opts = {}) {
   const brokers = extractBrokers(text);
   if (!brokers.length) return [];
+  const aliases = companyAliases(opts.company, opts.ticker);
   const records = [];
   for (const broker of brokers) {
-    const para = paragraphAroundBroker(text, broker);
-    const rating = extractRating(para) || extractRating(text);
-    const targetPriceKrw = extractTargetPrice(para) || extractTargetPrice(text);
-    const reportDate = extractReportDate(para, article.date) || extractReportDate(text, article.date);
-    const snippet = extractThesisSnippet(text, broker, { maxChars: 240 });
+    // A publisher page carries navigation, "많이 본 기사" rails, and unrelated
+    // tickers. Keep only the windows where this broker is named next to the
+    // company we asked about; if there are none, the mention is not coverage
+    // of this name and the whole record is dropped.
+    const windows = relevantBrokerWindows(text, broker, aliases);
+    if (!windows.length) continue;
+
+    // Extract strictly inside those windows, and read the rating/target price
+    // only from sentences that name the company. Falling back to the full page
+    // is what previously attached SK하이닉스's target price to 삼성전자.
+    let rating = null;
+    let targetPriceKrw = null;
+    let reportDate = null;
+    for (const win of windows) {
+      for (const sentence of brokerCompanySentences(win, aliases, broker)) {
+        rating = rating || extractRating(sentence);
+        targetPriceKrw = targetPriceKrw || extractTargetPriceForCompany(sentence, aliases);
+      }
+      reportDate = reportDate || extractReportDate(win, null);
+    }
+    // "Broker X was named near company Y" is still not a view. Without a rating
+    // or a target price there is nothing to report, and keeping such rows makes
+    // passing mentions look like coverage.
+    if (!rating && !targetPriceKrw) continue;
+
+    reportDate = reportDate || article.date || null;
+    const snippet = extractThesisSnippet(windows[0], broker, { maxChars: 240 })
+      || extractThesisSnippet(text, broker, { maxChars: 240 });
 
     records.push({
       broker,
@@ -301,7 +328,7 @@ function run(opts) {
       errors.push({ url: article.url, message: body.error || "unknown error" });
       continue;
     }
-    const records = buildRecords(article, body.text);
+    const records = buildRecords(article, body.text, opts);
     rawRecords.push(...records);
   }
 

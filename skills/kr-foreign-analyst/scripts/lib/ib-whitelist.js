@@ -51,6 +51,21 @@ function escapeRegex(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+// Longer names that merely start with an IB alias but mean something else.
+// "모건스탠리캐피털인터내셔널(MSCI)" is an index provider, not sell-side
+// coverage, and it shows up constantly in Korean market copy.
+const ALIAS_FALSE_FRIENDS = [
+  /^캐피[털탈]/,
+  /^\s*Capital\s+International/i,
+  /^자산운용/,
+  /^\s*Asset\s+Management/i,
+];
+
+function isFalseFriendMatch(text, index, alias) {
+  const tail = text.slice(index + alias.length, index + alias.length + 24);
+  return ALIAS_FALSE_FRIENDS.some((rx) => rx.test(tail));
+}
+
 // Return canonical IB names mentioned in `text`. Deduped, order of first match.
 function findBrokersInText(text) {
   if (!text) return [];
@@ -60,12 +75,30 @@ function findBrokersInText(text) {
     if (seen.has(canonical)) continue;
     let hit = false;
     if (isKorean) {
-      hit = text.includes(alias);
+      let from = 0;
+      for (;;) {
+        const idx = text.indexOf(alias, from);
+        if (idx < 0) break;
+        if (!isFalseFriendMatch(text, idx, alias)) {
+          hit = true;
+          break;
+        }
+        from = idx + alias.length;
+      }
     } else {
       const rx = new RegExp(
-        `(^|[^A-Za-z0-9])${escapeRegex(alias)}(?![A-Za-z0-9])`
+        `(^|[^A-Za-z0-9])(${escapeRegex(alias)})(?![A-Za-z0-9])`,
+        "g"
       );
-      hit = rx.test(text);
+      let m;
+      while ((m = rx.exec(text)) !== null) {
+        const idx = m.index + m[1].length;
+        if (!isFalseFriendMatch(text, idx, alias)) {
+          hit = true;
+          break;
+        }
+        if (rx.lastIndex === m.index) rx.lastIndex += 1;
+      }
     }
     if (hit) {
       found.push(canonical);
@@ -102,9 +135,45 @@ function firstAliasIndex(text, canonical) {
   return best;
 }
 
+// Every occurrence index of any alias for a canonical IB, ascending. A page can
+// name the same broker in an article body and again in an unrelated sidebar, so
+// callers that need relevance filtering must inspect all of them, not just the
+// first.
+function allAliasIndices(text, canonical) {
+  if (!text || !canonical) return [];
+  const aliases = IB_WHITELIST[canonical] || [];
+  const hits = [];
+  for (const alias of aliases) {
+    const isKorean = /[가-힯]/.test(alias);
+    if (isKorean) {
+      let from = 0;
+      for (;;) {
+        const idx = text.indexOf(alias, from);
+        if (idx < 0) break;
+        if (!isFalseFriendMatch(text, idx, alias)) hits.push({ index: idx, alias });
+        from = idx + alias.length;
+      }
+    } else {
+      const rx = new RegExp(
+        `(^|[^A-Za-z0-9])(${escapeRegex(alias)})(?![A-Za-z0-9])`,
+        "g"
+      );
+      let m;
+      while ((m = rx.exec(text)) !== null) {
+        const idx = m.index + m[1].length;
+        if (!isFalseFriendMatch(text, idx, alias)) hits.push({ index: idx, alias });
+        if (rx.lastIndex === m.index) rx.lastIndex += 1;
+      }
+    }
+  }
+  hits.sort((a, b) => a.index - b.index);
+  return hits;
+}
+
 module.exports = {
   IB_WHITELIST,
   CANONICAL_BY_ALIAS,
   findBrokersInText,
   firstAliasIndex,
+  allAliasIndices,
 };
