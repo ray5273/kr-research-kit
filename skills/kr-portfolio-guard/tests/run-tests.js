@@ -442,12 +442,14 @@ test("parseBars surfaces adjClose alongside raw close (T4)", () => {
   assert.strictEqual(bars[0].adjClose, 95);
 });
 test("technical-core exposes volume20/60Series to chart renderer (regression)", () => {
-  const core = require(path.join(REPO_ROOT, "skills", "kr-stock-analysis", "scripts", "lib", "technical-core.js"));
   const bars = mkBars(Array.from({ length: 130 }, (_, i) => 100 + (i % 7)));
-  const metrics = core.buildMetrics(core.normalizeBars(bars));
-  assert.ok(Array.isArray(metrics.volume20Series), "volume20Series is an array");
-  assert.ok(Array.isArray(metrics.volume60Series), "volume60Series is an array");
-  assert.strictEqual(metrics.volume60Series.length, 130);
+  for (const skill of ["kr-stock-analysis", "kr-stock-chart"]) {
+    const core = require(path.join(REPO_ROOT, "skills", skill, "scripts", "lib", "technical-core.js"));
+    const metrics = core.buildMetrics(core.normalizeBars(bars));
+    assert.ok(Array.isArray(metrics.volume20Series), `${skill}: volume20Series is an array`);
+    assert.ok(Array.isArray(metrics.volume60Series), `${skill}: volume60Series is an array`);
+    assert.strictEqual(metrics.volume60Series.length, 130);
+  }
 });
 
 // --- 10. adversarial-review regressions (2026-07-05) --------------------------------
