@@ -28,6 +28,7 @@ For a standard company pack, try to gather:
 - valuation inputs: trailing P/E, forward P/E, EV/EBITDA, P/B, FCF yield, plus the dates used
 - chart inputs: at least 120 daily bars when available
 - external views: a short list of outside takes with source role, date, takeaway, and verification status when the downstream memo needs more than official company framing
+- order backlog inputs: for order-driven companies, the official/proxy basis, official total, year/undated distribution, final disclosed year, comparable revenue denominator, and PNG path from `kr-order-backlog-analysis`
 
 ## Pack Discipline
 
@@ -40,6 +41,7 @@ For a standard company pack, try to gather:
 - When `naver-insights.md` exists in the company output directory (`analysis-example/kr/<company>/`), read each post entry and add a row to the `## External Views` table with `Source role: independent analysis`, `Verification status: unverified (blogger)`, and the Naver post URL. Use the blogger's verbatim snippet as the takeaway instead of paraphrasing.
 - When `analyst-report-insight.md` exists in the company output directory, add one `## External Views` row per broker-coverage entry with `Source role: sell-side consensus`, `Verification status: sell-side (broker)`, the report's landing URL in `Source`, and the per-broker 1-liner as the takeaway. In addition, surface the consensus snapshot (TP median / mean / min / max, rating distribution) as a labeled sell-side reference near the valuation block — keep it visibly separate from filing-derived valuation so the downstream memo does not confuse street anchors with facts.
 - When `trade-flow-analysis.md` exists in the company output directory, add trade-stat proxy rows as `Source role: trade-flow proxy` with `Verification status: Trade Flow Inference - <confidence grade>`. Put confirmed DART/IR facts in ordinary fact blocks and put inferred customer/geography/product mix in a distinct `Revenue Mix Proxy` or `External Views` row.
+- When `order-backlog-analysis.md` exists, add a distinct `Order Backlog Inputs` block. Keep official backlog schedules, official project-level remaining amounts, contract-maturity proxies, and total-only disclosures separate, and carry the PNG path forward for memo embedding.
 - Keep interpretation light. The pack may note why a fact matters, but it should not decide the investment view.
 
 ## Failure Modes To Avoid

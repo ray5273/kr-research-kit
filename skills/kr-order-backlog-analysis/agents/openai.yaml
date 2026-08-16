@@ -1,0 +1,4 @@
+interface:
+  display_name: "한국 수주잔고 분석"
+  short_description: "DART 수주잔고와 종료연도 그래프를 한글로 분석"
+  default_prompt: "$kr-order-backlog-analysis를 사용해 DART 수주잔고를 검증하고 장기 운영계약과 생산능력을 구분해 한글 그래프로 그려 주세요."

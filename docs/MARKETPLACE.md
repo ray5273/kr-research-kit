@@ -102,7 +102,7 @@ Approved plugins land in `anthropics/claude-plugins-community/.claude-plugin/mar
 >
 > U.S. stock work adds `us-sec-analysis`, which collects official SEC submissions, latest 10-K/10-Q filing text, latest 8-K metadata, standardized XBRL companyfacts, `sec-reference.md`, `sec-cache.json`, and a Source Map before `us-stock-analysis` writes thesis, valuation, catalysts, and risks.
 >
-> Also bundled: `kr-market-leaders` (KOSPI + KOSDAQ leadership screener), `kr-portfolio-monitor` (SMA20/RSI14 portfolio health), `kr-stock-update` (baseline-aware memo maintenance with gated thesis updates), U.S. daily market news, Korean brokerage report watch, explicit Telegram report sending, and a full sector workflow (`kr-sector-plan/-analysis/-data-pack/-compare/-audit/-update`). 30 skills total.
+> Also bundled: `kr-order-backlog-analysis` (DART-backed mandatory year/maturity backlog charts), `kr-market-leaders` (KOSPI + KOSDAQ leadership screener), `kr-portfolio-monitor` (SMA20/RSI14 portfolio health), `kr-stock-update` (baseline-aware memo maintenance with gated thesis updates), U.S. daily market news, Korean brokerage report watch, explicit Telegram report sending, and a full sector workflow (`kr-sector-plan/-analysis/-data-pack/-compare/-audit/-update`). 35 skills total.
 >
 > Native to both **Claude Code** and **OpenAI Codex CLI**. No npm dependencies (Node stdlib only). Optional Python (pypdf, Pillow) for PDF extraction and chart text rendering on macOS/Linux. Optional Bun for Naver browser automation.
 >
@@ -145,7 +145,7 @@ Approved plugins land in `anthropics/claude-plugins-community/.claude-plugin/mar
 ```
 
 **내부 체인:**
-`kr-stock-plan` → `kr-stock-chart` → `kr-stock-dart-analysis` → `kr-foreign-analyst` + `kr-analyst-report-*` → `kr-naver-blogger` + `kr-naver-insight` → `kr-stock-analysis` → `kr-naver-blog-publish` (사용자 승인 게이트)
+`kr-stock-plan` → `kr-stock-chart` → `kr-stock-dart-analysis` → `kr-order-backlog-analysis` (수주산업 조건부) → `kr-foreign-analyst` + `kr-analyst-report-*` → `kr-naver-blogger` + `kr-naver-insight` → `kr-stock-analysis` → `kr-naver-blog-publish` (사용자 승인 게이트)
 
 **산출물:**
 - `analysis-example/kr/SOOP/memo.md` — 결정 메모 (Decision Frame, DART Recheck, Street/Alt Views, Valuation, Structured Stance)

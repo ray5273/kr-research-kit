@@ -383,6 +383,17 @@ When the user wants `수주잔고 + 계약 만기 분포 + 커버리지` togethe
 - if the latest effective contract list does not reconcile to official backlog, do not force a tie-out; explain that contract notices are only a partial observable subset of backlog
 - in integrated backlog mode, place `커버리지 요약` before the longer cumulative table so the user can answer `2027년까지 얼마` immediately
 
+## Order Backlog Chart Handoff
+
+When the planning brief says `Order-backlog route: yes`, hand `kr-order-backlog-analysis` one and only one primary basis:
+
+- `official-revenue-schedule`: official backlog or remaining-performance amounts by expected revenue-recognition year
+- `official-contract-end-year`: project-level remaining order amounts grouped by disclosed end year
+- `contract-disclosure-maturity-proxy`: latest effective individual contract totals grouped by end year; never label this remaining backlog
+- `official-total-only`: official backlog total with no defensible year allocation
+
+Include the filing date, table unit, reporting scope, official total, annual-revenue denominator when comparable, dated buckets, undated amount, undisclosed-amount contract count, and source URLs. If only the total is disclosed, use one `연도 미공시` bucket. Do not manufacture a schedule from a coverage ratio or average project duration.
+
 ## Reasons For Change
 
 - Quote management-stated reasons only when the filing, attached earnings material, or official presentation says them.
@@ -404,6 +415,7 @@ When the user wants `수주잔고 + 계약 만기 분포 + 커버리지` togethe
 After the DART extraction is complete:
 
 - hand off from `kr-stock-plan` into this skill when latest filing precision is central to the stock work
+- hand off to `kr-order-backlog-analysis` before `kr-stock-data-pack` when the company is classified as order-driven
 - hand off to `kr-stock-data-pack` for valuation, governance, chart, and outside-view blocks
 - hand off to `kr-stock-analysis` for thesis, risks, catalysts, and conclusion
 

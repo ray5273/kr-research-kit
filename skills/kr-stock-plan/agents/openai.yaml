@@ -1,7 +1,7 @@
 interface:
   display_name: "Korean Stock Plan"
   short_description: "Scope a Korean stock request into a usable research brief and orchestrate fresh memo versus follow-up versus update flows."
-  default_prompt: "Use $kr-stock-plan to define the exact KRX-listed company, share class, time horizon, comparison set, user-priority question, and output mode, then produce an execution-ready research brief. Start by asking the shortest clarifying questions needed to learn what the user actually needs, including whether they want planning only, a fresh decision memo, a follow-up on an existing memo, or a dated update. Unless the user explicitly wants the brief only, treat $kr-stock-plan as the orchestrator for the Korean stock workflow, reuse `analysis-example/kr/<company>/memo.md` when a follow-up exists, classify the work as `answer-now`, `refresh-now`, `wait-for-event`, or `ask-user` (legacy aliases: `memo-only`, `refresh-needed`), and continue into $kr-stock-dart-analysis, $kr-stock-data-pack, $kr-stock-analysis, or $kr-stock-update as needed in the same turn."
+  default_prompt: "Use $kr-stock-plan to scope and orchestrate Korean single-stock research. Classify every operating company as `Order-driven company: yes / no / deferred`; when yes, route through $kr-stock-dart-analysis and $kr-order-backlog-analysis and require a backlog PNG whenever DART/KRX provides a quantitative amount. Then continue into $kr-stock-data-pack, $kr-stock-analysis, or $kr-stock-update unless the user asked for planning only."
 
 policy:
   allow_implicit_invocation: true

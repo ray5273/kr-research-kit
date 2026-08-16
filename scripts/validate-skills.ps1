@@ -145,6 +145,9 @@ foreach ($skillDir in $skillDirs) {
         if (-not $stockOutputFormat.Contains("Follow-up Research Prompts")) {
             Write-Error "Expected full memo output format to include Follow-up Research Prompts."
         }
+        if (-not $stockOutputFormat.Contains("Order Backlog and Revenue Visibility")) {
+            Write-Error "Expected stock-analysis output format to define the conditional order-backlog section."
+        }
 
         if (-not $skillMd.Contains("## Source Roles")) {
             Write-Error "Expected kr-stock-analysis skill rules to define source roles."
@@ -240,6 +243,30 @@ foreach ($skillDir in $skillDirs) {
         if (-not $dataPackOutputFormat.Contains("## Revenue Mix Proxy")) {
             Write-Error "Expected kr-stock-data-pack output format to include Revenue Mix Proxy."
         }
+        if (-not $dataPackOutputFormat.Contains("## Order Backlog Inputs")) {
+            Write-Error "Expected kr-stock-data-pack output format to include Order Backlog Inputs."
+        }
+    }
+
+    if ($skillDir.Name -eq "kr-order-backlog-analysis") {
+        $backlogWorkflow = Join-Path $skillDir.FullName "references\workflow.md"
+        $backlogOutput = Join-Path $skillDir.FullName "references\output-format.md"
+        $backlogInputs = Join-Path $skillDir.FullName "references\script-inputs.md"
+        $backlogKoreanRenderer = Join-Path $skillDir.FullName "scripts\render-order-backlog-ko.py"
+        if (-not (Test-Path $backlogWorkflow) -or -not (Test-Path $backlogOutput) -or -not (Test-Path $backlogInputs) -or -not (Test-Path $backlogKoreanRenderer)) {
+            Write-Error "Expected kr-order-backlog-analysis to ship workflow, output, script-input references, and the Korean renderer."
+        }
+        $backlogOutputText = [System.IO.File]::ReadAllText($backlogOutput)
+        if (-not $skillMd.Contains("official-total-only")) {
+            Write-Error "Expected order-backlog skill to define total-only disclosure behavior."
+        }
+        if (-not $backlogOutputText.Contains("unavailable-no-quantifiable-disclosure")) {
+            Write-Error "Expected order-backlog output format to define the only permitted chart exception."
+        }
+        if (-not $backlogOutputText.Contains("생산능력 참고") -or -not $skillMd.Contains("Render explanatory graph labels in Korean")) {
+            Write-Error "Expected order-backlog output to require Korean chart text and source-backed capacity context."
+        }
+        node (Join-Path $skillDir.FullName "scripts\test-order-backlog.js") | Out-Null
     }
 
     if ($skillDir.Name -eq "kr-trade-flow-analysis") {

@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "company": "LS일렉트릭",
+  "ticker": "010120",
+  "asOf": "2026-06-30",
+  "unit": "억원",
+  "basis": "official-contract-end-year",
+  "scope": "LS ELECTRIC 별도 공식 수주잔고 및 반기보고서 단일판매·공급계약 진행현황의 개별 계약 잔여 공급액",
+  "sources": [
+    {
+      "title": "LS ELECTRIC 반기보고서 (2026.06)",
+      "filingDate": "2026-08-14",
+      "section": "II. 4. 매출 및 수주상황 > 다. 수주 상황; XI. 단일판매·공급계약체결 공시에 대한 진행 현황",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003088"
+    }
+  ],
+  "officialBacklog": 69998,
+  "annualRevenue": 44600,
+  "capacity": {
+    "asOf": "2026-06-30",
+    "display": "2026년 상반기 전력 합계 2조 2,046억원(그중 부산 4,841억원) · 부산 가동률 69.9%",
+    "note": "금액 기준 생산능력이며 부산 가동률은 주문생산 투입공수 기준 · 수주잔고와 직접 비교 불가",
+    "scope": "LS ELECTRIC 별도, 공시상 금액 기준 생산능력",
+    "sourceTitle": "LS ELECTRIC 반기보고서 (2026.06) > 생산능력 및 가동률",
+    "sourceUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003088"
+  },
+  "chartFootnote": "2044·2051년은 장기 운영·유지보수 계약이며, 종료연도는 매출 인식연도가 아닙니다.",
+  "undisclosedAmountContracts": 0,
+  "buckets": [
+    {
+      "label": "2026",
+      "amount": 1702.89,
+      "contractCount": 1,
+      "status": "dated"
+    },
+    {
+      "label": "2027",
+      "amount": 5758.76,
+      "contractCount": 4,
+      "status": "dated"
+    },
+    {
+      "label": "2028",
+      "amount": 7751.07,
+      "contractCount": 3,
+      "status": "dated"
+    },
+    {
+      "label": "2029",
+      "amount": 4595.66,
+      "contractCount": 1,
+      "status": "dated"
+    },
+    {
+      "label": "2033",
+      "amount": 967.92,
+      "contractCount": 1,
+      "status": "dated"
+    },
+    {
+      "label": "2034",
+      "amount": 2596.24,
+      "contractCount": 1,
+      "status": "dated"
+    },
+    {
+      "label": "2044",
+      "amount": 744.52,
+      "contractCount": 1,
+      "status": "dated",
+      "category": "long-term-service"
+    },
+    {
+      "label": "2051",
+      "amount": 494.22,
+      "contractCount": 1,
+      "status": "dated",
+      "category": "long-term-service"
+    },
+    {
+      "label": "종료일 미정",
+      "amount": 1647.3,
+      "contractCount": 1,
+      "status": "undated"
+    }
+  ],
+  "contracts": [
+    {
+      "name": "북미 데이터센터 전력설비 공급 PJT",
+      "endDate": "2026-12-31",
+      "contractAmountMillionWon": 170289,
+      "cumulativeSupplyMillionWon": 0,
+      "remainingAmountEokWon": 1702.89
+    },
+    {
+      "name": "Widow Hill BESS PJT",
+      "endDate": "2027-02-28",
+      "contractAmountMillionWon": 121729,
+      "cumulativeSupplyMillionWon": 38510,
+      "remainingAmountEokWon": 832.19
+    },
+    {
+      "name": "북미 데이터센터용 연료전지 전력설비 공급 PJT",
+      "endDate": "2027-03-29",
+      "contractAmountMillionWon": 318965,
+      "cumulativeSupplyMillionWon": 0,
+      "remainingAmountEokWon": 3189.65
+    },
+    {
+      "name": "동해안~신가평 HVDC 변환설비 건설사업",
+      "endDate": "2027-06-30",
+      "contractAmountMillionWon": 212580,
+      "cumulativeSupplyMillionWon": 51962,
+      "remainingAmountEokWon": 1606.18
+    },
+    {
+      "name": "Monorail New Administrative Capital City & 6th of October City",
+      "endDate": "2027-08-19",
+      "contractAmountMillionWon": 106316,
+      "cumulativeSupplyMillionWon": 93242,
+      "remainingAmountEokWon": 130.74
+    },
+    {
+      "name": "신재생에너지 발전사업 PJT",
+      "endDate": "2028-02-09",
+      "contractAmountMillionWon": 138191,
+      "cumulativeSupplyMillionWon": 454,
+      "remainingAmountEokWon": 1377.37
+    },
+    {
+      "name": "영광 그린 태양광 발전사업 공사도급계약",
+      "endDate": "2028-07-20",
+      "contractAmountMillionWon": 76370,
+      "cumulativeSupplyMillionWon": 0,
+      "remainingAmountEokWon": 763.7
+    },
+    {
+      "name": "동해안-동서울 HVDC 변환설비 계약",
+      "endDate": "2028-12-01",
+      "contractAmountMillionWon": 561000,
+      "cumulativeSupplyMillionWon": 0,
+      "remainingAmountEokWon": 5610
+    },
+    {
+      "name": "북미 신재생에너지 PJT",
+      "endDate": "2029-10-15",
+      "contractAmountMillionWon": 459803,
+      "cumulativeSupplyMillionWon": 237,
+      "remainingAmountEokWon": 4595.66
+    },
+    {
+      "name": "대만 카오슝 MRT Siaogang-Linyuan Line RLM01",
+      "endDate": "2033-02-09",
+      "contractAmountMillionWon": 111135,
+      "cumulativeSupplyMillionWon": 14343,
+      "remainingAmountEokWon": 967.92
+    },
+    {
+      "name": "Kaohsiung MRT Yellow Line YM01",
+      "endDate": "2034-07-21",
+      "contractAmountMillionWon": 266799,
+      "cumulativeSupplyMillionWon": 7175,
+      "remainingAmountEokWon": 2596.24
+    },
+    {
+      "name": "신안 비금주민태양광 발전사업 관리운영위탁계약",
+      "endDate": "2044-05-31",
+      "contractAmountMillionWon": 80179,
+      "cumulativeSupplyMillionWon": 5727,
+      "remainingAmountEokWon": 744.52
+    },
+    {
+      "name": "영광 그린 태양광 발전사업 관리운영위탁계약",
+      "endDate": "2051-03-20",
+      "contractAmountMillionWon": 49422,
+      "cumulativeSupplyMillionWon": 0,
+      "remainingAmountEokWon": 494.22
+    },
+    {
+      "name": "왕신 연료전지 발전설비 건설공사",
+      "endDate": null,
+      "contractAmountMillionWon": 164730,
+      "cumulativeSupplyMillionWon": 0,
+      "remainingAmountEokWon": 1647.3,
+      "statusNote": "NTP 미수령으로 계약기간 미확정"
+    }
+  ],
+  "notes": [
+    "연도별 금액은 반기보고서 진행현황의 계약금액총액에서 누적 판매·공급금액을 차감한 뒤 계약 종료연도로 묶은 파생값이다.",
+    "개별 계약 진행현황 14건은 공식 별도 수주잔고 69,998억원의 관찰 가능한 일부이며, 양자는 일치하지 않는다.",
+    "종료연도는 매출 인식연도가 아니며 납기 연장, NTP, 공정률, 환율 및 계약 변경에 따라 달라질 수 있다.",
+    "annualRevenue 44,600억원은 LS ELECTRIC 별도 1H26 매출 22,300억원을 단순 연율화한 비교용 파생값이다."
+  ]
+}

@@ -30,6 +30,17 @@ Use this default pack shape unless the user asked for something else.
 ## Balance Sheet And Capital Allocation
 - ...
 
+## Order Backlog Inputs
+- Order-driven company: yes / no / deferred
+- Chart basis:
+- Official backlog:
+- Dated amount:
+- Undated amount:
+- Final disclosed year:
+- Backlog / annual revenue:
+- Chart path:
+- Measurement limitation:
+
 ## Governance And Structure
 - ...
 

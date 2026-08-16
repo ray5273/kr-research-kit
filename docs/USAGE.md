@@ -37,6 +37,10 @@ Use $kr-stock-dart-analysis to list every disclosed single-sales or supply contr
 ```
 
 ```text
+Use $kr-order-backlog-analysis after the DART pass for a KRX company. Decide whether it is order-driven, select the strongest honest basis, write order-backlog-data.json and order-backlog-analysis.md, render assets/<company>-order-backlog.png, and never allocate a total-only backlog across assumed years.
+```
+
+```text
 Use $kr-stock-data-pack for LG CNS and gather a dated company fact pack with price context, filings, latest results, governance facts, valuation inputs, chart inputs, and outside-view inputs from sell-side or specialist media.
 ```
 
@@ -124,6 +128,10 @@ Use $kr-sector-update to update analysis-example/kr-sector/국내 데이터센�
 
 ```text
 /kr-stock-dart-analysis list all disclosed single-sales or supply contracts for a Korean company and add a maturity table showing how much current effective contract amount ends by 2027, by 2028, and by each later year, clearly labeled as contract-period coverage rather than formal backlog unless the filing discloses backlog.
+```
+
+```text
+/kr-order-backlog-analysis use the completed DART artifact for a KRX company, classify whether it is order-driven, then render the required year/maturity backlog PNG. If only a total official backlog is disclosed, draw one `연도 미공시` bar instead of estimating a schedule.
 ```
 
 ```text

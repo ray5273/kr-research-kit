@@ -153,6 +153,11 @@ if (!pattern.test(text)) {
             exit 1
         fi
 
+        if ! grep -Fq '## Order Backlog and Revenue Visibility' "$SKILL_DIR/references/output-format.md"; then
+            echo "Expected stock-analysis output format to define the conditional order-backlog section." >&2
+            exit 1
+        fi
+
         if ! grep -Fq '## Source Roles' "$SKILL_DIR/SKILL.md"; then
             echo "Expected kr-stock-analysis skill rules to define source roles." >&2
             exit 1
@@ -278,6 +283,11 @@ if (!pattern.test(text)) {
             exit 1
         fi
 
+        if ! grep -Fq 'Order-backlog route: yes / no / deferred' "$SKILL_DIR/references/output-format.md"; then
+            echo "Expected kr-stock-plan output format to include the order-backlog route decision." >&2
+            exit 1
+        fi
+
         if ! grep -Fq 'Follow-up classification (`answer-now`, `refresh-now`, `wait-for-event`, or `ask-user`; legacy aliases `memo-only` / `refresh-needed`):' "$SKILL_DIR/references/output-format.md"; then
             echo "Expected kr-stock-plan output format to include four-state follow-up classification with legacy aliases." >&2
             exit 1
@@ -304,6 +314,31 @@ if (!pattern.test(text)) {
             echo "Expected kr-stock-data-pack output format to include Revenue Mix Proxy." >&2
             exit 1
         fi
+
+        if ! grep -Fq '## Order Backlog Inputs' "$SKILL_DIR/references/output-format.md"; then
+            echo "Expected kr-stock-data-pack output format to include Order Backlog Inputs." >&2
+            exit 1
+        fi
+    fi
+
+    if [ "$SKILL_NAME" = "kr-order-backlog-analysis" ]; then
+        if [ ! -f "$SKILL_DIR/references/workflow.md" ] || [ ! -f "$SKILL_DIR/references/output-format.md" ] || [ ! -f "$SKILL_DIR/references/script-inputs.md" ] || [ ! -f "$SKILL_DIR/scripts/render-order-backlog-ko.py" ]; then
+            echo "Expected kr-order-backlog-analysis to ship workflow, output, script-input references, and the Korean renderer." >&2
+            exit 1
+        fi
+        if ! grep -Fq 'official-total-only' "$SKILL_DIR/SKILL.md"; then
+            echo "Expected order-backlog skill to define total-only disclosure behavior." >&2
+            exit 1
+        fi
+        if ! grep -Fq 'unavailable-no-quantifiable-disclosure' "$SKILL_DIR/references/output-format.md"; then
+            echo "Expected order-backlog output format to define the only permitted chart exception." >&2
+            exit 1
+        fi
+        if ! grep -Fq '생산능력 참고' "$SKILL_DIR/references/output-format.md" || ! grep -Fq 'Render explanatory graph labels in Korean' "$SKILL_DIR/SKILL.md"; then
+            echo "Expected order-backlog output to require Korean chart text and source-backed capacity context." >&2
+            exit 1
+        fi
+        node "$SKILL_DIR/scripts/test-order-backlog.js" >/dev/null
     fi
 
     if [ "$SKILL_NAME" = "kr-trade-flow-analysis" ]; then

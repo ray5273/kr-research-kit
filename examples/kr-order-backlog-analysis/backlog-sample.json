@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "company": "샘플중공업",
+  "ticker": "000000",
+  "asOf": "2026-03-31",
+  "unit": "억원",
+  "basis": "official-revenue-schedule",
+  "scope": "연결 기준 공식 수주잔고",
+  "sources": [
+    {
+      "title": "사업보고서 (2025.12)",
+      "filingDate": "2026-03-20",
+      "section": "매출 및 수주상황",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320000000"
+    }
+  ],
+  "officialBacklog": 8500,
+  "annualRevenue": 3000,
+  "undisclosedAmountContracts": 0,
+  "buckets": [
+    {
+      "label": "2026",
+      "amount": 1800,
+      "contractCount": 3,
+      "status": "dated"
+    },
+    {
+      "label": "2027",
+      "amount": 2700,
+      "contractCount": 4,
+      "status": "dated"
+    },
+    {
+      "label": "2028",
+      "amount": 2100,
+      "contractCount": 2,
+      "status": "dated"
+    },
+    {
+      "label": "연도 미공시",
+      "amount": 1900,
+      "contractCount": 1,
+      "status": "undated"
+    }
+  ],
+  "notes": [
+    "연도 미공시 금액은 누적선에서 제외"
+  ]
+}

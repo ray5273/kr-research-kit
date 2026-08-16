@@ -17,11 +17,11 @@ This script reads an existing markdown memo and emits a JSON baseline with:
 - existing update dates and parsed update blocks, including old-style headings
 - existing source URLs
 - existing event keys
-- fixed section snapshots for `Decision Frame`, `Summary`, `DART Recheck`, `Street / Alternative Views`, `Decision-Changing Issues`, `Structured Stance`, `Follow-up Research Prompts`, and `Update Log`
+- fixed section snapshots for `Decision Frame`, `Summary`, `Order Backlog and Revenue Visibility`, `DART Recheck`, `Street / Alternative Views`, `Decision-Changing Issues`, `Structured Stance`, `Follow-up Research Prompts`, and `Update Log`
 - parsed DART recheck table rows when present
 - parsed `guard-decision` / `Decision Block` trigger and review date when present
 - stale-section audit hints
-- linked chart/valuation assets
+- linked chart/valuation/order-backlog assets
 - sibling artifacts in the company folder
 - a short summary excerpt
 - an inferred ticker when it can be discovered from source links
@@ -153,7 +153,7 @@ Expected JSON:
 
 Behavior:
 
-- Replaces only allowed gated sections: `Summary`, `Structured Stance`, `Decision-Changing Issues`, `Follow-up Research Prompts`, `DART Recheck`, `Decision Frame`, `guard-decision`, and `Decision Block`.
+- Replaces only allowed gated sections: `Summary`, `Structured Stance`, `Decision-Changing Issues`, `Follow-up Research Prompts`, `DART Recheck`, `Decision Frame`, `Order Backlog and Revenue Visibility`, `guard-decision`, and `Decision Block`.
 - Refuses `Sources`, `Update Log`, unknown headings, and missing sections unless `--allow-insert` is set.
 - Preserves the original `기준일`.
 - Does not update `최근 업데이트일`; use `normalize-update-log.js` for that.

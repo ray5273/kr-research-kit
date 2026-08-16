@@ -274,6 +274,17 @@
 | 항목 | 값 | 비고 |
 | --- | --- | --- |
 
+## 수주잔고 차트 핸드오프
+- Order-backlog route: yes / no / deferred
+- 차트 기준: official-revenue-schedule / official-contract-end-year / contract-disclosure-maturity-proxy / official-total-only
+- 금액 단위:
+- 공식 총잔고:
+- 비교 가능한 연간 매출:
+- 연도별 금액:
+- 연도 미정 금액:
+- 금액 미공개 계약 수:
+- Source URLs:
+
 ## 해석 메모
 - 공식 수주잔고와 개별 계약공시의 관계:
 - 금액 미공개 계약 처리:

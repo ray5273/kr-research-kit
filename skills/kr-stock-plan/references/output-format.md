@@ -22,6 +22,8 @@ Use this default planning shape unless the user asked for something else.
 - Priority user question:
 - Must-have workstreams:
 - Nice-to-have workstreams:
+- Order-driven company: yes / no / deferred
+- Why order-driven:
 
 ## Horizon
 - Time frame:
@@ -41,6 +43,10 @@ Use this default planning shape unless the user asked for something else.
 - Why Naver pass:
 - Analyst report pass: yes / no / deferred
 - Why analyst report pass:
+- Order-backlog route: yes / no / deferred
+- Why order-backlog route:
+- Backlog chart requirement: required / unavailable-no-quantifiable-disclosure / not applicable
+- Backlog artifact paths:
 
 ## Must Answer
 - ...

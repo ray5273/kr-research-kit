@@ -24,6 +24,7 @@ const HEADING_MAP = new Map([
   ["revenue mix", "매출 구조"],
   ["what the latest results say", "최근 실적이 말해주는 것"],
   ["dart recheck", "공시로 다시 확인한 내용"],
+  ["order backlog and revenue visibility", "수주잔고와 매출 가시성"],
   ["street / alternative views", "시장과 반대편 시각"],
   ["current valuation snapshot", "현재 밸류에이션"],
   ["historical valuation bands", "과거 밸류에이션 구간"],

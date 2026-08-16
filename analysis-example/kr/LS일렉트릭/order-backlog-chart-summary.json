@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "chartLanguage": "ko",
+  "company": "LS일렉트릭",
+  "ticker": "010120",
+  "asOf": "2026-06-30",
+  "basis": "official-contract-end-year",
+  "unit": "억원",
+  "scope": "LS ELECTRIC 별도 공식 수주잔고 및 반기보고서 단일판매·공급계약 진행현황의 개별 계약 잔여 공급액",
+  "officialBacklog": 69998,
+  "annualRevenue": 44600,
+  "coverageRatio": 1.5695,
+  "bucketAmount": 26258.58,
+  "datedAmount": 24611.28,
+  "undatedAmount": 1647.3,
+  "cumulativeDatedAmount": 24611.28,
+  "projectCumulativeAmount": 23372.54,
+  "finalDisclosedYear": 2051,
+  "undisclosedAmountContracts": 0,
+  "reconciliationGap": 43739.42,
+  "sourceCount": 1,
+  "chartPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/LS일렉트릭/assets/LS일렉트릭-order-backlog.png",
+  "warnings": [
+    "Bucket amounts do not reconcile to the official backlog; do not scale them silently."
+  ],
+  "capacity": {
+    "asOf": "2026-06-30",
+    "display": "2026년 상반기 전력 합계 2조 2,046억원(그중 부산 4,841억원) · 부산 가동률 69.9%",
+    "note": "금액 기준 생산능력이며 부산 가동률은 주문생산 투입공수 기준 · 수주잔고와 직접 비교 불가",
+    "scope": "LS ELECTRIC 별도, 공시상 금액 기준 생산능력",
+    "sourceTitle": "LS ELECTRIC 반기보고서 (2026.06) > 생산능력 및 가동률",
+    "sourceUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003088"
+  },
+  "buckets": [
+    {
+      "label": "2026",
+      "year": 2026,
+      "status": "dated",
+      "category": "project",
+      "amount": 1702.89,
+      "contractCount": 1
+    },
+    {
+      "label": "2027",
+      "year": 2027,
+      "status": "dated",
+      "category": "project",
+      "amount": 5758.76,
+      "contractCount": 4
+    },
+    {
+      "label": "2028",
+      "year": 2028,
+      "status": "dated",
+      "category": "project",
+      "amount": 7751.07,
+      "contractCount": 3
+    },
+    {
+      "label": "2029",
+      "year": 2029,
+      "status": "dated",
+      "category": "project",
+      "amount": 4595.66,
+      "contractCount": 1
+    },
+    {
+      "label": "2033",
+      "year": 2033,
+      "status": "dated",
+      "category": "project",
+      "amount": 967.92,
+      "contractCount": 1
+    },
+    {
+      "label": "2034",
+      "year": 2034,
+      "status": "dated",
+      "category": "project",
+      "amount": 2596.24,
+      "contractCount": 1
+    },
+    {
+      "label": "2044",
+      "year": 2044,
+      "status": "dated",
+      "category": "long-term-service",
+      "amount": 744.52,
+      "contractCount": 1
+    },
+    {
+      "label": "2051",
+      "year": 2051,
+      "status": "dated",
+      "category": "long-term-service",
+      "amount": 494.22,
+      "contractCount": 1
+    },
+    {
+      "label": "종료일 미정",
+      "year": null,
+      "status": "undated",
+      "category": "undated",
+      "amount": 1647.3,
+      "contractCount": 1
+    }
+  ]
+}

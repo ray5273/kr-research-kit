@@ -23,7 +23,7 @@ Before searching for new information:
 5. Parse existing update block headings even when they use `### YYYY-MM-DD`, `### YYYY-MM-DD Update`, backticked dates, bullet dates, or numbered headings.
 6. Read the existing `Decision Frame`, `Summary`, `DART Recheck`, `Street / Alternative Views`, `Decision-Changing Issues`, `Structured Stance`, and `Follow-up Research Prompts` sections so you know what the original thesis and unresolved work were.
 7. Parse `guard-decision` or `Decision Block` if present.
-8. Identify linked chart/valuation assets and sibling artifacts (`data-pack.md`, `dart-reference.md`, `dart-cache.json`, `chart-analysis.md`, outside-view digests).
+8. Identify linked chart/valuation/backlog assets and sibling artifacts (`data-pack.md`, `dart-reference.md`, `dart-cache.json`, `chart-analysis.md`, `order-backlog-analysis.md`, `order-backlog-data.json`, outside-view digests).
    Also record the memo's **last-stated close and its date** (e.g. `2026-04-15 종가 170,600원`) and the market cap / PER / PBR anchored to it. This is the baseline the Price & Chart Freshness Gate compares the live price against.
 9. If `dart-reference.md` or `dart-cache.json` exists, also parse:
    - `reference 기준일`
@@ -115,6 +115,8 @@ Usually exclude:
 - duplicate media write-ups of the same filing
 - weak rumor-based headlines
 
+For an order-driven memo, any new order, amendment, cancellation, termination, or filing-period backlog bridge is also a backlog-package freshness event. Rebuild the effective contract state with `kr-stock-dart-analysis`, rerun `kr-order-backlog-analysis`, and refresh the JSON, Markdown, and PNG together. Do not refresh only the prose.
+
 ## Thesis Delta
 
 For every material event, answer:
@@ -154,6 +156,7 @@ Allowed sections for section sync:
 - `Follow-up Research Prompts`
 - `DART Recheck`
 - `Decision Frame`
+- `Order Backlog and Revenue Visibility`
 - `guard-decision` / `Decision Block`
 
 Do not use section sync for `Update Log`, `Sources`, or unrelated rewrites. Chart/valuation assets are the exception: when the Price & Chart Freshness Gate triggers, regenerating the chart PNG/JSON and recomputing the valuation snapshot, market cap, and multiples is REQUIRED — not "only when the user requested it." A stale price silently corrupts PER/PBR, upside, and the 결론, so never defer it on judgment.
@@ -187,3 +190,4 @@ If the new information materially changes the original conclusion, use the secti
 - reusing a stale close, market cap, PER/PBR, or upside without running the Price & Chart Freshness Gate
 - publishing a memo to Naver Blog without regenerating charts and recomputing the valuation against the live price
 - leaving `Decision Frame` quoting an old 종가 while the Update Log quotes a new one
+- updating an order-driven memo after a material contract event while leaving its backlog JSON or PNG stale

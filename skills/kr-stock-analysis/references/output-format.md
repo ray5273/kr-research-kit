@@ -28,6 +28,10 @@ Cover product or segment mix first, then geography mix, then customer concentrat
 
 Pull the most relevant facts from the latest filing or earnings package.
 
+## Order Backlog and Revenue Visibility
+
+Include this fixed section for `Order-driven company: yes`. Embed `assets/<company>-order-backlog.png` first, then show the official total, dated amount, undated amount, final disclosed year, backlog/revenue coverage when comparable, and the exact chart basis. State whether the chart is an official revenue schedule, official project-level remaining backlog by end year, individual-contract maturity proxy, or official total-only. If no quantitative amount exists after a complete DART/KRX check, keep the header and write `Chart status: unavailable-no-quantifiable-disclosure` with the sections checked; never draw zero or estimated bars.
+
 ## DART Recheck
 
 Add a compact table for the 3-8 most important memo claims. Show `주장`, `상태`, `확인값 또는 판단`, `출처`, and `비고`. Use statuses such as `confirmed`, `partially supported`, `contradicted`, `not separately disclosed`, or `needs follow-up`.

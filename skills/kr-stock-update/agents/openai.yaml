@@ -1,7 +1,7 @@
 interface:
   display_name: "KR Stock Update"
   short_description: "Maintain an existing Korean stock memo with baseline-aware, gated dated updates."
-  default_prompt: "Use $kr-stock-update to read an existing Korean stock memo under analysis-example/kr/<company>/memo.md, extract the baseline memo state, classify the follow-up as answer-now, refresh-now, wait-for-event, or ask-user, gather only gated post-기준일 company-specific sources when refresh-now applies, and write an idempotent dated Update Log block while preserving 기준일. Default to Update Log only; synchronize Summary, Structured Stance, Decision-Changing Issues, Follow-up Research Prompts, DART Recheck, Decision Frame, or guard-decision only when a material thesis delta or resolved follow-up prompt requires it."
+  default_prompt: "Use $kr-stock-update to maintain `analysis-example/kr/<company>/memo.md` while preserving 기준일. For an order-driven memo, treat any material order, amendment, cancellation, termination, or new backlog filing as a synchronized refresh of $kr-stock-dart-analysis, $kr-order-backlog-analysis, `Order Backlog and Revenue Visibility`, and the linked backlog JSON/Markdown/PNG package."
 
 policy:
   allow_implicit_invocation: true

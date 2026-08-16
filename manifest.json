@@ -48,6 +48,7 @@
     "standalone": [
       "kr-stock-chart",
       "kr-stock-dart-analysis",
+      "kr-order-backlog-analysis",
       "kr-naver-blog-publish",
       "kr-foreign-analyst",
       "kr-market-leaders",
@@ -101,6 +102,12 @@
       "tier": "standalone",
       "tagline": "Extract source-mapped evidence from Korean DART filings — quarterly results, segment, customer concentration, capex, related-party disclosures.",
       "entry": "skills/kr-stock-dart-analysis/SKILL.md"
+    },
+    {
+      "name": "kr-order-backlog-analysis",
+      "tier": "standalone",
+      "tagline": "Classify order-driven KRX companies and render DART-backed year or maturity backlog charts without inventing annual allocations.",
+      "entry": "skills/kr-order-backlog-analysis/SKILL.md"
     },
     {
       "name": "kr-naver-blog-publish",

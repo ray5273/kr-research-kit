@@ -10,6 +10,7 @@ const ALLOWED_SECTIONS = new Set([
   "Follow-up Research Prompts",
   "DART Recheck",
   "Decision Frame",
+  "Order Backlog and Revenue Visibility",
   "guard-decision",
   "Decision Block",
 ]);

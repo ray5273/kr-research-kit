@@ -43,6 +43,17 @@ If a number matters to the conclusion, trace it back to a primary source when po
 - Check treasury shares, dilution, dividends, buybacks, and cancellation behavior.
 - Check segment mix, geography mix, and customer concentration where disclosed.
 
+### Order Backlog and Revenue Visibility
+
+- Inherit `Order-driven company: yes / no / deferred` from `kr-stock-plan`; do not infer it from sector membership alone.
+- For `yes`, consume `order-backlog-analysis.md`, `order-backlog-data.json`, and `assets/<company>-order-backlog.png` from `kr-order-backlog-analysis`.
+- Embed the PNG and state the primary basis: official revenue schedule, official project-level remaining amount by end year, contract-maturity proxy, or official total-only.
+- Show official backlog, dated amount, undated amount, final disclosed year, and backlog/revenue coverage only when the numerator and denominator are comparable.
+- If the chart is a contract-maturity proxy, say that the bars use total effective contract amounts and are not official remaining revenue.
+- If the filing discloses only an official total, show the one-bar `연도 미공시` chart instead of creating a schedule.
+- Treat backlog as visibility, not guaranteed revenue, margin, cash flow, or guidance.
+- If no quantitative amount exists after a complete DART/KRX check, record the chart exception and the sections checked.
+
 ### External Views Scan
 
 - Before finalizing a full memo, scan for outside views that go beyond the company IR narrative.
@@ -231,6 +242,8 @@ Use this flow for pre-earnings and post-earnings requests:
 - Treating management commentary as fact without checking reported numbers
 - Treating a company IR page as sufficient evidence for a note-driven annual claim that should have been verified from DART
 - Letting company newsroom releases dominate the memo when outside debate is available
+- Omitting the backlog chart for an order-driven company with quantitative DART/KRX evidence
+- Spreading a total-only backlog across assumed years or calling contract-maturity proxy amounts official remaining backlog
 - Treating one broker note, one media article, or one blog as confirmed fact
 - Copying a secondary-source number into the memo without saying whether the filing confirms it
 - Giving a target price with false precision

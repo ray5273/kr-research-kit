@@ -1,7 +1,7 @@
 interface:
   display_name: "Korean Stock Data Pack"
   short_description: "Collect a dated company fact pack before writing a Korean stock memo."
-  default_prompt: "Use $kr-stock-data-pack to gather a Korean stock fact pack with price context, dated filings, earnings facts, governance data, valuation inputs, and chart inputs before writing the final memo. If the desired pack shape is not already clear from the active brief or request, ask the shortest questions needed to confirm what the user actually needs included, such as valuation, chart work, peer compare, governance, or outside views."
+  default_prompt: "Use $kr-stock-data-pack to gather a dated Korean stock fact pack. When $kr-order-backlog-analysis artifacts exist, ingest their classification, official-versus-proxy basis, dated and undated amounts, final disclosed year, coverage ratio, and backlog PNG path into a distinct `Order Backlog Inputs` block."
 
 policy:
   allow_implicit_invocation: true

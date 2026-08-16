@@ -4,15 +4,15 @@ AI skills that turn one ticker into dated, source-backed equity research. Native
 
 Languages: English — [README.md](README.md) · 한국어 — [README-kr.md](README-kr.md)
 
-Ask about a Korean ticker and the chain runs itself: DART filings, a KRX chart pack, sell-side consensus, foreign-IB coverage pulled from Korean-language news, trade-flow proxy checks, and a publish-ready Naver blog draft. U.S. tickers start from an SEC EDGAR/XBRL evidence pack. Every artifact lands on disk at `analysis-example/<market>/<company>/memo.md` with a `기준일` and a source map, not in chat.
+Ask about a Korean ticker and the chain runs itself: DART filings, mandatory backlog-maturity charts for order-driven companies, a KRX chart pack, sell-side consensus, foreign-IB coverage pulled from Korean-language news, trade-flow proxy checks, and a publish-ready Naver blog draft. U.S. tickers start from an SEC EDGAR/XBRL evidence pack. Every artifact lands on disk at `analysis-example/<market>/<company>/memo.md` with a `기준일` and a source map, not in chat.
 
 ## What it does
 
-34 skills, wired into pipelines rather than used one at a time.
+35 skills, wired into pipelines rather than used one at a time.
 
 | Workflow | Chain |
 |---|---|
-| Korean stock research | `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-trade-flow-analysis → kr-stock-data-pack → kr-stock-analysis` |
+| Korean stock research | `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-order-backlog-analysis → kr-trade-flow-analysis → kr-stock-data-pack → kr-stock-analysis` |
 | U.S. stock research | `us-sec-analysis → us-stock-analysis` |
 | Sector research | `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update` |
 | Daily market news → blog | `kr-daily-market-news` / `us-daily-market-news → kr-naver-blog-publish` |
@@ -22,6 +22,7 @@ What makes it different from a generic research prompt:
 
 - **Foreign-IB coverage from Korean news.** Morgan Stanley / Goldman / JPM / Nomura / CLSA views leak through Korean-language articles, not English research portals. Every captured view links back to a dated Korean news URL.
 - **Filing-grounded, not vibe-grounded.** DART Recheck separates `confirmed`, `partially supported`, and `not separately disclosed` before valuation or stance.
+- **Backlog timing stays honest.** Order-driven names get a required year/maturity PNG from DART/KRX evidence; total-only backlog is shown as `year not disclosed`, never spread across invented years.
 - **Publishing is gated.** Naver publish requires explicit approval via screenshot preview. Nothing auto-posts.
 - **No npm dependencies.** Every bundled script runs on Node stdlib alone.
 

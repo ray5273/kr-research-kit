@@ -215,7 +215,7 @@ function resolveLocalAsset(reportPath, assetPath) {
 
 function extractChartAssets(text, reportPath) {
   return extractMarkdownImages(text)
-    .filter((image) => /chart|valuation|차트|밸류|valuation/i.test(`${image.alt} ${image.path}`))
+    .filter((image) => /chart|valuation|backlog|차트|밸류|수주잔고/i.test(`${image.alt} ${image.path}`))
     .map((image) => ({
       ...image,
       resolvedPath: resolveLocalAsset(reportPath, image.path),
@@ -236,6 +236,9 @@ function extractSiblingArtifacts(reportPath) {
     "dart-cache.json",
     "chart-analysis.md",
     "chart-data.json",
+    "order-backlog-analysis.md",
+    "order-backlog-data.json",
+    "order-backlog-chart-summary.json",
     "analyst-report-insight.md",
     "foreign-views.md",
     "foreign-analyst-views.md",
@@ -400,6 +403,7 @@ function buildBaseline(args) {
   const sectionSnapshots = extractSectionSnapshot(text, [
     "Decision Frame",
     "Summary",
+    "Order Backlog and Revenue Visibility",
     "DART Recheck",
     "Street / Alternative Views",
     "Decision-Changing Issues",
@@ -423,6 +427,7 @@ function buildBaseline(args) {
     summaryExcerpt: extractSummaryExcerpt(text),
     sections: sectionSnapshots,
     decisionFrame: sectionSnapshots["Decision Frame"],
+    orderBacklog: sectionSnapshots["Order Backlog and Revenue Visibility"],
     dartRecheck: sectionSnapshots["DART Recheck"],
     decisionChangingIssues: sectionSnapshots["Decision-Changing Issues"],
     structuredStance: sectionSnapshots["Structured Stance"],

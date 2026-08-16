@@ -17,6 +17,7 @@ bash ./scripts/validate-skills.sh        # Linux/macOS
 **Install a single skill (Codex):**
 ```bash
 bash ./scripts/install-skill.sh kr-stock-analysis
+bash ./scripts/install-skill.sh kr-order-backlog-analysis
 bash ./scripts/install-skill.sh kr-stock-update
 bash ./scripts/install-skill.sh kr-portfolio-monitor
 bash ./scripts/install-skill.sh kr-portfolio-guard
@@ -40,6 +41,7 @@ bash ./scripts/install-all-skills.sh
 **Install a single skill (Claude Code):**
 ```bash
 bash ./scripts/install-claude-skill.sh kr-stock-analysis
+bash ./scripts/install-claude-skill.sh kr-order-backlog-analysis
 bash ./scripts/install-claude-skill.sh kr-stock-update
 bash ./scripts/install-claude-skill.sh kr-portfolio-monitor
 bash ./scripts/install-claude-skill.sh kr-portfolio-guard
@@ -75,6 +77,7 @@ node skills/kr-stock-analysis/scripts/portfolio-snapshot.js --input examples/kr/
 node skills/kr-stock-dart-analysis/scripts/normalize-browser-dart-export.js --input examples/kr-stock-dart-analysis/dart-browser-export-sample.json --output dart-text.txt
 OPENDART_API_KEY=<key> node skills/kr-stock-dart-analysis/scripts/fetch-opendart.js --ticker 010950 --year 2025 --report-code 11011 --output analysis-example/kr/S-Oil/
 node skills/kr-stock-dart-analysis/scripts/fetch-nps-holdings.js --lookback-days 90 --output /tmp/nps-holdings/   # reads OPENDART_API_KEY from .env or env
+node skills/kr-order-backlog-analysis/scripts/render-order-backlog.js --input examples/kr-order-backlog-analysis/backlog-sample.json --png-out /tmp/order-backlog.png --summary-out /tmp/order-backlog-summary.json
 node skills/kr-stock-analysis/scripts/valuation-chart.js --input examples/kr-stock-analysis/valuation-band-sample.json --png-out valuation.png
 node skills/kr-naver-browse/scripts/browse-naver.js --test
 node skills/kr-naver-blogger/scripts/build-query-set.js --company "엘앤에프" --ticker 066970 --output /tmp/queries.json
@@ -120,6 +123,7 @@ All scripts accept JSON via `--input` and output Markdown or PNG. They use only 
 | `normalize-browser-dart-export.js` | Convert a Chrome extension DART viewer export into plain text for section parsing |
 | `fetch-opendart.js` | OpenDART API alternative to the Chrome extension. Resolves `--ticker` to corp_code, downloads the latest 정기공시 `document.xml` ZIP + structured endpoints (majorshareholder, alotMatter, tesstkAcqsDspsSttus, irdsSttus, cpndlhCmpsBoardCo, fnlttSinglAcntAll), produces the same `dart-browser-export.json` schema. Requires `OPENDART_API_KEY` env var. Caches to `.tmp/opendart-cache/`. |
 | `fetch-nps-holdings.js` | Sweep 지분공시 (pblntf_ty=D) via OpenDART `list.json` over a lookback window (default 90d, chunked into ≤80d slices to satisfy the 3-month range cap), filter to filings where `flr_nm` contains "국민연금", then enrich with `majorstock.json` (5%룰) and `elestock.json` (임원·주요주주) keyed by `rcept_no`. Writes `nps-holdings.json` + `nps-holdings.md`. Auto-loads `OPENDART_API_KEY` from repo-root `.env`. |
+| `render-order-backlog.js` | Render the required Korean-labelled PNG and JSON summary for DART-backed order backlog schedules, project end-year distributions, contract-maturity proxies, or total-only disclosure. |
 | `opendart-zip.py` | Python3 stdlib helper for `fetch-opendart.js`: ZIP extraction (preserves cp949 Korean filenames) + `dart4.xsd` XML pre-processing into HTML so the generic HTMLParser can extract narrative text |
 | `browse-naver.js` | Naver search + blog navigation helpers via gstack `browse` binary (required by other Naver skills) |
 | `build-query-set.js` | Build dynamic search queries from Naver News trends and DART product keywords for blogger discovery |
@@ -144,6 +148,7 @@ Input JSON schemas are documented in `references/script-inputs.md` with sample f
 ```bash
 node scripts/harness.js --mode chart   --ticker 066970 --company "LG CNS"
 node scripts/harness.js --mode dart    --ticker 066970 --company "LG CNS" --dart-input export.json
+node scripts/harness.js --mode backlog --company "Sample Heavy" --backlog-input examples/kr-order-backlog-analysis/backlog-sample.json
 node scripts/harness.js --mode gate    --company "LG CNS"
 node scripts/harness.js --mode all     --ticker 066970 --company "LG CNS" --dart-input export.json
 node scripts/harness.js --mode all     --ticker 066970 --company "엘앤에프" --with-blog
@@ -160,11 +165,12 @@ node scripts/harness.js --mode guard
 |---|---|
 | `chart` | fetch-kr-chart.js → chart-basics.js (OHLCV fetch + PNG charts in one step) |
 | `dart` | normalize → extract → verify → build-reference (full DART browser export pipeline) |
+| `backlog` | validate `order-backlog-data.json` → render the order-backlog PNG and chart summary |
 | `gate` | 9 structural quality checks on a finished memo (required sections, 기준일, chart PNGs, DART Recheck, valuation metrics, source dates) |
 | `blog` | discover-bloggers.js → fetch-blog-posts.js → summarize-insights.js (Naver blogger discovery + insights digest) |
 | `analyst` | discover-reports.js → fetch-reports.js → summarize-reports.js (Hankyung/Naver analyst-report chain) |
 | `foreign` | fetch-analyst-coverage.js → summarize-analyst-views.js (foreign-IB coverage from Korean news → Street / Alternative Views block) |
-| `all` | chart + dart (if `--dart-input`) + blog (if `--with-blog`) + analyst (if `--with-analyst`) + foreign (if `--with-foreign`) + gate sequentially |
+| `all` | chart + dart (if `--dart-input`) + backlog (if `--backlog-input`) + blog (if `--with-blog`) + analyst (if `--with-analyst`) + foreign (if `--with-foreign`) + gate sequentially |
 | `guard` | kr-portfolio-guard 픽스처 테스트 + 오프라인 드라이런 E2E (네트워크·실데이터 불요 — 라이브 스윕은 스킬로만) |
 | `regression` | Run every routed skill end-to-end (chart → dart → analyst → blog → gate) with artifact + section assertions; designed to catch wiring regressions in the full `kr-stock-plan` chain |
 

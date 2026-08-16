@@ -41,6 +41,7 @@ Use this skill to turn Korean DART filings into a precise, reusable evidence pac
 - For `수주계약건만`, `단일판매ㆍ공급계약만`, or similar requests, use the fixed Korean contract-list format from `references/output-format.md` unless the user explicitly asks for a different shape.
 - If the user asks for `수주잔고 대비 매출`, `백로그 커버리지`, or similar backlog-coverage metrics, calculate them only on a like-for-like basis and label them as a derived coverage read rather than a formally disclosed KPI unless the company discloses the metric directly.
 - If the user asks for both `수주잔고` and `계약 만기 분포`, use an integrated backlog mode that combines the official backlog table, contract-disclosure list, maturity buckets, and coverage metrics in one Korean artifact.
+- When `kr-stock-plan` classifies `Order-backlog route: yes`, hand the verified backlog fields to `kr-order-backlog-analysis`. Keep official year schedules, project-level remaining amounts, contract-maturity proxies, and total-only disclosure clearly distinguishable so the downstream skill can render the mandatory chart without inventing a split.
 - If the user asks about `특수관계자`, `관련당사자`, `내부거래`, `계열 매출`, or `내부그룹 매출 비중`, treat it as a note-driven task: locate the latest annual audit report or business-report notes first, check both the consolidated note and the separate-financial-statement note when available, then extract the revenue denominator, the related-party transaction note total, and any separately disclosed `대규모기업집단 계열회사` block before calculating any ratio.
 - Treat these as `note-driven tasks` by default when the answer depends on annual notes, appendices, or audited tables: customer concentration, geography mix, related-party transactions, internal-group revenue, segment margin, capital-allocation notes, treasury-share detail, and any claim that depends on a filing footnote rather than a headline IR slide.
 - If the user asks for `매출 비중`, `구성 비중`, `계약 비중`, or asks to analyze both together, switch into a `비중 통합 모드`: build one dated section for revenue mix ratios and one dated section for contract or backlog-related ratios, and keep scope mismatches explicit instead of forcing a single blended percentage.
@@ -68,7 +69,7 @@ Use this skill to turn Korean DART filings into a precise, reusable evidence pac
 7. Separate disclosure from inference.
    Keep management wording, filing facts, and your derived comparisons distinct.
 8. Hand off cleanly.
-    Deliver a filing-grounded pack that `kr-stock-data-pack` or `kr-stock-analysis` can consume without re-reading the full filing, and keep it aligned with the scoped brief from `kr-stock-plan` when one exists.
+    Deliver a filing-grounded pack that `kr-order-backlog-analysis`, `kr-stock-data-pack`, or `kr-stock-analysis` can consume without re-reading the full filing, and keep it aligned with the scoped brief from `kr-stock-plan` when one exists.
 
 Read [references/workflow.md](references/workflow.md) for the filing-extraction checklist.
 Read [references/output-format.md](references/output-format.md) for the default evidence-pack shape.
@@ -102,6 +103,7 @@ Read [references/script-inputs.md](references/script-inputs.md) when using the b
 - When the request is contract-only, use the exact section order and column order defined in `references/output-format.md`.
 - Never present contract-period distribution as if it were formal remaining revenue or accounting backlog unless the filing explicitly says so.
 - Never present `백로그 커버리지` as guaranteed future revenue or margin. It is only a ratio between disclosed backlog and same-basis revenue.
+- Never allocate an official total backlog across years unless DART directly supplies a revenue schedule or project-level remaining amounts with defensible dates. Route total-only evidence as `official-total-only` with `연도 미공시`.
 
 ## Source Priority
 
@@ -135,9 +137,11 @@ For long annual filings, keep the coverage-verification result visible enough th
 - A reusable reference digest and cache when the document is large enough that downstream work should not re-read the whole filing
 - A claim recheck block for the highest-impact memo claims when the filing work feeds a broader analysis
 - An explicit unresolved-items block when any note-driven claim could not be completed from DART or the attached official audit or review documents
+- For `Order-backlog route: yes`, a chart-ready handoff that identifies the selected evidence basis, amount unit, dated buckets, undated amount, undisclosed-amount contract count, official total, annual-revenue denominator, and source URLs
 
 ## Handoff Guidance
 
+- Use `kr-order-backlog-analysis` immediately after this when `kr-stock-plan` classified the company as order-driven; that skill owns the normalized JSON, mandatory backlog PNG, and backlog report.
 - Use `kr-stock-data-pack` after this when the downstream work still needs valuation, chart, governance, or outside-view inputs.
 - Use `kr-stock-analysis` after this when the user wants a final thesis, valuation view, catalysts, risks, and conclusion.
 - When a `kr-stock-plan` brief already exists, keep the filing extraction scoped to that brief's security, time horizon, and must-answer questions instead of re-scoping from scratch.

@@ -1,9 +1,9 @@
 # Skills Catalog & Behavior
 
-30 skills shipped in `kr-research-kit`. Korean stock workflow shorthand:
+35 skills shipped in `kr-research-kit`. Korean stock workflow shorthand:
 
 ```text
-kr-stock-plan -> kr-stock-chart -> kr-stock-dart-analysis -> kr-trade-flow-analysis -> kr-stock-data-pack -> kr-stock-analysis
+kr-stock-plan -> kr-stock-chart -> kr-stock-dart-analysis -> kr-order-backlog-analysis -> kr-trade-flow-analysis -> kr-stock-data-pack -> kr-stock-analysis
 ```
 
 U.S. stock workflow shorthand:
@@ -17,7 +17,7 @@ us-sec-analysis -> us-stock-analysis
 Suggested handoff prompt:
 
 ```text
-Use $kr-stock-plan as the entry point for Korean stock work. Have it first ask what the user actually needs, scope the request, treat my main question as the priority lens, route through $kr-stock-chart when chart work is needed, route through $kr-stock-dart-analysis when filing precision matters, then build the dated fact base with $kr-stock-data-pack, and finish with $kr-stock-analysis unless the user explicitly asks to stop after planning.
+Use $kr-stock-plan as the entry point for Korean stock work. Have it first ask what the user actually needs, scope the request, treat my main question as the priority lens, route through $kr-stock-chart when chart work is needed, route through $kr-stock-dart-analysis when filing precision matters, and classify every operating company as `Order-driven company: yes / no / deferred`. When yes, run $kr-order-backlog-analysis and require its backlog PNG if DART/KRX provides a quantitative amount. Then build the dated fact base with $kr-stock-data-pack and finish with $kr-stock-analysis unless the user explicitly asks to stop after planning.
 ```
 
 ## Skill list
@@ -32,6 +32,7 @@ Use $kr-stock-plan as the entry point for Korean stock work. Have it first ask w
 - `us-daily-market-news` — daily U.S. market-wide and sector news report for Codex Desktop Automation, with U.S. RSS sources, New York date filtering, dated Markdown/JSON artifacts, and a Naver Blog publish manifest.
 - `kr-stock-chart` — chart-only KRX output and reusable chart artifacts (`chart-data.json`, `chart-analysis.md`, five PNG panels, CSV sidecars, optional rule-screen outputs).
 - `kr-stock-dart-analysis` — precise DART filing extraction before broader Korean stock interpretation.
+- `kr-order-backlog-analysis` — classifies order-driven KRX companies, normalizes DART/KRX backlog evidence, and renders the required year/maturity PNG without inventing annual allocations.
 - `kr-trade-flow-analysis` — CSV-first customs/KITA/UN Comtrade proxy analysis for undisclosed customer, geography, or product mix; writes `trade-flow-data.json` and `trade-flow-analysis.md` with explicit evidence grades.
 - `kr-stock-data-pack` — structured company fact packs before drafting, including optional outside-view inputs.
 - `kr-stock-analysis` — Korean stock quick views, full decision memos, event notes, pair compares, archetype-specific uncomfortable questions, decision-changing issues, structured stance, and follow-up research prompts.
@@ -84,6 +85,8 @@ Primary instructions:
 - [skills/kr-stock-plan/SKILL.md](../skills/kr-stock-plan/SKILL.md)
 - [skills/kr-stock-dart-analysis/SKILL.md](../skills/kr-stock-dart-analysis/SKILL.md)
 - [skills/kr-stock-dart-analysis/references/script-inputs.md](../skills/kr-stock-dart-analysis/references/script-inputs.md)
+- [skills/kr-order-backlog-analysis/SKILL.md](../skills/kr-order-backlog-analysis/SKILL.md)
+- [skills/kr-order-backlog-analysis/references/script-inputs.md](../skills/kr-order-backlog-analysis/references/script-inputs.md)
 - [skills/kr-trade-flow-analysis/SKILL.md](../skills/kr-trade-flow-analysis/SKILL.md)
 - [skills/kr-trade-flow-analysis/references/output-format.md](../skills/kr-trade-flow-analysis/references/output-format.md)
 - [skills/kr-stock-data-pack/SKILL.md](../skills/kr-stock-data-pack/SKILL.md)
@@ -103,10 +106,11 @@ Current behavior:
 1. `kr-stock-plan` starts with a short user-needs check, converts a vague Korean stock request into a clear security definition, output mode, key questions, and a recommended workflow, classifies the task as fresh memo vs follow-up vs dated update, and continues into the downstream skills automatically unless the user asked for planning only.
 2. `kr-stock-chart` owns KRX chart generation. It fetches about 2 years of daily bars by default, writes `chart-data.json` and `chart-analysis.md`, renders the five PNG chart panels plus CSV sidecars, and can add a rule-screen block when requested. The technical read surfaces today's `MA5 / 20 / 60 / 120 / 200` price levels explicitly.
 3. `kr-stock-dart-analysis` acts as the filing-precision stage when the work depends on exact DART-backed result, segment, customer, backlog, contract, or disclosure wording detail, and first asks a short filing-needs check when the target slice is still unclear. For long annual filings, it keeps a `dart-reference.md` digest and `dart-cache.json` coverage cache so later updates can reuse section-level verification instead of re-reading the entire filing blindly. When the filing supports a broader stock memo, it also runs a DART recheck loop for thesis-critical claims instead of treating deep verification as optional.
-4. `kr-trade-flow-analysis` normalizes official or manual trade-stat CSVs and scores whether HS-code / country / region / plant-cluster movement can support `Trade Flow Inference` for undisclosed customer, geography, or product mix. It never upgrades a proxy to `confirmed disclosure` without DART/IR support.
-5. `kr-stock-data-pack` collects dated price context, filings, results, governance facts, valuation inputs, chart inputs, optional outside-view inputs, and optional trade-flow proxy rows before drafting, and ingests `kr-stock-chart` artifacts rather than rebuilding them.
-6. `kr-stock-analysis` writes the final output as a `quick view`, `full memo`, `pre-earnings note`, `post-earnings note`, or `pair compare` for KRX-listed companies, and first confirms the final decision frame or section priorities when they are still ambiguous. Full memos lead with `Decision Frame`, then surface `Uncomfortable Questions`, `Decision-Changing Issues`, `Structured Stance`, and `Follow-up Research Prompts` as fixed headers.
-7. `kr-stock-update` preserves the original memo date, classifies follow-ups as `answer-now`, `refresh-now`, `wait-for-event`, or `ask-user`, refreshes `최근 업데이트일`, and appends or replaces dated follow-up blocks under `## Update Log`. It synchronizes `Summary`, `Structured Stance`, `Decision-Changing Issues`, `Follow-up Research Prompts`, `DART Recheck`, `Decision Frame`, or `guard-decision` only when a material thesis delta or resolved follow-up prompt requires it.
+4. `kr-order-backlog-analysis` runs after DART for `Order-driven company: yes`, selects the strongest honest basis, writes `order-backlog-data.json` and `order-backlog-analysis.md`, and renders `assets/<company>-order-backlog.png`. A total-only disclosure becomes one `연도 미공시` bar, never a synthetic schedule.
+5. `kr-trade-flow-analysis` normalizes official or manual trade-stat CSVs and scores whether HS-code / country / region / plant-cluster movement can support `Trade Flow Inference` for undisclosed customer, geography, or product mix. It never upgrades a proxy to `confirmed disclosure` without DART/IR support.
+6. `kr-stock-data-pack` collects dated price context, filings, results, governance facts, valuation inputs, chart inputs, optional outside-view inputs, and optional trade-flow proxy rows before drafting, and ingests `kr-stock-chart` artifacts rather than rebuilding them.
+7. `kr-stock-analysis` writes the final output as a `quick view`, `full memo`, `pre-earnings note`, `post-earnings note`, or `pair compare` for KRX-listed companies, and first confirms the final decision frame or section priorities when they are still ambiguous. Full memos lead with `Decision Frame`, then surface `Uncomfortable Questions`, `Decision-Changing Issues`, `Structured Stance`, and `Follow-up Research Prompts` as fixed headers. Order-driven memos also include the required `Order Backlog and Revenue Visibility` section and PNG.
+8. `kr-stock-update` preserves the original memo date, classifies follow-ups as `answer-now`, `refresh-now`, `wait-for-event`, or `ask-user`, refreshes `최근 업데이트일`, and appends or replaces dated follow-up blocks under `## Update Log`. It synchronizes gated thesis sections only when a material delta requires it and refreshes the backlog JSON/Markdown/PNG package together after a material order-state change.
 
 Recommended pipeline:
 
@@ -116,6 +120,7 @@ kr-stock-plan
   -> decide fresh memo vs follow-up vs dated update
   -> if chart work matters: kr-stock-chart
   -> if filing precision matters: kr-stock-dart-analysis
+  -> if Order-driven company is yes: kr-order-backlog-analysis
   -> if undisclosed mix can be proxied by customs/trade statistics: kr-trade-flow-analysis
   -> if sell-side consensus matters: kr-analyst-report-discover -> kr-analyst-report-fetch -> kr-analyst-report-insight
   -> if foreign-IB views matter: kr-foreign-analyst
@@ -138,6 +143,7 @@ Routing guide:
 - Start with `kr-stock-plan` when the request is still ambiguous on ticker, share class, horizon, compare mode, deliverable shape, or whether the user wants a fresh memo vs a follow-up. If the user started there for actual analysis work, continue automatically after the brief instead of waiting for another manual skill call.
 - Insert `kr-stock-chart` when the user wants chart-only output or when the memo should ingest reusable chart artifacts.
 - Insert `kr-stock-dart-analysis` when the conclusion depends on exact DART wording, standalone-quarter derivation, segment detail, customer concentration, backlog, or contract disclosures.
+- Insert `kr-order-backlog-analysis` after DART for order-driven companies. Its PNG is mandatory whenever a quantitative DART/KRX amount exists.
 - Insert `kr-trade-flow-analysis` when the company is export-driven and undisclosed customer, geography, or product mix can be triangulated from official trade-flow CSVs plus DART, peer, and contract evidence.
 - Use `kr-stock-data-pack` to assemble the dated fact base around price, governance, valuation, chart, and outside-view inputs.
 - Finish with `kr-stock-analysis` for the final memo, event note, quick view, or pair compare. For full memos, keep `analysis-example/kr/<company>/memo.md` as the canonical state artifact for later follow-up work.
@@ -164,6 +170,7 @@ Routing guide:
 - `skills/kr-stock-dart-analysis/scripts/opendart-zip.py` — Python3 stdlib helper used by `fetch-opendart.js` for cp949-safe ZIP extraction and `dart4.xsd` XML pre-processing
 - `skills/kr-stock-dart-analysis/scripts/verify-dart-coverage.js` — checks whether the filing TOC was fully parsed
 - `skills/kr-stock-dart-analysis/scripts/build-dart-reference.js` — generates `dart-reference.md` and `dart-cache.json`. `dart-cache.json` reserves a `verifiedClaims` block for memo-critical claim verification results
+- `skills/kr-order-backlog-analysis/scripts/render-order-backlog.js` — Pillow-backed Korean PNG renderer for official year schedules, official project-level remaining backlog by end year, contract-maturity proxies, and total-only disclosure
 - `skills/kr-trade-flow-analysis/scripts/normalize-trade-flow.js` — converts 관세청/KITA, UN Comtrade, or manual CSV rows into `trade-flow-data.json`
 - `skills/kr-trade-flow-analysis/scripts/score-trade-inference.js` — scores trade-flow inference confidence from trade movement, company results, peer divergence, contract-scale fit, and contradiction checks
 - `skills/kr-stock-update/scripts/extract-report-baseline.js` — parses memo metadata, fixed memo sections, update blocks, event keys, existing source URLs, DART state, chart assets, and sibling artifacts

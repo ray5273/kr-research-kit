@@ -11,6 +11,7 @@ Use this skill when the user already has a Korean stock memo and wants follow-up
 
 - Start from an existing markdown memo file, usually `analysis-example/kr/<company>/memo.md`.
 - If a matching `analysis-example/kr/<company>/dart-reference.md` or `dart-cache.json` exists, read it together with the memo so the update can reuse prior filing coverage and recheck only the sections that changed.
+- If `order-backlog-analysis.md`, `order-backlog-data.json`, or a linked `assets/<company>-order-backlog.png` exists, treat the three as one synchronized backlog package.
 - Treat disclosures, earnings, capital allocation, governance moves, and company news as time-sensitive. Verify current sources before using them when the classification requires refresh.
 - Use the memo's `기준일` as the minimum source date for the follow-up search.
 - Deduplicate against the memo's existing `Update Log` dates and source URLs when possible.
@@ -28,6 +29,7 @@ Use this skill when the user already has a Korean stock memo and wants follow-up
 3. Refresh sources only when needed.
    For `refresh-now`, read DART/KRX/company IR/news published after the original `기준일`, then deduplicate by event key and source URL. For `answer-now`, answer from existing memo state and log only if the user wants persistent state.
    If the memo has unresolved customer, geography, or product-mix gaps and a `trade-flow-analysis.md` artifact exists or the user asks for customs/export proxy work, use `kr-trade-flow-analysis` as a follow-up evidence source. Search only post-`기준일` company-specific disclosures, IR, and news for confirmation; keep the trade-stat result labeled as inference.
+   If the memo is order-driven and a new filing, order win, amendment, cancellation, or contract termination changes the effective backlog state, rerun `kr-stock-dart-analysis -> kr-order-backlog-analysis` and refresh the JSON, Markdown, and PNG together.
 4. Run the Price & Chart Freshness Gate.
    MANDATORY whenever the update is `refresh-now`, the memo will be published (e.g. handed to `kr-naver-blog-publish`), or the user asks anything about price, valuation, target price, or upside. Fetch the live close, compare it to the memo's last-stated price, and if the gate triggers, regenerate the chart artifacts and recompute every price-derived fact. See [Price & Chart Freshness Gate](#price--chart-freshness-gate-mandatory) below.
 5. Apply gated upstream skill calls.
@@ -101,6 +103,7 @@ If you cannot fetch a live price, say so explicitly in the update block and mark
 - Use exact dates for disclosures, results, investor events, and news.
 - Separate verified facts from inference.
 - Append trade-flow updates as `Trade Flow Inference` with the confidence grade. Do not rewrite original customer or revenue-mix sections as confirmed unless DART/IR/company disclosures explicitly confirm them.
+- When order-backlog evidence changes materially, refresh `Order Backlog and Revenue Visibility` and its linked PNG in the same update. Never leave the memo pointing to a chart built from the prior contract state.
 - Prefer saying `no material change` over forcing a narrative.
 - If a requested update window has no material company-specific developments, add a short dated note saying so.
 - Write event keys for material events when possible so future updates can deduplicate repeated coverage.
@@ -108,7 +111,7 @@ If you cannot fetch a live price, say so explicitly in the update block and mark
 
 ## Hybrid Section Sync Gate
 
-Keep section sync narrow. Update `Summary`, `Structured Stance`, `Decision-Changing Issues`, `Follow-up Research Prompts`, `DART Recheck`, `Decision Frame`, or `guard-decision` only when at least one trigger applies:
+Keep section sync narrow. Update `Summary`, `Structured Stance`, `Decision-Changing Issues`, `Follow-up Research Prompts`, `DART Recheck`, `Decision Frame`, `Order Backlog and Revenue Visibility`, or `guard-decision` only when at least one trigger applies:
 
 - `thesisDelta` is `stronger`, `weaker`, or `unclear`
 - DART recheck changes a thesis-critical claim to `contradicted` or `partially supported`
@@ -136,3 +139,4 @@ Do not rewrite `Sources`, `Update Log`, or the whole memo through the section up
 - An updated memo file when the workspace is writable
 - The price as-of date and the move since the memo, plus whether charts and valuation were regenerated (or an explicit `stale — not refreshed` note if a live price could not be fetched)
 - A statement of whether body sections were left unchanged or synchronized under the hybrid gate
+- For order-driven memos with a material contract-state change, confirmation that `order-backlog-data.json`, `order-backlog-analysis.md`, and the linked backlog PNG were refreshed together

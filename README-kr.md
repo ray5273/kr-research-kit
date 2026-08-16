@@ -4,15 +4,15 @@
 
 언어: English — [README.md](README.md) · 한국어 — [README-kr.md](README-kr.md)
 
-한국 종목을 물어보면 체인이 알아서 돕니다. DART 공시, KRX 차트 팩, 증권사 컨센서스, 한국어 뉴스에서 뽑아낸 외국계 IB 커버리지, 수출입 프록시 교차검증, 그리고 게시 직전 상태의 네이버 블로그 초안까지. 미국 종목은 SEC EDGAR/XBRL evidence pack에서 출발합니다. 모든 산출물은 채팅이 아니라 `analysis-example/kr/<company>/memo.md`에 `기준일`과 출처 맵을 달고 파일로 남습니다.
+한국 종목을 물어보면 체인이 알아서 돕니다. DART 공시, 수주산업의 필수 연도·만기별 수주잔고 그래프, KRX 차트 팩, 증권사 컨센서스, 한국어 뉴스에서 뽑아낸 외국계 IB 커버리지, 수출입 프록시 교차검증, 그리고 게시 직전 상태의 네이버 블로그 초안까지. 미국 종목은 SEC EDGAR/XBRL evidence pack에서 출발합니다. 모든 산출물은 채팅이 아니라 `analysis-example/kr/<company>/memo.md`에 `기준일`과 출처 맵을 달고 파일로 남습니다.
 
 ## 무엇을 하나
 
-스킬 34개. 낱개로 쓰기보다 파이프라인으로 엮여 있습니다.
+스킬 35개. 낱개로 쓰기보다 파이프라인으로 엮여 있습니다.
 
 | 워크플로 | 체인 |
 |---|---|
-| 한국 주식 리서치 | `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-trade-flow-analysis → kr-stock-data-pack → kr-stock-analysis` |
+| 한국 주식 리서치 | `kr-stock-plan → kr-stock-chart → kr-stock-dart-analysis → kr-order-backlog-analysis → kr-trade-flow-analysis → kr-stock-data-pack → kr-stock-analysis` |
 | 미국 주식 리서치 | `us-sec-analysis → us-stock-analysis` |
 | 섹터 리서치 | `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update` |
 | 데일리 시장 뉴스 → 블로그 | `kr-daily-market-news` / `us-daily-market-news → kr-naver-blog-publish` |
@@ -22,6 +22,7 @@
 
 - **한국어 뉴스에서 잡는 외국계 IB 커버리지.** 모건스탠리·골드만·JPM·노무라·CLSA의 view는 영어 리서치 포털이 아니라 한국어 기사로 흘러나옵니다. 수집된 모든 view는 날짜가 찍힌 한국 뉴스 URL과 1:1로 연결됩니다.
 - **공시에 발 딛은 분석.** DART Recheck가 `confirmed` / `partially supported` / `not separately disclosed`를 구분한 뒤에야 밸류에이션과 stance로 넘어갑니다.
+- **수주잔고의 시간축을 정직하게 표시.** 수주산업은 DART/KRX 근거로 연도·만기 그래프를 반드시 만들고, 총잔고만 공시됐으면 임의 배분 없이 `연도 미공시`로 그립니다.
 - **발행에는 게이트가 있습니다.** 네이버 게시는 스크린샷 미리보기로 사용자가 명시 승인해야만 진행됩니다. 자동 게시는 없습니다.
 - **npm 의존성 없음.** 번들 스크립트는 전부 Node stdlib만으로 돕니다.
 

@@ -2,13 +2,19 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (299 files).
+Complete index of every artifact under `analysis-example/` (302 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
 For strategy methodology and performance comparison, see [CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md](CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md).
 
-## KR — Korean single-stock research (136)
+## KR — Korean single-stock research (139)
+
+### LS일렉트릭 — 2026-08-16
+
+LS일렉트릭 (010120) 결정 메모
+
+[memo](../analysis-example/kr/LS일렉트릭/memo.md) · [dart-analysis](../analysis-example/kr/LS일렉트릭/dart-analysis.md) · [order-backlog-analysis](../analysis-example/kr/LS일렉트릭/order-backlog-analysis.md)
 
 ### market-sentiment — 2026-07-20
 

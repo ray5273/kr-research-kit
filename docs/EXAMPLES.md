@@ -87,6 +87,7 @@ Daily `kr-market-leaders` output is regenerated each run and is not kept in the 
 ## Fixtures
 
 - [KR — DART browser export sample](../examples/kr-stock-dart-analysis/dart-browser-export-sample.json)
+- [KR — Order backlog chart input sample](../examples/kr-order-backlog-analysis/backlog-sample.json)
 - [US — AAPL SEC ticker map sample](../examples/us-sec-analysis/company_tickers_exchange_sample.json)
 - [US — AAPL SEC submissions sample](../examples/us-sec-analysis/submissions-aapl-sample.json)
 - [US — AAPL SEC companyfacts sample](../examples/us-sec-analysis/companyfacts-aapl-sample.json)

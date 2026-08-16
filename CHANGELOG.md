@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- `skills/kr-order-backlog-analysis/` — order-driven KRX classification, DART/KRX evidence hierarchy, normalized backlog JSON, and mandatory Korean-labelled year/maturity PNG rendering with an explicit no-quantitative-data exception.
 - `manifest.json` — project-level descriptor for marketplace catalogs (KrResearchKit v0.1.0, 23 KR skills, tiered featured/standalone/bundle).
 - `.claude-plugin/plugin.json` — Claude Code plugin manifest (`kr-research-kit`, MIT, keywords for discoverability).
 - `.claude-plugin/marketplace.json` — self-hosted Claude Code marketplace manifest. Users can install via `/plugin marketplace add ray5273/kr-research-kit`.
@@ -16,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `skills/kr-market-leaders/` — KOSPI + KOSDAQ integrated leadership screener (SKILL.md, agents/openai.yaml, 3 scripts, 2 references). Now git-tracked.
 
 ### Changed
+- `kr-stock-plan`, DART, data-pack, memo, update, harness, and plugin routing now carry order-driven companies through the backlog skill and keep backlog JSON/Markdown/PNG artifacts synchronized.
 - `README-kr.md` — added "5분 온보딩 (Naver KOL용)" section, filled the 포함된 스킬 list with 9 previously omitted skills (kr-naver-*, kr-analyst-report-*, kr-market-leaders, kr-web-browse), added `kr-naver-blog-publish` usage example.
 
 ### Documented

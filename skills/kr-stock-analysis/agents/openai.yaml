@@ -1,7 +1,7 @@
 interface:
   display_name: "Korean Stock Analysis"
   short_description: "Analyze KRX-listed companies with DART, valuation, governance checks, chart context, archetype-specific uncomfortable questions, and decision-memo stance."
-  default_prompt: "Use $kr-stock-analysis to prepare a dated output for a KRX-listed company. Match the requested mode (`quick view`, `full memo`, `pre-earnings note`, `post-earnings note`, or `pair compare`). If the final deliverable shape is not yet clear, ask the shortest questions needed to confirm what the user actually needs from the memo before drafting. Treat any explicit user question as the priority lens. Anchor material numbers and formal facts to primary sources such as DART, KRX, filings, and official IR, but do not stop at company materials when outside debate is available. For `full memo` outputs, write a decision memo that includes `Decision Frame`, `Street / Alternative Views`, valuation, governance checks, catalysts, risks, archetype-specific `Uncomfortable Questions`, `Decision-Changing Issues`, `Structured Stance`, and `Follow-up Research Prompts`, and write or update `analysis-example/kr/<company>/memo.md` when the workspace is writable."
+  default_prompt: "Use $kr-stock-analysis to prepare a dated KRX decision memo from the scoped brief and source artifacts. For `Order-driven company: yes`, consume $kr-order-backlog-analysis, embed `assets/<company>-order-backlog.png` under `Order Backlog and Revenue Visibility`, and preserve the official-versus-proxy basis. Keep the full-memo decision sections and write `analysis-example/kr/<company>/memo.md` when writable."
 
 policy:
   allow_implicit_invocation: true

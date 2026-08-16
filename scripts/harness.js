@@ -57,6 +57,9 @@ function parseArgs(argv) {
     } else if (arg === "--dart-input") {
       result.dartInput = argv[i + 1];
       i += 1;
+    } else if (arg === "--backlog-input") {
+      result.backlogInput = argv[i + 1];
+      i += 1;
     } else if (arg === "--bloggers") {
       result.bloggers = argv[i + 1];
       i += 1;
@@ -102,8 +105,9 @@ function usage() {
     "Usage:",
     "  node harness.js --mode chart   --ticker 066970 --company \"LG CNS\" [--range 1y]",
     "  node harness.js --mode dart    --ticker 066970 --company \"LG CNS\" --dart-input export.json",
+    "  node harness.js --mode backlog --company \"Sample Heavy\" --backlog-input backlog.json",
     "  node harness.js --mode gate    --company \"LG CNS\" [--memo-path path/to/memo.md]",
-    "  node harness.js --mode all     --ticker 066970 --company \"LG CNS\" [--dart-input export.json] [--with-blog] [--with-analyst] [--with-foreign]",
+    "  node harness.js --mode all     --ticker 066970 --company \"LG CNS\" [--dart-input export.json] [--backlog-input backlog.json] [--with-blog] [--with-analyst] [--with-foreign]",
     "  node harness.js --mode blog    --ticker 066970 --company \"엘앤에프\" [--bloggers id1,id2]",
     "  node harness.js --mode analyst --ticker 066970 --company \"엘앤에프\" [--lookback-days 365]",
     "  node harness.js --mode foreign --ticker 005930 --company \"삼성전자\"",
@@ -112,18 +116,20 @@ function usage() {
     "Modes:",
     "  chart      Fetch OHLCV and generate PNG charts in one step",
     "  dart       Run full DART browser export pipeline (normalize -> extract -> verify -> build-reference)",
+    "  backlog    Render the DART-backed order backlog PNG and normalized chart summary",
     "  gate       Validate a finished memo against structural quality checks",
     "  blog       Discover Naver bloggers -> fetch posts -> summarize insights",
     "  analyst    Discover analyst reports -> fetch/extract PDFs -> write digest",
     "  foreign    Fetch foreign-IB coverage from Korean news -> render Street / Alternative Views block",
-    "  all        chart + dart (if --dart-input) + blog (if --with-blog) + analyst (if --with-analyst) + foreign (if --with-foreign) + gate",
-    "  regression Always-full kr-stock-plan simulation: chart + dart (if input) + analyst + blog + gate",
+    "  all        chart + dart (if --dart-input) + backlog (if --backlog-input) + blog/analyst/foreign (gated) + gate",
+    "  regression Always-full kr-stock-plan simulation: chart + dart/backlog (if input) + analyst + blog + gate",
     "",
     "Options:",
     "  --ticker          KRX ticker code (e.g. 066970)",
     "  --company         Company name (used as directory name)",
     "  --range           Chart data range (default: 1y)",
     "  --dart-input      Path to browser DART export JSON",
+    "  --backlog-input   Path to kr-order-backlog-analysis chart input JSON",
     "  --bloggers        Comma-separated Naver blogger IDs (skips discovery)",
     "  --max-posts       Posts per blogger for --mode blog (default 5)",
     "  --lookback-days   Analyst-report lookback window (default 365)",
@@ -282,6 +288,41 @@ function runDart(opts) {
     buildArgs,
     opts
   );
+}
+
+// ---------------------------------------------------------------------------
+// Order backlog pipeline
+// ---------------------------------------------------------------------------
+
+function runOrderBacklog(opts) {
+  console.log("[backlog] Running order backlog chart pipeline...");
+  const outputDir = resolveOutputDir(opts);
+  const assetsDir = path.join(outputDir, "assets");
+  fs.mkdirSync(outputDir, { recursive: true });
+  fs.mkdirSync(assetsDir, { recursive: true });
+
+  const dataOut = path.join(outputDir, "order-backlog-data.json");
+  const pngOut = path.join(assetsDir, `${opts.company}-order-backlog.png`);
+  const summaryOut = path.join(outputDir, "order-backlog-chart-summary.json");
+  const input = path.resolve(opts.backlogInput);
+  if (!opts.dryRun && input !== path.resolve(dataOut)) {
+    fs.copyFileSync(input, dataOut);
+  }
+
+  const renderScript = path.join(
+    REPO_ROOT,
+    "skills",
+    "kr-order-backlog-analysis",
+    "scripts",
+    "render-order-backlog.js"
+  );
+  runStep(
+    "[backlog 1/1] render-order-backlog.js",
+    renderScript,
+    ["--input", opts.dryRun ? input : dataOut, "--png-out", pngOut, "--summary-out", summaryOut],
+    opts
+  );
+  return { dataOut, pngOut, summaryOut };
 }
 
 // ---------------------------------------------------------------------------
@@ -580,6 +621,27 @@ const ROUTED_STEPS = [
     optional: true, // only runs if --dart-input provided
   },
   {
+    name: "order-backlog",
+    run: (opts) => runOrderBacklog(opts),
+    requires: (opts) => !!opts.backlogInput,
+    cleanCache: () => {},
+    artifacts: (opts) => [
+      path.join(resolveOutputDir(opts), "order-backlog-data.json"),
+      path.join(resolveOutputDir(opts), "order-backlog-chart-summary.json"),
+      path.join(resolveOutputDir(opts), "assets", `${opts.company}-order-backlog.png`),
+    ],
+    assert: (errors, opts) => {
+      for (const artifact of [
+        path.join(resolveOutputDir(opts), "order-backlog-data.json"),
+        path.join(resolveOutputDir(opts), "order-backlog-chart-summary.json"),
+        path.join(resolveOutputDir(opts), "assets", `${opts.company}-order-backlog.png`),
+      ]) {
+        assertNonEmptyFile(errors, `order backlog ${path.basename(artifact)}`, artifact);
+      }
+    },
+    optional: true,
+  },
+  {
     name: "analyst",
     run: (opts) => runAnalyst(opts),
     requires: (opts) => !!(opts.ticker && opts.company),
@@ -856,6 +918,42 @@ function runGate(opts) {
 
   // --- Check 6: DART Recheck table exists (WARN) ---
   {
+    const orderDriven = /Order-driven company:\s*yes/i.test(memo);
+    const backlogSection = lines.some((line) => /^## Order Backlog and Revenue Visibility\s*$/.test(line));
+    const backlogImageRefs = [];
+    const imagePattern = /!\[([^\]]*)\]\(([^)]+)\)/g;
+    let match;
+    while ((match = imagePattern.exec(memo)) !== null) {
+      if (/backlog|order-backlog|수주잔고/i.test(`${match[1]} ${match[2]}`)) backlogImageRefs.push(match[2]);
+    }
+    const backlogArtifacts = [
+      path.join(memoDir, "order-backlog-data.json"),
+      path.join(memoDir, "order-backlog-analysis.md"),
+    ];
+    const missingArtifacts = orderDriven
+      ? backlogArtifacts.filter((artifact) => !fs.existsSync(artifact))
+      : [];
+    const chartException = /Chart status:\s*unavailable-no-quantifiable-disclosure/i.test(memo);
+    const passed =
+      !orderDriven ||
+      (backlogSection && ((backlogImageRefs.length > 0 && missingArtifacts.length === 0) || chartException));
+    checks.push({
+      id: "order-backlog-package",
+      severity: "error",
+      passed,
+      message: !orderDriven
+        ? "Skipped (company not marked order-driven)"
+        : passed
+          ? chartException
+            ? "Order-driven memo records the permitted no-quantitative-data chart exception"
+            : "Order-driven memo includes the backlog section, image, JSON, and analysis artifact"
+          : "Order-driven memo is missing its required backlog section, image, or synchronized artifacts",
+      details: { orderDriven, backlogSection, backlogImageRefs, missingArtifacts, chartException },
+    });
+  }
+
+  // --- Check 7: DART Recheck table exists (WARN) ---
+  {
     const hasSection = lines.some((l) => /^## DART Recheck/.test(l));
     let hasTable = false;
     if (hasSection) {
@@ -878,7 +976,7 @@ function runGate(opts) {
     });
   }
 
-  // --- Check 7: DART Recheck minimum claims ---
+  // --- Check 8: DART Recheck minimum claims ---
   {
     const idx = lines.findIndex((l) => /^## DART Recheck/.test(l));
     let claimCount = 0;
@@ -911,7 +1009,7 @@ function runGate(opts) {
     });
   }
 
-  // --- Check 8: Valuation required metrics ---
+  // --- Check 9: Valuation required metrics ---
   {
     const valIdx = lines.findIndex((l) => /^## Current Valuation Snapshot/.test(l));
     let valText = "";
@@ -933,7 +1031,7 @@ function runGate(opts) {
     });
   }
 
-  // --- Check 9: Source date annotations ---
+  // --- Check 10: Source date annotations ---
   {
     const valIdx = lines.findIndex((l) => /^## Current Valuation Snapshot/.test(l));
     let dateCount = 0;
@@ -998,7 +1096,7 @@ function main() {
   }
 
   if (!opts.mode) {
-    console.error("Error: --mode is required (chart, dart, gate, blog, analyst, foreign, all, regression, guard)");
+    console.error("Error: --mode is required (chart, dart, backlog, gate, blog, analyst, foreign, all, regression, guard)");
     console.error(usage());
     process.exit(1);
   }
@@ -1022,6 +1120,10 @@ function main() {
     console.error("Error: --dart-input is required for --mode dart");
     process.exit(1);
   }
+  if (["backlog"].includes(opts.mode) && !opts.backlogInput) {
+    console.error("Error: --backlog-input is required for --mode backlog");
+    process.exit(1);
+  }
 
   console.log("=== Stock Analysis Harness ===");
   console.log(`Company: ${opts.company || "(from memo-path)"}  Mode: ${opts.mode}${opts.ticker ? "  Ticker: " + opts.ticker : ""}${opts.dryRun ? "  [DRY RUN]" : ""}`);
@@ -1031,6 +1133,8 @@ function main() {
     runChart(opts);
   } else if (opts.mode === "dart") {
     runDart(opts);
+  } else if (opts.mode === "backlog") {
+    runOrderBacklog(opts);
   } else if (opts.mode === "blog") {
     runBlog(opts);
   } else if (opts.mode === "analyst") {
@@ -1050,6 +1154,13 @@ function main() {
       console.log("");
     } else {
       console.log("[dart] Skipped (no --dart-input provided)");
+      console.log("");
+    }
+    if (opts.backlogInput) {
+      runOrderBacklog(opts);
+      console.log("");
+    } else {
+      console.log("[backlog] Skipped (no --backlog-input provided)");
       console.log("");
     }
     if (opts.withAnalyst) {

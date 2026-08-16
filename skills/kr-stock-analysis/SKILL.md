@@ -15,6 +15,7 @@ For `full memo` work, the target is not a generic long report. The target is a d
 - If the final deliverable shape or emphasis is still unclear, ask the user the shortest clarifying questions first: what decision they are making, what depth they want, and which sections matter most.
 - Prefer using a scoped brief from `kr-stock-plan` and a fact pack from `kr-stock-data-pack` before drafting.
 - When the latest filing details are central to the conclusion, strongly prefer a `kr-stock-dart-analysis` pass before drafting so segment, margin, and disclosure wording stay exact.
+- When the planning brief says `Order-driven company: yes`, run `kr-order-backlog-analysis` after the DART pass. If any quantitative DART/KRX amount exists, the memo must embed `assets/<company>-order-backlog.png` under `## Order Backlog and Revenue Visibility`.
 - For annual-filing-backed memo work, treat DART recheck as mandatory for thesis-critical claims instead of an optional extra step.
 - Route the output mode early.
   - `quick view` for compact decision support
@@ -36,6 +37,8 @@ The 11 steps below are the canonical work order. Group them into the 3 phases de
    Reuse the planning brief, `kr-stock-dart-analysis` output, and data pack when available instead of re-scoping from scratch.
 3. Refresh material facts.
    Verify the latest company facts needed to support the conclusion and anchor material numbers to primary sources. The DART, chart, and external-view fetches that feed the data pack must be dispatched as parallel subagents — see `## Parallel Dispatch`. Run `kr-stock-data-pack` itself only after those subagents return, so it can ingest their artifacts.
+3A. Build the order-backlog artifact when required.
+   After the DART channel returns, apply the planning brief's order-driven decision. For `yes`, run `kr-order-backlog-analysis` before `kr-stock-data-pack`; require the normalized JSON, report, and PNG when a quantitative amount exists.
 4. Classify the archetype.
    Decide which business archetype best fits the company and use that choice to drive the uncomfortable-question set.
 5. Scan outside views.
@@ -86,6 +89,8 @@ Channel selection by mode:
 - `post-earnings note`: DART + Sell-side + Foreign. Chart optional.
 - `pair compare`: run the 5-channel set per company in parallel; do not interleave per-company sequentially.
 
+`kr-order-backlog-analysis` is a conditional Phase B.5 dependency, not a sixth independent fetch channel. It consumes the completed DART artifact. Run it immediately after the DART channel for every company classified `Order-driven company: yes`, then let Phase C's data pack ingest its files.
+
 `subagent_type` for each Phase B call: use `general-purpose` by default. Use `Explore` only when a channel reduces to read-only file/symbol lookup (rare here).
 
 Subagent prompt template — paste this verbatim into each `Agent` call, substituting the bracketed values:
@@ -112,7 +117,7 @@ Return to me, in <=200 words:
 ```
 
 ### Phase C — Synthesis (sequential, main agent)
-After Phase B returns, run `kr-stock-data-pack` (it auto-ingests `analyst-report-insight.md` and `naver-insights.md` when present), then continue with Steps 6-11: build the memo, run DART recheck on thesis-critical claims, attack the thesis, surface follow-up prompts, run helper scripts, and write the deliverable. The main agent reads the Phase B artifacts on demand via `Read` instead of carrying them in context.
+After Phase B returns, complete the conditional order-backlog pass, then run `kr-stock-data-pack` (it auto-ingests `order-backlog-analysis.md`, `analyst-report-insight.md`, and `naver-insights.md` when present). Continue with Steps 6-11: build the memo, run DART recheck on thesis-critical claims, attack the thesis, surface follow-up prompts, run helper scripts, and write the deliverable. The main agent reads the Phase B artifacts on demand via `Read` instead of carrying them in context.
 
 If a Phase B subagent returns a gap (e.g. Naver returned 0 specialist hits, foreign IB had no recent coverage, an analyst PDF was auth-walled), record the gap in the memo's `Decision-Changing Issues` or `Follow-up Research Prompts` section rather than retrying the whole channel.
 
@@ -137,6 +142,8 @@ If a Phase B subagent returns a gap (e.g. Naver returned 0 specialist hits, fore
 - Separate verified facts from your inference.
 - A thesis-critical statement is not fully verified until it survives the DART recheck step when a relevant filing exists.
 - Use primary sources to anchor core numbers, customer concentration, capital allocation facts, and governance facts.
+- For order-driven companies, keep official backlog schedules, project-level remaining amounts, contract-maturity proxies, and total-only disclosures visibly distinct. Never turn a contract end date into an assumed revenue-recognition year.
+- Treat a missing quantitative amount as the only permitted chart exception. Record `unavailable-no-quantifiable-disclosure` and the DART sections checked rather than drawing zeros or estimates.
 - Use outside research to capture framing, disagreement, and thesis pressure points instead of repeating company marketing language.
 - Label outside interpretation as `Street view`, `Specialist media`, `Independent view`, or `Not separately disclosed` when the distinction matters.
 - Label trade-stat interpretation as `Trade Flow Inference` with its confidence grade (`high-confidence inference`, `medium-confidence proxy`, `weak proxy`, or `contradicted`) when the company, customer, geography, or product mix is not separately disclosed.
@@ -179,6 +186,7 @@ The list below applies to `full memo` outputs. Use the compact templates in `ref
 - What the business does and what matters most
 - Revenue mix across product or segment, geography, and customer concentration when disclosed
 - Evidence from current results, balance sheet, and capital allocation
+- For `Order-driven company: yes`, an `Order Backlog and Revenue Visibility` section with the required backlog PNG, basis label, official total, dated/undated split, final disclosed year, coverage ratio when comparable, and explicit measurement limits
 - A short `DART Recheck` table for the most thesis-critical claims
 - A `Street / Alternative Views` section that captures sell-side, specialist-media, or independent takes and labels what is confirmed versus inference
 - Current valuation snapshot with price, market cap, trailing PER, forward PER, EV/EBITDA, P/B, and FCF yield

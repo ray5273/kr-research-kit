@@ -48,6 +48,9 @@ function testBaselineParser() {
     "## Chart and Positioning",
     "![chart](assets/chart.png)",
     "",
+    "## Order Backlog and Revenue Visibility",
+    "![backlog](assets/sample-order-backlog.png)",
+    "",
     "```guard-decision",
     "trigger: price break",
     "review_by: 2026-02-01",
@@ -77,6 +80,8 @@ function testBaselineParser() {
   assert.strictEqual(baseline.dartRecheck.tableRows.length, 1);
   assert.strictEqual(baseline.guardDecision.trigger, "price break");
   assert.strictEqual(baseline.chartAssets[0].exists, true);
+  assert.strictEqual(baseline.orderBacklog.present, true);
+  assert.strictEqual(baseline.chartAssets.length, 2);
   assert(baseline.staleSectionAudit.includes("Follow-up Research Prompts"));
 }
 
@@ -140,6 +145,9 @@ function testSectionUpdater() {
     "## Structured Stance",
     "Old stance.",
     "",
+    "## Order Backlog and Revenue Visibility",
+    "Old backlog.",
+    "",
     "## Sources",
     "- [source](https://example.com)",
     "",
@@ -154,11 +162,13 @@ function testSectionUpdater() {
     sections: {
       Summary: "New summary.",
       "Structured Stance": "New stance.",
+      "Order Backlog and Revenue Visibility": "New backlog with refreshed chart.",
     },
   });
   assert(updated.includes("기준일: 2026-01-01"));
   assert(updated.includes("## Summary\n\nNew summary."));
   assert(updated.includes("## Structured Stance\n\nNew stance."));
+  assert(updated.includes("## Order Backlog and Revenue Visibility\n\nNew backlog with refreshed chart."));
   assert(updated.includes("### 2026-01-10 Update"));
 
   assert.throws(() => applySectionUpdates(report, { sections: { Sources: "bad" } }), /reserved/);

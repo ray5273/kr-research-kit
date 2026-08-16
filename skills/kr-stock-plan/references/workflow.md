@@ -27,7 +27,7 @@ Before finalizing the brief, ask the minimum clarifying questions needed to lear
 - what decision the user is trying to make
 - whether they want planning only or the full workflow executed now
 - what depth they expect: quick view, full memo, event note, or compare
-- whether filing precision, valuation, chart work, peers, backlog, or contract detail must be included
+- whether filing precision, valuation, chart work, peers, backlog, contract detail, or year-by-year order visibility must be included
 - what should explicitly stay out of scope
 
 ## Scope Questions
@@ -60,6 +60,7 @@ Route the downstream work explicitly instead of leaving the sequence implicit, a
 
 - Default stock workflow: `kr-stock-plan -> kr-stock-data-pack -> kr-stock-analysis`
 - Filing-heavy workflow: `kr-stock-plan -> kr-stock-dart-analysis -> kr-stock-data-pack -> kr-stock-analysis`
+- Order-driven workflow: `kr-stock-plan -> kr-stock-dart-analysis -> kr-order-backlog-analysis -> kr-stock-data-pack -> kr-stock-analysis`
 - Direct filing-to-memo workflow is acceptable only when the user wants filing-grounded interpretation immediately and the extra fact-pack layers are not necessary.
 
 Execution rule:
@@ -92,6 +93,28 @@ Prefer the filing-heavy workflow when the request depends on:
 - segment, geography, or customer-concentration precision
 - backlog, contract-disclosure, or related-party detail
 - exact disclosure wording that will materially affect the conclusion
+
+## Order Backlog Decision
+
+Apply this gate to every operating company and record both the classification and route.
+
+Use `Order-driven company: yes` when both conditions hold:
+
+- a material business line recognizes revenue through customer-specific contracts, milestones, construction progress, long manufacturing lead times, or long-duration service obligations
+- DART/KRX provides an auditable path through official backlog, contract balance, remaining performance obligations, project-level remaining order amounts, or material single-sales/supply-contract disclosures
+
+Typical candidates include shipbuilding, marine engines, defense, construction, EPC, power equipment, industrial machinery, rolling stock, and long-duration SI. These are screening cues, not automatic classifications.
+
+Use `no` when ordinary inventory sales, spot transactions, subscriptions, or short-cycle purchase orders dominate and backlog is not a decision-useful disclosed KPI. Use `deferred` when the business appears contract-driven but filing coverage, listing scope, or the distinction between backlog and pipeline/MOU/LOI is unresolved.
+
+Routing rules:
+
+- `yes`: route `kr-stock-dart-analysis -> kr-order-backlog-analysis`; then let `kr-stock-data-pack` and `kr-stock-analysis` consume the artifacts.
+- `deferred`: complete the relevant DART section sweep before deciding; do not silently skip the route.
+- `no`: omit the backlog route unless the user explicitly asks for contract analysis.
+- If the route is `yes` and at least one DART/KRX-backed amount exists, require `order-backlog-data.json`, `order-backlog-analysis.md`, and `assets/<company>-order-backlog.png`.
+- If only a total official backlog is disclosed, require an `official-total-only` chart with one `연도 미공시` bucket. Do not estimate a yearly split.
+- If no quantitative amount exists after a complete DART/KRX check, record `Chart status: unavailable-no-quantifiable-disclosure` and the sections checked.
 
 ## Outside Views Decision
 
@@ -140,3 +163,4 @@ The `analyst-report-insight.md` digest lands in `analysis-example/kr/<company>/`
 - asking the downstream writer to decide the output mode
 - sneaking thesis conclusions into the planning artifact
 - skipping the analyst-report pass when the user explicitly asked about 컨센서스 / TP / 증권사 coverage
+- treating an order-driven company as complete without a backlog-route decision and, when quantitative evidence exists, a rendered backlog chart
