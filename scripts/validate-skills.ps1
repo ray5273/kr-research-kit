@@ -222,8 +222,11 @@ foreach ($skillDir in $skillDirs) {
         if (-not $planOutputFormat.Contains("Canonical memo path:")) {
             Write-Error "Expected kr-stock-plan output format to include the canonical memo path."
         }
-        if (-not $planOutputFormat.Contains('Follow-up classification (`memo-only` or `refresh-needed`):')) {
-            Write-Error "Expected kr-stock-plan output format to include follow-up classification."
+        if (-not $planOutputFormat.Contains('Follow-up classification (`answer-now`, `refresh-now`, `wait-for-event`, or `ask-user`; legacy aliases `memo-only` / `refresh-needed`):')) {
+            Write-Error "Expected kr-stock-plan output format to include four-state follow-up classification."
+        }
+        if (-not $planOutputFormat.Contains("Order-backlog route: yes / no / deferred")) {
+            Write-Error "Expected kr-stock-plan output format to include the order-backlog route decision."
         }
     }
 
