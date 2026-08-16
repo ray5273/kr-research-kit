@@ -45,6 +45,14 @@ assert(editorHtml("> signature").includes('data-kr-naver-signature="true"'));
 assert.strictEqual((editorHtml("> line 1\n> line 2\n> ✓ item").match(/<blockquote\b/g) || []).length, 1);
 assert.strictEqual((editorHtml("> line 1\n> line 2\n> ✓ item").match(/<p\b/g) || []).length, 3);
 {
+  const fenced = "## ASCII\n\n```text\nA  B\n`literal` **markers**\n```";
+  assert(editorBody(fenced).includes("A  B\n`literal` **markers**"));
+  const html = editorHtml(fenced);
+  assert(html.includes("white-space:pre-wrap"));
+  assert(html.includes("A  B<br>`literal` **markers**"));
+  assert(!html.includes("<code>literal</code>"));
+}
+{
   const tableMarkdown = [
     "# 제목",
     "",

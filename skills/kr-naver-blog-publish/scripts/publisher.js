@@ -201,17 +201,41 @@ function withColorLegend(markdown) {
   return `${before}${eol}${eol}${COLOR_LEGEND_MARKDOWN}${eol}${eol}${after}`;
 }
 
+const CODE_FENCE = /^\s*```/;
+
+// Split markdown on ``` fences so fenced content is never run through the
+// inline markdown replacements. Without this the three fence backticks are
+// consumed as inline-code delimiters and leak stray backticks into the post.
+function splitFencedBlocks(markdown) {
+  const segments = [];
+  let fenced = false;
+  let buffer = [];
+  const flush = () => { segments.push({ fenced, lines: buffer }); buffer = []; };
+  for (const line of String(markdown).split(/\r?\n/)) {
+    if (CODE_FENCE.test(line)) { flush(); fenced = !fenced; continue; }
+    buffer.push(line);
+  }
+  flush();
+  return segments;
+}
+
 function renderEditorBody(markdown) {
-  return normalizeText(markdownTablesToTsv(markdown)
+  const prepared = markdownTablesToTsv(markdown)
     .replace(/^#\s+.+?[ \t]*$/m, "")
-    .replace(/^!\[[^\]]*]\([^)]+\.png(?:\?[^)]*)?\)\s*$/gim, "")
-    .replace(/^#{2,6}\s+(.+?)[ \t]*$/gm, "$1")
-    .replace(/^---+[ \t]*$/gm, "────────")
-    .replace(/^>\s?/gm, "")
-    .replace(/\[(?:red|blue|brown):\s*([^\]]+)\]/g, "$1")
-    .replace(/\*\*([^*]+)\*\*/g, "$1")
-    .replace(/`([^`]+)`/g, "$1")
-    .replace(/\[([^\]]+)]\((https?:\/\/[^)]+)\)/g, "$1 ($2)"));
+    .replace(/^!\[[^\]]*]\([^)]+\.png(?:\?[^)]*)?\)\s*$/gim, "");
+  const rendered = splitFencedBlocks(prepared).map((segment) => {
+    const text = segment.lines.join("\n");
+    if (segment.fenced) return text;
+    return text
+      .replace(/^#{2,6}\s+(.+?)[ \t]*$/gm, "$1")
+      .replace(/^---+[ \t]*$/gm, "────────")
+      .replace(/^>\s?/gm, "")
+      .replace(/\[(?:red|blue|brown):\s*([^\]]+)\]/g, "$1")
+      .replace(/\*\*([^*]+)\*\*/g, "$1")
+      .replace(/`([^`]+)`/g, "$1")
+      .replace(/\[([^\]]+)]\((https?:\/\/[^)]+)\)/g, "$1 ($2)");
+  }).join("\n");
+  return normalizeText(rendered);
 }
 
 function editorBody(markdown) {
@@ -321,8 +345,24 @@ function renderEditorHtml(markdown) {
     pushBlock(`<blockquote data-kr-naver-signature="true" style="${quoteStyle}">${quoteParagraphs}</blockquote>`);
     quotation = [];
   };
+  let fencedLines = null;
+  const flushFenced = () => {
+    if (!fencedLines) return;
+    // Keep the body font size so block-format validation still matches; only
+    // the whitespace handling differs so ASCII blocks keep their alignment.
+    if (fencedLines.length) {
+      pushBlock(`<p style="${bodyStyle}white-space:pre-wrap;"><span style="${bodyTextStyle}white-space:pre-wrap;">${fencedLines.map(escapeHtml).join("<br>")}</span></p>`);
+    }
+    fencedLines = null;
+  };
   for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
     const line = lines[lineIndex];
+    if (CODE_FENCE.test(line)) {
+      if (fencedLines) flushFenced();
+      else { flushQuotation(); flushParagraph(); fencedLines = []; }
+      continue;
+    }
+    if (fencedLines) { fencedLines.push(line); continue; }
     const table = parseMarkdownTableBlock(lines, lineIndex);
     if (table) {
       flushQuotation();
@@ -378,6 +418,7 @@ function renderEditorHtml(markdown) {
     }
     paragraph.push(line);
   }
+  flushFenced();
   flushQuotation();
   flushParagraph();
   return `<div>${blocks.join("\n")}</div>`;
@@ -686,10 +727,17 @@ function assertWritableDraft(inspected, manifest, expectedBody) {
   const sameDailyDraftByTitle = isDailyMarketManifest(manifest)
     && title === expectedTitle;
   const titleOk = isBlankOrPlaceholder(title) || title === expectedTitle || sameGeneratedStockDraft || sameGeneratedDailyDraft;
-  const incompleteSelfDraft = body.startsWith(expectedTitle) || expected.startsWith(body);
+  // SmartEditor reports adjacent blocks without their separator, so a partially
+  // written draft of this very post is not a literal prefix of the expected
+  // body. Compare with whitespace removed so an interrupted run of our own can
+  // be resumed, while still refusing any draft with different content.
+  const withoutSpace = value => value.replace(/\s+/g, "");
+  const bodyPacked = withoutSpace(body);
+  const incompleteSelfDraft = Boolean(bodyPacked)
+    && (bodyPacked.startsWith(withoutSpace(expectedTitle)) || withoutSpace(expected).startsWith(bodyPacked));
   const sameGeneratedDraft = title === expectedTitle && body.includes(manifest.post.company);
   const bodyOk = isBlankOrPlaceholder(body) || body === expected || incompleteSelfDraft || sameGeneratedDraft || sameGeneratedStockDraft || sameGeneratedDailyDraft || sameDailyDraftByTitle;
-  assert(titleOk && bodyOk, "Editor already contains different draft content; open a new blank write screen before prepare");
+  assert(titleOk && bodyOk, `Editor already contains different draft content; open a new blank write screen before prepare; title=${JSON.stringify(title.slice(0, 180))}; body=${JSON.stringify(body.slice(0, 360))}`);
 }
 
 function manifestSourcePath(manifest) {
@@ -944,7 +992,7 @@ class GstackDriver {
   constructor(options = {}) {
     const browse = require("../../kr-naver-browse/scripts/browse-naver.js");
     this.bin = browse.resolveBrowseBinary();
-    this.supportsHeadedFlag = null;
+    this.headedFlagPosition = undefined;
     this.defaultProfile = path.join(os.homedir(), ".gstack", "kr-naver-blog-publish", "chromium-profile");
     this.publishProfile = process.env.NAVER_PUBLISH_PROFILE || this.defaultProfile;
     this.publishStateFile = process.env.NAVER_PUBLISH_STATE_FILE || DEFAULT_BROWSE_STATE_FILE;
@@ -975,15 +1023,24 @@ class GstackDriver {
     }
   }
   run(args, timeout = 90_000) {
-    if (this.supportsHeadedFlag === null) {
+    if (this.headedFlagPosition === undefined) {
+      // Older gstack browse builds took a global `--headed` prefix flag
+      // (`browse --headed status`). Current builds dropped it: headed mode is
+      // established once by `browse connect`, and the flag is not a global
+      // option at all. Never append it as a suffix — commands with positional
+      // arguments (`upload <selector> <file>`) would parse it as another
+      // argument and fail with "File not found: --headed".
+      const unknownHeaded = (error) => /Unknown command:\s*'?--headed'?/.test(String(error.stderr || error.stdout || error.message));
       try {
         execFileSync(this.bin, ["--headed", "status"], { encoding: "utf8", env: this.env, stdio: ["ignore", "pipe", "pipe"], timeout: 15_000, maxBuffer: 1024 * 1024 });
-        this.supportsHeadedFlag = true;
+        this.headedFlagPosition = "prefix";
       } catch (error) {
-        this.supportsHeadedFlag = !/Unknown command: '--headed'/.test(String(error.stderr || error.stdout || error.message));
+        this.headedFlagPosition = unknownHeaded(error) ? null : "prefix";
       }
     }
-    const commandArgs = this.supportsHeadedFlag && !args.includes("--headed") ? ["--headed", ...args] : args;
+    const commandArgs = this.headedFlagPosition === "prefix" && !args.includes("--headed")
+      ? ["--headed", ...args]
+      : args;
     let lastError;
     for (let attempt = 0; attempt < 3; attempt += 1) {
       try {
@@ -1033,6 +1090,21 @@ class GstackDriver {
       const diagnostic = this.js(`JSON.stringify([...document.querySelectorAll('textarea,input,[contenteditable],[class*=title],[class*=document]')].slice(0,80).map(e => ({tag:e.tagName,id:e.id,class:String(e.className || ''),placeholder:e.getAttribute('placeholder'),contenteditable:e.getAttribute('contenteditable'),role:e.getAttribute('role')})))`);
       throw new Error(`Required Naver SmartEditor selector unavailable: ${name}\nCandidates: ${diagnostic}`);
     }
+    return found;
+  }
+  findLastBodySelector() {
+    const expression = `(() => {
+      const candidates=${JSON.stringify(SELECTORS.body)};
+      const selector=candidates.find(candidate => document.querySelectorAll(candidate).length);
+      if (!selector) return '';
+      const elements=[...document.querySelectorAll(selector)];
+      const element=elements.at(-1);
+      if (!element) return '';
+      element.setAttribute('data-kr-naver-selector', 'body-last');
+      return '[data-kr-naver-selector=body-last]';
+    })()`;
+    const found = this.js(expression).replace(/^"|"$/g, "");
+    assert(found, "Required final Naver SmartEditor body insertion point unavailable");
     return found;
   }
   markButtonByText(role, labels) {
@@ -1207,18 +1279,67 @@ class GstackDriver {
     this.run(["press", process.platform === "darwin" ? "Meta+A" : "Control+A"], 30_000);
     this.run(["type", value], 30_000);
   }
-  setBody(value, html) {
+  clearBodyContent() {
     const selector = this.findSelector("body");
     this.clickOrDomClick(selector);
-    this.run(["press", process.platform === "darwin" ? "Meta+A" : "Control+A"], 30_000);
+    const selectAll = process.platform === "darwin" ? "Meta+A" : "Control+A";
+    this.run(["press", selectAll], 30_000);
+    this.run(["press", selectAll], 30_000);
+    this.run(["press", "Backspace"], 30_000);
+    this.js("new Promise(resolve => setTimeout(() => resolve('ok'), 400))");
+  }
+  setBody(value, html) {
+    this.findSelector("body");
+    this.clearBodyContent();
+    const selector = this.findSelector("body");
     this.resetInheritedBodyFormatting();
     this.clickOrDomClick(selector);
     this.run(["press", process.platform === "darwin" ? "Meta+A" : "Control+A"], 30_000);
     this.pasteClipboard(value, html, { refocusSelector: selector });
   }
   appendBody(value, html) {
-    const selector = this.findSelector("body");
+    const selector = this.findLastBodySelector();
     this.replaceEditorText(selector, value, html, { selectAll: false, resetBodyFormatting: true });
+  }
+  placeBodyCursorAfterText(text) {
+    const result = this.js(`(() => {
+      const target=${JSON.stringify(text)};
+      const root=document.querySelector('.se-main-container, .se-content');
+      if (!root) return 'missing-root';
+      const normalize=value => String(value || '').replace(/\\s+/g, ' ').trim();
+      const exact=[...root.querySelectorAll('.se-text-paragraph, p, h2, h3, [contenteditable=true]')]
+        .find(element => normalize(element.innerText || element.textContent) === normalize(target) && !element.closest('.se-documentTitle'));
+      if (exact) {
+        exact.click();
+        const range=document.createRange();
+        range.selectNodeContents(exact);
+        range.collapse(false);
+        const selection=window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        exact.scrollIntoView({ block: 'center', inline: 'nearest' });
+        return 'placed';
+      }
+      const walker=document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      let node;
+      while ((node=walker.nextNode())) {
+        const value=node.nodeValue || '';
+        const index=value.indexOf(target);
+        if (index < 0) continue;
+        if (node.parentElement && node.parentElement.closest('.se-documentTitle')) continue;
+        if (node.parentElement) node.parentElement.click();
+        const range=document.createRange();
+        range.setStart(node, index + target.length);
+        range.collapse(true);
+        const selection=window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        if (node.parentElement) node.parentElement.scrollIntoView({ block: 'center', inline: 'nearest' });
+        return 'placed';
+      }
+      return 'missing-text:' + JSON.stringify({ text: String(root.innerText || root.textContent || '').slice(0, 800), editables: root.querySelectorAll('[contenteditable=true]').length });
+    })()`);
+    assert(/placed/i.test(result), `Unable to place SmartEditor image cursor after: ${text}; diagnostic=${result}`);
   }
   pasteLinkCard(url) {
     const selector = this.findSelector("body");
@@ -2056,7 +2177,14 @@ function validateEditor(inspected, manifest, expectedBody, options = {}) {
   const linkCards = manifestLinkCards(manifest);
   const inspectedComparable = linkCards.length ? stripDailyMarketNewsSection(stripLinkCardUrls(inspected.body, linkCards)) : stripLinkCardUrls(inspected.body, linkCards);
   const expectedComparable = linkCards.length ? stripDailyMarketNewsSection(stripLinkCardUrls(expectedBody, linkCards)) : stripLinkCardUrls(expectedBody, linkCards);
-  assert(compactEditorText(inspectedComparable) === compactEditorText(expectedComparable), "Editor body does not match generated post");
+  const inspectedCompact = compactEditorText(inspectedComparable);
+  const expectedCompact = compactEditorText(expectedComparable);
+  if (inspectedCompact !== expectedCompact) {
+    let mismatchIndex = 0;
+    while (mismatchIndex < inspectedCompact.length && mismatchIndex < expectedCompact.length && inspectedCompact[mismatchIndex] === expectedCompact[mismatchIndex]) mismatchIndex += 1;
+    const start = Math.max(0, mismatchIndex - 120);
+    throw new Error(`Editor body does not match generated post at ${mismatchIndex}; expected=${JSON.stringify(expectedCompact.slice(start, mismatchIndex + 240))}; actual=${JSON.stringify(inspectedCompact.slice(start, mismatchIndex + 240))}`);
+  }
   for (const url of linkCards) {
     const found = String(inspected.body || "").includes(url) || (inspected.linkCardUrls || []).includes(url);
     assert(found, `Daily market-news link card URL missing from editor: ${url}`);
@@ -2083,6 +2211,24 @@ function validateEditor(inspected, manifest, expectedBody, options = {}) {
   return editorContentFingerprint(inspected);
 }
 
+// For every image chunk, the last rendered line of the text chunk right before
+// it. That line is the caret anchor used to insert the image in place after the
+// full body has been pasted. Returns null when any image is not preceded by a
+// plain text chunk, so the caller keeps the chunked fallback.
+function imageAnchorTexts(chunks) {
+  const anchors = [];
+  for (let index = 0; index < chunks.length; index += 1) {
+    if (chunks[index].type !== "image") continue;
+    const previous = chunks[index - 1];
+    if (!previous || previous.type !== "text") return null;
+    const lines = renderEditorBody(previous.markdown).split("\n").map(line => line.trim()).filter(Boolean);
+    const anchor = lines.at(-1);
+    if (!anchor) return null;
+    anchors.push(anchor);
+  }
+  return anchors.length ? anchors : null;
+}
+
 function setBodyAndInlineImages(driver, markdown, manifest) {
   const publishingMarkdown = withColorLegend(markdown);
   const chunks = editorContentChunks(publishingMarkdown);
@@ -2092,6 +2238,20 @@ function setBodyAndInlineImages(driver, markdown, manifest) {
   let insertedText = false;
   if (!chunks.some((chunk) => chunk.type === "image")) {
     driver.setBody(fullBody, fullHtml);
+    return;
+  }
+  // Preferred path: paste the whole body once, then drop each image at the
+  // paragraph it follows in the source markdown. Chunked pasting cannot be used
+  // here because SmartEditor drops a paste that lands right after an uploaded
+  // image node, which silently truncates the post at the first chart.
+  const anchors = imageAnchorTexts(chunks);
+  if (anchors && anchors.length === manifest.post.images.length && typeof driver.placeBodyCursorAfterText === "function") {
+    driver.setBody(fullBody, fullHtml);
+    driver.js("new Promise(resolve => setTimeout(() => resolve('ok'), 2000))");
+    for (let index = 0; index < anchors.length; index += 1) {
+      driver.placeBodyCursorAfterText(anchors[index]);
+      driver.uploadImage(manifest.post.images[index].absolutePath, index + 1);
+    }
     return;
   }
   for (const chunk of chunks) {
@@ -2152,6 +2312,7 @@ function prepare(args, manifestPath, manifest) {
   driver.setTitle(manifest.post.title);
   if (manifestLinkCards(manifest).length) setBodyWithDailyLinkCards(driver, markdown, manifest);
   else setBodyAndInlineImages(driver, markdown, manifest);
+  driver.setTitle(manifest.post.title);
   driver.saveDraft();
   const editorUrl = driver.editorUrl();
   driver.openPublishLayer();
@@ -2410,7 +2571,7 @@ function cleanupLegacyBrowser(args) {
       execFileSync(bin, ["--headed", "stop"], stopOptions);
     } catch (error) {
       const output = String(error.stderr || error.stdout || error.message || "");
-      if (/Unknown command: '--headed'/.test(output)) {
+      if (/Unknown command:\s*'?--headed'?/.test(output)) {
         execFileSync(bin, ["stop"], stopOptions);
       } else if (!/Server connection lost|Server crashed|no (?:running )?server/i.test(output)) {
         throw error;

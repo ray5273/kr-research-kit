@@ -42,6 +42,10 @@ const markdown = [
   "- 최근 조정폭은 -12.8%입니다.",
   "- 2,480억 규모의 현금 창출력을 점검합니다.",
   "",
+  "```text",
+  "ASCII BLOCK SHOULD NOT SHIP",
+  "```",
+  "",
   "## Decision Frame",
   "",
   "| 판단축 | 현재 판정 | 왜 중요한가 |",
@@ -96,6 +100,7 @@ assert(!result.postMarkdown.includes("## Follow-up Research Prompts"));
 assert(result.postMarkdown.includes("2026-06-21"));
 assert(result.postMarkdown.includes("-12.8%"));
 assert(result.postMarkdown.includes("2,480억"));
+assert(!result.postMarkdown.includes("ASCII BLOCK SHOULD NOT SHIP"));
 assert(result.postMarkdown.includes("## 출처"));
 assert(result.postMarkdown.includes("매수·매도를 권유하지 않습니다"));
 assert(result.postMarkdown.includes("> **RESEARCH COMPLETE · AI-ASSISTED EQUITY INTELLIGENCE**"));

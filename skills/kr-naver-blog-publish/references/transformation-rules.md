@@ -7,6 +7,7 @@
 - Keep DART findings inside the narrative section where they support a claim.
 - Preserve dates, signs, units, ratios, ticker symbols, and source URLs verbatim.
 - Preserve Markdown tables when the row/column structure carries scenario, comparison, valuation, checklist, or source-mapping meaning.
+- Drop fenced code blocks. SmartEditor collapses every run of spaces inside a text component, so preformatted content such as an ASCII chart arrives as one ragged line. The source memo keeps the block; confirm its figures also appear in surrounding prose or a table.
 
 ## SmartEditor color emphasis
 

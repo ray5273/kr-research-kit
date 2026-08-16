@@ -227,6 +227,20 @@ function stripImageLines(markdown) {
   return markdown.replace(IMAGE_LINE_PATTERN, "").replace(/\n{3,}/g, "\n\n").trim();
 }
 
+// SmartEditor collapses every run of spaces inside a text component, so a
+// fenced block loses the column alignment that makes it readable — an ASCII
+// chart arrives as one ragged line. Drop fenced blocks from the blog post; the
+// source memo keeps them, and the surrounding tables carry the same figures.
+function stripFencedBlocks(markdown) {
+  const kept = [];
+  let fenced = false;
+  for (const line of markdown.split(/\r?\n/)) {
+    if (/^\s*```/.test(line)) { fenced = !fenced; continue; }
+    if (!fenced) kept.push(line);
+  }
+  return kept.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
 function extractImages(markdown, memoPath, selectedHeadings) {
   const images = [];
   const pattern = /!\[([^\]]*)]\(([^)]+\.png(?:\?[^)]*)?)\)/gi;
@@ -325,6 +339,7 @@ function buildPost({ markdown, memoPath, category = null }) {
     const mapped = HEADING_MAP.get(normalizedHeading) || section.heading;
     let body = convertTables(normalizedHeading === "summary" ? stripLeadingMetadataLines(section.body) : section.body);
     body = stripImageLines(body);
+    body = stripFencedBlocks(body);
     body = cleanInternalLinks(body);
     if (!body) continue;
     parts.push("", `## ${mapped}`, "", body);
