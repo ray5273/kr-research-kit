@@ -10,7 +10,7 @@ within HOLD_BUFFER_RANK. A new candidate whose signal-close return versus its
 previous trading close is >=25% is skipped and the slot is filled by the next
 ranked candidate. Incumbents within the band are never subject to this jump gate.
 """
-import json, os, re, sys, urllib.parse, urllib.request
+import json, os, re, sys, time, urllib.parse, urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -26,6 +26,7 @@ HOLD_BUFFER_RANK = 45
 NEW_ENTRY_JUMP_THRESHOLD = 0.25
 FORCE_REBUILD = os.environ.get("HERMES_FORCE_REBUILD") == "1"
 REQUESTED_SIGNAL_DATE = os.environ.get("HERMES_SIGNAL_DATE")
+FETCH_RETRIES = int(os.environ.get("HERMES_FETCH_RETRIES", "4"))
 
 def read(p, d):
     try: return json.loads(p.read_text())
@@ -102,10 +103,19 @@ def select_target(rows, prior_holdings, holdings=HOLDINGS, hold_buffer_rank=HOLD
     }
 
 def naver(t):
+    # Retry with backoff: this job fires on days 1-3 and the box reboots every few
+    # days, so a fetch that hits a not-yet-ready network must not silently drop the
+    # ticker out of the candidate set.
     q = urllib.parse.urlencode({"symbol": t, "requestType": 1, "startTime": "20240101", "endTime": "20300101", "timeframe": "day"})
-    r = urllib.request.Request("https://api.finance.naver.com/siseJson.naver?" + q, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://finance.naver.com/"})
-    x = urllib.request.urlopen(r, timeout=25).read().decode("euc-kr", "ignore")
-    return parse_naver_rows(x)
+    last = None
+    for attempt in range(FETCH_RETRIES):
+        try:
+            r = urllib.request.Request("https://api.finance.naver.com/siseJson.naver?" + q, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://finance.naver.com/"})
+            return parse_naver_rows(urllib.request.urlopen(r, timeout=25).read().decode("euc-kr", "ignore"))
+        except Exception as error:
+            last = error
+            if attempt + 1 < FETCH_RETRIES: time.sleep(2 ** attempt)
+    raise RuntimeError(f"{t}: {last}")
 
 def main():
     raw = read(CACHE / "top300.json", [])
@@ -115,12 +125,18 @@ def main():
     universe = [x for x in universe if str(x.get("ticker", "")).zfill(6) not in excluded]
     fundamentals = read(CACHE / "fundamentals.json", {}).get("byTicker", {})
 
-    prices = {}
+    prices, fetch_failures = {}, []
     with ThreadPoolExecutor(max_workers=16) as ex:
         futures = {ex.submit(naver, str(x["ticker"]).zfill(6)): x for x in universe}
         for f in as_completed(futures):
-            try: prices[str(futures[f]["ticker"]).zfill(6)] = f.result()
-            except Exception: pass
+            t = str(futures[f]["ticker"]).zfill(6)
+            try: prices[t] = f.result()
+            except Exception as error: fetch_failures.append({"ticker": t, "name": futures[f].get("name", t), "error": str(error)[:200]})
+    # Price-coverage floor, mirroring the backtest's 90% annual coverage gate. Without
+    # it a transient network failure silently rebalances off a partial universe.
+    coverage = len(prices) / len(universe) if universe else 0
+    if coverage < 0.9:
+        raise RuntimeError(f"Price coverage {coverage:.1%} ({len(prices)}/{len(universe)}) is below the 90% floor; refusing to rebalance on a partial universe")
 
     if REQUESTED_SIGNAL_DATE:
         datetime.strptime(REQUESTED_SIGNAL_DATE, "%Y-%m-%d")
@@ -196,6 +212,7 @@ def main():
         "holdings": holdings,
         "excludedTickers": sorted(excluded),
         "staleOrUntradable": stale_or_untradable,
+        "priceCoverage": {"fetched": len(prices), "universe": len(universe), "ratio": round(coverage, 4), "failures": fetch_failures},
         "entryJumpFilter": {
             "enabled": True,
             "threshold": NEW_ENTRY_JUMP_THRESHOLD,
@@ -213,7 +230,7 @@ def main():
     prior = [s for s in selections if s.get("executionDate") != execution]; prior.append(event)
     prior = sorted(prior, key=lambda s: s["executionDate"])[-104:]
     OUT.write_text(json.dumps({"selections": prior}, ensure_ascii=False, indent=2) + "\n")
-    print(json.dumps({"summary": f"52w-high MONTHLY rebalance for {this_month}: {len(holdings)} holdings, execution {execution}; {len(target_result['blocked'])} new-entry jumps >=25% screened; {len(stale_or_untradable)} stale/untradable excluded", "success": True, "signal": {"signalDate": signal, "executionDate": execution, "holdings": [h["name"] for h in holdings], "entryJumpExcluded": [x["ticker"] for x in target_result["blocked"]]}, "wakeAgent": False}, ensure_ascii=False))
+    print(json.dumps({"summary": f"52w-high MONTHLY rebalance for {this_month}: {len(holdings)} holdings, execution {execution}; {len(target_result['blocked'])} new-entry jumps >=25% screened; {len(stale_or_untradable)} stale/untradable excluded; price coverage {coverage:.1%} ({len(fetch_failures)} fetch failures)", "success": True, "signal": {"signalDate": signal, "executionDate": execution, "holdings": [h["name"] for h in holdings], "entryJumpExcluded": [x["ticker"] for x in target_result["blocked"]]}, "wakeAgent": False}, ensure_ascii=False))
 
 if __name__ == "__main__":
     try: main()
