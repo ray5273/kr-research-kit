@@ -2,7 +2,7 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (302 files).
+Complete index of every artifact under `analysis-example/` (303 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
@@ -383,7 +383,13 @@ LG전자 DART 분석
 
 - [Korean Analyst Report Watch - daily - 2026-07-05](../analysis-example/kr-reports/report-watch-daily-2026-07-05.md) — 2026-07-05 · [json](../analysis-example/kr-reports/report-watch-daily-2026-07-05.json)
 
-## US — single-stock research (5)
+## US — single-stock research (6)
+
+### SPY — 2026-08-25
+
+SPY 사상최고가(ATH) 정기매수 백테스트
+
+[memo](../analysis-example/us/SPY/memo.md) · [memo.json](../analysis-example/us/SPY/memo.json)
 
 ### Tesla — 2026-07-04
 
