@@ -2,7 +2,7 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (306 files).
+Complete index of every artifact under `analysis-example/` (308 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
@@ -345,7 +345,7 @@ LG전자 DART 분석
 - [KOSPI·KOSDAQ 시가총액 상위 300 모멘텀 — 2025년 말 기준](../analysis-example/kr-market/strategies/trend-following-10y/largecap-momentum-backtest-through-2025-12-31.md) — 2025-12-31 · [json](../analysis-example/kr-market/strategies/trend-following-10y/largecap-momentum-backtest-through-2025-12-31.json)
 - [Minervini RS + EPS·매출 + 레짐·변동성 타겟: 월별 10종목](../analysis-example/kr-market/strategies/trend-following-10y/minervini-rs-e-monthly-portfolios-2024-through-2026-07.md)
 
-## KR — sector and industry research (22)
+## KR — sector and industry research (24)
 
 - [800Vdc 전력 인프라 투자 테마](<../analysis-example/kr-sector/800Vdc 전력인프라.md>) — 2026-06-29
 - [800Vdc 전력 인프라 — 데이터 팩 / 사실 검증 로그](../analysis-example/kr-sector/800Vdc-data-pack.md) — 2026-06-29
@@ -360,7 +360,9 @@ LG전자 DART 분석
 ### battery-copper-foil
 
 - [배터리 동박 3사 데이터 팩 | 2026-08-30](../analysis-example/kr-sector/battery-copper-foil/data-pack.md) — 2026-08-30
+- [배터리 동박 3사 | 가동률 반등은 이익 턴어라운드의 시작인가 | 2026-08-30](../analysis-example/kr-sector/battery-copper-foil/memo.full.md) — 2026-08-30
 - [배터리 동박 3사 | 가동률 반등은 이익 턴어라운드의 시작인가 | 2026-08-30](../analysis-example/kr-sector/battery-copper-foil/memo.md) — 2026-08-30
+- [배터리 동박 3사 | 가동률 반등은 이익 턴어라운드의 시작인가 | 2026-08-30](../analysis-example/kr-sector/battery-copper-foil/memo.voice.md) — 2026-08-30
 - [동박 3사 | 가동률 반등, 진짜 턴어라운드일까 | 2026-08-30](../analysis-example/kr-sector/battery-copper-foil/naver-post.md) — 2026-08-30
 
 ### datacenter-solar-panels
