@@ -1,0 +1,6 @@
+interface:
+  display_name: "한국어 금융 슬라이드 쉬운 용어"
+  short_description: "한국어 금융 PPT의 전문 용어를 쉽게 다듬기"
+  default_prompt: "Use $kr-finance-slide-clarity to make this Korean finance presentation understandable to a mixed audience."
+policy:
+  allow_implicit_invocation: true
