@@ -50,6 +50,7 @@ The 11 steps below are the canonical work order. Group them into the 3 phases de
    Before finalizing the memo, convert the 3-8 most important business, customer, segment, backlog, related-party, capital-allocation, or governance claims into a DART verification list and route them through `kr-stock-dart-analysis` or an existing `dart-cache.json`.
 8. Attack the thesis.
    Add default disconfirming evidence, uncomfortable questions, and decision-changing issues instead of letting the memo drift into a one-sided argument.
+   When the user asks for an outside logic check, or the memo is headed for the blog, run `kr-chatgpt-review` on the finished `memo.md` (logged-in ChatGPT website, not the API). Triage every point into `chatgpt-triage.md` and apply only fixes verified against primary sources; ChatGPT is a reviewer, never a source.
 9. Surface follow-up diligence.
    Review the draft for missing disclosures, unverified assumptions, rerating conditions, and unresolved outside claims, then convert only the highest-impact gaps into company-specific research prompts.
 10. Use the right helpers.

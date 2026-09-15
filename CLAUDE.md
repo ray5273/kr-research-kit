@@ -31,6 +31,7 @@ bash ./scripts/install-skill.sh kr-analyst-report-fetch
 bash ./scripts/install-skill.sh kr-analyst-report-insight
 bash ./scripts/install-skill.sh kr-foreign-analyst
 bash ./scripts/install-skill.sh kr-market-sentiment
+bash ./scripts/install-skill.sh kr-chatgpt-review
 ```
 
 **Install all skills (Codex):**
@@ -55,6 +56,7 @@ bash ./scripts/install-claude-skill.sh kr-analyst-report-fetch
 bash ./scripts/install-claude-skill.sh kr-analyst-report-insight
 bash ./scripts/install-claude-skill.sh kr-foreign-analyst
 bash ./scripts/install-claude-skill.sh kr-market-sentiment
+bash ./scripts/install-claude-skill.sh kr-chatgpt-review
 ```
 
 **Install all skills (Claude Code):**
@@ -91,6 +93,8 @@ node skills/kr-foreign-analyst/scripts/fetch-analyst-coverage.js --company "삼�
 node skills/kr-foreign-analyst/scripts/summarize-analyst-views.js --input /tmp/foreign-coverage.json --output /tmp/foreign-views.md
 node skills/kr-market-sentiment/scripts/fetch-market-indicators.js --manual examples/kr-market-sentiment/manual-indicators.json --output /tmp/kr-sentiment/indicators.json
 node skills/kr-market-sentiment/scripts/score-sentiment-bottom.js --input /tmp/kr-sentiment/indicators.json --output /tmp/kr-sentiment/sentiment-report.md --json-out /tmp/kr-sentiment/score.json
+node skills/kr-chatgpt-review/scripts/chatgpt-review.js login                                   # once: log in to ChatGPT by hand in the dedicated browser
+node skills/kr-chatgpt-review/scripts/chatgpt-review.js review --memo analysis-example/kr/<company>/memo.md
 ```
 
 ## Architecture
@@ -138,6 +142,7 @@ All scripts accept JSON via `--input` and output Markdown or PNG. They use only 
 | `summarize-analyst-views.js` | Render foreign-IB coverage JSON as a `## Street / Alternative Views` Markdown block |
 | `fetch-market-indicators.js` | kr-market-sentiment: fetch KOSPI(`^KS11`)/KOSDAQ(`^KQ11`)/USDKRW(`KRW=X`) from Yahoo, compute 52w drawdown, 200-day distance, RSI14; merge manual JSON (지수 PBR, 12M fwd PER, VKOSPI, 외국인 수급, 신용잔고, ADR, 예탁금) into one `indicators.json`. Network failure per symbol → `DATA_GAP`, not a crash |
 | `score-sentiment-bottom.js` | kr-market-sentiment: score each indicator −2(과열)…+2(강한 바닥/capitulation) via threshold bands, compute weighted composite + 5-band judgment + confirmation checklist (외국인 순매수 전환 / 20일선 회복 / RSI 회복), render Korean Markdown report + `score.json` |
+| `chatgpt-review.js` | kr-chatgpt-review: build a fixed-format adversarial review prompt from a memo (0 판정 · 1 논리 비약 · 2 숫자 · 3 반대 논리 · 4 확신도 · 5 반증 데이터 · 6 우선 수정), paste it into the logged-in chatgpt.com web app through the vendored gstack `browse` binary on a dedicated profile (`~/.gstack/kr-chatgpt-review/`), wait for the reply, and save `chatgpt-feedback.md/.json`. No API key or Codex tokens. Refuses private-directory paths and holdings/ledger/voice-profile content |
 
 Input JSON schemas are documented in `references/script-inputs.md` with sample files under `examples/<market>/`.
 

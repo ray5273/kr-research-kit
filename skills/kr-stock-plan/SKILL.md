@@ -48,7 +48,7 @@ For Korean single-name work, this is the default entry point. It should decide w
 8. Hand off cleanly.
    Produce a short research brief that routes the work across `kr-stock-dart-analysis`, `kr-order-backlog-analysis`, `kr-analyst-report-*`, `kr-naver-*`, `kr-stock-data-pack`, and `kr-stock-analysis` as needed.
 9. Continue automatically when appropriate.
-   If the user asked for analysis rather than planning-only, execute the routed downstream skills immediately in the same turn instead of requiring the user to invoke each one manually. Include the analyst-report chain in the routed execution when the gate recommends it.
+   If the user asked for analysis rather than planning-only, execute the routed downstream skills immediately in the same turn instead of requiring the user to invoke each one manually. Include the analyst-report chain in the routed execution when the gate recommends it. When the memo is headed for the blog or the user asks for a second opinion, route the finished memo through `kr-chatgpt-review` before `kr-my-voice` and `kr-naver-blog-publish`.
 
 Read [references/workflow.md](references/workflow.md) for planning rules.
 Read [references/output-format.md](references/output-format.md) for the required brief shape.

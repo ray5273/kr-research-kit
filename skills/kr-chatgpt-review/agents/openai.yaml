@@ -1,0 +1,6 @@
+interface:
+  display_name: "ChatGPT 웹 논리 검토"
+  short_description: "로그인된 ChatGPT 웹사이트로 메모 논리를 반박받고 판정해 반영"
+  default_prompt: "Use $kr-chatgpt-review to get an adversarial logic review of this memo from the logged-in ChatGPT website and triage the feedback."
+policy:
+  allow_implicit_invocation: true
