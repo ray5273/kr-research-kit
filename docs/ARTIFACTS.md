@@ -2,13 +2,19 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (308 files).
+Complete index of every artifact under `analysis-example/` (315 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
 For strategy methodology and performance comparison, see [CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md](CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md).
 
-## KR — Korean single-stock research (139)
+## KR — Korean single-stock research (146)
+
+### 트리니티항공 — 2026-09-28
+
+트리니티항공(091810): 하락의 이유와 1~2년 신규 매수 조건
+
+[memo](../analysis-example/kr/트리니티항공/memo.md) · [dart-analysis](../analysis-example/kr/트리니티항공/dart-analysis.md) · [dart-reference](../analysis-example/kr/트리니티항공/dart-reference.md) · [foreign-views](../analysis-example/kr/트리니티항공/foreign-views.md) · [chart-analysis](../analysis-example/kr/트리니티항공/chart-analysis.md) · [external-views-audit](../analysis-example/kr/트리니티항공/external-views-audit.md) · [price-adjustment](../analysis-example/kr/트리니티항공/price-adjustment.md)
 
 ### LS일렉트릭 — 2026-08-16
 

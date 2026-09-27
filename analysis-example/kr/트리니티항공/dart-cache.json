@@ -1,0 +1,101 @@
+{
+  "as_of": "2026-09-28",
+  "ticker": "091810",
+  "company": "트리니티항공",
+  "filings": [
+    {
+      "type": "2026 반기보고서",
+      "filed": "2026-08-13",
+      "rcpNo": "20260813001054",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260813001054",
+      "sections_checked": [
+        "II-2 주요 제품 및 서비스",
+        "II-3 원재료 및 생산설비",
+        "III-2-1 연결 재무상태표",
+        "III-2-2 연결 포괄손익계산서",
+        "III-2-4 연결 현금흐름표",
+        "III-3 주석 10 리스",
+        "III-3 주석 15 차입금",
+        "III-3 주석 18 자본금",
+        "III-3 주석 24 비용의 성격별 분류",
+        "VII 주주"
+      ]
+    },
+    {
+      "type": "2025 사업보고서 정정본",
+      "filed": "2026-04-30",
+      "rcpNo": "20260430001376",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430001376",
+      "sections_checked": [
+        "III-2-2 연결 포괄손익계산서",
+        "III-2-4 연결 현금흐름표",
+        "III-3 주석 12 리스",
+        "III-3 주석 34 특수관계자",
+        "VII 주주"
+      ]
+    },
+    {
+      "type": "2024 사업보고서",
+      "filed": "2025-03-21",
+      "rcpNo": "20250321001231",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250321001231",
+      "sections_checked": [
+        "III-2-2 연결 포괄손익계산서"
+      ]
+    },
+    {
+      "type": "2026 반기보고서 진에어",
+      "filed": "2026-08-14",
+      "rcpNo": "20260814002710",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814002710",
+      "sections_checked": [
+        "III-4-2 별도 포괄손익계산서"
+      ]
+    },
+    {
+      "type": "2026 반기보고서 제주항공",
+      "filed": "2026-08-14",
+      "rcpNo": "20260814003505",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003505",
+      "sections_checked": [
+        "III-2-2 연결 포괄손익계산서",
+        "III-4-2 별도 포괄손익계산서"
+      ]
+    }
+  ],
+  "currency": "KRW",
+  "financial_scope": "consolidated unless noted",
+  "income_2026_H1": {
+    "revenue": 1081785114124,
+    "operating_income": -162792239516,
+    "net_income": -228059328061,
+    "cash_from_operations": 2615781180
+  },
+  "income_2026_Q2": {
+    "revenue": 469700730249,
+    "operating_income": -181982906079,
+    "net_income": -211381152428
+  },
+  "balance_2026_06_30": {
+    "cash": 229054301962,
+    "short_term_financial_assets": 147244258356,
+    "lease_liability_current": 175033630575,
+    "lease_liability_noncurrent": 648857201216,
+    "equity": 90517208024,
+    "hybrid_securities_book_value": 199080000000,
+    "issued_common_shares": 412969485
+  },
+  "issued_shares_2026_09_07": 102106091,
+  "ownership_2026_09_07": {
+    "sono_international": 34651973,
+    "tway_holdings": 12070269,
+    "sono_square": 6372628,
+    "controlling_group_total": 53190688
+  },
+  "potential_shares_2026_08_11": {
+    "series_3_CB": 4253056,
+    "series_4_BW": 5316321,
+    "exercise_price_KRW_each": 9405
+  },
+  "coverage_note": "Long annual section sweep is partial: core financial statements and material notes reviewed, but not every annual filing section. Do not infer nondisclosure for unswept sections."
+}

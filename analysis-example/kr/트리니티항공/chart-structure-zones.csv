@@ -1,0 +1,5 @@
+type,zone_low,zone_high,center_price,touch_count,last_touch_date,score,status
+resistance,4070,4070,4070,7,2026-06-25,0.5536,active
+resistance,4980,4985,4983,7,2026-06-15,0.5525,active
+resistance,7437,7455,7446,8,2026-02-12,0.4389,active
+resistance,3650,3655,3653,4,2026-07-03,0.1137,active

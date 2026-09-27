@@ -1,0 +1,19 @@
+{
+  "company": "티웨이항공",
+  "ticker": "091810",
+  "fetchedAt": "2026-09-28",
+  "queries": [
+    "티웨이항공 외국계",
+    "티웨이항공 외국계 리포트",
+    "티웨이항공 목표주가",
+    "티웨이항공 모건스탠리 OR 골드만 OR JP모건 OR 노무라 OR 씨티 OR UBS OR HSBC OR 맥쿼리"
+  ],
+  "coverage": [],
+  "meta": {
+    "totalArticlesInspected": 14,
+    "totalCoverageRecords": 0,
+    "fromCache": 0,
+    "errors": [],
+    "generatedBy": "kr-foreign-analyst/fetch-analyst-coverage.js"
+  }
+}
