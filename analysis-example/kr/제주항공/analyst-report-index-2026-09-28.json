@@ -1,0 +1,68 @@
+{
+  "company": "제주항공",
+  "ticker": "089590",
+  "discoveredAt": "2026-09-28",
+  "lookbackDays": 365,
+  "windowStart": "2025-09-28",
+  "windowEnd": "2026-09-28",
+  "source": "hankyung",
+  "fallbackUsed": false,
+  "reports": [
+    {
+      "reportId": "hankyung-649143",
+      "broker": "iM증권",
+      "analyst": "배세호",
+      "publishedDate": "2026-05-11",
+      "title": "2분기 적자 예상에도 긍정적인 중장기 방향성",
+      "rating": "BUY",
+      "ratingRaw": "Buy",
+      "targetPrice": 8500,
+      "currency": "KRW",
+      "pdfUrl": "https://consensus.hankyung.com/analysis/downpdf?report_idx=649143",
+      "landingUrl": "https://consensus.hankyung.com/analysis/downpdf?report_idx=649143",
+      "sourceSite": "hankyung",
+      "requiresAuth": false
+    },
+    {
+      "reportId": "hankyung-647111",
+      "broker": "iM증권",
+      "analyst": "배세호",
+      "publishedDate": "2026-02-24",
+      "title": "완연한 실적 턴어라운드",
+      "rating": "BUY",
+      "ratingRaw": "Buy",
+      "targetPrice": 8500,
+      "currency": "KRW",
+      "pdfUrl": "https://consensus.hankyung.com/analysis/downpdf?report_idx=647111",
+      "landingUrl": "https://consensus.hankyung.com/analysis/downpdf?report_idx=647111",
+      "sourceSite": "hankyung",
+      "requiresAuth": false
+    },
+    {
+      "reportId": "hankyung-646757",
+      "broker": "iM증권",
+      "analyst": "배세호",
+      "publishedDate": "2026-02-10",
+      "title": "최악의 업황을 반영한 주가, 희망을 보여준 4Q25",
+      "rating": "BUY",
+      "ratingRaw": "Buy",
+      "targetPrice": 8500,
+      "currency": "KRW",
+      "pdfUrl": "https://consensus.hankyung.com/analysis/downpdf?report_idx=646757",
+      "landingUrl": "https://consensus.hankyung.com/analysis/downpdf?report_idx=646757",
+      "sourceSite": "hankyung",
+      "requiresAuth": false
+    }
+  ],
+  "meta": {
+    "queriesRun": 1,
+    "pagesScraped": 2,
+    "counts": {
+      "total": 3,
+      "withPdf": 3,
+      "requiresAuth": 0
+    },
+    "warnings": [],
+    "fallbackReason": null
+  }
+}

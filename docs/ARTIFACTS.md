@@ -2,13 +2,19 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (315 files).
+Complete index of every artifact under `analysis-example/` (320 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
 For strategy methodology and performance comparison, see [CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md](CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md).
 
-## KR — Korean single-stock research (146)
+## KR — Korean single-stock research (151)
+
+### 제주항공 — 2026-09-28
+
+제주항공(089590): 회복된 영업손익과 아직 부족한 현금 여력
+
+[memo](../analysis-example/kr/제주항공/memo.md) · [dart-analysis](../analysis-example/kr/제주항공/dart-analysis.md) · [analyst-report-insight](../analysis-example/kr/제주항공/analyst-report-insight.md) · [chart-analysis](../analysis-example/kr/제주항공/chart-analysis.md) · [제주항공-트리니티항공-비교](../analysis-example/kr/제주항공/제주항공-트리니티항공-비교.md)
 
 ### 트리니티항공 — 2026-09-28
 
