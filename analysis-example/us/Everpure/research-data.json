@@ -1,0 +1,391 @@
+{
+  "as_of": "2026-10-09 Asia/Seoul",
+  "price_as_of": "2026-10-08 America/New_York regular close",
+  "company": "Everpure, Inc.",
+  "ticker": "P",
+  "previous_ticker": "PSTG",
+  "financial_amount_unit": "USD thousand unless explicitly specified",
+  "quarterly": [
+    {
+      "fiscal_quarter": "FY26 Q2",
+      "period_end": "2025-08-03",
+      "released": "2025-08-27",
+      "source": "S3",
+      "revenue": 861002,
+      "prior_year_revenue": 763771,
+      "product_revenue": 446303,
+      "subscription_revenue": 414699,
+      "cost_of_revenue": 256666,
+      "gross_profit": 604336,
+      "operating_income_gaap": 4871,
+      "operating_income_non_gaap": 129964,
+      "operating_cash_flow": 212157,
+      "capital_expenditure": 62027,
+      "free_cash_flow": 150130,
+      "gross_margin_non_gaap_pct": 72.1,
+      "revenue_yoy_pct": 12.730386464005573,
+      "gross_margin_gaap_pct": 70.18984857178032
+    },
+    {
+      "fiscal_quarter": "FY26 Q3",
+      "period_end": "2025-11-02",
+      "released": "2025-12-02",
+      "source": "S4",
+      "revenue": 964453,
+      "prior_year_revenue": 831072,
+      "product_revenue": 534760,
+      "subscription_revenue": 429693,
+      "cost_of_revenue": 267076,
+      "gross_profit": 697377,
+      "operating_income_gaap": 53918,
+      "operating_income_non_gaap": 196245,
+      "operating_cash_flow": 115993,
+      "capital_expenditure": 63419,
+      "free_cash_flow": 52574,
+      "gross_margin_non_gaap_pct": 74.1,
+      "revenue_yoy_pct": 16.049271302606762,
+      "gross_margin_gaap_pct": 72.30803367297318
+    },
+    {
+      "fiscal_quarter": "FY26 Q4",
+      "period_end": "2026-02-01",
+      "released": "2026-02-25",
+      "source": "S12",
+      "revenue": 1058903,
+      "prior_year_revenue": 879842,
+      "product_revenue": 618471,
+      "subscription_revenue": 440432,
+      "cost_of_revenue": 318816,
+      "gross_profit": 740087,
+      "operating_income_gaap": 87198,
+      "operating_income_non_gaap": 225693,
+      "operating_cash_flow": 267999,
+      "capital_expenditure": 66552,
+      "free_cash_flow": 201447,
+      "gross_margin_non_gaap_pct": 71.4,
+      "revenue_yoy_pct": 20.351494927498347,
+      "gross_margin_gaap_pct": 69.89185978319071
+    },
+    {
+      "fiscal_quarter": "FY27 Q1",
+      "period_end": "2026-05-03",
+      "released": "2026-05-27",
+      "source": "S14",
+      "revenue": 1052896,
+      "prior_year_revenue": 778485,
+      "product_revenue": 576544,
+      "subscription_revenue": 476352,
+      "cost_of_revenue": 329564,
+      "gross_profit": 723332,
+      "operating_income_gaap": 19939,
+      "operating_income_non_gaap": 158756,
+      "operating_cash_flow": 180164,
+      "capital_expenditure": 68414,
+      "free_cash_flow": 111750,
+      "gross_margin_non_gaap_pct": 70.1,
+      "revenue_yoy_pct": 35.24936254391542,
+      "gross_margin_gaap_pct": 68.69928274017568
+    },
+    {
+      "fiscal_quarter": "FY27 Q2",
+      "period_end": "2026-08-02",
+      "released": "2026-08-26",
+      "source": "S15",
+      "revenue": 1185898,
+      "prior_year_revenue": 861002,
+      "product_revenue": 686773,
+      "subscription_revenue": 499125,
+      "cost_of_revenue": 374510,
+      "gross_profit": 811388,
+      "operating_income_gaap": 63155,
+      "operating_income_non_gaap": 229631,
+      "operating_cash_flow": -136348,
+      "capital_expenditure": 101254,
+      "free_cash_flow": -237602,
+      "gross_margin_non_gaap_pct": 69.9,
+      "revenue_yoy_pct": 37.73463940850312,
+      "gross_margin_gaap_pct": 68.41971231927198
+    }
+  ],
+  "event_returns": [
+    {
+      "previous_date": "2025-08-27",
+      "response_date": "2025-08-28",
+      "previous_close_usd": 60.86,
+      "response_close_usd": 80.54,
+      "return_pct": 32.33651002300362
+    },
+    {
+      "previous_date": "2025-12-02",
+      "response_date": "2025-12-03",
+      "previous_close_usd": 94.72,
+      "response_close_usd": 68.85,
+      "return_pct": -27.31207770270271
+    },
+    {
+      "previous_date": "2026-02-25",
+      "response_date": "2026-02-26",
+      "previous_close_usd": 73.56,
+      "response_close_usd": 65.98,
+      "return_pct": -10.304513322457854
+    },
+    {
+      "previous_date": "2026-05-27",
+      "response_date": "2026-05-28",
+      "previous_close_usd": 85.74,
+      "response_close_usd": 73.04,
+      "return_pct": -14.812222999766721
+    },
+    {
+      "previous_date": "2026-08-10",
+      "response_date": "2026-08-11",
+      "previous_close_usd": 97.98,
+      "response_close_usd": 109.38,
+      "return_pct": 11.635027556644207
+    },
+    {
+      "previous_date": "2026-08-26",
+      "response_date": "2026-08-27",
+      "previous_close_usd": 108.9,
+      "response_close_usd": 99.24,
+      "return_pct": -8.87052341597797
+    },
+    {
+      "previous_date": "2026-09-04",
+      "response_date": "2026-09-08",
+      "previous_close_usd": 99.51,
+      "response_close_usd": 101.14,
+      "return_pct": 1.6380263290121544
+    },
+    {
+      "previous_date": "2026-09-18",
+      "response_date": "2026-09-21",
+      "previous_close_usd": 104.14,
+      "response_close_usd": 113.66,
+      "return_pct": 9.141540234299983
+    },
+    {
+      "previous_date": "2026-09-23",
+      "response_date": "2026-09-24",
+      "previous_close_usd": 109.65,
+      "response_close_usd": 121.88,
+      "return_pct": 11.153670770633827
+    }
+  ],
+  "reference_shares": {
+    "value": 333227251,
+    "unit": "shares",
+    "date": "2026-08-31",
+    "source": "S2"
+  },
+  "calculations": {
+    "cost_yoy_pct": 45.91336600874287,
+    "gross_profit_yoy_pct": 34.26107331021153,
+    "cost_ratio_prior_pct": 29.810151428219676,
+    "cost_ratio_current_pct": 31.58028768072802,
+    "opex_yoy_pct": 24.81679497551983,
+    "opex_prior_pct": 69.62411237139983,
+    "opex_current_pct": 63.09421214978017,
+    "sbc_revenue_pct": 13.47628548155069,
+    "market_cap_usd": 50174027183.07,
+    "market_cap_sales_FY27": 9.935450927340595,
+    "market_cap_sales_FY28": 7.017346459170629,
+    "market_cap_adjusted_operating_income_FY27": 52.81476545586316,
+    "market_cap_adjusted_operating_income_FY28": 27.87445954615
+  },
+  "guidance": [
+    {
+      "released": "2026-02-25",
+      "fiscal_year": "FY27",
+      "revenue_usd_bn": [
+        4.3,
+        4.4
+      ],
+      "non_gaap_operating_income_usd_bn": [
+        0.78,
+        0.82
+      ],
+      "source": "S12"
+    },
+    {
+      "released": "2026-05-27",
+      "fiscal_year": "FY27",
+      "revenue_usd_bn": [
+        4.41,
+        4.51
+      ],
+      "non_gaap_operating_income_usd_bn": [
+        0.82,
+        0.86
+      ],
+      "source": "S14"
+    },
+    {
+      "released": "2026-08-26",
+      "fiscal_year": "FY27",
+      "revenue_usd_bn": [
+        5.03,
+        5.07
+      ],
+      "non_gaap_operating_income_usd_bn": [
+        0.94,
+        0.96
+      ],
+      "source": "S15"
+    },
+    {
+      "released": "2026-09-23",
+      "fiscal_year": "FY28 preliminary",
+      "revenue_usd_bn": [
+        7,
+        7.3
+      ],
+      "non_gaap_operating_income_usd_bn": [
+        1.7,
+        1.9
+      ],
+      "source": "S9"
+    }
+  ],
+  "nand_forecasts": [
+    {
+      "published": "2026-03-31",
+      "calendar_quarter": "2Q26",
+      "forecast_contract_price_qoq_pct": [
+        70,
+        75
+      ],
+      "source": "S19",
+      "status": "forecast at publication, not realized price or company procurement cost"
+    },
+    {
+      "published": "2026-07-03",
+      "calendar_quarter": "3Q26",
+      "forecast_contract_price_qoq_pct": [
+        10,
+        15
+      ],
+      "source": "S20",
+      "status": "forecast at publication, not realized price or company procurement cost"
+    },
+    {
+      "published": "2026-09-30",
+      "calendar_quarter": "4Q26",
+      "forecast_contract_price_qoq_pct": [
+        15,
+        20
+      ],
+      "source": "S21",
+      "status": "forecast at publication, not realized price or company procurement cost"
+    }
+  ],
+  "price_source": {
+    "source": "S11",
+    "method": "Yahoo chart endpoint daily unadjusted regular-session close; float close rounded to cents",
+    "file": "price-history.csv",
+    "rows": 443
+  },
+  "sources": {
+    "S1": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000027/pstg-20260201.htm",
+      "description": "FY2026 10-K, filed 2026-03-25"
+    },
+    "S2": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "description": "FY2027 Q2 10-Q, filed 2026-09-04"
+    },
+    "S3": {
+      "url": "https://investor.everpuredata.com/news-and-events/press-releases/press-release-details/2025/Pure-Storage-Announces-Second-Quarter-Fiscal-2026-Financial-Results/default.aspx",
+      "description": "2025-08-27 earnings"
+    },
+    "S4": {
+      "url": "https://investor.everpuredata.com/news-and-events/press-releases/press-release-details/2025/Pure-Storage-Announces-Third-Quarter-Fiscal-2026-Financial-Results/default.aspx",
+      "description": "2025-12-02 earnings"
+    },
+    "S5": {
+      "url": "https://s21.q4cdn.com/687136699/files/doc_financials/2027/q2/Q2FY27-Prepared-Remarks.pdf",
+      "description": "2026-08-26 prepared remarks"
+    },
+    "S6": {
+      "url": "https://s21.q4cdn.com/687136699/files/doc_financials/2026/q2/Pure-Storage-Q2FY26-Prepared-Remarks.pdf",
+      "description": "2025-08-27 prepared remarks"
+    },
+    "S7": {
+      "url": "https://www.everpuredata.com/company/newsroom/press-releases/everpure-lands-new-design-win-with-second-top-five-hyperscaler.html",
+      "description": "2026-08-10 design win"
+    },
+    "S8": {
+      "url": "https://investor.everpuredata.com/files/doc_downloads/2026/08/Hyperscaler-Design-Supply-Agreement-QA.pdf",
+      "description": "2026-08-10 contract Q&A"
+    },
+    "S9": {
+      "url": "https://www.everpuredata.com/au/company/newsroom/press-releases/expanding-business-model-fuels-new-long-term-outlook.html",
+      "description": "2026-09-23 Financial Analyst Meeting"
+    },
+    "S10": {
+      "url": "https://www.everpuredata.com/uk/company/newsroom/press-releases/everpure-to-change-ticker-symbol.html",
+      "description": "2026-04-07 ticker announcement"
+    },
+    "S11": {
+      "url": "https://finance.yahoo.com/quote/P/history/",
+      "description": "Yahoo Finance P history, downloaded 2026-10-09 KST"
+    },
+    "S12": {
+      "url": "https://s21.q4cdn.com/687136699/files/doc_financials/2026/q4/Everpure-Q4FY2026-Earnings-Press-Release.pdf",
+      "description": "2026-02-25 earnings"
+    },
+    "S13": {
+      "url": "https://s21.q4cdn.com/687136699/files/doc_financials/2026/q4/Q4FY26-Everpure-Prepared-Remarks.pdf",
+      "description": "2026-02-25 prepared remarks"
+    },
+    "S14": {
+      "url": "https://s21.q4cdn.com/687136699/files/doc_financials/2027/q1/Everpure-Q1FY2027-Earnings-Press-Release.pdf",
+      "description": "2026-05-27 earnings"
+    },
+    "S15": {
+      "url": "https://s21.q4cdn.com/687136699/files/doc_financials/2027/q2/Q2FY2027-Earnings-Press-Release.pdf",
+      "description": "2026-08-26 earnings"
+    },
+    "S16": {
+      "url": "https://press.spglobal.com/2026-09-04-Bloom-Energy%2C-Illumina%2C-and-Everpure-Set-to-Join-S-P-500-Others-to-Join-S-P-100%2C-S-P-MidCap-400%2C-and-S-P-SmallCap-600",
+      "description": "2026-09-04 S&P index announcement"
+    },
+    "S17": {
+      "url": "https://stockanalysis.com/stocks/p/history/",
+      "description": "Regular-session price history, checked 2026-10-09 KST"
+    },
+    "S18": {
+      "url": "https://www.cnbc.com/2025/08/28/pure-storage-stock-soars-to-record-meta-deal-bolsters-results-outlook.html",
+      "description": "2025-08-28 market reaction"
+    },
+    "S19": {
+      "url": "https://www.trendforce.com/presscenter/news/20260331-12995.html",
+      "description": "2026-03-31 NAND contract forecast"
+    },
+    "S20": {
+      "url": "https://www.trendforce.com/presscenter/news/20260703-13134.html",
+      "description": "2026-07-03 NAND contract forecast"
+    },
+    "S21": {
+      "url": "https://www.trendforce.com/presscenter/news/20260930-13258.html",
+      "description": "2026-09-30 NAND contract forecast"
+    },
+    "S22": {
+      "url": "https://www.trendforce.com/price/flash/wafer_contract",
+      "description": "NAND contract/wafer price page"
+    },
+    "S23": {
+      "url": "https://stockanalysis.com/stocks/p/statistics/",
+      "description": "Everpure, price ratios updated 2026-10-08"
+    },
+    "S24": {
+      "url": "https://stockanalysis.com/stocks/ntap/statistics/",
+      "description": "NetApp, price ratios updated 2026-10-08"
+    }
+  },
+  "limitations": [
+    "No company-specific NAND price, cost share, pass-through percentage or royalty rate disclosed.",
+    "No controlled causal event study or historical earnings/multiple attribution.",
+    "Companyfacts/submissions requests failed HTTP 403; no verified XBRL concepts."
+  ]
+}

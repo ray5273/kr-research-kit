@@ -1,0 +1,695 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-10-09",
+  "company": "Everpure, Inc.",
+  "ticker": "P",
+  "cik": "0001474432",
+  "collection": {
+    "submissions": "HTTP 403",
+    "companyfacts": "HTTP 403",
+    "fallback": "SEC web rendering and issuer-hosted PDF copies",
+    "xbrl_concepts_verified": false
+  },
+  "filings": [
+    {
+      "role": "annual",
+      "form": "10-K",
+      "accession": "0001474432-26-000027",
+      "filed": "2026-03-25",
+      "period": "2026-02-01",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000027/pstg-20260201.htm",
+      "mirror": "https://www.everpuredata.com/content/dam/pdf/en/legal/2026-form-10-k.pdf"
+    },
+    {
+      "role": "latest quarterly",
+      "form": "10-Q",
+      "accession": "0001474432-26-000088",
+      "filed": "2026-09-04",
+      "period": "2026-08-02",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "mirror": "https://d18rn0p25nwr6d.cloudfront.net/CIK-0001474432/3fb0d892-1ca3-4214-a166-03182fb46220.pdf"
+    },
+    {
+      "role": "latest earnings current report",
+      "form": "8-K",
+      "accession": "0001474432-26-000084",
+      "filed": "2026-08-26",
+      "period": "2026-08-26",
+      "items": [
+        "2.02",
+        "9.01"
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000084/pstg-20260826.htm"
+    }
+  ],
+  "core_facts": [
+    {
+      "metric": "Revenue",
+      "value": 3662843000,
+      "unit": "USD",
+      "period": "FY26 ended 2026-02-01",
+      "form": "10-K",
+      "filed": "2026-03-25",
+      "accession": "0001474432-26-000027",
+      "concept": null,
+      "location": "Item 8 consolidated statements",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000027/pstg-20260201.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Gross profit",
+      "value": 2577953000,
+      "unit": "USD",
+      "period": "FY26 ended 2026-02-01",
+      "form": "10-K",
+      "filed": "2026-03-25",
+      "accession": "0001474432-26-000027",
+      "concept": null,
+      "location": "Item 8 consolidated statements",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000027/pstg-20260201.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Operating income",
+      "value": 114816000,
+      "unit": "USD",
+      "period": "FY26 ended 2026-02-01",
+      "form": "10-K",
+      "filed": "2026-03-25",
+      "accession": "0001474432-26-000027",
+      "concept": null,
+      "location": "Item 8 consolidated statements",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000027/pstg-20260201.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Net income",
+      "value": 188181000,
+      "unit": "USD",
+      "period": "FY26 ended 2026-02-01",
+      "form": "10-K",
+      "filed": "2026-03-25",
+      "accession": "0001474432-26-000027",
+      "concept": null,
+      "location": "Item 8 consolidated statements",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000027/pstg-20260201.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Operating cash flow",
+      "value": 880085000,
+      "unit": "USD",
+      "period": "FY26 ended 2026-02-01",
+      "form": "10-K",
+      "filed": "2026-03-25",
+      "accession": "0001474432-26-000027",
+      "concept": null,
+      "location": "Item 8 consolidated statements",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000027/pstg-20260201.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Capital expenditure",
+      "value": 264344000,
+      "unit": "USD",
+      "period": "FY26 ended 2026-02-01",
+      "form": "10-K",
+      "filed": "2026-03-25",
+      "accession": "0001474432-26-000027",
+      "concept": null,
+      "location": "Item 8 consolidated statements",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000027/pstg-20260201.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Revenue",
+      "value": 1185898000,
+      "unit": "USD",
+      "period": "FY27 Q2 ended 2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Part I Item 1 income statement, standalone quarter",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Cost of revenue",
+      "value": 374510000,
+      "unit": "USD",
+      "period": "FY27 Q2 ended 2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Part I Item 1 income statement, standalone quarter",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Gross profit",
+      "value": 811388000,
+      "unit": "USD",
+      "period": "FY27 Q2 ended 2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Part I Item 1 income statement, standalone quarter",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Operating income",
+      "value": 63155000,
+      "unit": "USD",
+      "period": "FY27 Q2 ended 2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Part I Item 1 income statement, standalone quarter",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Net income",
+      "value": 74149000,
+      "unit": "USD",
+      "period": "FY27 Q2 ended 2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Part I Item 1 income statement, standalone quarter",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Operating cash flow",
+      "value": 43816000,
+      "unit": "USD",
+      "period": "FY27 H1 ended 2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Part I Item 1 cash flow statement, six months",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Capital expenditure",
+      "value": 169668000,
+      "unit": "USD",
+      "period": "FY27 H1 ended 2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Part I Item 1 cash flow statement, six months",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Stock compensation expense",
+      "value": 281879000,
+      "unit": "USD",
+      "period": "FY27 H1 ended 2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Part I Item 1 cash flow statement, six months",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Cash and cash equivalents",
+      "value": 385694000,
+      "unit": "USD",
+      "period": "2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Part I Item 1 balance sheet / Note 5",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Marketable securities",
+      "value": 622197000,
+      "unit": "USD",
+      "period": "2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Part I Item 1 balance sheet / Note 5",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Inventory",
+      "value": 106300000,
+      "unit": "USD",
+      "period": "2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Part I Item 1 balance sheet / Note 5",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Other receivables",
+      "value": 903723000,
+      "unit": "USD",
+      "period": "2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Part I Item 1 balance sheet / Note 5",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Accounts receivable",
+      "value": 1027665000,
+      "unit": "USD",
+      "period": "2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Part I Item 1 balance sheet / Note 5",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Total assets",
+      "value": 5220409000,
+      "unit": "USD",
+      "period": "2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Part I Item 1 balance sheet / Note 5",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Total liabilities",
+      "value": 3679571000,
+      "unit": "USD",
+      "period": "2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Part I Item 1 balance sheet / Note 5",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Stockholders equity",
+      "value": 1540838000,
+      "unit": "USD",
+      "period": "2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Part I Item 1 balance sheet / Note 5",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Shares outstanding",
+      "value": 333227251,
+      "unit": "shares",
+      "period": "2026-08-31",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Cover",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    },
+    {
+      "metric": "Diluted EPS",
+      "value": 0.21,
+      "unit": "USD/shares",
+      "period": "FY27 Q2 ended 2026-08-02",
+      "form": "10-Q",
+      "filed": "2026-09-04",
+      "accession": "0001474432-26-000088",
+      "concept": null,
+      "location": "Income statement",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "method": "manual filing table extraction; not companyfacts"
+    }
+  ],
+  "section_coverage": [
+    {
+      "form": "10-K",
+      "item": "Item 1",
+      "title": "Business",
+      "status": "parsed",
+      "content_length": 52608,
+      "numeric_block_count": 104,
+      "content_sha256": "9b85be49d26c657e895c70e9d54d3794947a36077852625d4ea563a23c96d7da"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 1A",
+      "title": "Risk Factors",
+      "status": "parsed",
+      "content_length": 95887,
+      "numeric_block_count": 54,
+      "content_sha256": "3e8878adc99436d662b786c34623f4013df67d26f97766948b3e165a128868ca"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 1B",
+      "title": "Unresolved Staff Comments",
+      "status": "needs_review",
+      "content_length": 15,
+      "numeric_block_count": 0,
+      "content_sha256": "a3014a36534d5612e7e04f74fc455b30bd0101d370991d349923efd6cc69ebc0"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 1C",
+      "title": "Cybersecurity",
+      "status": "parsed",
+      "content_length": 6046,
+      "numeric_block_count": 4,
+      "content_sha256": "a41bb8cba37542a856ec74b9c01fdd88c8a3068db9ae43c05b978c94c986edbb"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 2",
+      "title": "Properties",
+      "status": "parsed",
+      "content_length": 491,
+      "numeric_block_count": 0,
+      "content_sha256": "87d11f37b0a1f03585db712ed51b184eed2c81a489829a2d50c1ed4675581927"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 3",
+      "title": "Legal Proceedings",
+      "status": "parsed",
+      "content_length": 483,
+      "numeric_block_count": 3,
+      "content_sha256": "a1e7d097d1b7e7caecdb56988d92d1f29c3c4c42c41027621d163c77b742b30f"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 4",
+      "title": "Mine Safety Disclosures",
+      "status": "needs_review",
+      "content_length": 26,
+      "numeric_block_count": 1,
+      "content_sha256": "7b2f4ebfdc0f4ff68e52b552d4446a074d8df6493574a639d21352f09745cf9f"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 5",
+      "title": "Market for Registrant's Common Equity",
+      "status": "parsed",
+      "content_length": 3929,
+      "numeric_block_count": 59,
+      "content_sha256": "2b44e38e7a65805e6448cf3b48e38523df419e87a94e3380450fbc31f705f8e7"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 6",
+      "title": "Reserved",
+      "status": "needs_review",
+      "content_length": 2,
+      "numeric_block_count": 1,
+      "content_sha256": "73475cb40a568e8da8a045ced110137e159f890ac4da883b6b17dc651b3a8049"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 7",
+      "title": "Management's Discussion and Analysis",
+      "status": "parsed",
+      "content_length": 36148,
+      "numeric_block_count": 315,
+      "content_sha256": "0127133783c653bdaabb2762f27f340d62cbdb929129bff95f8a5406398a5f53"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 7A",
+      "title": "Quantitative and Qualitative Disclosures About Market Risk",
+      "status": "parsed",
+      "content_length": 3044,
+      "numeric_block_count": 14,
+      "content_sha256": "949bd620b7a9b177b731bcf6367a8c04d1cace9f6e0e87ca9ab9fb98c8ad375d"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 8",
+      "title": "Financial Statements and Supplementary Data",
+      "status": "parsed",
+      "content_length": 114537,
+      "numeric_block_count": 1766,
+      "content_sha256": "650592a274a03c90435e464efdb2e9d233ce1a8d5757df74029c7d318b25e1c8"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 9",
+      "title": "Changes in and Disagreements With Accountants",
+      "status": "needs_review",
+      "content_length": 5,
+      "numeric_block_count": 0,
+      "content_sha256": "903ea500e7ccf842c1312b6c2f964e3e98ff146456cecec717e9a0e122bf735f"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 9A",
+      "title": "Controls and Procedures",
+      "status": "parsed",
+      "content_length": 3852,
+      "numeric_block_count": 24,
+      "content_sha256": "4fec5ffa9de5fc125a4f07e5736f1150156d62899b534027ae422169a4897de7"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 9B",
+      "title": "Other Information",
+      "status": "parsed",
+      "content_length": 1149,
+      "numeric_block_count": 21,
+      "content_sha256": "1f7d5d9c642ad38dda4379d63885ef3d6a1795429e3e5f7adae44ff90fc5607b"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 9C",
+      "title": "Disclosure Regarding Foreign Jurisdictions",
+      "status": "needs_review",
+      "content_length": 27,
+      "numeric_block_count": 1,
+      "content_sha256": "aaa0c8d3dbfd9f841bb5935865f88ba31d143869ee06f74cc53556a937f85bb6"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 10",
+      "title": "Directors, Executive Officers and Corporate Governance",
+      "status": "parsed",
+      "content_length": 1796,
+      "numeric_block_count": 15,
+      "content_sha256": "829553e64e22291bf657390204b63db1d0ba807e5a87957f626c41c9ace616ae"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 11",
+      "title": "Executive Compensation",
+      "status": "parsed",
+      "content_length": 868,
+      "numeric_block_count": 4,
+      "content_sha256": "3973359dd2021999960578a657cea6650698eeb637a7866ae2fd0ea157b954ad"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 12",
+      "title": "Security Ownership",
+      "status": "parsed",
+      "content_length": 456,
+      "numeric_block_count": 2,
+      "content_sha256": "3098b6fece99b60a1e1d906a381fa3f78e40b1f290f9871900e4ed74bc0fe4b3"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 13",
+      "title": "Certain Relationships and Related Transactions",
+      "status": "parsed",
+      "content_length": 383,
+      "numeric_block_count": 3,
+      "content_sha256": "20f847a073b023f9fa8c6391081bb174ff9d6bd89dca59f7ab8fa257be733d6d"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 14",
+      "title": "Principal Accountant Fees and Services",
+      "status": "parsed",
+      "content_length": 434,
+      "numeric_block_count": 3,
+      "content_sha256": "004fbd65fed42a6193b853e0b7e2b47fb9e89642132ab4298d6a0f077c1a7569"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 15",
+      "title": "Exhibits and Financial Statement Schedules",
+      "status": "parsed",
+      "content_length": 5070,
+      "numeric_block_count": 249,
+      "content_sha256": "bafcc97410b7deb49fb9e06217b75044a6d37a90e7ed98d51d01c1e6a1ece5ad"
+    },
+    {
+      "form": "10-K",
+      "item": "Item 16",
+      "title": "Form 10-K Summary",
+      "status": "parsed",
+      "content_length": 5772,
+      "numeric_block_count": 11,
+      "content_sha256": "c990cfa40dc210081328e008446556e592a4de2b1747cfa46a8e066a1c75dc8d"
+    },
+    {
+      "form": "10-Q",
+      "item": "Part I Item 1",
+      "title": "Financial Statements",
+      "status": "parsed",
+      "content_length": 63536,
+      "numeric_block_count": 1286,
+      "content_sha256": "618c87b9ac1b4749e2d5113eb19cd71339d7a596eb8ac6620bbc54eb33e11bdd"
+    },
+    {
+      "form": "10-Q",
+      "item": "Part I Item 2",
+      "title": "Management's Discussion and Analysis",
+      "status": "parsed",
+      "content_length": 36438,
+      "numeric_block_count": 422,
+      "content_sha256": "c7bc00a5573f5c8e5b22d867bbf6a8e2003c8b2843f616f41ea87149e5bf11db"
+    },
+    {
+      "form": "10-Q",
+      "item": "Part I Item 3",
+      "title": "Quantitative and Qualitative Disclosures About Market Risk",
+      "status": "parsed",
+      "content_length": 3137,
+      "numeric_block_count": 13,
+      "content_sha256": "b0642c1d4453aa22230ff54dbef0ba1fe06bb1f1c1b8cba30424c121b70b61d5"
+    },
+    {
+      "form": "10-Q",
+      "item": "Part I Item 4",
+      "title": "Controls and Procedures",
+      "status": "parsed",
+      "content_length": 2114,
+      "numeric_block_count": 12,
+      "content_sha256": "6c479630dcf623106b3b04291c594afd6ffb50661359ee9f4f5246a85a19f817"
+    },
+    {
+      "form": "10-Q",
+      "item": "Part II Item 1",
+      "title": "Legal Proceedings",
+      "status": "parsed",
+      "content_length": 393,
+      "numeric_block_count": 0,
+      "content_sha256": "45a1f14a595a053635fddabfa2058ac29ebae70c1a40f7e6bafc76c2e5a513b2"
+    },
+    {
+      "form": "10-Q",
+      "item": "Part II Item 1A",
+      "title": "Risk Factors",
+      "status": "parsed",
+      "content_length": 97638,
+      "numeric_block_count": 61,
+      "content_sha256": "75fcaf4064c3362e5ee47306f97f3ff6a06ab2a570abbb7d89fc710f1a39f12f"
+    },
+    {
+      "form": "10-Q",
+      "item": "Part II Item 2",
+      "title": "Unregistered Sales of Equity Securities",
+      "status": "parsed",
+      "content_length": 1372,
+      "numeric_block_count": 41,
+      "content_sha256": "8d911dc70cb49bc50838df158a2c6d23b37937d8c134a140ede5858910b287e4"
+    },
+    {
+      "form": "10-Q",
+      "item": "Part II Item 3",
+      "title": "Defaults Upon Senior Securities",
+      "status": "needs_review",
+      "content_length": 44,
+      "numeric_block_count": 3,
+      "content_sha256": "c137cfffdaa2d7dba3024911477652652677acc5cc4daf7d747a962d41a55dfe"
+    },
+    {
+      "form": "10-Q",
+      "item": "Part II Item 4",
+      "title": "Mine Safety Disclosures",
+      "status": "needs_review",
+      "content_length": 15,
+      "numeric_block_count": 0,
+      "content_sha256": "a3014a36534d5612e7e04f74fc455b30bd0101d370991d349923efd6cc69ebc0"
+    },
+    {
+      "form": "10-Q",
+      "item": "Part II Item 5",
+      "title": "Other Information",
+      "status": "parsed",
+      "content_length": 675,
+      "numeric_block_count": 22,
+      "content_sha256": "fbb7cc3ece87adb3ff00f14f1781a88268e4251886f5b80375e5b50f053ab0f5"
+    },
+    {
+      "form": "10-Q",
+      "item": "Part II Item 6",
+      "title": "Exhibits",
+      "status": "parsed",
+      "content_length": 10962,
+      "numeric_block_count": 155,
+      "content_sha256": "2e6c74c62d525d93f650f285d7db8361fb4020d861a92969dccba63c57d98212"
+    }
+  ],
+  "not_separately_disclosed": [
+    "NAND cost share",
+    "NAND procurement pricing / pass-through rate",
+    "Customer-specific hyperscaler revenue",
+    "Royalty rate / full contract value"
+  ],
+  "risk_facts": [
+    {
+      "claim": "Approximately USD 1.1bn component supply commitment through calendar 2027; company buys quantities not purchased by approved manufacturers. Not all NAND and not current debt.",
+      "source": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "location": "Note 8"
+    },
+    {
+      "claim": "Inventory components weighted average cost; finished goods specific identification; lower of cost or net realizable value.",
+      "source": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000027/pstg-20260201.htm",
+      "location": "Note 2"
+    },
+    {
+      "claim": "Higher component cost partly offset by hyperscaler royalties; service costs also include replacement parts and depreciation.",
+      "source": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "location": "MD&A gross margin"
+    },
+    {
+      "claim": "Royalty product revenue based on partner hardware shipments for perpetual functional IP.",
+      "source": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "location": "MD&A revenue"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (320 files).
+Complete index of every artifact under `analysis-example/` (323 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
@@ -10,17 +10,17 @@ For strategy methodology and performance comparison, see [CODEX-STRATEGY-METHODO
 
 ## KR — Korean single-stock research (151)
 
+### 트리니티항공 — 2026-09-29
+
+트리니티항공(091810): 하락의 이유와 1~2년 신규 매수 조건
+
+[memo](../analysis-example/kr/트리니티항공/memo.md) · [dart-analysis](../analysis-example/kr/트리니티항공/dart-analysis.md) · [dart-reference](../analysis-example/kr/트리니티항공/dart-reference.md) · [foreign-views](../analysis-example/kr/트리니티항공/foreign-views.md) · [chart-analysis](../analysis-example/kr/트리니티항공/chart-analysis.md) · [external-views-audit](../analysis-example/kr/트리니티항공/external-views-audit.md) · [price-adjustment](../analysis-example/kr/트리니티항공/price-adjustment.md)
+
 ### 제주항공 — 2026-09-28
 
 제주항공(089590): 회복된 영업손익과 아직 부족한 현금 여력
 
 [memo](../analysis-example/kr/제주항공/memo.md) · [dart-analysis](../analysis-example/kr/제주항공/dart-analysis.md) · [analyst-report-insight](../analysis-example/kr/제주항공/analyst-report-insight.md) · [chart-analysis](../analysis-example/kr/제주항공/chart-analysis.md) · [제주항공-트리니티항공-비교](../analysis-example/kr/제주항공/제주항공-트리니티항공-비교.md)
-
-### 트리니티항공 — 2026-09-28
-
-트리니티항공(091810): 하락의 이유와 1~2년 신규 매수 조건
-
-[memo](../analysis-example/kr/트리니티항공/memo.md) · [dart-analysis](../analysis-example/kr/트리니티항공/dart-analysis.md) · [dart-reference](../analysis-example/kr/트리니티항공/dart-reference.md) · [foreign-views](../analysis-example/kr/트리니티항공/foreign-views.md) · [chart-analysis](../analysis-example/kr/트리니티항공/chart-analysis.md) · [external-views-audit](../analysis-example/kr/트리니티항공/external-views-audit.md) · [price-adjustment](../analysis-example/kr/트리니티항공/price-adjustment.md)
 
 ### LS일렉트릭 — 2026-08-16
 
@@ -403,7 +403,13 @@ LG전자 DART 분석
 
 - [Korean Analyst Report Watch - daily - 2026-07-05](../analysis-example/kr-reports/report-watch-daily-2026-07-05.md) — 2026-07-05 · [json](../analysis-example/kr-reports/report-watch-daily-2026-07-05.json)
 
-## US — single-stock research (6)
+## US — single-stock research (9)
+
+### Everpure — 2026-10-09
+
+Everpure: NAND가 비싸졌는데 주가는 왜 올랐나
+
+[memo](../analysis-example/us/Everpure/memo.md) · [sec-analysis](../analysis-example/us/Everpure/sec-analysis.md) · [sec-reference](../analysis-example/us/Everpure/sec-reference.md)
 
 ### SPY — 2026-08-25
 
