@@ -2,7 +2,7 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (323 files).
+Complete index of every artifact under `analysis-example/` (325 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
@@ -403,13 +403,13 @@ LG전자 DART 분석
 
 - [Korean Analyst Report Watch - daily - 2026-07-05](../analysis-example/kr-reports/report-watch-daily-2026-07-05.md) — 2026-07-05 · [json](../analysis-example/kr-reports/report-watch-daily-2026-07-05.json)
 
-## US — single-stock research (9)
+## US — single-stock research (11)
 
 ### Everpure — 2026-10-09
 
 Everpure: NAND가 비싸졌는데 주가는 왜 올랐나
 
-[memo](../analysis-example/us/Everpure/memo.md) · [sec-analysis](../analysis-example/us/Everpure/sec-analysis.md) · [sec-reference](../analysis-example/us/Everpure/sec-reference.md)
+[memo](../analysis-example/us/Everpure/memo.md) · [sec-analysis](../analysis-example/us/Everpure/sec-analysis.md) · [sec-reference](../analysis-example/us/Everpure/sec-reference.md) · [naver-post](../analysis-example/us/Everpure/naver-post.md) · [naver-publish.json](../analysis-example/us/Everpure/naver-publish.json) · [memo.voice](../analysis-example/us/Everpure/memo.voice.md)
 
 ### SPY — 2026-08-25
 

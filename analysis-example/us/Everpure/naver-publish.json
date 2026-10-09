@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us/Everpure/memo.voice.md",
+    "memoSha256": "10114c7d92dd782c4a5e0d5da5dee37cc98404e2b2a2271c164fa3c3530c1bf4",
+    "asOfDate": "2026-10-09"
+  },
+  "post": {
+    "company": "에버퓨어(Everpure)",
+    "ticker": "P",
+    "title": "에버퓨어(Everpure) | NAND 원가 부담 속 주가 상승, 현금흐름과 주식보상까지 점검 | 2026-10-09",
+    "issue": "NAND 원가 부담 속 주가 상승, 현금흐름과 주식보상까지 점검",
+    "category": null,
+    "tags": [
+      "에버퓨어",
+      "Everpure",
+      "PureStorage",
+      "P",
+      "주식분석",
+      "NAND",
+      "현금흐름",
+      "주식보상",
+      "AI",
+      "클라우드"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us/Everpure/naver-post.md",
+    "markdownSha256": "b2e7a3ce2dac91b7e5aabb8bc4f92dfdf7011e5c0fed45731eb3a5b89399871b",
+    "images": [],
+    "thumbnail": {
+      "prompt": "에버퓨어(Everpure) | NAND 원가 부담 속 주가 상승, 현금흐름과 주식보상까지 점검 | 2026-10-09 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.",
+      "relativePath": "assets/naver-thumbnail-v2.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us/Everpure/assets/naver-thumbnail-v2.png",
+      "sha256": "39201d46e143b72c5ab066933ba6dc4f67f4d5b1aee85d482d4c5a6207bfbc2b",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-10-09T01:52:48.815Z",
+      "originalSource": {
+        "source": "gemini-web",
+        "prompt": "에버퓨어(Everpure) | NAND 원가 부담 속 주가 상승, 현금흐름과 주식보상까지 점검 | 2026-10-09 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.",
+        "sha256": "a21afeb7004b794bcbacddb66125db32f656077f6e5d693884ea2de152bbe0b1",
+        "generatedAt": "2026-10-09T01:52:48.815Z"
+      },
+      "postProcessing": {
+        "tool": "built-in image_gen",
+        "mode": "edit",
+        "date": "2026-10-09",
+        "prompt": "Remove share/copy/download buttons and duplicate lettering; preserve navy-teal storage backdrop; use exactly 에버퓨어 Everpure / NAND 원가와 주가 상승 / 현금흐름·주식보상 점검 / 2026-10-09."
+      }
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-10-09T01:55:16.786Z",
+    "expiresAt": "2026-10-09T02:25:16.786Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us/Everpure/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "a43c2e1fbdd41d7dd86ff3a9f1668958270dea2c85c0efed81f468afbbc9f0ba",
+    "approvalTokenHash": null,
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null,
+  "draftSave": {
+    "checkedAt": "2026-10-09T01:55:44.321Z",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "criticalBodyCheck": true,
+    "bodyCharacters": 11435,
+    "verifiedMessage": "임시저장이 완료되었습니다.",
+    "publicPublishRequested": false,
+    "publicPublishAttempted": false
+  }
+}
