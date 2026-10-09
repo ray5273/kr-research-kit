@@ -78,3 +78,17 @@ Companyfacts/XBRL 미확보. 공시 본문에서 읽은 값이며 concept는 미
 | Inventory components weighted average cost; finished goods specific identification; lower of cost or net realizable value. | SEC narrative | Note 2 | 2026-03-25 / 0001474432-26-000027 | [원문](https://www.sec.gov/Archives/edgar/data/1474432/000147443226000027/pstg-20260201.htm) | 본문 확인 |
 | Higher component cost partly offset by hyperscaler royalties; service costs also include replacement parts and depreciation. | SEC narrative | MD&A gross margin | 2026-09-04 / 0001474432-26-000088 | [원문](https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm) | 본문 확인 |
 | Royalty product revenue based on partner hardware shipments for perpetual functional IP. | SEC narrative | MD&A revenue | 2026-09-04 / 0001474432-26-000088 | [원문](https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm) | 본문 확인 |
+
+## 2026-10-09 추가 확인: 현금 회수와 주식보상
+
+- 대상: 기존 10-Q 0001474432-26-000088, filed 2026-09-04, FY27 H1/Q2 ended 2026-08-02. 기존 10-K 0001474432-26-000027, filed 2026-03-25. 기준일 이후 새 공시가 아니라 동일 공시의 추가 검토다.
+- [10-Q Note 5](https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm): 기타 채권 $903.723m, 직전 연말 $249.990m. 위탁업체 부품 채권·세금 채권 등이 주된 구성. 부품 채권의 정확한 만기·연령·회수 일정은 별도 공시되지 않았다.
+- [10-Q H1 현금흐름표](https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm): OCF $43.816m, 선급비용·기타 자산 변동 −$694.305m, 매입채무 +$156.591m, 이연매출 +$293.147m. 자본지출 $169.668m. 기타 채권 잔액 증가와 현금흐름표 항목은 동일하지 않다.
+- [10-K Note 11](https://www.sec.gov/Archives/edgar/data/1474432/000147443226000027/pstg-20260201.htm): FY26 비용 처리 SBC $481.652m, FY25 $421.306m. [10-Q Note 11](https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm): FY27 H1 $281.879m, Q2 $159.815m. 자본화된 보상은 이 비용 수치에서 제외된다.
+- [10-Q Note 11](https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm): 미귀속 RSU 19,809,948주, PRSU·LTP 7,838,322주. 미인식 비용은 각각 약 $1.0bn, $249.9m이며 ESPP $27.7m 추가. 귀속·성과·시장 조건과 세금 유보 때문에 단순 합계를 확정 희석률로 사용하지 않는다.
+- [10-Q 현금흐름표·자본 변동표](https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm): 원천세 실제 납부 $173.296m, 자사주 매입 지급 $153.084m, 옵션·ESPP 유입 $45.170m. 발행주식 330.353m → 333.324m. Note 11 귀속일 원천세 $175.253m와 현금 납부를 구분한다.
+- [10-Q Note 12](https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm): Q2 가중평균 희석주식 FY26 337.734m, FY27 345.587m. 미귀속 보상을 EPS 주식 수에 다시 전액 가산하지 않는다.
+- [Q2 실적 Exhibit 99.1](https://www.sec.gov/Archives/edgar/data/1474432/000147443226000084/everpure-ex991q2fy2027xpre.htm): GAAP 영업이익 $63.155m + SBC $159.815m + 주식 관련 급여세 $5.400m + 기타 $1.261m = non-GAAP $229.631m.
+- [2026-08-26 준비 발언](https://s21.q4cdn.com/687136699/files/doc_financials/2027/q2/Q2FY27-Prepared-Remarks.pdf): 다음 두 분기 OCF 정상화 예상, FY27 FCF $600–800m 예상. 회수 만기를 보장하는 계약 자료가 아니라 경영진 전망이다.
+
+파생 계산과 한계는 [memo.md](memo.md)의 Update Log와 [research-data.json](research-data.json)의 `cash_and_sbc_follow_up`를 참조한다. API/XBRL 접근 상태를 변경하지 않았으며 추가 값도 공시 본문에서 읽었다.

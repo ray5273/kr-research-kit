@@ -387,5 +387,131 @@
     "No company-specific NAND price, cost share, pass-through percentage or royalty rate disclosed.",
     "No controlled causal event study or historical earnings/multiple attribution.",
     "Companyfacts/submissions requests failed HTTP 403; no verified XBRL concepts."
-  ]
+  ],
+  "cash_and_sbc_follow_up": {
+    "as_of": "2026-10-09",
+    "amount_unit": "USD thousand unless specified",
+    "sources": {
+      "10-Q": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000088/pstg-20260802.htm",
+      "10-K": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000027/pstg-20260201.htm",
+      "Q2 release": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000084/everpure-ex991q2fy2027xpre.htm",
+      "Q2 remarks": "https://s21.q4cdn.com/687136699/files/doc_financials/2027/q2/Q2FY27-Prepared-Remarks.pdf"
+    },
+    "H1_FY27_cash_bridge": {
+      "net_income": 98227,
+      "stock_compensation_addback": 281879,
+      "depreciation_amortization": 81777,
+      "other_adjustment": 4349,
+      "accounts_receivable": -79318,
+      "inventory": -36563,
+      "deferred_commissions": -27325,
+      "prepaid_other_assets": -694305,
+      "lease_ROU_assets": 21581,
+      "accounts_payable": 156591,
+      "accrued_compensation_other_liabilities": -33541,
+      "lease_liabilities": -22683,
+      "deferred_revenue": 293147
+    },
+    "H1_FY26_cash_bridge": {
+      "net_income": 33123,
+      "stock_compensation_addback": 213668,
+      "depreciation_amortization": 69697,
+      "unrealized_equity_gain": -30401,
+      "other_adjustment": 7027,
+      "accounts_receivable": 150381,
+      "inventory": -12268,
+      "deferred_commissions": -11395,
+      "prepaid_other_assets": -33401,
+      "lease_ROU_assets": 19958,
+      "accounts_payable": -3146,
+      "accrued_compensation_other_liabilities": 602,
+      "lease_liabilities": -23513,
+      "deferred_revenue": 115761
+    },
+    "cash_recovery": {
+      "H1_FY27_OCF": 43816,
+      "H1_FY27_capex": 169668,
+      "H1_FY27_FCF": -125852,
+      "FY27_FCF_management_range": [
+        600000,
+        800000
+      ],
+      "required_H2_FCF": [
+        725852,
+        925852
+      ],
+      "required_quarter_average_H2_FCF": [
+        362926,
+        462926
+      ],
+      "other_receivables_beginning": 249990,
+      "other_receivables_ending": 903723,
+      "other_receivables_increase": 653733,
+      "limitation": "No disclosed exact component-only amount, aging or maturity schedule. The required H2 values are arithmetic, not company quarterly guidance."
+    },
+    "sbc_expensed": {
+      "FY25": 421306,
+      "FY26": 481652,
+      "FY26_H1": 213668,
+      "FY27_H1": 281879,
+      "FY26_Q2": 117393,
+      "FY27_Q2": 159815
+    },
+    "Q2_FY27_operating_income_reconciliation": {
+      "GAAP": 63155,
+      "SBC_adjustment": 159815,
+      "payroll_tax_adjustment": 5400,
+      "other_adjustment": 1261,
+      "non_GAAP": 229631,
+      "SBC_fraction_of_total_adjustment_pct": 95.99882265311517
+    },
+    "Q2_expense_types": {
+      "FY26_RSU": 89100,
+      "FY27_RSU": 103600,
+      "FY26_PR_SU_LTP": 21600,
+      "FY27_PR_SU_LTP": 47600,
+      "precision": "company narrative rounded to USD 0.1m"
+    },
+    "unvested_awards_as_of_2026_08_02": {
+      "RSU_shares": 19809948,
+      "PRSUs_LTP_shares": 7838322,
+      "RSU_intrinsic_value": 1528734,
+      "PRSUs_LTP_intrinsic_value": 604883,
+      "intrinsic_value_price_usd": 77.17,
+      "RSU_unrecognized_cost_approx": 1000000,
+      "PRSUs_LTP_unrecognized_cost": 249900,
+      "ESPP_unrecognized_cost": 27700,
+      "weighted_average_recognition_years": {
+        "RSU": 3.0,
+        "PRSUs_LTP": 2.6,
+        "ESPP": 1.1
+      },
+      "aggregate_award_count_existing_shares_pct": 8.294713251971055,
+      "limitation": "Outstanding awards are not a guaranteed dilution forecast or a maximum. Diluted EPS already includes some awards."
+    },
+    "H1_FY27_financing_cash": {
+      "withholding_remittances": -173296,
+      "share_repurchases": -153084,
+      "option_exercise_proceeds": 15169,
+      "ESPP_proceeds": 30001,
+      "net_of_these_items": -281210,
+      "withholding_equity_statement": -175253,
+      "limitation": "Actual tax cash remittances differ from vesting-date withholding equity amounts. Financing cash flow is outside company-defined FCF."
+    },
+    "H1_FY27_share_count_bridge_unit_thousand_shares": {
+      "beginning": 330353,
+      "option_exercises": 1074,
+      "award_vesting": 5985,
+      "ESPP": 678,
+      "tax_withholding": -2552,
+      "repurchases": -2214,
+      "ending": 333324
+    },
+    "Q2_weighted_average_diluted_shares_unit_thousand_shares": {
+      "FY26": 337734,
+      "FY27": 345587
+    },
+    "diagnostic_FCF_minus_expensed_SBC_H1_FY27": -407731,
+    "diagnostic_limitation": "Non-GAAP analytical proxy, not literal cash salary replacement or company-defined FCF; do not additionally subtract all anti-dilution cash flows as the same economic cost."
+  }
 }
