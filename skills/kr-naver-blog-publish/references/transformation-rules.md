@@ -6,6 +6,7 @@
 - Exclude `Research Brief`, `Update Log`, `Follow-up Research Prompts`, and internal file links.
 - Keep DART findings inside the narrative section where they support a claim.
 - Preserve dates, signs, units, ratios, ticker symbols, and source URLs verbatim.
+- In stock posts, replace each external evidence link in the body with a short numbered citation such as `[1]`. Number by first appearance, reuse a number for the same URL, and list the linked source names and original URLs once under `## 출처` at the end. Add source-only links after cited links. Do not leave a long URL next to a claim. Keep image links and the research signature untouched. This rule does not change the daily market-news link-card layout.
 - Preserve Markdown tables when the row/column structure carries scenario, comparison, valuation, checklist, or source-mapping meaning.
 - Drop fenced code blocks. SmartEditor collapses every run of spaces inside a text component, so preformatted content such as an ASCII chart arrives as one ragged line. The source memo keeps the block; confirm its figures also appear in surrounding prose or a table.
 

@@ -4,6 +4,7 @@ const assert = require("assert");
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
+const { normalizeSourceCitations } = require("./source-citations");
 const {
   buildPost,
   convertTables,
@@ -102,6 +103,7 @@ assert(result.postMarkdown.includes("-12.8%"));
 assert(result.postMarkdown.includes("2,480억"));
 assert(!result.postMarkdown.includes("ASCII BLOCK SHOULD NOT SHIP"));
 assert(result.postMarkdown.includes("## 출처"));
+assert(result.postMarkdown.includes("1. [example.com](https://example.com/soop)"));
 assert(result.postMarkdown.includes("매수·매도를 권유하지 않습니다"));
 assert(result.postMarkdown.includes("> **RESEARCH COMPLETE · AI-ASSISTED EQUITY INTELLIGENCE**"));
 assert(result.postMarkdown.includes("> Codex (or Claude) × KrResearchKit · Crafted by **ray5273**"));
@@ -188,6 +190,21 @@ assert(numbered.postMarkdown.includes("## 투자 판단의 핵심 축"));
 assert(numbered.postMarkdown.includes("## 출처"));
 assert.strictEqual(numbered.manifest.post.company, "한진칼");
 assert.strictEqual(numbered.manifest.post.ticker, "180640");
+
+const citations = normalizeSourceCitations([
+  "# 예시", "", "판매는 [기아 발표](https://example.com/kia), [현대차 발표](https://example.com/hyundai)를 따른다.",
+  "가격은 [기아 가격](https://example.com/kia)을 본다.", "", "## 출처", "",
+  "- [기아 발표](https://example.com/kia) · [현대차 발표](https://example.com/hyundai)",
+  "- [추가 자료](https://example.com/extra)", "", "---", "", "[GitHub](https://github.com/example)",
+].join("\n"));
+assert(citations.includes("판매는 [1], [2]를 따른다."));
+assert(citations.includes("가격은 [1]을 본다."));
+assert(citations.includes("1. [기아 발표](https://example.com/kia)"));
+assert(citations.includes("2. [현대차 발표](https://example.com/hyundai)"));
+assert(citations.includes("3. [추가 자료](https://example.com/extra)"));
+assert.strictEqual((citations.match(/https:\/\/example.com\/kia/g) || []).length, 1);
+assert(citations.includes("[GitHub](https://github.com/example)"));
+assert.strictEqual(normalizeSourceCitations(citations), citations);
 
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), "kr-naver-converter-test-"));
 fs.writeFileSync(path.join(temp, "result.txt"), result.postMarkdown);

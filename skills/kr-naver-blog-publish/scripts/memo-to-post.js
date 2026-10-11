@@ -2,6 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const { normalizeSourceCitations } = require("./source-citations");
 const {
   assert,
   fileSha256,
@@ -362,7 +363,7 @@ function buildPost({ markdown, memoPath, category = null }) {
     "",
     ...signature.map(line => `> ${line}`),
   );
-  const postMarkdown = `${normalizeText(parts.join("\n"))}\n`;
+  const postMarkdown = `${normalizeText(normalizeSourceCitations(parts.join("\n")))}\n`;
   return {
     metadata,
     postMarkdown,
