@@ -36,3 +36,4 @@ jobs:
         run: node scripts/release.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KR_BACKLOG_FONT: ${{ github.workspace }}/skills/kr-stock-chart/assets/fonts/NotoSansKR-Regular.ttf
