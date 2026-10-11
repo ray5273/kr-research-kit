@@ -25,6 +25,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install chart validation dependency
+        run: python -m pip install 'Pillow>=10,<13'
       - name: Test release automation
         run: node --test scripts/test-release.js
       - name: Validate and publish
