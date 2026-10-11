@@ -8,7 +8,7 @@
 
 ## 무엇을 하나
 
-스킬 35개. 낱개로 쓰기보다 파이프라인으로 엮여 있습니다.
+스킬 37개. 낱개로 쓰기보다 파이프라인으로 엮여 있습니다.
 
 | 워크플로 | 체인 |
 |---|---|
@@ -117,3 +117,30 @@ bash ./scripts/validate-skills.sh        # Linux / macOS
 ```
 
 스킬 스펙 검사, strict YAML frontmatter 파싱, 출력 경로 contract, README local-link 검증, 산출물 인덱스 최신성, golden example 감사를 포함합니다.
+
+## 자동 릴리스
+
+문서·분석 예제를 포함한 모든 `main` push는 [Release 워크플로](.github/workflows/release.yml)를 실행합니다.
+검증을 통과하면 세 manifest 버전을 함께 올리고, `CHANGELOG.md`의 `Unreleased` 항목을
+날짜가 있는 새 버전으로 이동하며 커밋 링크를 추가합니다. 봇 커밋과 `vX.Y.Z` 태그를
+함께 push한 뒤 같은 변경 이력으로 GitHub Release를 공개합니다. npm 배포는 하지 않습니다.
+
+**마지막 버전 태그 이후 전체 커밋** 중 가장 큰 변경을 적용합니다.
+
+- `feat: 기능 추가`, `feat(chart): 패널 추가` → minor
+- `feat!: 형식 변경`, `fix(api)!: 계약 변경`, 본문의 `BREAKING CHANGE:`로 시작하는 줄 → major
+- `fix: 오류 수정`, `docs: 문서 갱신`, Conventional Commits 형식이 아닌 메시지 → patch
+
+첫 실행은 manifest의 `0.2.0`을 버전 하한으로 사용하며 기존 `v0.1.0` 태그를 보존합니다.
+실행을 직렬화하고 검증 도중 main이 변경되면 최신 main에서 다시 계산·검증합니다.
+커밋과 태그는 atomic push로 함께 저장하며 강제 push는 하지 않습니다.
+`contents: write` 권한의 `GITHUB_TOKEN`을 사용하므로 봇 push가 push 워크플로를 다시 실행하지 않습니다
+([GitHub 공식 문서](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow)).
+
+재실행은 **Actions → Release → Run workflow**에서 **main**을 선택합니다.
+이미 발행한 변경에는 새 버전을 만들지 않습니다. 태그 push 후 Release 공개만 실패했다면
+해당 태그의 changelog로 Release를 완성합니다. 그 사이 새 커밋이 들어와도 이전 Release를 먼저 복구합니다.
+main 경합이 5회 반복되면 실행을 실패 처리하며 같은 방법으로 재실행할 수 있습니다.
+현재 보호 규칙이 없는 main에서는 별도 PAT가 필요하지 않으며, 향후 보호 규칙을 추가하면 봇 push를 허용해야 합니다.
+
+로컬 릴리스 테스트: `node --test scripts/test-release.js` (임시 Git 저장소·API 모킹 사용).
