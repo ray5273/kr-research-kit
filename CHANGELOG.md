@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-10-11
+
+### Commits
+
+- feat(naver-blog): move stock sources to numbered endnotes ([cd9368f](https://github.com/ray5273/kr-research-kit/commit/cd9368feb1f05188e56116b7f5dbd8f86dde84e6))
+
 ## [0.3.0] - 2026-10-11
 
 ### Added
