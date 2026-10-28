@@ -2,13 +2,19 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (325 files).
+Complete index of every artifact under `analysis-example/` (329 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
 For strategy methodology and performance comparison, see [CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md](CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md).
 
-## KR — Korean single-stock research (151)
+## KR — Korean single-stock research (155)
+
+### 네이버 — 2026-10-28
+
+NAVER(035420) | 브룩필드 AI 팩토리 계약과 가치평가
+
+[memo](../analysis-example/kr/네이버/memo.md) · [dart-analysis](../analysis-example/kr/네이버/dart-analysis.md) · [analyst-report-insight](../analysis-example/kr/네이버/analyst-report-insight.md) · [naver-post](../analysis-example/kr/네이버/naver-post.md) · [naver-publish.json](../analysis-example/kr/네이버/naver-publish.json)
 
 ### 트리니티항공 — 2026-09-29
 

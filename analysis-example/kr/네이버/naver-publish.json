@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "status": "converted",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/네이버/memo.md",
+    "memoSha256": "b40e5c4bda3c28eb030cbaadb7770cfeb9730531f8de1c543d8106ed99643c56",
+    "asOfDate": "2026-10-28"
+  },
+  "post": {
+    "company": "네이버",
+    "ticker": "035420",
+    "title": "네이버 | 계약 확정, 고객 수주와 수익성은 검증 단계. | 2026-10-28",
+    "issue": "계약 확정, 고객 수주와 수익성은 검증 단계.",
+    "category": null,
+    "tags": [
+      "네이버",
+      "035420",
+      "주식분석",
+      "AI"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/kr/네이버/naver-post.md",
+    "markdownSha256": "23074c5db6799984fd6fbd243203c0cee8765b098ae0acfc1d6fc6a4daf5e8d2",
+    "images": [],
+    "thumbnail": null
+  },
+  "prepare": null,
+  "publish": null
+}
