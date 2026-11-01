@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.7] - 2026-11-01
+
+### Commits
+
+- Structure all public articles with comparison tables and attributed summaries ([b75758d](https://github.com/ray5273/kr-research-kit/commit/b75758dfd6e7b979df3e1c20d137557c5945548e))
+
 ## [0.4.6] - 2026-11-01
 
 ### Commits
