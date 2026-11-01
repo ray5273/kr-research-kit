@@ -46,24 +46,51 @@ function block(
     .forEach((line, i) => ctx.fillText(line, x, y + i * size * 1.3));
   return { lines: Math.min(lines.length, maxLines), size };
 }
+function artFor(article) {
+  const name = article.slug.replaceAll("/", "-"),
+    artPath = path.join(artDir, `${name}.jpg`);
+  return { name, artPath, art: fs.existsSync(artPath) ? fs.readFileSync(artPath) : null };
+}
+function subjectOf(article, label) {
+  return [article.company, label !== article.company ? label : ""]
+    .filter(Boolean)
+    .join(" · ");
+}
+// Image decoding is async but the site build is sync, so render out of process.
+function renderArt(job) {
+  execFileSync(process.execPath, [__filename, JSON.stringify(job)]);
+}
 function shareCard(article, config, outDir) {
   if (!registered) {
     if (!GlobalFonts.registerFromPath(font, "Research Korean"))
       throw Error("Korean share font unavailable");
     registered = true;
   }
-  const data = [article.headline, config.siteName];
+  const label = article.ticker || article.sectors?.[0] || "";
+  const { name, artPath, art } = artFor(article);
+  const data = [article.company, label, article.headline, article.asOfDate, config.siteName];
   // Hash bytes too: font or renderer changes must also invalidate cached images.
   const hash = crypto
     .createHash("sha256")
     .update(JSON.stringify(data))
     .update(fs.readFileSync(font))
     .update(fs.readFileSync(__filename))
+    .update(art || "")
     .digest("hex")
     .slice(0, 16);
-  const relative = `/share/${article.slug.replaceAll("/", "-")}-${hash}.png`,
+  const relative = `/share/${name}-${hash}.${art ? "jpg" : "png"}`,
     file = path.join(outDir, relative);
-  if (!fs.existsSync(file)) {
+  if (art && !fs.existsSync(file)) {
+    renderArt({
+      kind: "share",
+      artPath,
+      file,
+      subject: subjectOf(article, label),
+      headline: article.headline,
+      asOfDate: article.asOfDate,
+      siteName: config.siteName,
+    });
+  } else if (!fs.existsSync(file)) {
     const canvas = createCanvas(1200, 630),
       ctx = canvas.getContext("2d");
     ctx.fillStyle = "#fff";
@@ -112,9 +139,7 @@ function coverCard(article, outDir) {
     registered = true;
   }
   const label = article.ticker || article.sectors?.[0] || "";
-  const name = article.slug.replaceAll("/", "-"),
-    artPath = path.join(artDir, `${name}.jpg`),
-    art = fs.existsSync(artPath) ? fs.readFileSync(artPath) : null;
+  const { name, artPath, art } = artFor(article);
   const hash = crypto
     .createHash("sha256")
     .update(JSON.stringify([article.company, label, article.headline, article.asOfDate]))
@@ -126,19 +151,13 @@ function coverCard(article, outDir) {
   const relative = `/covers/${name}-${hash}.${art ? "jpg" : "png"}`,
     file = path.join(outDir, relative);
   if (art && !fs.existsSync(file)) {
-    // Image decoding is async but the site build is sync, so render out of process.
-    execFileSync(process.execPath, [
-      __filename,
-      JSON.stringify({
-        artPath,
-        file,
-        subject: [article.company, label !== article.company ? label : ""]
-          .filter(Boolean)
-          .join(" · "),
-        headline: article.headline,
-        asOfDate: article.asOfDate,
-      }),
-    ]);
+    renderArt({
+      artPath,
+      file,
+      subject: subjectOf(article, label),
+      headline: article.headline,
+      asOfDate: article.asOfDate,
+    });
   } else if (!fs.existsSync(file)) {
     const canvas = createCanvas(800, 500),
       ctx = canvas.getContext("2d");
@@ -222,9 +241,73 @@ async function renderArtCover({ artPath, file, subject, headline, asOfDate }) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, canvas.toBuffer("image/jpeg", 88));
 }
-if (require.main === module)
-  renderArtCover(JSON.parse(process.argv[2])).catch((error) => {
+async function renderArtShare({ artPath, file, subject, headline, asOfDate, siteName }) {
+  if (!GlobalFonts.registerFromPath(font, "Research Korean"))
+    throw Error("Korean share font unavailable");
+  const canvas = createCanvas(1200, 630),
+    ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(0, 0, 1200, 630);
+  const image = await loadImage(artPath),
+    width = 620,
+    height = (width * image.height) / image.width;
+  ctx.drawImage(image, 1200 - width - 16, 606 - height, width, height);
+  ctx.fillStyle = "#ea5a0c";
+  ctx.fillRect(0, 606, 1200, 24);
+  block(ctx, subject, {
+    x: 64,
+    y: 44,
+    width: 1072,
+    size: 36,
+    maxLines: 1,
+    color: "#ea5a0c",
+    weight: 700,
+  });
+  // Kakao shows this card at phone width: the title has to stay legible.
+  block(ctx, headline, {
+    x: 64,
+    y: 96,
+    width: 1072,
+    size: 68,
+    maxLines: 2,
+    color: "#1d1d1f",
+    weight: 800,
+  });
+  block(ctx, siteName, {
+    x: 64,
+    y: 490,
+    width: 480,
+    size: 34,
+    maxLines: 1,
+    color: "#1d1d1f",
+    weight: 700,
+  });
+  block(ctx, ".", {
+    x: 64 + ctx.measureText(siteName).width,
+    y: 490,
+    width: 60,
+    size: 34,
+    maxLines: 1,
+    color: "#ea5a0c",
+    weight: 700,
+  });
+  block(ctx, `기준일 ${asOfDate}`, {
+    x: 64,
+    y: 540,
+    width: 480,
+    size: 28,
+    maxLines: 1,
+    color: "#6e6e73",
+    weight: 500,
+  });
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, canvas.toBuffer("image/jpeg", 88));
+}
+if (require.main === module) {
+  const job = JSON.parse(process.argv[2]);
+  (job.kind === "share" ? renderArtShare(job) : renderArtCover(job)).catch((error) => {
     console.error(error);
     process.exit(1);
   });
+}
 module.exports = { shareCard, coverCard, wrap };

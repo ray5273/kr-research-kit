@@ -282,12 +282,23 @@ assert(read("index.html").includes('src="/analytics.js"'));
 assert(read("analytics.js").includes("research.stats.consent"));
 assert(read("index.html").includes('src="/card-counts.js"'));
 {
-  const { coverCard } = require("./share-card");
+  const { coverCard, shareCard } = require("./share-card");
   const coverDir = fs.mkdtempSync(path.join(os.tmpdir(), "cover-"));
   const withArt = coverCard({ slug: "sector/uhv-transformer", company: "초고압 변압기", headline: "제목", asOfDate: "2026-08-16" }, coverDir);
   assert(withArt.endsWith(".jpg"), "Published art must produce a composed JPEG cover");
   assert(fs.statSync(path.join(coverDir, withArt)).size > 15000, "Cover art must actually be drawn");
   assert(coverCard({ slug: "no/art", company: "가나다", headline: "제목", asOfDate: "2026-08-16" }, coverDir).endsWith(".png"), "Missing art falls back to the text cover");
+  const shareConfig = { siteName: "KR Research", baseUrl: "" };
+  const shareWithArt = shareCard({ slug: "sector/uhv-transformer", company: "초고압 변압기", headline: "제목", asOfDate: "2026-08-16" }, shareConfig, coverDir);
+  assert(shareWithArt.endsWith(".jpg"), "Published art must produce a composed JPEG share card");
+  assert(fs.statSync(path.join(coverDir, shareWithArt)).size > 15000, "Share art must actually be drawn");
+  assert(shareCard({ slug: "no/art", company: "가나다", headline: "제목", asOfDate: "2026-08-16" }, shareConfig, coverDir).endsWith(".png"), "Missing art falls back to the text share card");
+  const { missingArt, coverPrompt } = require("./generate-covers");
+  fs.writeFileSync(path.join(coverDir, "kr-has.jpg"), "x");
+  const needsArt = missingArt([{ slug: "kr/has" }, { slug: "kr/new" }, { slug: "kr/opt-out", coverArt: false }], coverDir);
+  assert.deepStrictEqual(needsArt.map(a => a.slug), ["kr/new"], "Only un-opted articles without art are missing");
+  assert(coverPrompt({ company: "가나다", headline: "제목" }).includes("가나다: 제목"), "Default prompt derives from the article");
+  assert(coverPrompt({ coverSubject: "a blank coin", company: "가나다" }).includes("illustration of a blank coin."), "coverSubject overrides the default prompt");
   fs.rmSync(coverDir, { recursive: true, force: true });
 }
 assert(read("card-counts.js").includes("/api/article-counts"));

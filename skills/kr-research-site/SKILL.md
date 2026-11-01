@@ -28,7 +28,16 @@ Requires `kr-naver-blog-publish` installed next to this skill: the renderer reus
    - `featured`: rank in the home "지금 읽을 만한 리서치" grid (1 = big card). Unranked slots fall back to the latest articles.
    - `popular`: rank in the home "인기" tab. Until there are visit stats, unranked articles follow research-date order. Commit the memo and every image it embeds first; the builder refuses untracked files.
 
-2. **Build and check.**
+2. **Generate the cover art.** The list cover and the Kakao/OG share card both use `site/covers/<slug with / as ->.jpg`. Gemini needs the logged-in browser on this machine, so this runs here and not in Cloudflare:
+
+   ```bash
+   node skills/kr-research-site/scripts/generate-covers.js                         # every published article without art
+   node skills/kr-research-site/scripts/generate-covers.js --slug <slug> --force   # redo one
+   ```
+
+   Open each new image and reject logos, brand marks or legible text, then redo it with a `coverSubject` (English visual description) on the manifest entry. Commit the `.jpg`. `npm run test:site` fails on a published article without art, which also stops the Cloudflare build. To ship before art exists (for example Gemini logged out), set `"coverArt": false` on the entry for the text cover and remove it once art is committed.
+
+3. **Build and check.**
 
    ```bash
    node skills/kr-research-site/scripts/build-site.js --out site-dist
@@ -37,9 +46,9 @@ Requires `kr-naver-blog-publish` installed next to this skill: the renderer reus
 
    Open the article at phone width with `/browse` and check the core answer box, tables, charts, tone colors, update log and sources. Read [references/seo-aeo.md](references/seo-aeo.md) for the title, description, structured data and ad placement rules the build enforces.
 
-3. **Deploy.** Push to `main`. Cloudflare Workers Builds (GitHub integration) runs the tests, builds with `--production` and deploys `site-dist/` with `npx wrangler deploy`. In parallel `.github/workflows/site.yml` builds the pushed commit and the previous one, waits until the live `urls.json` matches the new build, then sends only new, changed or removed URLs to IndexNow.
+4. **Deploy.** Push to `main`. Cloudflare Workers Builds (GitHub integration) runs the tests, builds with `--production` and deploys `site-dist/` with `npx wrangler deploy`. In parallel `.github/workflows/site.yml` builds the pushed commit and the previous one, waits until the live `urls.json` matches the new build, then sends only new, changed or removed URLs to IndexNow.
 
-4. **Naver teaser (optional).**
+5. **Naver teaser (optional).**
 
    ```bash
    node skills/kr-naver-blog-publish/scripts/memo-to-post.js --memo <memo.md> --mode teaser
@@ -110,7 +119,7 @@ Read [analytics operations](../../../site/analytics/OPERATIONS.md) before initia
 
 - Optional `sectors: string[]` in `site/published.json` drives related articles independently of tags. Prefer explicit industry labels, including across markets and stock/sector posts. Up to four related posts appear before publication-order previous/next links, then comments. Publication ties follow manifest order; edits never change these neighbors.
 - Supply a short `headline` and factual public `summary`; lists, search and sharing use that same summary. `/search/?q=…` searches only the public static metadata index, with NFKC/case normalization, substring AND matching and exact company/ticker priority. The search page is noindex.
-- Build-generated 1200×630 PNG cards use `@napi-rs/canvas` and the bundled OFL Korean font. They are separate from thumbnails; content/font/renderer hashes invalidate image URLs. OG/Twitter metadata is in server HTML. Do not replace the cards with unreviewed generative images.
+- Build-generated 1200×630 share cards use `@napi-rs/canvas` and the bundled OFL Korean font. They composite the reviewed art from `site/covers/` under the title, and fall back to a text card without art; content/font/renderer/art hashes invalidate image URLs. OG/Twitter metadata is in server HTML. Do not commit generative images without reviewing them.
 - Kakao uses the public JavaScript key from `kakao.javascriptKey` or build environment `KAKAO_JAVASCRIPT_KEY`. Configure SDK/web domains for `baseUrl`. Verify the production domain registrations, build variable and previews after deployment without automatically sending messages.
 - Public sharing and nickname comments are served by the existing Worker/D1. Counts fail to `—`, not zero. Comments are plain text, 30/2,000 characters, pending approval, oldest first in 20-row cursor pages. Admin approval/deletion lives at `/admin/comments/` behind the existing signed cookie. Never bundle admin HTML/JS in public assets.
 - Run `npm run check:site`, including real local Worker/D1 engagement tests. Keep privacy text and [operations](../../../site/analytics/OPERATIONS.md) aligned with behavior. Deploy through the existing migration-first script; never reset cumulative shares with visit retention.
