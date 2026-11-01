@@ -26,7 +26,7 @@ Requires `kr-naver-blog-publish` installed next to this skill: the renderer reus
    - `stance`: `긍정` / `중립` / `부정` (or `pos` / `neu` / `neg`) badge. Set it only when the memo states that call; never infer one. No buy/sell words.
    - `quote`: up to 4 header cells `{ "label", "value", "unit"?, "tone"?: "up" | "down" }`, copied from numbers in the memo.
    - `featured`: rank in the home "지금 읽을 만한 리서치" grid (1 = big card). Unranked slots fall back to the latest articles.
-   - `popular`: rank in the home "인기" tab. Until there are visit stats, unranked articles follow `published.json` order. Commit the memo and every image it embeds first; the builder refuses untracked files.
+   - `popular`: rank in the home "인기" tab. Until there are visit stats, unranked articles follow research-date order. Commit the memo and every image it embeds first; the builder refuses untracked files.
 
 2. **Build and check.**
 
@@ -105,3 +105,11 @@ The Worker serves administrator data and assets only after verifying an origin-b
 The public footer has 통계 설정 and equal-weight consent choices. Collection starts only after opt-in. Browser IDs live at most 90 days and the server stores HMAC values; raw events expire after 90 days and identifier-free daily aggregates after 365 days. Hourly Cron rebuilds the latest 2 days plus today. The dashboard shows only observed consenting-browser traffic, KST date ranges, provisional today, missing data, collection and aggregation health, and sample-gated rules.
 
 Read [analytics operations](../../../site/analytics/OPERATIONS.md) before initial deployment. Required real settings are D1 database ID and Worker Secrets `ADMIN_PASSWORD` and `ANALYTICS_HMAC_SECRET`. Do not deploy placeholders. Use `npm run check:site` for static build, tracker consent tests and real local D1/Worker security/aggregation tests. Use `npm run deploy:site` after the account and Worker Secrets have been configured. Local static preview does not supply the protected administrator API.
+
+## Historical archive publication
+
+When the user publishes notes as records of their time, preserve original prices, assumptions, judgments and each metric's stated date. Include updates already recorded in the memo; do not refresh the analysis to the site publication day. Publish one editorial copy of each finished primary note, avoiding duplicate voice/SEO/channel copies and supporting data packs. Include uncommitted finished notes only as an explicitly scoped snapshot in the isolated publication worktree; leave the source worktree untouched.
+
+List pages sort by the latest original research date (the maximum of 기준일, 최근 업데이트일 and dated Update Log headings), then original 기준일 and slug. Site publication/editing dates do not change that order. Keep the original 기준일 visible and label a later research update separately. For a bulk archive publication, remove old featured ranks so home recommendations also show the latest research; retain optional ranking support for deliberate future curation. Feeds and sitemap modification dates still reflect actual site edits.
+
+Retain source bibliographic entries even when the original supplies no URL. Link numbered citations to those entries without inventing external URLs; an explicit DART receipt identifier may link to that exact filing. Preserve chart data and images, encode spaces in Markdown image paths, and verify every embedded image reaches the build.

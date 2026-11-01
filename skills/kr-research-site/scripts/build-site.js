@@ -199,13 +199,14 @@ function collectCitations(bodyMarkdown, sourceLines) {
   const sources = [];
   const byUrl = new Map();
   function add(url, label) {
-    if (!byUrl.has(url)) {
+    const key = url || `text:${label}`;
+    if (!byUrl.has(key)) {
       let fallback = url;
       try { fallback = new URL(url).hostname; } catch {}
-      byUrl.set(url, sources.length + 1);
+      byUrl.set(key, sources.length + 1);
       sources.push({ url, label: String(label || "").trim() || fallback });
     }
-    return byUrl.get(url);
+    return byUrl.get(key);
   }
   // Preserve explicitly numbered references before URL citations are renumbered.
   // Protect inline/fenced code and numeric labels on actual Markdown links.
@@ -213,7 +214,10 @@ function collectCitations(bodyMarkdown, sourceLines) {
   for (const line of sourceLines) {
     const id = line.match(/^\s*(\d+)\.\s+/)?.[1];
     const link = [...line.matchAll(LINK_RX)][0];
-    if (id && link) referenceUrls.set(id, { url: link[2], label: link[1] });
+    if (id) {
+      const bareUrl = line.match(BARE_URL_RX)?.[0]?.replace(/[.,;]+$/, "");
+      referenceUrls.set(id, link ? { url: link[2], label: link[1] } : { url: bareUrl || null, label: line.replace(/^\s*\d+\.\s+/, "").trim() });
+    }
   }
   const referenced = bodyMarkdown.replace(/(```[\s\S]*?```|`[^`\n]+`)|(?<!!)\[(\d+)\](?!\()/g, (match, code, id) => {
     if (code || !referenceUrls.has(id)) return match;
@@ -235,10 +239,16 @@ function collectCitations(bodyMarkdown, sourceLines) {
       matched = true;
     }
     if (matched) continue;
+    let hasUrl = false;
     for (const match of line.matchAll(BARE_URL_RX)) {
+      hasUrl = true;
       const url = match[0].replace(/[.,;]+$/, "");
       const label = line.slice(0, match.index).replace(/^\s*(?:[-*]|\d+\.)\s*/, "").replace(/(?:Source|출처)\s*[:：]\s*$/i, "").trim();
       add(url, label);
+    }
+    if (!hasUrl && line.trim() && !/^\s*(?:#|---)/.test(line)) {
+      const label = line.replace(/^\s*(?:[-*]|\d+\.)\s+/, "").trim();
+      if (label) add(null, label);
     }
   }
   return { body, sources };
@@ -488,6 +498,19 @@ function markdownTables(markdown) {
   return tables;
 }
 
+// Older notes also use bold metadata labels, footer dates or a date in the title.
+// Only explicit document labels/title qualify; event dates in prose never do.
+function researchMetadata(markdown) {
+  const normalized = markdown.replace(/\*\*/g, "").replace(/`/g, "");
+  const metadata = parseMetadata(normalized);
+  if (!metadata["기준일"]) {
+    const explicit = normalized.match(/^(?:[-*]\s+)?(?:작성 )?기준일\s*[:：]?\s*(\d{4}-\d{2}-\d{2})/m);
+    const titled = normalized.match(/^#\s+[^\n]*?(\d{4}-\d{2}-\d{2})[^\n]*$/m);
+    if (explicit || titled) metadata["기준일"] = (explicit || titled)[1];
+  }
+  return metadata;
+}
+
 function loadArticle(entry, options) {
   const { root, safety, config } = options;
   assert(entry && typeof entry.memo === "string", "published.json entries need a memo path");
@@ -501,15 +524,16 @@ function loadArticle(entry, options) {
   if (entry.article) {
     const original = fs.readFileSync(memoPath, "utf8");
     safety.checkContent(original, `Memo ${entry.memo}`);
-    const originalDate = (parseMetadata(original)["기준일"] || "").match(/\d{4}-\d{2}-\d{2}/)?.[0];
-    const articleDate = (parseMetadata(markdown)["기준일"] || "").match(/\d{4}-\d{2}-\d{2}/)?.[0];
+    const originalDate = (researchMetadata(original)["기준일"] || "").match(/\d{4}-\d{2}-\d{2}/)?.[0];
+    const articleDate = (researchMetadata(markdown)["기준일"] || "").match(/\d{4}-\d{2}-\d{2}/)?.[0];
     assert(originalDate && originalDate === articleDate, "Article must preserve the memo 기준일");
   }
-  const metadata = parseMetadata(markdown);
+  const metadata = researchMetadata(markdown);
   const asOfDate = (metadata["기준일"] || "").match(/\d{4}-\d{2}-\d{2}/)?.[0];
   assert(asOfDate, `Memo has no YYYY-MM-DD 기준일 and cannot be published: ${entry.memo}`);
   const updatedMeta = (metadata["최근 업데이트일"] || "").match(/\d{4}-\d{2}-\d{2}/)?.[0];
-  const dateModified = [asOfDate, updatedMeta, ...updateDates(markdown), entry.datePublished, entry.dateModified].filter(Boolean).sort().at(-1);
+  const researchDate = [asOfDate, updatedMeta, ...updateDates(markdown)].filter(Boolean).sort().at(-1);
+  const dateModified = [researchDate, entry.datePublished, entry.dateModified].filter(Boolean).sort().at(-1);
   const datePublished = entry.datePublished || asOfDate;
 
   const h1 = markdown.match(/^#\s+(.+?)\s*$/m)?.[1]?.trim() || entry.slug;
@@ -577,6 +601,7 @@ function loadArticle(entry, options) {
     market,
     tags: (entry.tags && entry.tags.length ? entry.tags : [company, ticker]).filter(Boolean),
     asOfDate,
+    researchDate,
     datePublished,
     dateModified,
     issue,
@@ -761,7 +786,7 @@ function renderArticle(article, site, outDir, safety) {
   const updates = article.sections.find(section => section.heading === UPDATES_HEADING);
   const updatesHtml = updates ? `<section class="updates"><h2 id="updates">${UPDATES_HEADING}</h2>\n${renderBlocks(updates.body, ctx)}</section>` : "";
   const sourcesHtml = article.sources.length
-    ? `${adSlot(config, "endArticle")}<section class="sources"><h2 id="sources">${SOURCES_HEADING}</h2>\n<ol>\n${article.sources.map((source, index) => `<li id="src-${index + 1}"><a href="${escapeHtml(source.url)}" rel="noopener">${renderInline(source.label, {})}</a></li>`).join("\n")}\n</ol></section>`
+    ? `${adSlot(config, "endArticle")}<section class="sources"><h2 id="sources">${SOURCES_HEADING}</h2>\n<ol>\n${article.sources.map((source, index) => `<li id="src-${index + 1}">${source.url ? `<a href="${escapeHtml(source.url)}" rel="noopener">${renderInline(source.label, {})}</a>` : renderInline(source.label, {})}</li>`).join("\n")}\n</ol></section>`
     : adSlot(config, "endArticle");
   const legend = article.hasColorMarkers
     ? `<p class="legend">색상 안내 — <span class="tone-pos">빨간색: 좋은 것</span> · <span class="tone-neg">파란색: 안 좋은 의견</span> · <span class="tone-spec">갈색: 추측성 의견</span></p>`
@@ -777,8 +802,8 @@ function renderArticle(article, site, outDir, safety) {
     tocScript: TOC_SCRIPT,
     chips: chipsHtml(article, { exchange: true }),
     headline: escapeHtml(article.headline),
-    metaLine: `${escapeHtml(config.author?.name || config.siteName)} · 자료 기준일 <time datetime="${article.asOfDate}">${article.asOfDate}</time> · 사이트 발행 <time datetime="${article.datePublished}">${article.datePublished}</time> · 최근 편집 <time datetime="${article.dateModified}">${article.dateModified}</time> · ${article.readMinutes}분`,
-    archiveNotice: article.archive ? '<p class="archive-note">기록 글 · 자료 기준일 당시의 수치와 판단을 보존했습니다. 이후 변동은 반영하지 않았습니다.</p>' : "",
+    metaLine: `${escapeHtml(config.author?.name || config.siteName)} · 자료 기준일 <time datetime="${article.asOfDate}">${article.asOfDate}</time>${article.researchDate !== article.asOfDate ? ` · 자료 업데이트 <time datetime="${article.researchDate}">${article.researchDate}</time>` : ""} · 사이트 발행 <time datetime="${article.datePublished}">${article.datePublished}</time> · 최근 편집 <time datetime="${article.dateModified}">${article.dateModified}</time> · ${article.readMinutes}분`,
+    archiveNotice: article.archive ? '<p class="archive-note">기록 글 · 자료 기준일과 원문에 기록된 업데이트의 수치·판단을 보존했습니다. 이후 변동은 반영하지 않았습니다.</p>' : "",
     quote: article.quote.length ? `<div class="quote">${article.quote.map(cell => `<div><div class="k">${escapeHtml(cell.label)}</div><div class="v${cell.tone ? ` ${cell.tone}` : ""}">${escapeHtml(cell.value)}${cell.unit ? `<small>${escapeHtml(cell.unit)}</small>` : ""}</div></div>`).join("")}</div>` : "",
     more: moreHtml(article, site),
     answerLead: renderInline(article.answerLead, ctx),
@@ -833,7 +858,7 @@ function chipsHtml(article, { exchange = false } = {}) {
 }
 
 function asOfTag(article) {
-  return `<span class="asof"><b>기준일</b>${article.asOfDate}</span>`;
+  return `<span class="asof"><b>${article.researchDate !== article.asOfDate ? "자료 업데이트" : "기준일"}</b>${article.researchDate}</span>`;
 }
 
 function imageHtml(article, className = "") {
@@ -847,7 +872,7 @@ function cardHtml(article, { summary = false } = {}) {
 }
 
 function rowHtml(article, rank) {
-  const updated = article.dateModified !== article.datePublished ? ` · 업데이트 ${article.dateModified}` : "";
+  const updated = article.researchDate !== article.asOfDate ? ` · 자료 업데이트 ${article.researchDate}` : "";
   return `<a class="row" href="/${article.slug}/"><div><div class="chips">${rank ? `<span class="rank">${rank}</span>` : ""}${chipsHtml(article)}</div><h3>${escapeHtml(article.headline)}</h3><p>${escapeHtml(article.summary)}</p><div class="sub">기준일 ${article.asOfDate}${updated} · ${article.readMinutes}분</div></div>${imageHtml(article)}</a>`;
 }
 
@@ -865,10 +890,10 @@ function featuredArticles(articles) {
   return [...ranked, ...articles.filter(article => article.featured === null)].slice(0, 3);
 }
 
-// Popular: `popular` ranks first, then published.json order (no visit stats yet).
+// Popular: explicit ranks first, then research-date order (no visit stats yet).
 function popularArticles(articles) {
   const ranked = articles.filter(article => article.popular !== null).sort((a, b) => a.popular - b.popular);
-  const rest = articles.filter(article => article.popular === null).sort((a, b) => a.order - b.order);
+  const rest = articles.filter(article => article.popular === null);
   return [...ranked, ...rest];
 }
 
@@ -884,7 +909,7 @@ function renderList(site, { heading, intro, articles, canonical, robots, home = 
   const list = home
     ? [
       `<input type="radio" name="sort" id="sort-latest" checked hidden><input type="radio" name="sort" id="sort-popular" hidden>`,
-      `<div class="seg" role="tablist"><label for="sort-latest">최신</label><label for="sort-popular">인기</label></div>`,
+      `<div class="seg" role="tablist"><label for="sort-latest">자료 최신순</label><label for="sort-popular">인기</label></div>`,
       `<div class="panel latest">${rows(articles)}</div>`,
       `<div class="panel popular">${popularArticles(articles).map((article, index) => rowHtml(article, index + 1)).join("\n")}</div>`,
     ].join("\n")
@@ -928,7 +953,8 @@ function sitemapXml(entries) {
 
 function feedXml(site, articles) {
   const { config } = site;
-  const updated = articles[0] ? isoKst(articles[0].dateModified) : new Date().toISOString();
+  const latestEdit = articles.map(article => article.dateModified).sort().at(-1);
+  const updated = latestEdit ? isoKst(latestEdit) : new Date().toISOString();
   const entries = articles.slice(0, 50).map(article => [
     "  <entry>",
     `    <title>${escapeXml(article.title)}</title>`,
@@ -994,7 +1020,7 @@ function llmsFullTxt(site, articles) {
     "",
     "## 출처",
     "",
-    ...article.sources.map((source, index) => `${index + 1}. ${source.label} — ${source.url}`),
+    ...article.sources.map((source, index) => `${index + 1}. ${source.label}${source.url ? ` — ${source.url}` : ""}`),
   ].join("\n"));
   return `# ${site.config.siteName} — 전문 요약\n\n${blocks.join("\n\n---\n\n")}\n`;
 }
@@ -1028,7 +1054,7 @@ function buildSite(options) {
     assert(!/^(admin|api)(\/|$)/.test(entry.slug), `Reserved application slug: ${entry.slug}`);
     slugs.add(entry.slug);
     return loadArticle(entry, { root, safety, config });
-  }).map((article, order) => Object.assign(article, { order })).sort((a, b) => b.dateModified.localeCompare(a.dateModified) || b.datePublished.localeCompare(a.datePublished) || a.slug.localeCompare(b.slug));
+  }).map((article, order) => Object.assign(article, { order })).sort((a, b) => b.researchDate.localeCompare(a.researchDate) || b.asOfDate.localeCompare(a.asOfDate) || a.slug.localeCompare(b.slug));
 
   const pages = loadPages(options.pagesDir, safety);
   assert(pages.every(page => !/^(admin|api)(\/|$)/.test(page.slug)), "Reserved application page slug");
@@ -1048,15 +1074,15 @@ function buildSite(options) {
     const html = renderArticle(article, site, outDir, safety);
     record(article.url, article.dateModified, html);
   }
-  const latest = articles[0]?.dateModified;
+  const latest = articles.map(article => article.dateModified).sort().at(-1);
   const home = renderList(site, { heading: config.siteName, intro: config.description || "공시와 숫자로 확인한 주식 리서치. 모든 글에 기준일과 출처가 있습니다.", articles, canonical: `${config.baseUrl}/`, home: true });
   writeFile(path.join(outDir, "index.html"), home);
   record(`${config.baseUrl}/`, latest, home);
   for (const market of markets) {
     const label = MARKET_LABELS[market] || market;
-    const html = renderList(site, { heading: label, intro: `${label} 리서치 글 목록 (최근 업데이트순)`, articles: articles.filter(article => article.market === market), canonical: `${config.baseUrl}/${market}/` });
+    const html = renderList(site, { heading: label, intro: `${label} 리서치 글 목록 (자료 기준일·자료 업데이트 최신순)`, articles: articles.filter(article => article.market === market), canonical: `${config.baseUrl}/${market}/` });
     writeFile(path.join(outDir, market, "index.html"), html);
-    record(`${config.baseUrl}/${market}/`, articles.find(article => article.market === market)?.dateModified, html);
+    record(`${config.baseUrl}/${market}/`, articles.filter(article => article.market === market).map(article => article.dateModified).sort().at(-1), html);
   }
   const tags = new Map();
   for (const article of articles) for (const tag of article.tags) tags.set(tagDir(tag), [...(tags.get(tagDir(tag)) || []), article]);

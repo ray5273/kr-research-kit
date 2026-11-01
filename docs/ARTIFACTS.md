@@ -2,13 +2,19 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (340 files).
+Complete index of every artifact under `analysis-example/` (418 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
 For strategy methodology and performance comparison, see [CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md](CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md).
 
-## KR — Korean single-stock research (157)
+## KR — Korean single-stock research (199)
+
+### 기아 — 2026-11-01
+
+기아(000270) | 2026년 3분기 실적 리뷰 — 관세는 줄었는데 왜 이익은 기대에 못 미쳤나
+
+[memo](../analysis-example/kr/기아/2026-3q-earnings/memo.md) · [memo](../analysis-example/kr/기아/memo.md) · [article](../analysis-example/kr/기아/2026-3q-earnings/article.md) · [article](../analysis-example/kr/기아/article.md)
 
 ### 네이버 — 2026-10-28
 
@@ -20,43 +26,91 @@ NAVER(035420) | 브룩필드 AI 팩토리 계약과 가치평가
 
 트리니티항공(091810): 하락의 이유와 1~2년 신규 매수 조건
 
-[memo](../analysis-example/kr/트리니티항공/memo.md) · [dart-analysis](../analysis-example/kr/트리니티항공/dart-analysis.md) · [dart-reference](../analysis-example/kr/트리니티항공/dart-reference.md) · [foreign-views](../analysis-example/kr/트리니티항공/foreign-views.md) · [chart-analysis](../analysis-example/kr/트리니티항공/chart-analysis.md) · [external-views-audit](../analysis-example/kr/트리니티항공/external-views-audit.md) · [price-adjustment](../analysis-example/kr/트리니티항공/price-adjustment.md)
+[memo](../analysis-example/kr/트리니티항공/memo.md) · [dart-analysis](../analysis-example/kr/트리니티항공/dart-analysis.md) · [dart-reference](../analysis-example/kr/트리니티항공/dart-reference.md) · [foreign-views](../analysis-example/kr/트리니티항공/foreign-views.md) · [chart-analysis](../analysis-example/kr/트리니티항공/chart-analysis.md) · [article](../analysis-example/kr/트리니티항공/article.md) · [external-views-audit](../analysis-example/kr/트리니티항공/external-views-audit.md) · [price-adjustment](../analysis-example/kr/트리니티항공/price-adjustment.md)
 
 ### 제주항공 — 2026-09-28
 
 제주항공(089590): 회복된 영업손익과 아직 부족한 현금 여력
 
-[memo](../analysis-example/kr/제주항공/memo.md) · [dart-analysis](../analysis-example/kr/제주항공/dart-analysis.md) · [analyst-report-insight](../analysis-example/kr/제주항공/analyst-report-insight.md) · [chart-analysis](../analysis-example/kr/제주항공/chart-analysis.md) · [제주항공-트리니티항공-비교](../analysis-example/kr/제주항공/제주항공-트리니티항공-비교.md)
+[memo](../analysis-example/kr/제주항공/memo.md) · [dart-analysis](../analysis-example/kr/제주항공/dart-analysis.md) · [analyst-report-insight](../analysis-example/kr/제주항공/analyst-report-insight.md) · [chart-analysis](../analysis-example/kr/제주항공/chart-analysis.md) · [article](../analysis-example/kr/제주항공/article.md) · [제주항공-트리니티항공-비교](../analysis-example/kr/제주항공/제주항공-트리니티항공-비교.md) · [제주항공-트리니티항공-비교.article](../analysis-example/kr/제주항공/제주항공-트리니티항공-비교.article.md)
+
+### 대한항공-3편 — 2026-09-17
+
+대한항공 (003490) 3편 — 부채를 기준일부터 다시 세기
+
+[memo](../analysis-example/kr/대한항공-3편/memo.md) · [article](../analysis-example/kr/대한항공-3편/article.md)
+
+### 대한항공 — 2026-09-15
+
+대한항공 (003490) 1차 분석 메모 — 통합 대한항공 1편
+
+[memo](../analysis-example/kr/대한항공/memo.md) · [article](../analysis-example/kr/대한항공/article.md)
+
+### 대한항공-2편 — 2026-09-15
+
+대한항공 (003490) 2편 — 숫자 뒤를 뜯어보기
+
+[memo](../analysis-example/kr/대한항공-2편/memo.md) · [article](../analysis-example/kr/대한항공-2편/article.md)
+
+### HD현대일렉트릭 — 2026-08-16
+
+HD현대일렉트릭 (267260) 결정 메모
+
+[memo](../analysis-example/kr/HD현대일렉트릭/memo.md) · [article](../analysis-example/kr/HD현대일렉트릭/article.md)
 
 ### LS일렉트릭 — 2026-08-16
 
 LS일렉트릭 (010120) 결정 메모
 
-[memo](../analysis-example/kr/LS일렉트릭/memo.md) · [dart-analysis](../analysis-example/kr/LS일렉트릭/dart-analysis.md) · [order-backlog-analysis](../analysis-example/kr/LS일렉트릭/order-backlog-analysis.md)
+[memo](../analysis-example/kr/LS일렉트릭/memo.md) · [dart-analysis](../analysis-example/kr/LS일렉트릭/dart-analysis.md) · [article](../analysis-example/kr/LS일렉트릭/article.md) · [order-backlog-analysis](../analysis-example/kr/LS일렉트릭/order-backlog-analysis.md)
+
+### 효성중공업 — 2026-08-16
+
+효성중공업 (298040) 결정 메모
+
+[memo](../analysis-example/kr/효성중공업/memo.md) · [article](../analysis-example/kr/효성중공업/article.md)
+
+### KT&G — 2026-08-06
+
+KT&G 2Q26 실적 중심 심층노트: 본업은 좋았고, 순이익은 더 좋아 보였다
+
+[memo](../analysis-example/kr/KT&G/memo.md) · [article](../analysis-example/kr/KT&G/article.md)
+
+### KRX-52주신고가전략 — 2026-08-01
+
+KRX 52주 신고가 전략 투자 메모
+
+[memo](../analysis-example/kr/KRX-52주신고가전략/2026-08/memo.md) · [article](../analysis-example/kr/KRX-52주신고가전략/2026-08/article.md)
+
+### 한화에어로스페이스 — 2026-07-31
+
+한화에어로스페이스(012450) 2Q26 어닝서프라이즈 분석
+
+[memo](../analysis-example/kr/한화에어로스페이스/memo.md) · [article](../analysis-example/kr/한화에어로스페이스/article.md)
 
 ### market-sentiment — 2026-07-20
 
 한국 증시 투심, 진짜 바닥인가 | 반도체는 사고 나머지는 판다 | 2026-07-20
 
-[memo](../analysis-example/kr/market-sentiment/memo.md) · [naver-post](../analysis-example/kr/market-sentiment/naver-post.md) · [naver-publish.json](../analysis-example/kr/market-sentiment/naver-publish.json)
+[memo](../analysis-example/kr/market-sentiment/memo.md) · [naver-post](../analysis-example/kr/market-sentiment/naver-post.md) · [naver-publish.json](../analysis-example/kr/market-sentiment/naver-publish.json) · [article](../analysis-example/kr/market-sentiment/article.md)
 
 ### KRX-월간전략 — 2026-07-12
 
 KRX 월간 팩터 포트폴리오 투자 메모
 
-[memo](../analysis-example/kr/KRX-월간전략/memo.md) · [naver-post](../analysis-example/kr/KRX-월간전략/naver-post.md) · [naver-publish.json](../analysis-example/kr/KRX-월간전략/naver-publish.json)
+[memo](../analysis-example/kr/KRX-월간전략/memo.md) · [naver-post](../analysis-example/kr/KRX-월간전략/naver-post.md) · [naver-publish.json](../analysis-example/kr/KRX-월간전략/naver-publish.json) · [article](../analysis-example/kr/KRX-월간전략/article.md)
 
 ### 대양전기공업 — 2026-07-12
 
 대양전기공업 분석 예시
 
-[memo](../analysis-example/kr/대양전기공업/memo.md) · [data-pack](../analysis-example/kr/대양전기공업/data-pack.md) · [dart-analysis](../analysis-example/kr/대양전기공업/dart-analysis.md) · [analyst-report-insight](../analysis-example/kr/대양전기공업/analyst-report-insight.md) · [naver-insights](../analysis-example/kr/대양전기공업/naver-insights.md) · [chart-analysis](../analysis-example/kr/대양전기공업/chart-analysis.md) · [naver-post](../analysis-example/kr/대양전기공업/naver-post.md) · [naver-publish.json](../analysis-example/kr/대양전기공업/naver-publish.json) · [capacity-utilization](../analysis-example/kr/대양전기공업/capacity-utilization.md) · [chart-blog](../analysis-example/kr/대양전기공업/chart-blog.md) · [chart-blog-post](../analysis-example/kr/대양전기공업/chart-blog-post.md) · [foreign-analyst-coverage](../analysis-example/kr/대양전기공업/foreign-analyst-coverage.md) · [technical-levels](../analysis-example/kr/대양전기공업/technical-levels.md) · [trend-rules](../analysis-example/kr/대양전기공업/trend-rules.md) · [trend-rules.json](../analysis-example/kr/대양전기공업/trend-rules.json)
+[memo](../analysis-example/kr/대양전기공업/memo.md) · [data-pack](../analysis-example/kr/대양전기공업/data-pack.md) · [dart-analysis](../analysis-example/kr/대양전기공업/dart-analysis.md) · [analyst-report-insight](../analysis-example/kr/대양전기공업/analyst-report-insight.md) · [naver-insights](../analysis-example/kr/대양전기공업/naver-insights.md) · [chart-analysis](../analysis-example/kr/대양전기공업/chart-analysis.md) · [naver-post](../analysis-example/kr/대양전기공업/naver-post.md) · [naver-publish.json](../analysis-example/kr/대양전기공업/naver-publish.json) · [article](../analysis-example/kr/대양전기공업/article.md) · [capacity-utilization](../analysis-example/kr/대양전기공업/capacity-utilization.md) · [chart-blog](../analysis-example/kr/대양전기공업/chart-blog.md) · [chart-blog-post](../analysis-example/kr/대양전기공업/chart-blog-post.md) · [foreign-analyst-coverage](../analysis-example/kr/대양전기공업/foreign-analyst-coverage.md) · [technical-levels](../analysis-example/kr/대양전기공업/technical-levels.md) · [trend-rules](../analysis-example/kr/대양전기공업/trend-rules.md) · [trend-rules.json](../analysis-example/kr/대양전기공업/trend-rules.json)
 
 ### 부국증권 — 2026-07-12
 
 부국증권 보통주·우선주 결정 메모
 
-[memo](../analysis-example/kr/부국증권/memo.md) · [data-pack](../analysis-example/kr/부국증권/data-pack.md) · [dart-analysis](../analysis-example/kr/부국증권/dart-analysis.md) · [dart-reference](../analysis-example/kr/부국증권/dart-reference.md) · [chart-analysis](../analysis-example/kr/부국증권/chart-analysis.md) · [naver-post](../analysis-example/kr/부국증권/naver-post.md) · [naver-publish.json](../analysis-example/kr/부국증권/naver-publish.json) · [trend-rules](../analysis-example/kr/부국증권/trend-rules.md) · [trend-rules.json](../analysis-example/kr/부국증권/trend-rules.json)
+[memo](../analysis-example/kr/부국증권/memo.md) · [data-pack](../analysis-example/kr/부국증권/data-pack.md) · [dart-analysis](../analysis-example/kr/부국증권/dart-analysis.md) · [dart-reference](../analysis-example/kr/부국증권/dart-reference.md) · [chart-analysis](../analysis-example/kr/부국증권/chart-analysis.md) · [naver-post](../analysis-example/kr/부국증권/naver-post.md) · [naver-publish.json](../analysis-example/kr/부국증권/naver-publish.json) · [article](../analysis-example/kr/부국증권/article.md) · [trend-rules](../analysis-example/kr/부국증권/trend-rules.md) · [trend-rules.json](../analysis-example/kr/부국증권/trend-rules.json)
 
 ### 한화엔진 — 2026-07-12
 
@@ -86,37 +140,37 @@ HD한국조선해양 DART Reference
 
 엘앤에프 분석 예시
 
-[memo](../analysis-example/kr/엘앤에프/memo.md) · [analyst-report-insight](../analysis-example/kr/엘앤에프/analyst-report-insight.md) · [naver-insights](../analysis-example/kr/엘앤에프/naver-insights.md) · [chart-analysis](../analysis-example/kr/엘앤에프/chart-analysis.md) · [trade-flow-analysis](../analysis-example/kr/엘앤에프/trade-flow-analysis.md) · [네이버블로거-투자논리](../analysis-example/kr/엘앤에프/네이버블로거-투자논리.md)
+[memo](../analysis-example/kr/엘앤에프/memo.md) · [analyst-report-insight](../analysis-example/kr/엘앤에프/analyst-report-insight.md) · [naver-insights](../analysis-example/kr/엘앤에프/naver-insights.md) · [chart-analysis](../analysis-example/kr/엘앤에프/chart-analysis.md) · [article](../analysis-example/kr/엘앤에프/article.md) · [trade-flow-analysis](../analysis-example/kr/엘앤에프/trade-flow-analysis.md) · [네이버블로거-투자논리](../analysis-example/kr/엘앤에프/네이버블로거-투자논리.md)
 
 ### 두산에너빌리티 — 2026-07-04
 
 두산에너빌리티 DART 분석
 
-[dart-analysis](../analysis-example/kr/두산에너빌리티/dart-analysis.md) · [dart-reference](../analysis-example/kr/두산에너빌리티/dart-reference.md) · [analyst-report-insight](../analysis-example/kr/두산에너빌리티/analyst-report-insight.md) · [naver-insights](../analysis-example/kr/두산에너빌리티/naver-insights.md) · [chart-analysis](../analysis-example/kr/두산에너빌리티/chart-analysis.md) · [naver-post](../analysis-example/kr/두산에너빌리티/naver-post.md) · [naver-publish.json](../analysis-example/kr/두산에너빌리티/naver-publish.json) · [smr-blog-outline](../analysis-example/kr/두산에너빌리티/smr-blog-outline.md) · [smr-data-pack](../analysis-example/kr/두산에너빌리티/smr-data-pack.md) · [수주통합분석](../analysis-example/kr/두산에너빌리티/수주통합분석.md)
+[dart-analysis](../analysis-example/kr/두산에너빌리티/dart-analysis.md) · [dart-reference](../analysis-example/kr/두산에너빌리티/dart-reference.md) · [analyst-report-insight](../analysis-example/kr/두산에너빌리티/analyst-report-insight.md) · [naver-insights](../analysis-example/kr/두산에너빌리티/naver-insights.md) · [chart-analysis](../analysis-example/kr/두산에너빌리티/chart-analysis.md) · [naver-post](../analysis-example/kr/두산에너빌리티/naver-post.md) · [naver-publish.json](../analysis-example/kr/두산에너빌리티/naver-publish.json) · [naver-post.article](../analysis-example/kr/두산에너빌리티/naver-post.article.md) · [smr-blog-outline](../analysis-example/kr/두산에너빌리티/smr-blog-outline.md) · [smr-data-pack](../analysis-example/kr/두산에너빌리티/smr-data-pack.md) · [수주통합분석](../analysis-example/kr/두산에너빌리티/수주통합분석.md)
 
 ### 한화솔루션 — 2026-07-04
 
 한화솔루션 | Qcells 매출과 미국 비중을 DART로 확인 | 2026-07-04
 
-[naver-post](../analysis-example/kr/한화솔루션/naver-post.md) · [naver-publish.json](../analysis-example/kr/한화솔루션/naver-publish.json) · [source](../analysis-example/kr/한화솔루션/source.md)
+[naver-post](../analysis-example/kr/한화솔루션/naver-post.md) · [naver-publish.json](../analysis-example/kr/한화솔루션/naver-publish.json) · [source](../analysis-example/kr/한화솔루션/source.md) · [source.article](../analysis-example/kr/한화솔루션/source.article.md)
 
 ### 제닉 — 2026-07-03
 
 제닉 (123330) Full Memo
 
-[memo](../analysis-example/kr/제닉/memo.md) · [data-pack](../analysis-example/kr/제닉/data-pack.md) · [dart-analysis](../analysis-example/kr/제닉/dart-analysis.md) · [analyst-report-insight](../analysis-example/kr/제닉/analyst-report-insight.md) · [foreign-views](../analysis-example/kr/제닉/foreign-views.md) · [naver-insights](../analysis-example/kr/제닉/naver-insights.md) · [chart-analysis](../analysis-example/kr/제닉/chart-analysis.md) · [naver-post](../analysis-example/kr/제닉/naver-post.md) · [naver-publish.json](../analysis-example/kr/제닉/naver-publish.json) · [trend-rules](../analysis-example/kr/제닉/trend-rules.md) · [trend-rules.json](../analysis-example/kr/제닉/trend-rules.json)
+[memo](../analysis-example/kr/제닉/memo.md) · [data-pack](../analysis-example/kr/제닉/data-pack.md) · [dart-analysis](../analysis-example/kr/제닉/dart-analysis.md) · [analyst-report-insight](../analysis-example/kr/제닉/analyst-report-insight.md) · [foreign-views](../analysis-example/kr/제닉/foreign-views.md) · [naver-insights](../analysis-example/kr/제닉/naver-insights.md) · [chart-analysis](../analysis-example/kr/제닉/chart-analysis.md) · [naver-post](../analysis-example/kr/제닉/naver-post.md) · [naver-publish.json](../analysis-example/kr/제닉/naver-publish.json) · [article](../analysis-example/kr/제닉/article.md) · [trend-rules](../analysis-example/kr/제닉/trend-rules.md) · [trend-rules.json](../analysis-example/kr/제닉/trend-rules.json)
 
 ### 한진칼 — 2026-06-28
 
 한진칼(180640) — 경영권 분쟁 중심 결정 메모 (Full Memo + Event 노트)
 
-[memo](../analysis-example/kr/한진칼/memo.md) · [dart-analysis](../analysis-example/kr/한진칼/dart-analysis.md) · [dart-reference](../analysis-example/kr/한진칼/dart-reference.md) · [analyst-report-insight](../analysis-example/kr/한진칼/analyst-report-insight.md) · [foreign-views](../analysis-example/kr/한진칼/foreign-views.md) · [naver-insights](../analysis-example/kr/한진칼/naver-insights.md) · [naver-post](../analysis-example/kr/한진칼/naver-post.md) · [naver-publish.json](../analysis-example/kr/한진칼/naver-publish.json) · [fullmemo](../analysis-example/kr/한진칼/fullmemo.md)
+[memo](../analysis-example/kr/한진칼/memo.md) · [dart-analysis](../analysis-example/kr/한진칼/dart-analysis.md) · [dart-reference](../analysis-example/kr/한진칼/dart-reference.md) · [analyst-report-insight](../analysis-example/kr/한진칼/analyst-report-insight.md) · [foreign-views](../analysis-example/kr/한진칼/foreign-views.md) · [naver-insights](../analysis-example/kr/한진칼/naver-insights.md) · [naver-post](../analysis-example/kr/한진칼/naver-post.md) · [naver-publish.json](../analysis-example/kr/한진칼/naver-publish.json) · [article](../analysis-example/kr/한진칼/article.md) · [fullmemo](../analysis-example/kr/한진칼/fullmemo.md)
 
 ### 롯데관광개발 — 2026-05-12
 
 롯데관광개발(032350) — 의사결정 메모
 
-[memo](../analysis-example/kr/롯데관광개발/memo.md) · [dart-analysis](../analysis-example/kr/롯데관광개발/dart-analysis.md) · [dart-reference](../analysis-example/kr/롯데관광개발/dart-reference.md) · [analyst-report-insight](../analysis-example/kr/롯데관광개발/analyst-report-insight.md) · [naver-insights](../analysis-example/kr/롯데관광개발/naver-insights.md) · [chart-summary](../analysis-example/kr/롯데관광개발/chart-summary.md)
+[memo](../analysis-example/kr/롯데관광개발/memo.md) · [dart-analysis](../analysis-example/kr/롯데관광개발/dart-analysis.md) · [dart-reference](../analysis-example/kr/롯데관광개발/dart-reference.md) · [analyst-report-insight](../analysis-example/kr/롯데관광개발/analyst-report-insight.md) · [naver-insights](../analysis-example/kr/롯데관광개발/naver-insights.md) · [article](../analysis-example/kr/롯데관광개발/article.md) · [chart-summary](../analysis-example/kr/롯데관광개발/chart-summary.md)
 
 ### _nps — 2026-05-11
 
@@ -128,25 +182,25 @@ HD한국조선해양 DART Reference
 
 (주)GS — Decision Memo
 
-[memo](../analysis-example/kr/GS/memo.md) · [data-pack](../analysis-example/kr/GS/data-pack.md) · [dart-analysis](../analysis-example/kr/GS/dart-analysis.md) · [analyst-report-insight](../analysis-example/kr/GS/analyst-report-insight.md) · [foreign-views](../analysis-example/kr/GS/foreign-views.md) · [naver-insights](../analysis-example/kr/GS/naver-insights.md)
+[memo](../analysis-example/kr/GS/memo.md) · [data-pack](../analysis-example/kr/GS/data-pack.md) · [dart-analysis](../analysis-example/kr/GS/dart-analysis.md) · [analyst-report-insight](../analysis-example/kr/GS/analyst-report-insight.md) · [foreign-views](../analysis-example/kr/GS/foreign-views.md) · [naver-insights](../analysis-example/kr/GS/naver-insights.md) · [article](../analysis-example/kr/GS/article.md)
 
 ### HD현대 — 2026-05-10
 
 HD현대 투자 메모
 
-[memo](../analysis-example/kr/HD현대/memo.md) · [dart-reference](../analysis-example/kr/HD현대/dart-reference.md)
+[memo](../analysis-example/kr/HD현대/memo.md) · [dart-reference](../analysis-example/kr/HD현대/dart-reference.md) · [article](../analysis-example/kr/HD현대/article.md)
 
 ### HMM — 2026-04-26
 
 HMM 투자 메모
 
-[memo](../analysis-example/kr/HMM/memo.md) · [data-pack](../analysis-example/kr/HMM/data-pack.md) · [dart-analysis](../analysis-example/kr/HMM/dart-analysis.md) · [analyst-report-insight](../analysis-example/kr/HMM/analyst-report-insight.md) · [naver-insights](../analysis-example/kr/HMM/naver-insights.md) · [chart-analysis](../analysis-example/kr/HMM/chart-analysis.md) · [trend-rules](../analysis-example/kr/HMM/trend-rules.md)
+[memo](../analysis-example/kr/HMM/memo.md) · [data-pack](../analysis-example/kr/HMM/data-pack.md) · [dart-analysis](../analysis-example/kr/HMM/dart-analysis.md) · [analyst-report-insight](../analysis-example/kr/HMM/analyst-report-insight.md) · [naver-insights](../analysis-example/kr/HMM/naver-insights.md) · [chart-analysis](../analysis-example/kr/HMM/chart-analysis.md) · [article](../analysis-example/kr/HMM/article.md) · [trend-rules](../analysis-example/kr/HMM/trend-rules.md)
 
 ### 리가켐바이오 — 2026-04-19
 
 리가켐바이오 분석 예시
 
-[memo](../analysis-example/kr/리가켐바이오/memo.md) · [data-pack](../analysis-example/kr/리가켐바이오/data-pack.md) · [dart-analysis](../analysis-example/kr/리가켐바이오/dart-analysis.md) · [dart-reference](../analysis-example/kr/리가켐바이오/dart-reference.md) · [리서치브리프](../analysis-example/kr/리가켐바이오/리서치브리프.md) · [analyst-report-insight](../analysis-example/kr/리가켐바이오/analyst-report-insight.md) · [naver-insights](../analysis-example/kr/리가켐바이오/naver-insights.md) · [chart-analysis](../analysis-example/kr/리가켐바이오/chart-analysis.md)
+[memo](../analysis-example/kr/리가켐바이오/memo.md) · [data-pack](../analysis-example/kr/리가켐바이오/data-pack.md) · [dart-analysis](../analysis-example/kr/리가켐바이오/dart-analysis.md) · [dart-reference](../analysis-example/kr/리가켐바이오/dart-reference.md) · [리서치브리프](../analysis-example/kr/리가켐바이오/리서치브리프.md) · [analyst-report-insight](../analysis-example/kr/리가켐바이오/analyst-report-insight.md) · [naver-insights](../analysis-example/kr/리가켐바이오/naver-insights.md) · [chart-analysis](../analysis-example/kr/리가켐바이오/chart-analysis.md) · [article](../analysis-example/kr/리가켐바이오/article.md)
 
 ### 알테오젠 — 2026-04-18
 
@@ -164,19 +218,19 @@ Naver Blog Insights: GRT (900290)
 
 삼성SDS
 
-[memo](../analysis-example/kr/삼성SDS/memo.md) · [data-pack](../analysis-example/kr/삼성SDS/data-pack.md) · [dart-analysis](../analysis-example/kr/삼성SDS/dart-analysis.md) · [리서치브리프](../analysis-example/kr/삼성SDS/리서치브리프.md) · [naver-insights](../analysis-example/kr/삼성SDS/naver-insights.md) · [chart-analysis](../analysis-example/kr/삼성SDS/chart-analysis.md)
+[memo](../analysis-example/kr/삼성SDS/memo.md) · [data-pack](../analysis-example/kr/삼성SDS/data-pack.md) · [dart-analysis](../analysis-example/kr/삼성SDS/dart-analysis.md) · [리서치브리프](../analysis-example/kr/삼성SDS/리서치브리프.md) · [naver-insights](../analysis-example/kr/삼성SDS/naver-insights.md) · [chart-analysis](../analysis-example/kr/삼성SDS/chart-analysis.md) · [article](../analysis-example/kr/삼성SDS/article.md)
 
 ### LIG넥스원 — 2026-04-06
 
 LIG넥스원 분석 예시
 
-[memo](../analysis-example/kr/LIG넥스원/memo.md) · [data-pack](../analysis-example/kr/LIG넥스원/data-pack.md) · [dart-analysis](../analysis-example/kr/LIG넥스원/dart-analysis.md) · [dart-reference](../analysis-example/kr/LIG넥스원/dart-reference.md) · [리서치브리프](../analysis-example/kr/LIG넥스원/리서치브리프.md) · [chart-analysis](../analysis-example/kr/LIG넥스원/chart-analysis.md)
+[memo](../analysis-example/kr/LIG넥스원/memo.md) · [data-pack](../analysis-example/kr/LIG넥스원/data-pack.md) · [dart-analysis](../analysis-example/kr/LIG넥스원/dart-analysis.md) · [dart-reference](../analysis-example/kr/LIG넥스원/dart-reference.md) · [리서치브리프](../analysis-example/kr/LIG넥스원/리서치브리프.md) · [chart-analysis](../analysis-example/kr/LIG넥스원/chart-analysis.md) · [article](../analysis-example/kr/LIG넥스원/article.md)
 
 ### LG CNS — 2026-04-05
 
 LG CNS 분석 예시
 
-[memo](<../analysis-example/kr/LG CNS/memo.md>) · [dart-analysis](<../analysis-example/kr/LG CNS/dart-analysis.md>) · [dart-reference](<../analysis-example/kr/LG CNS/dart-reference.md>) · [리서치브리프](<../analysis-example/kr/LG CNS/리서치브리프.md>) · [chart-analysis](<../analysis-example/kr/LG CNS/chart-analysis.md>) · [수주통합분석](<../analysis-example/kr/LG CNS/수주통합분석.md>)
+[memo](<../analysis-example/kr/LG CNS/memo.md>) · [dart-analysis](<../analysis-example/kr/LG CNS/dart-analysis.md>) · [dart-reference](<../analysis-example/kr/LG CNS/dart-reference.md>) · [리서치브리프](<../analysis-example/kr/LG CNS/리서치브리프.md>) · [chart-analysis](<../analysis-example/kr/LG CNS/chart-analysis.md>) · [article](<../analysis-example/kr/LG CNS/article.md>) · [수주통합분석](<../analysis-example/kr/LG CNS/수주통합분석.md>)
 
 ### 삼성전자 — 2026-04-05
 
@@ -188,7 +242,7 @@ LG CNS 분석 예시
 
 현대오토에버 분석 예시
 
-[memo](../analysis-example/kr/현대오토에버/memo.md) · [data-pack](../analysis-example/kr/현대오토에버/data-pack.md) · [chart-analysis](../analysis-example/kr/현대오토에버/chart-analysis.md)
+[memo](../analysis-example/kr/현대오토에버/memo.md) · [data-pack](../analysis-example/kr/현대오토에버/data-pack.md) · [chart-analysis](../analysis-example/kr/현대오토에버/chart-analysis.md) · [article](../analysis-example/kr/현대오토에버/article.md)
 
 ### 한미글로벌 — 2026-04-04
 
@@ -214,7 +268,7 @@ LG전자 DART 분석
 
 [solus-foil-proxy-2026-04](../analysis-example/kr/솔루스첨단소재/solus-foil-proxy-2026-04.md)
 
-## KR — market-wide screens, daily news, and strategy backtests (107)
+## KR — market-wide screens, daily news, and strategy backtests (108)
 
 - [KOSPI·KOSDAQ Minervini 적용 화면 — 2026-07-10](../analysis-example/kr-market/minervini-screen-2026-07-10.md) — 2026-07-10 · [json](../analysis-example/kr-market/minervini-screen-2026-07-10.json)
 - [한국 시장 데일리 뉴스 (2026-07-02)](../analysis-example/kr-market/daily-news-2026-07-02.md) — 2026-07-02 · [json](../analysis-example/kr-market/daily-news-2026-07-02.json)
@@ -341,6 +395,7 @@ LG전자 DART 분석
 - [MDD 오버레이 연도별 수익률](../analysis-example/kr-market/strategies/trend-following-10y/mdd-overlay-annual-returns-through-2026-07-10.md) — 2026-07-10
 - [MDD 감소 오버레이 백테스트](../analysis-example/kr-market/strategies/trend-following-10y/mdd-overlay-backtest-through-2026-07-10.md) — 2026-07-10 · [json](../analysis-example/kr-market/strategies/trend-following-10y/mdd-overlay-backtest-through-2026-07-10.json)
 - [Minervini 상태 기반 10년 백테스트](../analysis-example/kr-market/strategies/trend-following-10y/minervini-state-backtest-2026-07-10.md) — 2026-07-10 · [json](../analysis-example/kr-market/strategies/trend-following-10y/minervini-state-backtest-2026-07-10.json)
+- [KRX 주간 추세추종: 월간보다 나았을까](../analysis-example/kr-market/strategies/trend-following-10y/naver-post.article.md) — 2026-07-10
 - [KRX 주간 추세추종 포트폴리오 | 월간보다 나았을까 | 2026-07-10 기준](../analysis-example/kr-market/strategies/trend-following-10y/naver-post.md) — 2026-07-10 · [json](../analysis-example/kr-market/strategies/trend-following-10y/naver-publish.json)
 - [KOSPI·KOSDAQ Piotroski F-score 백테스트](../analysis-example/kr-market/strategies/trend-following-10y/piotroski-fscore-backtest-through-2026-07-10.md) — 2026-07-10 · [json](../analysis-example/kr-market/strategies/trend-following-10y/piotroski-fscore-backtest-through-2026-07-10.json)
 - [KRX 월간 RS·실적 모멘텀 포트폴리오 — 매매 규칙](../analysis-example/kr-market/strategies/trend-following-10y/recommended-strategy-trading-rules.md) — 2026-07-10
@@ -363,16 +418,23 @@ LG전자 DART 분석
 - [KOSPI·KOSDAQ 시가총액 상위 300 모멘텀 — 2025년 말 기준](../analysis-example/kr-market/strategies/trend-following-10y/largecap-momentum-backtest-through-2025-12-31.md) — 2025-12-31 · [json](../analysis-example/kr-market/strategies/trend-following-10y/largecap-momentum-backtest-through-2025-12-31.json)
 - [Minervini RS + EPS·매출 + 레짐·변동성 타겟: 월별 10종목](../analysis-example/kr-market/strategies/trend-following-10y/minervini-rs-e-monthly-portfolios-2024-through-2026-07.md)
 
-## KR — sector and industry research (25)
+## KR — sector and industry research (46)
 
+- [광통신 1편: AI 데이터센터 성장과 한국의 실제 노출](../analysis-example/kr-sector/광통신-AI데이터센터.article.md) — 2026-07-25
+- [광통신 — AI 데이터센터 광모듈/트랜시버 섹터 (1편: 섹터 구조와 한국 포지션)](../analysis-example/kr-sector/광통신-AI데이터센터.md) — 2026-07-25
+- [광통신 2편: 조립보다 희소 부품에 쌓이는 가치](../analysis-example/kr-sector/광통신-글로벌업체.article.md) — 2026-07-25
+- [광통신 — 글로벌 업체 심층 (2편: 해자를 쥔 자들)](../analysis-example/kr-sector/광통신-글로벌업체.md) — 2026-07-25
+- [800Vdc: AI 데이터센터가 전압을 높이는 이유](<../analysis-example/kr-sector/800Vdc 전력인프라.article.md>) — 2026-06-29
 - [800Vdc 전력 인프라 투자 테마](<../analysis-example/kr-sector/800Vdc 전력인프라.md>) — 2026-06-29
 - [800Vdc 전력 인프라 — 데이터 팩 / 사실 검증 로그](../analysis-example/kr-sector/800Vdc-data-pack.md) — 2026-06-29
 - [800Vdc 전력 인프라 | 전압을 2배로 올리면 전류는 절반 — AI 데이터센터와 전기차를 같은 방향으로 미는 전환 | 2026-06-29](../analysis-example/kr-sector/naver-post.md) — 2026-06-29 · [json](../analysis-example/kr-sector/naver-publish.json)
 - [국내 데이터센터 섹터 리서치 브리프](<../analysis-example/kr-sector/국내 데이터센터-리서치브리프.md>) — 2026-03-29
+- [국내 데이터센터: 수요보다 전력과 입지가 문제다](<../analysis-example/kr-sector/국내 데이터센터.article.md>) — 2026-03-29
 - [국내 데이터센터 섹터](<../analysis-example/kr-sector/국내 데이터센터.md>) — 2026-03-29
 
 ### ai-bottleneck
 
+- [AI 인프라 2막: GPU 아래의 다섯 가지 병목](../analysis-example/kr-sector/ai-bottleneck/naver-post.article.md) — 2026-07-02
 - [[리포트 분석] AI 인프라 2막의 병목 — "다음 알파는 GPU 옆이 아니라 GPU 아래에서 나온다"](../analysis-example/kr-sector/ai-bottleneck/naver-post.md) — 2026-07-02 · [json](../analysis-example/kr-sector/ai-bottleneck/naver-publish.json)
 
 ### battery-copper-foil
@@ -384,33 +446,59 @@ LG전자 DART 분석
 - [배터리 동박 3사 | 가동률 반등은 이익 턴어라운드의 시작인가 | 2026-08-30](../analysis-example/kr-sector/battery-copper-foil/memo.voice.md) — 2026-08-30
 - [동박 3사 | 가동률 반등, 진짜 턴어라운드일까 | 2026-08-30](../analysis-example/kr-sector/battery-copper-foil/naver-post.md) — 2026-08-30
 
+### copper
+
+- [구리: 리튬처럼 폭락할 수 있을까](../analysis-example/kr-sector/copper/article.md) — 2026-08-30
+- [구리 시장 | 구리는 리튬처럼 폭락할까 | 2026-08-30](../analysis-example/kr-sector/copper/memo.md) — 2026-08-30
+
 ### datacenter-solar-panels
 
 - [데이터센터 태양광 패널 | Qcells와 First Solar가 양대 축인 이유 | 2026-07-04](../analysis-example/kr-sector/datacenter-solar-panels/naver-post.md) — 2026-07-04 · [json](../analysis-example/kr-sector/datacenter-solar-panels/naver-publish.json)
+- [데이터센터 태양광: Qcells와 First Solar의 공급망 위치](../analysis-example/kr-sector/datacenter-solar-panels/source.article.md) — 2026-07-04
 - [데이터센터 태양광 패널 공급망 정리](../analysis-example/kr-sector/datacenter-solar-panels/source.md) — 2026-07-04
+
+### goes-electrical-steel
+
+- [방향성 전기강판: 한국의 우위는 규모보다 희소성이다](../analysis-example/kr-sector/goes-electrical-steel/전기강판.article.md) — 2026-08-16
+- [방향성 전기강판 — 한국의 소재 자급은 의미가 있나](../analysis-example/kr-sector/goes-electrical-steel/전기강판.md) — 2026-08-16
+
+### japan-transformer-competitors
+
+- [도시바·미쓰비시전기: 한국 변압기의 경쟁자는 누구인가](../analysis-example/kr-sector/japan-transformer-competitors/article.md) — 2026-08-17
+- [도시바·미쓰비시전기 변압기 경쟁력 비교](../analysis-example/kr-sector/japan-transformer-competitors/memo.md) — 2026-08-17
 
 ### shipbuilding
 
+- [미 해군 MRO: 정비 실적과 신조 기대를 구분하기](../analysis-example/kr-sector/shipbuilding/k-조선-미해군-mro-네이버초안.article.md) — 2026-07-16
 - [K-조선 미 해군 MRO, 진짜 돈이 될까? 정비에서 신조까지 투자자가 볼 5가지 | 2026-07-16](../analysis-example/kr-sector/shipbuilding/k-조선-미해군-mro-네이버초안.md) — 2026-07-16
 - [K-조선 미 해군 MRO | 미 해군 MRO가 조선사의 연결 실적을 바꿀 만큼 수익성이 큰가 | 2026-07-16](../analysis-example/kr-sector/shipbuilding/k-조선-미해군-mro-네이버포스트.md) — 2026-07-16
 - [글로벌 조선업 지도 | 중국 72% vs 한국 19%, 그래도 한국이 이기는 구간은 따로 있다 | 2026-07-11](../analysis-example/kr-sector/shipbuilding/naver-post.md) — 2026-07-11 · [json](../analysis-example/kr-sector/shipbuilding/naver-publish.json)
+- [글로벌 조선업: 점유율과 고부가 선종을 나눠 보기](../analysis-example/kr-sector/shipbuilding/source.article.md) — 2026-07-11
 - [전 세계 조선업 시장 종합 분석 (출처 보강판)](../analysis-example/kr-sector/shipbuilding/source.md) — 2026-07-11
 - [조선 3사 | 수주잔고 2.6~3년치, 주가는 이미 3~4배 뛰었는데 아직 자리가 남았을까 | 2026-07-11](../analysis-example/kr-sector/shipbuilding/조선3사-naver-post.md) — 2026-07-11
+- [국내 조선 3사: 수주·생산·수익성을 같은 기준으로 비교](../analysis-example/kr-sector/shipbuilding/조선3사-수주현황-DART분석.article.md) — 2026-07-11
 - [국내 조선 3사 수주·생산·수익성 DART 비교 분석](../analysis-example/kr-sector/shipbuilding/조선3사-수주현황-DART분석.md) — 2026-07-11
 
 ### smr
 
 - [SMR 3편 Data Pack: HALEU와 TRISO](../analysis-example/kr-sector/smr/haleu-triso-data-pack.md) — 2026-07-04
+- [SMR 3편: HALEU와 TRISO, 연료 공급의 병목](../analysis-example/kr-sector/smr/haleu-triso.article.md) — 2026-07-04
 - [SMR 3편 | HALEU와 TRISO: 작은 원전의 진짜 병목은 연료다](../analysis-example/kr-sector/smr/haleu-triso.md) — 2026-07-04
 - [SMR 3편 | HALEU와 TRISO: 작은 원전의 진짜 병목은 연료다](../analysis-example/kr-sector/smr/naver-post-haleu-triso.md) — 2026-07-04
+- [SMR 1편: 작은 원전보다 에너지 산업화 프로젝트](../analysis-example/kr-sector/smr/naver-post.article.md) — 2026-07-04
 - [SMR 1편 | 작은 원전이 아니라 에너지 산업화 프로젝트다](../analysis-example/kr-sector/smr/naver-post.md) — 2026-07-04 · [json](../analysis-example/kr-sector/smr/naver-publish.json)
 - [SMR 1차 블로그 원문 노트](../analysis-example/kr-sector/smr/source.md) — 2026-07-04
+
+### uhv-transformer
+
+- [초고압 변압기: 한국이 잘 만드는 구조적 이유](../analysis-example/kr-sector/uhv-transformer/초고압변압기.article.md) — 2026-08-16
+- [초고압 변압기 — 한국이 잘 만드는 구조적 이유](../analysis-example/kr-sector/uhv-transformer/초고압변압기.md) — 2026-08-16
 
 ## KR — brokerage report watch (1)
 
 - [Korean Analyst Report Watch - daily - 2026-07-05](../analysis-example/kr-reports/report-watch-daily-2026-07-05.md) — 2026-07-05 · [json](../analysis-example/kr-reports/report-watch-daily-2026-07-05.json)
 
-## US — single-stock research (19)
+## US — single-stock research (26)
 
 ### Alphabet — 2026-11-01
 
@@ -424,23 +512,35 @@ Everpure: NAND가 비싸졌는데 주가는 왜 올랐나
 
 [memo](../analysis-example/us/Everpure/memo.md) · [sec-analysis](../analysis-example/us/Everpure/sec-analysis.md) · [sec-reference](../analysis-example/us/Everpure/sec-reference.md) · [naver-post](../analysis-example/us/Everpure/naver-post.md) · [naver-publish.json](../analysis-example/us/Everpure/naver-publish.json) · [article](../analysis-example/us/Everpure/article.md) · [memo.voice](../analysis-example/us/Everpure/memo.voice.md)
 
+### Circle-Rate-USDC — 2026-09-14
+
+서클(CRCL) 금리·USDC 유통량·이자수익
+
+[memo](../analysis-example/us/Circle-Rate-USDC/memo.md) · [article](../analysis-example/us/Circle-Rate-USDC/article.md)
+
 ### SPY — 2026-08-25
 
 SPY 사상최고가(ATH) 정기매수 백테스트
 
-[memo](../analysis-example/us/SPY/memo.md) · [memo.json](../analysis-example/us/SPY/memo.json)
+[memo](../analysis-example/us/SPY/memo.md) · [memo.json](../analysis-example/us/SPY/memo.json) · [article](../analysis-example/us/SPY/article.md)
+
+### Circle-USDC — 2026-08-24
+
+서클(Circle) USDC
+
+[memo](../analysis-example/us/Circle-USDC/memo.md) · [article](../analysis-example/us/Circle-USDC/article.md)
 
 ### Tesla — 2026-07-04
 
 Tesla, Inc. 투자 분석 메모
 
-[memo](../analysis-example/us/Tesla/memo.md) · [sec-analysis](../analysis-example/us/Tesla/sec-analysis.md) · [sec-reference](../analysis-example/us/Tesla/sec-reference.md)
+[memo](../analysis-example/us/Tesla/memo.md) · [sec-analysis](../analysis-example/us/Tesla/sec-analysis.md) · [sec-reference](../analysis-example/us/Tesla/sec-reference.md) · [article](../analysis-example/us/Tesla/article.md)
 
 ### Circle-OpenUSD — 2026-06-30
 
 서클(Circle) · OpenUSD 투자 메모
 
-[memo](../analysis-example/us/Circle-OpenUSD/memo.md) · [naver-post](../analysis-example/us/Circle-OpenUSD/naver-post.md) · [naver-publish.json](../analysis-example/us/Circle-OpenUSD/naver-publish.json)
+[memo](../analysis-example/us/Circle-OpenUSD/memo.md) · [naver-post](../analysis-example/us/Circle-OpenUSD/naver-post.md) · [naver-publish.json](../analysis-example/us/Circle-OpenUSD/naver-publish.json) · [article](../analysis-example/us/Circle-OpenUSD/article.md)
 
 ## US — market-wide and strategy backtests (29)
 
@@ -504,7 +604,29 @@ Tesla, Inc. 투자 분석 메모
 - [미국 연도별 Top 500 Minervini·퀄리티·실적 성장 — 무료 부분표본 (월간)](../analysis-example/us-market/strategies/us-minervini-quality-earnings-annual-free-partial/monthly-annual-ranked-price-quality-growth-hysteresis-free-partial-2025-12-31.md) — 2025-12-31 · [json](../analysis-example/us-market/strategies/us-minervini-quality-earnings-annual-free-partial/monthly-annual-ranked-price-quality-growth-hysteresis-free-partial-2025-12-31.json)
 - [미국 연도별 Top 500 Minervini·퀄리티·실적 성장 — 무료 부분표본 (주간)](../analysis-example/us-market/strategies/us-minervini-quality-earnings-annual-free-partial/weekly-annual-ranked-price-quality-growth-hysteresis-free-partial-2025-12-31.md) — 2025-12-31 · [json](../analysis-example/us-market/strategies/us-minervini-quality-earnings-annual-free-partial/weekly-annual-ranked-price-quality-growth-hysteresis-free-partial-2025-12-31.json)
 
-## Global — sector research (2)
+## Global — sector research (5)
 
 - [LFP 양극재 3편 | 미국 ESS는 왜 양극재 선택지가 좁은가 | 2026-07-27](../analysis-example/global-sector/naver-post-us-lfp-cathode-choice-constraints.md) — 2026-07-27
+- [미국 ESS: LFP 양극재 선택지는 왜 좁은가](../analysis-example/global-sector/us-lfp-cathode-choice-constraints.article.md) — 2026-07-27
 - [LFP 양극재 3편 | 미국 ESS는 왜 양극재 선택지가 좁은가 | 2026-07-27](../analysis-example/global-sector/us-lfp-cathode-choice-constraints.md) — 2026-07-27
+
+### bio-ai-drug-discovery
+
+- [바이오 AI 신약개발: 분자 설계 다음에는 임상 효능이 남는다](../analysis-example/global-sector/bio-ai-drug-discovery/article.md) — 2026-09-20
+- [바이오 AI 신약개발](../analysis-example/global-sector/bio-ai-drug-discovery/memo.md) — 2026-09-20
+
+## Global — fact-checks and cross-market notes (2)
+
+### Leopold-Aschenbrenner — 2026-08-02
+
+레오폴드 아셴브레너
+
+[memo](../analysis-example/global/Leopold-Aschenbrenner/memo.md) · [article](../analysis-example/global/Leopold-Aschenbrenner/article.md)
+
+## CN — single-stock research (2)
+
+### Unitree — 2026-07-31
+
+유니트리(Unitree) | 커촹반 휴머노이드 1호 IPO 청약 전 점검 | 2026-07-31
+
+[memo](../analysis-example/cn/Unitree/memo.md) · [article](../analysis-example/cn/Unitree/article.md)
