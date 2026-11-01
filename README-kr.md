@@ -8,7 +8,7 @@
 
 ## 무엇을 하나
 
-스킬 37개. 낱개로 쓰기보다 파이프라인으로 엮여 있습니다.
+스킬 38개. 낱개로 쓰기보다 파이프라인으로 엮여 있습니다.
 
 | 워크플로 | 체인 |
 |---|---|
@@ -16,6 +16,7 @@
 | 미국 주식 리서치 | `us-sec-analysis → us-stock-analysis` |
 | 섹터 리서치 | `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update` |
 | 데일리 시장 뉴스 → 블로그 | `kr-daily-market-news` / `us-daily-market-news → kr-naver-blog-publish` |
+| 메모 → 자체 사이트(SEO·AEO·광고) + 네이버 요약 | `kr-research-site` → `kr-naver-blog-publish --mode teaser` |
 | 모니터링·후처리 | `kr-analyst-report-watch`, `kr-portfolio-guard`, `telegram-report-sender` |
 
 일반 리서치 프롬프트와 다른 점:

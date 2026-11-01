@@ -8,7 +8,7 @@ Ask about a Korean ticker and the chain runs itself: DART filings, mandatory bac
 
 ## What it does
 
-37 skills, wired into pipelines rather than used one at a time.
+38 skills, wired into pipelines rather than used one at a time.
 
 | Workflow | Chain |
 |---|---|
@@ -16,6 +16,7 @@ Ask about a Korean ticker and the chain runs itself: DART filings, mandatory bac
 | U.S. stock research | `us-sec-analysis → us-stock-analysis` |
 | Sector research | `kr-sector-plan / -data-pack / -analysis / -compare / -audit / -update` |
 | Daily market news → blog | `kr-daily-market-news` / `us-daily-market-news → kr-naver-blog-publish` |
+| Memo → own site (SEO/AEO, ads) + Naver teaser | `kr-research-site` → `kr-naver-blog-publish --mode teaser` |
 | Monitoring & follow-up | `kr-analyst-report-watch`, `kr-portfolio-guard`, `telegram-report-sender` |
 
 What makes it different from a generic research prompt:

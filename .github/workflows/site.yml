@@ -1,0 +1,60 @@
+name: Research Site IndexNow
+
+# Cloudflare Workers Builds deploys the site through its GitHub integration.
+# This workflow only tells IndexNow engines which URLs changed once the new
+# build is live.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - 'analysis-example/**'
+      - 'skills/kr-research-site/**'
+      - 'skills/kr-naver-blog-publish/scripts/**'
+      - '.github/workflows/site.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: research-site-indexnow
+  cancel-in-progress: true
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check IndexNow configuration
+        id: config
+        run: |
+          KEY=$(node -p "(require('./site/site.config.json').indexNow || {}).key || ''")
+          if [ -z "$KEY" ]; then
+            echo "::notice::site/site.config.json indexNow.key is empty; skipping IndexNow."
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Build this commit
+        if: steps.config.outputs.enabled == 'true'
+        run: node skills/kr-research-site/scripts/build-site.js --out site-dist --production
+      - name: Build the previous commit for the diff
+        if: steps.config.outputs.enabled == 'true'
+        run: |
+          BEFORE="${{ github.event.before }}"
+          echo '{}' > previous-urls.json
+          if [ -n "$BEFORE" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null && git cat-file -e "$BEFORE:skills/kr-research-site/scripts/build-site.js" 2>/dev/null; then
+            git worktree add -q --detach ../site-previous "$BEFORE"
+            (cd ../site-previous && node skills/kr-research-site/scripts/build-site.js --out site-dist --production >/dev/null && cp site-dist/urls.json "$GITHUB_WORKSPACE/previous-urls.json") || echo "::notice::Previous build failed; pinging every URL."
+          fi
+      - name: Wait for Cloudflare deploy, then ping IndexNow
+        if: steps.config.outputs.enabled == 'true'
+        run: node skills/kr-research-site/scripts/indexnow-ping.js --current site-dist/urls.json --previous previous-urls.json --wait-live 900

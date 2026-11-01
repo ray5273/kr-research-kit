@@ -1,0 +1,30 @@
+{
+  "baseUrl": "https://kr-research-site.pages.dev",
+  "siteName": "KR Research Kit",
+  "description": "공시와 숫자로 확인한 한국·미국 주식 리서치. 모든 글에 기준일과 출처가 있습니다.",
+  "author": {
+    "name": "ray5273",
+    "url": "https://kr-research-site.pages.dev/about/"
+  },
+  "verification": {
+    "google": "",
+    "naver": "",
+    "bing": ""
+  },
+  "defaultOgImage": null,
+  "adsense": {
+    "client": "",
+    "slots": {
+      "afterSummary": "",
+      "midArticle": "",
+      "endArticle": ""
+    }
+  },
+  "indexNow": {
+    "key": "",
+    "endpoints": [
+      "https://api.indexnow.org/indexnow",
+      "https://searchadvisor.naver.com/indexnow"
+    ]
+  }
+}

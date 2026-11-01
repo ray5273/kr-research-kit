@@ -1,0 +1,18 @@
+{
+  "articles": [
+    {
+      "memo": "analysis-example/us/Alphabet/memo.md",
+      "slug": "us/alphabet-2026-q3",
+      "company": "알파벳",
+      "ticker": "GOOGL",
+      "exchange": "NASDAQ",
+      "market": "us",
+      "tags": ["알파벳", "구글", "GOOGL", "실적리뷰"]
+    },
+    {
+      "memo": "analysis-example/kr/네이버/memo.md",
+      "slug": "kr/naver-ai-factory",
+      "market": "kr"
+    }
+  ]
+}

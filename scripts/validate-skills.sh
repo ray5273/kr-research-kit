@@ -576,6 +576,14 @@ if (!pattern.test(text)) {
         fi
     fi
 
+    if [ "$SKILL_NAME" = "kr-research-site" ]; then
+        node "$SKILL_DIR/scripts/test-build-site.js" >/dev/null
+        if [ ! -f "$SKILL_DIR/references/seo-aeo.md" ]; then
+            echo "Missing required reference file: $SKILL_DIR/references/seo-aeo.md" >&2
+            exit 1
+        fi
+    fi
+
     if [ "$SKILL_NAME" = "kr-stock-update" ]; then
         BASELINE_SCRIPT="$SKILL_DIR/scripts/extract-report-baseline.js"
         NORMALIZE_SCRIPT="$SKILL_DIR/scripts/normalize-update-log.js"

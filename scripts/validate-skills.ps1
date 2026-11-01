@@ -288,6 +288,13 @@ foreach ($skillDir in $skillDirs) {
         node (Join-Path $skillDir.FullName "scripts\test-trade-flow-analysis.js") | Out-Null
     }
 
+    if ($skillDir.Name -eq "kr-research-site") {
+        node (Join-Path $skillDir.FullName "scripts\test-build-site.js") | Out-Null
+        if (-not (Test-Path (Join-Path $skillDir.FullName "references\seo-aeo.md"))) {
+            Write-Error "Missing required reference file: references\seo-aeo.md"
+        }
+    }
+
     if ($skillDir.Name -eq "kr-stock-dart-analysis") {
         $dartWorkflow = [System.IO.File]::ReadAllText((Join-Path $repoRoot "skills\kr-stock-dart-analysis\references\workflow.md"))
         if (-not $dartWorkflow.Contains("derived from cumulative filing")) {

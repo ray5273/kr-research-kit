@@ -7,7 +7,7 @@ const os = require("os");
 const path = require("path");
 const publisherTestRuntime = fs.mkdtempSync(path.join(os.tmpdir(), "kr-naver-publisher-runtime-"));
 process.env.NAVER_PUBLISH_RUNTIME_DIR = publisherTestRuntime;
-const { buildPost } = require("./memo-to-post");
+const { buildPost, buildTeaser } = require("./memo-to-post");
 const {
   COLOR_LEGEND_MARKDOWN,
   COLOR_LEGEND_TEXT,
@@ -382,6 +382,23 @@ function makeDailyCase(fixtureOverrides = {}) {
   });
   fs.writeFileSync(fixture, `${JSON.stringify({ loggedIn: true, ...fixtureOverrides }, null, 2)}\n`);
   return { root, report, post, manifest, fixture };
+}
+
+{
+  // A teaser post (summary + canonical link) must pass the same prepare gate.
+  const test = makeCase();
+  const teaser = buildTeaser({ markdown: fs.readFileSync(test.memo, "utf8"), memoPath: test.memo, canonicalUrl: "https://research.example.com/kr/soop/" });
+  fs.writeFileSync(test.post, teaser.postMarkdown);
+  teaser.manifest.post.markdownPath = test.post;
+  writeJsonAtomic(test.manifest, teaser.manifest);
+  const prepared = prepare({ fixture: test.fixture }, test.manifest, readJson(test.manifest));
+  assert(prepared.approvalToken);
+  const preparedManifest = readJson(test.manifest);
+  assert.strictEqual(preparedManifest.status, "prepared");
+  assert(Object.values(preparedManifest.prepare.validation).every(Boolean), JSON.stringify(preparedManifest.prepare.validation));
+  assert.strictEqual(preparedManifest.post.canonicalUrl, "https://research.example.com/kr/soop/");
+  assert.strictEqual(preparedManifest.post.images.length, 1);
+  assert(fs.readFileSync(test.post, "utf8").includes("원문 전체 보기: https://research.example.com/kr/soop/"));
 }
 
 {

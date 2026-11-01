@@ -32,6 +32,7 @@ bash ./scripts/install-skill.sh kr-analyst-report-insight
 bash ./scripts/install-skill.sh kr-foreign-analyst
 bash ./scripts/install-skill.sh kr-market-sentiment
 bash ./scripts/install-skill.sh kr-chatgpt-review
+bash ./scripts/install-skill.sh kr-research-site
 ```
 
 **Install all skills (Codex):**
@@ -57,6 +58,7 @@ bash ./scripts/install-claude-skill.sh kr-analyst-report-insight
 bash ./scripts/install-claude-skill.sh kr-foreign-analyst
 bash ./scripts/install-claude-skill.sh kr-market-sentiment
 bash ./scripts/install-claude-skill.sh kr-chatgpt-review
+bash ./scripts/install-claude-skill.sh kr-research-site
 ```
 
 **Install all skills (Claude Code):**
@@ -95,6 +97,10 @@ node skills/kr-market-sentiment/scripts/fetch-market-indicators.js --manual exam
 node skills/kr-market-sentiment/scripts/score-sentiment-bottom.js --input /tmp/kr-sentiment/indicators.json --output /tmp/kr-sentiment/sentiment-report.md --json-out /tmp/kr-sentiment/score.json
 node skills/kr-chatgpt-review/scripts/chatgpt-review.js login                                   # once: log in to ChatGPT by hand in the dedicated browser
 node skills/kr-chatgpt-review/scripts/chatgpt-review.js review --memo analysis-example/kr/<company>/memo.md
+node skills/kr-research-site/scripts/build-site.js --out site-dist                 # only memos listed in site/published.json; add --production in CI
+node skills/kr-research-site/scripts/serve-site.js --dir site-dist --port 8080
+node skills/kr-research-site/scripts/indexnow-ping.js --current site-dist/urls.json --previous previous-urls.json --dry-run
+node skills/kr-naver-blog-publish/scripts/memo-to-post.js --memo analysis-example/us/Alphabet/memo.md --mode teaser   # Naver summary + canonical link
 ```
 
 ## Architecture
@@ -143,6 +149,9 @@ All scripts accept JSON via `--input` and output Markdown or PNG. They use only 
 | `fetch-market-indicators.js` | kr-market-sentiment: fetch KOSPI(`^KS11`)/KOSDAQ(`^KQ11`)/USDKRW(`KRW=X`) from Yahoo, compute 52w drawdown, 200-day distance, RSI14; merge manual JSON (지수 PBR, 12M fwd PER, VKOSPI, 외국인 수급, 신용잔고, ADR, 예탁금) into one `indicators.json`. Network failure per symbol → `DATA_GAP`, not a crash |
 | `score-sentiment-bottom.js` | kr-market-sentiment: score each indicator −2(과열)…+2(강한 바닥/capitulation) via threshold bands, compute weighted composite + 5-band judgment + confirmation checklist (외국인 순매수 전환 / 20일선 회복 / RSI 회복), render Korean Markdown report + `score.json` |
 | `chatgpt-review.js` | kr-chatgpt-review: build a fixed-format adversarial review prompt from a memo (0 판정 · 1 논리 비약 · 2 숫자 · 3 반대 논리 · 4 확신도 · 5 반증 데이터 · 6 우선 수정), paste it into the logged-in chatgpt.com web app through the vendored gstack `browse` binary on a dedicated profile (`~/.gstack/kr-chatgpt-review/`), wait for the reply, and save `chatgpt-feedback.md/.json`. No API key or Codex tokens. Refuses private-directory paths and holdings/ledger/voice-profile content |
+| `build-site.js` | kr-research-site: build the canonical static site from opt-in memos in `site/published.json` + `site/pages/*.md` → article pages (core answer box, real tables, numbered footnotes, update log), market/tag lists, `sitemap.xml`, Atom `feed.xml`, `robots.txt`, `llms.txt`, `llms-full.txt`, `urls.json`, JSON-LD Article/BreadcrumbList/FAQPage. AdSense head script, 3 section-boundary slots and `ads.txt` only when `adsense.client` is set. Refuses untracked files, private-dir paths, holdings/ledger content, and memos without 기준일. Reuses `kr-naver-blog-publish` parsers |
+| `serve-site.js` | kr-research-site: local static preview server for `site-dist/` |
+| `indexnow-ping.js` | kr-research-site: diff `urls.json` against the previously deployed snapshot and POST new/changed/removed URLs to IndexNow (api.indexnow.org, Naver) |
 
 Input JSON schemas are documented in `references/script-inputs.md` with sample files under `examples/<market>/`.
 
@@ -211,7 +220,8 @@ The quality gate is available on demand via `node scripts/harness.js --mode gate
 - **Korean chart fonts**: PNG charts (`chart-basics.js`, `valuation-chart.js`) auto-discover a Korean font on every platform — macOS (AppleSDGothicNeo by default), Linux (Noto CJK / Nanum via standard paths or `fc-match :lang=ko`), Windows (Malgun / Nanum / Noto KR via `C:\Windows\Fonts` and `%LOCALAPPDATA%\Microsoft\Windows\Fonts` directory scan). Rendering also needs Pillow (`python3 -m pip install pillow`) on Mac/Linux; Windows uses built-in GDI. When no Korean font is found (or Pillow is missing), charts fall back to a 47-jamo bitmap with incomplete Hangul coverage, and `validate-skills.sh` / `.ps1` prints a warning per chart script. Recommended installs: Linux `apt install fonts-noto-cjk` / `dnf install google-noto-cjk-fonts`; English-locale Windows install Noto Sans KR or Malgun Gothic. Override anywhere with `KR_STOCK_CHART_FONT=/path/to/font.ttf`.
 - **Analyst-report chain**: `kr-analyst-report-*` skills share the gstack `browse` binary vendored under `kr-naver-browse` (via `kr-web-browse`). Install `kr-naver-browse` first so the binary is resolvable. Source priority is Hankyung Consensus first, Naver Pay Research as fallback; default lookback is 365 days; login-gated reports are skipped in v1. PDFs are downloaded into a scratch tempdir, extracted, and deleted — only the extracted `.txt` is cached under `.tmp/analyst-report-cache/text/<ticker>/`.
 - **kr-portfolio-guard**: install `kr-stock-analysis` first — guard scripts `require("../../kr-stock-analysis/scripts/...")` for price fetch and SMA/RSI math and fail loudly if absent. Real holdings live OUTSIDE the repo in a private dir (default `~/stock-analysis-private`, override via `.env` `KR_PORTFOLIO_GUARD_HOME`); guard reports/ledger contain holdings and must never be passed to publish skills or committed. Scoring aggregates always carry `n` and the n<30 disclaimer. Weekly schedule must be LOCAL (cron / Windows Task Scheduler) — never a cloud routine.
-- **수익 루프 우선 원칙 (E3, 2026-07-04 CEO 리뷰)**: kr-portfolio-guard의 forward 장부 8주 검증이 끝나기 전까지, 발행 트랙(kr-daily-market-news, kr-naver-blog-publish, 마켓플레이스 패키징)은 신규 기능 투자 후순위. 새 분석 스킬 추가보다 결정 루프 완성이 우선.
+- **수익 루프 우선 원칙 (E3, 2026-07-04 CEO 리뷰) — 2026-11 해제(guard 검증 완료)**: 발행 트랙(kr-daily-market-news, kr-naver-blog-publish, kr-research-site, 마켓플레이스 패키징) 투자를 재개한다. guard 결정 루프는 계속 주간으로 돈다.
+- **kr-research-site**: install `kr-naver-blog-publish` first (shared parsers). The site is the canonical home (canonical URL, ads); Naver gets `--mode teaser` summaries linking back. Only `site/published.json` entries are built and the repo is PUBLIC — never list memos that mention holdings, and never put private-dir content under `site/`. `site-dist/` is a build output (gitignored). Cloudflare Workers Builds (GitHub integration) builds it and deploys it as a static-assets Worker via root `wrangler.jsonc` (`https://kr-research-site.<account>.workers.dev`); `.github/workflows/site.yml` only waits for the live `urls.json` to match the pushed build and pings IndexNow (skipped while `indexNow.key` is empty).
 - **Regression extensibility**: `--mode regression` iterates a `ROUTED_STEPS` registry at the top of `scripts/harness.js` and runs every routed leg with artifact + section assertions. When `kr-stock-plan` gains a new routed skill, add a one-line entry to `ROUTED_STEPS` (`{ name, run, requires, cleanCache, artifacts, assert }`) and the regression mode picks it up automatically. A full (non-dry) regression needs network access + `pypdf`; `validate-skills.sh` only runs `--dry-run` so CI stays offline.
 
 ## gstack

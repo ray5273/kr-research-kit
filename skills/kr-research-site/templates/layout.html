@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<link rel="canonical" href="{{canonical}}">
+<link rel="alternate" type="application/atom+xml" title="{{siteName}}" href="{{baseUrl}}/feed.xml">
+<meta name="robots" content="{{robots}}">
+<meta property="og:site_name" content="{{siteName}}">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:type" content="{{ogType}}">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:url" content="{{canonical}}">
+{{ogImage}}
+<meta name="twitter:card" content="{{twitterCard}}">
+<meta name="twitter:title" content="{{title}}">
+<meta name="twitter:description" content="{{description}}">
+{{head}}
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1d1b;--muted:#6b6a65;--line:#e4e1d8;--card:#fff;--accent:#0f5c4a;--pos:#c62828;--neg:#1565c0;--spec:#8a5a2b;--answer:#eef6f2}
+@media (prefers-color-scheme:dark){:root{--bg:#141413;--fg:#ecebe6;--muted:#a3a19a;--line:#2d2c29;--card:#1c1b19;--accent:#6fcfae;--pos:#ff7b72;--neg:#79b8ff;--spec:#d7a56b;--answer:#16241f}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.75 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;word-break:keep-all;overflow-wrap:anywhere}
+a{color:var(--accent)}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+header.site{border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px}
+header.site .brand{font-weight:800;text-decoration:none;color:var(--fg)}
+header.site nav a{margin-left:12px;text-decoration:none;font-size:15px}
+header.site nav a:first-child{margin-left:0}
+main{padding:24px 0 48px}
+h1{font-size:1.6rem;line-height:1.35;margin:0 0 8px}
+h2{font-size:1.3rem;line-height:1.4;margin:2.2em 0 .6em;padding-top:.6em;border-top:1px solid var(--line)}
+h3{font-size:1.1rem;margin:1.6em 0 .4em}
+h4{font-size:1rem;margin:1.2em 0 .3em}
+.meta{color:var(--muted);font-size:14px;margin:0 0 16px}
+.answer{background:var(--answer);border-left:4px solid var(--accent);border-radius:8px;padding:14px 16px;margin:16px 0 24px}
+.answer .label{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.02em;margin:0 0 4px}
+.answer .lead{font-weight:700;font-size:1.08rem;margin:0 0 8px}
+.answer p{margin:0 0 8px}
+.answer .asof{font-size:13px;color:var(--muted);margin:0}
+.table-scroll{overflow-x:auto;margin:16px 0;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;min-width:100%;font-size:14px;line-height:1.5;background:var(--card)}
+th,td{border:1px solid var(--line);padding:6px 8px;vertical-align:top;overflow-wrap:normal;word-break:keep-all;min-width:4.5em}
+th:first-child,td:first-child{min-width:8em}
+th{background:var(--answer);text-align:left}
+td.r,th.r{text-align:right;white-space:nowrap}
+td.c,th.c{text-align:center}
+figure{margin:20px 0}
+figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff}
+figcaption{font-size:13px;color:var(--muted);margin-top:4px}
+pre{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:12px;font-size:13px;line-height:1.45}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}
+blockquote{margin:16px 0;padding:4px 16px;border-left:3px solid var(--line);color:var(--muted)}
+ul,ol{padding-left:1.4em}
+li{margin:.25em 0}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+sup.cite a{text-decoration:none;font-size:.75em}
+.tone-pos{color:var(--pos);font-weight:700}
+.tone-neg{color:var(--neg);font-weight:700}
+.tone-spec{color:var(--spec);font-weight:700}
+.legend{font-size:13px;color:var(--muted)}
+.sources ol{font-size:14px}
+.updates li{font-size:15px}
+.disclaimer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:32px;padding-top:12px}
+.ad{margin:28px 0;min-height:90px}
+.list{list-style:none;padding:0}
+.list li{padding:14px 0;border-bottom:1px solid var(--line)}
+.list a.t{font-weight:700;text-decoration:none;color:var(--fg)}
+.list p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.tags a{display:inline-block;margin:0 6px 6px 0;padding:2px 10px;border:1px solid var(--line);border-radius:999px;font-size:13px;text-decoration:none}
+.crumbs{font-size:13px;color:var(--muted);margin:0 0 8px}
+.crumbs a{color:var(--muted)}
+footer.site{border-top:1px solid var(--line);color:var(--muted);font-size:13px;padding:20px 0 40px}
+footer.site a{color:var(--muted);margin-right:12px}
+@media (min-width:768px){body{font-size:18px}h1{font-size:2rem}}
+</style>
+{{jsonLd}}
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/">{{siteName}}</a><nav>{{nav}}</nav></div></header>
+<main><div class="wrap">
+{{content}}
+</div></main>
+<footer class="site"><div class="wrap"><p>{{footerLinks}}</p><p>© {{year}} {{author}} · 공개 자료 기반 개인 리서치이며 투자 권유가 아닙니다.</p></div></footer>
+</body>
+</html>

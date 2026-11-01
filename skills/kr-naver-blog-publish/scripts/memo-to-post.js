@@ -116,7 +116,7 @@ function parseMetadata(markdown) {
   const headerBlock = markdown.split(/\r?\n/).slice(0, 40).join("\n");
   for (const line of headerBlock.split(/\r?\n/)) {
     const match = line.match(/^(?:[-*]\s+)?([^#\n:：]+)[:：]\s*(.+?)\s*$/);
-    if (match) metadata[match[1].trim()] = match[2].trim().replace(/^`|`$/g, "");
+    if (match) metadata[match[1].trim()] = match[2].trim().replace(/^`|`$/g, "").replace(/^\*\*([^*]+)\*\*$/, "$1");
   }
   return metadata;
 }
@@ -393,19 +393,129 @@ function buildPost({ markdown, memoPath, category = null }) {
   };
 }
 
+// Primary sources = filings, company releases and IR material. Teaser posts
+// keep only these so the Naver summary stays short and points to the original.
+const PRIMARY_SOURCE_HOST = /(?:^|\.)(?:sec\.gov|dart\.fss\.or\.kr|kind\.krx\.co\.kr|krx\.co\.kr|q4cdn\.com|opendart\.fss\.or\.kr)$/i;
+const PRIMARY_SOURCE_LABEL = /공시|보도자료|사업보고서|분기보고서|반기보고서|감사보고서|정정|IR|실적 발표|실적 콜|10-K|10-Q|8-K|20-F|6-K|Form 4|proxy|investor/i;
+
+function isPrimarySourceLine(line) {
+  const url = line.match(/https?:\/\/[^\s)]+/)?.[0];
+  if (!url) return false;
+  try {
+    const host = new URL(url).hostname;
+    if (PRIMARY_SOURCE_HOST.test(host) || /^(?:ir|investors?)\./i.test(host)) return true;
+  } catch {}
+  const label = line.match(/\[([^\]]+)]\(/)?.[1] || line.slice(0, line.indexOf(url));
+  return PRIMARY_SOURCE_LABEL.test(label);
+}
+
+function resolveCanonicalUrl(memoPath, { root, siteConfigPath, publishedPath }) {
+  assert(fs.existsSync(siteConfigPath), `Teaser mode needs ${siteConfigPath} (or --canonical-url)`);
+  assert(fs.existsSync(publishedPath), `Teaser mode needs ${publishedPath} (or --canonical-url)`);
+  const config = JSON.parse(fs.readFileSync(siteConfigPath, "utf8"));
+  const published = JSON.parse(fs.readFileSync(publishedPath, "utf8"));
+  const entry = (published.articles || []).find(item => path.resolve(root, item.memo) === path.resolve(memoPath));
+  assert(entry, `Memo is not listed in ${publishedPath}; add it to the site before writing a teaser`);
+  return `${String(config.baseUrl).replace(/\/+$/, "")}/${entry.slug}/`;
+}
+
+// Naver summary post: Summary + one key table + one chart + link to the
+// canonical site article, primary sources, disclaimer and signature. Keeps the
+// full memo off Naver so the two copies are not judged as duplicates.
+function buildTeaser({ markdown, memoPath, canonicalUrl, category = null }) {
+  assert(/^https:\/\/[^\s]+$/.test(canonicalUrl || ""), "Teaser mode needs an https canonical URL");
+  const full = buildPost({ markdown, memoPath, category });
+  const { company, ticker, title } = full.manifest.post;
+  const asOfDate = full.manifest.source.asOfDate;
+  const allSections = parseSections(markdown);
+  const selected = allSections.filter(section => !EXCLUDED_SECTIONS.has(normalizeHeading(section.heading)) && normalizeHeading(section.heading) !== "sources");
+  const summarySection = selected.find(section => normalizeHeading(section.heading) === "summary");
+  const summary = cleanInternalLinks(stripFencedBlocks(stripImageLines(convertTables(stripLeadingMetadataLines(summarySection.body)))));
+
+  let keyTable = null;
+  if (!extractMarkdownTables(summary).length) {
+    for (const section of selected) {
+      if (section === summarySection) continue;
+      const table = extractMarkdownTables(section.body)[0];
+      if (!table) continue;
+      const heading = normalizeHeading(section.heading);
+      keyTable = { heading: HEADING_MAP.get(heading) || section.heading, markdown: cleanInternalLinks(table.lines.join("\n")) };
+      break;
+    }
+  }
+  const image = full.manifest.post.images[0] ? { ...full.manifest.post.images[0], order: 1, section: "핵심 차트" } : null;
+
+  const sourceLines = extractSourceLines(markdown).split(/\r?\n/).filter(line => line.trim());
+  const primary = sourceLines.filter(isPrimarySourceLine);
+  const keptSources = cleanInternalLinks((primary.length ? primary : sourceLines.slice(0, 5)).join("\n"));
+
+  const parts = [
+    `# ${title}`,
+    "",
+    `${asOfDate} 기준 ${company}${ticker && !company.includes("(") ? `(${ticker})` : ""} 리서치의 요약입니다. 결론과 핵심 숫자만 옮겼고, 전체 분석은 원문에 있습니다.`,
+    "",
+    `## ${HEADING_MAP.get("summary")}`,
+    "",
+    summary,
+  ];
+  if (keyTable) parts.push("", `## ${keyTable.heading}`, "", keyTable.markdown);
+  if (image) parts.push("", "## 핵심 차트", "", `![${image.alt}](${image.relativePath})`, "", `차트. ${image.alt}`);
+  parts.push(
+    "",
+    "## 전문과 업데이트는 원문에서",
+    "",
+    "밸류에이션, 리스크, 판단을 바꿀 신호와 이후 업데이트 내역은 원문 페이지에서 이어집니다. 원문은 기준일 이후 내용이 바뀌면 같은 주소에서 갱신됩니다.",
+    "",
+    `원문 전체 보기: ${canonicalUrl}`,
+  );
+  if (keptSources) parts.push("", "## 출처", "", keptSources);
+  parts.push(
+    "",
+    "---",
+    "",
+    `기준일: ${asOfDate}`,
+    "",
+    "본 글은 공개된 자료를 바탕으로 작성한 개인 리서치이며, 특정 종목의 매수·매도를 권유하지 않습니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.",
+    "",
+    ...researchSignature(selected, image ? [image] : []).map(line => `> ${line}`),
+  );
+  const postMarkdown = `${normalizeText(normalizeSourceCitations(parts.join("\n")))}\n`;
+  const manifest = full.manifest;
+  manifest.post.mode = "teaser";
+  manifest.post.canonicalUrl = canonicalUrl;
+  manifest.post.images = image ? [image] : [];
+  manifest.post.markdownSha256 = sha256(postMarkdown);
+  return { metadata: full.metadata, postMarkdown, manifest };
+}
+
 function main() {
   const args = parseArgs(process.argv);
-  assert(args.memo, "Usage: memo-to-post.js --memo <memo.md> [--out <naver-post.md>] [--manifest <json>] [--category <name>]");
+  assert(args.memo, "Usage: memo-to-post.js --memo <memo.md> [--mode full|teaser] [--canonical-url <url>] [--out <naver-post.md>] [--manifest <json>] [--category <name>]");
+  const mode = args.mode || "full";
+  assert(["full", "teaser"].includes(mode), `Unknown --mode ${mode}; use full or teaser`);
   const memoPath = path.resolve(args.memo);
   assert(fs.existsSync(memoPath), `Memo not found: ${memoPath}`);
-  const outPath = path.resolve(args.out || path.join(path.dirname(memoPath), "naver-post.md"));
-  const manifestPath = path.resolve(args.manifest || path.join(path.dirname(outPath), "naver-publish.json"));
-  const result = buildPost({ markdown: fs.readFileSync(memoPath, "utf8"), memoPath, category: args.category });
+  const defaultName = mode === "teaser" ? "naver-teaser" : "naver-post";
+  const outPath = path.resolve(args.out || path.join(path.dirname(memoPath), `${defaultName}.md`));
+  const manifestPath = path.resolve(args.manifest || path.join(path.dirname(outPath), mode === "teaser" ? "naver-teaser-publish.json" : "naver-publish.json"));
+  const markdown = fs.readFileSync(memoPath, "utf8");
+  let result;
+  if (mode === "teaser") {
+    const root = path.resolve(args.root || process.cwd());
+    const canonicalUrl = args["canonical-url"] || resolveCanonicalUrl(memoPath, {
+      root,
+      siteConfigPath: path.resolve(root, args["site-config"] || "site/site.config.json"),
+      publishedPath: path.resolve(root, args.published || "site/published.json"),
+    });
+    result = buildTeaser({ markdown, memoPath, canonicalUrl, category: args.category });
+  } else {
+    result = buildPost({ markdown, memoPath, category: args.category });
+  }
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.writeFileSync(outPath, result.postMarkdown, "utf8");
   result.manifest.post.markdownPath = outPath;
   writeJsonAtomic(manifestPath, result.manifest);
-  process.stdout.write(`${JSON.stringify({ outPath, manifestPath, title: result.manifest.post.title, images: result.manifest.post.images.length, tags: result.manifest.post.tags }, null, 2)}\n`);
+  process.stdout.write(`${JSON.stringify({ mode, outPath, manifestPath, title: result.manifest.post.title, canonicalUrl: result.manifest.post.canonicalUrl || null, images: result.manifest.post.images.length, tags: result.manifest.post.tags }, null, 2)}\n`);
 }
 
 if (require.main === module) {
@@ -413,13 +523,21 @@ if (require.main === module) {
 }
 
 module.exports = {
+  EXCLUDED_SECTIONS,
+  HEADING_MAP,
   buildPost,
+  buildTeaser,
+  cleanInternalLinks,
   convertTables,
+  deriveIssue,
   extractMarkdownTables,
   isDivider,
+  isPrimarySourceLine,
   markdownTableToTsv,
+  normalizeHeading,
   parseMarkdownTableBlock,
   parseMetadata,
   parseSections,
   splitTableRow,
+  stripLeadingMetadataLines,
 };

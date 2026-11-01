@@ -1,0 +1,12 @@
+// Cloudflare Workers static-assets deploy for the kr-research-site build.
+// Workers Builds runs the build command, then `npx wrangler deploy` uploads
+// site-dist/. "name" must match the Worker name in the Cloudflare dashboard.
+{
+  "name": "kr-research-site",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./site-dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

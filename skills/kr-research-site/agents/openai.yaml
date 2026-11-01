@@ -1,0 +1,7 @@
+interface:
+  display_name: "KR Research Site"
+  short_description: "Build the canonical research site with SEO/AEO outputs and opt-in ads."
+  default_prompt: "Use $kr-research-site to add a finished memo to site/published.json, build and preview the site, and prepare the Naver teaser that links back to it."
+
+policy:
+  allow_implicit_invocation: true

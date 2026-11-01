@@ -7,7 +7,9 @@ const path = require("path");
 const { normalizeSourceCitations } = require("./source-citations");
 const {
   buildPost,
+  buildTeaser,
   convertTables,
+  isPrimarySourceLine,
   markdownTableToTsv,
   parseMarkdownTableBlock,
 } = require("./memo-to-post");
@@ -205,6 +207,63 @@ assert(citations.includes("3. [추가 자료](https://example.com/extra)"));
 assert.strictEqual((citations.match(/https:\/\/example.com\/kia/g) || []).length, 1);
 assert(citations.includes("[GitHub](https://github.com/example)"));
 assert.strictEqual(normalizeSourceCitations(citations), citations);
+
+// Teaser mode: Summary + one key table + one chart + canonical link + primary sources.
+const teaserMemoPath = path.join(fixtureRoot, "teaser-memo.md");
+fs.writeFileSync(teaserMemoPath, [
+  "# SOOP",
+  "",
+  "- 티커: 067160",
+  "- 기준일: **2026-06-21**",
+  "",
+  "## Summary",
+  "",
+  "**[red: 순현금이 하방을 받친다.]**",
+  "",
+  "현금 2,480억 원이 시가총액의 30%다. 근거는 [분기보고서](https://dart.fss.or.kr/dsaf001/main.do?rcpNo=1)다.",
+  "",
+  "![SOOP main trend chart](assets/SOOP-chart.png)",
+  "",
+  "## Decision Frame",
+  "",
+  "| 판단축 | 현재 판정 |",
+  "| --- | --- |",
+  "| 성장 | 긍정 |",
+  "",
+  "## Business and Thesis",
+  "",
+  "TEASER SHOULD NOT INCLUDE THIS BODY.",
+  "",
+  "![SOOP overlay chart](assets/SOOP-chart-overlay.png)",
+  "",
+  "## Sources",
+  "",
+  "- [SOOP 2026년 1분기 분기보고서](https://dart.fss.or.kr/dsaf001/main.do?rcpNo=1)",
+  "- [어느 블로그 의견](https://blog.naver.com/someone/1)",
+  "- [SEC filing](https://www.sec.gov/Archives/x.htm)",
+].join("\n"));
+assert.throws(() => buildTeaser({ markdown: fs.readFileSync(teaserMemoPath, "utf8"), memoPath: teaserMemoPath, canonicalUrl: "" }), /canonical URL/);
+const teaser = buildTeaser({ markdown: fs.readFileSync(teaserMemoPath, "utf8"), memoPath: teaserMemoPath, canonicalUrl: "https://research.example.com/kr/soop/" });
+assert(teaser.postMarkdown.includes("## 한눈에 보는 결론"));
+assert(teaser.postMarkdown.includes("## 투자 판단의 핵심 축"));
+assert(teaser.postMarkdown.includes("| 성장 | 긍정 |"));
+assert(teaser.postMarkdown.includes("## 핵심 차트"));
+assert(teaser.postMarkdown.includes("원문 전체 보기: https://research.example.com/kr/soop/"));
+assert(!teaser.postMarkdown.includes("TEASER SHOULD NOT INCLUDE THIS BODY"));
+assert(!teaser.postMarkdown.includes("blog.naver.com/someone"), "non-primary sources are dropped from a teaser");
+assert(teaser.postMarkdown.includes("1. [분기보고서](https://dart.fss.or.kr/dsaf001/main.do?rcpNo=1)"));
+assert(teaser.postMarkdown.includes("[SEC filing](https://www.sec.gov/Archives/x.htm)"));
+assert(teaser.postMarkdown.includes("## 출처"));
+assert(teaser.postMarkdown.includes("매수·매도를 권유하지 않습니다"));
+assert(/KrResearchKit/.test(teaser.postMarkdown));
+assert.strictEqual((teaser.postMarkdown.match(/!\[/g) || []).length, 1);
+assert.strictEqual(teaser.manifest.post.mode, "teaser");
+assert.strictEqual(teaser.manifest.post.canonicalUrl, "https://research.example.com/kr/soop/");
+assert.strictEqual(teaser.manifest.post.images.length, 1);
+assert.strictEqual(teaser.manifest.source.asOfDate, "2026-06-21");
+assert(isPrimarySourceLine("- [Alphabet 10-Q](https://www.sec.gov/x.htm)"));
+assert(isPrimarySourceLine("- [회사 실적 보도자료](https://news.example.com/x)"));
+assert(!isPrimarySourceLine("- [CNBC 기사](https://www.cnbc.com/x)"));
 
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), "kr-naver-converter-test-"));
 fs.writeFileSync(path.join(temp, "result.txt"), result.postMarkdown);

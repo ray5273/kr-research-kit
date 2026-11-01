@@ -29,3 +29,7 @@ __pycache__/
 # --- oversized regenerable diagnostic dumps (>50MB; keep out of history) ---
 /analysis-example/kr-market/strategies/annual-top300-marcap-split-diagnostic/annual-top300-marcap-split-partial-*.json
 /analysis-example/kr-market/strategies/annual-top300-yahoo-adjusted-comparison/annual-top300-yahoo-adjusted-2016-07-11-through-2026-07-16.json
+
+# --- kr-research-site build output ---
+site-dist/
+.wrangler/
