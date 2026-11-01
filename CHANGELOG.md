@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.4] - 2026-11-01
+
+### Commits
+
+- Render numbered closing checkpoints as real article subheadings ([b77bb91](https://github.com/ray5273/kr-research-kit/commit/b77bb91921bb56579ebd65374f3edc7e6fa38455))
+
 ## [0.4.3] - 2026-11-01
 
 ### Commits
