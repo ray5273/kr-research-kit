@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "source": {
+    "memoPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us/Alphabet/memo.md",
+    "memoSha256": "0139c9916565bf162b50a15265c803e9fd9adcab153dbb39032a542632ce53a4",
+    "asOfDate": "2026-11-01"
+  },
+  "post": {
+    "company": "알파벳(구글)",
+    "ticker": "GOOGL",
+    "title": "알파벳(구글) | 클라우드는 두 배로 컸는데 주가는 13% 빠졌다, 장기 보유자가 볼 것은 현금흐름이다 | 2026-11-01",
+    "issue": "클라우드는 두 배로 컸는데 주가는 13% 빠졌다, 장기 보유자가 볼 것은 현금흐름이다",
+    "category": null,
+    "tags": [
+      "구글",
+      "알파벳",
+      "GOOGL",
+      "미국주식",
+      "주식분석",
+      "구글클라우드",
+      "AI",
+      "빅테크",
+      "실적리뷰",
+      "장기투자"
+    ],
+    "markdownPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us/Alphabet/naver-post.md",
+    "markdownSha256": "11f7973c51bd1b59247ce64341a32e4f6b94ad0945c95f714dd05717fb64b8a7",
+    "images": [
+      {
+        "order": 1,
+        "alt": "Google Cloud 매출·영업이익률과 Capex·FCF 추이",
+        "relativePath": "assets/cloud-capex-fcf.png",
+        "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us/Alphabet/assets/cloud-capex-fcf.png",
+        "sha256": "363f4adef8941a97f954feab5b9b3c71be0e0fdd8ddcad4301a8a3d40e0d7d37",
+        "section": "Summary"
+      }
+    ],
+    "thumbnail": {
+      "prompt": "알파벳(구글) | 클라우드는 두 배로 컸는데 주가는 13% 빠졌다, 장기 보유자가 볼 것은 현금흐름이다 | 2026-11-01 주제로 텍스트 설명이 아니라 실제 블로그 썸네일 이미지 1장을 생성해줘. 16:9 비율, 모바일에서 읽기 쉬운 한국어 제목, 사람·기업 로고·저작권 캐릭터는 사용하지 마.",
+      "relativePath": "assets/naver-thumbnail.png",
+      "absolutePath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us/Alphabet/assets/naver-thumbnail.png",
+      "sha256": "d7daffe36d5440f96b7e93cb8498886a45108f7bc63160f1820c1b2c03efdce2",
+      "source": "gemini-web",
+      "status": "generated",
+      "generatedAt": "2026-11-01T11:13:32.579Z"
+    }
+  },
+  "prepare": {
+    "preparedAt": "2026-11-01T11:36:59.068Z",
+    "expiresAt": "2026-11-01T12:06:59.068Z",
+    "screenshotPath": "/Users/sanghyeok/workspace/stock-analysis-skill/analysis-example/us/Alphabet/naver-preview.png",
+    "editorUrl": "https://blog.naver.com/PostWriteForm.naver?blogId=workingonit&Redirect=Write&redirect=Write&widgetTypeCall=true&parentCategoryNo=8&noTrackingCode=true&directAccess=false",
+    "contentFingerprint": "921ef19996a4d2651bd2db6a58446691dd0e248a7e4287fa5868d690de0fe6e3",
+    "approvalTokenHash": "be8171405e1953876c234732038f8c76b55918a5db5c07b471804c41f98dc9f3",
+    "validation": {
+      "title": true,
+      "body": true,
+      "imageCount": true,
+      "sources": true,
+      "disclaimer": true,
+      "tags": true,
+      "thumbnail": true,
+      "separators": true,
+      "formatting": true,
+      "signatureQuotation": true
+    }
+  },
+  "publish": null
+}

@@ -1,0 +1,362 @@
+{
+  "company": "Alphabet Inc.",
+  "primary_ticker": "GOOGL",
+  "GOOGL": {
+    "ticker": "GOOGL",
+    "as_of": "2026-10-30",
+    "retrieved_at": "2026-11-01",
+    "sources": {
+      "primary": "Nasdaq historical API https://api.nasdaq.com/api/quote/GOOGL/historical?assetclass=stocks&fromdate=2025-10-25&todate=2026-11-01&limit=400",
+      "cross_check": "CNBC https://ts-api.cnbc.com/harmony/app/charts/1Y.json?symbol=GOOGL and quote.cnbc.com restQuote",
+      "yahoo": "DATA_GAP - query1/query2.finance.yahoo.com v8 chart returned HTTP 429 Too Many Requests on 2026-11-01 (4 attempts incl. cookie/crumb)",
+      "stooq": "DATA_GAP - stooq.com returned JS proof-of-work challenge page"
+    },
+    "earnings_release": "2026-10-28 (after market close)",
+    "dates": [
+      {
+        "date": "2026-10-12",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 352.72,
+        "close_other": 352.72,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-13",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 353.78,
+        "close_other": 353.78,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-14",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 347.64,
+        "close_other": 347.64,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-15",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 349.22,
+        "close_other": 349.22,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-16",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 340.59,
+        "close_other": 340.59,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-19",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 344.18,
+        "close_other": 344.18,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-20",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 340.275,
+        "close_other": 340.275,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-21",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 334.76,
+        "close_other": 334.76,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-22",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 324.22,
+        "close_other": 324.22,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-23",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 320.21,
+        "close_other": 320.21,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-26",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 316.8,
+        "close_other": 316.8,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-27",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 320.58,
+        "close_other": 320.58,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-28",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 324.89,
+        "close_other": 324.89,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-29",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 283.82,
+        "close_other": 283.82,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-30",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 279.84,
+        "close_other": 279.84,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      }
+    ],
+    "pre_earnings_close": {
+      "date": "2026-10-28",
+      "close": 324.89
+    },
+    "post_earnings_close": {
+      "date": "2026-10-29",
+      "close": 283.82,
+      "pct_change": -12.64
+    },
+    "latest_close": 279.84,
+    "latest_date": "2026-10-30",
+    "latest_vs_pre_pct": -13.87,
+    "note_2026_10_31": "Saturday - not a trading day",
+    "52w_high": {
+      "intraday": 408.61,
+      "intraday_date": "2026-05-18",
+      "closing": 402.62,
+      "closing_date": "2026-05-13",
+      "window": "2025-10-31..2026-10-30"
+    },
+    "52w_low": {
+      "intraday": 270.7,
+      "intraday_date": "2025-11-14",
+      "closing": 273.5,
+      "closing_date": "2026-03-30"
+    },
+    "cnbc_quote_2026_10_30": {
+      "last": 279.84,
+      "prev_close": 283.82,
+      "change_pct": "-1.40%",
+      "yr_high": "408.61",
+      "yr_high_date": "05/18/26",
+      "yr_low": "270.70",
+      "yr_low_date": "11/14/25",
+      "post_market_last": "281.46",
+      "post_market_change_pct": "+0.58%",
+      "forward_pe": "21.20",
+      "forward_eps": "13.20",
+      "trailing_pe": "14.59",
+      "shares_out": "12.29B"
+    },
+    "market_cap_if_available": {
+      "value": "3.368T",
+      "source": "CNBC quote (company total market cap, as of 2026-10-30 close)"
+    }
+  },
+  "GOOG": {
+    "ticker": "GOOG",
+    "as_of": "2026-10-30",
+    "retrieved_at": "2026-11-01",
+    "sources": {
+      "primary": "Nasdaq historical API https://api.nasdaq.com/api/quote/GOOG/historical?assetclass=stocks&fromdate=2025-10-25&todate=2026-11-01&limit=400",
+      "cross_check": "CNBC https://ts-api.cnbc.com/harmony/app/charts/1Y.json?symbol=GOOG and quote.cnbc.com restQuote",
+      "yahoo": "DATA_GAP - query1/query2.finance.yahoo.com v8 chart returned HTTP 429 Too Many Requests on 2026-11-01 (4 attempts incl. cookie/crumb)",
+      "stooq": "DATA_GAP - stooq.com returned JS proof-of-work challenge page"
+    },
+    "earnings_release": "2026-10-28 (after market close)",
+    "dates": [
+      {
+        "date": "2026-10-12",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 348.97,
+        "close_other": 348.97,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-13",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 349.52,
+        "close_other": 349.52,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-14",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 343.65,
+        "close_other": 343.65,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-15",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 344.91,
+        "close_other": 344.91,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-16",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 336.91,
+        "close_other": 336.91,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-19",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 340.16,
+        "close_other": 340.16,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-20",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 336.4,
+        "close_other": 336.4,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-21",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 330.95,
+        "close_other": 330.95,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-22",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 320.76,
+        "close_other": 320.76,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-23",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 317.28,
+        "close_other": 317.28,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-26",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 314.19,
+        "close_other": 314.19,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-27",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 316.83,
+        "close_other": 316.83,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-28",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 321.89,
+        "close_other": 321.89,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-29",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 282.32,
+        "close_other": 282.32,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      },
+      {
+        "date": "2026-10-30",
+        "close_yahoo": "DATA_GAP",
+        "close_nasdaq": 278.22,
+        "close_other": 278.22,
+        "other_source": "CNBC ts-api 1Y",
+        "match": true
+      }
+    ],
+    "pre_earnings_close": {
+      "date": "2026-10-28",
+      "close": 321.89
+    },
+    "post_earnings_close": {
+      "date": "2026-10-29",
+      "close": 282.32,
+      "pct_change": -12.29
+    },
+    "latest_close": 278.22,
+    "latest_date": "2026-10-30",
+    "latest_vs_pre_pct": -13.57,
+    "note_2026_10_31": "Saturday - not a trading day",
+    "52w_high": {
+      "intraday": 404.47,
+      "intraday_date": "2026-05-18",
+      "closing": 399.04,
+      "closing_date": "2026-05-13",
+      "window": "2025-10-31..2026-10-30"
+    },
+    "52w_low": {
+      "intraday": 271.41,
+      "intraday_date": "2025-11-14",
+      "closing": 273.14,
+      "closing_date": "2026-03-30"
+    },
+    "cnbc_quote_2026_10_30": {
+      "last": 278.22,
+      "prev_close": 282.32,
+      "change_pct": "-1.45%",
+      "yr_high": "404.47",
+      "yr_high_date": "05/18/26",
+      "yr_low": "271.41",
+      "yr_low_date": "11/14/25",
+      "post_market_last": "279.68",
+      "post_market_change_pct": "+0.52%",
+      "forward_pe": "21.28",
+      "forward_eps": "13.08",
+      "trailing_pe": "14.53",
+      "shares_out": "12.29B"
+    },
+    "market_cap_if_available": {
+      "value": "3.368T",
+      "source": "CNBC quote (company total market cap, as of 2026-10-30 close)"
+    }
+  }
+}

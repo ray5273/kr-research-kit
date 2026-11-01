@@ -1,0 +1,325 @@
+{
+  "generatedAt": "2026-11-01T10:51:26.486Z",
+  "company": {
+    "name": "Alphabet Inc.",
+    "ticker": "GOOGL",
+    "cik": "1652044",
+    "cik10": "0001652044",
+    "exchange": null
+  },
+  "filings": [
+    {
+      "requestedForm": "10-K",
+      "form": "10-K",
+      "accessionNumber": "0001652044-26-000018",
+      "filingDate": "2026-02-05",
+      "reportDate": "2025-12-31",
+      "primaryDocumentUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+      "status": "selected"
+    },
+    {
+      "requestedForm": "10-Q",
+      "form": "10-Q",
+      "accessionNumber": "0001652044-26-000084",
+      "filingDate": "2026-10-29",
+      "reportDate": "2026-09-30",
+      "primaryDocumentUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+      "status": "selected"
+    },
+    {
+      "requestedForm": "8-K",
+      "form": "8-K",
+      "accessionNumber": "0001652044-26-000080",
+      "filingDate": "2026-10-28",
+      "reportDate": "2026-10-28",
+      "primaryDocumentUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/goog-20261028.htm",
+      "status": "selected"
+    }
+  ],
+  "xbrl": {
+    "revenue": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "unit": "USD",
+        "val": 90234000000,
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "fy": 2025,
+        "fp": "Q1",
+        "form": "10-Q",
+        "filed": "2025-04-25",
+        "accn": "0001652044-25-000043",
+        "frame": "CY2025Q1"
+      }
+    },
+    "grossProfit": {
+      "status": "not_separately_disclosed_in_standard_companyfacts",
+      "taxonomy": null,
+      "selectedConcept": null,
+      "latestFact": null
+    },
+    "operatingIncome": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "OperatingIncomeLoss",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "OperatingIncomeLoss",
+        "unit": "USD",
+        "val": 121042000000,
+        "start": "2026-01-01",
+        "end": "2026-09-30",
+        "fy": 2026,
+        "fp": "Q3",
+        "form": "10-Q",
+        "filed": "2026-10-29",
+        "accn": "0001652044-26-000084",
+        "frame": null
+      }
+    },
+    "netIncome": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "NetIncomeLoss",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "NetIncomeLoss",
+        "unit": "USD",
+        "val": 201239000000,
+        "start": "2026-01-01",
+        "end": "2026-09-30",
+        "fy": 2026,
+        "fp": "Q3",
+        "form": "10-Q",
+        "filed": "2026-10-29",
+        "accn": "0001652044-26-000084",
+        "frame": null
+      }
+    },
+    "epsDiluted": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "EarningsPerShareDiluted",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "EarningsPerShareDiluted",
+        "unit": "USD/shares",
+        "val": 16.33,
+        "start": "2026-01-01",
+        "end": "2026-09-30",
+        "fy": 2026,
+        "fp": "Q3",
+        "form": "10-Q",
+        "filed": "2026-10-29",
+        "accn": "0001652044-26-000084",
+        "frame": null
+      }
+    },
+    "cash": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "CashAndCashEquivalentsAtCarryingValue",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "CashAndCashEquivalentsAtCarryingValue",
+        "unit": "USD",
+        "val": 56334000000,
+        "start": null,
+        "end": "2026-09-30",
+        "fy": 2026,
+        "fp": "Q3",
+        "form": "10-Q",
+        "filed": "2026-10-29",
+        "accn": "0001652044-26-000084",
+        "frame": "CY2026Q3I"
+      }
+    },
+    "assets": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "Assets",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "Assets",
+        "unit": "USD",
+        "val": 1003312000000,
+        "start": null,
+        "end": "2026-09-30",
+        "fy": 2026,
+        "fp": "Q3",
+        "form": "10-Q",
+        "filed": "2026-10-29",
+        "accn": "0001652044-26-000084",
+        "frame": "CY2026Q3I"
+      }
+    },
+    "liabilities": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "Liabilities",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "Liabilities",
+        "unit": "USD",
+        "val": 325763000000,
+        "start": null,
+        "end": "2026-09-30",
+        "fy": 2026,
+        "fp": "Q3",
+        "form": "10-Q",
+        "filed": "2026-10-29",
+        "accn": "0001652044-26-000084",
+        "frame": "CY2026Q3I"
+      }
+    },
+    "equity": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "StockholdersEquity",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "StockholdersEquity",
+        "unit": "USD",
+        "val": 677549000000,
+        "start": null,
+        "end": "2026-09-30",
+        "fy": 2026,
+        "fp": "Q3",
+        "form": "10-Q",
+        "filed": "2026-10-29",
+        "accn": "0001652044-26-000084",
+        "frame": "CY2026Q3I"
+      }
+    },
+    "operatingCashFlow": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "NetCashProvidedByUsedInOperatingActivities",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "NetCashProvidedByUsedInOperatingActivities",
+        "unit": "USD",
+        "val": 127149000000,
+        "start": "2026-01-01",
+        "end": "2026-09-30",
+        "fy": 2026,
+        "fp": "Q3",
+        "form": "10-Q",
+        "filed": "2026-10-29",
+        "accn": "0001652044-26-000084",
+        "frame": null
+      }
+    },
+    "capex": {
+      "status": "found",
+      "taxonomy": "us-gaap",
+      "selectedConcept": "PaymentsToAcquirePropertyPlantAndEquipment",
+      "latestFact": {
+        "taxonomy": "us-gaap",
+        "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "unit": "USD",
+        "val": 131953000000,
+        "start": "2026-01-01",
+        "end": "2026-09-30",
+        "fy": 2026,
+        "fp": "Q3",
+        "form": "10-Q",
+        "filed": "2026-10-29",
+        "accn": "0001652044-26-000084",
+        "frame": null
+      }
+    }
+  },
+  "sectionCoverage": {
+    "form": "10-Q",
+    "summary": {
+      "parsedCount": 7,
+      "partialCount": 2,
+      "missingCount": 2,
+      "needsReviewCount": 0,
+      "completionRate": 0.6363636363636364
+    },
+    "weakItems": [
+      {
+        "key": "Part I Item 3",
+        "expectedTitle": "Quantitative and Qualitative Disclosures About Market Risk",
+        "status": "partial"
+      },
+      {
+        "key": "Part II Item 2",
+        "expectedTitle": "Unregistered Sales of Equity Securities",
+        "status": "partial"
+      },
+      {
+        "key": "Part II Item 3",
+        "expectedTitle": "Defaults Upon Senior Securities",
+        "status": "missing"
+      },
+      {
+        "key": "Part II Item 4",
+        "expectedTitle": "Mine Safety Disclosures",
+        "status": "missing"
+      }
+    ]
+  },
+  "sourceMap": [
+    {
+      "claim": "Ticker to CIK mapping",
+      "sourceType": "SEC ticker map",
+      "documentOrConcept": "company_tickers_exchange.json / company_tickers.json",
+      "filed": null,
+      "accession": null,
+      "url": "https://www.sec.gov/files/company_tickers_exchange.json",
+      "status": "collected"
+    },
+    {
+      "claim": "Filing history",
+      "sourceType": "SEC submissions API",
+      "documentOrConcept": "CIK0001652044.json",
+      "filed": null,
+      "accession": null,
+      "url": "https://data.sec.gov/submissions/CIK0001652044.json",
+      "status": "collected"
+    },
+    {
+      "claim": "Standard XBRL company facts",
+      "sourceType": "SEC companyfacts API",
+      "documentOrConcept": "CIK0001652044.json",
+      "filed": null,
+      "accession": null,
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json",
+      "status": "collected"
+    },
+    {
+      "claim": "Latest 10-K selected filing",
+      "sourceType": "SEC primary filing document",
+      "documentOrConcept": "goog-20251231.htm",
+      "filed": "2026-02-05",
+      "accession": "0001652044-26-000018",
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+      "status": "collected"
+    },
+    {
+      "claim": "Latest 10-Q selected filing",
+      "sourceType": "SEC primary filing document",
+      "documentOrConcept": "goog-20260930.htm",
+      "filed": "2026-10-29",
+      "accession": "0001652044-26-000084",
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+      "status": "collected"
+    },
+    {
+      "claim": "Latest 8-K selected filing",
+      "sourceType": "SEC primary filing document",
+      "documentOrConcept": "goog-20261028.htm",
+      "filed": "2026-10-28",
+      "accession": "0001652044-26-000080",
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/goog-20261028.htm",
+      "status": "collected"
+    }
+  ]
+}

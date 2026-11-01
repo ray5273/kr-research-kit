@@ -1,0 +1,15 @@
+{
+  "basis": "작성자 가정. 회사 가이던스나 증권사 목표주가가 아니다. 2027년 EPS(지분증권 평가손익 제외 정상화 기준)에 P/E 범위를 곱한다.",
+  "reference_date": "2026-10-30",
+  "reference_price_usd": 279.84,
+  "reference_price_goog_usd": 278.22,
+  "shares_outstanding_million": {"class_a": 5888, "class_b": 827, "class_c": 5579, "as_of": "2026-10-21", "source": "Q3 2026 10-Q cover"},
+  "net_cash_bn": 138.980,
+  "ttm": {"fcf_bn": 19.747, "ocf_bn": 179.551, "capex_bn": 159.804},
+  "consensus_2027_eps": {"value": 15.19, "source": "TIKR via Yahoo Finance 2026-10-30"},
+  "scenarios": [
+    {"name": "Bear", "eps_2027": 13.0, "pe": [15, 18], "story": "감가상각 급증과 검색 한 자릿수 성장, Cloud 마진 30% 아래로 후퇴"},
+    {"name": "Base", "eps_2027": 15.2, "pe": [18, 22], "story": "컨센서스 수준 이익, capex 증가가 이익률을 일부 잠식"},
+    {"name": "Bull", "eps_2027": 17.0, "pe": [22, 25], "story": "백로그 전환과 TPU 판매 본격화로 Cloud 이익이 감가상각 증가를 앞섬"}
+  ]
+}

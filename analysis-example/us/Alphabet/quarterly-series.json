@@ -1,0 +1,101 @@
+[
+  {
+    "quarter": "2024Q3",
+    "revenue_bn": 88.268,
+    "op_income_bn": 28.521,
+    "cloud_rev_bn": 11.353,
+    "cloud_oi_bn": 1.947,
+    "capex_bn": 13.061,
+    "ocf_bn": 30.698,
+    "fcf_bn": 17.637,
+    "source": "8-K Ex.99.1 Q3 2025 (filed 2025-10-29), prior-year comparative column: https://www.sec.gov/Archives/edgar/data/1652044/000165204425000087/googexhibit991q32025.htm"
+  },
+  {
+    "quarter": "2024Q4",
+    "revenue_bn": 96.469,
+    "op_income_bn": 30.972,
+    "cloud_rev_bn": 11.955,
+    "cloud_oi_bn": 2.093,
+    "capex_bn": 14.276,
+    "ocf_bn": 39.113,
+    "fcf_bn": 24.837,
+    "source": "8-K Ex.99.1 Q4 2025 (filed 2026-02-04), prior-year comparative column: https://www.sec.gov/Archives/edgar/data/1652044/000165204426000012/googexhibit991q42025.htm"
+  },
+  {
+    "quarter": "2025Q1",
+    "revenue_bn": 90.234,
+    "op_income_bn": 30.606,
+    "cloud_rev_bn": 12.26,
+    "cloud_oi_bn": 2.177,
+    "capex_bn": 17.197,
+    "ocf_bn": 36.15,
+    "fcf_bn": 18.953,
+    "source": "8-K Ex.99.1 Q1 2026 (filed 2026-04-29), prior-year comparative column: https://www.sec.gov/Archives/edgar/data/1652044/000165204426000043/googexhibit991q12026.htm"
+  },
+  {
+    "quarter": "2025Q2",
+    "revenue_bn": 96.428,
+    "op_income_bn": 31.271,
+    "cloud_rev_bn": 13.624,
+    "cloud_oi_bn": 2.826,
+    "capex_bn": 22.446,
+    "ocf_bn": 27.747,
+    "fcf_bn": 5.301,
+    "source": "8-K Ex.99.1 Q2 2026 (filed 2026-07-22), prior-year comparative column: https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/googexhibit991q22026.htm"
+  },
+  {
+    "quarter": "2025Q3",
+    "revenue_bn": 102.346,
+    "op_income_bn": 31.228,
+    "cloud_rev_bn": 15.157,
+    "cloud_oi_bn": 3.594,
+    "capex_bn": 23.953,
+    "ocf_bn": 48.414,
+    "fcf_bn": 24.461,
+    "source": "8-K Ex.99.1 Q3 2026 (filed 2026-10-28), prior-year comparative column: https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/googexhibit991q32026.htm"
+  },
+  {
+    "quarter": "2025Q4",
+    "revenue_bn": 113.828,
+    "op_income_bn": 35.934,
+    "cloud_rev_bn": 17.664,
+    "cloud_oi_bn": 5.313,
+    "capex_bn": 27.851,
+    "ocf_bn": 52.402,
+    "fcf_bn": 24.551,
+    "source": "8-K Ex.99.1 Q4 2025 (filed 2026-02-04): https://www.sec.gov/Archives/edgar/data/1652044/000165204426000012/googexhibit991q42025.htm"
+  },
+  {
+    "quarter": "2026Q1",
+    "revenue_bn": 109.896,
+    "op_income_bn": 39.696,
+    "cloud_rev_bn": 20.028,
+    "cloud_oi_bn": 6.598,
+    "capex_bn": 35.674,
+    "ocf_bn": 45.79,
+    "fcf_bn": 10.116,
+    "source": "8-K Ex.99.1 Q1 2026 (filed 2026-04-29): https://www.sec.gov/Archives/edgar/data/1652044/000165204426000043/googexhibit991q12026.htm"
+  },
+  {
+    "quarter": "2026Q2",
+    "revenue_bn": 119.796,
+    "op_income_bn": 40.77,
+    "cloud_rev_bn": 24.768,
+    "cloud_oi_bn": 8.814,
+    "capex_bn": 44.924,
+    "ocf_bn": 39.069,
+    "fcf_bn": -5.855,
+    "source": "8-K Ex.99.1 Q2 2026 (filed 2026-07-22): https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/googexhibit991q22026.htm"
+  },
+  {
+    "quarter": "2026Q3",
+    "revenue_bn": 127.577,
+    "op_income_bn": 40.576,
+    "cloud_rev_bn": 30.709,
+    "cloud_oi_bn": 11.121,
+    "capex_bn": 51.355,
+    "ocf_bn": 42.29,
+    "fcf_bn": -9.065,
+    "source": "8-K Ex.99.1 Q3 2026 (filed 2026-10-28): https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/googexhibit991q32026.htm"
+  }
+]
