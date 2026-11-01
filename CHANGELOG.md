@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.11] - 2026-11-01
+
+### Commits
+
+- Stop repeating article titles in list thumbnails ([934b2e1](https://github.com/ray5273/kr-research-kit/commit/934b2e10054057c538403d39b16c30cd6a9a8a7e))
+
 ## [0.4.10] - 2026-11-01
 
 ### Commits
