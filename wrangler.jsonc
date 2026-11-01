@@ -1,6 +1,8 @@
 // Credentials are Cloudflare Secrets, never source code.
 {
   "name": "kr-research-site",
+  "workers_dev": false,
+  "preview_urls": false,
   "main": "site/analytics/worker.mjs",
   "compatibility_date": "2026-10-01",
   "assets": {
