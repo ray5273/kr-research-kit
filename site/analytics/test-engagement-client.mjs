@@ -238,6 +238,37 @@ assert.equal(
 f.setFailure(false);
 await f.form.listeners.submit({ preventDefault() {} });
 assert.match(f.nodes["#comment-status"].textContent, /관리자 승인 후 공개/);
+{
+  const countsCode = fs.readFileSync("site/card-counts.js", "utf8");
+  const runCounts = async (fetchImpl) => {
+    const known = { dataset: { counts: "/a/" }, hidden: true, textContent: "" },
+      zero = { dataset: { counts: "/b/" }, hidden: true, textContent: "" };
+    vm.runInNewContext(countsCode, {
+      document: { querySelectorAll: () => [known, zero] },
+      fetch: fetchImpl,
+      Promise,
+    });
+    await flush();
+    return { known, zero };
+  };
+  const ok = await runCounts(async () => ({
+    ok: true,
+    json: async () => ({ "/a/": { comments: 1200, shares: 3 } }),
+  }));
+  assert.equal(ok.known.textContent, `댓글 ${(1200).toLocaleString()} · 공유 3`);
+  assert.equal(ok.known.hidden, false);
+  assert.equal(ok.zero.textContent, "댓글 0 · 공유 0");
+  for (const broken of [
+    async () => ({ ok: false }),
+    async () => {
+      throw Error("offline");
+    },
+  ]) {
+    const down = await runCounts(broken);
+    assert.equal(down.known.hidden, true);
+    assert.equal(down.known.textContent, "");
+  }
+}
 console.log(
   "Reader client tests passed: share success/cancel/failure/fallback, canonical URL, Kakao feed, outage-independent sharing, retry dedup, text-only comments and moderation notice.",
 );

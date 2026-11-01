@@ -280,6 +280,9 @@ assert(!analyticsManifest.paths.some(p => p.startsWith("/admin")));
 assert(read("index.html").includes('data-stats-settings'));
 assert(read("index.html").includes('src="/analytics.js"'));
 assert(read("analytics.js").includes("research.stats.consent"));
+assert(read("index.html").includes('src="/card-counts.js"'));
+assert(read("card-counts.js").includes("/api/article-counts"));
+assert(read("index.html").includes('data-counts="/kr/soop-2026-06/" hidden'));
 assert(!fs.existsSync(path.join(outDir, "admin")));
 
 // sitemap / feed / robots / llms / urls

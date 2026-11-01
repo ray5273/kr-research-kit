@@ -251,7 +251,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     try {
-      if (["/api/article-meta", "/api/shares", "/api/comments"].includes(url.pathname))
+      if (["/api/article-meta", "/api/article-counts", "/api/shares", "/api/comments"].includes(url.pathname))
         return await engagement(request, env, articles);
       if (url.pathname === "/api/analytics/events")
         return await collect(request, env);

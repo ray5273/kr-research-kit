@@ -882,13 +882,18 @@ function imageHtml(article, className = "") {
     : `<div class="ph">${escapeHtml((article.company || "").slice(0, 2))}</div>`;
 }
 
+// Filled by card-counts.js; stays hidden if the counts API is unavailable.
+function countsHtml(article, tag) {
+  return `<${tag} class="${tag === "div" ? "sub " : ""}counts" data-counts="/${article.slug}/" hidden></${tag}>`;
+}
+
 function cardHtml(article, { summary = false } = {}) {
-  return `<a class="card" href="/${article.slug}/"><div class="img">${imageHtml(article)}${asOfTag(article)}</div><div class="in"><div class="chips">${chipsHtml(article)}</div><h3>${escapeHtml(article.headline)}</h3>${summary ? `<p>${escapeHtml(article.summary)}</p>` : ""}</div></a>`;
+  return `<a class="card" href="/${article.slug}/"><div class="img">${imageHtml(article)}${asOfTag(article)}</div><div class="in"><div class="chips">${chipsHtml(article)}</div><h3>${escapeHtml(article.headline)}</h3>${summary ? `<p>${escapeHtml(article.summary)}</p>` : ""}${countsHtml(article, "div")}</div></a>`;
 }
 
 function rowHtml(article, rank) {
   const updated = article.researchDate !== article.asOfDate ? ` · 자료 업데이트 ${article.researchDate}` : "";
-  return `<a class="row" href="/${article.slug}/"><div><div class="chips">${rank ? `<span class="rank">${rank}</span>` : ""}${chipsHtml(article)}</div><h3>${escapeHtml(article.headline)}</h3><p>${escapeHtml(article.summary)}</p><div class="sub">기준일 ${article.asOfDate}${updated} · ${article.readMinutes}분</div></div>${imageHtml(article)}</a>`;
+  return `<a class="row" href="/${article.slug}/"><div><div class="chips">${rank ? `<span class="rank">${rank}</span>` : ""}${chipsHtml(article)}</div><h3>${escapeHtml(article.headline)}</h3><p>${escapeHtml(article.summary)}</p><div class="sub">기준일 ${article.asOfDate}${updated} · ${article.readMinutes}분${countsHtml(article, "span")}</div></div>${imageHtml(article)}</a>`;
 }
 
 function moreHtml(article, site) {
@@ -1147,6 +1152,7 @@ function buildSite(options) {
   writeFile(path.join(outDir,"search-index.json"),JSON.stringify(searchIndex));
   for(const name of ["discovery.js","search.js"]) writeFile(path.join(outDir,name),fs.readFileSync(path.join(__dirname,name),"utf8"));
   writeFile(path.join(outDir,"engagement.js"),fs.readFileSync(path.join(__dirname,"../../../site/engagement.js"),"utf8"));
+  writeFile(path.join(outDir,"card-counts.js"),fs.readFileSync(path.join(__dirname,"../../../site/card-counts.js"),"utf8"));
   writeFile(path.join(outDir,"search/index.html"),renderLayout(site,{
    title:`검색 | ${config.siteName}`,description:"공개 리서치 검색",canonical:`${config.baseUrl}/search/`,robots:"noindex,follow",
    head:'<script src="/discovery.js" defer></script><script src="/search.js" defer></script>',

@@ -257,12 +257,26 @@ try {
       .body,
     "",
   );
+  const counts = await dispatch("/api/article-counts");
+  assert.equal(counts.status, 200);
+  assert.equal(counts.headers.get("Cache-Control"), "public, max-age=60");
+  const countsBody = await counts.json(),
+    meta = await shares();
+  assert.deepEqual(countsBody[path], meta);
+  await db
+    .prepare("INSERT INTO article_shares(path,total) VALUES('/retired/',9)")
+    .run();
+  assert.equal("/retired/" in (await (await dispatch("/api/article-counts")).json()), false);
+  assert.equal((await post("/api/article-counts", {})).status, 405);
   await db.exec("DROP TABLE article_shares");
   const failed = await dispatch(
     "/api/article-meta?path=" + encodeURIComponent(path),
   );
   assert.equal(failed.status, 503);
   assert.equal("shares" in (await failed.json()), false);
+  const failedCounts = await dispatch("/api/article-counts");
+  assert.equal(failedCounts.status, 503);
+  assert.equal(failedCounts.headers.get("Cache-Control"), "private, no-store");
   console.log(
     "Engagement tests passed: real Worker/D1 concurrent dedup/counters, approval, deletion, paging, CSRF/auth, body bounds, rate limits, retention, failure states.",
   );

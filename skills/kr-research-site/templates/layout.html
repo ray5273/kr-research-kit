@@ -97,6 +97,8 @@ footer.site a:hover{color:var(--ink)}
 .row img,.row .ph{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:12px;display:block}
 .row .ph{display:grid;place-items:center;background:linear-gradient(135deg,var(--accent-soft),var(--surface));font:700 20px var(--display);color:var(--accent)}
 .row:hover h3{color:var(--accent)}
+.row .counts::before{content:" · "}
+.card .counts{margin-top:10px}
 .rank{font:700 15px/1 var(--display);color:var(--accent)}
 .empty{color:var(--muted);padding:24px 0}
 
@@ -213,5 +215,6 @@ button{cursor:pointer;min-height:44px}button:hover{border-color:var(--accent)}bu
 </main>
 <footer class="site"><div class="wrap"><p>{{footerLinks}}<button type="button" data-stats-settings>통계 설정</button></p><p>© {{year}} {{author}} · {{siteName}} · {{tagline}} · 공개 자료 기반 개인 리서치이며 투자 권유가 아닙니다.</p></div></footer>
 <script src="/analytics.js" defer></script>
+<script src="/card-counts.js" defer></script>
 </body>
 </html>

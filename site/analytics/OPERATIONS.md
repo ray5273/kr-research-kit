@@ -62,6 +62,8 @@ Cron 실패는 Cloudflare 대시보드의 실패 이력과 관리자 집계 지�
 
 SDK는 [공식 JavaScript 문서](https://developers.kakao.com/docs/ko/kakaotalk-share/js-link)의 `Kakao.Share.sendDefault` 및 [피드 템플릿](https://developers.kakao.com/docs/ko/message-template/default)을 사용한다. SDK 요청 성공은 메시지 전달 완료를 보장하지 않는다. 기본 공유는 기기 공유 완료, 링크 복사는 복사 성공 시에만 집계한다. 취소/확인된 오류는 제외한다. 통계는 동의 기반 방문 통계와 독립적으로 도입 시점부터 누적된다. API 장애 시 UI는 `—`로 표시하며 공유는 계속 작동한다.
 
+목록 카드의 `댓글 N · 공유 N`은 `site/card-counts.js`가 `GET /api/article-counts`(공개 글 전체 집계, 60초 캐시)로 채운다. 승인된 댓글만 세며, API 장애 시 숫자를 숨기고 카드는 그대로 둔다. 검색 결과에는 표시하지 않는다.
+
 공유카드는 `@napi-rs/canvas`와 번들 Noto Sans KR(SIL OFL, `assets/fonts/OFL.txt`)로 빌드한다. 1200×630 PNG, 내용·폰트·렌더러 해시 파일명을 사용하고 목록 썸네일과 분리한다. 운영 배포 후 OG HTML 및 PNG의 HTTP 200/Content-Type/크기를 확인한다. 카카오 [공유 디버거](https://developers.kakao.com/tool/debugger/sharing)에서 정식 글 URL을 입력하여 캐시를 초기화하고 미리보기를 확인한다. Facebook은 [Sharing Debugger](https://developers.facebook.com/tools/debug/), LinkedIn은 [Post Inspector](https://www.linkedin.com/post-inspector/)로 다시 수집한다. X 등 플랫폼은 재수집 시점이 다르며 즉시 갱신을 보장하지 않는다. 이미지 해시가 바뀌어도 플랫폼의 글 URL 캐시는 따로 갱신한다. 실제 메시지는 자동으로 전송하지 않는다.
 
 공개 API: `GET /api/article-meta?path=…`, `POST /api/shares` (`path,channel,requestId`), `GET /api/comments?path=…&cursor=…`, `POST /api/comments` (`path,nickname,body,website,requestId`). `requestId`는 UUID v4. POST는 JSON·동일 출처·16 KiB 제한, 공개 글 경로만 허용한다. 공유 ID는 영구 중복 방지하며 SQL 트리거로 원자적 증가한다. 댓글 ID도 삭제 후 개인정보 없는 tombstone으로 남겨 재전송이 댓글을 되살리지 않는다. 승인된 댓글은 seq 오름차순으로 20개씩 제공한다.

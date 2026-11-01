@@ -41,7 +41,7 @@ function block(
   ctx.textBaseline = "top";
   lines
     .slice(0, maxLines)
-    .forEach((line, i) => ctx.fillText(line, x, y + i * size * 1.4));
+    .forEach((line, i) => ctx.fillText(line, x, y + i * size * 1.3));
 }
 function shareCard(article, config, outDir) {
   if (!registered) {
@@ -49,15 +49,7 @@ function shareCard(article, config, outDir) {
       throw Error("Korean share font unavailable");
     registered = true;
   }
-  const data = [
-    article.headline,
-    article.summary,
-    article.company,
-    article.ticker,
-    article.sectors,
-    article.asOfDate,
-    config.siteName,
-  ];
+  const data = [article.headline, config.siteName];
   // Hash bytes too: font or renderer changes must also invalidate cached images.
   const hash = crypto
     .createHash("sha256")
@@ -74,49 +66,35 @@ function shareCard(article, config, outDir) {
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, 1200, 630);
     ctx.fillStyle = "#ea5a0c";
-    ctx.fillRect(0, 0, 16, 630);
+    ctx.fillRect(0, 606, 1200, 24);
+    // Kakao shows this card at phone width: only the title has to stay legible.
     block(ctx, config.siteName, {
-      x: 66,
-      y: 42,
-      width: 1068,
-      size: 25,
+      x: 72,
+      y: 60,
+      width: 1000,
+      size: 38,
+      maxLines: 1,
+      color: "#1d1d1f",
+      weight: 700,
+    });
+    // Same wordmark as the site header: ink name, orange period.
+    block(ctx, ".", {
+      x: 72 + ctx.measureText(config.siteName).width,
+      y: 60,
+      width: 60,
+      size: 38,
       maxLines: 1,
       color: "#ea5a0c",
       weight: 700,
     });
-    block(
-      ctx,
-      [article.company, article.ticker, ...article.sectors]
-        .filter(Boolean)
-        .join(" · "),
-      { x: 66, y: 98, width: 1068, size: 23, maxLines: 1, color: "#626267" },
-    );
     block(ctx, article.headline, {
-      x: 66,
-      y: 165,
-      width: 1068,
-      size: 52,
+      x: 72,
+      y: 170,
+      width: 1056,
+      size: 88,
       maxLines: 3,
       color: "#1d1d1f",
       weight: 800,
-    });
-    block(ctx, article.summary, {
-      x: 66,
-      y: 402,
-      width: 1068,
-      size: 25,
-      maxLines: 3,
-      color: "#424245",
-    });
-    ctx.fillStyle = "#e8e8ed";
-    ctx.fillRect(66, 555, 1068, 1);
-    block(ctx, `자료 기준일 ${article.asOfDate}`, {
-      x: 66,
-      y: 574,
-      width: 1068,
-      size: 21,
-      maxLines: 1,
-      color: "#626267",
     });
     fs.mkdirSync(path.dirname(file), { recursive: true });
     fs.writeFileSync(file, canvas.toBuffer("image/png"));

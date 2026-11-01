@@ -147,6 +147,25 @@ export async function engagement(
       return json({ ok: true });
     }
     if (request.method === "GET") {
+      if (route === "/api/article-counts") {
+        const [shares, comments] = await db.batch([
+          db.prepare("SELECT path,total n FROM article_shares"),
+          db.prepare(
+            "SELECT path,COUNT(*) n FROM comments WHERE status='approved' GROUP BY path",
+          ),
+        ]);
+        const counts = {};
+        const add = (rows, key) => {
+          for (const row of rows.results)
+            if (articles.has(row.path))
+              (counts[row.path] ||= { shares: 0, comments: 0 })[key] = row.n;
+        };
+        add(shares, "shares");
+        add(comments, "comments");
+        return Response.json(counts, {
+          headers: { ...headers, "Cache-Control": "public, max-age=60" },
+        });
+      }
       const path = validPath(url.searchParams.get("path"));
       if (route === "/api/article-meta") {
         const shares = await db
