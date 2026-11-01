@@ -142,8 +142,23 @@ const article = read("kr/soop-2026-06/index.html");
 assert(article.startsWith("<!doctype html>\n<html lang=\"ko\">"));
 assert(article.includes('<link rel="canonical" href="https://research.example.com/kr/soop-2026-06/">'));
 assert(article.includes("<title>SOOP(067160) | 순현금이 하방을 받치고, 트래픽 회복이 상방을 연다 | 2026-06-21</title>"));
-assert(/<meta name="description" content="순현금이 하방을 받치고, 트래픽 회복이 상방을 연다\. 현금 2,480억 원은 시가총액의 30%다\./.test(article));
-assert(article.includes('<meta property="og:image" content="https://research.example.com/kr/soop-2026-06/assets/naver-thumbnail.png">'));
+assert(/<meta name="description" content="현금 2,480억 원은 시가총액의 30%다\./.test(article));
+const shareUrl = /<meta property="og:image" content="([^"]+)">/.exec(article)[1];
+assert.match(shareUrl, /^https:\/\/research\.example\.com\/share\/kr-soop-2026-06-[a-f0-9]{16}\.png$/);
+const shareBytes = fs.readFileSync(path.join(outDir,new URL(shareUrl).pathname));
+assert.equal(shareBytes.readUInt32BE(16),1200);assert.equal(shareBytes.readUInt32BE(20),630);
+assert(article.includes('<meta property="og:image:width" content="1200">'));
+assert(article.includes('<meta property="og:image:alt"'));
+assert(article.includes('<meta property="og:title" content="SOOP 투자 메모">'));
+const searchIndex=JSON.parse(read('search-index.json'));
+assert.equal(searchIndex.length,2);
+assert.deepEqual(Object.keys(searchIndex[0]).sort(), ['slug','headline','company','ticker','market','sectors','tags','summary','datePublished','order'].sort());
+assert(!read('search-index.json').includes('INTERNAL'));
+assert(read('search/index.html').includes('content="noindex,follow"'));
+assert(!read('sitemap.xml').includes('/search/'));
+assert(article.indexOf('aria-label="연관글"')<article.indexOf('aria-label="이어서 읽기"'));
+assert(article.indexOf('aria-label="이어서 읽기"')<article.indexOf('id="comments"'));
+assert.equal((article.match(/data-share="kakao"/g)||[]).length,2);
 assert(article.includes('<p class="lead">순현금이 하방을 받치고, 트래픽 회복이 상방을 연다</p>'));
 assert(article.includes("자료 기준일 2026-06-21 · 최근 편집 2026-07-02"));
 assert(article.includes('<span class="tone-pos">배당수익률 4%가 하방을 받친다.</span>'));
@@ -206,7 +221,7 @@ assert(home.includes('class="panel latest"') && home.includes('class="panel popu
 assert(!home.includes('class="badge'), "no stance badge unless published.json states one");
 assert(!read("kr/index.html").includes("지금 읽을 만한 리서치"));
 assert(article.includes('<nav class="toc"') && article.includes('<a href="#answer" class="on">핵심 답변</a>'));
-assert(article.includes('<section class="more" aria-label="이어서 읽기">') && article.includes('href="/us/acme-2026-05/"'));
+assert(article.includes('<nav class="more" aria-label="이어서 읽기">') && article.includes('href="/us/acme-2026-05/"'));
 
 // display-only fields from published.json: stance, headline, quote, featured, popular
 build({ published: { articles: [soop, { ...acme, stance: "부정", headline: "Acme 짧은 제목", featured: 1, popular: 1, quote: [{ label: "기준 주가", value: "12.3", unit: "달러" }, { label: "변화", value: "-4.0%", tone: "down" }] }] } });
@@ -326,6 +341,37 @@ assert.throws(() => build({ published: { articles: [{ ...archiveEntry, article: 
 assert.throws(() => build({ published: { articles: [{ ...archiveEntry, article: "analysis-example/kr/Private/memo.md" }] } }), /private holdings/);
 write(archiveEntry.article, originalMemo.replace("2026-06-21", "2026-06-20"));
 assert.throws(() => build({ published: { articles: [archiveEntry] } }), /preserve.*기준일/);
+
+// Build environment wiring and a single shared summary across all discovery surfaces.
+const previousKey = process.env.KAKAO_JAVASCRIPT_KEY;
+try {
+  process.env.KAKAO_JAVASCRIPT_KEY = 'local-fixture-javascript-key';
+  const entry = {...archiveEntry, summary:'목록과 검색과 공유에서 같은 공개 요약.', sectors:['인터넷 플랫폼']};
+  write(archiveEntry.article, originalMemo);
+  build({published:{articles:[entry]}});
+  const html = read('kr/soop-2026-06/index.html');
+  assert(html.includes('data-kakao-key="local-fixture-javascript-key"'));
+  assert(html.includes('https://t1.kakaocdn.net/kakao_js_sdk/2.8.4/kakao.min.js'));
+  assert(html.includes('<meta property="og:description" content="목록과 검색과 공유에서 같은 공개 요약.">'));
+  assert.equal(JSON.parse(read('search-index.json'))[0].summary, entry.summary);
+  assert(read('index.html').includes(entry.summary));
+  assert(!html.includes('aria-label="연관글"'));
+  assert(!html.includes('aria-label="이어서 읽기"'));
+} finally {
+  if (previousKey === undefined) delete process.env.KAKAO_JAVASCRIPT_KEY;
+  else process.env.KAKAO_JAVASCRIPT_KEY = previousKey;
+}
+
+// Long Korean words wrap at measured glyph widths without dropping characters.
+const {createCanvas} = require('@napi-rs/canvas');
+const {wrap} = require('./share-card');
+const measure = createCanvas(1200,630).getContext('2d');
+measure.font = '700 52px "Research Korean"';
+const longKorean = '가나다라마바사아자차카타파하'.repeat(8);
+const wrapped = wrap(measure,longKorean,300);
+assert(wrapped.length > 1);
+assert(wrapped.every(line=>measure.measureText(line).width<=300));
+assert.equal(wrapped.join(''),longKorean);
 
 // --- helpers ---
 const numbered = collectCitations("근거 [2]와 [1], 다시 [2]. 코드 `[1]`, 미정 [99], 링크 [3](https://third.example).", ["1. [첫 자료](https://first.example)", "2. [둘째 자료](https://second.example)"]);

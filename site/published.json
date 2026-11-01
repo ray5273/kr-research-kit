@@ -35,7 +35,12 @@
       "article": "analysis-example/us/Alphabet/article.md",
       "archive": true,
       "datePublished": "2026-11-01",
-      "dateModified": "2026-11-01"
+      "dateModified": "2026-11-01",
+      "sectors": [
+        "인터넷 플랫폼",
+        "클라우드"
+      ],
+      "summary": "클라우드 성장과 AI 투자 부담을 함께 놓고, 실적 발표 후 주가 하락과 가치평가를 살펴본다."
     },
     {
       "memo": "analysis-example/kr/네이버/memo.md",
@@ -60,7 +65,12 @@
       "article": "analysis-example/kr/네이버/article.md",
       "archive": true,
       "datePublished": "2026-11-01",
-      "dateModified": "2026-11-01"
+      "dateModified": "2026-11-01",
+      "sectors": [
+        "인터넷 플랫폼",
+        "클라우드"
+      ],
+      "summary": "브룩필드 AI 팩토리 계약의 의미와 네이버 가치평가에 반영할 조건을 살펴본다."
     },
     {
       "memo": "analysis-example/kr-sector/battery-copper-foil/memo.md",
@@ -78,7 +88,12 @@
       "article": "analysis-example/kr-sector/battery-copper-foil/article.md",
       "archive": true,
       "datePublished": "2026-11-01",
-      "dateModified": "2026-11-01"
+      "dateModified": "2026-11-01",
+      "sectors": [
+        "동박",
+        "배터리 소재"
+      ],
+      "summary": "동박 3사의 가동률 회복이 흑자와 현금흐름 개선으로 이어질 조건을 비교한다."
     },
     {
       "memo": "analysis-example/us/Everpure/memo.md",
@@ -96,7 +111,11 @@
       "article": "analysis-example/us/Everpure/article.md",
       "archive": true,
       "datePublished": "2026-11-01",
-      "dateModified": "2026-11-01"
+      "dateModified": "2026-11-01",
+      "sectors": [
+        "데이터 스토리지"
+      ],
+      "summary": "NAND 원가 상승과 주가 흐름 사이에서 Everpure의 성장과 현금흐름을 살펴본다."
     },
     {
       "memo": "analysis-example/kr/한화엔진/memo.md",
@@ -113,7 +132,12 @@
       "article": "analysis-example/kr/한화엔진/article.md",
       "archive": true,
       "datePublished": "2026-11-01",
-      "dateModified": "2026-11-01"
+      "dateModified": "2026-11-01",
+      "sectors": [
+        "조선",
+        "선박 엔진"
+      ],
+      "summary": "한화엔진의 수주잔고가 매출과 이익, 주주가치로 이어지는 과정을 살펴본다."
     }
   ]
 }

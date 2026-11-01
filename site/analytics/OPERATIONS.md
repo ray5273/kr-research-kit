@@ -53,3 +53,21 @@ npx wrangler dev --test-scheduled
 Cron 실패는 Cloudflare 대시보드의 실패 이력과 관리자 집계 지연으로 확인한다. 장애 복구 후 `aggregate`를 다시 실행하면 최근 2일이 재집계된다. 상세 기록은 남아 있지만 2일보다 오래된 집계가 필요한 경우 보관 기간 내에서 별도 유지보수 작업으로 수행한다. 자동 재실행이 과거 365일을 원본 없이 재작성하지 않도록 한다.
 
 참고: [Worker 우선 라우팅](https://developers.cloudflare.com/workers/static-assets/routing/worker-script/), [Cloudflare Secrets](https://developers.cloudflare.com/workers/configuration/secrets/).
+
+## 글 탐색·공유·댓글 (0003)
+
+`site/published.json`의 선택 필드 `sectors: string[]`는 일반 태그와 별도로 관리한다. 연관글은 같은 시장·티커(티커 없는 글은 같은 시장·회사명), 같은 섹터, 발행일 내림차순으로 최대 4개를 선택한다. 국가·글 종류 제한은 없다. 전후 글은 발행일 내림차순, 동률은 게시 목록 순서이며 편집일과 무관하다. 검색 색인은 이 목록의 공개 제목·회사명·티커·섹터·태그·요약만 포함한다. `/search/`는 noindex이며 사이트맵에서 제외된다.
+
+카카오 JavaScript 키는 `site/site.config.json`의 `kakao.javascriptKey` 또는 Cloudflare **빌드 변수** `KAKAO_JAVASCRIPT_KEY`에 설정한다. JavaScript 키는 브라우저에 공개되는 키이며 Admin/REST 키를 넣지 않는다. 빌드 시 HTML에 반영하므로 변수 변경 후 재빌드한다. 운영 주소 `https://kr-research-site.ray527321.workers.dev`를 카카오 개발자 앱의 JavaScript SDK 도메인과 제품 링크 관리의 웹 도메인에 등록한다. 사용자에게 도메인 등록 완료를 확인받았더라도 실제 키 연결과 공유 미리보기는 배포 후 확인한다.
+
+SDK는 [공식 JavaScript 문서](https://developers.kakao.com/docs/ko/kakaotalk-share/js-link)의 `Kakao.Share.sendDefault` 및 [피드 템플릿](https://developers.kakao.com/docs/ko/message-template/default)을 사용한다. SDK 요청 성공은 메시지 전달 완료를 보장하지 않는다. 기본 공유는 기기 공유 완료, 링크 복사는 복사 성공 시에만 집계한다. 취소/확인된 오류는 제외한다. 통계는 동의 기반 방문 통계와 독립적으로 도입 시점부터 누적된다. API 장애 시 UI는 `—`로 표시하며 공유는 계속 작동한다.
+
+공유카드는 `@napi-rs/canvas`와 번들 Noto Sans KR(SIL OFL, `assets/fonts/OFL.txt`)로 빌드한다. 1200×630 PNG, 내용·폰트·렌더러 해시 파일명을 사용하고 목록 썸네일과 분리한다. 운영 배포 후 OG HTML 및 PNG의 HTTP 200/Content-Type/크기를 확인한다. 카카오 [공유 디버거](https://developers.kakao.com/tool/debugger/sharing)에서 정식 글 URL을 입력하여 캐시를 초기화하고 미리보기를 확인한다. Facebook은 [Sharing Debugger](https://developers.facebook.com/tools/debug/), LinkedIn은 [Post Inspector](https://www.linkedin.com/post-inspector/)로 다시 수집한다. X 등 플랫폼은 재수집 시점이 다르며 즉시 갱신을 보장하지 않는다. 이미지 해시가 바뀌어도 플랫폼의 글 URL 캐시는 따로 갱신한다. 실제 메시지는 자동으로 전송하지 않는다.
+
+공개 API: `GET /api/article-meta?path=…`, `POST /api/shares` (`path,channel,requestId`), `GET /api/comments?path=…&cursor=…`, `POST /api/comments` (`path,nickname,body,website,requestId`). `requestId`는 UUID v4. POST는 JSON·동일 출처·16 KiB 제한, 공개 글 경로만 허용한다. 공유 ID는 영구 중복 방지하며 SQL 트리거로 원자적 증가한다. 댓글 ID도 삭제 후 개인정보 없는 tombstone으로 남겨 재전송이 댓글을 되살리지 않는다. 승인된 댓글은 seq 오름차순으로 20개씩 제공한다.
+
+`/admin/`의 댓글 관리 링크 → `/admin/comments/`에서 글·상태(대기/공개)로 조회한다. 기존 로그인/쿠키를 재사용한다. 관리자 API는 `/admin/api/comments`, `POST /admin/api/comments/:id/approve`, `POST /admin/api/comments/:id/delete`이며 변경 요청은 동일 출처 JSON `{}`를 보낸다. 삭제 시 닉네임·본문을 즉시 지운다. 대기 댓글은 30일 경과 시 공개/관리 조회·승인에서 제외하고 시간별 Cron에서 닉네임·본문을 지운다. 승인 댓글은 관리자 삭제까지 보관한다. 삭제 요청은 `/contact/`로 받는다.
+
+남용 방지: Cloudflare가 제공한 IP를 일자별 HMAC으로 변환하여 10분 고정 구간당 공유 30회·댓글 3회로 제한한다. 원본 IP는 DB에 저장하지 않으며 HMAC 행은 24시간 후 만료, 시간별 Cron에서 정리한다. 동의 기반 방문 식별자와 연결하지 않는다. 서버는 클라이언트가 보고한 공유 동작을 셀 뿐, 외부 붙여넣기나 실제 메시지 전달을 확인하지 않는다.
+
+배포 순서: `npm ci && npm run check:site` → `npm run deploy:site`. 기존 배포 스크립트가 `wrangler d1 migrations apply DB --remote`로 **0003을 먼저 적용**한 뒤 Worker를 올린다. 기존 방문 집계·공유 누적값을 초기화하거나 테이블을 삭제하지 않는다. 롤백 시에도 추가 테이블을 유지한다. 배포 후 공개 글 meta/comments 조회, 비로그인 관리자 API 401, 관리자 승인/삭제를 확인한다. 운영 DB에 자동 샘플 댓글이나 테스트 공유를 넣지 않는다.

@@ -31,7 +31,7 @@
 2. 머리: 시장·티커·판단 배지 → 짧은 제목 → 작성자·기준일·읽는 시간 → **숫자 3칸**(기준 주가, 발표 전 대비, 기준 시나리오 가치. 메모에 있을 때만).
 3. **핵심 답변 박스**: 회색 면, 오렌지 라벨, 결론 한 문장 + 근거 숫자.
 4. 목차는 넓은 화면(1240px 이상)에서만 **화면 왼쪽 끝**(left 32px)에 세로선과 함께 띄운다(본문 옆에 붙으면 답답하다는 피드백). 읽는 위치는 오렌지로 표시. 모바일은 숨김.
-5. 글 끝: 업데이트 내역 → **이어서 읽기** 카드 2개(같은 종목 우선, 없으면 최신).
+5. 글 끝: 업데이트 내역·출처 → 공유 버튼 → **연관글 최대 4개**(같은 종목·같은 섹터·최신 발행순) → **이어서 읽기**(전체 발행순 이전·다음) → 승인된 댓글.
 
 ## 지켜야 할 기존 제약
 
@@ -40,3 +40,11 @@
 - 색상 마커(빨강=좋은 것, 파랑=안 좋은 의견, 갈색=추측)는 의미를 유지한다. 판단 배지 색과 충돌하지 않게 고른다.
 - 모바일 우선, 다크모드 지원, 외부 의존성은 Google Fonts·CDN 폰트 정도로 최소화한다(빌드는 Node stdlib).
 - 판단 배지와 기준 주가, 시나리오 가치는 메모에 있는 값만 쓴다. 메모에 없으면 표시하지 않는다(`published.json`에서 지정하거나 메모의 Structured Stance에서 읽는다).
+
+## Search, sharing and comments
+
+Keep the existing white/black surfaces and orange accent tokens. Header navigation includes 검색. The search page has a visible query label, result count, reset, retry, empty state and back navigation; restore the query on browser history changes. Results show the same short title/summary as lists.
+
+Article order: header metadata and share controls → article → end share controls and count explanation → related cards (maximum four) → publication previous/next → comments. Share controls are 카카오톡 / 공유하기 / 링크 복사 in a wrapping row with 44px targets. A live status explains success, cancel or failure. Counts start at `—` until a successful API response. Comment count links to the comment heading. Forms have visible labels, native validation, a pending-approval explanation and privacy/contact links. Render user text with textContent, preserving newlines; never render submitted markup. Maintain keyboard outlines, dark surfaces and no horizontal page overflow at 320/390px.
+
+Share artwork is 1200×630: orange left rule, site name, company/ticker/sectors, large Korean title, concise summary and 자료 기준일. Use measured text wrapping and bundled Korean font; lists retain their own thumbnail assets.

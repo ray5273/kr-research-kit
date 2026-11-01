@@ -11,12 +11,12 @@
 <meta property="og:site_name" content="{{siteName}}">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:type" content="{{ogType}}">
-<meta property="og:title" content="{{title}}">
+<meta property="og:title" content="{{shareTitle}}">
 <meta property="og:description" content="{{description}}">
 <meta property="og:url" content="{{canonical}}">
 {{ogImage}}
 <meta name="twitter:card" content="{{twitterCard}}">
-<meta name="twitter:title" content="{{title}}">
+<meta name="twitter:title" content="{{shareTitle}}">
 <meta name="twitter:description" content="{{description}}">
 {{head}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
@@ -186,6 +186,23 @@ td.c,th.c{text-align:left}
 .stats-actions button{flex:1;padding:12px;border:1px solid var(--ink-2);border-radius:8px;background:var(--surface);color:var(--ink);font:600 14px var(--sans);cursor:pointer}
 [data-stats-settings]{border:0;padding:0;background:none;color:var(--ink-2);font:inherit;cursor:pointer}
 button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+
+/* Discovery and reader participation share the site's editorial tokens. */
+button,input,textarea,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;max-width:100%}
+button{cursor:pointer;min-height:44px}button:hover{border-color:var(--accent)}button:disabled{opacity:.6;cursor:wait}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+[hidden]{display:none!important}
+.share-buttons{display:flex;gap:8px;flex-wrap:wrap}.sharing{margin:22px 0 8px}.sharing [role=status]{min-height:1.5em;margin:6px 0}
+.byline a{text-decoration:underline;text-underline-offset:3px}
+.comments{scroll-margin-top:85px}.comments form{padding:20px;background:var(--surface);border-radius:14px;margin:24px 0}
+.comments label{display:block;font-size:14px;margin-bottom:16px}.comments input,.comments textarea{display:block;width:100%;margin-top:6px}
+.comments textarea{resize:vertical;min-height:130px}.spam-trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+#comment-list{list-style:none;padding:0}#comment-list li{border-bottom:1px solid var(--line);padding:22px 0;font-size:14px}
+#comment-list p{white-space:pre-wrap;overflow-wrap:anywhere;font-size:16px;margin:10px 0}#comment-list time{color:var(--muted);font-size:12px}
+.search-form>div{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.search-form input{flex:1;min-width:100px}.search-form label{display:block;margin-bottom:8px;font-size:14px}
+.search-result{grid-template-columns:1fr}.search-form a{font-size:14px;text-decoration:underline}
+@media(max-width:400px){header.site .wrap{height:auto;min-height:56px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}header.site nav{flex-wrap:wrap}header.site .brand span{display:none}header.site nav{gap:10px;font-size:12px}header.site .wrap{gap:8px}.comments form{padding:16px}.share-buttons button{font-size:14px;padding:9px 12px}}
+
 </style>
 {{jsonLd}}
 </head>

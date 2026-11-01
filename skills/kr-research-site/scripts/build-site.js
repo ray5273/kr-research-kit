@@ -5,6 +5,8 @@
 // pages, sitemap.xml, feed.xml, robots.txt, llms.txt, llms-full.txt, urls.json
 // and — only when adsense.client is configured — ads.txt and ad slots.
 
+const {related, neighbors} = require("./discovery");
+const {shareCard} = require("./share-card");
 const crypto = require("crypto");
 const fs = require("fs");
 const os = require("os");
@@ -494,6 +496,7 @@ function loadArticle(entry, options) {
   assert(SLUG_PATTERN.test(entry.slug || ""), `Invalid slug for ${entry.memo}: use lowercase a-z, 0-9, '-' and '/'`);
   const memoPath = safety.checkPath(path.resolve(root, entry.memo), "Memo");
   assert(entry.article === undefined || typeof entry.article === "string", "article must be a path");
+  assert(entry.sectors === undefined || (Array.isArray(entry.sectors) && entry.sectors.every(s => typeof s === "string" && s.trim())), "sectors must be a string array");
   assert(entry.archive === undefined || typeof entry.archive === "boolean", "archive must be a boolean");
   const contentPath = entry.article ? safety.checkPath(path.resolve(root, entry.article), "Article") : memoPath;
   const markdown = fs.readFileSync(contentPath, "utf8");
@@ -548,8 +551,8 @@ function loadArticle(entry, options) {
 
   const answerSection = citedSections.find(section => section.heading === ANSWER_HEADING);
   const answerExtracted = extractAnswer(answerSection.body);
-  const leadSentence = /[.!?。]$/.test(answer.lead) ? answer.lead : `${answer.lead}.`;
-  const description = truncate(plainText(`${leadSentence} ${answer.answer}`), 160);
+  const summary = entry.summary || sentenceSummary(plainText(answer.answer || answer.lead), 120);
+  const description = summary;
   const title = [ticker ? `${company}(${ticker})` : company, issue, asOfDate].join(" | ");
 
   const thumbnailPath = path.join(path.dirname(memoPath), "assets", "naver-thumbnail.png");
@@ -575,6 +578,7 @@ function loadArticle(entry, options) {
     ticker,
     exchange: entry.exchange || (market === "kr" && ticker ? "KRX" : ""),
     market,
+    sectors: [...new Set(entry.sectors || [])],
     tags: (entry.tags && entry.tags.length ? entry.tags : [company, ticker]).filter(Boolean),
     asOfDate,
     datePublished,
@@ -591,7 +595,7 @@ function loadArticle(entry, options) {
     tables: markdownTables(cited.body),
     thumbnailPath: fs.existsSync(thumbnailPath) ? thumbnailPath : null,
     headline: entry.headline || h1,
-    summary: entry.summary || sentenceSummary(plainText(answer.answer || answer.lead), 120),
+    summary,
     stance: entry.stance ? STANCES[entry.stance] : null,
     quote,
     featured: Number.isFinite(entry.featured) ? entry.featured : null,
@@ -625,6 +629,7 @@ function navHtml(site) {
   const links = [];
   for (const market of site.markets) links.push(`<a href="/${market}/">${escapeHtml(MARKET_SHORT[market] || MARKET_LABELS[market] || market)}</a>`);
   if (site.pages.some(page => page.slug === "about")) links.push(`<a href="/about/">소개</a>`);
+  links.push(`<a href="/search/">검색</a>`);
   return links.join("");
 }
 
@@ -645,10 +650,11 @@ function verificationMeta(config) {
 function renderLayout(site, page) {
   const { config } = site;
   const ogImage = page.image
-    ? `<meta property="og:image" content="${escapeHtml(page.image)}">\n<meta name="twitter:image" content="${escapeHtml(page.image)}">`
+    ? `<meta property="og:image" content="${escapeHtml(page.image)}">\n<meta name="twitter:image" content="${escapeHtml(page.image)}">${page.imageAlt ? `\n<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="${escapeHtml(page.imageAlt)}"><meta name="twitter:image:alt" content="${escapeHtml(page.imageAlt)}">` : ""}`
     : "";
   return fill(site.templates.layout, {
     title: escapeHtml(page.title),
+    shareTitle: escapeHtml(page.shareTitle || page.title),
     description: escapeHtml(page.description),
     canonical: escapeHtml(page.canonical),
     baseUrl: escapeHtml(config.baseUrl),
@@ -772,12 +778,15 @@ function renderArticle(article, site, outDir, safety) {
     ...(updates ? [["updates", UPDATES_HEADING]] : []),
     ...(article.sources.length ? [["sources", SOURCES_HEADING]] : []),
   ];
+  const shareImage = article.shareImage || (article.shareImage = shareCard(article, config, outDir));
   const content = fill(site.templates.article, {
     toc: `<nav class="toc" aria-label="목차">${tocItems.map(([id, label], index) => `<a href="#${id}"${index === 0 ? ' class="on"' : ""}>${escapeHtml(truncate(label, 24))}</a>`).join("")}</nav>`,
     tocScript: TOC_SCRIPT,
+    sharing: sharingHtml(article, config),
+    comments: commentsHtml(),
     chips: chipsHtml(article, { exchange: true }),
     headline: escapeHtml(article.headline),
-    metaLine: `${escapeHtml(config.author?.name || config.siteName)} · 자료 기준일 <time datetime="${article.asOfDate}">${article.asOfDate}</time> · 사이트 발행 <time datetime="${article.datePublished}">${article.datePublished}</time> · 최근 편집 <time datetime="${article.dateModified}">${article.dateModified}</time> · ${article.readMinutes}분`,
+    metaLine: `${escapeHtml(config.author?.name || config.siteName)} · 자료 기준일 <time datetime="${article.asOfDate}">${article.asOfDate}</time> · 사이트 발행 <time datetime="${article.datePublished}">${article.datePublished}</time> · 최근 편집 <time datetime="${article.dateModified}">${article.dateModified}</time> · ${article.readMinutes}분 · <span data-share-count title="사이트 공유 기능 이용 횟수이며 링크 복사를 포함합니다">공유 —</span> · <a href="#comments" data-comment-count>댓글 —</a>`,
     archiveNotice: article.archive ? '<p class="archive-note">기록 글 · 자료 기준일 당시의 수치와 판단을 보존했습니다. 이후 변동은 반영하지 않았습니다.</p>' : "",
     quote: article.quote.length ? `<div class="quote">${article.quote.map(cell => `<div><div class="k">${escapeHtml(cell.label)}</div><div class="v${cell.tone ? ` ${cell.tone}` : ""}">${escapeHtml(cell.value)}${cell.unit ? `<small>${escapeHtml(cell.unit)}</small>` : ""}</div></div>`).join("")}</div>` : "",
     more: moreHtml(article, site),
@@ -794,15 +803,19 @@ function renderArticle(article, site, outDir, safety) {
   });
   const html = renderLayout(site, {
     title: article.title,
+    shareTitle: article.headline,
+    imageAlt: `${article.headline} · ${article.summary} · 자료 기준일 ${article.asOfDate}`,
     description: article.description,
     canonical: article.url,
     ogType: "article",
-    image,
+    image: shareImage,
     head: [
+      `<script src="/engagement.js" defer></script>`,
+      ...(config.kakao?.javascriptKey || process.env.KAKAO_JAVASCRIPT_KEY ? [`<script defer src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.4/kakao.min.js" crossorigin="anonymous"></script>`] : []),
       `<meta property="article:published_time" content="${isoKst(article.datePublished)}">`,
       `<meta property="article:modified_time" content="${isoKst(article.dateModified)}">`,
     ].join("\n"),
-    jsonLd: articleJsonLd(article, site, image),
+    jsonLd: articleJsonLd(article, site, shareImage),
     content,
   });
   writeFile(path.join(outDir, article.slug, "index.html"), html);
@@ -852,11 +865,19 @@ function rowHtml(article, rank) {
 }
 
 function moreHtml(article, site) {
-  const others = site.articles.filter(other => other !== article);
-  const same = others.filter(other => article.ticker && other.ticker === article.ticker);
-  const picks = [...same, ...others.filter(other => !same.includes(other))].slice(0, 2);
-  if (!picks.length) return "";
-  return `<section class="more" aria-label="이어서 읽기"><h2>이어서 읽기</h2><div class="pair">${picks.map(pick => cardHtml(pick)).join("")}</div></section>`;
+  const picks = related(article, site.articles), {previous, next} = neighbors(article, site.articles);
+  const link = (a,label) => a ? `<a href="/${a.slug}/"><span class="sub">${label}</span><h3>${escapeHtml(a.headline)}</h3></a>` : "";
+  return (picks.length ? `<section class="more" aria-label="연관글"><h2>연관글</h2><div class="pair">${picks.map(pick=>cardHtml(pick)).join("")}</div></section>` : "") +
+    (previous || next ? `<nav class="more" aria-label="이어서 읽기"><h2>이어서 읽기</h2><div class="pair">${link(previous,"이전 글")}${link(next,"다음 글")}</div></nav>` : "");
+}
+function sharingHtml(article, config) {
+ return `<div class="sharing" data-url="${escapeHtml(article.url)}" data-title="${escapeHtml(article.headline)}" data-summary="${escapeHtml(article.summary)}" data-image="${escapeHtml(article.shareImage)}" data-kakao-key="${escapeHtml(config.kakao?.javascriptKey || process.env.KAKAO_JAVASCRIPT_KEY || "")}">
+ <div class="share-buttons" role="group" aria-label="글 공유"><button type="button" data-share="kakao">카카오톡</button><button type="button" data-share="native">공유하기</button><button type="button" data-share="copy">링크 복사</button></div><p class="sub" role="status" aria-live="polite"></p></div>`;
+}
+function commentsHtml() {
+ return `<section class="comments more" id="comments" aria-labelledby="comments-title"><h2 id="comments-title">댓글</h2><p class="sub">관리자 승인 후 공개됩니다. 삭제 요청은 <a href="/contact/">문의</a>로 보내 주세요. <a href="/privacy/">개인정보 안내</a></p>
+ <form id="comment-form"><label>닉네임<input name="nickname" maxlength="30" required autocomplete="off"></label><label>댓글<textarea name="body" maxlength="2000" rows="5" required></textarea></label><div class="spam-trap" aria-hidden="true"><label>웹사이트<input name="website" tabindex="-1" autocomplete="off"></label></div><button type="submit">댓글 등록</button><p role="status" aria-live="polite" id="comment-status"></p></form>
+ <p id="comments-status" role="status" aria-live="polite"></p><ol id="comment-list"></ol><button type="button" id="comments-more" hidden>댓글 더 불러오기</button><button type="button" id="comments-retry" hidden>다시 시도</button><noscript>댓글을 보거나 작성하려면 JavaScript를 켜 주세요.</noscript></section>`;
 }
 
 // Recommended: entries with a `featured` rank first, then the latest ones.
@@ -1025,13 +1046,13 @@ function buildSite(options) {
   const slugs = new Set();
   const articles = published.articles.map(entry => {
     assert(!slugs.has(entry.slug), `Duplicate slug in published.json: ${entry.slug}`);
-    assert(!/^(admin|api)(\/|$)/.test(entry.slug), `Reserved application slug: ${entry.slug}`);
+    assert(!/^(admin|api|search|share)(\/|$)/.test(entry.slug), `Reserved application slug: ${entry.slug}`);
     slugs.add(entry.slug);
     return loadArticle(entry, { root, safety, config });
   }).map((article, order) => Object.assign(article, { order })).sort((a, b) => b.dateModified.localeCompare(a.dateModified) || b.datePublished.localeCompare(a.datePublished) || a.slug.localeCompare(b.slug));
 
   const pages = loadPages(options.pagesDir, safety);
-  assert(pages.every(page => !/^(admin|api)(\/|$)/.test(page.slug)), "Reserved application page slug");
+  assert(pages.every(page => !/^(admin|api|search|share)(\/|$)/.test(page.slug)), "Reserved application page slug");
   const markets = [...new Set(articles.map(article => article.market))].sort((a, b) => Object.keys(MARKET_LABELS).indexOf(a) - Object.keys(MARKET_LABELS).indexOf(b));
   const templates = Object.fromEntries(["layout", "article", "index"].map(name => [name, fs.readFileSync(path.join(TEMPLATE_DIR, `${name}.html`), "utf8")]));
   const site = { config, templates, pages, markets, articles, buildYear: options.buildYear || new Date().getFullYear() };
@@ -1083,6 +1104,15 @@ function buildSite(options) {
   }));
 
   writeFile(path.join(outDir, "sitemap.xml"), sitemapXml(urlEntries.filter(entry => entry.inSitemap)));
+  const searchIndex = articles.map(a=>({slug:a.slug,headline:a.headline,company:a.company,ticker:a.ticker,market:a.market,sectors:a.sectors,tags:a.tags,summary:a.summary,datePublished:a.datePublished,order:a.order}));
+  writeFile(path.join(outDir,"search-index.json"),JSON.stringify(searchIndex));
+  for(const name of ["discovery.js","search.js"]) writeFile(path.join(outDir,name),fs.readFileSync(path.join(__dirname,name),"utf8"));
+  writeFile(path.join(outDir,"engagement.js"),fs.readFileSync(path.join(__dirname,"../../../site/engagement.js"),"utf8"));
+  writeFile(path.join(outDir,"search/index.html"),renderLayout(site,{
+   title:`검색 | ${config.siteName}`,description:"공개 리서치 검색",canonical:`${config.baseUrl}/search/`,robots:"noindex,follow",
+   head:'<script src="/discovery.js" defer></script><script src="/search.js" defer></script>',
+   content:`<div class="wrap narrow"><header class="list-head"><h1>리서치 검색</h1><p>제목·종목·섹터로 다음 글을 찾아보세요.</p></header><form id="search-form" action="/search/" method="get" class="search-form"><label for="search-q">검색어</label><div><input id="search-q" name="q" type="search" autocomplete="off"><button>검색</button><a href="/search/" id="search-reset">초기화</a></div></form><p id="search-status" role="status" aria-live="polite"></p><button id="search-retry" hidden>다시 시도</button><div id="search-results" class="list"></div><a href="/" id="search-back">뒤로가기</a><noscript>검색하려면 JavaScript를 켜 주세요.</noscript></div>`
+  }));
   writeFile(path.join(outDir, "feed.xml"), feedXml(site, articles));
   writeFile(path.join(outDir, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: /admin\n\nSitemap: ${config.baseUrl}/sitemap.xml\n`);
   writeFile(path.join(outDir, "llms.txt"), llmsTxt(site, articles));

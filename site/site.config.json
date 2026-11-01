@@ -27,5 +27,8 @@
       "https://api.indexnow.org/indexnow",
       "https://searchadvisor.naver.com/indexnow"
     ]
+  },
+  "kakao": {
+    "javascriptKey": ""
   }
 }

@@ -10,6 +10,9 @@ import {
   sameOrigin,
   consumeAttempt,
 } from "./auth.mjs";
+import { engagement, cleanupEngagement } from "./engagement.mjs";
+import commentsHTML from "./comments.html";
+import commentsJS from "./comments.client.js";
 import loginHTML from "./login.html";
 import { sanitizeEvent, uuid } from "./core.mjs";
 import { aggregate, report } from "./store.mjs";
@@ -248,6 +251,8 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     try {
+      if (["/api/article-meta", "/api/shares", "/api/comments"].includes(url.pathname))
+        return await engagement(request, env, articles);
       if (url.pathname === "/api/analytics/events")
         return await collect(request, env);
       if (url.pathname === "/admin" || url.pathname.startsWith("/admin/")) {
@@ -275,6 +280,10 @@ export default {
             return redirect("/admin/login");
           return json({ error: "관리자 로그인이 필요합니다." }, 401);
         }
+        if (url.pathname === "/admin/api/comments" || url.pathname.startsWith("/admin/api/comments/"))
+          return await engagement(request, env, articles, {admin: true});
+        if (["/admin/comments/", "/admin/comments.js"].includes(url.pathname) && ["GET", "HEAD"].includes(request.method))
+          return new Response(request.method === "HEAD" ? null : (url.pathname.endsWith(".js") ? commentsJS : commentsHTML), {headers: {...headers, "Content-Type": url.pathname.endsWith(".js") ? "text/javascript; charset=utf-8" : "text/html; charset=utf-8", "Content-Security-Policy": csp}});
         if (!["GET", "HEAD"].includes(request.method))
           return json({ error: "method" }, 405);
         if (url.pathname === "/admin/api/analytics") {
@@ -319,6 +328,6 @@ export default {
     }
   },
   async scheduled(controller, env, ctx) {
-    ctx.waitUntil(aggregate(env.DB, controller.scheduledTime));
+    ctx.waitUntil(Promise.all([aggregate(env.DB, controller.scheduledTime), cleanupEngagement(env.DB, controller.scheduledTime)]));
   },
 };

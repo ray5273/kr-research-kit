@@ -55,3 +55,5 @@
 
 - 모든 글: 작성자, 최초 기준일, 최근 업데이트일, 번호 출처, 면책문.
 - `site/pages/`: 소개(작성자, AI 보조 작성 공개), 면책 고지, 개인정보처리방침(AdSense 쿠키 고지), 문의.
+
+Search pages use `noindex,follow` and are omitted from sitemap/feed. Their static index is generated solely from `published.json` article models; exclude body text, source paths and unpublished memos. Article OG/Twitter title uses the short headline while the SEO title retains company/issue/date. OG images are separate generated 1200×630 PNGs with absolute HTTPS URLs, image width/height/type and descriptive alt metadata. Share URLs are canonical article URLs without query or fragment. Use platform recrawl tools after deployments; see site/analytics/OPERATIONS.md.
