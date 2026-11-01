@@ -273,9 +273,9 @@ function renderInline(text, ctx) {
 }
 
 function renderTable(table, ctx) {
-  const cls = alignment => (alignment === "right" ? ' class="r"' : alignment === "center" ? ' class="c"' : "");
-  const head = table.headers.map((cell, index) => `<th${cls(table.alignments[index])}>${renderInline(cell, ctx)}</th>`).join("");
-  const rows = table.rows.map(row => `<tr>${row.map((cell, index) => `<td${cls(table.alignments[index])}>${renderInline(cell, ctx)}</td>`).join("")}</tr>`).join("\n");
+  // Public tables use one consistent left alignment regardless of Markdown hints.
+  const head = table.headers.map(cell => `<th>${renderInline(cell, ctx)}</th>`).join("");
+  const rows = table.rows.map(row => `<tr>${row.map(cell => `<td>${renderInline(cell, ctx)}</td>`).join("")}</tr>`).join("\n");
   return `<div class="table-scroll"><table><thead><tr>${head}</tr></thead><tbody>\n${rows}\n</tbody></table></div>`;
 }
 

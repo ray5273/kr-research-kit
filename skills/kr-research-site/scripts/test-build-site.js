@@ -152,7 +152,9 @@ assert(article.includes('<span class="tone-spec">하반기 회복 가능성이 �
 assert(article.includes('class="legend"'));
 assert(article.includes('<img src="assets/SOOP-chart.png" alt="SOOP 주가 추세" width="1" height="1"'));
 assert(fs.existsSync(path.join(outDir, "kr/soop-2026-06/assets/SOOP-chart.png")));
-assert(article.includes("<table>") && article.includes('<td class="r">9.8배</td>'));
+assert(article.includes("<table>") && article.includes('<td>9.8배</td>'));
+assert(!/<(?:td|th) class="[rc]"/.test(article), "Markdown alignment hints must not change public cell alignment");
+assert(article.includes("th,td{text-align:left;"));
 assert(article.includes("<ul><li>플랫폼 수익성<ul><li>별풍선 단가</li></ul></li><li>비용 통제와 내부 파일</li></ul>"));
 assert(article.includes("<ol><li>트래픽 둔화 &amp; 규제</li><li>경쟁 심화</li></ol>"));
 assert(article.includes('1분기 분기보고서<sup class="cite"><a href="#src-1"'));
