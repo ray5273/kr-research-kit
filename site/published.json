@@ -889,6 +889,83 @@
       "archive": true,
       "datePublished": "2026-11-01",
       "dateModified": "2026-11-01"
+    },
+    {
+      "memo": "analysis-example/us/Tesla/fsd-capex-analysis.md",
+      "slug": "us/tesla-fsd-capex-2026-q2",
+      "company": "테슬라",
+      "ticker": "TSLA",
+      "market": "us",
+      "headline": "테슬라 FSD 구독과 Capex: 가장 수익성 높은 사업이 아직 적자인 이유",
+      "issue": "FSD 구독 경제학과 Capex 폭증",
+      "archive": true,
+      "datePublished": "2026-11-02",
+      "dateModified": "2026-11-02"
+    },
+    {
+      "memo": "analysis-example/kr/솔루스첨단소재/solus-foil-proxy-2026-04.md",
+      "article": "analysis-example/kr/솔루스첨단소재/solus-foil-proxy-2026-04.article.md",
+      "slug": "kr/solus-foil-proxy-2026-04",
+      "company": "솔루스첨단소재",
+      "ticker": "336370",
+      "market": "kr",
+      "headline": "솔루스첨단소재: 헝가리 동박 수출로 본 전지박 회복 신호",
+      "issue": "헝가리 동박 수출 대리지표",
+      "archive": true,
+      "datePublished": "2026-11-02",
+      "dateModified": "2026-11-02"
+    },
+    {
+      "memo": "analysis-example/kr/두산에너빌리티/수주통합분석.md",
+      "article": "analysis-example/kr/두산에너빌리티/수주통합분석.article.md",
+      "slug": "kr/doosan-enerbility-orders-2026-04",
+      "company": "두산에너빌리티",
+      "ticker": "034020",
+      "market": "kr",
+      "headline": "두산에너빌리티 수주 통합 분석: 수주잔고와 계약공시를 나눠 보기",
+      "issue": "수주잔고와 계약공시의 관계",
+      "archive": true,
+      "datePublished": "2026-11-02",
+      "dateModified": "2026-11-02"
+    },
+    {
+      "memo": "analysis-example/kr/LG CNS/수주통합분석.md",
+      "article": "analysis-example/kr/LG CNS/수주통합분석.article.md",
+      "slug": "kr/lg-cns-orders-2026-04",
+      "company": "LG CNS",
+      "ticker": "064400",
+      "market": "kr",
+      "headline": "LG CNS 수주 통합 분석: 수주잔고와 계약공시를 나눠 보기",
+      "issue": "수주잔고와 계약공시의 관계",
+      "archive": true,
+      "datePublished": "2026-11-02",
+      "dateModified": "2026-11-02"
+    },
+    {
+      "memo": "analysis-example/kr/한전KPS/수주계약리스트.md",
+      "article": "analysis-example/kr/한전KPS/수주계약리스트.article.md",
+      "slug": "kr/kepco-kps-contracts-2026-04",
+      "company": "한전KPS",
+      "ticker": "051600",
+      "market": "kr",
+      "headline": "한전KPS 수주계약 공시 리스트: 정정이 잦은 계약 읽기",
+      "issue": "최근 12개월 계약공시 정리",
+      "archive": true,
+      "datePublished": "2026-11-02",
+      "dateModified": "2026-11-02"
+    },
+    {
+      "memo": "analysis-example/kr/한미글로벌/수주계약리스트.md",
+      "article": "analysis-example/kr/한미글로벌/수주계약리스트.article.md",
+      "slug": "kr/hanmi-global-contracts-2026-04",
+      "company": "한미글로벌",
+      "ticker": "053690",
+      "market": "kr",
+      "headline": "한미글로벌 수주계약 공시 리스트: 정정 공시를 프로젝트로 묶기",
+      "issue": "최근 계약공시 정리",
+      "archive": true,
+      "datePublished": "2026-11-02",
+      "dateModified": "2026-11-02"
     }
   ]
 }

@@ -6,7 +6,7 @@
 // and — only when adsense.client is configured — ads.txt and ad slots.
 
 const {related, neighbors} = require("./discovery");
-const {shareCard} = require("./share-card");
+const {shareCard, coverCard} = require("./share-card");
 const crypto = require("crypto");
 const fs = require("fs");
 const os = require("os");
@@ -579,7 +579,6 @@ function loadArticle(entry, options) {
   const description = summary;
   const title = [ticker ? `${company}(${ticker})` : company, issue, asOfDate].join(" | ");
 
-  const thumbnailPath = path.join(path.dirname(memoPath), "assets", "naver-thumbnail.png");
   // Stance badge and quote cells are display-only and come from published.json,
   // never derived: the author states them explicitly or they are not shown.
   assert(!entry.stance || STANCES[entry.stance], `Invalid stance for ${entry.memo}: use pos/neu/neg or 긍정/중립/부정`);
@@ -618,7 +617,6 @@ function loadArticle(entry, options) {
     hasColorMarkers: COLOR_MARKER_PATTERN.test(markdown),
     faq: faqFromMarkdown(markdown),
     tables: markdownTables(cited.body),
-    thumbnailPath: fs.existsSync(thumbnailPath) ? thumbnailPath : null,
     headline: entry.headline || h1,
     summary,
     stance: entry.stance ? STANCES[entry.stance] : null,
@@ -769,12 +767,6 @@ function renderArticle(article, site, outDir, safety) {
   const { config } = site;
   const resolveImage = createImageResolver(article, outDir, safety, config);
   const ctx = { resolveImage, baseUrl: config.baseUrl };
-  let image = null;
-  if (article.thumbnailPath) {
-    // The Naver thumbnail is optional for the site: skip it when it is untracked.
-    try { image = resolveImage(path.relative(article.memoDir, article.thumbnailPath)).absolute; } catch {}
-  }
-
   const bodySections = article.sections.filter(section => section.heading !== UPDATES_HEADING);
   const midIndex = bodySections.length >= 4 ? Math.floor(bodySections.length / 2) : -1;
   const bodyHtml = [];
@@ -784,12 +776,7 @@ function renderArticle(article, site, outDir, safety) {
     if (index === 0) bodyHtml.push(adSlot(config, "afterSummary"));
   });
   if (!bodySections.length) bodyHtml.push(adSlot(config, "afterSummary"));
-  if (!image) {
-    const firstImage = /!\[[^\]]*]\(([^)\s]+)\)/.exec(bodySections.map(section => section.body).join("\n"));
-    if (firstImage) image = resolveImage(firstImage[1])?.absolute || null;
-  }
-  if (!image && config.defaultOgImage) image = config.defaultOgImage;
-  if (image) article.cardImage = image.startsWith(`${config.baseUrl}/`) ? image.slice(config.baseUrl.length) : image;
+  article.cardImage = coverCard(article, outDir);
 
   const updates = article.sections.find(section => section.heading === UPDATES_HEADING);
   const updatesHtml = updates ? `<section class="updates"><h2 id="updates">${UPDATES_HEADING}</h2>\n${renderBlocks(updates.body, ctx)}</section>` : "";

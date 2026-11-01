@@ -42,6 +42,7 @@ function block(
   lines
     .slice(0, maxLines)
     .forEach((line, i) => ctx.fillText(line, x, y + i * size * 1.3));
+  return { lines: Math.min(lines.length, maxLines), size };
 }
 function shareCard(article, config, outDir) {
   if (!registered) {
@@ -101,4 +102,62 @@ function shareCard(article, config, outDir) {
   }
   return config.baseUrl + relative;
 }
-module.exports = { shareCard, wrap };
+// List thumbnail: the card already prints the headline, so this only names the subject.
+function coverCard(article, outDir) {
+  if (!registered) {
+    if (!GlobalFonts.registerFromPath(font, "Research Korean"))
+      throw Error("Korean share font unavailable");
+    registered = true;
+  }
+  const label = article.ticker || article.sectors?.[0] || "";
+  const hash = crypto
+    .createHash("sha256")
+    .update(JSON.stringify([article.company, label]))
+    .update(fs.readFileSync(font))
+    .update(fs.readFileSync(__filename))
+    .digest("hex")
+    .slice(0, 16);
+  const relative = `/covers/${article.slug.replaceAll("/", "-")}-${hash}.png`,
+    file = path.join(outDir, relative);
+  if (!fs.existsSync(file)) {
+    const canvas = createCanvas(800, 500),
+      ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#f5f5f7";
+    ctx.fillRect(0, 0, 800, 500);
+    // Measure first so one- and two-line names both sit centered with their label.
+    const nameLines = (size) => {
+      ctx.font = `800 ${size}px "Research Korean"`;
+      return wrap(ctx, article.company, 688).length;
+    };
+    let size = 84;
+    while (nameLines(size) > 2 && size > 12) size--;
+    const nameHeight = nameLines(size) * size * 1.3,
+      labelHeight = label && label !== article.company ? 56 : 0,
+      top = (500 - (34 + nameHeight + labelHeight)) / 2;
+    ctx.fillStyle = "#ea5a0c";
+    ctx.fillRect(56, top, 56, 10);
+    block(ctx, article.company, {
+      x: 56,
+      y: top + 34,
+      width: 688,
+      size,
+      maxLines: 2,
+      color: "#1d1d1f",
+      weight: 800,
+    });
+    if (labelHeight) {
+      block(ctx, label, {
+        x: 58,
+        y: top + 34 + nameHeight + 12,
+        width: 688,
+        size: 34,
+        maxLines: 1,
+        color: "#6e6e73",
+      });
+    }
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, canvas.toBuffer("image/png"));
+  }
+  return relative;
+}
+module.exports = { shareCard, coverCard, wrap };
