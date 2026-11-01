@@ -1,6 +1,6 @@
 # 기본 공유 썸네일
 
-초기 시안 기록이다. 현재 적용본은 [검정·주황 썸네일](RESEARCH-SITE-THUMBNAIL-V2.md)이다.
+초기 시안 기록이다. 현재 적용본은 [브랜드 제목 위계 수정본](RESEARCH-SITE-THUMBNAIL-V3.md)이다.
 
 - 자산: `site/assets/kr-research-og.png` (1734 × 907 PNG)
 - 공개 경로: https://kr-research-site.pages.dev/assets/kr-research-og.png

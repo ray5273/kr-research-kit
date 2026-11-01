@@ -1,5 +1,7 @@
 # 기본 공유 썸네일 · 검정과 주황
 
+이전 시안이다. 현재 적용본은 [브랜드 제목 위계 수정본](RESEARCH-SITE-THUMBNAIL-V3.md)이다.
+
 - 자산: `site/assets/kr-research-og-v2.png`
 - 공개 경로: https://kr-research-site.pages.dev/assets/kr-research-og-v2.png
 - 제작: built-in image_gen 편집, 2026-11-02
