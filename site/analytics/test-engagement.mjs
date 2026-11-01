@@ -26,6 +26,16 @@ const mf = new Miniflare(
     serviceBindings: { ASSETS: () => new Response("asset") },
   }),
 );
+const routed = JSON.parse(
+  fs.readFileSync("wrangler.jsonc", "utf8").replace(/^\s*\/\/.*$/gm, ""),
+).assets.run_worker_first;
+for (const route of [
+  "/api/article-meta",
+  "/api/article-counts",
+  "/api/shares",
+  "/api/comments",
+])
+  assert(routed.includes(route), `${route} must reach the Worker in production`);
 const origin = "https://site.test",
   path = JSON.parse(fs.readFileSync("site-dist/analytics-manifest.json"))
     .articles[0].path;

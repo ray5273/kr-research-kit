@@ -8,7 +8,7 @@
   "assets": {
     "directory": "./site-dist",
     "binding": "ASSETS",
-    "run_worker_first": ["/admin", "/admin/*", "/api/analytics/events", "/api/article-meta", "/api/shares", "/api/comments"],
+    "run_worker_first": ["/admin", "/admin/*", "/api/analytics/events", "/api/article-meta", "/api/article-counts", "/api/shares", "/api/comments"],
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
