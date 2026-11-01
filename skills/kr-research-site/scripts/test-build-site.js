@@ -281,6 +281,15 @@ assert(read("index.html").includes('data-stats-settings'));
 assert(read("index.html").includes('src="/analytics.js"'));
 assert(read("analytics.js").includes("research.stats.consent"));
 assert(read("index.html").includes('src="/card-counts.js"'));
+{
+  const { coverCard } = require("./share-card");
+  const coverDir = fs.mkdtempSync(path.join(os.tmpdir(), "cover-"));
+  const withArt = coverCard({ slug: "sector/uhv-transformer", company: "초고압 변압기", headline: "제목", asOfDate: "2026-08-16" }, coverDir);
+  assert(withArt.endsWith(".jpg"), "Published art must produce a composed JPEG cover");
+  assert(fs.statSync(path.join(coverDir, withArt)).size > 15000, "Cover art must actually be drawn");
+  assert(coverCard({ slug: "no/art", company: "가나다", headline: "제목", asOfDate: "2026-08-16" }, coverDir).endsWith(".png"), "Missing art falls back to the text cover");
+  fs.rmSync(coverDir, { recursive: true, force: true });
+}
 assert(read("card-counts.js").includes("/api/article-counts"));
 assert(read("index.html").includes('data-counts="/kr/soop-2026-06/" hidden'));
 assert(!fs.existsSync(path.join(outDir, "admin")));

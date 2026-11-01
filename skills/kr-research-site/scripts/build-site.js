@@ -875,7 +875,7 @@ function countsHtml(article, tag) {
 }
 
 function cardHtml(article, { summary = false } = {}) {
-  return `<a class="card" href="/${article.slug}/"><div class="img">${imageHtml(article)}${asOfTag(article)}</div><div class="in"><div class="chips">${chipsHtml(article)}</div><h3>${escapeHtml(article.headline)}</h3>${summary ? `<p>${escapeHtml(article.summary)}</p>` : ""}${countsHtml(article, "div")}</div></a>`;
+  return `<a class="card" href="/${article.slug}/"><div class="img">${imageHtml(article)}${article.cardImage?.endsWith(".jpg") ? "" : asOfTag(article)}</div><div class="in"><div class="chips">${chipsHtml(article)}</div><h3>${escapeHtml(article.headline)}</h3>${summary ? `<p>${escapeHtml(article.summary)}</p>` : ""}${countsHtml(article, "div")}</div></a>`;
 }
 
 function rowHtml(article, rank) {

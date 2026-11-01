@@ -1,8 +1,10 @@
-const { createCanvas, GlobalFonts } = require("@napi-rs/canvas");
+const { createCanvas, GlobalFonts, loadImage } = require("@napi-rs/canvas");
+const { execFileSync } = require("child_process");
 const fs = require("fs"),
   path = require("path"),
   crypto = require("crypto");
-const font = path.join(__dirname, "../assets/fonts/NotoSansKR.ttf");
+const font = path.join(__dirname, "../assets/fonts/NotoSansKR.ttf"),
+  artDir = path.join(__dirname, "../../../site/covers");
 let registered = false;
 function wrap(ctx, text, width) {
   const lines = [];
@@ -110,16 +112,34 @@ function coverCard(article, outDir) {
     registered = true;
   }
   const label = article.ticker || article.sectors?.[0] || "";
+  const name = article.slug.replaceAll("/", "-"),
+    artPath = path.join(artDir, `${name}.jpg`),
+    art = fs.existsSync(artPath) ? fs.readFileSync(artPath) : null;
   const hash = crypto
     .createHash("sha256")
-    .update(JSON.stringify([article.company, label]))
+    .update(JSON.stringify([article.company, label, article.headline, article.asOfDate]))
     .update(fs.readFileSync(font))
     .update(fs.readFileSync(__filename))
+    .update(art || "")
     .digest("hex")
     .slice(0, 16);
-  const relative = `/covers/${article.slug.replaceAll("/", "-")}-${hash}.png`,
+  const relative = `/covers/${name}-${hash}.${art ? "jpg" : "png"}`,
     file = path.join(outDir, relative);
-  if (!fs.existsSync(file)) {
+  if (art && !fs.existsSync(file)) {
+    // Image decoding is async but the site build is sync, so render out of process.
+    execFileSync(process.execPath, [
+      __filename,
+      JSON.stringify({
+        artPath,
+        file,
+        subject: [article.company, label !== article.company ? label : ""]
+          .filter(Boolean)
+          .join(" · "),
+        headline: article.headline,
+        asOfDate: article.asOfDate,
+      }),
+    ]);
+  } else if (!fs.existsSync(file)) {
     const canvas = createCanvas(800, 500),
       ctx = canvas.getContext("2d");
     ctx.fillStyle = "#f5f5f7";
@@ -160,4 +180,51 @@ function coverCard(article, outDir) {
   }
   return relative;
 }
+async function renderArtCover({ artPath, file, subject, headline, asOfDate }) {
+  if (!GlobalFonts.registerFromPath(font, "Research Korean"))
+    throw Error("Korean share font unavailable");
+  const canvas = createCanvas(960, 600),
+    ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(0, 0, 960, 600);
+  // Art is white-backed, so it can sit under the text without a visible edge.
+  const image = await loadImage(artPath),
+    width = 620,
+    height = (width * image.height) / image.width;
+  ctx.drawImage(image, 960 - width - 10, 600 - height - 6, width, height);
+  block(ctx, subject, {
+    x: 48,
+    y: 56,
+    width: 864,
+    size: 30,
+    maxLines: 1,
+    color: "#ea5a0c",
+    weight: 700,
+  });
+  block(ctx, headline, {
+    x: 48,
+    y: 102,
+    width: 864,
+    size: 50,
+    maxLines: 2,
+    color: "#1d1d1f",
+    weight: 800,
+  });
+  block(ctx, `기준일 ${asOfDate}`, {
+    x: 48,
+    y: 530,
+    width: 400,
+    size: 26,
+    maxLines: 1,
+    color: "#6e6e73",
+    weight: 500,
+  });
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, canvas.toBuffer("image/jpeg", 88));
+}
+if (require.main === module)
+  renderArtCover(JSON.parse(process.argv[2])).catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
 module.exports = { shareCard, coverCard, wrap };
