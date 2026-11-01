@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.12] - 2026-11-01
+
+### Commits
+
+- Keep recommended articles large on phones ([19adb46](https://github.com/ray5273/kr-research-kit/commit/19adb46d771b1a4ec4071029fcc9fca7669c2e68))
+
 ## [0.4.11] - 2026-11-01
 
 ### Commits
