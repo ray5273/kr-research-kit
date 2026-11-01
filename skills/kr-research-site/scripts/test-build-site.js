@@ -466,6 +466,27 @@ assert(numbered.body.includes("근거 ⟦cite:1⟧와 ⟦cite:2⟧, 다시 ⟦ci
 assert(numbered.body.includes("코드 `[1]`, 미정 [99], 링크 3⟦cite:3⟧"));
 assert.deepStrictEqual(numbered.sources.map(x => x.url), ["https://second.example", "https://first.example", "https://third.example"]);
 
+const evidence = collectCitations([
+  "매출이 늘었다.",
+  "",
+  "[단독 근거](https://e.example/1)",
+  "",
+  "| 항목 | 내용 |",
+  "| 계약 | 체결했다. [공시](https://e.example/2) · [보도](https://e.example/3) |",
+  "",
+  "[표 근거](https://e.example/4)",
+  "",
+  "둔화했다([콜 기록](https://e.example/5)). **판단이다.** [분석](https://e.example/6)",
+  "[Fortune](https://e.example/7)은 낙폭을 보도했다.",
+  "- [공시 목록](https://e.example/8)",
+].join("\n"), []);
+assert(evidence.body.startsWith("매출이 늘었다.⟦cite:1⟧\n\n"), "A standalone link joins the previous paragraph as a number");
+assert(evidence.body.includes("체결했다.⟦cite:2⟧⟦cite:3⟧|"), "Table-cell evidence keeps only numbers");
+assert(evidence.body.includes("\n출처⟦cite:4⟧\n"), "Evidence after a table becomes a source note");
+assert(evidence.body.includes("둔화했다⟦cite:5⟧. **판단이다.**⟦cite:6⟧"), "Parenthetical and trailing evidence keep only numbers");
+assert(evidence.body.includes("Fortune⟦cite:7⟧은"), "A label that is part of the sentence stays");
+assert(evidence.body.includes("- 공시 목록⟦cite:8⟧"), "A list of named links stays");
+assert.strictEqual(evidence.sources[1].label, "공시", "The source list keeps the label");
 const bibliography = collectCitations("근거 [2], [1].", ["1. Circle 공식 실적 자료, 2026-05-11", "2. SEC: https://sec.example/filing"]);
 assert.strictEqual(bibliography.body, "근거 ⟦cite:1⟧, ⟦cite:2⟧.");
 assert.deepStrictEqual(bibliography.sources.map(s => s.url), ["https://sec.example/filing", null]);

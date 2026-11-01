@@ -104,6 +104,7 @@ When `kr-stock-update` appends an Update Log block (`### YYYY-MM-DD — ...`) or
 
 - Write for readers of the published page. Omit local file names, JSON inputs/results, Python scripts, CSV zone files, reproduction commands and internal research-pipeline status from prose. Keep these in repository research artifacts; retain disclosed facts, assumptions, source dates and material verification limits.
 - Do not display “원본 리서치 메모 보기 (Markdown)” or other implementation/source-file controls in article headers.
+- Evidence links must not read as body text. Put them right after the sentence or in the table cell they support (`...유지했다. [하나증권 브리핑](url)`), never as a separate paragraph of their own. The builder shows these, parenthetical links and any standalone link as the number only and keeps the label in the source list; a link keeps its label only when the sentence needs the name (`[Fortune](url)은 ...`).
 - Bare numeric citations such as `[1]` must resolve to their explicitly numbered Sources entry and render as links to the lower source list. Preserve source identity if the builder renumbers citations; never silently link to a different source. Code snippets and numeric labels on real Markdown links are not bare citations.
 - Keep paragraphs visually separated (28px bottom margin and 1.9 line height); allow clear pauses before section headings and around tables. Check long finance tables at phone width without narrowing the page or compressing prose.
 

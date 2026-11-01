@@ -195,8 +195,45 @@ function createSafety({ root, requireTracked }) {
 const LINK_RX = /(?<!!)\[([^\]]+)]\((https?:\/\/[^)\s]+)\)/g;
 const BARE_URL_RX = /https?:\/\/[^\s)<>]+/g;
 
-// Keep the link label in prose and add a numbered footnote marker; numbering
-// follows first appearance in the body, then the remaining Sources entries.
+const CITE_LINK = String.raw`(?<!!)\[[^\]]+]\(https?:\/\/[^)\s]+\)`;
+const CITE_CHAIN = `${CITE_LINK}(?:\\s*[·,/]?\\s*${CITE_LINK})*`;
+const CITE_PAREN_RX = new RegExp(`\\s*[(（]\\s*(${CITE_CHAIN})\\s*[)）]`, "g");
+const CITE_TAIL_RX = new RegExp(`([.!?。…][*\\]"'”’)）]*)\\s*(${CITE_CHAIN})[\\s.]*(?=\\||$)`, "g");
+const CITE_ONLY_RX = new RegExp(`^(?:(?:출처|자료|근거)\\s*[:：]\\s*)?(${CITE_CHAIN})$`);
+const CITE_MARK = "⟦c⟧";
+const SOURCE_NOTE_RX = /^출처(⟦cite:\d+⟧)+$/;
+
+// Links used only as evidence become number-only markers: their labels would
+// otherwise read as body text. Links that are part of a sentence keep the label.
+function markCitationLinks(markdown) {
+  const mark = chain => [...chain.matchAll(LINK_RX)].map(link => `[${CITE_MARK}${link[1]}](${link[2]})`).join("");
+  const lines = [];
+  let fenced = false;
+  for (const line of markdown.split("\n")) {
+    if (line.trimStart().startsWith("```")) fenced = !fenced;
+    if (fenced) { lines.push(line); continue; }
+    const only = line.trim().match(CITE_ONLY_RX);
+    if (only) {
+      let previous = lines.length - 1;
+      while (previous >= 0 && !lines[previous].trim()) previous--;
+      const before = previous >= 0 ? lines[previous].trim() : "";
+      if (before && !/^(#|\||```|!\[|\*\*[^*]+\*\*$)/.test(before)) {
+        lines.length = previous + 1;
+        lines[previous] = lines[previous].trimEnd() + mark(only[1]);
+      } else {
+        lines.push(`출처${mark(only[1])}`);
+      }
+      continue;
+    }
+    lines.push(line
+      .replace(CITE_PAREN_RX, (_match, chain) => mark(chain))
+      .replace(CITE_TAIL_RX, (_match, end, chain) => `${end}${mark(chain)}`));
+  }
+  return lines.join("\n");
+}
+
+// Keep the label of links inside a sentence and add a numbered footnote marker;
+// numbering follows first appearance in the body, then the remaining Sources entries.
 function collectCitations(bodyMarkdown, sourceLines) {
   const sources = [];
   const byUrl = new Map();
@@ -221,7 +258,7 @@ function collectCitations(bodyMarkdown, sourceLines) {
       referenceUrls.set(id, link ? { url: link[2], label: link[1] } : { url: bareUrl || null, label: line.replace(/^\s*\d+\.\s+/, "").trim() });
     }
   }
-  const referenced = bodyMarkdown.replace(/(```[\s\S]*?```|`[^`\n]+`)|(?<!!)\[(\d+)\](?!\()/g, (match, code, id) => {
+  const referenced = markCitationLinks(bodyMarkdown).replace(/(```[\s\S]*?```|`[^`\n]+`)|(?<!!)\[(\d+)\](?!\()/g, (match, code, id) => {
     if (code || !referenceUrls.has(id)) return match;
     return `⟦source:${id}⟧`;
   });
@@ -230,6 +267,7 @@ function collectCitations(bodyMarkdown, sourceLines) {
       const source = referenceUrls.get(id);
       return `⟦cite:${add(source.url, source.label)}⟧`;
     }
+    if (label.startsWith(CITE_MARK)) return `⟦cite:${add(url, label.slice(CITE_MARK.length))}⟧`;
     return `${label}⟦cite:${add(url, label)}⟧`;
   });
   for (const line of sourceLines) {
@@ -401,7 +439,8 @@ function renderBlocks(markdown, ctx) {
       paragraph.push(lines[i].trim());
       i += 1;
     }
-    html.push(`<p>${renderInline(paragraph.join(" "), ctx)}</p>`);
+    const text = paragraph.join(" ");
+    html.push(`<p${SOURCE_NOTE_RX.test(text) ? ' class="src-note"' : ""}>${renderInline(text, ctx)}</p>`);
   }
   return html.join("\n");
 }
