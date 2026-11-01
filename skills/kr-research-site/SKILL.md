@@ -90,3 +90,5 @@ When `kr-stock-update` appends an Update Log block (`### YYYY-MM-DD — ...`) or
 - Keep paragraphs visually separated (28px bottom margin and 1.9 line height); allow clear pauses before section headings and around tables. Check long finance tables at phone width without narrowing the page or compressing prose.
 
 - For multi-part explanations, make numbered subheadings visibly distinct from body text (top rule, space before the heading and stronger type). Group closely related facts into one or two sentences per paragraph; do not automatically split every sentence into a separate paragraph. Keep short judgment/transition paragraphs where the argument changes. Avoid repetitive “사실:” / “계산:” labels in public prose; communicate the distinction naturally while preserving assumptions and attribution.
+
+- Numbered topic/checkpoint titles must use actual Markdown headings (`### 1. ...`), not standalone bold paragraphs (`**1. ...**`). This applies to closing checklists as well as the main analysis; verify that each title renders as a heading with the shared separator and spacing.
