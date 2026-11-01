@@ -48,3 +48,7 @@ Keep the existing white/black surfaces and orange accent tokens. Header navigati
 Article order: header metadata and share controls → article → end share controls and count explanation → related cards (maximum four) → publication previous/next → comments. Share controls are 카카오톡 / 공유하기 / 링크 복사 in a wrapping row with 44px targets. A live status explains success, cancel or failure. Counts start at `—` until a successful API response. Comment count links to the comment heading. Forms have visible labels, native validation, a pending-approval explanation and privacy/contact links. Render user text with textContent, preserving newlines; never render submitted markup. Maintain keyboard outlines, dark surfaces and no horizontal page overflow at 320/390px.
 
 Share artwork is 1200×630: orange left rule, site name, company/ticker/sectors, large Korean title, concise summary and 자료 기준일. Use measured text wrapping and bundled Korean font; lists retain their own thumbnail assets.
+
+## 기록 글 일괄 발행 시 날짜 표시 (2026-11-01)
+
+사용자는 기존 메모를 당시의 기록으로 그대로 발간하도록 확정했다. 목록과 추천의 기본 순서는 사이트 발행일이 아니라 메모의 자료 기준일·기록된 최신 업데이트일 내림차순이다. 원래 기준일은 보존하며 후속 자료 업데이트가 있으면 별도로 표시한다. 이번 일괄 발행에서는 예전 featured 순위를 해제한다.

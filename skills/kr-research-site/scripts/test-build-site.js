@@ -28,6 +28,7 @@ function write(relative, content) {
 
 write("analysis-example/kr/SOOP/assets/SOOP-chart.png", PNG);
 write("analysis-example/kr/SOOP/assets/naver-thumbnail.png", PNG);
+write("site/assets/default-og.png", PNG);
 write("analysis-example/kr/SOOP/memo.md", [
   "# SOOP 투자 메모",
   "",
@@ -216,12 +217,33 @@ assert(read("404.html").includes('content="noindex"'));
 // home: recommended cards carry a visible 기준일; latest/popular panels; no badge unless stated
 const home = read("index.html");
 assert(home.includes("지금 읽을 만한 리서치"));
-assert(home.includes('<span class="asof"><b>기준일</b>2026-06-21</span>'));
+assert(home.includes('<span class="asof"><b>자료 업데이트</b>2026-07-02</span>'));
 assert(home.includes('class="panel latest"') && home.includes('class="panel popular"'));
 assert(!home.includes('class="badge'), "no stance badge unless published.json states one");
 assert(!read("kr/index.html").includes("지금 읽을 만한 리서치"));
 assert(article.includes('<nav class="toc"') && article.includes('<a href="#answer" class="on">핵심 답변</a>'));
 assert(article.includes('<nav class="more" aria-label="이어서 읽기">') && article.includes('href="/us/acme-2026-05/"'));
+
+// Shared covers reach the public build, while article-specific images win.
+const coverConfig = { ...baseConfig, defaultOgImage: "/assets/default-og.png" };
+build({ config: coverConfig });
+assert(fs.readFileSync(path.join(outDir, "assets/default-og.png")).equals(PNG));
+for (const page of ["index.html", "kr/index.html", "about/index.html"]) {
+  assert(read(page).includes('<meta property="og:image" content="https://research.example.com/assets/default-og.png">'), page);
+  assert(read(page).includes('<meta name="twitter:card" content="summary_large_image">'), page);
+  assert(read(page).includes('<meta property="og:image:width" content="1">'), page);
+}
+for (const page of ["kr/soop-2026-06/index.html", "us/acme-2026-05/index.html"]) {
+ assert.match(read(page), /<meta property="og:image" content="https:\/\/research\.example\.com\/share\/[^" ]+\.png">/);
+ assert(read(page).includes('<meta property="og:image:width" content="1200">'));
+}
+assert.strictEqual(coverConfig.defaultOgImage, "/assets/default-og.png", "build must not mutate caller config");
+write("site/assets/untracked.png", PNG);
+assert.throws(() => build({ config: { ...baseConfig, defaultOgImage: "/assets/untracked.png" } }), /not tracked/);
+assert.throws(() => build({ config: { ...baseConfig, defaultOgImage: "/assets/../../private.png" } }), /defaultOgImage/);
+build({ config: { ...baseConfig, defaultOgImage: "https://images.example.com/cover.png" } });
+assert(read("index.html").includes('<meta property="og:image" content="https://images.example.com/cover.png">'));
+build();
 
 // display-only fields from published.json: stance, headline, quote, featured, popular
 build({ published: { articles: [soop, { ...acme, stance: "부정", headline: "Acme 짧은 제목", featured: 1, popular: 1, quote: [{ label: "기준 주가", value: "12.3", unit: "달러" }, { label: "변화", value: "-4.0%", tone: "down" }] }] } });
@@ -233,6 +255,20 @@ const featuredHome = read("index.html");
 assert(featuredHome.includes('<div class="grid"><a class="card" href="/us/acme-2026-05/">'), "featured article leads the recommended grid");
 assert(/class="panel popular"><a class="row" href="\/us\/acme-2026-05\/"><div><div class="chips"><span class="rank">1<\/span>/.test(featuredHome));
 assert.throws(() => build({ published: { articles: [{ ...soop, stance: "매수" }] } }), /Invalid stance/);
+build();
+
+// A bulk publication/edit date must not make old research outrank newer data.
+// SOOP's dated update is later than Acme's original date; Acme is published later.
+const dated = build({ published: { articles: [
+  { ...acme, datePublished: "2026-11-01", dateModified: "2026-11-02" },
+  { ...soop, datePublished: "2026-10-01", dateModified: "2026-10-01" },
+] } });
+assert.deepStrictEqual(dated.articles.map(a => a.slug), [soop.slug, acme.slug]);
+const datedHome = read("index.html");
+assert(datedHome.indexOf('class="row" href="/kr/soop-2026-06/') < datedHome.indexOf('class="row" href="/us/acme-2026-05/'));
+assert(read("feed.xml").includes("<updated>2026-11-02T09:00:00+09:00</updated>"), "feed updated is latest edit, independently of research sorting");
+assert(read("sitemap.xml").includes("<loc>https://research.example.com/</loc><lastmod>2026-11-02</lastmod>"));
+assert(datedHome.includes("자료 업데이트 2026-07-02"));
 build();
 
 // Public analytics metadata and consent assets must never expose source paths.
@@ -378,6 +414,16 @@ const numbered = collectCitations("근거 [2]와 [1], 다시 [2]. 코드 `[1]`, 
 assert(numbered.body.includes("근거 ⟦cite:1⟧와 ⟦cite:2⟧, 다시 ⟦cite:1⟧."));
 assert(numbered.body.includes("코드 `[1]`, 미정 [99], 링크 3⟦cite:3⟧"));
 assert.deepStrictEqual(numbered.sources.map(x => x.url), ["https://second.example", "https://first.example", "https://third.example"]);
+
+const bibliography = collectCitations("근거 [2], [1].", ["1. Circle 공식 실적 자료, 2026-05-11", "2. SEC: https://sec.example/filing"]);
+assert.strictEqual(bibliography.body, "근거 ⟦cite:1⟧, ⟦cite:2⟧.");
+assert.deepStrictEqual(bibliography.sources.map(s => s.url), ["https://sec.example/filing", null]);
+assert(bibliography.sources[1].label.includes("2026-05-11"));
+// Bibliographic sources without URLs remain visible, without an empty hyperlink.
+write("analysis-example/us/Acme/memo.md", fs.readFileSync(path.join(root, acme.memo), "utf8") + "\n\n## Sources\n\n- Company annual report, 2026-04-30\n");
+build({ published: { articles: [acme] } });
+assert(read("us/acme-2026-05/index.html").includes("Company annual report, 2026-04-30</li>"));
+assert(!read("us/acme-2026-05/index.html").includes('href=""'));
 
 const cited = collectCitations("본문 [A](https://a.example/x)와 [B](https://b.example/y), 다시 [A2](https://a.example/x).", ["- [A 전체 이름](https://a.example/x)", "- [C](https://c.example/z)"]);
 assert.strictEqual(cited.body, "본문 A⟦cite:1⟧와 B⟦cite:2⟧, 다시 A2⟦cite:1⟧.");

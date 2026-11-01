@@ -26,7 +26,7 @@ Requires `kr-naver-blog-publish` installed next to this skill: the renderer reus
    - `stance`: `긍정` / `중립` / `부정` (or `pos` / `neu` / `neg`) badge. Set it only when the memo states that call; never infer one. No buy/sell words.
    - `quote`: up to 4 header cells `{ "label", "value", "unit"?, "tone"?: "up" | "down" }`, copied from numbers in the memo.
    - `featured`: rank in the home "지금 읽을 만한 리서치" grid (1 = big card). Unranked slots fall back to the latest articles.
-   - `popular`: rank in the home "인기" tab. Until there are visit stats, unranked articles follow `published.json` order. Commit the memo and every image it embeds first; the builder refuses untracked files.
+   - `popular`: rank in the home "인기" tab. Until there are visit stats, unranked articles follow research-date order. Commit the memo and every image it embeds first; the builder refuses untracked files.
 
 2. **Build and check.**
 
@@ -62,7 +62,7 @@ When `kr-stock-update` appends an Update Log block (`### YYYY-MM-DD — ...`) or
 
 ## One-time setup (user)
 
-1. The site runs as a Cloudflare **Worker with static assets** (`wrangler.jsonc` at the repo root uploads `site-dist/`). Its address is `https://kr-research-site.ray527321.workers.dev` (Worker `kr-research-site`, account subdomain `ray527321`); `baseUrl` (and `author.url`) in `site/site.config.json` must match it exactly. Administrator access uses a separate password stored in the Worker Secret `ADMIN_PASSWORD`; Cloudflare Access setup is not required. Keep public pages open. A custom domain can be attached later, but that changes every canonical URL, so decide before the site is indexed.
+1. The site runs as a Cloudflare **Worker with static assets** (`wrangler.jsonc` at the repo root uploads `site-dist/`). The public canonical address is `https://kr-research-site.pages.dev`; a Pages service-binding proxy forwards requests to Worker `kr-research-site`. The original `https://kr-research-site.ray527321.workers.dev` public route and Worker preview URLs are disabled with `workers_dev: false` and `preview_urls: false` in the root Wrangler configuration. Keep the Worker itself: Pages still reaches it through the service binding. See [Pages proxy operations](../../../site/pages-proxy/OPERATIONS.md). `baseUrl` (and `author.url`) in `site/site.config.json` must match it exactly. Administrator access uses a separate password stored in the Worker Secret `ADMIN_PASSWORD`; Cloudflare Access setup is not required. Keep public pages open. A custom domain can be attached later, but that changes every canonical URL, so decide before the site is indexed.
 2. Cloudflare dashboard → Workers & Pages → Create → Import a repository → this repository:
    - Project (Worker) name: `kr-research-site` (must equal `name` in `wrangler.jsonc`)
    - Build command: `npm ci && npm run check:site`
@@ -71,7 +71,7 @@ When `kr-stock-update` appends an Update Log block (`### YYYY-MM-DD — ...`) or
    - Let Cloudflare create the build API token automatically. No GitHub secrets are needed.
 3. Register the site in Google Search Console (URL-prefix property), 네이버 서치어드바이저 and Bing Webmaster. A `workers.dev` site has no DNS of its own, so use the HTML meta-tag method: put each token in `verification.google` / `.naver` / `.bing`, push, then verify and submit `/sitemap.xml`.
 4. Generate an IndexNow key and set `indexNow.key`.
-5. AdSense needs a domain you own: `ads.txt` must sit at the root domain, and `workers.dev` belongs to Cloudflare, so a `workers.dev` site cannot realistically be approved. Move to a custom domain before applying. After 20+ articles and the policy pages are live, apply for AdSense, then set `adsense.client` and the three slot ids. Configure the EU consent message in the AdSense dashboard (Google CMP); no code is needed.
+5. AdSense site registration must accept the public hostname before proceeding. Google permits eligible platform subdomains on the Public Suffix List; purchasing a domain is not a universal requirement. In this account, `kr-research-site.ray527321.workers.dev` was rejected as an ordinary subdomain and the suggested account root returned 404. Use `https://kr-research-site.pages.dev` for the next registration attempt; acceptance and content approval must be confirmed in the actual AdSense account. Do not promise approval or infer a minimum article count. Once the user supplies the real publisher ID, configure ownership verification and ads.txt; ad slots require the actual account slot IDs. Configure the appropriate consent message in AdSense before ad serving.
 
 ## Scripts
 
@@ -114,3 +114,11 @@ Read [analytics operations](../../../site/analytics/OPERATIONS.md) before initia
 - Kakao uses the public JavaScript key from `kakao.javascriptKey` or build environment `KAKAO_JAVASCRIPT_KEY`. Configure SDK/web domains for `baseUrl`. Verify the production domain registrations, build variable and previews after deployment without automatically sending messages.
 - Public sharing and nickname comments are served by the existing Worker/D1. Counts fail to `—`, not zero. Comments are plain text, 30/2,000 characters, pending approval, oldest first in 20-row cursor pages. Admin approval/deletion lives at `/admin/comments/` behind the existing signed cookie. Never bundle admin HTML/JS in public assets.
 - Run `npm run check:site`, including real local Worker/D1 engagement tests. Keep privacy text and [operations](../../../site/analytics/OPERATIONS.md) aligned with behavior. Deploy through the existing migration-first script; never reset cumulative shares with visit retention.
+
+## Historical archive publication
+
+When the user publishes notes as records of their time, preserve original prices, assumptions, judgments and each metric's stated date. Include updates already recorded in the memo; do not refresh the analysis to the site publication day. Publish one editorial copy of each finished primary note, avoiding duplicate voice/SEO/channel copies and supporting data packs. Include uncommitted finished notes only as an explicitly scoped snapshot in the isolated publication worktree; leave the source worktree untouched.
+
+List pages sort by the latest original research date (the maximum of 기준일, 최근 업데이트일 and dated Update Log headings), then original 기준일 and slug. Site publication/editing dates do not change that order. Keep the original 기준일 visible and label a later research update separately. For a bulk archive publication, remove old featured ranks so home recommendations also show the latest research; retain optional ranking support for deliberate future curation. Feeds and sitemap modification dates still reflect actual site edits.
+
+Retain source bibliographic entries even when the original supplies no URL. Link numbered citations to those entries without inventing external URLs; an explicit DART receipt identifier may link to that exact filing. Preserve chart data and images, encode spaces in Markdown image paths, and verify every embedded image reaches the build.
