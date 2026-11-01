@@ -852,6 +852,19 @@
       "datePublished": "2026-11-01",
       "dateModified": "2026-11-01",
       "issue": "월간보다 나았을까"
+    },
+    {
+      "memo": "analysis-example/kr/한진칼/fullmemo.md",
+      "article": "analysis-example/kr/한진칼/fullmemo.article.md",
+      "slug": "kr/hanjin-kal-followup-2026-06",
+      "company": "한진칼",
+      "ticker": "180640",
+      "market": "kr",
+      "headline": "한진칼 후속 메모: 주총·지분·자회사 실적을 다시 점검",
+      "issue": "5주 후속 점검과 남은 확인 과제",
+      "archive": true,
+      "datePublished": "2026-11-01",
+      "dateModified": "2026-11-01"
     }
   ]
 }

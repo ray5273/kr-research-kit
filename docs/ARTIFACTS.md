@@ -2,13 +2,13 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (418 files).
+Complete index of every artifact under `analysis-example/` (419 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
 For strategy methodology and performance comparison, see [CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md](CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md).
 
-## KR — Korean single-stock research (199)
+## KR — Korean single-stock research (200)
 
 ### 기아 — 2026-11-01
 
@@ -164,7 +164,7 @@ HD한국조선해양 DART Reference
 
 한진칼(180640) — 경영권 분쟁 중심 결정 메모 (Full Memo + Event 노트)
 
-[memo](../analysis-example/kr/한진칼/memo.md) · [dart-analysis](../analysis-example/kr/한진칼/dart-analysis.md) · [dart-reference](../analysis-example/kr/한진칼/dart-reference.md) · [analyst-report-insight](../analysis-example/kr/한진칼/analyst-report-insight.md) · [foreign-views](../analysis-example/kr/한진칼/foreign-views.md) · [naver-insights](../analysis-example/kr/한진칼/naver-insights.md) · [naver-post](../analysis-example/kr/한진칼/naver-post.md) · [naver-publish.json](../analysis-example/kr/한진칼/naver-publish.json) · [article](../analysis-example/kr/한진칼/article.md) · [fullmemo](../analysis-example/kr/한진칼/fullmemo.md)
+[memo](../analysis-example/kr/한진칼/memo.md) · [dart-analysis](../analysis-example/kr/한진칼/dart-analysis.md) · [dart-reference](../analysis-example/kr/한진칼/dart-reference.md) · [analyst-report-insight](../analysis-example/kr/한진칼/analyst-report-insight.md) · [foreign-views](../analysis-example/kr/한진칼/foreign-views.md) · [naver-insights](../analysis-example/kr/한진칼/naver-insights.md) · [naver-post](../analysis-example/kr/한진칼/naver-post.md) · [naver-publish.json](../analysis-example/kr/한진칼/naver-publish.json) · [article](../analysis-example/kr/한진칼/article.md) · [fullmemo](../analysis-example/kr/한진칼/fullmemo.md) · [fullmemo.article](../analysis-example/kr/한진칼/fullmemo.article.md)
 
 ### 롯데관광개발 — 2026-05-12
 

@@ -2,11 +2,11 @@
 
 발행일: 2026-11-01
 
-기존 5편에 57편을 추가하여 총 62편을 공개한다. 회사·시장·섹터의 완성 메모 44편 전부와, 별도 파일로 작성된 완성 연구 18편을 포함한다. 당시 수치와 판단을 보존하며 오늘 기준으로 재조사하지 않는다. 원본 메모·이미지는 원래 작업 공간을 수정하지 않고 별도 발행 워크트리에 복사했다.
+기존 5편에 58편을 추가하여 총 63편을 공개한다. 회사·시장·섹터의 완성 메모 44편 전부와, 별도 파일로 작성된 완성 연구 18편 및 한진칼 상세 후속 메모 1편을 포함한다. 당시 수치와 판단을 보존하며 오늘 기준으로 재조사하지 않는다. 원본 메모·이미지는 원래 작업 공간을 수정하지 않고 별도 발행 워크트리에 복사했다.
 
-시장별: cn 1편, global 1편, kr 35편, sector 18편, us 7편.
+시장별: cn 1편, global 1편, kr 36편, sector 18편, us 7편.
 
-중복 발행하지 않은 자료: memo.voice/full/SEO 및 네이버용 동문 사본, 한진칼 fullmemo(통합 memo와 중복), 데이터팩·공시 추출·차트 해설·감사·리서치 브리프·글 개요·전략 실험 원장·자동 모니터링 출력. 독립된 완성 메모가 없는 글은 완성 원고를 입력으로 사용했다.
+중복 발행하지 않은 자료: memo.voice/full/SEO 및 네이버용 동문 사본, 데이터팩·공시 추출·차트 해설·감사·리서치 브리프·글 개요·전략 실험 원장·자동 모니터링 출력. 독립된 완성 메모가 없는 글은 완성 원고를 입력으로 사용했다.
 
 정렬: 원문 기준일과 기록된 최신 업데이트 중 늦은 날짜 → 원래 기준일 → URL. 사이트 발행일·편집일은 자료 정렬에 쓰지 않는다.
 
@@ -74,3 +74,4 @@
 | 두산에너빌리티 2편: SMR 수혜주와 순수주는 다르다 | [naver-post.md](../analysis-example/kr/두산에너빌리티/naver-post.md) | [보기](https://kr-research-site.ray527321.workers.dev/kr/doosan-enerbility-smr/) |
 | AI 인프라 2막: GPU 아래의 다섯 가지 병목 | [naver-post.md](../analysis-example/kr-sector/ai-bottleneck/naver-post.md) | [보기](https://kr-research-site.ray527321.workers.dev/sector/ai-infrastructure-bottlenecks/) |
 | KRX 주간 추세추종: 월간보다 나았을까 | [naver-post.md](../analysis-example/kr-market/strategies/trend-following-10y/naver-post.md) | [보기](https://kr-research-site.ray527321.workers.dev/kr/weekly-trend-following/) |
+| 한진칼 상세 후속 메모 | [fullmemo.md](../analysis-example/kr/한진칼/fullmemo.md) | [보기](https://kr-research-site.ray527321.workers.dev/kr/hanjin-kal-followup-2026-06/) |
