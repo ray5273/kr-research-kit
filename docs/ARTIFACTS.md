@@ -2,19 +2,19 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (335 files).
+Complete index of every artifact under `analysis-example/` (340 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
 For strategy methodology and performance comparison, see [CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md](CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md).
 
-## KR — Korean single-stock research (155)
+## KR — Korean single-stock research (157)
 
 ### 네이버 — 2026-10-28
 
 NAVER(035420) | 브룩필드 AI 팩토리 계약과 가치평가
 
-[memo](../analysis-example/kr/네이버/memo.md) · [dart-analysis](../analysis-example/kr/네이버/dart-analysis.md) · [analyst-report-insight](../analysis-example/kr/네이버/analyst-report-insight.md) · [naver-post](../analysis-example/kr/네이버/naver-post.md) · [naver-publish.json](../analysis-example/kr/네이버/naver-publish.json)
+[memo](../analysis-example/kr/네이버/memo.md) · [dart-analysis](../analysis-example/kr/네이버/dart-analysis.md) · [analyst-report-insight](../analysis-example/kr/네이버/analyst-report-insight.md) · [naver-post](../analysis-example/kr/네이버/naver-post.md) · [naver-publish.json](../analysis-example/kr/네이버/naver-publish.json) · [article](../analysis-example/kr/네이버/article.md)
 
 ### 트리니티항공 — 2026-09-29
 
@@ -40,6 +40,12 @@ LS일렉트릭 (010120) 결정 메모
 
 [memo](../analysis-example/kr/market-sentiment/memo.md) · [naver-post](../analysis-example/kr/market-sentiment/naver-post.md) · [naver-publish.json](../analysis-example/kr/market-sentiment/naver-publish.json)
 
+### KRX-월간전략 — 2026-07-12
+
+KRX 월간 팩터 포트폴리오 투자 메모
+
+[memo](../analysis-example/kr/KRX-월간전략/memo.md) · [naver-post](../analysis-example/kr/KRX-월간전략/naver-post.md) · [naver-publish.json](../analysis-example/kr/KRX-월간전략/naver-publish.json)
+
 ### 대양전기공업 — 2026-07-12
 
 대양전기공업 분석 예시
@@ -56,13 +62,13 @@ LS일렉트릭 (010120) 결정 메모
 
 한화엔진(082740) 12–24개월 신규 매수 판단 메모
 
-[memo](../analysis-example/kr/한화엔진/memo.md) · [data-pack](../analysis-example/kr/한화엔진/data-pack.md) · [dart-analysis](../analysis-example/kr/한화엔진/dart-analysis.md) · [dart-reference](../analysis-example/kr/한화엔진/dart-reference.md) · [analyst-report-insight](../analysis-example/kr/한화엔진/analyst-report-insight.md) · [foreign-views](../analysis-example/kr/한화엔진/foreign-views.md) · [naver-insights](../analysis-example/kr/한화엔진/naver-insights.md) · [chart-analysis](../analysis-example/kr/한화엔진/chart-analysis.md) · [naver-post](../analysis-example/kr/한화엔진/naver-post.md) · [naver-publish.json](../analysis-example/kr/한화엔진/naver-publish.json) · [trend-rules](../analysis-example/kr/한화엔진/trend-rules.md) · [trend-rules.json](../analysis-example/kr/한화엔진/trend-rules.json)
+[memo](../analysis-example/kr/한화엔진/memo.md) · [data-pack](../analysis-example/kr/한화엔진/data-pack.md) · [dart-analysis](../analysis-example/kr/한화엔진/dart-analysis.md) · [dart-reference](../analysis-example/kr/한화엔진/dart-reference.md) · [analyst-report-insight](../analysis-example/kr/한화엔진/analyst-report-insight.md) · [foreign-views](../analysis-example/kr/한화엔진/foreign-views.md) · [naver-insights](../analysis-example/kr/한화엔진/naver-insights.md) · [chart-analysis](../analysis-example/kr/한화엔진/chart-analysis.md) · [naver-post](../analysis-example/kr/한화엔진/naver-post.md) · [naver-publish.json](../analysis-example/kr/한화엔진/naver-publish.json) · [article](../analysis-example/kr/한화엔진/article.md) · [trend-rules](../analysis-example/kr/한화엔진/trend-rules.md) · [trend-rules.json](../analysis-example/kr/한화엔진/trend-rules.json)
 
-### KRX-월간전략 — 2026-07-12
+### HD한국조선해양 — 2026-07-11
 
-KRX 월간 팩터 포트폴리오 투자 메모
+HD한국조선해양 DART Reference
 
-[memo](../analysis-example/kr/KRX-월간전략/memo.md) · [naver-post](../analysis-example/kr/KRX-월간전략/naver-post.md) · [naver-publish.json](../analysis-example/kr/KRX-월간전략/naver-publish.json)
+[dart-reference](../analysis-example/kr/HD한국조선해양/dart-reference.md)
 
 ### 삼성중공업 — 2026-07-11
 
@@ -76,23 +82,17 @@ KRX 월간 팩터 포트폴리오 투자 메모
 
 [dart-reference](../analysis-example/kr/한화오션/dart-reference.md)
 
-### HD한국조선해양 — 2026-07-11
-
-HD한국조선해양 DART Reference
-
-[dart-reference](../analysis-example/kr/HD한국조선해양/dart-reference.md)
-
 ### 엘앤에프 — 2026-07-05
 
 엘앤에프 분석 예시
 
-[memo](../analysis-example/kr/엘앤에프/memo.md) · [analyst-report-insight](../analysis-example/kr/엘앤에프/analyst-report-insight.md) · [naver-insights](../analysis-example/kr/엘앤에프/naver-insights.md) · [chart-analysis](../analysis-example/kr/엘앤에프/chart-analysis.md) · [네이버블로거-투자논리](../analysis-example/kr/엘앤에프/네이버블로거-투자논리.md) · [trade-flow-analysis](../analysis-example/kr/엘앤에프/trade-flow-analysis.md)
+[memo](../analysis-example/kr/엘앤에프/memo.md) · [analyst-report-insight](../analysis-example/kr/엘앤에프/analyst-report-insight.md) · [naver-insights](../analysis-example/kr/엘앤에프/naver-insights.md) · [chart-analysis](../analysis-example/kr/엘앤에프/chart-analysis.md) · [trade-flow-analysis](../analysis-example/kr/엘앤에프/trade-flow-analysis.md) · [네이버블로거-투자논리](../analysis-example/kr/엘앤에프/네이버블로거-투자논리.md)
 
 ### 두산에너빌리티 — 2026-07-04
 
 두산에너빌리티 DART 분석
 
-[dart-analysis](../analysis-example/kr/두산에너빌리티/dart-analysis.md) · [dart-reference](../analysis-example/kr/두산에너빌리티/dart-reference.md) · [analyst-report-insight](../analysis-example/kr/두산에너빌리티/analyst-report-insight.md) · [naver-insights](../analysis-example/kr/두산에너빌리티/naver-insights.md) · [chart-analysis](../analysis-example/kr/두산에너빌리티/chart-analysis.md) · [naver-post](../analysis-example/kr/두산에너빌리티/naver-post.md) · [naver-publish.json](../analysis-example/kr/두산에너빌리티/naver-publish.json) · [수주통합분석](../analysis-example/kr/두산에너빌리티/수주통합분석.md) · [smr-blog-outline](../analysis-example/kr/두산에너빌리티/smr-blog-outline.md) · [smr-data-pack](../analysis-example/kr/두산에너빌리티/smr-data-pack.md)
+[dart-analysis](../analysis-example/kr/두산에너빌리티/dart-analysis.md) · [dart-reference](../analysis-example/kr/두산에너빌리티/dart-reference.md) · [analyst-report-insight](../analysis-example/kr/두산에너빌리티/analyst-report-insight.md) · [naver-insights](../analysis-example/kr/두산에너빌리티/naver-insights.md) · [chart-analysis](../analysis-example/kr/두산에너빌리티/chart-analysis.md) · [naver-post](../analysis-example/kr/두산에너빌리티/naver-post.md) · [naver-publish.json](../analysis-example/kr/두산에너빌리티/naver-publish.json) · [smr-blog-outline](../analysis-example/kr/두산에너빌리티/smr-blog-outline.md) · [smr-data-pack](../analysis-example/kr/두산에너빌리티/smr-data-pack.md) · [수주통합분석](../analysis-example/kr/두산에너빌리티/수주통합분석.md)
 
 ### 한화솔루션 — 2026-07-04
 
@@ -154,23 +154,29 @@ Naver Blog Insights: 알테오젠 (196170)
 
 [naver-insights](../analysis-example/kr/알테오젠/naver-insights.md) · [chart-analysis](../analysis-example/kr/알테오젠/chart-analysis.md) · [네이버블로거-투자논리](../analysis-example/kr/알테오젠/네이버블로거-투자논리.md)
 
-### 삼성SDS — 2026-04-15
-
-삼성SDS
-
-[memo](../analysis-example/kr/삼성SDS/memo.md) · [data-pack](../analysis-example/kr/삼성SDS/data-pack.md) · [dart-analysis](../analysis-example/kr/삼성SDS/dart-analysis.md) · [리서치브리프](../analysis-example/kr/삼성SDS/리서치브리프.md) · [naver-insights](../analysis-example/kr/삼성SDS/naver-insights.md) · [chart-analysis](../analysis-example/kr/삼성SDS/chart-analysis.md)
-
 ### GRT — 2026-04-15
 
 Naver Blog Insights: GRT (900290)
 
 [naver-insights](../analysis-example/kr/GRT/naver-insights.md) · [네이버블로거-투자논리](../analysis-example/kr/GRT/네이버블로거-투자논리.md)
 
+### 삼성SDS — 2026-04-15
+
+삼성SDS
+
+[memo](../analysis-example/kr/삼성SDS/memo.md) · [data-pack](../analysis-example/kr/삼성SDS/data-pack.md) · [dart-analysis](../analysis-example/kr/삼성SDS/dart-analysis.md) · [리서치브리프](../analysis-example/kr/삼성SDS/리서치브리프.md) · [naver-insights](../analysis-example/kr/삼성SDS/naver-insights.md) · [chart-analysis](../analysis-example/kr/삼성SDS/chart-analysis.md)
+
 ### LIG넥스원 — 2026-04-06
 
 LIG넥스원 분석 예시
 
 [memo](../analysis-example/kr/LIG넥스원/memo.md) · [data-pack](../analysis-example/kr/LIG넥스원/data-pack.md) · [dart-analysis](../analysis-example/kr/LIG넥스원/dart-analysis.md) · [dart-reference](../analysis-example/kr/LIG넥스원/dart-reference.md) · [리서치브리프](../analysis-example/kr/LIG넥스원/리서치브리프.md) · [chart-analysis](../analysis-example/kr/LIG넥스원/chart-analysis.md)
+
+### LG CNS — 2026-04-05
+
+LG CNS 분석 예시
+
+[memo](<../analysis-example/kr/LG CNS/memo.md>) · [dart-analysis](<../analysis-example/kr/LG CNS/dart-analysis.md>) · [dart-reference](<../analysis-example/kr/LG CNS/dart-reference.md>) · [리서치브리프](<../analysis-example/kr/LG CNS/리서치브리프.md>) · [chart-analysis](<../analysis-example/kr/LG CNS/chart-analysis.md>) · [수주통합분석](<../analysis-example/kr/LG CNS/수주통합분석.md>)
 
 ### 삼성전자 — 2026-04-05
 
@@ -184,12 +190,6 @@ LIG넥스원 분석 예시
 
 [memo](../analysis-example/kr/현대오토에버/memo.md) · [data-pack](../analysis-example/kr/현대오토에버/data-pack.md) · [chart-analysis](../analysis-example/kr/현대오토에버/chart-analysis.md)
 
-### LG CNS — 2026-04-05
-
-LG CNS 분석 예시
-
-[memo](<../analysis-example/kr/LG CNS/memo.md>) · [dart-analysis](<../analysis-example/kr/LG CNS/dart-analysis.md>) · [dart-reference](<../analysis-example/kr/LG CNS/dart-reference.md>) · [리서치브리프](<../analysis-example/kr/LG CNS/리서치브리프.md>) · [chart-analysis](<../analysis-example/kr/LG CNS/chart-analysis.md>) · [수주통합분석](<../analysis-example/kr/LG CNS/수주통합분석.md>)
-
 ### 한미글로벌 — 2026-04-04
 
 한미글로벌 수주계약 공시 리스트
@@ -202,17 +202,17 @@ LG CNS 분석 예시
 
 [수주계약리스트](../analysis-example/kr/한전KPS/수주계약리스트.md)
 
-### 솔루스첨단소재
-
-솔루스첨단소재(336370) 전지박 수출 대리지표(Proxy) 분기 업데이트 — 2026년 4월 기준
-
-[solus-foil-proxy-2026-04](../analysis-example/kr/솔루스첨단소재/solus-foil-proxy-2026-04.md)
-
 ### LG전자
 
 LG전자 DART 분석
 
 [dart-analysis](../analysis-example/kr/LG전자/dart-analysis.md) · [chart-analysis](../analysis-example/kr/LG전자/chart-analysis.md)
+
+### 솔루스첨단소재
+
+솔루스첨단소재(336370) 전지박 수출 대리지표(Proxy) 분기 업데이트 — 2026년 4월 기준
+
+[solus-foil-proxy-2026-04](../analysis-example/kr/솔루스첨단소재/solus-foil-proxy-2026-04.md)
 
 ## KR — market-wide screens, daily news, and strategy backtests (107)
 
@@ -363,7 +363,7 @@ LG전자 DART 분석
 - [KOSPI·KOSDAQ 시가총액 상위 300 모멘텀 — 2025년 말 기준](../analysis-example/kr-market/strategies/trend-following-10y/largecap-momentum-backtest-through-2025-12-31.md) — 2025-12-31 · [json](../analysis-example/kr-market/strategies/trend-following-10y/largecap-momentum-backtest-through-2025-12-31.json)
 - [Minervini RS + EPS·매출 + 레짐·변동성 타겟: 월별 10종목](../analysis-example/kr-market/strategies/trend-following-10y/minervini-rs-e-monthly-portfolios-2024-through-2026-07.md)
 
-## KR — sector and industry research (24)
+## KR — sector and industry research (25)
 
 - [800Vdc 전력 인프라 투자 테마](<../analysis-example/kr-sector/800Vdc 전력인프라.md>) — 2026-06-29
 - [800Vdc 전력 인프라 — 데이터 팩 / 사실 검증 로그](../analysis-example/kr-sector/800Vdc-data-pack.md) — 2026-06-29
@@ -377,6 +377,7 @@ LG전자 DART 분석
 
 ### battery-copper-foil
 
+- [동박 3사: 가동률 반등과 흑자 전환 사이에 남은 것](../analysis-example/kr-sector/battery-copper-foil/article.md) — 2026-08-30
 - [배터리 동박 3사 데이터 팩 | 2026-08-30](../analysis-example/kr-sector/battery-copper-foil/data-pack.md) — 2026-08-30
 - [배터리 동박 3사 | 가동률 반등은 이익 턴어라운드의 시작인가 | 2026-08-30](../analysis-example/kr-sector/battery-copper-foil/memo.full.md) — 2026-08-30
 - [배터리 동박 3사 | 가동률 반등은 이익 턴어라운드의 시작인가 | 2026-08-30](../analysis-example/kr-sector/battery-copper-foil/memo.md) — 2026-08-30
@@ -392,10 +393,10 @@ LG전자 DART 분석
 
 - [K-조선 미 해군 MRO, 진짜 돈이 될까? 정비에서 신조까지 투자자가 볼 5가지 | 2026-07-16](../analysis-example/kr-sector/shipbuilding/k-조선-미해군-mro-네이버초안.md) — 2026-07-16
 - [K-조선 미 해군 MRO | 미 해군 MRO가 조선사의 연결 실적을 바꿀 만큼 수익성이 큰가 | 2026-07-16](../analysis-example/kr-sector/shipbuilding/k-조선-미해군-mro-네이버포스트.md) — 2026-07-16
-- [국내 조선 3사 수주·생산·수익성 DART 비교 분석](../analysis-example/kr-sector/shipbuilding/조선3사-수주현황-DART분석.md) — 2026-07-11
-- [조선 3사 | 수주잔고 2.6~3년치, 주가는 이미 3~4배 뛰었는데 아직 자리가 남았을까 | 2026-07-11](../analysis-example/kr-sector/shipbuilding/조선3사-naver-post.md) — 2026-07-11
 - [글로벌 조선업 지도 | 중국 72% vs 한국 19%, 그래도 한국이 이기는 구간은 따로 있다 | 2026-07-11](../analysis-example/kr-sector/shipbuilding/naver-post.md) — 2026-07-11 · [json](../analysis-example/kr-sector/shipbuilding/naver-publish.json)
 - [전 세계 조선업 시장 종합 분석 (출처 보강판)](../analysis-example/kr-sector/shipbuilding/source.md) — 2026-07-11
+- [조선 3사 | 수주잔고 2.6~3년치, 주가는 이미 3~4배 뛰었는데 아직 자리가 남았을까 | 2026-07-11](../analysis-example/kr-sector/shipbuilding/조선3사-naver-post.md) — 2026-07-11
+- [국내 조선 3사 수주·생산·수익성 DART 비교 분석](../analysis-example/kr-sector/shipbuilding/조선3사-수주현황-DART분석.md) — 2026-07-11
 
 ### smr
 
@@ -409,19 +410,19 @@ LG전자 DART 분석
 
 - [Korean Analyst Report Watch - daily - 2026-07-05](../analysis-example/kr-reports/report-watch-daily-2026-07-05.md) — 2026-07-05 · [json](../analysis-example/kr-reports/report-watch-daily-2026-07-05.json)
 
-## US — single-stock research (17)
+## US — single-stock research (19)
 
 ### Alphabet — 2026-11-01
 
 알파벳(구글) 2026년 3분기 실적 리뷰 — 단기 반응과 장기 논리
 
-[memo](../analysis-example/us/Alphabet/memo.md) · [sec-analysis](../analysis-example/us/Alphabet/sec-analysis.md) · [sec-reference](../analysis-example/us/Alphabet/sec-reference.md) · [naver-post](../analysis-example/us/Alphabet/naver-post.md) · [naver-publish.json](../analysis-example/us/Alphabet/naver-publish.json) · [earnings-facts](../analysis-example/us/Alphabet/earnings-facts.md) · [news-reaction](../analysis-example/us/Alphabet/news-reaction.md)
+[memo](../analysis-example/us/Alphabet/memo.md) · [sec-analysis](../analysis-example/us/Alphabet/sec-analysis.md) · [sec-reference](../analysis-example/us/Alphabet/sec-reference.md) · [naver-post](../analysis-example/us/Alphabet/naver-post.md) · [naver-publish.json](../analysis-example/us/Alphabet/naver-publish.json) · [article](../analysis-example/us/Alphabet/article.md) · [earnings-facts](../analysis-example/us/Alphabet/earnings-facts.md) · [news-reaction](../analysis-example/us/Alphabet/news-reaction.md)
 
 ### Everpure — 2026-10-09
 
 Everpure: NAND가 비싸졌는데 주가는 왜 올랐나
 
-[memo](../analysis-example/us/Everpure/memo.md) · [sec-analysis](../analysis-example/us/Everpure/sec-analysis.md) · [sec-reference](../analysis-example/us/Everpure/sec-reference.md) · [naver-post](../analysis-example/us/Everpure/naver-post.md) · [naver-publish.json](../analysis-example/us/Everpure/naver-publish.json) · [memo.voice](../analysis-example/us/Everpure/memo.voice.md)
+[memo](../analysis-example/us/Everpure/memo.md) · [sec-analysis](../analysis-example/us/Everpure/sec-analysis.md) · [sec-reference](../analysis-example/us/Everpure/sec-reference.md) · [naver-post](../analysis-example/us/Everpure/naver-post.md) · [naver-publish.json](../analysis-example/us/Everpure/naver-publish.json) · [article](../analysis-example/us/Everpure/article.md) · [memo.voice](../analysis-example/us/Everpure/memo.voice.md)
 
 ### SPY — 2026-08-25
 

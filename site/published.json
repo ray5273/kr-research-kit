@@ -31,7 +31,11 @@
           "value": "273.6–334.4",
           "unit": "달러"
         }
-      ]
+      ],
+      "article": "analysis-example/us/Alphabet/article.md",
+      "archive": true,
+      "datePublished": "2026-11-01",
+      "dateModified": "2026-11-01"
     },
     {
       "memo": "analysis-example/kr/네이버/memo.md",
@@ -52,7 +56,64 @@
           "value": "27.6",
           "unit": "조원"
         }
-      ]
+      ],
+      "article": "analysis-example/kr/네이버/article.md",
+      "archive": true,
+      "datePublished": "2026-11-01",
+      "dateModified": "2026-11-01"
+    },
+    {
+      "memo": "analysis-example/kr-sector/battery-copper-foil/memo.md",
+      "slug": "sector/battery-copper-foil",
+      "company": "동박 3사",
+      "market": "sector",
+      "tags": [
+        "동박",
+        "배터리",
+        "ESS",
+        "PFE"
+      ],
+      "headline": "동박 3사: 가동률 반등과 흑자 전환 사이",
+      "featured": 3,
+      "article": "analysis-example/kr-sector/battery-copper-foil/article.md",
+      "archive": true,
+      "datePublished": "2026-11-01",
+      "dateModified": "2026-11-01"
+    },
+    {
+      "memo": "analysis-example/us/Everpure/memo.md",
+      "slug": "us/everpure-nand-cash-flow",
+      "company": "Everpure",
+      "ticker": "P",
+      "exchange": "NYSE",
+      "market": "us",
+      "tags": [
+        "Everpure",
+        "NAND",
+        "현금흐름"
+      ],
+      "headline": "Everpure: 원가가 올라도 주가는 오른 이유",
+      "article": "analysis-example/us/Everpure/article.md",
+      "archive": true,
+      "datePublished": "2026-11-01",
+      "dateModified": "2026-11-01"
+    },
+    {
+      "memo": "analysis-example/kr/한화엔진/memo.md",
+      "slug": "kr/hanwha-engine-backlog",
+      "company": "한화엔진",
+      "ticker": "082740",
+      "market": "kr",
+      "tags": [
+        "한화엔진",
+        "조선",
+        "수주잔고"
+      ],
+      "headline": "한화엔진: 쌓인 수주가 주주의 이익이 되기까지",
+      "article": "analysis-example/kr/한화엔진/article.md",
+      "archive": true,
+      "datePublished": "2026-11-01",
+      "dateModified": "2026-11-01"
     }
   ]
 }

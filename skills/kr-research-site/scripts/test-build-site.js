@@ -145,7 +145,7 @@ assert(article.includes("<title>SOOP(067160) | 순현금이 하방을 받치고,
 assert(/<meta name="description" content="순현금이 하방을 받치고, 트래픽 회복이 상방을 연다\. 현금 2,480억 원은 시가총액의 30%다\./.test(article));
 assert(article.includes('<meta property="og:image" content="https://research.example.com/kr/soop-2026-06/assets/naver-thumbnail.png">'));
 assert(article.includes('<p class="lead">순현금이 하방을 받치고, 트래픽 회복이 상방을 연다</p>'));
-assert(article.includes("기준일 2026-06-21 · 최근 업데이트 2026-07-02"));
+assert(article.includes("자료 기준일 2026-06-21 · 최근 편집 2026-07-02"));
 assert(article.includes('<span class="tone-pos">배당수익률 4%가 하방을 받친다.</span>'));
 assert(article.includes('<span class="tone-neg">별풍선 역성장이 부담이다.</span>'));
 assert(article.includes('<span class="tone-spec">하반기 회복 가능성이 있다.</span>'));
@@ -289,6 +289,27 @@ fs.writeFileSync(path.join(root, soop.memo), withNewImage);
 git("add", soop.memo);
 git("commit", "-q", "-m", "reference untracked image");
 assert.throws(() => build(), /Image assets\/new\.png is not tracked/);
+
+// Article overrides remain opt-in, date-consistent, tracked and private-safe.
+const originalMemo = fs.readFileSync(path.join(root, soop.memo), "utf8").replace("![새 차트](assets/new.png)\n\n", "");
+write("analysis-example/kr/SOOP/article.md", originalMemo.replace("순현금이 하방을 받치고", "기록 해설: 순현금이 하방을 받치고"));
+git("add", "analysis-example/kr/SOOP/article.md");
+const archiveEntry = { ...soop, article: "analysis-example/kr/SOOP/article.md", archive: true, datePublished: "2026-11-01", dateModified: "2026-11-02" };
+build({ published: { articles: [archiveEntry] } });
+const archiveHtml = read("kr/soop-2026-06/index.html");
+assert(archiveHtml.includes("기록 해설: 순현금"));
+assert(archiveHtml.includes("기록 글 · 자료 기준일"));
+assert(archiveHtml.includes('datetime="2026-06-21"'));
+assert(archiveHtml.includes('사이트 발행 <time datetime="2026-11-01"'));
+assert(archiveHtml.includes('최근 편집 <time datetime="2026-11-02"'));
+assert(archiveHtml.includes('/kr/soop-2026-06/memo.md'));
+assert(read("kr/soop-2026-06/memo.md").includes("새 차트"));
+assert(read("index.html").includes("기록 글"));
+assert(jsonLd(archiveHtml).flat().some(x => JSON.stringify(x).includes("2026-11-01T09:00:00+09:00")));
+assert.throws(() => build({ published: { articles: [{ ...archiveEntry, article: "analysis-example/kr/Untracked/memo.md" }] } }), /not tracked/);
+assert.throws(() => build({ published: { articles: [{ ...archiveEntry, article: "analysis-example/kr/Private/memo.md" }] } }), /private holdings/);
+write(archiveEntry.article, originalMemo.replace("2026-06-21", "2026-06-20"));
+assert.throws(() => build({ published: { articles: [archiveEntry] } }), /preserve.*기준일/);
 
 // --- helpers ---
 const cited = collectCitations("본문 [A](https://a.example/x)와 [B](https://b.example/y), 다시 [A2](https://a.example/x).", ["- [A 전체 이름](https://a.example/x)", "- [C](https://c.example/z)"]);

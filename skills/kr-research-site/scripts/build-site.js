@@ -475,13 +475,23 @@ function loadArticle(entry, options) {
   assert(entry && typeof entry.memo === "string", "published.json entries need a memo path");
   assert(SLUG_PATTERN.test(entry.slug || ""), `Invalid slug for ${entry.memo}: use lowercase a-z, 0-9, '-' and '/'`);
   const memoPath = safety.checkPath(path.resolve(root, entry.memo), "Memo");
-  const markdown = fs.readFileSync(memoPath, "utf8");
-  safety.checkContent(markdown, `Memo ${entry.memo}`);
+  assert(entry.article === undefined || typeof entry.article === "string", "article must be a path");
+  assert(entry.archive === undefined || typeof entry.archive === "boolean", "archive must be a boolean");
+  const contentPath = entry.article ? safety.checkPath(path.resolve(root, entry.article), "Article") : memoPath;
+  const markdown = fs.readFileSync(contentPath, "utf8");
+  safety.checkContent(markdown, `Article ${entry.article || entry.memo}`);
+  if (entry.article) {
+    const original = fs.readFileSync(memoPath, "utf8");
+    safety.checkContent(original, `Memo ${entry.memo}`);
+    const originalDate = (parseMetadata(original)["기준일"] || "").match(/\d{4}-\d{2}-\d{2}/)?.[0];
+    const articleDate = (parseMetadata(markdown)["기준일"] || "").match(/\d{4}-\d{2}-\d{2}/)?.[0];
+    assert(originalDate && originalDate === articleDate, "Article must preserve the memo 기준일");
+  }
   const metadata = parseMetadata(markdown);
   const asOfDate = (metadata["기준일"] || "").match(/\d{4}-\d{2}-\d{2}/)?.[0];
   assert(asOfDate, `Memo has no YYYY-MM-DD 기준일 and cannot be published: ${entry.memo}`);
   const updatedMeta = (metadata["최근 업데이트일"] || "").match(/\d{4}-\d{2}-\d{2}/)?.[0];
-  const dateModified = [asOfDate, updatedMeta, ...updateDates(markdown), entry.dateModified].filter(Boolean).sort().at(-1);
+  const dateModified = [asOfDate, updatedMeta, ...updateDates(markdown), entry.datePublished, entry.dateModified].filter(Boolean).sort().at(-1);
   const datePublished = entry.datePublished || asOfDate;
 
   const h1 = markdown.match(/^#\s+(.+?)\s*$/m)?.[1]?.trim() || entry.slug;
@@ -538,7 +548,9 @@ function loadArticle(entry, options) {
     slug: entry.slug,
     url: `${config.baseUrl}/${entry.slug}/`,
     memoPath,
-    memoDir: path.dirname(memoPath),
+    memoDir: path.dirname(contentPath),
+    archive: entry.archive === true,
+    originalMarkdown: entry.article ? fs.readFileSync(memoPath, "utf8") : null,
     markdown,
     h1,
     company,
@@ -736,7 +748,6 @@ function renderArticle(article, site, outDir, safety) {
   const legend = article.hasColorMarkers
     ? `<p class="legend">색상 안내 — <span class="tone-pos">빨간색: 좋은 것</span> · <span class="tone-neg">파란색: 안 좋은 의견</span> · <span class="tone-spec">갈색: 추측성 의견</span></p>`
     : "";
-  const updated = article.dateModified !== article.datePublished;
   const tocItems = [
     ["answer", "핵심 답변"],
     ...bodySections.map((section, index) => [`s-${index + 1}`, plainText(section.heading)]),
@@ -748,7 +759,9 @@ function renderArticle(article, site, outDir, safety) {
     tocScript: TOC_SCRIPT,
     chips: chipsHtml(article, { exchange: true }),
     headline: escapeHtml(article.headline),
-    metaLine: `${escapeHtml(config.author?.name || config.siteName)} · 기준일 <time datetime="${article.datePublished}">${article.datePublished}</time>${updated ? ` · 업데이트 <time datetime="${article.dateModified}">${article.dateModified}</time>` : ""} · ${article.readMinutes}분`,
+    metaLine: `${escapeHtml(config.author?.name || config.siteName)} · 자료 기준일 <time datetime="${article.asOfDate}">${article.asOfDate}</time> · 사이트 발행 <time datetime="${article.datePublished}">${article.datePublished}</time> · 최근 편집 <time datetime="${article.dateModified}">${article.dateModified}</time> · ${article.readMinutes}분`,
+    archiveNotice: article.archive ? '<p class="archive-note">기록 글 · 자료 기준일 당시의 수치와 판단을 보존했습니다. 이후 변동은 반영하지 않았습니다.</p>' : "",
+    originalLink: article.originalMarkdown ? `<p class="original-link"><a href="/${article.slug}/memo.md">원본 리서치 메모 보기 (Markdown)</a></p>` : "",
     quote: article.quote.length ? `<div class="quote">${article.quote.map(cell => `<div><div class="k">${escapeHtml(cell.label)}</div><div class="v${cell.tone ? ` ${cell.tone}` : ""}">${escapeHtml(cell.value)}${cell.unit ? `<small>${escapeHtml(cell.unit)}</small>` : ""}</div></div>`).join("")}</div>` : "",
     more: moreHtml(article, site),
     answerLead: renderInline(article.answerLead, ctx),
@@ -776,6 +789,7 @@ function renderArticle(article, site, outDir, safety) {
     content,
   });
   writeFile(path.join(outDir, article.slug, "index.html"), html);
+  if (article.originalMarkdown) writeFile(path.join(outDir, article.slug, "memo.md"), article.originalMarkdown);
   return html;
 }
 
@@ -795,6 +809,7 @@ function chipsHtml(article, { exchange = false } = {}) {
   const ticker = [exchange ? article.exchange : "", article.ticker].filter(Boolean).join(" · ");
   return [
     `<span class="mk">${escapeHtml(market)}</span>`,
+    article.archive ? '<span class="tk">기록 글</span>' : "",
     ticker ? `<span class="tk">${escapeHtml(ticker)}</span>` : "",
     article.stance ? `<span class="badge ${article.stance[0]}">${article.stance[1]}</span>` : "",
   ].filter(Boolean).join("");
@@ -949,7 +964,9 @@ function llmsFullTxt(site, articles) {
     "",
     `URL: ${article.url}`,
     `기준일: ${article.asOfDate}`,
-    `최근 업데이트일: ${article.dateModified}`,
+    `사이트 발행일: ${article.datePublished}`,
+    `최근 편집일: ${article.dateModified}`,
+    ...(article.archive ? ["기록 글: 자료 기준일 당시의 수치와 판단이며 이후 변동은 반영하지 않았다."] : []),
     "",
     "## 핵심 답변",
     "",
