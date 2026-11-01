@@ -55,9 +55,9 @@ When `kr-stock-update` appends an Update Log block (`### YYYY-MM-DD — ...`) or
 
 ## One-time setup (user)
 
-1. The site runs as a Cloudflare **Worker with static assets** (`wrangler.jsonc` at the repo root uploads `site-dist/`). Its free address is `https://kr-research-site.<account-subdomain>.workers.dev`; `baseUrl` (and `author.url`) in `site/site.config.json` must match it exactly. A custom domain can be attached later, but that changes every canonical URL, so decide before the site is indexed.
+1. The site runs as a Cloudflare **Worker with static assets** (`wrangler.jsonc` at the repo root uploads `site-dist/`). Its address is `https://kr-research-kit.ray527321.workers.dev` (Worker `kr-research-kit`, account subdomain `ray527321`); `baseUrl` (and `author.url`) in `site/site.config.json` must match it exactly. Keep Cloudflare Access off for production, or crawlers and visitors are blocked. A custom domain can be attached later, but that changes every canonical URL, so decide before the site is indexed.
 2. Cloudflare dashboard → Workers & Pages → Create → Import a repository → this repository:
-   - Project (Worker) name: `kr-research-site` (must equal `name` in `wrangler.jsonc`)
+   - Project (Worker) name: `kr-research-kit` (must equal `name` in `wrangler.jsonc`)
    - Build command: `node skills/kr-research-site/scripts/test-build-site.js && node skills/kr-research-site/scripts/build-site.js --out site-dist --production`
    - Deploy command: `npx wrangler deploy` (default)
    - Advanced settings → Build variables: `NODE_VERSION` = `22`; Build watch paths: `site/*`, `analysis-example/*`, `skills/kr-research-site/*`, `skills/kr-naver-blog-publish/scripts/*`, `wrangler.jsonc`

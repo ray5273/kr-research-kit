@@ -2,7 +2,7 @@
 // Workers Builds runs the build command, then `npx wrangler deploy` uploads
 // site-dist/. "name" must match the Worker name in the Cloudflare dashboard.
 {
-  "name": "kr-research-site",
+  "name": "kr-research-kit",
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": "./site-dist",
