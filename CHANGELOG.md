@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.8] - 2026-11-01
+
+### Commits
+
+- Fix deployment secret validation and support Workers Build secrets ([4ffafbe](https://github.com/ray5273/kr-research-kit/commit/4ffafbefaa2ef2f668bb5a336df3212130d7b60d))
+
 ## [0.4.7] - 2026-11-01
 
 ### Commits
