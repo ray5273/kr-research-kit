@@ -18,5 +18,6 @@
     "migrations_dir": "site/analytics/migrations"
   }],
   "triggers": {"crons": ["5 * * * *"]},
+  "secrets": {"required": ["ADMIN_PASSWORD", "ANALYTICS_HMAC_SECRET"]},
   "observability": {"enabled": false}
 }

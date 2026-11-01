@@ -5,7 +5,7 @@
 ## GitHub 연동으로 최초 연결
 
 1. D1 `kr-research`(ID `ec768f39-f7b3-4515-8095-804a6405bc77`)가 `wrangler.jsonc`의 `DB` 바인딩에 연결되어 있다. 배포 계정에 이 DB가 있어야 한다. 비밀번호는 소스에 넣지 않는다.
-2. Cloudflare → Workers & Pages → **kr-research-site** → Settings → Variables and Secrets에서 아래 두 항목을 **Secret**으로 등록한다. Builds의 빌드 변수와 구분한다.
+2. Cloudflare → Workers & Pages → **kr-research-site** → Settings → Variables and Secrets에서 아래 두 항목을 **Secret**으로 등록한다. 추가 창의 Deploy(저장 및 배포)까지 완료한다. 기존 Worker Secret을 그대로 상속한다. Builds → Build Variables and Secrets에 같은 이름으로 등록된 값도 지원하며, 배포 스크립트가 해당 두 값만 권한 0600의 임시 JSON 파일로 넘겨 암호화된 런타임 Secret으로 함께 등록하고 성공·실패 후 파일을 삭제한다. 값은 로그에 출력하지 않는다.
    - `ADMIN_PASSWORD`: 본인이 정한 관리자 비밀번호, 12~256자. 비밀번호 관리자로 만든 긴 무작위 값을 권장한다.
    - `ANALYTICS_HMAC_SECRET`: 암호학적 난수 32바이트 이상. 브라우저 식별자 HMAC 및 관리자 세션 서명에 사용한다. 값은 Git이나 대화에 보내지 않는다.
 3. Access 앱 생성이나 이메일 설정은 필요 없다. `/admin/`에서 별도 비밀번호로 로그인한다. 비밀값이 없거나 형식이 맞지 않으면 관리자 접근과 로그인이 차단된다. 이미 사이트에 Access가 켜져 있다면 기존 정책이 별도로 적용되므로 의도한 공개 경로와 맞는지 확인한다.
@@ -13,6 +13,8 @@
 5. GitHub에 변경 내용을 push한다. 자동으로 테스트와 빌드를 실행하고, D1 마이그레이션을 적용한 뒤 Worker를 배포한다. 기존 정적 빌드 명령과 `npx wrangler deploy`만 사용하면 새 테스트와 마이그레이션이 생략되므로 위 명령으로 갱신한다.
 6. 비로그인 상태에서 `/admin/`은 로그인 화면으로 이동하며, `/admin/app.js`와 `/admin/api/analytics`는 401을 반환하는지 확인한다. 로그인 후 페이지와 API가 정상이며 `Cache-Control: private, no-store`인지 확인한다. 관리자 경로에 별도 캐시 규칙을 만들지 않는다.
 7. 공개 페이지에서 동의 전·거절 후에는 `/api/analytics/events` 요청이 없고, 허용 후 202가 반환되는지 확인한다. Cron은 매시 5분에 실행하므로 첫 집계까지 기다린다. `/admin`의 시작·마지막 수신·집계 시각을 확인한다.
+
+`wrangler.jsonc`의 `secrets.required`로 실제 배포 바인딩을 Wrangler가 검증한다. 기존 `wrangler secret list` 결과만 보고 배포를 차단하는 사전 검사는 사용하지 않는다. 이름이 없으면 Wrangler의 누락 Secret 오류가 표시되며 인증은 계속 차단된다.
 
 `npm run deploy:site`는 실제 원격 DB와 Worker를 변경하는 명령이다. 로컬 테스트에는 Cloudflare 로그인이나 운영 비밀값이 필요 없다.
 
