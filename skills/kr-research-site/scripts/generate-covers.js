@@ -1,19 +1,18 @@
 #!/usr/bin/env node
 // Generate missing site/covers art through the logged-in Gemini web app, or --check that none is missing.
+// --sectors fills the shared site/covers/sectors library instead; existing files are skipped, so it can resume.
 const { execFileSync } = require("child_process");
 const fs = require("fs"),
   os = require("os"),
   path = require("path");
+const { ART_DIR, artName, loadSectors, resolveArt } = require("./cover-art");
 const root = path.join(__dirname, "../../..");
 const GEMINI_URL = "https://gemini.google.com/app";
 const AUTH = /accounts\.google|captcha|비정상적인 트래픽/i;
 
-function artName(slug) {
-  return `${slug.replaceAll("/", "-")}.jpg`;
-}
-function missingArt(articles, artDir) {
+function missingArt(articles, artDir, sectors = loadSectors()) {
   return articles.filter(
-    (article) => article.coverArt !== false && !fs.existsSync(path.join(artDir, artName(article.slug))),
+    (article) => !resolveArt(article, { artDir, sectors }) && article.coverArt !== false,
   );
 }
 function coverPrompt(article) {
@@ -139,15 +138,44 @@ async function cleanArt(source, target) {
 }
 
 function parseArgs(argv) {
-  const args = { check: false, force: false, slugs: [], out: path.join(root, "site/covers") };
+  const args = { check: false, force: false, sectors: false, sectorIds: [], slugs: [], out: ART_DIR };
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === "--check") args.check = true;
     else if (argv[i] === "--force") args.force = true;
-    else if (argv[i] === "--slug") args.slugs.push(argv[++i]);
+    else if (argv[i] === "--sectors") args.sectors = true;
+    else if (argv[i] === "--sector") {
+      args.sectors = true;
+      args.sectorIds.push(argv[++i]);
+    } else if (argv[i] === "--slug") args.slugs.push(argv[++i]);
     else if (argv[i] === "--out") args.out = path.resolve(argv[++i]);
     else throw Error(`Unknown argument: ${argv[i]}`);
   }
   return args;
+}
+function sectorJobs(args) {
+  const sectors = loadSectors(),
+    unknown = args.sectorIds.filter((id) => !sectors.some((sector) => sector.id === id));
+  if (unknown.length) throw Error(`Not in site/cover-sectors.json: ${unknown.join(", ")}`);
+  return sectors
+    .filter((sector) => !args.sectorIds.length || args.sectorIds.includes(sector.id))
+    .map((sector) => ({
+      name: sector.id,
+      prompt: coverPrompt({ coverSubject: sector.subject }),
+      target: path.join(args.out, "sectors", `${sector.id}.jpg`),
+    }))
+    .filter((job) => args.force || !fs.existsSync(job.target));
+}
+function articleJobs(args, articles, missing) {
+  const unknown = args.slugs.filter((slug) => !articles.some((a) => a.slug === slug));
+  if (unknown.length) throw Error(`Not in site/published.json: ${unknown.join(", ")}`);
+  const chosen = args.slugs.length
+    ? articles.filter((a) => args.slugs.includes(a.slug) && (args.force || missing.includes(a)))
+    : missing;
+  return chosen.map((article) => ({
+    name: article.slug,
+    prompt: coverPrompt(article),
+    target: path.join(args.out, artName(article.slug)),
+  }));
 }
 async function main() {
   const args = parseArgs(process.argv.slice(2));
@@ -156,33 +184,35 @@ async function main() {
   if (args.check) {
     if (!missing.length) return;
     console.error(
-      `Published articles without cover art:\n${missing.map((a) => `  ${a.slug}`).join("\n")}\nRun: node skills/kr-research-site/scripts/generate-covers.js`,
+      `Published articles without cover art:\n${missing.map((a) => `  ${a.slug}`).join("\n")}\nAdd a sectors entry from site/cover-sectors.json, or run: node skills/kr-research-site/scripts/generate-covers.js`,
     );
     process.exit(1);
   }
-  const unknown = args.slugs.filter((slug) => !articles.some((a) => a.slug === slug));
-  if (unknown.length) throw Error(`Not in site/published.json: ${unknown.join(", ")}`);
-  const jobs = args.slugs.length
-    ? articles.filter((a) => args.slugs.includes(a.slug) && (args.force || missing.includes(a)))
-    : missing;
-  if (!jobs.length) return console.log("All published articles have cover art.");
+  const jobs = args.sectors ? sectorJobs(args) : articleJobs(args, articles, missing);
+  if (!jobs.length) return console.log("Nothing to generate.");
   const browser = new GeminiBrowser(),
     temp = fs.mkdtempSync(path.join(os.tmpdir(), "research-covers-"));
-  let failed = 0;
-  for (const article of jobs) {
-    const raw = path.join(temp, `${article.slug.replaceAll("/", "-")}.png`),
-      target = path.join(args.out, artName(article.slug));
+  let failed = 0,
+    streak = 0,
+    done = 0;
+  for (const job of jobs) {
+    const raw = path.join(temp, `${job.name.replaceAll("/", "-")}.png`);
     try {
-      browser.capture(coverPrompt(article), raw);
-      await cleanArt(raw, target);
-      console.log(`Review this image before committing: ${target}`);
+      browser.capture(job.prompt, raw);
+      await cleanArt(raw, job.target);
+      done++;
+      streak = 0;
+      console.log(`Review this image before committing: ${job.target}`);
     } catch (error) {
       failed++;
-      console.error(`${article.slug}: ${String(error.stderr || error.message).slice(0, 400)}`);
-      if (AUTH.test(String(error.message))) break;
+      streak++;
+      console.error(`${job.name}: ${String(error.stderr || error.message).slice(0, 400)}`);
+      // Two misses in a row means a usage limit or logout, not one bad image: stop spending chats.
+      if (AUTH.test(String(error.message)) || streak >= 2) break;
     }
   }
   fs.rmSync(temp, { recursive: true, force: true });
+  console.log(`Generated ${done} of ${jobs.length}; ${jobs.length - done} left.`);
   if (failed) process.exit(1);
 }
 if (require.main === module)

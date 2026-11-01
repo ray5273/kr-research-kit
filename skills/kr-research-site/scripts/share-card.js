@@ -3,8 +3,8 @@ const { execFileSync } = require("child_process");
 const fs = require("fs"),
   path = require("path"),
   crypto = require("crypto");
-const font = path.join(__dirname, "../assets/fonts/NotoSansKR.ttf"),
-  artDir = path.join(__dirname, "../../../site/covers");
+const { resolveArt } = require("./cover-art");
+const font = path.join(__dirname, "../assets/fonts/NotoSansKR.ttf");
 let registered = false;
 function wrap(ctx, text, width) {
   const lines = [];
@@ -48,8 +48,8 @@ function block(
 }
 function artFor(article) {
   const name = article.slug.replaceAll("/", "-"),
-    artPath = path.join(artDir, `${name}.jpg`);
-  return { name, artPath, art: fs.existsSync(artPath) ? fs.readFileSync(artPath) : null };
+    artPath = resolveArt(article);
+  return { name, artPath, art: artPath ? fs.readFileSync(artPath) : null };
 }
 function subjectOf(article, label) {
   return [article.company, label !== article.company ? label : ""]
