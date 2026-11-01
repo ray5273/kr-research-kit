@@ -74,7 +74,7 @@ function isShipped(relativePath) {
 function walkMarkdown(relativeDir) {
   const results = [];
   const entries = fs.readdirSync(path.join(repoRoot, relativeDir), { withFileTypes: true });
-  for (const entry of entries.sort((a, b) => a.name.localeCompare(b.name))) {
+  for (const entry of entries.sort((a, b) => a.name.localeCompare(b.name, "en"))) {
     const relativePath = path.posix.join(relativeDir, entry.name);
     if (entry.isDirectory()) {
       if (entry.name === "assets") {
@@ -150,9 +150,9 @@ function loadArtifacts() {
 
 function byDateDescending(a, b) {
   if (a.date !== b.date) {
-    return b.date.localeCompare(a.date);
+    return b.date.localeCompare(a.date, "en");
   }
-  return a.relativePath.localeCompare(b.relativePath);
+  return a.relativePath.localeCompare(b.relativePath, "en");
 }
 
 function artifactRank(artifact) {
@@ -172,12 +172,12 @@ function renderCompanyMarket(artifacts, lines) {
 
   const ordered = [...groups.entries()]
     .map(([name, items]) => {
-      const sorted = [...items].sort((a, b) => artifactRank(a) - artifactRank(b) || a.basename.localeCompare(b.basename));
+      const sorted = [...items].sort((a, b) => artifactRank(a) - artifactRank(b) || a.basename.localeCompare(b.basename, "en"));
       const headline = sorted.find((item) => item.basename === "memo") || sorted[0];
       const date = items.map((item) => item.date).filter(Boolean).sort().pop() || "";
       return { name, sorted, headline, date };
     })
-    .sort((a, b) => b.date.localeCompare(a.date) || a.name.localeCompare(b.name));
+    .sort((a, b) => b.date.localeCompare(a.date, "en") || a.name.localeCompare(b.name, "en"));
 
   for (const group of ordered) {
     const dateSuffix = group.date ? ` — ${group.date}` : "";
@@ -217,7 +217,7 @@ function renderListMarket(artifacts, lines) {
     lines.push("");
   }
 
-  const namedGroups = [...groups.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+  const namedGroups = [...groups.entries()].sort((a, b) => a[0].localeCompare(b[0], "en"));
   for (const [name, items] of namedGroups) {
     lines.push(`### ${name}`);
     lines.push("");
@@ -259,7 +259,7 @@ function render(artifacts) {
   const orderedMarkets = [...markets.keys()].sort((a, b) => {
     const rankA = Object.keys(MARKET_LABELS).indexOf(a);
     const rankB = Object.keys(MARKET_LABELS).indexOf(b);
-    return (rankA === -1 ? 99 : rankA) - (rankB === -1 ? 99 : rankB) || a.localeCompare(b);
+    return (rankA === -1 ? 99 : rankA) - (rankB === -1 ? 99 : rankB) || a.localeCompare(b, "en");
   });
 
   for (const market of orderedMarkets) {
