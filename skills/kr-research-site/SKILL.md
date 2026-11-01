@@ -19,7 +19,7 @@ Requires `kr-naver-blog-publish` installed next to this skill: the renderer reus
      "tags": ["알파벳", "GOOGL"] }
    ```
 
-   `memo` and `slug` are required. Optional `article` points to a tracked editorial Markdown sibling; it must preserve the original memo 기준일 and passes the same privacy and image checks. The original memo remains available at `<slug>/memo.md`. Set `archive: true` for historical research; cards and the article show a 기록 글 label and explain that subsequent changes are excluded. For editorial publication, set `datePublished` to the actual site publication date and `dateModified` to the latest editing date. The page displays these separately from the 자료 기준일; older entries without these fields still build. `slug` is lowercase `a-z0-9-` segments joined by `/` and never changes after publishing (it is the canonical URL). `company`, `ticker`, `exchange`, `market`, `issue`, `tags`, `datePublished`, `dateModified` override what the builder derives from the memo. Display-only fields (see [references/design-brief.md](references/design-brief.md)):
+   `memo` and `slug` are required. Optional `article` points to a tracked editorial Markdown sibling; it must preserve the original memo 기준일 and passes the same privacy and image checks. The original memo remains available at `<slug>/memo.md` for compatibility, but do not show a Markdown source button or link in the public article. Set `archive: true` for historical research; cards and the article show a 기록 글 label and explain that subsequent changes are excluded. For editorial publication, set `datePublished` to the actual site publication date and `dateModified` to the latest editing date. The page displays these separately from the 자료 기준일; older entries without these fields still build. `slug` is lowercase `a-z0-9-` segments joined by `/` and never changes after publishing (it is the canonical URL). `company`, `ticker`, `exchange`, `market`, `issue`, `tags`, `datePublished`, `dateModified` override what the builder derives from the memo. Display-only fields (see [references/design-brief.md](references/design-brief.md)):
 
    - `headline`: short on-page title and card title (the SEO `<title>` keeps the `company(ticker) | issue | 기준일` format).
    - `summary`: one-line card summary (default: whole sentences from the core answer).
@@ -81,3 +81,10 @@ When `kr-stock-update` appends an Update Log block (`### YYYY-MM-DD — ...`) or
 | `scripts/serve-site.js` | Local static preview server |
 | `scripts/indexnow-ping.js` | POST changed URLs to IndexNow endpoints (`--dry-run`, `--all`, `--previous <url|file>`) |
 | `scripts/test-build-site.js` | Fixture tests: HTML/JSON-LD, sitemap/feed, opt-in and private-path refusals, ads on/off |
+
+## Public article editing rules
+
+- Write for readers of the published page. Omit local file names, JSON inputs/results, Python scripts, CSV zone files, reproduction commands and internal research-pipeline status from prose. Keep these in repository research artifacts; retain disclosed facts, assumptions, source dates and material verification limits.
+- Do not display “원본 리서치 메모 보기 (Markdown)” or other implementation/source-file controls in article headers.
+- Bare numeric citations such as `[1]` must resolve to their explicitly numbered Sources entry and render as links to the lower source list. Preserve source identity if the builder renumbers citations; never silently link to a different source. Code snippets and numeric labels on real Markdown links are not bare citations.
+- Keep paragraphs visually separated (28px bottom margin and 1.9 line height); allow clear pauses before section headings and around tables. Check long finance tables at phone width without narrowing the page or compressing prose.

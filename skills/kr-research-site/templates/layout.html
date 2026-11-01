@@ -104,7 +104,6 @@ footer.site a:hover{color:var(--ink)}
 .art-head{padding:44px 0 8px}
 .art-head h1{font:700 40px/1.18 var(--display);letter-spacing:-.04em;margin:12px 0 16px}
 .archive-note{font-size:14px;line-height:1.6;color:var(--ink-2);background:var(--surface);border-radius:10px;padding:12px 14px;margin:16px 0 8px}
-.original-link{font-size:14px;margin:8px 0}.original-link a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 .byline{font-size:13px;color:var(--muted);margin:0}
 .quote{display:flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:20px 0 8px}
 .quote>div{flex:1 1 140px;padding:14px 16px;border-right:1px solid var(--line)}
@@ -119,10 +118,10 @@ footer.site a:hover{color:var(--ink)}
 .answer p{margin:0 0 8px;color:var(--ink-2);font-size:16px}
 .answer p.asof-line{font-size:13px;color:var(--muted);margin:10px 0 0}
 .legend{font-size:13px;color:var(--muted);margin:0 0 22px}
-.body h2{font:700 26px/1.3 var(--display);letter-spacing:-.03em;margin:48px 0 14px;scroll-margin-top:72px}
-.body h3{font:700 20px/1.4 var(--display);letter-spacing:-.02em;margin:32px 0 10px}
+.body h2{font:700 26px/1.3 var(--display);letter-spacing:-.03em;margin:64px 0 22px;scroll-margin-top:88px}
+.body h3{font:700 20px/1.4 var(--display);letter-spacing:-.02em;margin:40px 0 16px}
 .body h4{font-size:17px;margin:24px 0 8px}
-.body p{font-size:17.5px;line-height:1.8;margin:0 0 18px}
+.body p{font-size:17.5px;line-height:1.9;margin:0 0 28px}
 .body ul,.body ol{padding-left:1.3em;font-size:17px;line-height:1.75}
 .body li{margin:.3em 0}
 .body a{color:var(--accent)}
@@ -131,11 +130,15 @@ footer.site a:hover{color:var(--ink)}
 .body code{font-family:var(--mono);font-size:.9em}
 .body hr{border:0;border-top:1px solid var(--line);margin:36px 0}
 .tone-pos{color:var(--pos);font-weight:600}.tone-neg{color:var(--neg);font-weight:600}.tone-spec{color:var(--spec);font-weight:600}
-sup.cite a{color:var(--accent);font-size:11px;margin-left:1px}
+sup.cite{white-space:nowrap}
+sup.cite a{color:var(--accent);font-size:12px;display:inline-block;min-width:24px;text-align:center;padding:2px 3px;margin:0 2px;text-decoration:underline;text-underline-offset:3px}
+.sources li{scroll-margin-top:96px;margin-bottom:16px}
+.sources li:target{background:var(--accent-soft);outline:2px solid var(--accent);border-radius:6px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 figure{margin:28px 0}
 figure img{max-width:100%;height:auto;border-radius:14px;border:1px solid var(--line);background:#fff;display:block;margin:0 auto}
 figcaption{font-size:13px;color:var(--muted);margin-top:8px;text-align:center}
-.table-scroll{overflow-x:auto;margin:8px 0 24px;-webkit-overflow-scrolling:touch}
+.table-scroll{overflow-x:auto;margin:20px 0 36px;-webkit-overflow-scrolling:touch}
 table{border-collapse:collapse;min-width:100%;font-size:15px;line-height:1.5}
 th{font-size:12.5px;color:var(--muted);font-weight:600;text-align:left;padding:10px;border-bottom:1px solid var(--ink);vertical-align:bottom}
 td{padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}

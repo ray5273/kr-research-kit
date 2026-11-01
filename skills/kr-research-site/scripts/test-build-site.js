@@ -302,7 +302,8 @@ assert(archiveHtml.includes("기록 글 · 자료 기준일"));
 assert(archiveHtml.includes('datetime="2026-06-21"'));
 assert(archiveHtml.includes('사이트 발행 <time datetime="2026-11-01"'));
 assert(archiveHtml.includes('최근 편집 <time datetime="2026-11-02"'));
-assert(archiveHtml.includes('/kr/soop-2026-06/memo.md'));
+assert(!archiveHtml.includes('원본 리서치 메모 보기'));
+assert(!archiveHtml.includes('class="original-link"'));
 assert(read("kr/soop-2026-06/memo.md").includes("새 차트"));
 assert(read("index.html").includes("기록 글"));
 assert(jsonLd(archiveHtml).flat().some(x => JSON.stringify(x).includes("2026-11-01T09:00:00+09:00")));
@@ -312,6 +313,11 @@ write(archiveEntry.article, originalMemo.replace("2026-06-21", "2026-06-20"));
 assert.throws(() => build({ published: { articles: [archiveEntry] } }), /preserve.*기준일/);
 
 // --- helpers ---
+const numbered = collectCitations("근거 [2]와 [1], 다시 [2]. 코드 `[1]`, 미정 [99], 링크 [3](https://third.example).", ["1. [첫 자료](https://first.example)", "2. [둘째 자료](https://second.example)"]);
+assert(numbered.body.includes("근거 ⟦cite:1⟧와 ⟦cite:2⟧, 다시 ⟦cite:1⟧."));
+assert(numbered.body.includes("코드 `[1]`, 미정 [99], 링크 3⟦cite:3⟧"));
+assert.deepStrictEqual(numbered.sources.map(x => x.url), ["https://second.example", "https://first.example", "https://third.example"]);
+
 const cited = collectCitations("본문 [A](https://a.example/x)와 [B](https://b.example/y), 다시 [A2](https://a.example/x).", ["- [A 전체 이름](https://a.example/x)", "- [C](https://c.example/z)"]);
 assert.strictEqual(cited.body, "본문 A⟦cite:1⟧와 B⟦cite:2⟧, 다시 A2⟦cite:1⟧.");
 assert.deepStrictEqual(cited.sources.map(source => source.label), ["A 전체 이름", "B", "C"]);

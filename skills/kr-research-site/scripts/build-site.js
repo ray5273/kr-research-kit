@@ -207,7 +207,25 @@ function collectCitations(bodyMarkdown, sourceLines) {
     }
     return byUrl.get(url);
   }
-  const body = bodyMarkdown.replace(LINK_RX, (_match, label, url) => `${label}⟦cite:${add(url, label)}⟧`);
+  // Preserve explicitly numbered references before URL citations are renumbered.
+  // Protect inline/fenced code and numeric labels on actual Markdown links.
+  const referenceUrls = new Map();
+  for (const line of sourceLines) {
+    const id = line.match(/^\s*(\d+)\.\s+/)?.[1];
+    const link = [...line.matchAll(LINK_RX)][0];
+    if (id && link) referenceUrls.set(id, { url: link[2], label: link[1] });
+  }
+  const referenced = bodyMarkdown.replace(/(```[\s\S]*?```|`[^`\n]+`)|(?<!!)\[(\d+)\](?!\()/g, (match, code, id) => {
+    if (code || !referenceUrls.has(id)) return match;
+    return `⟦source:${id}⟧`;
+  });
+  const body = referenced.replace(/⟦source:(\d+)⟧|(?<!!)\[([^\]]+)]\((https?:\/\/[^)\s]+)\)/g, (_match, id, label, url) => {
+    if (id) {
+      const source = referenceUrls.get(id);
+      return `⟦cite:${add(source.url, source.label)}⟧`;
+    }
+    return `${label}⟦cite:${add(url, label)}⟧`;
+  });
   for (const line of sourceLines) {
     let matched = false;
     for (const match of line.matchAll(LINK_RX)) {
@@ -761,7 +779,6 @@ function renderArticle(article, site, outDir, safety) {
     headline: escapeHtml(article.headline),
     metaLine: `${escapeHtml(config.author?.name || config.siteName)} · 자료 기준일 <time datetime="${article.asOfDate}">${article.asOfDate}</time> · 사이트 발행 <time datetime="${article.datePublished}">${article.datePublished}</time> · 최근 편집 <time datetime="${article.dateModified}">${article.dateModified}</time> · ${article.readMinutes}분`,
     archiveNotice: article.archive ? '<p class="archive-note">기록 글 · 자료 기준일 당시의 수치와 판단을 보존했습니다. 이후 변동은 반영하지 않았습니다.</p>' : "",
-    originalLink: article.originalMarkdown ? `<p class="original-link"><a href="/${article.slug}/memo.md">원본 리서치 메모 보기 (Markdown)</a></p>` : "",
     quote: article.quote.length ? `<div class="quote">${article.quote.map(cell => `<div><div class="k">${escapeHtml(cell.label)}</div><div class="v${cell.tone ? ` ${cell.tone}` : ""}">${escapeHtml(cell.value)}${cell.unit ? `<small>${escapeHtml(cell.unit)}</small>` : ""}</div></div>`).join("")}</div>` : "",
     more: moreHtml(article, site),
     answerLead: renderInline(article.answerLead, ctx),
