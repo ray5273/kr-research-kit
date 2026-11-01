@@ -1025,11 +1025,13 @@ function buildSite(options) {
   const slugs = new Set();
   const articles = published.articles.map(entry => {
     assert(!slugs.has(entry.slug), `Duplicate slug in published.json: ${entry.slug}`);
+    assert(!/^(admin|api)(\/|$)/.test(entry.slug), `Reserved application slug: ${entry.slug}`);
     slugs.add(entry.slug);
     return loadArticle(entry, { root, safety, config });
   }).map((article, order) => Object.assign(article, { order })).sort((a, b) => b.dateModified.localeCompare(a.dateModified) || b.datePublished.localeCompare(a.datePublished) || a.slug.localeCompare(b.slug));
 
   const pages = loadPages(options.pagesDir, safety);
+  assert(pages.every(page => !/^(admin|api)(\/|$)/.test(page.slug)), "Reserved application page slug");
   const markets = [...new Set(articles.map(article => article.market))].sort((a, b) => Object.keys(MARKET_LABELS).indexOf(a) - Object.keys(MARKET_LABELS).indexOf(b));
   const templates = Object.fromEntries(["layout", "article", "index"].map(name => [name, fs.readFileSync(path.join(TEMPLATE_DIR, `${name}.html`), "utf8")]));
   const site = { config, templates, pages, markets, articles, buildYear: options.buildYear || new Date().getFullYear() };
@@ -1082,7 +1084,7 @@ function buildSite(options) {
 
   writeFile(path.join(outDir, "sitemap.xml"), sitemapXml(urlEntries.filter(entry => entry.inSitemap)));
   writeFile(path.join(outDir, "feed.xml"), feedXml(site, articles));
-  writeFile(path.join(outDir, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${config.baseUrl}/sitemap.xml\n`);
+  writeFile(path.join(outDir, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: /admin\n\nSitemap: ${config.baseUrl}/sitemap.xml\n`);
   writeFile(path.join(outDir, "llms.txt"), llmsTxt(site, articles));
   writeFile(path.join(outDir, "llms-full.txt"), llmsFullTxt(site, articles));
   if (adsEnabled(config)) {
@@ -1091,6 +1093,14 @@ function buildSite(options) {
   if (config.indexNow?.key) writeFile(path.join(outDir, `${config.indexNow.key}.txt`), config.indexNow.key);
   const urls = urlEntries.map(({ loc, lastmod, sha256: hash }) => ({ loc, lastmod: lastmod || null, sha256: hash }));
   writeFile(path.join(outDir, "urls.json"), `${JSON.stringify({ baseUrl: config.baseUrl, urls }, null, 2)}\n`);
+
+  // Public metadata only: never include memo filesystem paths or admin assets.
+  const analyticsManifest = {
+    paths: [...new Set([...urlEntries.map(e => new URL(e.loc).pathname), ...[...tags.keys()].map(tag => `/tags/${encodeURIComponent(tag)}/`)])],
+    articles: articles.map(a => ({path: `/${a.slug}/`, title: a.headline || a.title, market: a.market, tags: a.tags})),
+  };
+  writeFile(path.join(outDir, "analytics-manifest.json"), JSON.stringify(analyticsManifest));
+  writeFile(path.join(outDir, "analytics.js"), fs.readFileSync(path.join(__dirname, "../../../site/analytics/tracker.js"), "utf8"));
 
   return { outDir, articles: articles.map(article => ({ slug: article.slug, url: article.url, title: article.title, dateModified: article.dateModified })), pages: pages.map(page => page.slug), ads: adsEnabled(config) };
 }

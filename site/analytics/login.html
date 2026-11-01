@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>관리자 로그인 · KR Research</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #fff;
+        --ink: #1d1d1f;
+        --surface: #f5f5f7;
+        --line: #ddd;
+        --accent: #d64d00;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #000;
+          --ink: #f5f5f7;
+          --surface: #161617;
+          --line: #444;
+          --accent: #ff7a2f;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.6;
+      }
+      main {
+        width: calc(100% - 40px);
+        max-width: 420px;
+        margin: 12vh auto;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+      }
+      a {
+        color: var(--accent);
+      }
+      h1 {
+        font-size: 28px;
+        margin: 20px 0 12px;
+      }
+      label {
+        display: block;
+        margin: 24px 0 8px;
+      }
+      input,
+      button {
+        width: 100%;
+        font: inherit;
+        border-radius: 8px;
+        padding: 12px;
+      }
+      input {
+        background: var(--surface);
+        color: var(--ink);
+        border: 1px solid var(--line);
+      }
+      button {
+        background: var(--ink);
+        color: var(--bg);
+        border: 0;
+        margin: 18px 0;
+        cursor: pointer;
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+      }
+      .error {
+        color: var(--accent);
+      }
+      small {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a href="/">KR Research.</a>
+      <h1>관리자 로그인</h1>
+      <p>리서치 통계 관리자 비밀번호를 입력하세요.</p>
+      <p class="error" role="status">{{message}}</p>
+      <form method="post" action="/admin/login">
+        <label for="password">비밀번호</label
+        ><input
+          id="password"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          required
+          minlength="12"
+          maxlength="256"
+        /><button type="submit">로그인</button>
+      </form>
+      <small>로그인은 최대 8시간 유지됩니다.</small>
+    </main>
+  </body>
+</html>

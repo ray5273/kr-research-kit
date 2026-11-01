@@ -1,1 +1,14 @@
-{}
+{
+  "devDependencies": {
+    "miniflare": "5.20261023.3-beta",
+    "wrangler": "4.156.0"
+  },
+  "private": true,
+  "scripts": {
+    "build:site": "node skills/kr-research-site/scripts/build-site.js --out site-dist --production",
+    "test:site": "node skills/kr-research-site/scripts/test-build-site.js",
+    "test:analytics": "node site/analytics/test-tracker.mjs && node site/analytics/test-admin.mjs && node site/analytics/test.mjs",
+    "check:site": "npm run test:site && npm run build:site && npm run test:analytics",
+    "deploy:site": "node site/analytics/deploy.mjs"
+  }
+}

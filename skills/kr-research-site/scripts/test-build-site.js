@@ -218,6 +218,17 @@ assert(/class="panel popular"><a class="row" href="\/us\/acme-2026-05\/"><div><d
 assert.throws(() => build({ published: { articles: [{ ...soop, stance: "매수" }] } }), /Invalid stance/);
 build();
 
+// Public analytics metadata and consent assets must never expose source paths.
+const analyticsManifest = JSON.parse(read("analytics-manifest.json"));
+assert.strictEqual(analyticsManifest.articles.length, 2);
+assert(analyticsManifest.articles.every(a => a.path.startsWith("/") && a.title && a.market && Array.isArray(a.tags)));
+assert(!JSON.stringify(analyticsManifest).includes("analysis-example/"));
+assert(!analyticsManifest.paths.some(p => p.startsWith("/admin")));
+assert(read("index.html").includes('data-stats-settings'));
+assert(read("index.html").includes('src="/analytics.js"'));
+assert(read("analytics.js").includes("research.stats.consent"));
+assert(!fs.existsSync(path.join(outDir, "admin")));
+
 // sitemap / feed / robots / llms / urls
 const sitemap = read("sitemap.xml");
 assert(sitemap.startsWith('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'));
@@ -238,7 +249,7 @@ assert(feed.includes('<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko">')
 assert.strictEqual((feed.match(/<entry>/g) || []).length, 2);
 assert(feed.includes("<title>Acme &amp; Co(ACME) | 마진이 돌아섰다 | 2026-05-01</title>"));
 assert(feed.includes("<updated>2026-07-02T09:00:00+09:00</updated>"));
-assert.strictEqual(read("robots.txt"), "User-agent: *\nAllow: /\n\nSitemap: https://research.example.com/sitemap.xml\n");
+assert.strictEqual(read("robots.txt"), "User-agent: *\nAllow: /\nDisallow: /admin\n\nSitemap: https://research.example.com/sitemap.xml\n");
 assert(read("llms.txt").includes("- [SOOP(067160) | 순현금이 하방을 받치고, 트래픽 회복이 상방을 연다 | 2026-06-21](https://research.example.com/kr/soop-2026-06/)"));
 const llmsFull = read("llms-full.txt");
 assert(llmsFull.includes("| PER | 9.8배 |"));
@@ -273,6 +284,8 @@ assert.strictEqual(read("ads.txt"), "google.com, pub-1234567890123456, DIRECT, f
 assert.throws(() => build({ config: { ...baseConfig, adsense: { client: "pub-123" } } }), /adsense\.client/);
 
 // --- refusals ---
+assert.throws(() => build({ published: { articles: [{ ...soop, slug: "admin/private" }] } }), /Reserved application slug/);
+assert.throws(() => build({ published: { articles: [{ ...soop, slug: "api" }] } }), /Reserved application slug/);
 assert.throws(() => build({ published: { articles: [soop, { memo: "analysis-example/kr/Untracked/memo.md", slug: "kr/untracked" }] } }), /not tracked by git/);
 assert.throws(() => build({ published: { articles: [{ memo: "analysis-example/kr/NoDate/memo.md", slug: "kr/nodate" }] } }), /기준일/);
 assert.throws(() => build({ published: { articles: [{ memo: "analysis-example/kr/Private/memo.md", slug: "kr/private" }] } }), /private holdings\/ledger/);

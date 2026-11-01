@@ -1,12 +1,22 @@
-// Cloudflare Workers static-assets deploy for the kr-research-site build.
-// Workers Builds runs the build command, then `npx wrangler deploy` uploads
-// site-dist/. "name" must match the Worker name in the Cloudflare dashboard.
+// Credentials are Cloudflare Secrets, never source code.
 {
   "name": "kr-research-site",
+  "main": "site/analytics/worker.mjs",
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": "./site-dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/admin", "/admin/*", "/api/analytics/events"],
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
-  }
+  },
+  "rules": [{"type": "Text", "globs": ["**/*.html", "**/*.client.js"], "fallthrough": true}],
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "kr-research",
+    "database_id": "ec768f39-f7b3-4515-8095-804a6405bc77",
+    "migrations_dir": "site/analytics/migrations"
+  }],
+  "triggers": {"crons": ["5 * * * *"]},
+  "observability": {"enabled": false}
 }

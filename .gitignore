@@ -33,3 +33,9 @@ __pycache__/
 # --- kr-research-site build output ---
 site-dist/
 .wrangler/
+
+# Local Worker secrets (never commit)
+.dev.vars
+.dev.vars.*
+
+.playwright-cli/

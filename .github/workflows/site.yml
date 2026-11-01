@@ -13,6 +13,8 @@ on:
       - 'skills/kr-research-site/**'
       - 'skills/kr-naver-blog-publish/scripts/**'
       - '.github/workflows/site.yml'
+      - 'wrangler.jsonc'
+      - 'package*.json'
   workflow_dispatch:
 
 permissions:
@@ -33,6 +35,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - run: npm ci
+      - name: Verify static build and analytics Worker
+        run: npm run check:site
       - name: Check IndexNow configuration
         id: config
         run: |

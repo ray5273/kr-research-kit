@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>리서치 통계 · KR Research</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #fff;
+        --surface: #f5f5f7;
+        --ink: #1d1d1f;
+        --muted: #626267;
+        --line: #e8e8ed;
+        --accent: #d64d00;
+        --soft: #fff3eb;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Pretendard,
+          sans-serif;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #000;
+          --surface: #161617;
+          --ink: #f5f5f7;
+          --muted: #a1a1a6;
+          --line: #2c2c2e;
+          --accent: #ff7a2f;
+          --soft: #2a1608;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-size: 15px;
+        line-height: 1.6;
+      }
+      a {
+        color: var(--accent);
+      }
+      header {
+        border-bottom: 1px solid var(--line);
+      }
+      header > div,
+      main {
+        max-width: 1180px;
+        margin: auto;
+        padding: 20px 28px;
+      }
+      header > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header a {
+        text-decoration: none;
+        color: var(--ink);
+      }
+      header b {
+        font-size: 20px;
+        letter-spacing: -1px;
+      }
+      header i {
+        color: var(--accent);
+        font-style: normal;
+      }
+      .eyebrow {
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin: 24px 0 8px;
+      }
+      h1 {
+        font-size: 38px;
+        letter-spacing: -1.5px;
+        line-height: 1.2;
+        margin: 0 0 12px;
+      }
+      h2 {
+        font-size: 21px;
+        letter-spacing: -0.5px;
+        margin: 0 0 18px;
+      }
+      h3 {
+        margin: 0 0 8px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        margin: 24px 0;
+      }
+      button,
+      select,
+      input {
+        font: inherit;
+        color: var(--ink);
+        background: var(--bg);
+        border: 1px solid var(--line);
+        padding: 9px 13px;
+        border-radius: 8px;
+      }
+      button {
+        cursor: pointer;
+      }
+      button:hover {
+        border-color: var(--accent);
+      }
+      button[aria-pressed="true"] {
+        background: var(--ink);
+        color: var(--bg);
+        border-color: var(--ink);
+      }
+      button:focus-visible,
+      a:focus-visible,
+      select:focus-visible,
+      input:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+      nav {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 16px;
+        margin: 24px 0;
+      }
+      nav button {
+        border: 0;
+      }
+      nav button[aria-current="page"] {
+        color: var(--accent);
+        background: var(--soft);
+      }
+      .status {
+        padding: 16px 18px;
+        background: var(--surface);
+        border-radius: 12px;
+        font-size: 13px;
+      }
+      .status[data-error="true"] {
+        border: 1px solid var(--accent);
+      }
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin: 28px 0;
+      }
+      .metric {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 20px;
+      }
+      .metric b {
+        display: block;
+        font-size: 32px;
+        letter-spacing: -1px;
+        line-height: 1.4;
+      }
+      .metric span {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      section.panel {
+        border-top: 1px solid var(--line);
+        margin: 30px 0;
+        padding-top: 24px;
+      }
+      .table-wrap {
+        overflow: auto;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        white-space: nowrap;
+        font-size: 14px;
+      }
+      th,
+      td {
+        padding: 14px 12px;
+        text-align: right;
+        border-bottom: 1px solid var(--line);
+      }
+      th {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      th:first-child,
+      td:first-child {
+        text-align: left;
+        white-space: normal;
+        min-width: 220px;
+      }
+      td button {
+        font-weight: 600;
+        text-align: left;
+        padding: 0;
+        border: 0;
+        color: var(--accent);
+      }
+      .chart {
+        width: 100%;
+        height: 180px;
+        color: var(--accent);
+        display: block;
+      }
+      .chart-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .insight {
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--accent);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 14px 0;
+      }
+      .tag {
+        font-size: 12px;
+        color: var(--accent);
+        background: var(--soft);
+        border-radius: 6px;
+        padding: 3px 7px;
+        margin-right: 8px;
+      }
+      .empty {
+        padding: 36px 0;
+        color: var(--muted);
+      }
+      footer {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 48px 0 24px;
+      }
+      .reading {
+        display: flex;
+        gap: 28px;
+        flex-wrap: wrap;
+      }
+      #content[aria-busy="true"] {
+        opacity: 0.5;
+      }
+      @media (max-width: 700px) {
+        header > div,
+        main {
+          padding: 16px 20px;
+        }
+        h1 {
+          font-size: 30px;
+        }
+        .metrics {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+        .metric {
+          padding: 14px;
+        }
+        .metric b {
+          font-size: 26px;
+        }
+        .toolbar > label:last-of-type {
+          width: 100%;
+        }
+        select#article {
+          max-width: 100%;
+        }
+        header small {
+          display: none;
+        }
+      }
+    </style>
+    <script src="/admin/app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div>
+        <b>KR Research<i>.</i> <small class="muted">관리자</small></b
+        ><a href="/">공개 사이트 ↗</a>
+        <form method="post" action="/admin/logout">
+          <button type="submit">로그아웃</button>
+        </form>
+      </div>
+    </header>
+    <main>
+      <p class="eyebrow">RESEARCH / ANALYTICS</p>
+      <h1>읽힌 글, 이어진 관심.</h1>
+      <p class="muted">
+        동의한 브라우저에서 관측된 통계 · 한국 시간(KST) · 오늘 수치는 잠정치
+      </p>
+      <div class="toolbar">
+        <span>기간</span>
+        <div id="periods" aria-label="조회 기간">
+          <button data-days="7" aria-pressed="true">7일</button>
+          <button data-days="30" aria-pressed="false">30일</button>
+          <button data-days="90" aria-pressed="false">90일</button>
+          <button data-days="365" aria-pressed="false">365일</button>
+        </div>
+        <label
+          >글
+          <select id="article">
+            <option value="">전체 공개 페이지</option>
+          </select></label
+        ><button id="refresh">새로고침</button>
+      </div>
+      <div class="status" id="status" role="status" aria-live="polite">
+        통계를 불러오는 중입니다.
+      </div>
+      <nav aria-label="통계 화면">
+        <button data-screen="overview" aria-current="page">개요</button
+        ><button data-screen="articles">글별 성과</button
+        ><button data-screen="sources">유입·진입</button
+        ><button data-screen="insights">개선 제안</button>
+      </nav>
+      <div id="content" aria-busy="true"></div>
+      <footer>
+        완독 추정 = 본문 90% 이상 + 활성 읽기 30초 이상. 클릭률 = 내부 글 링크를
+        누른 조회 / 글 조회.<br />외부 리퍼러 없는 유입은 ‘직접·알 수 없음’.
+        고유 브라우저 수는 저장소 사용 가능 환경만 포함합니다.<br />집계가 없는
+        날은 미확인으로 남깁니다. 수집하지 못한 방문 수는 복원할 수 없습니다.
+      </footer>
+    </main>
+  </body>
+</html>

@@ -62,12 +62,12 @@ When `kr-stock-update` appends an Update Log block (`### YYYY-MM-DD — ...`) or
 
 ## One-time setup (user)
 
-1. The site runs as a Cloudflare **Worker with static assets** (`wrangler.jsonc` at the repo root uploads `site-dist/`). Its address is `https://kr-research-site.ray527321.workers.dev` (Worker `kr-research-site`, account subdomain `ray527321`); `baseUrl` (and `author.url`) in `site/site.config.json` must match it exactly. Keep Cloudflare Access off for production, or crawlers and visitors are blocked. A custom domain can be attached later, but that changes every canonical URL, so decide before the site is indexed.
+1. The site runs as a Cloudflare **Worker with static assets** (`wrangler.jsonc` at the repo root uploads `site-dist/`). Its address is `https://kr-research-site.ray527321.workers.dev` (Worker `kr-research-site`, account subdomain `ray527321`); `baseUrl` (and `author.url`) in `site/site.config.json` must match it exactly. Administrator access uses a separate password stored in the Worker Secret `ADMIN_PASSWORD`; Cloudflare Access setup is not required. Keep public pages open. A custom domain can be attached later, but that changes every canonical URL, so decide before the site is indexed.
 2. Cloudflare dashboard → Workers & Pages → Create → Import a repository → this repository:
    - Project (Worker) name: `kr-research-site` (must equal `name` in `wrangler.jsonc`)
-   - Build command: `node skills/kr-research-site/scripts/test-build-site.js && node skills/kr-research-site/scripts/build-site.js --out site-dist --production`
-   - Deploy command: `npx wrangler deploy` (default)
-   - Advanced settings → Build variables: `NODE_VERSION` = `22`; Build watch paths: `site/*`, `analysis-example/*`, `skills/kr-research-site/*`, `skills/kr-naver-blog-publish/scripts/*`, `wrangler.jsonc`
+   - Build command: `npm ci && npm run check:site`
+   - Deploy command: `npm run deploy:site` (validates analytics settings, applies remote D1 migrations, deploys Worker)
+   - Advanced settings → Build variables: `NODE_VERSION` = `22`; Build watch paths: `site/*`, `analysis-example/*`, `skills/kr-research-site/*`, `skills/kr-naver-blog-publish/scripts/*`, `wrangler.jsonc`, `package*.json`
    - Let Cloudflare create the build API token automatically. No GitHub secrets are needed.
 3. Register the site in Google Search Console (URL-prefix property), 네이버 서치어드바이저 and Bing Webmaster. A `workers.dev` site has no DNS of its own, so use the HTML meta-tag method: put each token in `verification.google` / `.naver` / `.bing`, push, then verify and submit `/sitemap.xml`.
 4. Generate an IndexNow key and set `indexNow.key`.
@@ -94,3 +94,11 @@ When `kr-stock-update` appends an Update Log block (`### YYYY-MM-DD — ...`) or
 - Numbered topic/checkpoint titles must use actual Markdown headings (`### 1. ...`), not standalone bold paragraphs (`**1. ...**`). This applies to closing checklists as well as the main analysis; verify that each title renders as a heading with the shared separator and spacing.
 
 - Avoid dry runs of unconnected numeric paragraphs. When an argument mixes expenditure, guidance and derived values, use a compact table that labels period and fact/forecast/calculation, then explain their connection in prose. Put attributed management commentary in a visually distinct block labeled “회사 설명 · 실적 콜 요약” with its source. Summaries/paraphrases must be labeled as such, never presented as verbatim quotation; use quotation marks only for verified exact wording (and label translations). Distinguish company commentary from the author's interpretation through structure, not by coloring every sentence.
+
+## Consent analytics and administrator
+
+The Worker serves administrator data and assets only after verifying an origin-bound signed session cookie from `/admin/login`. The login password comes from the Worker Secret `ADMIN_PASSWORD` (12–256 characters), and the session signature also uses `ANALYTICS_HMAC_SECRET`. Sessions last 8 hours and password rotation invalidates existing sessions. Login/logout enforce same-origin POST; login attempts have a persistent global limit of 20 per 15-minute fixed window without storing IP addresses. It fails closed with missing settings. Public static assets contain no administrator HTML/JS. The build emits `analytics-manifest.json` containing public paths, titles, markets and tags only; never add private memo paths or admin URLs to it, sitemap, feeds, or search artifacts.
+
+The public footer has 통계 설정 and equal-weight consent choices. Collection starts only after opt-in. Browser IDs live at most 90 days and the server stores HMAC values; raw events expire after 90 days and identifier-free daily aggregates after 365 days. Hourly Cron rebuilds the latest 2 days plus today. The dashboard shows only observed consenting-browser traffic, KST date ranges, provisional today, missing data, collection and aggregation health, and sample-gated rules.
+
+Read [analytics operations](../../../site/analytics/OPERATIONS.md) before initial deployment. Required real settings are D1 database ID and Worker Secrets `ADMIN_PASSWORD` and `ANALYTICS_HMAC_SECRET`. Do not deploy placeholders. Use `npm run check:site` for static build, tracker consent tests and real local D1/Worker security/aggregation tests. Use `npm run deploy:site` after the account and Worker Secrets have been configured. Local static preview does not supply the protected administrator API.

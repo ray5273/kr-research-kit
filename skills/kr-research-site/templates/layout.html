@@ -180,6 +180,12 @@ td.c,th.c{text-align:center}
   .quote>div{flex-basis:50%;border-bottom:1px solid var(--line)}
   .page{padding:32px 20px 16px}.page h1{font-size:28px}
 }
+/* Equal-weight consent actions; visible focus and narrow-screen reflow. */
+.stats-consent{position:fixed;z-index:30;bottom:16px;left:16px;right:16px;max-width:720px;margin:auto;padding:22px;background:var(--bg);color:var(--ink);border:1px solid var(--line);box-shadow:0 6px 36px #0003;border-radius:16px;font-size:14px}
+.stats-consent[hidden]{display:none}.stats-consent p{margin:6px 0 16px}.stats-consent a{color:var(--accent);text-decoration:underline}.stats-actions{display:flex;gap:12px;flex-wrap:wrap}
+.stats-actions button{flex:1;padding:12px;border:1px solid var(--ink-2);border-radius:8px;background:var(--surface);color:var(--ink);font:600 14px var(--sans);cursor:pointer}
+[data-stats-settings]{border:0;padding:0;background:none;color:var(--ink-2);font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 </style>
 {{jsonLd}}
 </head>
@@ -188,6 +194,7 @@ td.c,th.c{text-align:center}
 <main>
 {{content}}
 </main>
-<footer class="site"><div class="wrap"><p>{{footerLinks}}</p><p>© {{year}} {{author}} · {{siteName}} · {{tagline}} · 공개 자료 기반 개인 리서치이며 투자 권유가 아닙니다.</p></div></footer>
+<footer class="site"><div class="wrap"><p>{{footerLinks}}<button type="button" data-stats-settings>통계 설정</button></p><p>© {{year}} {{author}} · {{siteName}} · {{tagline}} · 공개 자료 기반 개인 리서치이며 투자 권유가 아닙니다.</p></div></footer>
+<script src="/analytics.js" defer></script>
 </body>
 </html>
