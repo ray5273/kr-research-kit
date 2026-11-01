@@ -100,11 +100,16 @@
               "링크를 복사했습니다. 원하는 곳에 붙여넣어 주세요.";
           }
         } else {
-          if (!data.kakaoKey || !window.Kakao?.Share)
+          if (!data.kakaoKey || !window.Kakao?.init)
             throw Error(
               "카카오톡 공유를 준비하지 못했습니다. 링크 복사를 이용해 주세요.",
             );
+          // SDK 2.x exposes Share only after init().
           if (!Kakao.isInitialized()) Kakao.init(data.kakaoKey);
+          if (!Kakao.Share?.sendDefault)
+            throw Error(
+              "카카오톡 공유 기능을 불러오지 못했습니다. 다시 시도해 주세요.",
+            );
           await Kakao.Share.sendDefault({
             objectType: "feed",
             content: {

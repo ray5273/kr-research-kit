@@ -35,6 +35,7 @@ async function fixture({
   copy = async () => {},
   fetchFail = false,
   kakaoFail = false,
+  kakaoInitialized = false,
 } = {}) {
   const group = new Element(),
     shareStatus = new Element(),
@@ -82,14 +83,25 @@ async function fixture({
     clipboard: { writeText: copy },
     ...(share ? { share } : {}),
   };
-  const sdk = {
-    isInitialized: () => true,
-    Share: {
-      sendDefault: async (value) => {
-        if (kakaoFail) throw Error("SDK 실패");
-        kakao.push(value);
-      },
+  let initialized = kakaoInitialized;
+  let initCalls = 0;
+  const shareModule = {
+    sendDefault: async (value) => {
+      if (kakaoFail) throw Error("SDK 실패");
+      kakao.push(value);
     },
+  };
+  // Match the official SDK: a fresh page has init(), but no Share yet.
+  const sdk = {
+    isInitialized: () => initialized,
+    init(key) {
+      assert.equal(key, group.dataset.kakaoKey);
+      assert.equal(initialized, false, "must not initialize twice");
+      initialized = true;
+      initCalls++;
+      this.Share = shareModule;
+    },
+    ...(initialized ? { Share: shareModule } : {}),
   };
   const fetch = async (url, options) => {
     calls.push({ url, payload: options ? JSON.parse(options.body) : null });
@@ -126,6 +138,8 @@ async function fixture({
   return {
     calls,
     kakao,
+    sdk,
+    initCalls: () => initCalls,
     nodes,
     form,
     group,
@@ -184,13 +198,22 @@ await f.click("copy");
 assert.equal(f.calls.filter((c) => c.url === "/api/shares").length, 0);
 assert.match(f.shareStatus.textContent, /실패/);
 f = await fixture();
+assert.equal(f.sdk.Share, undefined, "official SDK has no Share before init");
 await f.click("kakao");
+assert.equal(f.initCalls(), 1);
+await f.click("kakao");
+assert.equal(f.initCalls(), 1);
+assert.equal(f.kakao.length, 2);
 assert.equal(f.kakao[0].objectType, "feed");
 assert.equal(f.kakao[0].content.link.webUrl, "https://site.test/us/test/");
 assert.equal(
   f.calls.filter((c) => c.url === "/api/shares")[0].payload.channel,
   "kakao",
 );
+f = await fixture({ kakaoInitialized: true });
+await f.click("kakao");
+assert.equal(f.initCalls(), 0);
+assert.equal(f.kakao.length, 1);
 f = await fixture({ kakaoFail: true });
 await f.click("kakao");
 assert.equal(f.calls.filter((c) => c.url === "/api/shares").length, 0);
