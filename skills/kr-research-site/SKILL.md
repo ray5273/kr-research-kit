@@ -19,7 +19,14 @@ Requires `kr-naver-blog-publish` installed next to this skill: the renderer reus
      "tags": ["알파벳", "GOOGL"] }
    ```
 
-   `memo` and `slug` are required. `slug` is lowercase `a-z0-9-` segments joined by `/` and never changes after publishing (it is the canonical URL). `company`, `ticker`, `exchange`, `market`, `issue`, `tags`, `datePublished`, `dateModified` override what the builder derives from the memo. Commit the memo and every image it embeds first; the builder refuses untracked files.
+   `memo` and `slug` are required. `slug` is lowercase `a-z0-9-` segments joined by `/` and never changes after publishing (it is the canonical URL). `company`, `ticker`, `exchange`, `market`, `issue`, `tags`, `datePublished`, `dateModified` override what the builder derives from the memo. Display-only fields (see [references/design-brief.md](references/design-brief.md)):
+
+   - `headline`: short on-page title and card title (the SEO `<title>` keeps the `company(ticker) | issue | 기준일` format).
+   - `summary`: one-line card summary (default: whole sentences from the core answer).
+   - `stance`: `긍정` / `중립` / `부정` (or `pos` / `neu` / `neg`) badge. Set it only when the memo states that call; never infer one. No buy/sell words.
+   - `quote`: up to 4 header cells `{ "label", "value", "unit"?, "tone"?: "up" | "down" }`, copied from numbers in the memo.
+   - `featured`: rank in the home "지금 읽을 만한 리서치" grid (1 = big card). Unranked slots fall back to the latest articles.
+   - `popular`: rank in the home "인기" tab. Until there are visit stats, unranked articles follow `published.json` order. Commit the memo and every image it embeds first; the builder refuses untracked files.
 
 2. **Build and check.**
 

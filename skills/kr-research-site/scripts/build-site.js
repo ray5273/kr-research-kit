@@ -35,6 +35,8 @@ const { COLOR_MARKER_PATTERN, markdownVisibleText } = requireNaver("color-marker
 const TEMPLATE_DIR = path.resolve(__dirname, "..", "templates");
 const DEFAULT_DISCLAIMER = "본 글은 공개된 자료를 바탕으로 작성한 개인 리서치이며, 특정 종목의 매수·매도를 권유하지 않습니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다. 이 글은 AI 도구의 보조를 받아 작성했으며, 작성 방식은 소개 페이지에 공개합니다.";
 const MARKET_LABELS = { kr: "한국 주식", us: "미국 주식", sector: "섹터·산업", global: "해외 주식", cn: "중국 주식" };
+const MARKET_SHORT = { kr: "한국", us: "미국", sector: "섹터", global: "해외", cn: "중국" };
+const STANCES = { pos: ["pos", "긍정"], 긍정: ["pos", "긍정"], neu: ["neu", "중립"], 중립: ["neu", "중립"], neg: ["neg", "부정"], 부정: ["neg", "부정"] };
 const TONE_CLASS = { red: "tone-pos", blue: "tone-neg", brown: "tone-spec" };
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/;
 const ANSWER_HEADING = "@@answer@@";
@@ -376,6 +378,17 @@ function renderBlocks(markdown, ctx) {
 
 // ---------- memo → article model ----------
 
+// Whole sentences up to max chars, so card summaries never stop mid-number.
+function sentenceSummary(text, max) {
+  const sentences = String(text).split(/(?<=[.!?。])\s+/).filter(Boolean);
+  let out = "";
+  for (const sentence of sentences) {
+    if (out && (out + " " + sentence).length > max) break;
+    out = out ? `${out} ${sentence}` : sentence;
+  }
+  return out.length > max ? truncate(out, max) : out;
+}
+
 function cleanCompany(raw) {
   return String(raw || "")
     .replace(/\*\*/g, "")
@@ -512,6 +525,14 @@ function loadArticle(entry, options) {
   const title = [ticker ? `${company}(${ticker})` : company, issue, asOfDate].join(" | ");
 
   const thumbnailPath = path.join(path.dirname(memoPath), "assets", "naver-thumbnail.png");
+  // Stance badge and quote cells are display-only and come from published.json,
+  // never derived: the author states them explicitly or they are not shown.
+  assert(!entry.stance || STANCES[entry.stance], `Invalid stance for ${entry.memo}: use pos/neu/neg or 긍정/중립/부정`);
+  const quote = (entry.quote || []).slice(0, 4).map(cell => {
+    assert(cell && cell.label && cell.value !== undefined, `quote cells need label and value: ${entry.memo}`);
+    return { label: String(cell.label), value: String(cell.value), unit: cell.unit ? String(cell.unit) : "", tone: ["up", "down"].includes(cell.tone) ? cell.tone : "" };
+  });
+  const bodyChars = citedSections.reduce((sum, section) => sum + plainText(section.body).length, 0);
   return {
     entry,
     slug: entry.slug,
@@ -539,6 +560,14 @@ function loadArticle(entry, options) {
     faq: faqFromMarkdown(markdown),
     tables: markdownTables(cited.body),
     thumbnailPath: fs.existsSync(thumbnailPath) ? thumbnailPath : null,
+    headline: entry.headline || h1,
+    summary: entry.summary || sentenceSummary(plainText(answer.answer || answer.lead), 120),
+    stance: entry.stance ? STANCES[entry.stance] : null,
+    quote,
+    featured: Number.isFinite(entry.featured) ? entry.featured : null,
+    popular: Number.isFinite(entry.popular) ? entry.popular : null,
+    readMinutes: Math.max(1, Math.round(bodyChars / 600)),
+    cardImage: null,
   };
 }
 
@@ -563,8 +592,8 @@ function adSlot(config, name) {
 // ---------- page rendering ----------
 
 function navHtml(site) {
-  const links = [`<a href="/">홈</a>`];
-  for (const market of site.markets) links.push(`<a href="/${market}/">${escapeHtml(MARKET_LABELS[market] || market)}</a>`);
+  const links = [];
+  for (const market of site.markets) links.push(`<a href="/${market}/">${escapeHtml(MARKET_SHORT[market] || MARKET_LABELS[market] || market)}</a>`);
   if (site.pages.some(page => page.slug === "about")) links.push(`<a href="/about/">소개</a>`);
   return links.join("");
 }
@@ -594,6 +623,7 @@ function renderLayout(site, page) {
     canonical: escapeHtml(page.canonical),
     baseUrl: escapeHtml(config.baseUrl),
     siteName: escapeHtml(config.siteName),
+    tagline: escapeHtml(config.tagline || ""),
     robots: page.robots || "index,follow,max-image-preview:large",
     ogType: page.ogType || "website",
     ogImage,
@@ -637,7 +667,7 @@ function articleJsonLd(article, site, image) {
   const graph = [{
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: truncate(article.h1, 110),
+    headline: truncate(article.headline, 110),
     description: article.description,
     inLanguage: "ko-KR",
     datePublished: isoKst(article.datePublished),
@@ -696,6 +726,7 @@ function renderArticle(article, site, outDir, safety) {
     if (firstImage) image = resolveImage(firstImage[1])?.absolute || null;
   }
   if (!image && config.defaultOgImage) image = config.defaultOgImage;
+  if (image) article.cardImage = image.startsWith(`${config.baseUrl}/`) ? image.slice(config.baseUrl.length) : image;
 
   const updates = article.sections.find(section => section.heading === UPDATES_HEADING);
   const updatesHtml = updates ? `<section class="updates"><h2 id="updates">${UPDATES_HEADING}</h2>\n${renderBlocks(updates.body, ctx)}</section>` : "";
@@ -705,12 +736,21 @@ function renderArticle(article, site, outDir, safety) {
   const legend = article.hasColorMarkers
     ? `<p class="legend">색상 안내 — <span class="tone-pos">빨간색: 좋은 것</span> · <span class="tone-neg">파란색: 안 좋은 의견</span> · <span class="tone-spec">갈색: 추측성 의견</span></p>`
     : "";
-  const marketLabel = MARKET_LABELS[article.market] || article.market;
-  const updatedText = article.dateModified !== article.datePublished ? ` · 최근 업데이트 ${article.dateModified}` : "";
+  const updated = article.dateModified !== article.datePublished;
+  const tocItems = [
+    ["answer", "핵심 답변"],
+    ...bodySections.map((section, index) => [`s-${index + 1}`, plainText(section.heading)]),
+    ...(updates ? [["updates", UPDATES_HEADING]] : []),
+    ...(article.sources.length ? [["sources", SOURCES_HEADING]] : []),
+  ];
   const content = fill(site.templates.article, {
-    crumbs: `<a href="/">홈</a> › <a href="/${article.market}/">${escapeHtml(marketLabel)}</a>`,
-    headline: escapeHtml(article.h1),
-    metaLine: `${escapeHtml(config.author?.name || config.siteName)} · 최초 기준일 <time datetime="${article.datePublished}">${article.datePublished}</time>${updatedText ? ` · 최근 업데이트 <time datetime="${article.dateModified}">${article.dateModified}</time>` : ""}`,
+    toc: `<nav class="toc" aria-label="목차">${tocItems.map(([id, label], index) => `<a href="#${id}"${index === 0 ? ' class="on"' : ""}>${escapeHtml(truncate(label, 24))}</a>`).join("")}</nav>`,
+    tocScript: TOC_SCRIPT,
+    chips: chipsHtml(article, { exchange: true }),
+    headline: escapeHtml(article.headline),
+    metaLine: `${escapeHtml(config.author?.name || config.siteName)} · 기준일 <time datetime="${article.datePublished}">${article.datePublished}</time>${updated ? ` · 업데이트 <time datetime="${article.dateModified}">${article.dateModified}</time>` : ""} · ${article.readMinutes}분`,
+    quote: article.quote.length ? `<div class="quote">${article.quote.map(cell => `<div><div class="k">${escapeHtml(cell.label)}</div><div class="v${cell.tone ? ` ${cell.tone}` : ""}">${escapeHtml(cell.value)}${cell.unit ? `<small>${escapeHtml(cell.unit)}</small>` : ""}</div></div>`).join("")}</div>` : "",
+    more: moreHtml(article, site),
     answerLead: renderInline(article.answerLead, ctx),
     answerBody: article.answerBody ? renderBlocks(article.answerBody, ctx) : "",
     asOfDate: article.asOfDate,
@@ -747,15 +787,79 @@ function tagHref(tag) {
   return `/tags/${encodeURIComponent(tagDir(tag))}/`;
 }
 
-function listItem(article) {
-  return `<li><a class="t" href="/${article.slug}/">${escapeHtml(article.title)}</a><p>${escapeHtml(article.description)}</p><p class="meta">기준일 ${article.asOfDate}${article.dateModified !== article.datePublished ? ` · 업데이트 ${article.dateModified}` : ""}</p></li>`;
+// Highlights the TOC entry of the section being read; the page works without it.
+const TOC_SCRIPT = `<script>(()=>{const l=[...document.querySelectorAll(".toc a")];if(!l.length||!("IntersectionObserver"in window))return;const m=new Map(l.map(a=>[decodeURIComponent(a.hash.slice(1)),a]));const o=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting){l.forEach(a=>a.classList.remove("on"));m.get(e.target.id)?.classList.add("on")}},{rootMargin:"0px 0px -70% 0px"});m.forEach((a,id)=>{const t=document.getElementById(id);if(t)o.observe(t)})})();</script>`;
+
+function chipsHtml(article, { exchange = false } = {}) {
+  const market = MARKET_SHORT[article.market] || MARKET_LABELS[article.market] || article.market;
+  const ticker = [exchange ? article.exchange : "", article.ticker].filter(Boolean).join(" · ");
+  return [
+    `<span class="mk">${escapeHtml(market)}</span>`,
+    ticker ? `<span class="tk">${escapeHtml(ticker)}</span>` : "",
+    article.stance ? `<span class="badge ${article.stance[0]}">${article.stance[1]}</span>` : "",
+  ].filter(Boolean).join("");
 }
 
-function renderList(site, { heading, intro, articles, canonical, robots }) {
+function asOfTag(article) {
+  return `<span class="asof"><b>기준일</b>${article.asOfDate}</span>`;
+}
+
+function imageHtml(article, className = "") {
+  return article.cardImage
+    ? `<img src="${escapeHtml(article.cardImage)}" alt="" loading="lazy"${className ? ` class="${className}"` : ""}>`
+    : `<div class="ph">${escapeHtml((article.company || "").slice(0, 2))}</div>`;
+}
+
+function cardHtml(article, { summary = false } = {}) {
+  return `<a class="card" href="/${article.slug}/"><div class="img">${imageHtml(article)}${asOfTag(article)}</div><div class="in"><div class="chips">${chipsHtml(article)}</div><h3>${escapeHtml(article.headline)}</h3>${summary ? `<p>${escapeHtml(article.summary)}</p>` : ""}</div></a>`;
+}
+
+function rowHtml(article, rank) {
+  const updated = article.dateModified !== article.datePublished ? ` · 업데이트 ${article.dateModified}` : "";
+  return `<a class="row" href="/${article.slug}/"><div><div class="chips">${rank ? `<span class="rank">${rank}</span>` : ""}${chipsHtml(article)}</div><h3>${escapeHtml(article.headline)}</h3><p>${escapeHtml(article.summary)}</p><div class="sub">기준일 ${article.asOfDate}${updated} · ${article.readMinutes}분</div></div>${imageHtml(article)}</a>`;
+}
+
+function moreHtml(article, site) {
+  const others = site.articles.filter(other => other !== article);
+  const same = others.filter(other => article.ticker && other.ticker === article.ticker);
+  const picks = [...same, ...others.filter(other => !same.includes(other))].slice(0, 2);
+  if (!picks.length) return "";
+  return `<section class="more" aria-label="이어서 읽기"><h2>이어서 읽기</h2><div class="pair">${picks.map(pick => cardHtml(pick)).join("")}</div></section>`;
+}
+
+// Recommended: entries with a `featured` rank first, then the latest ones.
+function featuredArticles(articles) {
+  const ranked = articles.filter(article => article.featured !== null).sort((a, b) => a.featured - b.featured);
+  return [...ranked, ...articles.filter(article => article.featured === null)].slice(0, 3);
+}
+
+// Popular: `popular` ranks first, then published.json order (no visit stats yet).
+function popularArticles(articles) {
+  const ranked = articles.filter(article => article.popular !== null).sort((a, b) => a.popular - b.popular);
+  const rest = articles.filter(article => article.popular === null).sort((a, b) => a.order - b.order);
+  return [...ranked, ...rest];
+}
+
+function heroHtml(site, articles) {
+  const picks = featuredArticles(articles);
+  if (!picks.length) return "";
+  const [first, ...rest] = picks;
+  return `<section class="rec"><h1>지금 읽을 만한 리서치</h1><p class="lede">${escapeHtml(site.config.description || "")}</p><div class="grid${rest.length ? "" : " one"}">${cardHtml(first, { summary: true })}${rest.length ? `<div class="stack">${rest.map(article => cardHtml(article)).join("")}</div>` : ""}</div></section>`;
+}
+
+function renderList(site, { heading, intro, articles, canonical, robots, home = false }) {
+  const rows = list => list.map(article => rowHtml(article)).join("\n") || `<p class="empty">아직 공개된 글이 없습니다.</p>`;
+  const list = home
+    ? [
+      `<input type="radio" name="sort" id="sort-latest" checked hidden><input type="radio" name="sort" id="sort-popular" hidden>`,
+      `<div class="seg" role="tablist"><label for="sort-latest">최신</label><label for="sort-popular">인기</label></div>`,
+      `<div class="panel latest">${rows(articles)}</div>`,
+      `<div class="panel popular">${popularArticles(articles).map((article, index) => rowHtml(article, index + 1)).join("\n")}</div>`,
+    ].join("\n")
+    : rows(articles);
   const content = fill(site.templates.index, {
-    heading: escapeHtml(heading),
-    intro: escapeHtml(intro),
-    items: articles.map(listItem).join("\n") || "<li>아직 공개된 글이 없습니다.</li>",
+    hero: home ? heroHtml(site, articles) : `<header class="list-head"><h1>${escapeHtml(heading)}</h1><p>${escapeHtml(intro)}</p></header>`,
+    list,
   });
   return renderLayout(site, {
     title: heading === site.config.siteName ? heading : `${heading} | ${site.config.siteName}`,
@@ -889,24 +993,27 @@ function buildSite(options) {
     assert(!slugs.has(entry.slug), `Duplicate slug in published.json: ${entry.slug}`);
     slugs.add(entry.slug);
     return loadArticle(entry, { root, safety, config });
-  }).sort((a, b) => b.dateModified.localeCompare(a.dateModified) || b.datePublished.localeCompare(a.datePublished) || a.slug.localeCompare(b.slug));
+  }).map((article, order) => Object.assign(article, { order })).sort((a, b) => b.dateModified.localeCompare(a.dateModified) || b.datePublished.localeCompare(a.datePublished) || a.slug.localeCompare(b.slug));
 
   const pages = loadPages(options.pagesDir, safety);
   const markets = [...new Set(articles.map(article => article.market))].sort((a, b) => Object.keys(MARKET_LABELS).indexOf(a) - Object.keys(MARKET_LABELS).indexOf(b));
   const templates = Object.fromEntries(["layout", "article", "index"].map(name => [name, fs.readFileSync(path.join(TEMPLATE_DIR, `${name}.html`), "utf8")]));
-  const site = { config, templates, pages, markets, buildYear: options.buildYear || new Date().getFullYear() };
+  const site = { config, templates, pages, markets, articles, buildYear: options.buildYear || new Date().getFullYear() };
 
   fs.rmSync(outDir, { recursive: true, force: true });
   fs.mkdirSync(outDir, { recursive: true });
   const urlEntries = [];
   const record = (loc, lastmod, html, inSitemap = true) => urlEntries.push({ loc, lastmod, sha256: sha256(html), inSitemap });
 
+  // First pass copies images and fixes every article's card image, so the
+  // "이어서 읽기" cards rendered in the second pass can show other articles' thumbnails.
+  for (const article of articles) renderArticle(article, site, outDir, safety);
   for (const article of articles) {
     const html = renderArticle(article, site, outDir, safety);
     record(article.url, article.dateModified, html);
   }
   const latest = articles[0]?.dateModified;
-  const home = renderList(site, { heading: config.siteName, intro: config.description || "공시와 숫자로 확인한 주식 리서치. 모든 글에 기준일과 출처가 있습니다.", articles, canonical: `${config.baseUrl}/` });
+  const home = renderList(site, { heading: config.siteName, intro: config.description || "공시와 숫자로 확인한 주식 리서치. 모든 글에 기준일과 출처가 있습니다.", articles, canonical: `${config.baseUrl}/`, home: true });
   writeFile(path.join(outDir, "index.html"), home);
   record(`${config.baseUrl}/`, latest, home);
   for (const market of markets) {
@@ -926,7 +1033,7 @@ function buildSite(options) {
       title: `${page.title} | ${config.siteName}`,
       description: page.description,
       canonical: `${config.baseUrl}/${page.slug}/`,
-      content: `<article><h1>${escapeHtml(page.title)}</h1>\n${renderBlocks(page.body, { baseUrl: config.baseUrl })}</article>`,
+      content: `<div class="narrow page"><article class="body"><h1>${escapeHtml(page.title)}</h1>\n${renderBlocks(page.body, { baseUrl: config.baseUrl })}</article></div>`,
     });
     writeFile(path.join(outDir, page.slug, "index.html"), html);
     record(`${config.baseUrl}/${page.slug}/`, null, html);
@@ -936,7 +1043,7 @@ function buildSite(options) {
     description: "요청한 페이지가 없습니다.",
     canonical: `${config.baseUrl}/404.html`,
     robots: "noindex",
-    content: `<h1>페이지를 찾을 수 없습니다</h1><p><a href="/">홈으로 가기</a></p>`,
+    content: `<div class="narrow page"><h1>페이지를 찾을 수 없습니다</h1><p><a href="/">홈으로 가기</a></p></div>`,
   }));
 
   writeFile(path.join(outDir, "sitemap.xml"), sitemapXml(urlEntries.filter(entry => entry.inSitemap)));

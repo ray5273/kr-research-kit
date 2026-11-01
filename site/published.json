@@ -7,12 +7,52 @@
       "ticker": "GOOGL",
       "exchange": "NASDAQ",
       "market": "us",
-      "tags": ["알파벳", "구글", "GOOGL", "실적리뷰"]
+      "tags": [
+        "알파벳",
+        "구글",
+        "GOOGL",
+        "실적리뷰"
+      ],
+      "headline": "알파벳 3분기: 클라우드는 두 배, 주가는 -13%",
+      "featured": 1,
+      "quote": [
+        {
+          "label": "기준 주가 (10-30 종가)",
+          "value": "279.84",
+          "unit": "달러"
+        },
+        {
+          "label": "발표 전 대비",
+          "value": "-13.87%",
+          "tone": "down"
+        },
+        {
+          "label": "기준 시나리오 가치",
+          "value": "273.6–334.4",
+          "unit": "달러"
+        }
+      ]
     },
     {
       "memo": "analysis-example/kr/네이버/memo.md",
       "slug": "kr/naver-ai-factory",
-      "market": "kr"
+      "market": "kr",
+      "company": "네이버",
+      "ticker": "035420",
+      "headline": "네이버, 브룩필드 AI 팩토리 계약과 가치평가",
+      "featured": 2,
+      "quote": [
+        {
+          "label": "기준 주가 (10-27 종가)",
+          "value": "181,400",
+          "unit": "원"
+        },
+        {
+          "label": "시가총액",
+          "value": "27.6",
+          "unit": "조원"
+        }
+      ]
     }
   ]
 }

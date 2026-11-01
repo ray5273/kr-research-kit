@@ -196,6 +196,28 @@ assert(read("about/index.html").includes('<a href="/privacy/">개인정보</a>')
 assert(read("tags/SOOP/index.html").includes('<meta name="robots" content="noindex,follow">'));
 assert(read("404.html").includes('content="noindex"'));
 
+// home: recommended cards carry a visible 기준일; latest/popular panels; no badge unless stated
+const home = read("index.html");
+assert(home.includes("지금 읽을 만한 리서치"));
+assert(home.includes('<span class="asof"><b>기준일</b>2026-06-21</span>'));
+assert(home.includes('class="panel latest"') && home.includes('class="panel popular"'));
+assert(!home.includes('class="badge'), "no stance badge unless published.json states one");
+assert(!read("kr/index.html").includes("지금 읽을 만한 리서치"));
+assert(article.includes('<nav class="toc"') && article.includes('<a href="#answer" class="on">핵심 답변</a>'));
+assert(article.includes('<section class="more" aria-label="이어서 읽기">') && article.includes('href="/us/acme-2026-05/"'));
+
+// display-only fields from published.json: stance, headline, quote, featured, popular
+build({ published: { articles: [soop, { ...acme, stance: "부정", headline: "Acme 짧은 제목", featured: 1, popular: 1, quote: [{ label: "기준 주가", value: "12.3", unit: "달러" }, { label: "변화", value: "-4.0%", tone: "down" }] }] } });
+const acmeDisplay = read("us/acme-2026-05/index.html");
+assert(acmeDisplay.includes('<span class="badge neg">부정</span>'));
+assert(acmeDisplay.includes("<h1>Acme 짧은 제목</h1>"));
+assert(acmeDisplay.includes('<div class="v down">-4.0%</div>') && acmeDisplay.includes("12.3<small>달러</small>"));
+const featuredHome = read("index.html");
+assert(featuredHome.includes('<div class="grid"><a class="card" href="/us/acme-2026-05/">'), "featured article leads the recommended grid");
+assert(/class="panel popular"><a class="row" href="\/us\/acme-2026-05\/"><div><div class="chips"><span class="rank">1<\/span>/.test(featuredHome));
+assert.throws(() => build({ published: { articles: [{ ...soop, stance: "매수" }] } }), /Invalid stance/);
+build();
+
 // sitemap / feed / robots / llms / urls
 const sitemap = read("sitemap.xml");
 assert(sitemap.startsWith('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'));

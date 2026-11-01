@@ -1,17 +1,27 @@
+{{toc}}
+<div class="wrap"><div class="narrow">
 <article>
-<p class="crumbs">{{crumbs}}</p>
+<header class="art-head">
+<div class="chips">{{chips}}</div>
 <h1>{{headline}}</h1>
-<p class="meta">{{metaLine}}</p>
-<section class="answer" aria-label="핵심 답변">
+<p class="byline">{{metaLine}}</p>
+{{quote}}
+</header>
+<section class="answer" id="answer" aria-label="핵심 답변">
 <p class="label">핵심 답변</p>
 <p class="lead">{{answerLead}}</p>
 {{answerBody}}
-<p class="asof">기준일 {{asOfDate}} · 최근 업데이트 {{dateModified}}</p>
+<p class="asof-line">기준일 {{asOfDate}} · 최근 업데이트 {{dateModified}}</p>
 </section>
 {{legend}}
+<div class="body">
 {{body}}
 {{updates}}
 {{sources}}
+</div>
 <p class="tags">{{tags}}</p>
 <p class="disclaimer">{{disclaimer}}</p>
 </article>
+{{more}}
+</div></div>
+{{tocScript}}
