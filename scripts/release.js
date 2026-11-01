@@ -87,6 +87,8 @@ async function runRelease({ cwd = process.cwd(), repository = process.env.GITHUB
   if (!api && !token) throw new Error('GITHUB_TOKEN is required');
   api ||= createGitHubApi(repository, token);
   validate ||= dir => {
+    // The fresh worktree has no node_modules, and the site tests need @napi-rs/canvas.
+    execFileSync('npm', ['ci', '--no-audit', '--no-fund'], { cwd: dir, stdio: 'inherit' });
     execFileSync('node', ['--test', 'scripts/test-release.js'], { cwd: dir, stdio: 'inherit' });
     execFileSync('bash', ['scripts/validate-skills.sh'], { cwd: dir, stdio: 'inherit' });
   };

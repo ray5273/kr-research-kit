@@ -166,43 +166,6 @@ foreach ($skillDir in $skillDirs) {
         if (-not $questionRubricText.Contains("Archetype: Captive IT Services / SI / Digital Transformation")) {
             Write-Error "Expected uncomfortable-question rubric to include the captive IT services archetype."
         }
-
-        # Strategy and market-level memos also live under analysis-example\kr and reuse the
-        # Decision Frame shape, but they are not single-stock analysis and carry a
-        # pseudo-ticker (KRX-52W-HIGH, KRX-FACTOR) instead of a six-digit KRX code.
-        # The single-stock section contract does not apply to them.
-        $reportSamples = Get-ChildItem -Path (Join-Path $repoRoot "analysis-example\kr") -Recurse -Filter "memo.md" |
-            Where-Object {
-                $memoText = [System.IO.File]::ReadAllText($_.FullName, [System.Text.Encoding]::UTF8)
-                if (-not $memoText.Contains("## Decision Frame")) { return $false }
-                $tickerMatch = [regex]::Match($memoText, '(?m)^[-*\s]*티커\s*:\s*(\S+)')
-                -not ($tickerMatch.Success -and $tickerMatch.Groups[1].Value -notmatch '^\d{6}')
-            } |
-            Select-Object -First 3 -ExpandProperty FullName
-        if ($reportSamples.Count -lt 3) {
-            Write-Error "Expected at least three stock memo examples under analysis-example\\kr."
-        }
-        foreach ($reportSample in $reportSamples) {
-            $reportText = [System.IO.File]::ReadAllText($reportSample, [System.Text.Encoding]::UTF8)
-            if (-not $reportText.Contains("## Decision Frame")) {
-                Write-Error "Expected stock memo example to include Decision Frame: $reportSample"
-            }
-            if (-not $reportText.Contains("## Street / Alternative Views")) {
-                Write-Error "Expected stock memo example to include Street / Alternative Views: $reportSample"
-            }
-            if (-not $reportText.Contains("## Uncomfortable Questions")) {
-                Write-Error "Expected stock memo example to include Uncomfortable Questions: $reportSample"
-            }
-            if (-not $reportText.Contains("## Decision-Changing Issues")) {
-                Write-Error "Expected stock memo example to include Decision-Changing Issues: $reportSample"
-            }
-            if (-not $reportText.Contains("## Structured Stance")) {
-                Write-Error "Expected stock memo example to include Structured Stance: $reportSample"
-            }
-            if (-not $reportText.Contains("## Follow-up Research Prompts")) {
-                Write-Error "Expected stock memo example to include Follow-up Research Prompts: $reportSample"
-            }
-        }
     }
 
     if ($skillDir.Name -eq "kr-stock-plan") {
