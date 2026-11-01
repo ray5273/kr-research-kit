@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.2] - 2026-11-01
+
+### Commits
+
+- Improve public article spacing and numbered source navigation ([6006ba5](https://github.com/ray5273/kr-research-kit/commit/6006ba5e6bbdd535ae147676a0274da10ced0abb))
+
 ## [0.4.1] - 2026-11-01
 
 ### Commits
