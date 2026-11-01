@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.10] - 2026-11-01
+
+### Commits
+
+- Publish all dated research records and order by research date ([97b694e](https://github.com/ray5273/kr-research-kit/commit/97b694e830b815ac68bc4af9b062e59544bb84e2))
+- Include Hanjin KAL detailed follow-up record ([a3f9f2e](https://github.com/ray5273/kr-research-kit/commit/a3f9f2ee2d6857275a0e5eed7d326e3aa3b7eb04))
+- Add free Pages address for AdSense site registration ([984a3f8](https://github.com/ray5273/kr-research-kit/commit/984a3f832fb0c8d0fbdd2196d82bddff82642f20))
+- Connect AdSense publisher verification and ads.txt ([04774b5](https://github.com/ray5273/kr-research-kit/commit/04774b5fac8264e9756e30ea3ea566ab8507818e))
+- Disable original Worker public address in favor of Pages ([161fb2c](https://github.com/ray5273/kr-research-kit/commit/161fb2cddb0ca1d28671dc8007f384ea5756c14f))
+- Add default research site sharing thumbnail ([4c62a95](https://github.com/ray5273/kr-research-kit/commit/4c62a95a9873f35a299e7f7a97fe9ba5d277db7a))
+- Restyle sharing cover in black and orange with Korean title ([f0a5119](https://github.com/ray5273/kr-research-kit/commit/f0a51194e06d2aaeb59a9480398d2eed84b533d3))
+- Add article discovery sharing counters and moderated comments ([208dacf](https://github.com/ray5273/kr-research-kit/commit/208dacf1b027fcecaa3a4df4461669d43fbbaf41))
+- Merge remote-tracking branch 'origin/main' into codex/article-engagement ([4d9adb5](https://github.com/ray5273/kr-research-kit/commit/4d9adb581ab710df8a9bbebd59ab3e8130cf7c48))
+- Make KR Research the primary cover title with research subtitle ([77c5111](https://github.com/ray5273/kr-research-kit/commit/77c51116930e8a672546e49cd55594a22fd1cea2))
+- Fix Kakao Share availability check after SDK initialization ([1a47896](https://github.com/ray5273/kr-research-kit/commit/1a478964cb0b53a6c18ccfdedad57b73a42dad1e))
+- Merge remote-tracking branch 'origin/main' into codex/article-engagement ([f63d88f](https://github.com/ray5273/kr-research-kit/commit/f63d88fb5b2c0b122ba74e4ede562a96641950c0))
+- Show comment and share counts on article cards and restyle share thumbnails ([e9ec933](https://github.com/ray5273/kr-research-kit/commit/e9ec933b49a93478b44d1a6fc7c418762a64044b))
+- Route article counts API to the Worker in production ([d981713](https://github.com/ray5273/kr-research-kit/commit/d981713bf4281ce1845abaa73b9ce88b86487f1e))
+- Publish standalone research records and generate site-native covers ([cc72dd5](https://github.com/ray5273/kr-research-kit/commit/cc72dd53aeb048b52a29aec15466a5e96bb49fe5))
+- Add illustrated list covers with company, headline and as-of date ([7ba46a4](https://github.com/ray5273/kr-research-kit/commit/7ba46a4b908f3f8a74cd1f2fbd2f441329c8ef20))
+- Use cover art on share cards and generate art for new articles ([923d930](https://github.com/ray5273/kr-research-kit/commit/923d93095e335a74f45ef856ccbd2e7893cc91e6))
+- Add a sector cover library so new articles ship without Gemini ([7c1ee9d](https://github.com/ray5273/kr-research-kit/commit/7c1ee9d67ff29cf934a1a6f01cf7d2d9aa3c2f82))
+- Fix the release workflow and correct the public site address ([b9e4a5a](https://github.com/ray5273/kr-research-kit/commit/b9e4a5a40e9075197e59ee4d188c56cc1fec13bd))
+- Make the artifact index sort the same on every machine ([c8cbe55](https://github.com/ray5273/kr-research-kit/commit/c8cbe55ee306fb2ec78d4701beb4dfd7cf7b2677))
+
 ## [0.4.9] - 2026-11-01
 
 ### Commits
