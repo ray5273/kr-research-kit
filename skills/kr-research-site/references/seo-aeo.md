@@ -10,7 +10,7 @@
 - `<h1>`: 메모의 H1을 그대로 쓴다. 제목 규칙과 H1이 달라도 된다.
 - meta description: 핵심 답변 한 문장 + 첫 문단, 마크다운을 벗기고 160자로 자른다.
 - `lang="ko"`, `og:locale=ko_KR`, canonical은 `baseUrl/slug/`. slug는 한 번 공개하면 바꾸지 않는다.
-- OG 이미지: 메모 폴더의 `assets/naver-thumbnail.png`(git 추적 시) → 본문 첫 이미지 → `defaultOgImage`.
+- OG 이미지: 메모 폴더의 `assets/naver-thumbnail.png`(git 추적 시) → 본문 첫 이미지 → `defaultOgImage`. 홈·목록·정책 페이지에도 기본 이미지를 적용한다. `/assets/name.png` 형식으로 설정하면 git 추적 중인 `site/assets/name.png`만 빌드에 복사하고 공개 절대 URL로 변환한다. 개별 글 이미지가 우선한다.
 
 ## 핵심 답변 박스 (AEO)
 

@@ -28,6 +28,7 @@ function write(relative, content) {
 
 write("analysis-example/kr/SOOP/assets/SOOP-chart.png", PNG);
 write("analysis-example/kr/SOOP/assets/naver-thumbnail.png", PNG);
+write("site/assets/default-og.png", PNG);
 write("analysis-example/kr/SOOP/memo.md", [
   "# SOOP 투자 메모",
   "",
@@ -207,6 +208,24 @@ assert(!home.includes('class="badge'), "no stance badge unless published.json st
 assert(!read("kr/index.html").includes("지금 읽을 만한 리서치"));
 assert(article.includes('<nav class="toc"') && article.includes('<a href="#answer" class="on">핵심 답변</a>'));
 assert(article.includes('<section class="more" aria-label="이어서 읽기">') && article.includes('href="/us/acme-2026-05/"'));
+
+// Shared covers reach the public build, while article-specific images win.
+const coverConfig = { ...baseConfig, defaultOgImage: "/assets/default-og.png" };
+build({ config: coverConfig });
+assert(fs.readFileSync(path.join(outDir, "assets/default-og.png")).equals(PNG));
+for (const page of ["index.html", "kr/index.html", "about/index.html", "us/acme-2026-05/index.html"]) {
+  assert(read(page).includes('<meta property="og:image" content="https://research.example.com/assets/default-og.png">'), page);
+  assert(read(page).includes('<meta name="twitter:card" content="summary_large_image">'), page);
+  assert(read(page).includes('<meta property="og:image:width" content="1">'), page);
+}
+assert(read("kr/soop-2026-06/index.html").includes('<meta property="og:image" content="https://research.example.com/kr/soop-2026-06/assets/naver-thumbnail.png">'));
+assert.strictEqual(coverConfig.defaultOgImage, "/assets/default-og.png", "build must not mutate caller config");
+write("site/assets/untracked.png", PNG);
+assert.throws(() => build({ config: { ...baseConfig, defaultOgImage: "/assets/untracked.png" } }), /not tracked/);
+assert.throws(() => build({ config: { ...baseConfig, defaultOgImage: "/assets/../../private.png" } }), /defaultOgImage/);
+build({ config: { ...baseConfig, defaultOgImage: "https://images.example.com/cover.png" } });
+assert(read("index.html").includes('<meta property="og:image" content="https://images.example.com/cover.png">'));
+build();
 
 // display-only fields from published.json: stance, headline, quote, featured, popular
 build({ published: { articles: [soop, { ...acme, stance: "부정", headline: "Acme 짧은 제목", featured: 1, popular: 1, quote: [{ label: "기준 주가", value: "12.3", unit: "달러" }, { label: "변화", value: "-4.0%", tone: "down" }] }] } });

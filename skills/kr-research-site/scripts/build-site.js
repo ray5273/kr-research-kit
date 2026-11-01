@@ -669,8 +669,10 @@ function verificationMeta(config) {
 
 function renderLayout(site, page) {
   const { config } = site;
-  const ogImage = page.image
-    ? `<meta property="og:image" content="${escapeHtml(page.image)}">\n<meta name="twitter:image" content="${escapeHtml(page.image)}">`
+  const image = page.image || config.defaultOgImage;
+  const imageSize = image === config.defaultOgImage ? site.defaultOgImageSize : null;
+  const ogImage = image
+    ? `<meta property="og:image" content="${escapeHtml(image)}">\n<meta name="twitter:image" content="${escapeHtml(image)}">${imageSize ? `\n<meta property="og:image:width" content="${imageSize.width}">\n<meta property="og:image:height" content="${imageSize.height}">` : ""}`
     : "";
   return fill(site.templates.layout, {
     title: escapeHtml(page.title),
@@ -682,7 +684,7 @@ function renderLayout(site, page) {
     robots: page.robots || "index,follow,max-image-preview:large",
     ogType: page.ogType || "website",
     ogImage,
-    twitterCard: page.image ? "summary_large_image" : "summary",
+    twitterCard: image ? "summary_large_image" : "summary",
     head: [verificationMeta(config), adHead(config), page.head || ""].filter(Boolean).join("\n"),
     jsonLd: (page.jsonLd || []).map(jsonLdScript).join("\n"),
     nav: navHtml(site),
@@ -1041,7 +1043,7 @@ function validateConfig(config, { production }) {
 function buildSite(options) {
   const root = path.resolve(options.root || process.cwd());
   loadEnvFile(root);
-  const config = options.config;
+  const config = { ...options.config };
   validateConfig(config, { production: Boolean(options.production) });
   const published = options.published;
   assert(Array.isArray(published?.articles), "published.json must contain an articles array");
@@ -1064,6 +1066,17 @@ function buildSite(options) {
 
   fs.rmSync(outDir, { recursive: true, force: true });
   fs.mkdirSync(outDir, { recursive: true });
+  // Local public covers are explicitly configured and must pass the same
+  // tracked-file/privacy guard as research images. Never copy an entire folder.
+  if (config.defaultOgImage && !/^https?:\/\//.test(config.defaultOgImage)) {
+    assert(/^\/assets\/[a-zA-Z0-9_-]+\.(?:png|jpe?g|webp)$/.test(config.defaultOgImage), "defaultOgImage must be an https URL or /assets/image.png path");
+    const publicPath = config.defaultOgImage.slice(1);
+    const source = safety.checkPath(path.join(root, "site", publicPath), "Default OG image");
+    const buffer = fs.readFileSync(source);
+    writeFile(path.join(outDir, publicPath), buffer);
+    site.defaultOgImageSize = pngSize(buffer);
+    config.defaultOgImage = `${config.baseUrl}/${publicPath}`;
+  }
   const urlEntries = [];
   const record = (loc, lastmod, html, inSitemap = true) => urlEntries.push({ loc, lastmod, sha256: sha256(html), inSitemap });
 
