@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.6] - 2026-11-01
+
+### Commits
+
+- Add consent-based research analytics and password-protected admin ([e3cdced](https://github.com/ray5273/kr-research-kit/commit/e3cdced3f4349f4769b1d3ee56cd419b1a6ff48a))
+
 ## [0.4.5] - 2026-11-01
 
 ### Commits
