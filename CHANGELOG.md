@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.3] - 2026-11-01
+
+### Commits
+
+- Give article subsections clearer boundaries and connected prose ([9960250](https://github.com/ray5273/kr-research-kit/commit/9960250247e4c799525e76671d60239c1aef68b5))
+
 ## [0.4.2] - 2026-11-01
 
 ### Commits
