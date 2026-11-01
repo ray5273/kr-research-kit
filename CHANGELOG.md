@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-11-01
+
+### Commits
+
+- Add NAVER AI factory event analysis and blog draft ([1eb7fbc](https://github.com/ray5273/kr-research-kit/commit/1eb7fbc71cb0bbe3e7305285da459c1d949e6d30))
+- Clarify NVIDIA shareholder timing with AI Times report ([8809786](https://github.com/ray5273/kr-research-kit/commit/8809786b09a411f94bff4c395ceebebe822ee6f5))
+- fix(naver-blog): place inline images at their anchor paragraph ([3f70952](https://github.com/ray5273/kr-research-kit/commit/3f7095210b6eb574c2557ec2a1b96d0646614e66))
+- Add Alphabet Q3 2026 earnings review and blog draft ([397aef6](https://github.com/ray5273/kr-research-kit/commit/397aef6a637c4fd2e3857b1ad5092f5619a5ca2d))
+- Add kr-research-site: canonical static site with SEO/AEO, ads, Naver teaser ([04c6050](https://github.com/ray5273/kr-research-kit/commit/04c6050230e767423dd03d56e76f9b5ca968a7ff))
+- Point kr-research-site at the kr-research-kit Worker on workers.dev ([86263df](https://github.com/ray5273/kr-research-kit/commit/86263df1e44058263842603fd7203d441f7bc4ef))
+- Rename the site Worker back to kr-research-site ([c5b7da9](https://github.com/ray5273/kr-research-kit/commit/c5b7da997d7e9a27b4b5a5df35fdcb74ebe84983))
+- Redesign kr-research-site: KR Research, clean single-column layout ([8b800f9](https://github.com/ray5273/kr-research-kit/commit/8b800f92d9019108382f02480c9db1e648669c33))
+- Publish five archival research explainers with separate editorial sources ([71e9dc0](https://github.com/ray5273/kr-research-kit/commit/71e9dc02eb7c168d417fed84cfc2c12a1145248b))
+
 ## [0.4.0] - 2026-10-11
 
 ### Commits
