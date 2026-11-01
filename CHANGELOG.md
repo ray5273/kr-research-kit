@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.9] - 2026-11-01
+
+### Commits
+
+- chore: retry research site deployment after secret update ([378b7e9](https://github.com/ray5273/kr-research-kit/commit/378b7e9c9548852c77eaac35567a866b1274e98e))
+
 ## [0.4.8] - 2026-11-01
 
 ### Commits
