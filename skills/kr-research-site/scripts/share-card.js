@@ -151,13 +151,7 @@ function coverCard(article, outDir) {
   const relative = `/covers/${name}-${hash}.${art ? "jpg" : "png"}`,
     file = path.join(outDir, relative);
   if (art && !fs.existsSync(file)) {
-    renderArt({
-      artPath,
-      file,
-      subject: subjectOf(article, label),
-      headline: article.headline,
-      asOfDate: article.asOfDate,
-    });
+    renderArt({ artPath, file });
   } else if (!fs.existsSync(file)) {
     const canvas = createCanvas(800, 500),
       ctx = canvas.getContext("2d");
@@ -199,45 +193,18 @@ function coverCard(article, outDir) {
   }
   return relative;
 }
-async function renderArtCover({ artPath, file, subject, headline, asOfDate }) {
-  if (!GlobalFonts.registerFromPath(font, "Research Korean"))
-    throw Error("Korean share font unavailable");
+// The list card prints the title in HTML, so its cover is art only; shareCard keeps the text.
+async function renderArtCover({ artPath, file }) {
   const canvas = createCanvas(960, 600),
     ctx = canvas.getContext("2d");
   ctx.fillStyle = "#fff";
   ctx.fillRect(0, 0, 960, 600);
-  // Art is white-backed, so it can sit under the text without a visible edge.
+  // Art is white-backed, so it can be fitted to the card without a visible edge.
   const image = await loadImage(artPath),
-    width = 620,
-    height = (width * image.height) / image.width;
-  ctx.drawImage(image, 960 - width - 10, 600 - height - 6, width, height);
-  block(ctx, subject, {
-    x: 48,
-    y: 56,
-    width: 864,
-    size: 30,
-    maxLines: 1,
-    color: "#ea5a0c",
-    weight: 700,
-  });
-  block(ctx, headline, {
-    x: 48,
-    y: 102,
-    width: 864,
-    size: 50,
-    maxLines: 2,
-    color: "#1d1d1f",
-    weight: 800,
-  });
-  block(ctx, `기준일 ${asOfDate}`, {
-    x: 48,
-    y: 530,
-    width: 400,
-    size: 26,
-    maxLines: 1,
-    color: "#6e6e73",
-    weight: 500,
-  });
+    scale = Math.min(960 / image.width, 600 / image.height),
+    width = image.width * scale,
+    height = image.height * scale;
+  ctx.drawImage(image, (960 - width) / 2, (600 - height) / 2, width, height);
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, canvas.toBuffer("image/jpeg", 88));
 }
