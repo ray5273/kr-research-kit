@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.13] - 2026-11-01
+
+### Commits
+
+- Show evidence links as numbered citations only ([eae2f41](https://github.com/ray5273/kr-research-kit/commit/eae2f412c5a2aabe8b77118b5b298a8690a5d6c7))
+
 ## [0.4.12] - 2026-11-01
 
 ### Commits
