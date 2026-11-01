@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.5] - 2026-11-01
+
+### Commits
+
+- Turn capex explanation into a table, attributed commentary and narrative ([a9e5b98](https://github.com/ray5273/kr-research-kit/commit/a9e5b985ed57a9f28d7b78ecfecd008b4503be61))
+
 ## [0.4.4] - 2026-11-01
 
 ### Commits
