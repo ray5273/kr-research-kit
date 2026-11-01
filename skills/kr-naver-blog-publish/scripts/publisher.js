@@ -1301,15 +1301,21 @@ class GstackDriver {
     const selector = this.findLastBodySelector();
     this.replaceEditorText(selector, value, html, { selectAll: false, resetBodyFormatting: true });
   }
+  // SmartEditor keeps its own caret model and ignores a selection set from JS,
+  // so an upload after a JS-only selection lands at the end of the post. Tag the
+  // anchor paragraph, give it a real click, and press End so the editor's own
+  // caret sits after the anchor before the image is inserted.
   placeBodyCursorAfterText(text) {
     const result = this.js(`(() => {
       const target=${JSON.stringify(text)};
       const root=document.querySelector('.se-main-container, .se-content');
       if (!root) return 'missing-root';
+      document.querySelectorAll('[data-kr-naver-image-anchor]').forEach(element => element.removeAttribute('data-kr-naver-image-anchor'));
       const normalize=value => String(value || '').replace(/\\s+/g, ' ').trim();
       const exact=[...root.querySelectorAll('.se-text-paragraph, p, h2, h3, [contenteditable=true]')]
         .find(element => normalize(element.innerText || element.textContent) === normalize(target) && !element.closest('.se-documentTitle'));
       if (exact) {
+        exact.setAttribute('data-kr-naver-image-anchor', '1');
         exact.click();
         const range=document.createRange();
         range.selectNodeContents(exact);
@@ -1327,6 +1333,8 @@ class GstackDriver {
         const index=value.indexOf(target);
         if (index < 0) continue;
         if (node.parentElement && node.parentElement.closest('.se-documentTitle')) continue;
+        const paragraph=node.parentElement && (node.parentElement.closest('.se-text-paragraph, p, h2, h3') || node.parentElement);
+        if (paragraph) paragraph.setAttribute('data-kr-naver-image-anchor', '1');
         if (node.parentElement) node.parentElement.click();
         const range=document.createRange();
         range.setStart(node, index + target.length);
@@ -1340,6 +1348,33 @@ class GstackDriver {
       return 'missing-text:' + JSON.stringify({ text: String(root.innerText || root.textContent || '').slice(0, 800), editables: root.querySelectorAll('[contenteditable=true]').length });
     })()`);
     assert(/placed/i.test(result), `Unable to place SmartEditor image cursor after: ${text}; diagnostic=${result}`);
+    const anchorSelector = "[data-kr-naver-image-anchor='1']";
+    try {
+      this.run(["click", anchorSelector], 30_000);
+      this.run(["press", "End"], 30_000);
+    } catch (error) {
+      throw new Error(`Unable to move the SmartEditor caret to the image anchor: ${text}; ${error.message}`);
+    }
+  }
+  // After an upload, the new image component must directly follow the
+  // component whose text ends with the anchor; otherwise the draft would be
+  // saved with the chart in the wrong place (historically at the very end).
+  assertImageAfterText(text, imageIndex) {
+    const result = this.js(`(() => {
+      const target=${JSON.stringify(text)};
+      const normalize=value => String(value || '').replace(/\\s+/g, ' ').trim();
+      const components=[...document.querySelectorAll('.se-main-container > .se-component, .se-components-wrap > .se-component')];
+      const images=components.filter(component => component.classList.contains('se-image'));
+      const index=${JSON.stringify(imageIndex)};
+      const image=images[index];
+      if (!image) return JSON.stringify({ ok: false, reason: 'missing-image', images: images.length });
+      const previous=components[components.indexOf(image) - 1];
+      const previousText=normalize(previous && (previous.innerText || previous.textContent));
+      return JSON.stringify({ ok: previousText.endsWith(normalize(target)), previousText: previousText.slice(-80), position: components.indexOf(image), total: components.length });
+    })()`);
+    let parsed;
+    try { parsed = JSON.parse(result); } catch { parsed = { ok: false, raw: result }; }
+    assert(parsed.ok, `Image ${imageIndex + 1} was not inserted after its anchor "${text}"; diagnostic=${JSON.stringify(parsed)}`);
   }
   pasteLinkCard(url) {
     const selector = this.findSelector("body");
@@ -2251,6 +2286,7 @@ function setBodyAndInlineImages(driver, markdown, manifest) {
     for (let index = 0; index < anchors.length; index += 1) {
       driver.placeBodyCursorAfterText(anchors[index]);
       driver.uploadImage(manifest.post.images[index].absolutePath, index + 1);
+      if (typeof driver.assertImageAfterText === "function") driver.assertImageAfterText(anchors[index], index);
     }
     return;
   }

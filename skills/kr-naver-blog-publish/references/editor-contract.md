@@ -15,6 +15,8 @@
 
 `prepare` must verify the memo SHA-256, generated post SHA-256, every PNG SHA-256, login state, required editor selectors, title, body, uploaded image count, sources, and disclaimer. It then saves a draft, captures a screenshot, and emits a token valid for 30 minutes. Only the token hash is stored.
 
+Inline images are placed after the body is pasted. For each image, `prepare` tags the paragraph that precedes it in the generated Markdown, gives that paragraph a real click and presses End. SmartEditor ignores a caret set only from JavaScript, so without this step the image would land at the end of the post. After each upload, `prepare` checks that the new image component directly follows that anchor paragraph and fails with a diagnostic if it does not.
+
 `publish` must require both the one-time token and `--confirm-public yes`, then recheck all source artifacts and the editor fingerprint before opening the publish layer. Clear the stored token hash after success. Block a manifest whose status is already `published`.
 
 For immediate publishing, the final public confirmation is a one-shot DOM click followed by URL verification for up to 120 seconds. For scheduled daily-market publication, first select reservation mode, the manifest’s `Asia/Seoul` date/time (default next weekday 08:00), and public visibility; read those values back before the one-shot reservation confirmation. A successful reservation is recorded as `scheduled` and must not be clicked again. A click whose outcome cannot be verified becomes `publication-unverified`.
