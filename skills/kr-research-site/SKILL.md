@@ -62,7 +62,7 @@ When `kr-stock-update` appends an Update Log block (`### YYYY-MM-DD — ...`) or
 
 ## One-time setup (user)
 
-1. The site runs as a Cloudflare **Worker with static assets** (`wrangler.jsonc` at the repo root uploads `site-dist/`). Its address is `https://kr-research-site.ray527321.workers.dev` (Worker `kr-research-site`, account subdomain `ray527321`); `baseUrl` (and `author.url`) in `site/site.config.json` must match it exactly. Administrator access uses a separate password stored in the Worker Secret `ADMIN_PASSWORD`; Cloudflare Access setup is not required. Keep public pages open. A custom domain can be attached later, but that changes every canonical URL, so decide before the site is indexed.
+1. The site runs as a Cloudflare **Worker with static assets** (`wrangler.jsonc` at the repo root uploads `site-dist/`). The public canonical address is `https://kr-research-site.pages.dev`; a Pages service-binding proxy forwards requests to Worker `kr-research-site`. The original `https://kr-research-site.ray527321.workers.dev` address remains accessible as an alias. See [Pages proxy operations](../../../site/pages-proxy/OPERATIONS.md). `baseUrl` (and `author.url`) in `site/site.config.json` must match it exactly. Administrator access uses a separate password stored in the Worker Secret `ADMIN_PASSWORD`; Cloudflare Access setup is not required. Keep public pages open. A custom domain can be attached later, but that changes every canonical URL, so decide before the site is indexed.
 2. Cloudflare dashboard → Workers & Pages → Create → Import a repository → this repository:
    - Project (Worker) name: `kr-research-site` (must equal `name` in `wrangler.jsonc`)
    - Build command: `npm ci && npm run check:site`
@@ -71,7 +71,7 @@ When `kr-stock-update` appends an Update Log block (`### YYYY-MM-DD — ...`) or
    - Let Cloudflare create the build API token automatically. No GitHub secrets are needed.
 3. Register the site in Google Search Console (URL-prefix property), 네이버 서치어드바이저 and Bing Webmaster. A `workers.dev` site has no DNS of its own, so use the HTML meta-tag method: put each token in `verification.google` / `.naver` / `.bing`, push, then verify and submit `/sitemap.xml`.
 4. Generate an IndexNow key and set `indexNow.key`.
-5. AdSense needs a domain you own: `ads.txt` must sit at the root domain, and `workers.dev` belongs to Cloudflare, so a `workers.dev` site cannot realistically be approved. Move to a custom domain before applying. After 20+ articles and the policy pages are live, apply for AdSense, then set `adsense.client` and the three slot ids. Configure the EU consent message in the AdSense dashboard (Google CMP); no code is needed.
+5. AdSense site registration must accept the public hostname before proceeding. Google permits eligible platform subdomains on the Public Suffix List; purchasing a domain is not a universal requirement. In this account, `kr-research-site.ray527321.workers.dev` was rejected as an ordinary subdomain and the suggested account root returned 404. Use `https://kr-research-site.pages.dev` for the next registration attempt; acceptance and content approval must be confirmed in the actual AdSense account. Do not promise approval or infer a minimum article count. Once the user supplies the real publisher ID, configure ownership verification and ads.txt; ad slots require the actual account slot IDs. Configure the appropriate consent message in AdSense before ad serving.
 
 ## Scripts
 

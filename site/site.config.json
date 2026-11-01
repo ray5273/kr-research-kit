@@ -1,11 +1,11 @@
 {
-  "baseUrl": "https://kr-research-site.ray527321.workers.dev",
+  "baseUrl": "https://kr-research-site.pages.dev",
   "siteName": "KR Research",
   "tagline": "기준일 리서치",
   "description": "공시와 숫자로 확인한 한국·미국 주식 리서치. 모든 글에 기준일과 출처가 있습니다.",
   "author": {
     "name": "ray5273",
-    "url": "https://kr-research-site.ray527321.workers.dev/about/"
+    "url": "https://kr-research-site.pages.dev/about/"
   },
   "verification": {
     "google": "",

@@ -1,0 +1,11 @@
+{
+  "name": "kr-research-site",
+  "pages_build_output_dir": "../../.tmp/pages-proxy",
+  "compatibility_date": "2026-10-01",
+  "services": [
+    {
+      "binding": "RESEARCH",
+      "service": "kr-research-site"
+    }
+  ]
+}
