@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.17] - 2026-11-02
+
+### Commits
+
+- Add a site icon ([f4910b4](https://github.com/ray5273/kr-research-kit/commit/f4910b4997973fd5c6a634fe71b5b721549460e8))
+
 ## [0.4.16] - 2026-11-02
 
 ### Commits
