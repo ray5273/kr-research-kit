@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.18] - 2026-11-02
+
+### Commits
+
+- Redesign the research site as an editorial index ([adf430b](https://github.com/ray5273/kr-research-kit/commit/adf430b470f07c1837c4d10b241b38b34337a94b))
+- Drop summaries from mobile list rows ([be370cc](https://github.com/ray5273/kr-research-kit/commit/be370ccc3c176b3b95d4e56480f40a58d6d7fb4a))
+- Require a one-line summary at the front of every memo ([8fe4612](https://github.com/ray5273/kr-research-kit/commit/8fe4612ed24eb126e4b5863478276265a3a470d6))
+
 ## [0.4.17] - 2026-11-02
 
 ### Commits
