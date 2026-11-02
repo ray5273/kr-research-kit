@@ -2,6 +2,8 @@
 
 AI skills that turn one ticker into dated, source-backed equity research. Native to both **Claude Code** and **OpenAI Codex CLI**.
 
+**Read the research this kit produces → [kr-research-site.pages.dev](https://kr-research-site.pages.dev)**
+
 Languages: English — [README.md](README.md) · 한국어 — [README-kr.md](README-kr.md)
 
 Ask about a Korean ticker and the chain runs itself: DART filings, mandatory backlog-maturity charts for order-driven companies, a KRX chart pack, sell-side consensus, foreign-IB coverage pulled from Korean-language news, trade-flow proxy checks, and a publish-ready Naver blog draft. U.S. tickers start from an SEC EDGAR/XBRL evidence pack. Every artifact lands on disk at `analysis-example/<market>/<company>/memo.md` with a `기준일` and a source map, not in chat.
@@ -25,7 +27,7 @@ What makes it different from a generic research prompt:
 - **Filing-grounded, not vibe-grounded.** DART Recheck separates `confirmed`, `partially supported`, and `not separately disclosed` before valuation or stance.
 - **Backlog timing stays honest.** Order-driven names get a required year/maturity PNG from DART/KRX evidence; total-only backlog is shown as `year not disclosed`, never spread across invented years.
 - **Publishing is gated.** Naver publish requires explicit approval via screenshot preview. Nothing auto-posts.
-- **No npm dependencies.** Every bundled script runs on Node stdlib alone.
+- **No npm install to run a skill.** Research scripts run on Node stdlib alone. Only the research site build uses npm packages.
 
 ## Quick Install
 
@@ -36,7 +38,7 @@ In Claude Code:
 /plugin install kr-research-kit@kr-research-kit-marketplace
 ```
 
-Anthropic community marketplace submission is in review — the same plugin will be discoverable from the official catalog once approved. See [docs/MARKETPLACE.md](docs/MARKETPLACE.md).
+Marketplace listing status is tracked in [docs/MARKETPLACE.md](docs/MARKETPLACE.md).
 
 <details>
 <summary>Manual install (Codex or Claude Code git clone)</summary>
@@ -93,6 +95,10 @@ Representative artifacts: [KR full decision memo](<analysis-example/kr/한화엔
 
 Curated golden examples → [docs/EXAMPLES.md](docs/EXAMPLES.md). Complete index of every shipped artifact → [docs/ARTIFACTS.md](docs/ARTIFACTS.md).
 
+## Research site
+
+[KR Research](https://kr-research-site.pages.dev) is the public home of the memos: each article carries an as-of date, numbered sources and an update log. [`kr-research-site`](skills/kr-research-site/SKILL.md) builds it from memos listed in [`site/published.json`](site/published.json), so nothing is published unless it is opted in. Machine-readable entry points: [`sitemap.xml`](https://kr-research-site.pages.dev/sitemap.xml), [`feed.xml`](https://kr-research-site.pages.dev/feed.xml), [`llms.txt`](https://kr-research-site.pages.dev/llms.txt).
+
 ## Korean strategy defaults
 
 The conservative default for the Korean market engine is **Minervini RS (3/6/12-month, 40/30/30) + DART EPS/revenue improvement + a KOSPI SMA200 regime filter (R1)**: top 10 names every 5 trading days, filled at the next session's open, costed at 25bp buy and 25bp sell plus 0.18% transaction tax. The strongest variant found in robustness search is 52-week-high proximity momentum with monthly Top 15.
@@ -100,6 +106,8 @@ The conservative default for the Korean market engine is **Minervini RS (3/6/12-
 Full methodology, data grades, and performance comparison across every Korean and U.S. strategy → [docs/CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md](docs/CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md).
 
 ## Docs
+
+Full index → [docs/README.md](docs/README.md).
 
 - Installation (Plugin / Codex / Claude Code / OpenDART / SEC User-Agent / Chrome extension / fonts / known issues) — [docs/INSTALL.md](docs/INSTALL.md)
 - Skills catalog & behavior — [docs/SKILLS.md](docs/SKILLS.md)
@@ -109,6 +117,7 @@ Full methodology, data grades, and performance comparison across every Korean an
 - Strategy methodology & performance — [docs/CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md](docs/CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md)
 - Marketplace submission tracker — [docs/MARKETPLACE.md](docs/MARKETPLACE.md)
 - Quality rubrics for memo audits — [docs/quality-rubrics.md](docs/quality-rubrics.md)
+- Automatic releases — [docs/RELEASING.md](docs/RELEASING.md)
 
 ## Validation
 
@@ -119,31 +128,6 @@ bash ./scripts/validate-skills.sh        # Linux / macOS
 
 Validation covers skill spec checks, strict YAML frontmatter parsing, output-path contracts, README local-link verification, artifact-index freshness, and golden example audits.
 
-## Automatic releases
+Every push to `main` cuts a versioned release automatically; see [docs/RELEASING.md](docs/RELEASING.md).
 
-Every push to `main`, including documentation and analysis examples, runs the
-[Release workflow](.github/workflows/release.yml). After validation, it bumps all
-three manifests, moves `CHANGELOG.md`'s `Unreleased` entries into the dated release
-section, and adds commit links. It pushes a bot commit and `vX.Y.Z` tag together,
-then publishes a GitHub Release with the same changelog body. There is no npm publish.
-
-The largest change across **all commits since the last version tag** determines
-the bump: `feat: add coverage` or `feat(chart): add panel` → minor;
-`feat!: change format`, `fix(api)!: change contract`, or a body line beginning
-`BREAKING CHANGE:` → major; `fix: repair chart`, `docs: update guide`, and messages
-without Conventional Commits syntax → patch. The initial version floor is the
-manifest's `0.2.0`; the existing `v0.1.0` tag is preserved.
-
-Runs are serialized. If `main` advances during validation, the script recalculates
-and validates the latest `main` before an atomic push, without force-pushing.
-The workflow uses `GITHUB_TOKEN` with `contents: write`; its bot pushes do not
-trigger another push workflow ([GitHub documentation](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow)).
-
-To retry, open **Actions → Release → Run workflow**, select **main**, and run it.
-Already released commits create no new version. If a tag was pushed but Release
-publication failed, rerunning completes that Release from its tagged changelog,
-including when newer changes have arrived. After five concurrent-main retries,
-the run fails and can be rerun the same way. No PAT is needed with the current
-unprotected `main`; future branch rules must allow this workflow's bot push.
-
-Run the isolated Git/API tests locally with `node --test scripts/test-release.js`.
+Research is for information only and is not investment advice. MIT licensed — see [LICENSE](LICENSE).

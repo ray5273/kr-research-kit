@@ -2,6 +2,8 @@
 
 종목 하나를 날짜와 출처가 박힌 리서치로 바꾸는 AI 스킬 모음입니다. **Claude Code**와 **OpenAI Codex CLI** 양쪽 네이티브입니다.
 
+**이 키트로 만든 리서치 읽기 → [kr-research-site.pages.dev](https://kr-research-site.pages.dev)**
+
 언어: English — [README.md](README.md) · 한국어 — [README-kr.md](README-kr.md)
 
 한국 종목을 물어보면 체인이 알아서 돕니다. DART 공시, 수주산업의 필수 연도·만기별 수주잔고 그래프, KRX 차트 팩, 증권사 컨센서스, 한국어 뉴스에서 뽑아낸 외국계 IB 커버리지, 수출입 프록시 교차검증, 그리고 게시 직전 상태의 네이버 블로그 초안까지. 미국 종목은 SEC EDGAR/XBRL evidence pack에서 출발합니다. 모든 산출물은 채팅이 아니라 `analysis-example/kr/<company>/memo.md`에 `기준일`과 출처 맵을 달고 파일로 남습니다.
@@ -25,7 +27,7 @@
 - **공시에 발 딛은 분석.** DART Recheck가 `confirmed` / `partially supported` / `not separately disclosed`를 구분한 뒤에야 밸류에이션과 stance로 넘어갑니다.
 - **수주잔고의 시간축을 정직하게 표시.** 수주산업은 DART/KRX 근거로 연도·만기 그래프를 반드시 만들고, 총잔고만 공시됐으면 임의 배분 없이 `연도 미공시`로 그립니다.
 - **발행에는 게이트가 있습니다.** 네이버 게시는 스크린샷 미리보기로 사용자가 명시 승인해야만 진행됩니다. 자동 게시는 없습니다.
-- **npm 의존성 없음.** 번들 스크립트는 전부 Node stdlib만으로 돕니다.
+- **스킬 실행에 npm 설치 불필요.** 리서치 스크립트는 Node stdlib만으로 돕니다. 리서치 사이트 빌드에만 npm 패키지를 씁니다.
 
 ## 빠른 설치
 
@@ -36,7 +38,7 @@ Claude Code에서:
 /plugin install kr-research-kit@kr-research-kit-marketplace
 ```
 
-Anthropic 커뮤니티 마켓플레이스 등록은 심사 중입니다 — 승인되면 별도 `marketplace add` 없이 공식 카탈로그에서 바로 검색됩니다. [docs/MARKETPLACE.md](docs/MARKETPLACE.md) 참조.
+마켓플레이스 등록 현황은 [docs/MARKETPLACE.md](docs/MARKETPLACE.md)에서 관리합니다.
 
 <details>
 <summary>수동 설치 (Codex / Claude Code git clone)</summary>
@@ -93,6 +95,10 @@ OpenDART API 키, SEC EDGAR `User-Agent`, macOS Naver fallback, Windows PowerShe
 
 감수된 대표 예시 → [docs/EXAMPLES.md](docs/EXAMPLES.md). 전체 산출물 인덱스 → [docs/ARTIFACTS.md](docs/ARTIFACTS.md).
 
+## 리서치 사이트
+
+[KR Research](https://kr-research-site.pages.dev)는 메모를 공개하는 사이트입니다. 모든 글에 기준일, 번호 출처, 업데이트 내역이 있습니다. [`kr-research-site`](skills/kr-research-site/SKILL.md)가 [`site/published.json`](site/published.json)에 등록된 메모만 빌드하므로, 등록하지 않은 글은 공개되지 않습니다. 기계 판독용 경로: [`sitemap.xml`](https://kr-research-site.pages.dev/sitemap.xml), [`feed.xml`](https://kr-research-site.pages.dev/feed.xml), [`llms.txt`](https://kr-research-site.pages.dev/llms.txt).
+
 ## 한국 전략 기본값
 
 한국 시장 엔진의 보수적 기본값은 **Minervini RS(3·6·12개월, 40/30/30) + DART EPS·매출 개선 + KOSPI SMA200 레짐 단독(R1)**입니다. 5거래일마다 상위 10개를 고르고, 신호 다음 거래일 시가에 체결하며, 매수 25bp·매도 25bp + 증권거래세 0.18%를 적용합니다. 강건성 검색에서 가장 강했던 변형은 52주 신고가 근접 모멘텀 + 월간 Top 15입니다.
@@ -100,6 +106,8 @@ OpenDART API 키, SEC EDGAR `User-Agent`, macOS Naver fallback, Windows PowerShe
 전체 방법론, 데이터 등급, 한국·미국 전략별 성과 비교 → [docs/CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md](docs/CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md).
 
 ## 문서
+
+전체 목록 → [docs/README.md](docs/README.md).
 
 - 설치 (Plugin / Codex / Claude Code / OpenDART / SEC User-Agent / Chrome 확장 / 폰트 / 알려진 이슈) — [docs/INSTALL.md](docs/INSTALL.md)
 - 스킬 카탈로그와 동작 방식 — [docs/SKILLS.md](docs/SKILLS.md)
@@ -109,6 +117,7 @@ OpenDART API 키, SEC EDGAR `User-Agent`, macOS Naver fallback, Windows PowerShe
 - 전략 방법론과 성과 비교 — [docs/CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md](docs/CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md)
 - Marketplace 제출 추적 — [docs/MARKETPLACE.md](docs/MARKETPLACE.md)
 - 메모 감수용 품질 루브릭 — [docs/quality-rubrics.md](docs/quality-rubrics.md)
+- 자동 릴리스 — [docs/RELEASING.md](docs/RELEASING.md)
 
 ## 검증
 
@@ -119,29 +128,6 @@ bash ./scripts/validate-skills.sh        # Linux / macOS
 
 스킬 스펙 검사, strict YAML frontmatter 파싱, 출력 경로 contract, README local-link 검증, 산출물 인덱스 최신성, golden example 감사를 포함합니다.
 
-## 자동 릴리스
+`main`에 push할 때마다 버전 릴리스가 자동으로 만들어집니다. 자세한 내용은 [docs/RELEASING.md](docs/RELEASING.md)를 보세요.
 
-문서·분석 예제를 포함한 모든 `main` push는 [Release 워크플로](.github/workflows/release.yml)를 실행합니다.
-검증을 통과하면 세 manifest 버전을 함께 올리고, `CHANGELOG.md`의 `Unreleased` 항목을
-날짜가 있는 새 버전으로 이동하며 커밋 링크를 추가합니다. 봇 커밋과 `vX.Y.Z` 태그를
-함께 push한 뒤 같은 변경 이력으로 GitHub Release를 공개합니다. npm 배포는 하지 않습니다.
-
-**마지막 버전 태그 이후 전체 커밋** 중 가장 큰 변경을 적용합니다.
-
-- `feat: 기능 추가`, `feat(chart): 패널 추가` → minor
-- `feat!: 형식 변경`, `fix(api)!: 계약 변경`, 본문의 `BREAKING CHANGE:`로 시작하는 줄 → major
-- `fix: 오류 수정`, `docs: 문서 갱신`, Conventional Commits 형식이 아닌 메시지 → patch
-
-첫 실행은 manifest의 `0.2.0`을 버전 하한으로 사용하며 기존 `v0.1.0` 태그를 보존합니다.
-실행을 직렬화하고 검증 도중 main이 변경되면 최신 main에서 다시 계산·검증합니다.
-커밋과 태그는 atomic push로 함께 저장하며 강제 push는 하지 않습니다.
-`contents: write` 권한의 `GITHUB_TOKEN`을 사용하므로 봇 push가 push 워크플로를 다시 실행하지 않습니다
-([GitHub 공식 문서](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow)).
-
-재실행은 **Actions → Release → Run workflow**에서 **main**을 선택합니다.
-이미 발행한 변경에는 새 버전을 만들지 않습니다. 태그 push 후 Release 공개만 실패했다면
-해당 태그의 changelog로 Release를 완성합니다. 그 사이 새 커밋이 들어와도 이전 Release를 먼저 복구합니다.
-main 경합이 5회 반복되면 실행을 실패 처리하며 같은 방법으로 재실행할 수 있습니다.
-현재 보호 규칙이 없는 main에서는 별도 PAT가 필요하지 않으며, 향후 보호 규칙을 추가하면 봇 push를 허용해야 합니다.
-
-로컬 릴리스 테스트: `node --test scripts/test-release.js` (임시 Git 저장소·API 모킹 사용).
+리서치는 정보 제공 목적이며 투자 권유가 아닙니다. MIT 라이선스 — [LICENSE](LICENSE).

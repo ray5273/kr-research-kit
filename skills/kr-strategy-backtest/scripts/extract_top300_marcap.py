@@ -12,7 +12,7 @@
     pip install pandas pyarrow openpyxl
 
 사용법
-    python extract_top300_marcap.py
+    python skills/kr-strategy-backtest/scripts/extract_top300_marcap.py
     (아래 [설정] 부분에서 연도 범위, 상위 개수 등을 수정)
 """
 
@@ -36,7 +36,7 @@ INCLUDE_MARKETS = ['KOSPI', 'KOSDAQ', 'KOSDAQ GLOBAL']  # KONEX 제외
 # ETFs, ETNs, REITs, SPACs, or preferred shares.
 EXCLUDE_PREFERRED = True
 MARCAP_DIR = 'marcap'      # marcap 저장소를 받을 폴더
-OUTPUT_FILE = f'한국_시가총액_상위{TOP_N}_{START_YEAR}-{END_YEAR}.xlsx'
+OUTPUT_FILE = f'data/kr-marcap/한국_시가총액_상위{TOP_N}_{START_YEAR}-{END_YEAR}.xlsx'
 
 # ─────────────────────────────────────────
 # 1) marcap 데이터셋 준비 (없으면 git clone)

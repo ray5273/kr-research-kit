@@ -13,7 +13,7 @@ const A = require('./lib/annual-top300-universe.js');
 
 const ROOT = path.resolve(__dirname, '..', '..', '..');
 const defaults = {
-  input: path.join(ROOT, '한국_시가총액_상위300_2015-2025.xlsx'),
+  input: path.join(ROOT, 'data', 'kr-marcap', '한국_시가총액_상위300_2015-2025.xlsx'),
   out: path.join(ROOT, 'analysis-example/kr-market/strategies/annual-top300/universe-ledger.json'),
 };
 function arg(name, fallback) { const i = process.argv.indexOf(name); return i >= 0 ? process.argv[i + 1] : fallback; }

@@ -58,6 +58,8 @@ Cron 실패는 Cloudflare 대시보드의 실패 이력과 관리자 집계 지�
 
 `site/published.json`의 선택 필드 `sectors: string[]`는 일반 태그와 별도로 관리한다. 연관글은 같은 시장·티커(티커 없는 글은 같은 시장·회사명), 같은 섹터, 발행일 내림차순으로 최대 4개를 선택한다. 국가·글 종류 제한은 없다. 전후 글은 발행일 내림차순, 동률은 게시 목록 순서이며 편집일과 무관하다. 검색 색인은 이 목록의 공개 제목·회사명·티커·섹터·태그·요약만 포함한다. `/search/`는 noindex이며 사이트맵에서 제외된다.
 
+검색엔진 소유 확인 파일(Naver, Google)은 Worker의 `SITE_VERIFICATION`이 200으로 직접 응답하며, `wrangler.jsonc`의 `run_worker_first`에도 등록돼 있다. 정적 `.html`은 리다이렉트되므로 파일로 두지 않는다. 지우면 소유 확인이 풀린다.
+
 카카오 JavaScript 키는 `site/site.config.json`의 `kakao.javascriptKey` 또는 Cloudflare **빌드 변수** `KAKAO_JAVASCRIPT_KEY`에 설정한다. JavaScript 키는 브라우저에 공개되는 키이며 Admin/REST 키를 넣지 않는다. 빌드 시 HTML에 반영하므로 변수 변경 후 재빌드한다. 운영 주소 `https://kr-research-site.pages.dev`를 카카오 개발자 앱의 JavaScript SDK 도메인과 제품 링크 관리의 웹 도메인에 등록한다. 사용자에게 도메인 등록 완료를 확인받았더라도 실제 키 연결과 공유 미리보기는 배포 후 확인한다.
 
 SDK는 [공식 JavaScript 문서](https://developers.kakao.com/docs/ko/kakaotalk-share/js-link)의 `Kakao.Share.sendDefault` 및 [피드 템플릿](https://developers.kakao.com/docs/ko/message-template/default)을 사용한다. SDK 요청 성공은 메시지 전달 완료를 보장하지 않는다. 기본 공유는 기기 공유 완료, 링크 복사는 복사 성공 시에만 집계한다. 취소/확인된 오류는 제외한다. 통계는 동의 기반 방문 통계와 독립적으로 도입 시점부터 누적된다. API 장애 시 UI는 `—`로 표시하며 공유는 계속 작동한다.

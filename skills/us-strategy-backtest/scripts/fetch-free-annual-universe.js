@@ -14,7 +14,7 @@ function get(url, headers = {}) { return new Promise((resolve, reject) => https.
 async function pool(items, limit, task) { let cursor = 0; const workers = Array.from({ length: limit }, async () => { while (cursor < items.length) { const item = items[cursor++]; await task(item); } }); await Promise.all(workers); }
 async function main() {
   const ranking = arg('--ranking'), cache = arg('--cache-dir'), dryRun = process.argv.includes('--dry-run');
-  if (!ranking || !cache) die('Usage: --ranking us_marketcap_rankings.csv --cache-dir .tmp/free-annual [--dry-run]');
+  if (!ranking || !cache) die('Usage: --ranking data/us-marketcap/us_marketcap_rankings.csv --cache-dir .tmp/free-annual [--dry-run]');
   const rows = csv(fs.readFileSync(ranking, 'utf8')), years = new Set(['2020', '2021', '2022', '2023', '2024']);
   const tickers = [...new Set(rows.filter(x => years.has(x.year) && x.rank <= 500).map(x => x.ticker))].sort();
   const yahooDir = path.join(cache, 'yahoo'), secDir = path.join(cache, 'sec'); fs.mkdirSync(yahooDir, { recursive: true }); fs.mkdirSync(secDir, { recursive: true });

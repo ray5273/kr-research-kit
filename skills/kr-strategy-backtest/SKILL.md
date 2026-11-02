@@ -51,12 +51,12 @@ Use `--limit N` only for a technical smoke run. The result remains current-unive
 The current-universe reports above are retained as the **"latest-universe
 survivorship-biased baseline"**.  Do not overwrite them when running the
 point-in-time comparison.  First extract a 2015–2025 workbook with
-`extract_top300_marcap.py` (common shares only), then normalize it and run the
+`scripts/extract_top300_marcap.py` (common shares only), then normalize it and run the
 annual strategy into its separate directory:
 
 ```bash
 node skills/kr-strategy-backtest/scripts/build-annual-top300-universe.js \
-  --input 한국_시가총액_상위300_2015-2025.xlsx \
+  --input data/kr-marcap/한국_시가총액_상위300_2015-2025.xlsx \
   --out analysis-example/kr-market/strategies/annual-top300/universe-ledger.json
 
 node skills/kr-strategy-backtest/scripts/run-annual-top300-momentum.js \
@@ -107,7 +107,7 @@ OPENDART_API_KEY=... node skills/kr-strategy-backtest/scripts/rebuild-annual-top
   --universe-file analysis-example/kr-market/strategies/annual-top300/universe-ledger.json \
   --cache-dir .tmp/kr-strategy-backtest/2026-07-16 \
   --end-date 2026-07-16 \
-  --raw-workbook 한국_시가총액_상위300_2015-2025.xlsx
+  --raw-workbook data/kr-marcap/한국_시가총액_상위300_2015-2025.xlsx
 ```
 
 It refreshes the 2015-onward Yahoo cache, validates the 90% annual coverage

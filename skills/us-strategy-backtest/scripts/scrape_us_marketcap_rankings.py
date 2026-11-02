@@ -28,8 +28,8 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 
 URL = "https://atlantisdatasolutions.com/rankings"
-CSV_OUT = "us_marketcap_rankings.csv"
-XLSX_OUT = "us_marketcap_top1000_by_year.xlsx"
+CSV_OUT = "data/us-marketcap/us_marketcap_rankings.csv"
+XLSX_OUT = "data/us-marketcap/us_marketcap_top1000_by_year.xlsx"
 
 
 # ---------------------------------------------------------------

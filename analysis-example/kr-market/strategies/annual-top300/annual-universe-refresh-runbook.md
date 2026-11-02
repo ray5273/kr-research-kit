@@ -13,16 +13,16 @@
 
 ## 연 1회 갱신 절차 (매년 1월 첫 영업일들)
 
-1. **연말 스냅샷 추출.** `extract_top300_marcap.py`의 `[설정]`에서 `END_YEAR`를 새 연도로
-   올리고(예: 2026), `EXCLUDE_PREFERRED=True` 확인 후 실행 → `한국_시가총액_상위300_2015-<END_YEAR>.xlsx`.
+1. **연말 스냅샷 추출.** `skills/kr-strategy-backtest/scripts/extract_top300_marcap.py`의 `[설정]`에서 `END_YEAR`를 새 연도로
+   올리고(예: 2026), `EXCLUDE_PREFERRED=True` 확인 후 실행 → `data/kr-marcap/한국_시가총액_상위300_2015-<END_YEAR>.xlsx`.
    marcap parquet(`marcap/data/`)에 새 연도 데이터가 채워진 뒤여야 함.
    ```bash
-   python extract_top300_marcap.py
+   python skills/kr-strategy-backtest/scripts/extract_top300_marcap.py
    ```
 2. **원장 재구축.** XLSX → 정규화 JSON 원장.
    ```bash
    node skills/kr-strategy-backtest/scripts/build-annual-top300-universe.js \
-     --input 한국_시가총액_상위300_2015-<END_YEAR>.xlsx \
+     --input data/kr-marcap/한국_시가총액_상위300_2015-<END_YEAR>.xlsx \
      --out analysis-example/kr-market/strategies/annual-top300/universe-ledger-2015-<END_YEAR>.json
    ```
    출력의 `common`(공통주 수)이 연도별로 ~290±10인지, 우선주가 안 섞였는지 확인.
@@ -33,7 +33,7 @@
      --trading-year <새 거래연도> \
      --out ~/.cache/krx-trend-portfolio-monitor/top300.json --force
    ```
-   (Hermes 박스 192.168.50.252에서 실행하거나, 레포에서 방출 후 scp 배포.)
+   (Hermes 박스에서 실행하거나, 레포에서 방출 후 scp 배포.)
 4. **일치 검증.** 방출 직후 반드시 확인.
    ```bash
    node skills/kr-strategy-backtest/scripts/build-live-top300.js \
