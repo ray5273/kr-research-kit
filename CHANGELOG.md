@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.16] - 2026-11-02
+
+### Commits
+
+- docs: link the research site and reorganize repository docs ([3b1be6d](https://github.com/ray5273/kr-research-kit/commit/3b1be6d50397c4a177360084f5064e68ce020c54))
+
 ## [0.4.15] - 2026-11-02
 
 ### Commits
