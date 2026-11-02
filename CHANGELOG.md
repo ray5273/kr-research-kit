@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.15] - 2026-11-02
+
+### Commits
+
+- Serve the Google site verification file ([f31d57e](https://github.com/ray5273/kr-research-kit/commit/f31d57e936e025a2e5e8387631668d35da5c7cd9))
+
 ## [0.4.14] - 2026-11-02
 
 ### Commits
