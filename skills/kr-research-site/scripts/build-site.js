@@ -322,11 +322,31 @@ function renderInline(text, ctx) {
   return value;
 }
 
+// Numbers, signed values and amounts with a short unit; dates stay text.
+const NUMERIC_CELL_RX = /^[-+−±~≈△▲▼(]*[$₩]?\d[\d,.]*(?:\s*[-–~]\s*[\d,.]+)?\s*[%a-zA-Z가-힣)]{0,6}(?:\s+\d[\d,.]*\s*[%가-힣]{0,3})?$/;
+const DATE_CELL_RX = /^\d{4}[-./]\d/;
+
+function isNumericCell(cell) {
+  const text = plainText(String(cell)).replace(/⟦cite:\d+⟧/g, "").replace(/\[\d+]/g, "").trim();
+  return NUMERIC_CELL_RX.test(text) && !DATE_CELL_RX.test(text);
+}
+
+// A column is numeric when most of its filled cells are; the first column labels rows.
+function numericColumns(table) {
+  return table.headers.map((_header, column) => {
+    if (column === 0) return false;
+    const filled = table.rows.map(row => row[column]).filter(cell => cell && !/^[-–—]$/.test(String(cell).trim()));
+    return filled.length > 0 && filled.filter(isNumericCell).length / filled.length >= 0.7;
+  });
+}
+
 function renderTable(table, ctx) {
-  // Public tables use one consistent left alignment regardless of Markdown hints.
-  const head = table.headers.map(cell => `<th>${renderInline(cell, ctx)}</th>`).join("");
-  const rows = table.rows.map(row => `<tr>${row.map(cell => `<td>${renderInline(cell, ctx)}</td>`).join("")}</tr>`).join("\n");
-  return `<div class="table-scroll"><table><thead><tr>${head}</tr></thead><tbody>\n${rows}\n</tbody></table></div>`;
+  // Markdown alignment hints are ignored: text columns stay left, numeric columns align right.
+  const numeric = numericColumns(table);
+  const cls = column => (numeric[column] ? ' class="num"' : "");
+  const head = table.headers.map((cell, column) => `<th${cls(column)}>${renderInline(cell, ctx)}</th>`).join("");
+  const rows = table.rows.map(row => `<tr>${row.map((cell, column) => `<td${cls(column)}>${renderInline(cell, ctx)}</td>`).join("")}</tr>`).join("\n");
+  return `<div class="table-scroll" role="region" aria-label="표" tabindex="0"><table><thead><tr>${head}</tr></thead><tbody>\n${rows}\n</tbody></table></div>`;
 }
 
 const LIST_ITEM_RX = /^(\s*)([-*+]|\d+[.)])\s+(.*)$/;
@@ -687,11 +707,12 @@ function adSlot(config, name) {
 
 // ---------- page rendering ----------
 
-function navHtml(site) {
+function navHtml(site, section) {
+  const current = key => (key === section ? ' aria-current="page"' : "");
   const links = [];
-  for (const market of site.markets) links.push(`<a href="/${market}/">${escapeHtml(MARKET_SHORT[market] || MARKET_LABELS[market] || market)}</a>`);
-  if (site.pages.some(page => page.slug === "about")) links.push(`<a href="/about/">소개</a>`);
-  links.push(`<a href="/search/">검색</a>`);
+  for (const market of site.markets) links.push(`<a href="/${market}/"${current(market)}>${escapeHtml(MARKET_SHORT[market] || MARKET_LABELS[market] || market)}</a>`);
+  if (site.pages.some(page => page.slug === "about")) links.push(`<a href="/about/"${current("about")}>소개</a>`);
+  links.push(`<a href="/search/"${current("search")}>검색</a>`);
   return links.join("");
 }
 
@@ -730,7 +751,7 @@ function renderLayout(site, page) {
     twitterCard: image ? "summary_large_image" : "summary",
     head: [verificationMeta(config), adHead(config), page.head || ""].filter(Boolean).join("\n"),
     jsonLd: (page.jsonLd || []).map(jsonLdScript).join("\n"),
-    nav: navHtml(site),
+    nav: navHtml(site, page.section),
     content: page.content,
     footerLinks: footerHtml(site),
     year: String(site.buildYear),
@@ -834,12 +855,16 @@ function renderArticle(article, site, outDir, safety) {
   const shareImage = article.shareImage || (article.shareImage = shareCard(article, config, outDir));
   const content = fill(site.templates.article, {
     toc: `<nav class="toc" aria-label="목차">${tocItems.map(([id, label], index) => `<a href="#${id}"${index === 0 ? ' class="on"' : ""}>${escapeHtml(truncate(label, 24))}</a>`).join("")}</nav>`,
+    tocMobile: tocItems.length > 2 ? `<details class="toc-mobile"><summary>목차 (${tocItems.length})</summary><ol>${tocItems.map(([id, label]) => `<li><a href="#${id}">${escapeHtml(label)}</a></li>`).join("")}</ol></details>` : "",
+    crumbs: `<a href="/">홈</a><span aria-hidden="true">/</span><a href="/${article.market}/">${escapeHtml(MARKET_LABELS[article.market] || article.market)}</a>`,
+    keyLinks: keyLinksHtml(bodySections),
+    dates: `<p class="dates"><span><b>자료 기준일</b><time datetime="${article.asOfDate}">${article.asOfDate}</time></span>${article.researchDate !== article.asOfDate ? `<span><b>자료 업데이트</b><time datetime="${article.researchDate}">${article.researchDate}</time></span>` : ""}</p>`,
     tocScript: TOC_SCRIPT,
     sharing: sharingHtml(article, config),
     comments: commentsHtml(),
     chips: chipsHtml(article, { exchange: true }),
     headline: escapeHtml(article.headline),
-    metaLine: `${escapeHtml(config.author?.name || config.siteName)} · 자료 기준일 <time datetime="${article.asOfDate}">${article.asOfDate}</time>${article.researchDate !== article.asOfDate ? ` · 자료 업데이트 <time datetime="${article.researchDate}">${article.researchDate}</time>` : ""} · 사이트 발행 <time datetime="${article.datePublished}">${article.datePublished}</time> · 최근 편집 <time datetime="${article.dateModified}">${article.dateModified}</time> · ${article.readMinutes}분 · <span data-share-count title="사이트 공유 기능 이용 횟수이며 링크 복사를 포함합니다">공유 —</span> · <a href="#comments" data-comment-count>댓글 —</a>`,
+    metaLine: `${escapeHtml(config.author?.name || config.siteName)} · 사이트 발행 <time datetime="${article.datePublished}">${article.datePublished}</time> · 최근 편집 <time datetime="${article.dateModified}">${article.dateModified}</time> · ${article.readMinutes}분 · <span data-share-count title="사이트 공유 기능 이용 횟수이며 링크 복사를 포함합니다">공유 —</span> · <a href="#comments" data-comment-count>댓글 —</a>`,
     archiveNotice: article.archive ? '<p class="archive-note">기록 글 · 자료 기준일과 원문에 기록된 업데이트의 수치·판단을 보존했습니다. 이후 변동은 반영하지 않았습니다.</p>' : "",
     quote: article.quote.length ? `<div class="quote">${article.quote.map(cell => `<div><div class="k">${escapeHtml(cell.label)}</div><div class="v${cell.tone ? ` ${cell.tone}` : ""}">${escapeHtml(cell.value)}${cell.unit ? `<small>${escapeHtml(cell.unit)}</small>` : ""}</div></div>`).join("")}</div>` : "",
     more: moreHtml(article, site),
@@ -869,6 +894,7 @@ function renderArticle(article, site, outDir, safety) {
       `<meta property="article:modified_time" content="${isoKst(article.dateModified)}">`,
     ].join("\n"),
     jsonLd: articleJsonLd(article, site, shareImage),
+    section: article.market,
     content,
   });
   writeFile(path.join(outDir, article.slug, "index.html"), html);
@@ -884,15 +910,34 @@ function tagHref(tag) {
   return `/tags/${encodeURIComponent(tagDir(tag))}/`;
 }
 
-// Highlights the TOC entry of the section being read; the page works without it.
-const TOC_SCRIPT = `<script>(()=>{const l=[...document.querySelectorAll(".toc a")];if(!l.length||!("IntersectionObserver"in window))return;const m=new Map(l.map(a=>[decodeURIComponent(a.hash.slice(1)),a]));const o=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting){l.forEach(a=>a.classList.remove("on"));m.get(e.target.id)?.classList.add("on")}},{rootMargin:"0px 0px -70% 0px"});m.forEach((a,id)=>{const t=document.getElementById(id);if(t)o.observe(t)})})();</script>`;
+// Highlights the section being read and keeps it visible inside a long TOC;
+// the page works without it.
+const TOC_SCRIPT = `<script>(()=>{const t=document.querySelector(".toc"),l=[...document.querySelectorAll(".toc a")];document.querySelectorAll(".toc-mobile a").forEach(a=>a.addEventListener("click",()=>a.closest("details").open=false));if(!l.length||!("IntersectionObserver"in window))return;const m=new Map(l.map(a=>[decodeURIComponent(a.hash.slice(1)),a]));const o=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting){const a=m.get(e.target.id);if(!a)continue;l.forEach(x=>{x.classList.remove("on");x.removeAttribute("aria-current")});a.classList.add("on");a.setAttribute("aria-current","location");if(a.offsetTop<t.scrollTop||a.offsetTop+a.offsetHeight>t.scrollTop+t.clientHeight)t.scrollTop=a.offsetTop-t.clientHeight/2}},{rootMargin:"-10% 0px -75% 0px"});m.forEach((a,id)=>{const e=document.getElementById(id);if(e)o.observe(e)})})();</script>`;
+
+// Executive-summary shortcuts point at sections the article already has and add
+// no text of their own, so they cannot introduce an opinion the memo lacks.
+const KEY_LINKS = [
+  ["투자 판단", /투자 판단|판단의 핵심/],
+  ["주요 근거", /투자 논지|주요 근거|핵심 근거/],
+  ["리스크", /리스크|위험 요인/],
+  ["확인할 지표", /판단을 바꿀|확인할 지표|체크포인트|모니터링/],
+];
+
+function keyLinksHtml(sections) {
+  const links = KEY_LINKS.flatMap(([label, pattern]) => {
+    const index = sections.findIndex(section => pattern.test(plainText(section.heading)));
+    return index < 0 ? [] : [`<a href="#s-${index + 1}">${label}</a>`];
+  });
+  return links.length ? `<nav class="keylinks" aria-label="주요 섹션 바로가기">${links.join("")}</nav>` : "";
+}
 
 function chipsHtml(article, { exchange = false } = {}) {
   const market = MARKET_SHORT[article.market] || MARKET_LABELS[article.market] || article.market;
   const ticker = [exchange ? article.exchange : "", article.ticker].filter(Boolean).join(" · ");
   return [
+    article.company ? `<span class="co">${escapeHtml(article.company)}</span>` : "",
     `<span class="mk">${escapeHtml(market)}</span>`,
-    article.archive ? '<span class="tk">기록 글</span>' : "",
+    article.archive ? '<span class="arc">기록 글</span>' : "",
     ticker ? `<span class="tk">${escapeHtml(ticker)}</span>` : "",
     article.stance ? `<span class="badge ${article.stance[0]}">${article.stance[1]}</span>` : "",
   ].filter(Boolean).join("");
@@ -918,8 +963,15 @@ function cardHtml(article, { summary = false } = {}) {
 }
 
 function rowHtml(article, rank) {
-  const updated = article.researchDate !== article.asOfDate ? ` · 자료 업데이트 ${article.researchDate}` : "";
-  return `<a class="row" href="/${article.slug}/"><div><div class="chips">${rank ? `<span class="rank">${rank}</span>` : ""}${chipsHtml(article)}</div><h3>${escapeHtml(article.headline)}</h3><p>${escapeHtml(article.summary)}</p><div class="sub">기준일 ${article.asOfDate}${updated} · ${article.readMinutes}분${countsHtml(article, "span")}</div></div>${imageHtml(article)}</a>`;
+  const market = MARKET_SHORT[article.market] || MARKET_LABELS[article.market] || article.market;
+  const tags = [
+    `<span class="mk">${escapeHtml(market)}</span>`,
+    ...article.sectors.slice(0, 1).map(sector => `<span>${escapeHtml(sector)}</span>`),
+    article.archive ? "<span>기록 글</span>" : "",
+    article.stance ? `<span class="badge ${article.stance[0]}">${article.stance[1]}</span>` : "",
+  ].filter(Boolean).join("");
+  const updated = article.researchDate !== article.asOfDate ? `<span>자료 업데이트 ${article.researchDate}</span>` : "";
+  return `<a class="row" href="/${article.slug}/"><div class="row-id">${rank ? `<span class="rank">${rank}</span>` : ""}<span class="co">${escapeHtml(article.company)}</span>${article.ticker ? `<span class="tk">${escapeHtml(article.ticker)}</span>` : ""}<span class="row-tags">${tags}</span></div><div class="row-main"><h3>${escapeHtml(article.headline)}</h3><p>${escapeHtml(article.summary)}</p></div><div class="row-meta"><span><b>기준일 ${article.asOfDate}</b></span>${updated}<span>${article.readMinutes}분</span>${countsHtml(article, "span")}</div>${imageHtml(article)}</a>`;
 }
 
 function moreHtml(article, site) {
@@ -955,19 +1007,29 @@ function heroHtml(site, articles) {
   const picks = featuredArticles(articles);
   if (!picks.length) return "";
   const [first, ...rest] = picks;
-  return `<section class="rec"><h1>지금 읽을 만한 리서치</h1><p class="lede">${escapeHtml(site.config.description || "")}</p><div class="grid${rest.length ? "" : " one"}">${cardHtml(first, { summary: true })}${rest.length ? `<div class="stack">${rest.map(article => cardHtml(article)).join("")}</div>` : ""}</div></section>`;
+  return `<section class="intro"><h1>${escapeHtml(site.config.description || site.config.siteName)}</h1></section><section class="rec" aria-labelledby="rec-head"><h2 class="sec-head" id="rec-head">지금 읽을 만한 리서치</h2><div class="grid${rest.length ? "" : " one"}">${cardHtml(first, { summary: true })}${rest.length ? `<div class="stack">${rest.map(article => cardHtml(article)).join("")}</div>` : ""}</div></section>`;
 }
 
-function renderList(site, { heading, intro, articles, canonical, robots, home = false }) {
+// Plain links to the existing market pages, so filtering needs no JavaScript.
+function filterHtml(site, current) {
+  const link = (href, label, count, active) => `<a href="${href}"${active ? ' aria-current="page"' : ""}>${escapeHtml(label)} <span>${count}</span></a>`;
+  return `<nav class="filter" aria-label="시장별 보기">${[
+    link("/", "전체", site.articles.length, !current),
+    ...site.markets.map(market => link(`/${market}/`, MARKET_SHORT[market] || market, site.articles.filter(article => article.market === market).length, market === current)),
+  ].join("")}</nav>`;
+}
+
+function renderList(site, { heading, intro, articles, canonical, robots, home = false, market }) {
   const rows = list => list.map(article => rowHtml(article)).join("\n") || `<p class="empty">아직 공개된 글이 없습니다.</p>`;
   const list = home
     ? [
-      `<input type="radio" name="sort" id="sort-latest" checked hidden><input type="radio" name="sort" id="sort-popular" hidden>`,
-      `<div class="seg" role="tablist"><label for="sort-latest">자료 최신순</label><label for="sort-popular">인기</label></div>`,
+      `<h2 class="sec-head">최신 리서치</h2>`,
+      `<input class="sort-input" type="radio" name="sort" id="sort-latest" aria-label="자료 최신순" checked><input class="sort-input" type="radio" name="sort" id="sort-popular" aria-label="인기">`,
+      `<div class="list-bar">${filterHtml(site)}<div class="seg"><label for="sort-latest">자료 최신순</label><label for="sort-popular">인기</label></div></div>`,
       `<div class="panel latest">${rows(articles)}</div>`,
       `<div class="panel popular">${popularArticles(articles).map((article, index) => rowHtml(article, index + 1)).join("\n")}</div>`,
     ].join("\n")
-    : rows(articles);
+    : `${market ? `<div class="list-bar">${filterHtml(site, market)}</div>` : ""}${rows(articles)}`;
   const content = fill(site.templates.index, {
     hero: home ? heroHtml(site, articles) : `<header class="list-head"><h1>${escapeHtml(heading)}</h1><p>${escapeHtml(intro)}</p></header>`,
     list,
@@ -977,6 +1039,7 @@ function renderList(site, { heading, intro, articles, canonical, robots, home = 
     description: intro,
     canonical,
     robots,
+    section: market,
     content,
     jsonLd: [{ "@context": "https://schema.org", "@type": "CollectionPage", name: heading, url: canonical, inLanguage: "ko-KR" }],
   });
@@ -1150,7 +1213,7 @@ function buildSite(options) {
   record(`${config.baseUrl}/`, latest, home);
   for (const market of markets) {
     const label = MARKET_LABELS[market] || market;
-    const html = renderList(site, { heading: label, intro: `${label} 리서치 글 목록 (자료 기준일·자료 업데이트 최신순)`, articles: articles.filter(article => article.market === market), canonical: `${config.baseUrl}/${market}/` });
+    const html = renderList(site, { heading: label, intro: `${label} 리서치 글 목록 (자료 기준일·자료 업데이트 최신순)`, articles: articles.filter(article => article.market === market), canonical: `${config.baseUrl}/${market}/`, market });
     writeFile(path.join(outDir, market, "index.html"), html);
     record(`${config.baseUrl}/${market}/`, articles.filter(article => article.market === market).map(article => article.dateModified).sort().at(-1), html);
   }
@@ -1165,6 +1228,7 @@ function buildSite(options) {
       title: `${page.title} | ${config.siteName}`,
       description: page.description,
       canonical: `${config.baseUrl}/${page.slug}/`,
+      section: page.slug,
       content: `<div class="narrow page"><article class="body"><h1>${escapeHtml(page.title)}</h1>\n${renderBlocks(page.body, { baseUrl: config.baseUrl })}</article></div>`,
     });
     writeFile(path.join(outDir, page.slug, "index.html"), html);
@@ -1175,11 +1239,11 @@ function buildSite(options) {
     description: "요청한 페이지가 없습니다.",
     canonical: `${config.baseUrl}/404.html`,
     robots: "noindex",
-    content: `<div class="narrow page"><h1>페이지를 찾을 수 없습니다</h1><p><a href="/">홈으로 가기</a></p></div>`,
+    content: `<div class="narrow page"><h1>페이지를 찾을 수 없습니다</h1><p>주소가 바뀌었거나 삭제된 글일 수 있습니다.</p><p><a href="/">홈으로 가기</a> · <a href="/search/">리서치 검색</a></p></div>`,
   }));
 
   writeFile(path.join(outDir, "sitemap.xml"), sitemapXml(urlEntries.filter(entry => entry.inSitemap)));
-  const searchIndex = articles.map(a=>({slug:a.slug,headline:a.headline,company:a.company,ticker:a.ticker,market:a.market,sectors:a.sectors,tags:a.tags,summary:a.summary,datePublished:a.datePublished,order:a.order}));
+  const searchIndex = articles.map(a=>({slug:a.slug,headline:a.headline,company:a.company,ticker:a.ticker,market:a.market,sectors:a.sectors,tags:a.tags,summary:a.summary,datePublished:a.datePublished,order:a.order,asOfDate:a.asOfDate,researchDate:a.researchDate,readMinutes:a.readMinutes,archive:a.archive,image:a.cardImage}));
   writeFile(path.join(outDir,"search-index.json"),JSON.stringify(searchIndex));
   for(const name of ["discovery.js","search.js"]) writeFile(path.join(outDir,name),fs.readFileSync(path.join(__dirname,name),"utf8"));
   writeFile(path.join(outDir,"engagement.js"),fs.readFileSync(path.join(__dirname,"../../../site/engagement.js"),"utf8"));
@@ -1187,7 +1251,8 @@ function buildSite(options) {
   writeFile(path.join(outDir,"search/index.html"),renderLayout(site,{
    title:`검색 | ${config.siteName}`,description:"공개 리서치 검색",canonical:`${config.baseUrl}/search/`,robots:"noindex,follow",
    head:'<script src="/discovery.js" defer></script><script src="/search.js" defer></script>',
-   content:`<div class="wrap narrow"><header class="list-head"><h1>리서치 검색</h1><p>제목·종목·섹터로 다음 글을 찾아보세요.</p></header><form id="search-form" action="/search/" method="get" class="search-form"><label for="search-q">검색어</label><div><input id="search-q" name="q" type="search" autocomplete="off"><button>검색</button><a href="/search/" id="search-reset">초기화</a></div></form><p id="search-status" role="status" aria-live="polite"></p><button id="search-retry" hidden>다시 시도</button><div id="search-results" class="list"></div><a href="/" id="search-back">뒤로가기</a><noscript>검색하려면 JavaScript를 켜 주세요.</noscript></div>`
+   section:"search",
+   content:`<div class="wrap"><div class="search-page"><header class="list-head"><h1>리서치 검색</h1><p>제목·종목·섹터로 다음 글을 찾아보세요.</p></header><form id="search-form" action="/search/" method="get" class="search-form"><label for="search-q">검색어</label><div><input id="search-q" name="q" type="search" autocomplete="off"><button>검색</button><a href="/search/" id="search-reset">초기화</a></div></form><p id="search-status" role="status" aria-live="polite"></p><button id="search-retry" hidden>다시 시도</button></div><div id="search-results" class="list"></div><a href="/" id="search-back">뒤로가기</a><noscript>검색하려면 JavaScript를 켜 주세요.</noscript></div>`
   }));
   writeFile(path.join(outDir, "feed.xml"), feedXml(site, articles));
   writeFile(path.join(outDir, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: /admin\n\nSitemap: ${config.baseUrl}/sitemap.xml\n`);

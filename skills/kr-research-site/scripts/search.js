@@ -4,6 +4,7 @@
     status = document.querySelector("#search-status"),
     results = document.querySelector("#search-results"),
     retry = document.querySelector("#search-retry");
+  const MARKETS = { kr: "한국", us: "미국", sector: "섹터", global: "해외", cn: "중국" };
   let index = null;
   function render() {
     input.value = new URL(location.href).searchParams.get("q") || "";
@@ -13,20 +14,38 @@
     status.textContent = `${matches.length}개의 글${input.value.trim() ? ` · “${input.value.trim()}”` : ""}`;
     for (const a of matches) {
       const link = document.createElement("a");
-      link.className = "row search-result";
+      link.className = "row";
       link.href = `/${a.slug}/`;
-      const box = document.createElement("div"),
-        h = document.createElement("h3"),
-        p = document.createElement("p"),
-        meta = document.createElement("span");
-      h.textContent = a.headline;
-      p.textContent = a.summary;
-      meta.className = "sub";
-      meta.textContent = [a.company, a.ticker, ...a.sectors]
-        .filter(Boolean)
-        .join(" · ");
-      box.append(meta, h, p);
-      link.append(box);
+      const part = (tag, className, text) => {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+      };
+      const id = part("div", "row-id"),
+        tags = part("span", "row-tags"),
+        main = part("div", "row-main"),
+        meta = part("div", "row-meta");
+      id.append(part("span", "co", a.company));
+      if (a.ticker) id.append(part("span", "tk", a.ticker));
+      tags.append(part("span", "mk", MARKETS[a.market] || a.market));
+      for (const sector of a.sectors.slice(0, 1))
+        tags.append(part("span", "", sector));
+      if (a.archive) tags.append(part("span", "", "기록 글"));
+      id.append(tags);
+      main.append(part("h3", "", a.headline), part("p", "", a.summary));
+      const asOf = part("span"),
+        date = part("b", "", `기준일 ${a.asOfDate}`);
+      asOf.append(date);
+      meta.append(asOf);
+      if (a.researchDate !== a.asOfDate)
+        meta.append(part("span", "", `자료 업데이트 ${a.researchDate}`));
+      meta.append(part("span", "", `${a.readMinutes}분`));
+      const image = part("img");
+      image.src = a.image;
+      image.alt = "";
+      image.loading = "lazy";
+      link.append(id, main, meta, image);
       results.append(link);
     }
     if (!matches.length) {
