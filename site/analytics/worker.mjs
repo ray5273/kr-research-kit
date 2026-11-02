@@ -177,6 +177,10 @@ export async function collect(request, env, now = Date.now()) {
 }
 const csp =
   "default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'";
+const SITE_VERIFICATION = {
+  "/naver6736590d1423cf8c8d99e84e8271208d.html": "naver-site-verification: naver6736590d1423cf8c8d99e84e8271208d.html",
+  "/googlee0724e2c9ff15f87.html": "google-site-verification: googlee0724e2c9ff15f87.html",
+};
 const redirect = (location, cookie) =>
   new Response(null, {
     status: 303,
@@ -255,9 +259,9 @@ export default {
         return await engagement(request, env, articles);
       if (url.pathname === "/api/analytics/events")
         return await collect(request, env);
-      // Static .html assets redirect, and Naver checks this exact address.
-      if (url.pathname === "/naver6736590d1423cf8c8d99e84e8271208d.html")
-        return new Response("naver-site-verification: naver6736590d1423cf8c8d99e84e8271208d.html", {
+      // Static .html assets redirect, and verifiers check these exact addresses.
+      if (Object.hasOwn(SITE_VERIFICATION, url.pathname))
+        return new Response(SITE_VERIFICATION[url.pathname], {
           headers: { "Content-Type": "text/html; charset=utf-8" },
         });
       if (url.pathname === "/admin" || url.pathname.startsWith("/admin/")) {

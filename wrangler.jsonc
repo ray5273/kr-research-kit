@@ -8,7 +8,7 @@
   "assets": {
     "directory": "./site-dist",
     "binding": "ASSETS",
-    "run_worker_first": ["/naver6736590d1423cf8c8d99e84e8271208d.html", "/admin", "/admin/*", "/api/analytics/events", "/api/article-meta", "/api/article-counts", "/api/shares", "/api/comments"],
+    "run_worker_first": ["/naver6736590d1423cf8c8d99e84e8271208d.html", "/googlee0724e2c9ff15f87.html", "/admin", "/admin/*", "/api/analytics/events", "/api/article-meta", "/api/article-counts", "/api/shares", "/api/comments"],
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
