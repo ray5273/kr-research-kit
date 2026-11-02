@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.19] - 2026-11-02
+
+### Commits
+
+- Add comment moderation, spam controls and Telegram alerts ([a0c8284](https://github.com/ray5273/kr-research-kit/commit/a0c828435d3cfac699717ee923faaed6a587963a))
+
 ## [0.4.18] - 2026-11-02
 
 ### Commits
