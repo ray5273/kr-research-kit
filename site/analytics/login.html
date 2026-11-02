@@ -90,7 +90,7 @@
       <h1>관리자 로그인</h1>
       <p>리서치 통계 관리자 비밀번호를 입력하세요.</p>
       <p class="error" role="status">{{message}}</p>
-      <form method="post" action="/admin/login">
+      <form method="post" action="{{action}}">
         <label for="password">비밀번호</label
         ><input
           id="password"
@@ -102,6 +102,7 @@
           maxlength="256"
         /><button type="submit">로그인</button>
       </form>
+      {{resume}}
       <small>로그인은 최대 8시간 유지됩니다.</small>
     </main>
   </body>

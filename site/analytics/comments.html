@@ -286,22 +286,38 @@
     <style>
       header > div {flex-wrap:wrap;gap:12px}
       .toolbar label {max-width:100%;min-width:0}
-      .comment {
-        border-bottom: 1px solid var(--line);
-        padding: 24px 0;
-        overflow-wrap: anywhere;
-      }
-      .comment p {
-        white-space: pre-wrap;
-      }
-      .comment button {
-        margin-right: 8px;
-      }
-      select {
-        max-width: 100%;
-      }
-      [hidden] {
-        display: none !important;
+      .admin-tabs {margin-top:0}
+      .admin-tabs a {padding:9px 13px;border-radius:8px;text-decoration:none;color:var(--ink);font-weight:600}
+      .admin-tabs a[aria-current="page"] {color:var(--accent);background:var(--soft)}
+      #tabs button {white-space:nowrap}
+      #tabs button[aria-pressed="true"] {color:var(--accent);background:var(--soft);border-color:transparent}
+      .comment {border-bottom:1px solid var(--line);padding:20px 0;overflow-wrap:anywhere}
+      .comment-head {display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+      .comment-head input {width:20px;height:20px;padding:0;align-self:center}
+      .comment p {margin:6px 0;white-space:pre-wrap}
+      .comment .muted {font-size:13px}
+      .actions {display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+      .warn {color:var(--accent);font-weight:700}
+      .operator-reply {margin:12px 0 0 12px;padding:10px 14px;background:var(--surface);border-left:2px solid var(--accent);border-radius:8px}
+      details {margin-top:12px}
+      summary {cursor:pointer;font-size:14px;min-height:28px}
+      textarea {display:block;width:100%;min-height:90px;margin:8px 0;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);padding:9px 13px;border-radius:8px;resize:vertical}
+      textarea:focus-visible {outline:2px solid var(--accent);outline-offset:3px}
+      #bulk {position:sticky;bottom:0;z-index:2;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 0;background:var(--bg);border-top:1px solid var(--line)}
+      #bulk label {display:flex;gap:8px;align-items:center}
+      #bulk input {width:20px;height:20px;padding:0}
+      #bulk .actions {margin:0}
+      #guard {border-top:1px solid var(--line);margin-top:32px;padding-top:12px}
+      #words {display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+      #words button {padding:4px 10px;font-size:13px}
+      #word-form {display:flex;gap:8px;flex-wrap:wrap}
+      #word-form input {flex:1;min-width:140px}
+      select {max-width:100%}
+      [hidden] {display:none !important}
+      @media (max-width:700px) {
+        .comment button,#bulk button,#tabs button {min-height:44px}
+        .toolbar input,.toolbar select {width:100%}
+        .toolbar label {width:100%}
       }
     </style>
     <script src="/admin/comments.js" defer></script>
@@ -310,18 +326,32 @@
     <header>
       <div>
         <b>KR Research<i>.</i></b
-        ><a href="/admin/">방문 통계</a>
+        ><a href="/">공개 사이트 ↗</a>
         <form action="/admin/logout" method="post">
           <button>로그아웃</button>
         </form>
       </div>
     </header>
     <main>
+      <nav class="admin-tabs" aria-label="관리 화면">
+        <a href="/admin/">방문 통계</a>
+        <a href="/admin/comments/" aria-current="page">댓글<span id="comment-badge"></span></a>
+      </nav>
       <p class="eyebrow">RESEARCH / COMMENTS</p>
       <h1>댓글 관리</h1>
       <p class="muted">
-        승인한 댓글만 공개됩니다. 대기 댓글은 30일 후 정리됩니다.
+        승인한 댓글만 공개됩니다. 대기·스팸은 작성 30일 후, 휴지통은 이동 30일 후 정리됩니다.
       </p>
+      <p id="focus" hidden>
+        이 댓글만 보는 중입니다. <a href="/admin/comments/">전체 목록 보기</a>
+      </p>
+      <nav id="tabs" aria-label="댓글 상태">
+        <button type="button" data-status="pending" aria-pressed="true"></button>
+        <button type="button" data-status="approved" aria-pressed="false"></button>
+        <button type="button" data-status="hidden" aria-pressed="false"></button>
+        <button type="button" data-status="spam" aria-pressed="false"></button>
+        <button type="button" data-status="trash" aria-pressed="false"></button>
+      </nav>
       <form id="filters" class="toolbar">
         <label
           >글
@@ -329,10 +359,13 @@
             <option value="">전체 글</option>
           </select></label
         ><label
-          >상태
-          <select id="state">
-            <option value="pending">대기</option>
-            <option value="approved">공개</option>
+          >검색
+          <input id="q" type="search" maxlength="100" placeholder="닉네임 또는 본문" /></label
+        ><label
+          >정렬
+          <select id="sort">
+            <option value="newest">최신순</option>
+            <option value="oldest">오래된 순</option>
           </select></label
         ><button>조회</button>
       </form>
@@ -340,6 +373,25 @@
       <button id="retry" hidden>다시 시도</button>
       <div id="comments"></div>
       <button id="more" hidden>더 불러오기</button>
+      <div id="bulk" hidden>
+        <label><input id="select-all" type="checkbox" />불러온 항목 전체 선택</label>
+        <span id="selected" class="muted"></span>
+        <span id="bulk-actions" class="actions"></span>
+      </div>
+      <section id="guard">
+        <h2>스팸 방지</h2>
+        <p>
+          차단 중인 작성자 <b id="block-count">—</b>명 (90일 후 자동 해제)
+          <button type="button" id="clear-blocks">전체 해제</button>
+        </p>
+        <h3>금칙어</h3>
+        <p class="muted">공백을 무시하고 비교합니다. 걸린 댓글은 스팸 탭으로 갑니다. 단어를 누르면 삭제합니다.</p>
+        <div id="words"></div>
+        <form id="word-form">
+          <input id="word" maxlength="50" required aria-label="추가할 금칙어" placeholder="추가할 단어" />
+          <button>추가</button>
+        </form>
+      </section>
     </main>
   </body>
 </html>

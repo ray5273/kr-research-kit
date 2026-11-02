@@ -988,7 +988,8 @@ function sharingHtml(article, config) {
 function commentsHtml() {
  return `<section class="comments more" id="comments" aria-labelledby="comments-title"><h2 id="comments-title">댓글</h2><p class="sub">관리자 승인 후 공개됩니다. 삭제 요청은 <a href="/contact/">문의</a>로 보내 주세요. <a href="/privacy/">개인정보 안내</a></p>
  <form id="comment-form"><label>닉네임<input name="nickname" maxlength="30" required autocomplete="off"></label><label>댓글<textarea name="body" maxlength="2000" rows="5" required></textarea></label><div class="spam-trap" aria-hidden="true"><label>웹사이트<input name="website" tabindex="-1" autocomplete="off"></label></div><button type="submit">댓글 등록</button><p role="status" aria-live="polite" id="comment-status"></p></form>
- <p id="comments-status" role="status" aria-live="polite"></p><ol id="comment-list"></ol><button type="button" id="comments-more" hidden>댓글 더 불러오기</button><button type="button" id="comments-retry" hidden>다시 시도</button><noscript>댓글을 보거나 작성하려면 JavaScript를 켜 주세요.</noscript></section>`;
+ <p id="comments-status" role="status" aria-live="polite"></p><ol id="comment-list"></ol><button type="button" id="comments-more" hidden>댓글 더 불러오기</button><button type="button" id="comments-retry" hidden>다시 시도</button><noscript>댓글을 보거나 작성하려면 JavaScript를 켜 주세요.</noscript></section>
+ <a href="#comments" class="comment-jump" id="comment-jump" hidden>댓글</a>`;
 }
 
 // Recommended: entries with a `featured` rank first, then the latest ones.
@@ -1268,6 +1269,7 @@ function buildSite(options) {
 
   // Public metadata only: never include memo filesystem paths or admin assets.
   const analyticsManifest = {
+    baseUrl: config.baseUrl,
     paths: [...new Set([...urlEntries.map(e => new URL(e.loc).pathname), ...[...tags.keys()].map(tag => `/tags/${encodeURIComponent(tag)}/`)])],
     articles: articles.map(a => ({path: `/${a.slug}/`, title: a.headline || a.title, market: a.market, tags: a.tags})),
   };

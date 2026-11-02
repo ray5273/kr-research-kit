@@ -36,6 +36,9 @@ async function fixture({
   fetchFail = false,
   kakaoFail = false,
   kakaoInitialized = false,
+  observer,
+  commentRows,
+  scrollY = 0,
 } = {}) {
   const group = new Element(),
     shareStatus = new Element(),
@@ -66,6 +69,9 @@ async function fixture({
       "#comment-status",
       "[data-share-count]",
       "[data-comment-count]",
+      "#comment-jump",
+      "#comments",
+      ".stats-consent",
     ].map((s) => [s, new Element()]),
   );
   nodes["#comment-form"] = form;
@@ -113,7 +119,7 @@ async function fixture({
           ? { shares: 7, comments: 1 }
           : url.startsWith("/api/comments?")
             ? {
-                comments: [
+                comments: commentRows || [
                   {
                     nickname: "<b>독자</b>",
                     body: "<script>실행 금지</script>",
@@ -125,6 +131,21 @@ async function fixture({
             : { accepted: true },
     };
   };
+  nodes[".stats-consent"].hidden = true;
+  const windowListeners = {};
+  const win = {
+    Kakao: sdk,
+    scrollY,
+    ...(observer
+      ? {
+          IntersectionObserver: function (fn) {
+            observer.fire = fn;
+            this.observe = () => {};
+          },
+          addEventListener: (type, fn) => (windowListeners[type] = fn),
+        }
+      : {}),
+  };
   vm.runInNewContext(code, {
     document,
     navigator,
@@ -132,11 +153,13 @@ async function fixture({
     URL,
     fetch,
     Kakao: sdk,
-    window: { Kakao: sdk },
+    window: win,
   });
   await flush();
   return {
     calls,
+    win,
+    windowListeners,
     kakao,
     sdk,
     initCalls: () => initCalls,
@@ -238,6 +261,50 @@ assert.equal(
 f.setFailure(false);
 await f.form.listeners.submit({ preventDefault() {} });
 assert.match(f.nodes["#comment-status"].textContent, /관리자 승인 후 공개/);
+// Operator replies render as text, under their comment, and only when present.
+f = await fixture({
+  commentRows: [
+    {
+      nickname: "독자",
+      body: "질문",
+      created: Date.now(),
+      reply: "<img src=x onerror=alert(1)>",
+      replied_at: Date.now(),
+    },
+    { nickname: "독자2", body: "답글 없음", created: Date.now(), reply: null },
+  ],
+});
+{
+  const [withReply, without] = f.nodes["#comment-list"].children,
+    reply = withReply.children.at(-1);
+  assert.equal(reply.className, "comment-reply");
+  assert.equal(reply.children[0].textContent, "KR Research 운영자");
+  assert.equal(reply.children.at(-1).textContent, "<img src=x onerror=alert(1)>");
+  assert.equal(reply.innerHTML, undefined);
+  assert.equal(without.children.at(-1).textContent, "답글 없음");
+}
+// The jump button needs JS, appears after scrolling, and yields to the comments and consent.
+{
+  f = await fixture();
+  assert.equal(f.nodes["#comment-jump"].hidden, false, "untouched without IntersectionObserver");
+  const observer = {};
+  f = await fixture({ observer });
+  const jump = f.nodes["#comment-jump"];
+  assert.equal(jump.textContent, "댓글 1");
+  assert.equal(jump.hidden, true, "hidden at the top of the page");
+  f.win.scrollY = 900;
+  f.windowListeners.scroll();
+  assert.equal(jump.hidden, false);
+  observer.fire([{ isIntersecting: true, boundingClientRect: { top: 100 } }]);
+  assert.equal(jump.hidden, true, "hidden while the comments are on screen");
+  observer.fire([{ isIntersecting: false, boundingClientRect: { top: -100 } }]);
+  assert.equal(jump.hidden, true, "hidden after passing the comments");
+  observer.fire([{ isIntersecting: false, boundingClientRect: { top: 900 } }]);
+  assert.equal(jump.hidden, false);
+  f.nodes[".stats-consent"].hidden = false;
+  f.windowListeners.scroll();
+  assert.equal(jump.hidden, true, "never covers the consent banner");
+}
 {
   const countsCode = fs.readFileSync("site/card-counts.js", "utf8");
   const runCounts = async (fetchImpl) => {
@@ -270,5 +337,5 @@ assert.match(f.nodes["#comment-status"].textContent, /관리자 승인 후 공�
   }
 }
 console.log(
-  "Reader client tests passed: share success/cancel/failure/fallback, canonical URL, Kakao feed, outage-independent sharing, retry dedup, text-only comments and moderation notice.",
+  "Reader client tests passed: share success/cancel/failure/fallback, canonical URL, Kakao feed, outage-independent sharing, retry dedup, text-only comments and replies, jump button and moderation notice.",
 );

@@ -298,6 +298,10 @@ button{cursor:pointer;min-height:44px}button:hover{border-color:var(--ink)}butto
 .search-form a{font-size:14px;text-decoration:underline}
 #search-status{font-size:var(--fs-sm);color:var(--muted);margin:16px 0 8px}
 #search-back{display:inline-flex;align-items:center;min-height:44px;font-size:var(--fs-sm);text-decoration:underline;margin-bottom:24px}
+#comment-list .comment-reply{margin:12px 0 0 16px;padding:12px 16px;background:var(--surface);border-left:2px solid var(--accent);border-radius:var(--radius)}
+.comment-reply strong{font-size:var(--fs-xs);color:var(--accent-text)}
+.comment-jump{position:fixed;z-index:20;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));padding:12px 18px;background:var(--ink);color:var(--bg);border-radius:999px;font-size:var(--fs-sm);font-weight:600;text-decoration:none}
+@media print{.comment-jump{display:none}}
 @media(max-width:400px){.comments form{padding:16px}}
 </style>
 {{jsonLd}}

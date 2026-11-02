@@ -1,4 +1,13 @@
 (() => {
+  // The badge is a convenience: statistics must still load if it fails.
+  Promise.resolve()
+    .then(() => fetch("/admin/api/comments/summary"))
+    .then((r) => (r.ok ? r.json() : null))
+    .then((v) => {
+      if (v?.pending)
+        document.querySelector("#comment-badge").textContent = ` (대기 ${v.pending})`;
+    })
+    .catch(() => {});
   const $ = (s) => document.querySelector(s),
     esc = (v) =>
       String(v ?? "").replace(

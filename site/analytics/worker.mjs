@@ -11,13 +11,14 @@ import {
   consumeAttempt,
 } from "./auth.mjs";
 import { engagement, cleanupEngagement } from "./engagement.mjs";
+import { notifyScheduled } from "./notify.mjs";
 import commentsHTML from "./comments.html";
 import commentsJS from "./comments.client.js";
 import loginHTML from "./login.html";
 import { sanitizeEvent, uuid } from "./core.mjs";
 import { aggregate, report } from "./store.mjs";
 const paths = new Set(manifest.paths),
-  articles = new Set(manifest.articles.map((a) => a.path));
+  articles = new Map(manifest.articles.map((a) => [a.path, a.title]));
 const headers = {
   "Cache-Control": "private, no-store",
   "X-Robots-Tag": "noindex, nofollow",
@@ -190,23 +191,44 @@ const redirect = (location, cookie) =>
       ...(cookie ? { "Set-Cookie": cookie } : {}),
     },
   });
-const loginPage = (message = "", status = 200) =>
-  new Response(loginHTML.replace("{{message}}", message), {
-    status,
-    headers: {
-      ...headers,
-      "Content-Type": "text/html; charset=utf-8",
-      "Content-Security-Policy": csp,
+// Only a validated comment ID travels through login, so this cannot be an open redirect.
+const commentTarget = (url) => {
+  const id = url.searchParams.get("comment");
+  return id && uuid(id) ? id : "";
+};
+const loginPage = (message = "", status = 200, comment = "") =>
+  new Response(
+    loginHTML
+      .replace("{{message}}", message)
+      .replace("{{action}}", comment ? `/admin/login?comment=${comment}` : "/admin/login")
+      // SameSite=Strict withholds the cookie on links from other sites. A click from here sends it.
+      .replace(
+        "{{resume}}",
+        comment
+          ? `<p><a href="/admin/comments/?comment=${comment}">이미 로그인했다면 이 댓글 열기</a></p>`
+          : "",
+      ),
+    {
+      status,
+      headers: {
+        ...headers,
+        "Content-Type": "text/html; charset=utf-8",
+        "Content-Security-Policy": csp,
+      },
     },
-  });
+  );
 async function login(request, env) {
+  const comment = commentTarget(new URL(request.url)),
+    landing = comment ? `/admin/comments/?comment=${comment}` : "/admin/";
   if (!configured(env))
     return loginPage(
       "Cloudflare에 ADMIN_PASSWORD(12~256자)와 ANALYTICS_HMAC_SECRET(32자 이상) Secret을 설정하세요.",
       503,
     );
   if (request.method === "GET")
-    return (await authorize(request, env)) ? redirect("/admin/") : loginPage();
+    return (await authorize(request, env))
+      ? redirect(landing)
+      : loginPage("", 200, comment);
   if (request.method !== "POST") return json({ error: "method" }, 405);
   if (!sameOrigin(request)) return json({ error: "origin" }, 403);
   if (
@@ -239,24 +261,25 @@ async function login(request, env) {
     return loginPage(
       "로그인 시도가 너무 많습니다. 최대 15분 후 다시 시도하세요.",
       429,
+      comment,
     );
   const form = new URLSearchParams(new TextDecoder().decode(body));
   if (
     form.getAll("password").length !== 1 ||
     !(await checkPassword(form.get("password"), env))
   )
-    return loginPage("비밀번호가 올바르지 않습니다.", 401);
+    return loginPage("비밀번호가 올바르지 않습니다.", 401, comment);
   return redirect(
-    "/admin/",
+    landing,
     sessionCookie(await issueSession(env, new URL(request.url).origin)),
   );
 }
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     try {
       if (["/api/article-meta", "/api/article-counts", "/api/shares", "/api/comments"].includes(url.pathname))
-        return await engagement(request, env, articles);
+        return await engagement(request, env, articles, { ctx, baseUrl: manifest.baseUrl });
       if (url.pathname === "/api/analytics/events")
         return await collect(request, env);
       // Static .html assets redirect, and verifiers check these exact addresses.
@@ -287,6 +310,10 @@ export default {
             ["/admin", "/admin/", "/admin/index.html"].includes(url.pathname)
           )
             return redirect("/admin/login");
+          if (request.method === "GET" && url.pathname === "/admin/comments/") {
+            const comment = commentTarget(url);
+            return redirect(comment ? `/admin/login?comment=${comment}` : "/admin/login");
+          }
           return json({ error: "관리자 로그인이 필요합니다." }, 401);
         }
         if (url.pathname === "/admin/api/comments" || url.pathname.startsWith("/admin/api/comments/"))
@@ -337,6 +364,6 @@ export default {
     }
   },
   async scheduled(controller, env, ctx) {
-    ctx.waitUntil(Promise.all([aggregate(env.DB, controller.scheduledTime), cleanupEngagement(env.DB, controller.scheduledTime)]));
+    ctx.waitUntil(Promise.all([aggregate(env.DB, controller.scheduledTime), cleanupEngagement(env.DB, controller.scheduledTime), notifyScheduled(env, articles, manifest.baseUrl, controller.scheduledTime)]));
   },
 };

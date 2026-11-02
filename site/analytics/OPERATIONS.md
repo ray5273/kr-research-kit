@@ -72,8 +72,57 @@ SDK는 [공식 JavaScript 문서](https://developers.kakao.com/docs/ko/kakaotalk
 
 공개 API: `GET /api/article-meta?path=…`, `POST /api/shares` (`path,channel,requestId`), `GET /api/comments?path=…&cursor=…`, `POST /api/comments` (`path,nickname,body,website,requestId`). `requestId`는 UUID v4. POST는 JSON·동일 출처·16 KiB 제한, 공개 글 경로만 허용한다. 공유 ID는 영구 중복 방지하며 SQL 트리거로 원자적 증가한다. 댓글 ID도 삭제 후 개인정보 없는 tombstone으로 남겨 재전송이 댓글을 되살리지 않는다. 승인된 댓글은 seq 오름차순으로 20개씩 제공한다.
 
-`/admin/`의 댓글 관리 링크 → `/admin/comments/`에서 글·상태(대기/공개)로 조회한다. 기존 로그인/쿠키를 재사용한다. 관리자 API는 `/admin/api/comments`, `POST /admin/api/comments/:id/approve`, `POST /admin/api/comments/:id/delete`이며 변경 요청은 동일 출처 JSON `{}`를 보낸다. 삭제 시 닉네임·본문을 즉시 지운다. 대기 댓글은 30일 경과 시 공개/관리 조회·승인에서 제외하고 시간별 Cron에서 닉네임·본문을 지운다. 승인 댓글은 관리자 삭제까지 보관한다. 삭제 요청은 `/contact/`로 받는다.
+댓글 관리 기능은 아래 "댓글 관리 (0004)"를 따른다. 삭제 요청은 `/contact/`로 받는다.
 
 남용 방지: Cloudflare가 제공한 IP를 일자별 HMAC으로 변환하여 10분 고정 구간당 공유 30회·댓글 3회로 제한한다. 원본 IP는 DB에 저장하지 않으며 HMAC 행은 24시간 후 만료, 시간별 Cron에서 정리한다. 동의 기반 방문 식별자와 연결하지 않는다. 서버는 클라이언트가 보고한 공유 동작을 셀 뿐, 외부 붙여넣기나 실제 메시지 전달을 확인하지 않는다.
 
 배포 순서: `npm ci && npm run check:site` → `npm run deploy:site`. 기존 배포 스크립트가 `wrangler d1 migrations apply DB --remote`로 **0003을 먼저 적용**한 뒤 Worker를 올린다. 기존 방문 집계·공유 누적값을 초기화하거나 테이블을 삭제하지 않는다. 롤백 시에도 추가 테이블을 유지한다. 배포 후 공개 글 meta/comments 조회, 비로그인 관리자 API 401, 관리자 승인/삭제를 확인한다. 운영 DB에 자동 샘플 댓글이나 테스트 공유를 넣지 않는다.
+
+## 댓글 관리 (0004)
+
+`/admin/`과 `/admin/comments/` 상단 탭으로 오간다. 탭에는 대기 건수가 표시된다. 기존 로그인/쿠키를 재사용한다.
+
+상태 전이는 `engagement.mjs`의 `TRANSITIONS` 한 곳에서 정의하고 단건·일괄이 함께 쓴다. 허용되지 않은 전이는 409다.
+
+| 현재 | 동작(`:action`) |
+|---|---|
+| `pending` | `approve`, `spam`, `trash` |
+| `approved` | `hide`, `trash` |
+| `hidden` | `approve`, `trash` |
+| `spam` | `approve`, `trash` |
+| `trash` | `restore`(`prior_status`로), `delete`(내용 삭제 후 `deleted` tombstone) |
+
+만료 기한이 지난 대기 댓글은 404, 대기·스팸으로 돌아갈 댓글의 기한이 지났으면 복원은 409다. 행은 물리 삭제하지 않으므로 `requestId` 재전송이 댓글을 되살리지 않는다.
+
+관리자 API (변경은 모두 동일 출처 JSON POST):
+
+- `GET /admin/api/comments?status&path&sort=newest|oldest&q&cursor&id` → `{articles:[{path,title}],counts,comments,cursor}`. `ip_hash`는 내보내지 않고 `blockable`·`blocked`만 준다.
+- `GET /admin/api/comments/summary` → `{pending}`
+- `POST /admin/api/comments/:id/:action`, `POST /admin/api/comments/bulk` `{ids,action}` (최대 20건, 처리 불가 행은 건너뛰고 `processed`·`skipped` 반환)
+- `POST /admin/api/comments/:id/reply` `{reply}` (2,000자, 빈 값은 답글 삭제. 대기·공개·숨김에서만. 공개 API에는 승인된 댓글의 답글만 나간다)
+- `POST /admin/api/comments/:id/block`, `/unblock`, `GET /admin/api/comments/blocks` → `{count}`, `POST /admin/api/comments/blocks/clear`
+- `GET`/`POST /admin/api/comments/words` `{word}`, `POST /admin/api/comments/words/delete` `{word}` (200개까지)
+
+공개 등록 순서: 검증 → 속도 제한 → 작성자 해시 → 차단자면 저장 없이 202 → 금칙어(공백·제로폭 문자 제거, 소문자 비교)와 링크 검사 → `spam`+사유 또는 `pending` 저장. `spam`은 알리지 않는다.
+
+작성자 해시는 `HMAC(ANALYTICS_HMAC_SECRET, "comment-author:" + ip)`이며 날짜와 무관하고 일자별 속도 제한 해시와 분리한다. 작성 30일 후 상태와 무관하게 지우므로 차단은 작성 후 30일 안에만 걸 수 있다. 차단은 90일 후 풀린다. `ANALYTICS_HMAC_SECRET`을 교체하면 기존 차단이 사실상 무효가 된다.
+
+시간별 Cron(`cleanupEngagement`): 휴지통은 이동 30일, 스팸·대기는 작성 30일 경과 시 내용을 지우고 `deleted`로 바꾼다. 만료된 차단과 30일 지난 `ip_hash`도 지운다.
+
+### 텔레그램 알림 (선택)
+
+Worker Secret `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`를 등록하면 켜진다. `secrets.required`에 넣지 않으며, 없으면 알림만 건너뛴다. 등록은 `npx wrangler secret put TELEGRAM_BOT_TOKEN`처럼 값을 대화형으로 입력한다. 값을 코드·로그·대화에 남기지 않는다.
+
+- 새 `pending` 행이 실제로 추가될 때만 `ctx.waitUntil`로 보낸다. 실패해도 댓글 등록에는 영향이 없다. 내용은 닉네임, 글 제목, 본문 앞 200자, `manifest.baseUrl` 기준 `/admin/comments/?comment=<id>` 링크이며 일반 텍스트다.
+- 시간별 Cron이 `notified_at`이 빈 대기 댓글을 10건씩 묶어 다시 보낸다. 전송 중인 건과 겹치지 않도록 작성 5분 이내는 제외한다. Secret을 처음 등록하면 0004 이후 쌓인 미통지 대기 댓글이 이 경로로 전달된다.
+- 00:05 UTC(09:05 KST) Cron은 만료까지 7일 이내인 대기 댓글이 있을 때만 건수를 알린다.
+- 알림 링크가 로그인 화면으로 가면 로그인 후 그 댓글로 돌아온다. 세션 쿠키가 `SameSite=Strict`라 다른 사이트에서 연 링크에는 쿠키가 실리지 않으므로, 로그인 화면의 "이미 로그인했다면 이 댓글 열기"를 누르면 된다.
+
+### 0004 배포
+
+0004는 `comments`를 다시 만든다. `comments_new`로 옮긴 뒤 교체하며 `seq`·tombstone을 보존한다. 기존 대기 댓글은 `notified_at`을 채워 첫 배포에 알림이 몰리지 않게 한다.
+
+1. `npx wrangler d1 export kr-research --remote --output <저장소 밖 경로>.sql`로 백업한다. 댓글 원문이 들어 있으므로 저장소에 넣지 않는다.
+2. `npm ci && npm run check:site` 후 `npm run deploy:site`. 스크립트가 마이그레이션을 먼저 적용한 뒤 Worker를 올린다. main 푸시로 도는 Workers Builds도 Deploy command가 `npm run deploy:site`이면 같은 순서다. `npx wrangler deploy`로 바꿔 두면 마이그레이션이 빠진다.
+3. 마이그레이션과 Worker 교체 사이에 이전 Worker가 잠시 돌아도 안전하다. 이전 쿼리가 쓰는 컬럼과 상태 값은 그대로 있다.
+4. 공개 글 댓글 조회, 비로그인 관리자 API 401, 운영자가 직접 작성한 댓글 1건으로 알림 → 승인 → 답글 → 숨김 → 휴지통 → 복원을 확인한다.

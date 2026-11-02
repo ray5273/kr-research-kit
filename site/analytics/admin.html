@@ -282,6 +282,20 @@
           display: none;
         }
       }
+      .admin-tabs {
+        margin-top: 0;
+      }
+      .admin-tabs a {
+        padding: 9px 13px;
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .admin-tabs a[aria-current="page"] {
+        color: var(--accent);
+        background: var(--soft);
+      }
     </style>
     <script src="/admin/app.js" defer></script>
   </head>
@@ -296,9 +310,12 @@
       </div>
     </header>
     <main>
+      <nav class="admin-tabs" aria-label="관리 화면">
+        <a href="/admin/" aria-current="page">방문 통계</a>
+        <a href="/admin/comments/">댓글<span id="comment-badge"></span></a>
+      </nav>
       <p class="eyebrow">RESEARCH / ANALYTICS</p>
       <h1>읽힌 글, 이어진 관심.</h1>
-      <p><a href="/admin/comments/">댓글 관리 →</a></p>
       <p class="muted">
         동의한 브라우저에서 관측된 통계 · 한국 시간(KST) · 오늘 수치는 잠정치
       </p>

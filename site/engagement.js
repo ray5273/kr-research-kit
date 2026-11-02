@@ -15,6 +15,7 @@
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(value),
     });
+  const jump = document.querySelector("#comment-jump");
   async function meta() {
     try {
       const value = await api(
@@ -30,6 +31,7 @@
         .forEach(
           (e) => (e.textContent = `댓글 ${value.comments.toLocaleString()}개`),
         );
+      if (jump) jump.textContent = `댓글 ${value.comments.toLocaleString()}`;
     } catch {
       document
         .querySelectorAll("[data-share-count]")
@@ -171,6 +173,21 @@
         });
         body.textContent = c.body;
         item.append(name, " · ", time, body);
+        if (c.reply) {
+          const reply = document.createElement("div"),
+            badge = document.createElement("strong"),
+            when = document.createElement("time"),
+            text = document.createElement("p");
+          reply.className = "comment-reply";
+          badge.textContent = "KR Research 운영자";
+          when.dateTime = new Date(c.replied_at).toISOString();
+          when.textContent = new Date(c.replied_at).toLocaleDateString("ko-KR", {
+            timeZone: "Asia/Seoul",
+          });
+          text.textContent = c.reply;
+          reply.append(badge, " · ", when, text);
+          item.append(reply);
+        }
         list.append(item);
       }
       cursor = value.cursor;
@@ -219,6 +236,23 @@
       button.disabled = false;
     }
   });
+  // Without these APIs the button stays hidden and the byline link still works.
+  if (jump && window.IntersectionObserver) {
+    const section = document.querySelector("#comments");
+    let reached = false;
+    const update = () => {
+      // The tracker adds the consent banner after this script runs.
+      const consent = document.querySelector(".stats-consent");
+      jump.hidden =
+        reached || window.scrollY < 400 || Boolean(consent && !consent.hidden);
+    };
+    new window.IntersectionObserver(([entry]) => {
+      reached = entry.isIntersecting || entry.boundingClientRect.top < 0;
+      update();
+    }).observe(section);
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+  }
   meta();
   load();
 })();
