@@ -634,7 +634,8 @@ function loadArticle(entry, options) {
 
   const answerSection = citedSections.find(section => section.heading === ANSWER_HEADING);
   const answerExtracted = extractAnswer(answerSection.body);
-  const summary = entry.summary || sentenceSummary(plainText(answer.answer || answer.lead), 120);
+  const oneLiner = metadata["한줄요약"] || (entry.article ? researchMetadata(fs.readFileSync(memoPath, "utf8"))["한줄요약"] : "");
+  const summary = entry.summary || (oneLiner ? plainText(oneLiner) : sentenceSummary(plainText(answer.answer || answer.lead), 120));
   const description = summary;
   const title = [ticker ? `${company}(${ticker})` : company, issue, asOfDate].join(" | ");
 

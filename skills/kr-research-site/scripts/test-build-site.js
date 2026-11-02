@@ -276,6 +276,21 @@ assert(read("sitemap.xml").includes("<loc>https://research.example.com/</loc><la
 assert(datedHome.includes("자료 업데이트 2026-07-02"));
 build();
 
+// The memo's 한줄요약 header line becomes the card summary and meta description.
+{
+  const memoFile = "analysis-example/kr/SOOP/memo.md";
+  const original = fs.readFileSync(path.join(root, memoFile), "utf8");
+  write(memoFile, original.replace("- 티커: 067160", "- 한줄요약: 순현금이 하방을 받치고 트래픽이 관건이다.\n- 티커: 067160"));
+  build();
+  assert(read("kr/soop-2026-06/index.html").includes('<meta name="description" content="순현금이 하방을 받치고 트래픽이 관건이다.">'));
+  assert(read("kr/index.html").includes("<p>순현금이 하방을 받치고 트래픽이 관건이다.</p>"));
+  assert(!read("kr/soop-2026-06/index.html").includes("한줄요약"), "the label itself is not published");
+  build({ published: { articles: [{ ...soop, summary: "직접 쓴 요약" }, acme] } });
+  assert(read("kr/index.html").includes("<p>직접 쓴 요약</p>"), "published.json summary wins");
+  write(memoFile, original);
+  build();
+}
+
 // Public analytics metadata and consent assets must never expose source paths.
 const analyticsManifest = JSON.parse(read("analytics-manifest.json"));
 assert.strictEqual(analyticsManifest.articles.length, 2);

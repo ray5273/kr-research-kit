@@ -23,6 +23,7 @@ For `full memo` work, the target is not a generic long report. The target is a d
   - `pre-earnings note` or `post-earnings note` for event reads
   - `pair compare` for same-date stock comparisons
 - If the workspace is writable, create or update `analysis-example/kr/<company>/memo.md`.
+- Open every memo with a `한줄요약` line directly under the title: one sentence of at most 50 characters that states the conclusion. See `references/output-format.md`.
 - State an explicit `기준일` in the memo and keep each metric block honest about its source date.
 - If the user supplied a specific question, treat it as the priority lens for section ordering, evidence selection, and final stance.
 - For a `full memo`, lead with `Decision Frame`, classify the company archetype before generating `Uncomfortable Questions`, and end with `Follow-up Research Prompts` that turn the biggest evidence gaps into next-step diligence.

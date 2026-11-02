@@ -35,6 +35,7 @@ Read [references/output-format.md](references/output-format.md) for the default 
 
 ## Operating Rules
 
+- Open every brief and report with a `한줄요약` line directly under the title: one sentence of at most 50 characters that states the conclusion. See `references/output-format.md`.
 - Prefer official Korea sources first.
 - State when the sector has no clean Korea-only market-size figure in the current source set.
 - Distinguish direct exposure from thematic or second-order exposure when mapping listed companies.

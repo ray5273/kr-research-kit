@@ -14,6 +14,7 @@ Use this skill to produce equity research style analysis for U.S. stocks and U.S
 - Pin the scope before analyzing: ticker, exchange, analysis horizon, comparison set, and the desired output type.
 - If the workspace is writable, treat the default deliverable as a markdown report file, not just a chat reply. For a U.S. stock or ETF, create or update `analysis-example/us/<company>/memo.md`.
 - If exact SEC filing support matters, use `us-sec-analysis` first. Read any existing `analysis-example/us/<company>/sec-analysis.md`, `sec-reference.md`, or `sec-cache.json` before re-fetching filings.
+- Open every memo with a `한줄요약` line directly under the title: one sentence of at most 50 characters that states the conclusion. See `references/output-format.md`.
 - State an explicit "as of" date in the final answer.
 
 ## Workflow

@@ -1055,6 +1055,29 @@ function runGate(opts) {
     });
   }
 
+  // --- Check: one-line summary at the very front of the memo ---
+  {
+    const front = memo.split(/^## /m)[0];
+    const oneLiner = front.match(/^(?:[-*]\s+)?\**한줄요약\**\s*[:：]\s*(.+?)\s*$/m)?.[1].replace(/\*\*/g, "");
+    const multiple = oneLiner && /[.!?。]\s+\S/.test(oneLiner);
+    const tooLong = oneLiner && oneLiner.length > 50;
+    // Required from this date on; older memos stay valid as dated records.
+    const baseDate = memo.match(/기준일\**[：:]\s*[`*]*(\d{4})[-/](\d{2})[-/](\d{2})/);
+    const isNew = !baseDate || baseDate.slice(1).join("-") >= "2026-11-02";
+    checks.push({
+      id: "one-line-summary",
+      severity: isNew ? "error" : "warn",
+      passed: Boolean(oneLiner) && !multiple && !tooLong,
+      message: !oneLiner
+        ? "한줄요약 not found before the first ## section"
+        : multiple
+          ? "한줄요약 must be a single sentence"
+          : tooLong
+            ? `한줄요약 is ${oneLiner.length} chars (max 50)`
+            : `한줄요약: ${oneLiner}`,
+    });
+  }
+
   // --- Report ---
   const errors = checks.filter((c) => !c.passed && c.severity === "error").length;
   const warns = checks.filter((c) => !c.passed && c.severity === "warn").length;

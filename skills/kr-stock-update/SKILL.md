@@ -95,6 +95,7 @@ If you cannot fetch a live price, say so explicitly in the update block and mark
 
 ## Operating Rules
 
+- If the update changes the memo's conclusion, rewrite the `한줄요약` header line too (one sentence, at most 50 characters). If an older memo has none, add it directly under the title.
 - Preserve the original memo body unless the new information clearly changes the thesis or resolves a tracked follow-up issue.
 - Keep the original `기준일` line and update only `최근 업데이트일`.
 - Append dated updates under `## Update Log`. If the same date already exists, replace that dated block instead of duplicating it.

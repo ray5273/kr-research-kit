@@ -1,5 +1,21 @@
 # Output Format
 
+## 한줄요약 (Required In Every Memo)
+
+Every quick brief and full report opens with one summary line directly under the `#` title, before `기준일` and before the first `##` section:
+
+```md
+# <섹터명>
+
+- 한줄요약: 수요는 늘지만 증설이 앞서 이익 회복은 내년 이후다.
+- 기준일: YYYY-MM-DD
+```
+
+- One sentence of at most 50 characters. State the conclusion, not the topic, and do not restate the title.
+- Use only facts and judgments the memo itself supports. No buy/sell wording.
+- The site uses this line as the list card and search summary and as the meta description, so it must read on its own, without a leading "그러나" or an unexplained number.
+- When a later update changes the conclusion, rewrite this line too.
+
 ## Default Quick Brief
 
 Use this shape for `quick brief`:

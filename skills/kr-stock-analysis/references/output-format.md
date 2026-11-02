@@ -1,5 +1,21 @@
 # Output Formats
 
+## 한줄요약 (Required In Every Memo)
+
+Every memo, whatever its shape, opens with one summary line directly under the `#` title, before `기준일` and before the first `##` section:
+
+```md
+# <회사> 투자 분석
+
+- 한줄요약: 순현금이 하방을 받치지만 트래픽 회복 전까지는 관망한다.
+- 기준일: YYYY-MM-DD
+```
+
+- One sentence of at most 50 characters. State the conclusion, not the topic, and do not restate the title.
+- Use only facts and judgments the memo itself supports. No buy/sell wording.
+- The site uses this line as the list card and search summary and as the meta description, so it must read on its own, without a leading "그러나" or an unexplained number.
+- When a later update changes the conclusion, rewrite this line too.
+
 ## Default Single-Stock Memo
 
 Use this shape unless the user asks for something else:
