@@ -103,6 +103,9 @@ const mf = new Miniflare(
 const dispatch = (url, init = {}) =>
   mf.dispatchFetch(url, { redirect: "manual", ...init });
 try {
+  const naverFile = await dispatch("https://site.example/naver6736590d1423cf8c8d99e84e8271208d.html");
+  assert.equal(naverFile.status, 200);
+  assert.equal(await naverFile.text(), "naver-site-verification: naver6736590d1423cf8c8d99e84e8271208d.html");
   const db = await mf.getD1Database("DB");
   const schema = fs.readFileSync(
     "site/analytics/migrations/0001_analytics.sql",

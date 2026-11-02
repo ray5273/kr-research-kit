@@ -255,6 +255,11 @@ export default {
         return await engagement(request, env, articles);
       if (url.pathname === "/api/analytics/events")
         return await collect(request, env);
+      // Static .html assets redirect, and Naver checks this exact address.
+      if (url.pathname === "/naver6736590d1423cf8c8d99e84e8271208d.html")
+        return new Response("naver-site-verification: naver6736590d1423cf8c8d99e84e8271208d.html", {
+          headers: { "Content-Type": "text/html; charset=utf-8" },
+        });
       if (url.pathname === "/admin" || url.pathname.startsWith("/admin/")) {
         if (
           url.protocol !== "https:" &&
