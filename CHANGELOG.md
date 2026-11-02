@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.14] - 2026-11-02
+
+### Commits
+
+- Serve the Naver site verification file ([cb9e7f8](https://github.com/ray5273/kr-research-kit/commit/cb9e7f89cf75363a0930823884c905bdbd1e2719))
+
 ## [0.4.13] - 2026-11-01
 
 ### Commits
