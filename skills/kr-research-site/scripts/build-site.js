@@ -1129,6 +1129,11 @@ function buildSite(options) {
     site.defaultOgImageSize = pngSize(buffer);
     config.defaultOgImage = `${config.baseUrl}/${publicPath}`;
   }
+  // Browsers and crawlers look for icons at the site root.
+  for (const name of ["favicon.ico", "favicon.svg", "apple-touch-icon.png"]) {
+    const icon = path.join(root, "site", "assets", name);
+    if (fs.existsSync(icon)) writeFile(path.join(outDir, name), fs.readFileSync(safety.checkPath(icon, "Site icon")));
+  }
   const urlEntries = [];
   const record = (loc, lastmod, html, inSitemap = true) => urlEntries.push({ loc, lastmod, sha256: sha256(html), inSitemap });
 
