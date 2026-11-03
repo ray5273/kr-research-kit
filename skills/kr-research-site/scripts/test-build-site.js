@@ -557,7 +557,8 @@ assert(read('earnings/index.html').includes('<h2 class="period-head">2026-Q3</h2
   const home=read('index.html'), latest=home.slice(home.indexOf('class="panel latest"'), home.indexOf('class="panel popular"'));
   assert(home.includes('id="er-head"') && home.includes('<ul class="er-list"><li><a href="/kr/soop-2026-06/">'), 'latest quarter strip lists the review');
   assert(!latest.includes('href="/kr/soop-2026-06/"'), 'research list excludes earnings reviews');
-  assert(read('kr/index.html').includes('<span class="type-chip">실적 리뷰</span>'), 'market lists mark the review');
+  const market=read('kr/index.html');
+  assert(market.includes('id="er-head"') && !market.includes('<a class="row" href="/kr/soop-2026-06/"'), 'market pages move reviews into the strip');
   assert(!read('earnings/index.html').includes('<span class="type-chip">'), 'the earnings page needs no type chip');
 }
 assert(!fs.existsSync(path.join(outDir,'watchlist'))&&!fs.existsSync(path.join(outDir,'research-index.json')));

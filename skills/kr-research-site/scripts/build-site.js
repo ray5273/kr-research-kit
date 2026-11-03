@@ -1148,26 +1148,28 @@ function heroHtml(site, articles) {
 }
 
 // Plain links to the existing market pages, so filtering needs no JavaScript.
-function filterHtml(site, current, total = site.articles.length) {
+function filterHtml(site, current) {
+  const research_ = site.articles.filter(article => !isEarnings(article));
   const link = (href, label, count, active) => `<a href="${href}"${active ? ' aria-current="page"' : ""}>${escapeHtml(label)} <span>${count}</span></a>`;
   return `<nav class="filter" aria-label="시장별 보기">${[
-    link("/", "전체", total, !current),
-    ...site.markets.map(market => link(`/${market}/`, MARKET_SHORT[market] || market, site.articles.filter(article => article.market === market).length, market === current)),
+    link("/", "전체", research_.length, !current),
+    ...site.markets.map(market => link(`/${market}/`, MARKET_SHORT[market] || market, research_.filter(article => article.market === market).length, market === current)),
   ].join("")}</nav>`;
 }
 
 function renderList(site, { heading, intro, articles, canonical, robots, home = false, market }) {
-  const research_ = home ? articles.filter(article => !isEarnings(article)) : articles;
+  // Home and market pages list research only; their quarter's earnings reviews get the strip instead. Tag pages keep both.
+  const research_ = home || market ? articles.filter(article => !isEarnings(article)) : articles;
   const rows = list => list.map(article => rowHtml(article)).join("\n") || `<p class="empty">아직 공개된 글이 없습니다.</p>`;
   const list = home
     ? [
       `<h2 class="sec-head">최신 리서치</h2>`,
       `<input class="sort-input" type="radio" name="sort" id="sort-latest" aria-label="자료 최신순" checked><input class="sort-input" type="radio" name="sort" id="sort-popular" aria-label="인기">`,
-      `<div class="list-bar">${filterHtml(site, undefined, research_.length)}<div class="seg"><label for="sort-latest">자료 최신순</label><label for="sort-popular">인기</label></div></div>`,
+      `<div class="list-bar">${filterHtml(site)}<div class="seg"><label for="sort-latest">자료 최신순</label><label for="sort-popular">인기</label></div></div>`,
       `<div class="panel latest">${rows(research_)}</div>`,
       `<div class="panel popular">${popularArticles(research_).map((article, index) => rowHtml(article, index + 1)).join("\n")}</div>`,
     ].join("\n")
-    : `${market ? `<div class="list-bar">${filterHtml(site, market)}</div>` : ""}${rows(articles)}`;
+    : `${market ? `<div class="list-bar">${filterHtml(site, market)}</div>${earningsStripHtml(articles)}${articles.some(isEarnings) ? `<h2 class="sec-head">리서치</h2>` : ""}` : ""}${rows(research_)}`;
   const content = fill(site.templates.index, {
     hero: home ? heroHtml(site, articles) : `<header class="list-head"><h1>${escapeHtml(heading)}</h1><p>${escapeHtml(intro)}</p></header>`,
     list,
