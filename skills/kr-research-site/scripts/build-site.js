@@ -755,8 +755,6 @@ function navHtml(site, section) {
   const current = key => (key === section ? ' aria-current="page"' : "");
   const links = [`<a href="/earnings/"${current("earnings")}>실적 리뷰</a>`];
   for (const market of site.markets) links.push(`<a href="/${market}/"${current(market)}>${escapeHtml(MARKET_SHORT[market] || MARKET_LABELS[market] || market)}</a>`);
-  if (site.pages.some(page => page.slug === "about")) links.push(`<a href="/about/"${current("about")}>소개</a>`);
-  links.push(`<a href="/search/"${current("search")}>검색</a>`);
   return links.join("");
 }
 
