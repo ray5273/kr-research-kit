@@ -1021,6 +1021,9 @@ function keyLinksHtml(sections) {
   return links.length ? `<nav class="keylinks" aria-label="주요 섹션 바로가기">${links.join("")}</nav>` : "";
 }
 
+// Earnings reviews carry a rating and quarter-bound targets, so lists keep them apart from long-lived research.
+const isEarnings = article => article.entry?.articleType === "earnings-review";
+
 function chipsHtml(article, { exchange = false } = {}) {
   const market = MARKET_SHORT[article.market] || MARKET_LABELS[article.market] || article.market;
   const ticker = [exchange ? article.exchange : "", article.ticker].filter(Boolean).join(" · ");
@@ -1028,6 +1031,7 @@ function chipsHtml(article, { exchange = false } = {}) {
     article.company ? (exchange && research.companyHref(article) ? `<a class="co" href="${research.companyHref(article)}">${escapeHtml(article.company)}</a>` : `<span class="co">${escapeHtml(article.company)}</span>`) : "",
     `<span class="mk">${escapeHtml(market)}</span>`,
     article.archive ? '<span class="arc">기록 글</span>' : "",
+    isEarnings(article) ? '<span class="type-chip">실적 리뷰</span>' : "",
     ticker ? `<span class="tk">${escapeHtml(ticker)}</span>` : "",
     article.stance ? `<span class="badge ${article.stance[0]}">${article.stance[1]}</span>` : "",
   ].filter(Boolean).join("");
@@ -1057,12 +1061,13 @@ function freshAttrs(article) {
   return ` data-asof="${article.asOfDate}" data-research="${article.researchDate}"`;
 }
 
-function rowHtml(article, rank) {
+function rowHtml(article, rank, { typeChip = true } = {}) {
   const market = MARKET_SHORT[article.market] || MARKET_LABELS[article.market] || article.market;
   const tags = [
     `<span class="mk">${escapeHtml(market)}</span>`,
     ...article.sectors.slice(0, 1).map(sector => `<span>${escapeHtml(sector)}</span>`),
     article.archive ? '<span title="자료 기준일 당시 수치·판단 보존">기록 글</span>' : "",
+    typeChip && isEarnings(article) ? '<span class="type-chip">실적 리뷰</span>' : "",
     article.stance ? `<span class="badge ${article.stance[0]}">${article.stance[1]}</span>` : "",
   ].filter(Boolean).join("");
   const updated = article.researchDate !== article.asOfDate ? `<span>자료 업데이트 ${article.researchDate}</span>` : "";
@@ -1117,31 +1122,50 @@ function hotHtml(articles) {
   return `<section class="hot" id="hot" hidden aria-labelledby="hot-head"><div class="hot-bar"><h2 class="sec-head" id="hot-head">인기 리서치</h2><div class="seg"><button type="button" data-hot="week" aria-pressed="true">이번 주</button><button type="button" data-hot="all" aria-pressed="false">전체</button></div></div><ol class="hot-list"></ol><p class="sub">분석 수집에 동의한 방문 기준 · 전체는 최근 1년</p><script type="application/json" id="hot-data">${JSON.stringify(data).replace(/</g, "\\u003c")}</script></section>`;
 }
 
-function heroHtml(site, articles) {
-  const picks = featuredArticles(articles);
+// Latest quarter's reviews: rating badge and the first-horizon target, linking to the full /earnings/ list.
+function earningsStripHtml(articles) {
+  const reviews = articles.filter(isEarnings);
+  const period = reviews.map(article => article.entry.period || "").sort().at(-1);
+  const picks = reviews.filter(article => (article.entry.period || "") === period);
   if (!picks.length) return "";
-  const [first, ...rest] = picks;
-  return `<section class="intro"><h1>${escapeHtml(site.config.description || site.config.siteName)}</h1></section><section class="rec" aria-labelledby="rec-head"><h2 class="sec-head" id="rec-head">지금 읽을 만한 리서치</h2><div class="grid${rest.length ? "" : " one"}">${cardHtml(first, { summary: true })}${rest.length ? `<div class="stack">${rest.map(article => cardHtml(article)).join("")}</div>` : ""}</div></section>${hotHtml(articles)}${updatesHtml(articles)}`;
+  const target = article => {
+    const t = article.research?.targets;
+    if (!t) return `<span class="er-target er-hl">${escapeHtml(article.headline)}</span>`;
+    const h = research.horizonTargets(t)[0];
+    if (h.prices.base === null) return `<span class="er-target">${h.months}개월 목표 <b>가치 음수</b></span>`;
+    const pct = `${h.upside >= 0 ? "+" : "−"}${Math.abs(h.upside * 100).toFixed(1)}%`;
+    return `<span class="er-target">${h.months}개월 ${h.prices.base.toLocaleString("ko-KR")}원 <b class="${h.upside >= 0 ? "up" : "down"}">${pct}</b></span>`;
+  };
+  const item = article => `<li><a href="/${article.slug}/"><span class="er-co"><span class="co">${escapeHtml(article.company)}</span>${article.ticker ? `<span class="tk">${escapeHtml(article.ticker)}</span>` : ""}</span>${article.research?.verdict ? research.verdictBadge(article.research.verdict) : "<span></span>"}${target(article)}</a></li>`;
+  return `<section class="er" aria-labelledby="er-head"><h2 class="sec-head" id="er-head">이번 분기 실적 리뷰 <small>${escapeHtml(period)}</small></h2><ul class="er-list">${picks.map(item).join("")}</ul><a class="er-all" href="/earnings/">전체 실적 리뷰 →</a></section>`;
+}
+
+function heroHtml(site, articles) {
+  if (!articles.length) return "";
+  const [first, ...rest] = featuredArticles(articles.filter(article => !isEarnings(article)));
+  const rec = first ? `<section class="rec" aria-labelledby="rec-head"><h2 class="sec-head" id="rec-head">지금 읽을 만한 리서치</h2><div class="grid${rest.length ? "" : " one"}">${cardHtml(first, { summary: true })}${rest.length ? `<div class="stack">${rest.map(article => cardHtml(article)).join("")}</div>` : ""}</div></section>` : "";
+  return `<section class="intro"><h1>${escapeHtml(site.config.description || site.config.siteName)}</h1></section>${rec}${earningsStripHtml(articles)}${hotHtml(articles)}${updatesHtml(articles)}`;
 }
 
 // Plain links to the existing market pages, so filtering needs no JavaScript.
-function filterHtml(site, current) {
+function filterHtml(site, current, total = site.articles.length) {
   const link = (href, label, count, active) => `<a href="${href}"${active ? ' aria-current="page"' : ""}>${escapeHtml(label)} <span>${count}</span></a>`;
   return `<nav class="filter" aria-label="시장별 보기">${[
-    link("/", "전체", site.articles.length, !current),
+    link("/", "전체", total, !current),
     ...site.markets.map(market => link(`/${market}/`, MARKET_SHORT[market] || market, site.articles.filter(article => article.market === market).length, market === current)),
   ].join("")}</nav>`;
 }
 
 function renderList(site, { heading, intro, articles, canonical, robots, home = false, market }) {
+  const research_ = home ? articles.filter(article => !isEarnings(article)) : articles;
   const rows = list => list.map(article => rowHtml(article)).join("\n") || `<p class="empty">아직 공개된 글이 없습니다.</p>`;
   const list = home
     ? [
       `<h2 class="sec-head">최신 리서치</h2>`,
       `<input class="sort-input" type="radio" name="sort" id="sort-latest" aria-label="자료 최신순" checked><input class="sort-input" type="radio" name="sort" id="sort-popular" aria-label="인기">`,
-      `<div class="list-bar">${filterHtml(site)}<div class="seg"><label for="sort-latest">자료 최신순</label><label for="sort-popular">인기</label></div></div>`,
-      `<div class="panel latest">${rows(articles)}</div>`,
-      `<div class="panel popular">${popularArticles(articles).map((article, index) => rowHtml(article, index + 1)).join("\n")}</div>`,
+      `<div class="list-bar">${filterHtml(site, undefined, research_.length)}<div class="seg"><label for="sort-latest">자료 최신순</label><label for="sort-popular">인기</label></div></div>`,
+      `<div class="panel latest">${rows(research_)}</div>`,
+      `<div class="panel popular">${popularArticles(research_).map((article, index) => rowHtml(article, index + 1)).join("\n")}</div>`,
     ].join("\n")
     : `${market ? `<div class="list-bar">${filterHtml(site, market)}</div>` : ""}${rows(articles)}`;
   const content = fill(site.templates.index, {
@@ -1365,7 +1389,7 @@ function buildSite(options) {
   const earnings = articles.filter(a=>a.entry.articleType === 'earnings-review');
   const periods = [...new Set(earnings.map(a=>a.entry.period || ''))].sort().reverse();
   const verdictChip = a => a.research?.verdict ? `<p class="verdict-line">${research.verdictBadge(a.research.verdict)}${a.research.nextCheck ? ` 다음 확인 ${escapeHtml(a.research.nextCheck.expected)}` : ''}</p>` : '';
-  const earningsList = periods.map(period=>`<section class="period-group"><h2 class="period-head">${escapeHtml(period || '분기 미지정')}</h2>${earnings.filter(a=>(a.entry.period || '')===period).map(a=>rowHtml(a)+verdictChip(a)).join('')}</section>`).join('');
+  const earningsList = periods.map(period=>`<section class="period-group"><h2 class="period-head">${escapeHtml(period || '분기 미지정')}</h2>${earnings.filter(a=>(a.entry.period || '')===period).map(a=>rowHtml(a,undefined,{typeChip:false})+verdictChip(a)).join('')}</section>`).join('');
   const archiveLegend = earnings.some(a=>a.archive) ? '<p class="src-note">기록 글: 자료 기준일 당시의 수치와 판단을 그대로 보존한 글입니다. 이후 변동은 반영하지 않습니다.</p>' : '';
   const earningsHtml = renderLayout(site, {title:`실적 리뷰 | ${config.siteName}`, description:'발표 전 기대, 실제 결과, 추정 변경과 다음 분기 검증', canonical:`${config.baseUrl}/earnings/`,section:'earnings',content:`<div class="wrap"><header class="list-head"><h1>실적 리뷰</h1><p>발표 전 기대 → 실제 결과 → 추정 변경 → 다음 분기 검증</p>${archiveLegend}</header><div class="list">${earnings.length?earningsList:'<p>등록된 실적 리뷰가 없습니다.</p>'}</div></div>`});
   writeFile(path.join(outDir,'earnings/index.html'),earningsHtml);
