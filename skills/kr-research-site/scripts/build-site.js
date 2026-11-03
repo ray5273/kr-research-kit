@@ -1327,7 +1327,7 @@ function buildSite(options) {
   }
   const earnings = articles.filter(a=>a.entry.articleType === 'earnings-review');
   const periods = [...new Set(earnings.map(a=>a.entry.period || ''))].sort().reverse();
-  const verdictChip = a => a.research?.verdict ? `<p class="verdict-line"><span class="verdict">${escapeHtml(a.research.verdict)}</span>${a.research.nextCheck ? ` 다음 확인 ${escapeHtml(a.research.nextCheck.expected)}` : ''}</p>` : '';
+  const verdictChip = a => a.research?.verdict ? `<p class="verdict-line">${research.verdictBadge(a.research.verdict)}${a.research.nextCheck ? ` 다음 확인 ${escapeHtml(a.research.nextCheck.expected)}` : ''}</p>` : '';
   const earningsList = periods.map(period=>`<section class="period-group"><h2 class="period-head">${escapeHtml(period || '분기 미지정')}</h2>${earnings.filter(a=>(a.entry.period || '')===period).map(a=>rowHtml(a)+verdictChip(a)).join('')}</section>`).join('');
   const archiveLegend = earnings.some(a=>a.archive) ? '<p class="src-note">기록 글: 자료 기준일 당시의 수치와 판단을 그대로 보존한 글입니다. 이후 변동은 반영하지 않습니다.</p>' : '';
   const earningsHtml = renderLayout(site, {title:`실적 리뷰 | ${config.siteName}`, description:'발표 전 기대, 실제 결과, 추정 변경과 다음 분기 검증', canonical:`${config.baseUrl}/earnings/`,section:'earnings',content:`<div class="wrap"><header class="list-head"><h1>실적 리뷰</h1><p>발표 전 기대 → 실제 결과 → 추정 변경 → 다음 분기 검증</p>${archiveLegend}</header><div class="list">${earnings.length?earningsList:'<p>등록된 실적 리뷰가 없습니다.</p>'}</div></div>`});

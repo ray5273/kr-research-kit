@@ -88,7 +88,7 @@ assert.equal(h24.prices.base,null,'negative equity has no target');assert.equal(
 reject(d=>{d.rating.axes[4].score=-1;d.verdict='매도';},/first-horizon target/);
 reject(d=>{d.targets.multiples.bear=40;},/ordered/);
 assert(html.includes('기간별 목표가와 추천') && html.includes('가치 음수'));
-assert(html.includes('class="rating-scale"') && html.includes('<li class="on" aria-current="true"><b>매도</b><small>−0.5~−1.2</small></li>') && !/가중 평균 +1.2 이상 강한 매수/.test(html) && html.includes('판정 불가'));
+assert(html.includes('class="rating-scale"') && html.includes('<li class="v-sell on" aria-current="true"><b>매도</b><small>−0.5~−1.2</small></li>') && !/가중 평균 +1.2 이상 강한 매수/.test(html) && html.includes('판정 불가'));
 assert(ratingLine(input).includes('href="#rating"'));
 const later=structuredClone(input);later.initialReview=false;assert(!widgets(load(later)).includes('첫 가설 등록 · 다음 실적에서'));
 assert.equal(calculate(input.calculator,100,5).equityValue,11610);

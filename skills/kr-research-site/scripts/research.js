@@ -138,6 +138,9 @@ const RATING_AXES=[
   {key:'price',label:'가격·밸류에이션 (2배 가중)',criteria:{2:'12개월 기준 목표가 대비 상승여력 +30% 이상',1:'+10% 이상 +30% 미만',0:'−10% 이상 +10% 미만',[-1]:'−30% 이상 −10% 미만',[-2]:'−30% 미만 또는 목표 시점 지분가치 음수'}}
 ];
 const RATING_LEVELS=['강한 매수','매수','중립','매도','강한 매도'];
+// One class per level so the five badges read at a glance: red for buy, blue for sell (KRX convention), gray for 중립/보류.
+const LEVEL_CLASS={'강한 매수':'v-sbuy','매수':'v-buy','중립':'v-hold','매도':'v-sell','강한 매도':'v-ssell'};
+const verdictBadge=label=>`<span class="verdict ${LEVEL_CLASS[label]||'v-none'}">${e(label)}</span>`;
 // Valuation is mandatory and weighted double: a stock is never rated above 중립 while its price demands more than consensus.
 const RATING_WEIGHT={price:2};
 function ratingLevel(axes) {
@@ -243,7 +246,7 @@ function ratingSummary(d) {
 // Thresholds shown on each step of the scale, so the reader never has to parse them from prose.
 const LEVEL_BANDS={'강한 매수':'+1.2↑','매수':'+0.5~1.2','중립':'±0.5','매도':'−0.5~−1.2','강한 매도':'−1.2↓'};
 const UPSIDE_TEXT={'강한 매수':'+30%↑','매수':'+10~30%','중립':'±10%','매도':'−10~−30%','강한 매도':'−30%↓'};
-const scaleHtml=(bands,label,name)=>`<ol class="rating-scale" aria-label="${name}">${RATING_LEVELS.map(l=>`<li${l===label?' class="on" aria-current="true"':''}><b>${e(l)}</b><small>${bands[l]}</small></li>`).join('')}</ol>`;
+const scaleHtml=(bands,label,name)=>`<ol class="rating-scale" aria-label="${name}">${RATING_LEVELS.map(l=>`<li class="${LEVEL_CLASS[l]}${l===label?' on':''}"${l===label?' aria-current="true"':''}><b>${e(l)}</b><small>${bands[l]}</small></li>`).join('')}</ol>`;
 const stats=items=>`<dl class="stat-row">${items.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`;
 function rating(d) {
   if(!d?.rating) return '';
@@ -258,7 +261,7 @@ const won=v=>v===null?'가치 음수':`${fmt(v)}원`, pct=v=>v===null?'—':`${v
 function targets(d) {
   const t=d.targets; if(!t) return '';
   const list=horizonTargets(t), m=t.multiples;
-  const rows=list.map(h=>[`${h.months}개월`,`<strong>${won(h.prices.base)}</strong>`,pct(h.upside),`<span class="verdict">${e(h.label)}</span>`,`${won(h.prices.bear)} ~ ${won(h.prices.bull)}`,`${h.year}년 영업이익 ${fmt(h.operatingProfit)}억원 ${sourceLinks(d,[h.source],true)}`]);
+  const rows=list.map(h=>[`${h.months}개월`,`<strong>${won(h.prices.base)}</strong>`,pct(h.upside),verdictBadge(h.label),`${won(h.prices.bear)} ~ ${won(h.prices.bull)}`,`${h.year}년 영업이익 ${fmt(h.operatingProfit)}억원 ${sourceLinks(d,[h.source],true)}`]);
   const bridge=[['순차입금',`−${fmt(t.netDebt.value)}억원`,`${e(t.netDebt.note||'')} ${sourceLinks(d,[t.netDebt.source],true)}`],...(t.adjustments||[]).map(a=>[e(a.label),`${a.value>=0?'+':'−'}${fmt(Math.abs(a.value))}억원`,sourceLinks(d,[a.source],true)]),['주식 수',`${fmt(t.shares.value)}주`,sourceLinks(d,[t.shares.source],true)]];
   const head=[['현재가',`${fmt(t.price.value)}원 ${sourceLinks(d,[t.price.source],true)}`],['배수 · EV/영업이익',`기준 ${fmt(m.base)}배 <small>보수 ${fmt(m.bear)} · 낙관 ${fmt(m.bull)}</small>`]];
   if(t.brokers) head.push(['증권사 목표가 중앙값',`${fmt(t.brokers.median)}원 <small>${t.brokers.count}건 · ${fmt(t.brokers.min)} ~ ${fmt(t.brokers.max)}</small>`]);
@@ -266,7 +269,7 @@ function targets(d) {
 }
 function ratingLine(d) {
   if(!d?.rating) return '';
-  return `<p class="rating-line"><span class="verdict">${e(d.verdict)}</span> <a href="#rating">${e(ratingSummary(d))} · 축별 근거</a></p>`;
+  return `<p class="rating-line">${verdictBadge(d.verdict)} <a href="#rating">${e(ratingSummary(d))} · 축별 근거</a></p>`;
 }
 function nextCheck(d) {
   const n=d?.nextCheck;
@@ -291,7 +294,7 @@ function companyPages(articles) {
     const links=items=>`<ul>${items.map(a=>`<li><a href="/${e(a.slug)}/">${e(a.title)}</a> · <span class="nowrap">자료 ${e(a.researchDate)}</span> · <span class="nowrap">편집 ${e(a.updatedAt)}</span></li>`).join('')}</ul>`;
     const reviews=posts.filter(p=>p.period), others=posts.filter(p=>!p.period);
     return {id,name:first.company,url:`/companies/${id}/`,updatedAt:posts.map(p=>p.updatedAt).sort().at(-1),posts,
-      content:`<div class="narrow page company-page"><header><p class="sub">기업별 리서치 이력 · ${e(first.ticker)}</p><h1>${e(first.company)}</h1><p>마지막 검증일: ${d?e(d.verifiedAt):'구조화된 검증 기록 없음'}</p></header><div class="body"><h2>현재 판단과 근거</h2><p>${d && first.research ? `${d.verdict?`<span class="verdict">${e(d.verdict)}</span> `:''}${e(d.stance)} · ${e(d.rationale)}` : '가장 최근 관련 글을 확인하세요. 이전 구조화된 판단을 현재 판단으로 자동 승계하지 않습니다.'}</p>${d && first.research ? rating(d).replace('<h2>','<h3>').replace('</h2>','</h3>')+nextCheck(d) : ''}${opSeries ? chart(d,opSeries) : ''}<h2>분기별 실적 리뷰</h2>${reviews.length ? links(reviews) : '<p>등록된 실적 리뷰가 없습니다.</p>'}${history}${updates}${others.length ? `<h2>관련 글</h2>${links(others)}` : ''}</div></div>`};
+      content:`<div class="narrow page company-page"><header><p class="sub">기업별 리서치 이력 · ${e(first.ticker)}</p><h1>${e(first.company)}</h1><p>마지막 검증일: ${d?e(d.verifiedAt):'구조화된 검증 기록 없음'}</p></header><div class="body"><h2>현재 판단과 근거</h2><p>${d && first.research ? `${d.verdict?`${verdictBadge(d.verdict)} `:''}${e(d.stance)} · ${e(d.rationale)}` : '가장 최근 관련 글을 확인하세요. 이전 구조화된 판단을 현재 판단으로 자동 승계하지 않습니다.'}</p>${d && first.research ? rating(d).replace('<h2>','<h3>').replace('</h2>','</h3>')+nextCheck(d) : ''}${opSeries ? chart(d,opSeries) : ''}<h2>분기별 실적 리뷰</h2>${reviews.length ? links(reviews) : '<p>등록된 실적 리뷰가 없습니다.</p>'}${history}${updates}${others.length ? `<h2>관련 글</h2>${links(others)}` : ''}</div></div>`};
   });
 }
-module.exports={identity,companyHref,loadResearch,widgets,nextCheck,ratingLine,ratingLevel,horizonTargets,RATING_AXES,companyPages,calculate,calculationText,valuationText,widgetParts,e};
+module.exports={verdictBadge,identity,companyHref,loadResearch,widgets,nextCheck,ratingLine,ratingLevel,horizonTargets,RATING_AXES,companyPages,calculate,calculationText,valuationText,widgetParts,e};
