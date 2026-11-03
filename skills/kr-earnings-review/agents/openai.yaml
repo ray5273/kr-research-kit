@@ -1,0 +1,7 @@
+interface:
+  display_name: "KR Earnings Review"
+  short_description: "Collect inputs, gate readiness, and publish a rated KRX post-earnings review to the research site."
+  default_prompt: "Use $kr-earnings-review to write the <company> <YYYY-Qn> earnings review. Run collect-earnings-inputs.js first, and stop in 검토 대기 with REVIEW-NEEDED.md if any required input is missing."
+
+policy:
+  allow_implicit_invocation: true
