@@ -1058,6 +1058,37 @@ function runGate(opts) {
     });
   }
 
+  // --- Check: target-price basis written out whenever the data file carries targets ---
+  {
+    const dataPath = path.join(memoDir, "analysis-data.json");
+    const data = fs.existsSync(dataPath) ? JSON.parse(fs.readFileSync(dataPath, "utf8")) : null;
+    if (data && data.targets) {
+      const { horizonTargets } = require(path.join(REPO_ROOT, "skills/kr-research-site/scripts/research.js"));
+      const idx = lines.findIndex((l) => /^## .*목표가/.test(l));
+      let text = "";
+      for (let k = idx + 1; idx >= 0 && k < lines.length && !/^## /.test(lines[k]); k++) text += lines[k] + "\n";
+      const fmt = (v) => v.toLocaleString("ko-KR");
+      const t = data.targets;
+      const needed = [
+        "목표가 =",
+        fmt(t.netDebt.value),
+        fmt(t.shares.value),
+        `${t.multiples.base}배`,
+        ...horizonTargets(t).flatMap((h) => [fmt(h.operatingProfit), h.prices.base === null ? "음수" : fmt(h.prices.base)]),
+      ];
+      const missing = idx < 0 ? ["## 목표가 계산 기준"] : needed.filter((s) => !text.includes(s));
+      checks.push({
+        id: "target-basis",
+        severity: "error",
+        passed: missing.length === 0,
+        message: missing.length === 0
+          ? "Target-price basis section matches analysis-data.json targets"
+          : `Target-price basis missing or out of sync with analysis-data.json: ${missing.join(", ")}`,
+        details: { missing },
+      });
+    }
+  }
+
   // --- Check 10: Source date annotations ---
   {
     const valIdx = lines.findIndex((l) => valuationHeading.test(l));
