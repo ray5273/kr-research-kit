@@ -239,22 +239,29 @@ function ratingSummary(d) {
   const r=ratingLevel(d.rating.axes);
   return r.average===null ? `판정 가능한 축 ${r.judged}/5 · 판단 보류` : `판정 축 ${r.judged}/5 · 가중 평균 ${r.average>=0?'+':'−'}${Math.abs(r.average).toFixed(2)}${r.capped?' · 가격 부담으로 상한 적용':''}`;
 }
+// Thresholds shown on each step of the scale, so the reader never has to parse them from prose.
+const LEVEL_BANDS={'강한 매수':'+1.2↑','매수':'+0.5~1.2','중립':'±0.5','매도':'−0.5~−1.2','강한 매도':'−1.2↓'};
+const UPSIDE_TEXT={'강한 매수':'+30%↑','매수':'+10~30%','중립':'±10%','매도':'−10~−30%','강한 매도':'−30%↓'};
+const scaleHtml=(bands,label,name)=>`<ol class="rating-scale" aria-label="${name}">${RATING_LEVELS.map(l=>`<li${l===label?' class="on" aria-current="true"':''}><b>${e(l)}</b><small>${bands[l]}</small></li>`).join('')}</ol>`;
+const stats=items=>`<dl class="stat-row">${items.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`;
 function rating(d) {
   if(!d?.rating) return '';
   const r=ratingLevel(d.rating.axes);
-  const scale=`<ol class="rating-scale" aria-label="판단 레벨 5단계">${RATING_LEVELS.map(l=>`<li${l===r.label?' class="on" aria-current="true"':''}>${e(l)}</li>`).join('')}</ol>`;
+  const avg=r.average===null?'—':`${r.average>=0?'+':'−'}${Math.abs(r.average).toFixed(2)}`;
   const rows=d.rating.axes.map((a,i)=>[e(RATING_AXES[i].label),a.score===null?'—':`<strong>${signed(a.score)}</strong>`,a.score===null?'판정 불가':e(RATING_AXES[i].criteria[a.score]),`${e(a.actual)}${a.score===null?` <small>${e(a.reason)}</small>`:''}${a.sources?.length?' '+sourceLinks(d,a.sources,true):''}`]);
   const rule=table(['축','+2','+1','0','−1','−2'],RATING_AXES.map(a=>[e(a.label),...[2,1,0,-1,-2].map(n=>e(a.criteria[n]))]),'전체 채점 기준');
-  return `<section class="rating" id="rating"><h2>판단 레벨 · ${e(r.label)}</h2>${scale}<p class="src-note">${e(ratingSummary(d))}. 가격·밸류에이션 축은 2배 가중합니다. 가중 평균 +1.2 이상 강한 매수, +0.5 이상 매수, −0.5 초과 +0.5 미만 중립, −1.2 초과 −0.5 이하 매도, −1.2 이하 강한 매도. 가격 점수가 음수면 매수 이상을 줄 수 없고, 강한 매수는 가격 점수 +1 이상이어야 합니다. 가격·밸류에이션을 판정할 수 없거나 판정 축이 3개 미만이면 판단 보류입니다.</p>${table(['축','점수','적용 기준','실제'],rows,'축별 기준과 실제')}${targets(d)}<details><summary>전체 채점 기준 보기</summary>${rule}</details><p class="scenario-warning">작성자의 기준일 판단이며 투자 권유가 아닙니다. 가격과 실적이 바뀌면 다음 리뷰에서 다시 채점합니다.</p></section>`;
+  const rules=['가격·밸류에이션 점수는 2배로 반영','가격 점수가 음수면 최고 중립 · 강한 매수는 가격 +1 이상','가격 판정 불가 또는 판정 축 3개 미만이면 판단 보류'];
+  return `<section class="rating" id="rating"><h2>판단 레벨 · ${e(r.label)}</h2>${scaleHtml(LEVEL_BANDS,r.label,'판단 레벨 5단계와 가중 평균 구간')}${stats([['판정 축',`${r.judged}/5`],['가중 평균',avg],['가격 상한',r.capped?'적용':'없음']])}<ul class="rule-list">${rules.map(x=>`<li>${x}</li>`).join('')}</ul>${table(['축','점수','적용 기준','실제'],rows,'축별 기준과 실제')}${targets(d)}<details><summary>전체 채점 기준 보기</summary>${rule}</details><p class="scenario-warning">작성자의 기준일 판단이며 투자 권유가 아닙니다. 가격과 실적이 바뀌면 다음 리뷰에서 다시 채점합니다.</p></section>`;
 }
 const won=v=>v===null?'가치 음수':`${fmt(v)}원`, pct=v=>v===null?'—':`${v>=0?'+':'−'}${Math.abs(v*100).toFixed(1)}%`;
 function targets(d) {
   const t=d.targets; if(!t) return '';
   const list=horizonTargets(t), m=t.multiples;
   const rows=list.map(h=>[`${h.months}개월`,`<strong>${won(h.prices.base)}</strong>`,pct(h.upside),`<span class="verdict">${e(h.label)}</span>`,`${won(h.prices.bear)} ~ ${won(h.prices.bull)}`,`${h.year}년 영업이익 ${fmt(h.operatingProfit)}억원 ${sourceLinks(d,[h.source],true)}`]);
-  const bridge=[`순차입금 −${fmt(t.netDebt.value)}억원 ${sourceLinks(d,[t.netDebt.source],true)}${t.netDebt.note?` (${e(t.netDebt.note)})`:''}`,...(t.adjustments||[]).map(a=>`${e(a.label)} ${a.value>=0?'+':'−'}${fmt(Math.abs(a.value))}억원 ${sourceLinks(d,[a.source],true)}`),`주식 수 ${fmt(t.shares.value)}주 ${sourceLinks(d,[t.shares.source],true)}`];
-  const brokers=t.brokers?`<p class="src-note">비교: 증권사 목표가 ${t.brokers.count}건 ${fmt(t.brokers.min)}~${fmt(t.brokers.max)}원, 중앙값 ${fmt(t.brokers.median)}원(${pct(t.brokers.median/t.price.value-1)}) ${sourceLinks(d,t.brokers.sources||[],true)}</p>`:'';
-  return `<h3 id="targets">기간별 목표가와 추천</h3><p class="src-note">현재가 ${fmt(t.price.value)}원 ${sourceLinks(d,[t.price.source],true)} 기준. 목표가 = (해당 연도 영업이익 컨센서스 × EV/영업이익 배수 − 순차입금 ± 조정) ÷ 주식 수. 배수: 보수 ${fmt(m.bear)}배 · 기준 ${fmt(m.base)}배 · 낙관 ${fmt(m.bull)}배 — ${e(t.multipleNote)}</p>${table(['기간','기준 목표가','상승여력','추천','보수~낙관','기준 이익(컨센서스)'],rows,'기간별 목표가')}<p class="src-note">추천은 기준 목표가의 상승여력으로 정합니다: +30% 이상 강한 매수, +10% 이상 매수, −10% 이상 중립, −30% 이상 매도, 그 미만 강한 매도. 가격 부담 축 점수는 첫 기간(${list[0].months}개월) 추천을 따릅니다. 가치 다리: ${bridge.join(' · ')}</p>${brokers}`;
+  const bridge=[['순차입금',`−${fmt(t.netDebt.value)}억원`,`${e(t.netDebt.note||'')} ${sourceLinks(d,[t.netDebt.source],true)}`],...(t.adjustments||[]).map(a=>[e(a.label),`${a.value>=0?'+':'−'}${fmt(Math.abs(a.value))}억원`,sourceLinks(d,[a.source],true)]),['주식 수',`${fmt(t.shares.value)}주`,sourceLinks(d,[t.shares.source],true)]];
+  const head=[['현재가',`${fmt(t.price.value)}원 ${sourceLinks(d,[t.price.source],true)}`],['배수 · EV/영업이익',`기준 ${fmt(m.base)}배 <small>보수 ${fmt(m.bear)} · 낙관 ${fmt(m.bull)}</small>`]];
+  if(t.brokers) head.push(['증권사 목표가 중앙값',`${fmt(t.brokers.median)}원 <small>${t.brokers.count}건 · ${fmt(t.brokers.min)} ~ ${fmt(t.brokers.max)}</small>`]);
+  return `<h3 id="targets">기간별 목표가와 추천</h3>${stats(head)}<p class="formula">목표가 = (영업이익 컨센서스 × 배수 − 순차입금 ± 조정) ÷ 주식 수</p><p class="src-note">배수: ${e(t.multipleNote)}</p>${table(['기간','기준 목표가','상승여력','추천','보수~낙관','기준 이익(컨센서스)'],rows,'기간별 목표가')}<p class="mini-head">추천 구간 · 기준 목표가 상승여력 <small>${list[0].months}개월 추천 = 가격·밸류에이션 점수</small></p>${scaleHtml(UPSIDE_TEXT,list[0].label,'상승여력별 추천 구간')}${table(['가치 다리','값','기준'],bridge,'목표가 가치 다리')}`;
 }
 function ratingLine(d) {
   if(!d?.rating) return '';

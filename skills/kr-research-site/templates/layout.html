@@ -424,9 +424,23 @@ tbody th[scope="row"]{vertical-align:top}
 .next-check .label{margin:0 0 4px;font-size:var(--fs-sm);font-weight:700;color:var(--accent-text)}
 .next-check ul{margin:0;padding-left:20px}
 .verdict{display:inline-block;font-size:var(--fs-xs);font-weight:700;color:var(--accent-text);background:var(--accent-soft);border-radius:var(--radius);padding:2px 8px}
-.rating-scale{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;list-style:none;margin:8px 0 12px;padding:0}
-.rating-scale li{text-align:center;font-size:var(--fs-xs);padding:8px 2px;border:1px solid var(--line);border-radius:var(--radius);color:var(--muted);white-space:nowrap}
-.rating-scale li.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.rating-scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;list-style:none;margin:8px 0 12px;padding:0}
+.rating-scale li{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0;text-align:center;padding:8px 2px;border:1px solid var(--line);border-radius:var(--radius);color:var(--muted);white-space:nowrap;overflow:hidden}
+.rating-scale li b{font-size:var(--fs-xs);font-weight:600;color:var(--ink-2)}
+.rating-scale li small{font-size:11px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.rating-scale li.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.rating-scale li.on b{color:#fff;font-weight:700}
+.rating-scale li.on small{color:#fff;opacity:.9}
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:8px;margin:12px 0}
+.stat-row div{padding:10px 12px;border-radius:var(--radius);background:var(--surface)}
+.stat-row dt{font-size:var(--fs-xs);color:var(--muted)}
+.stat-row dd{margin:2px 0 0;font-size:var(--fs-md);font-weight:700;font-variant-numeric:tabular-nums}
+.stat-row dd small{display:block;word-break:keep-all;font-size:var(--fs-xs);font-weight:400;color:var(--muted)}
+.rule-list{margin:0 0 12px;padding-left:18px;font-size:var(--fs-sm);color:var(--ink-2)}
+.rule-list li{margin:2px 0}
+.formula{margin:12px 0 4px;padding:10px 12px;border-left:3px solid var(--accent);background:var(--surface);font-size:var(--fs-sm);font-weight:600}
+.mini-head{margin:16px 0 0;font-size:var(--fs-sm);font-weight:700}
+.mini-head small{display:block;font-weight:400;color:var(--muted);font-size:var(--fs-xs)}
 .rating td small{display:block;color:var(--muted);font-size:var(--fs-xs)}
 .rating-line{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:var(--fs-sm);margin:12px 0 0}
 .verdict-line{margin:-8px 0 12px;font-size:var(--fs-xs);color:var(--muted);display:flex;gap:8px;align-items:center}
