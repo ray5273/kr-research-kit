@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.22] - 2026-11-03
+
+### Commits
+
+- Add the Korean Air Q3 2026 earnings review ([32bf23e](https://github.com/ray5273/kr-research-kit/commit/32bf23e37e043537651ce3f7903af1c06cfe6585))
+
 ## [0.4.21] - 2026-11-03
 
 ### Commits
