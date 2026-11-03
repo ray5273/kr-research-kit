@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "company": {
+    "name": "삼성SDI",
+    "market": "kr",
+    "ticker": "006400"
+  },
+  "asOf": "2026-11-03",
+  "verifiedAt": "2026-11-03",
+  "period": "2026Q3",
+  "accountingBasis": "K-IFRS 연결",
+  "unit": "억원",
+  "cashFlowDerivation": {
+    "method": "OpenDART fnlttSinglAcntAll(CFS) 각 보고서의 당기 누적값을 직전 누적값과 차감. 4분기=연간−9개월. 투자지출=유형자산의 취득+무형자산의 취득.",
+    "rows": [
+      {
+        "period": "2024-Q4",
+        "report": "2024-11011",
+        "minus": "2024-11014",
+        "cumulative": {
+          "무형자산의 취득": 862,
+          "유형자산의 취득": 62713,
+          "영업활동현금흐름": -1376
+        },
+        "previous": {
+          "무형자산의 취득": 88,
+          "유형자산의 취득": 40778,
+          "영업활동현금흐름": -5133
+        },
+        "operatingCashFlow": 3757,
+        "capex": 22709
+      },
+      {
+        "period": "2025-Q1",
+        "report": "2025-11013",
+        "minus": null,
+        "cumulative": {
+          "무형자산의 취득": 295,
+          "유형자산의 취득": 8740,
+          "영업활동현금흐름": 1723
+        },
+        "previous": null,
+        "operatingCashFlow": 1723,
+        "capex": 9035
+      },
+      {
+        "period": "2025-Q2",
+        "report": "2025-11012",
+        "minus": "2025-11013",
+        "cumulative": {
+          "무형자산의 취득": 340,
+          "유형자산의 취득": 18714,
+          "영업활동현금흐름": 7016
+        },
+        "previous": {
+          "무형자산의 취득": 295,
+          "유형자산의 취득": 8740,
+          "영업활동현금흐름": 1723
+        },
+        "operatingCashFlow": 5293,
+        "capex": 10019
+      },
+      {
+        "period": "2025-Q3",
+        "report": "2025-11014",
+        "minus": "2025-11012",
+        "cumulative": {
+          "무형자산의 취득": 493,
+          "유형자산의 취득": 24104,
+          "영업활동현금흐름": 4602
+        },
+        "previous": {
+          "무형자산의 취득": 340,
+          "유형자산의 취득": 18714,
+          "영업활동현금흐름": 7016
+        },
+        "operatingCashFlow": -2414,
+        "capex": 5543
+      },
+      {
+        "period": "2025-Q4",
+        "report": "2025-11011",
+        "minus": "2025-11014",
+        "cumulative": {
+          "무형자산의 취득": 623,
+          "유형자산의 취득": 30669,
+          "영업활동현금흐름": 7924
+        },
+        "previous": {
+          "무형자산의 취득": 493,
+          "유형자산의 취득": 24104,
+          "영업활동현금흐름": 4602
+        },
+        "operatingCashFlow": 3322,
+        "capex": 6695
+      },
+      {
+        "period": "2026-Q1",
+        "report": "2026-11013",
+        "minus": null,
+        "cumulative": {
+          "무형자산의 취득": 89,
+          "유형자산의 취득": 5914,
+          "영업활동현금흐름": 852
+        },
+        "previous": null,
+        "operatingCashFlow": 852,
+        "capex": 6003
+      },
+      {
+        "period": "2026-Q2",
+        "report": "2026-11012",
+        "minus": "2026-11013",
+        "cumulative": {
+          "무형자산의 취득": 182,
+          "유형자산의 취득": 11259,
+          "영업활동현금흐름": 1094
+        },
+        "previous": {
+          "무형자산의 취득": 89,
+          "유형자산의 취득": 5914,
+          "영업활동현금흐름": 852
+        },
+        "operatingCashFlow": 242,
+        "capex": 5438
+      }
+    ]
+  },
+  "oneOffEstimates": "memo.md Street 표 참조. 회사는 보상금·충당금 금액을 공개하지 않았고 모든 값은 증권사 추정이다.",
+  "preliminaryDisclosures": "각 분기 잠정실적 원문(OpenDART document.xml)에서 매출·영업이익·AMPC(또는 보조금 제외 영업이익)를 읽었다. 이번 분기 원문은 sources/에 보존."
+}

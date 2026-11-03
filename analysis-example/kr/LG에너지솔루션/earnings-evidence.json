@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "company": {
+    "name": "LG에너지솔루션",
+    "market": "kr",
+    "ticker": "373220"
+  },
+  "asOf": "2026-11-03",
+  "verifiedAt": "2026-11-03",
+  "period": "2026Q3",
+  "accountingBasis": "K-IFRS 연결",
+  "unit": "억원",
+  "cashFlowDerivation": {
+    "method": "OpenDART fnlttSinglAcntAll(CFS) 각 보고서의 당기 누적값을 직전 누적값과 차감. 4분기=연간−9개월. 투자지출=유형자산의 취득+무형자산의 취득.",
+    "rows": [
+      {
+        "period": "2024-Q4",
+        "report": "2024-11011",
+        "minus": "2024-11014",
+        "cumulative": {
+          "무형자산의 취득": 1214,
+          "유형자산의 취득": 123990,
+          "영업활동현금흐름": 51117
+        },
+        "previous": {
+          "무형자산의 취득": 785,
+          "유형자산의 취득": 90165,
+          "영업활동현금흐름": 19294
+        },
+        "operatingCashFlow": 31823,
+        "capex": 34254
+      },
+      {
+        "period": "2025-Q1",
+        "report": "2025-11013",
+        "minus": null,
+        "cumulative": {
+          "무형자산의 취득": 347,
+          "유형자산의 취득": 32646,
+          "영업활동현금흐름": 11620
+        },
+        "previous": null,
+        "operatingCashFlow": 11620,
+        "capex": 32993
+      },
+      {
+        "period": "2025-Q2",
+        "report": "2025-11012",
+        "minus": "2025-11013",
+        "cumulative": {
+          "무형자산의 취득": 693,
+          "유형자산의 취득": 61305,
+          "영업활동현금흐름": 14120
+        },
+        "previous": {
+          "무형자산의 취득": 347,
+          "유형자산의 취득": 32646,
+          "영업활동현금흐름": 11620
+        },
+        "operatingCashFlow": 2500,
+        "capex": 29005
+      },
+      {
+        "period": "2025-Q3",
+        "report": "2025-11014",
+        "minus": "2025-11012",
+        "cumulative": {
+          "무형자산의 취득": 1118,
+          "유형자산의 취득": 85148,
+          "영업활동현금흐름": 26793
+        },
+        "previous": {
+          "무형자산의 취득": 693,
+          "유형자산의 취득": 61305,
+          "영업활동현금흐름": 14120
+        },
+        "operatingCashFlow": 12673,
+        "capex": 24268
+      },
+      {
+        "period": "2025-Q4",
+        "report": "2025-11011",
+        "minus": "2025-11014",
+        "cumulative": {
+          "무형자산의 취득": 1648,
+          "유형자산의 취득": 108339,
+          "영업활동현금흐름": 44323
+        },
+        "previous": {
+          "무형자산의 취득": 1118,
+          "유형자산의 취득": 85148,
+          "영업활동현금흐름": 26793
+        },
+        "operatingCashFlow": 17530,
+        "capex": 23721
+      },
+      {
+        "period": "2026-Q1",
+        "report": "2026-11013",
+        "minus": null,
+        "cumulative": {
+          "무형자산의 취득": 563,
+          "유형자산의 취득": 16767,
+          "영업활동현금흐름": -3163
+        },
+        "previous": null,
+        "operatingCashFlow": -3163,
+        "capex": 17330
+      },
+      {
+        "period": "2026-Q2",
+        "report": "2026-11012",
+        "minus": "2026-11013",
+        "cumulative": {
+          "무형자산의 취득": 1078,
+          "유형자산의 취득": 32717,
+          "영업활동현금흐름": -2909
+        },
+        "previous": {
+          "무형자산의 취득": 563,
+          "유형자산의 취득": 16767,
+          "영업활동현금흐름": -3163
+        },
+        "operatingCashFlow": 254,
+        "capex": 16465
+      }
+    ]
+  },
+  "oneOffEstimates": "memo.md Street 표 참조. 회사는 보상금·충당금 금액을 공개하지 않았고 모든 값은 증권사 추정이다.",
+  "preliminaryDisclosures": "각 분기 잠정실적 원문(OpenDART document.xml)에서 매출·영업이익·AMPC(또는 보조금 제외 영업이익)를 읽었다. 이번 분기 원문은 sources/에 보존."
+}

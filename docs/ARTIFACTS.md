@@ -2,13 +2,25 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (430 files).
+Complete index of every artifact under `analysis-example/` (432 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
 For strategy methodology and performance comparison, see [CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md](CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md).
 
-## KR — Korean single-stock research (210)
+## KR — Korean single-stock research (212)
+
+### LG에너지솔루션 — 2026-11-03
+
+LG에너지솔루션 2026년 3분기 실적 리뷰
+
+[memo](../analysis-example/kr/LG에너지솔루션/memo.md)
+
+### 삼성SDI — 2026-11-03
+
+삼성SDI 2026년 3분기 실적 리뷰
+
+[memo](../analysis-example/kr/삼성SDI/memo.md)
 
 ### 포스코퓨처엠 — 2026-11-03
 

@@ -1,0 +1,797 @@
+{
+  "version": 1,
+  "companyId": "kr/006400",
+  "period": "2026-Q3",
+  "verifiedAt": "2026-11-03",
+  "releasedAt": "2026-10-29",
+  "basis": "연결 K-IFRS · 분기",
+  "unit": "억원",
+  "stance": "보상금·충당금을 걷어낸 본업 흑자 확인 전 판단 보류",
+  "rationale": "영업이익 4,078억원은 AMPC 1,225억원과 미공개 일회성 순효과(증권사 추정 2,500~4,000억원)를 포함한다. 둘을 빼면 본업 이익은 손익분기점 근처다.",
+  "verdict": "판단 보류",
+  "nextCheck": {
+    "event": "2026Q4 잠정실적",
+    "expected": "2027-01",
+    "conditions": [
+      "AMPC·일회성 제외 영업이익 흑자",
+      "미국 LFP ESS 출하와 AMPC 동반 증가",
+      "3·4분기 영업현금흐름 양수"
+    ]
+  },
+  "limitations": [
+    "이번 분기와 2025Q3·2026Q2 수치는 2026-10-29 DART 잠정실적 원문(새 표시 기준)이다. 나머지 과거 매출은 당시 공시 매출에 같은 공시의 AMPC를 더해 새 기준으로 환산했다. 영업이익은 기준 변경과 무관하다.",
+    "시장 예상은 FnGuide 과거 시계열의 10/23 주간 관측점(발표 전 마지막)이며 발표직전(E) 표와 일치한다. 최근 3개월 증권사 추정치 평균이고 기여 증권사 수는 공개되지 않는다. 매출 예상이 AMPC 포함 기준인지는 제공자가 밝히지 않았다.",
+    "현금흐름은 DART 정기보고서 누적값을 분기로 차감했다. 3분기 분기보고서 제출 전이라 3분기 현금흐름은 비워 두었다. 빈 값은 0이 아니다.",
+    "보상금·충당금 금액은 회사가 공개하지 않았다. 표의 범위는 증권사 추정이다. 순차입금은 2026년 6월 말 잔액이며 8월 지분 매각 대금(약 4.45조원)을 반영하지 않는다."
+  ],
+  "sources": [
+    {
+      "id": "dart-q3",
+      "label": "DART 연결 잠정실적 2026-10-29 · 원문 확인",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261029800053",
+      "publishedAt": "2026-10-29",
+      "role": "primary",
+      "access": "read",
+      "verifiedAt": "2026-11-03"
+    },
+    {
+      "id": "dart-2024q4",
+      "label": "DART 연결 잠정실적 2025-01-24 (2024Q4)",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250124800106",
+      "publishedAt": "2025-01-24",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "dart-2025q1",
+      "label": "DART 연결 잠정실적 2025-04-25 (2025Q1)",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250425800258",
+      "publishedAt": "2025-04-25",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "dart-2025q2",
+      "label": "DART 연결 잠정실적 2025-07-31 (2025Q2)",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250731800402",
+      "publishedAt": "2025-07-31",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "dart-2025q3",
+      "label": "DART 연결 잠정실적 2025-10-28 (2025Q3)",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251028800122",
+      "publishedAt": "2025-10-28",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "dart-2025q4",
+      "label": "DART 연결 잠정실적 2026-02-02 (2025Q4)",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260202800521",
+      "publishedAt": "2026-02-02",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "dart-2026q1",
+      "label": "DART 연결 잠정실적 2026-04-28 (2026Q1)",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260428800061",
+      "publishedAt": "2026-04-28",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2024a",
+      "label": "DART 2024 사업보고서 2025-03-11",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250311001275",
+      "publishedAt": "2025-03-11",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2025q1",
+      "label": "DART 2025 1분기보고서 2025-04-30",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250430000991",
+      "publishedAt": "2025-04-30",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2025h1",
+      "label": "DART 2025 반기보고서 2025-08-14",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250814003107",
+      "publishedAt": "2025-08-14",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2025q3",
+      "label": "DART 2025 3분기보고서 2025-11-14",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251114002598",
+      "publishedAt": "2025-11-14",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2025a",
+      "label": "DART 2025 사업보고서 2026-03-10",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260310002954",
+      "publishedAt": "2026-03-10",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2026q1",
+      "label": "DART 2026 1분기보고서 2026-05-15",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515002408",
+      "publishedAt": "2026-05-15",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2026h1",
+      "label": "DART 2026 반기보고서 2026-08-14",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003578",
+      "publishedAt": "2026-08-14",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "consensus-20261023",
+      "label": "FnGuide CompanyWise · 10/23 과거 컨센서스",
+      "url": "https://comp.wisereport.co.kr/company/c1050001.aspx?cmp_cd=006400",
+      "publishedAt": "2026-10-23",
+      "role": "historical_consensus",
+      "access": "read",
+      "dataAsOf": "2026-10-23",
+      "retrievedAt": "2026-11-03",
+      "verifiedAt": "2026-11-03",
+      "note": "발표(10/29) 전 마지막 주간 관측점. 발표직전(E) 표와 일치."
+    },
+    {
+      "id": "call-thelec",
+      "label": "디일렉 2026-10-29 실적 콜 전문 기사",
+      "url": "https://www.thelec.kr/news/articleView.html?idxno=64513",
+      "publishedAt": "2026-10-29",
+      "role": "secondary_call_summary",
+      "access": "read",
+      "verifiedAt": "2026-11-03"
+    },
+    {
+      "id": "quote",
+      "label": "네이버 일별 시세 · 2026-11-03 KRX 종가",
+      "url": "https://finance.naver.com/item/sise_day.naver?code=006400",
+      "publishedAt": "2026-11-03",
+      "role": "market_data",
+      "access": "read",
+      "retrievedAt": "2026-11-03",
+      "verifiedAt": "2026-11-03"
+    },
+    {
+      "id": "sk-review",
+      "label": "SK증권 2026-10-30 실적 리뷰 PDF",
+      "url": "https://stock.pstatic.net/stock-research/company/64/20261030_company_74383000.pdf",
+      "publishedAt": "2026-10-30",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "im-review",
+      "label": "iM증권 2026-10-30 실적 리뷰 PDF",
+      "url": "https://stock.pstatic.net/stock-research/company/61/20261030_company_743734000.pdf",
+      "publishedAt": "2026-10-30",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "mt-sdc",
+      "label": "머니투데이 2026-08-21 삼성디스플레이 지분 매각",
+      "url": "https://www.mt.co.kr/industry/2026/08/21/2026082116202684047",
+      "publishedAt": "2026-08-21",
+      "role": "secondary_disclosure_quote",
+      "access": "read"
+    }
+  ],
+  "comparison": [
+    {
+      "key": "revenue",
+      "label": "매출액",
+      "market": {
+        "role": "market",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 40387.63,
+        "publishedAt": "2026-10-23",
+        "source": "consensus-20261023",
+        "status": "추정"
+      },
+      "author": {
+        "role": "author",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": null,
+        "reason": "사전 추정 없음"
+      },
+      "actual": {
+        "role": "actual",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 46856,
+        "publishedAt": "2026-10-29",
+        "source": "dart-q3",
+        "status": "잠정"
+      },
+      "cause": "이번 분기부터 AMPC 1,225억원을 매출에 포함해 표시한다. 이전 기준이면 실제 45,631억원, 차이 +5,243억원이다."
+    },
+    {
+      "key": "operatingProfit",
+      "label": "영업이익",
+      "market": {
+        "role": "market",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 1912.58,
+        "publishedAt": "2026-10-23",
+        "source": "consensus-20261023",
+        "status": "추정"
+      },
+      "author": {
+        "role": "author",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": null,
+        "reason": "사전 추정 없음"
+      },
+      "actual": {
+        "role": "actual",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 4078,
+        "publishedAt": "2026-10-29",
+        "source": "dart-q3",
+        "status": "잠정"
+      },
+      "cause": "AMPC 1,225억원과 고객 보상금·ESS 충당금 순효과(증권사 추정 2,500~4,000억원)를 분리해야 본업 이익을 판단할 수 있다."
+    },
+    {
+      "key": "parentNetIncome",
+      "label": "지배주주 순이익",
+      "incomeScope": "parent",
+      "market": {
+        "role": "market",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 6413.38,
+        "publishedAt": "2026-10-23",
+        "source": "consensus-20261023",
+        "status": "추정",
+        "incomeScope": "parent"
+      },
+      "author": {
+        "role": "author",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": null,
+        "reason": "사전 추정 없음",
+        "incomeScope": "parent"
+      },
+      "actual": {
+        "role": "actual",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 2946,
+        "publishedAt": "2026-10-29",
+        "source": "dart-q3",
+        "status": "잠정",
+        "incomeScope": "parent"
+      },
+      "cause": "예상치는 10월 초 지분 매각 이후 크게 올랐다. 차이 원인은 회사가 밝히지 않았다. 전체 당기순이익 3,422억원과 구분한다."
+    }
+  ],
+  "quarters": [
+    {
+      "period": "2024-Q4"
+    },
+    {
+      "period": "2025-Q1"
+    },
+    {
+      "period": "2025-Q2"
+    },
+    {
+      "period": "2025-Q3"
+    },
+    {
+      "period": "2025-Q4"
+    },
+    {
+      "period": "2026-Q1"
+    },
+    {
+      "period": "2026-Q2"
+    },
+    {
+      "period": "2026-Q3"
+    }
+  ],
+  "series": [
+    {
+      "key": "revenue",
+      "label": "매출액(AMPC 포함 기준)",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": 37794,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 작성자 환산(당시 매출+AMPC)",
+          "source": "dart-2024q4",
+          "publishedAt": "2025-01-24"
+        },
+        {
+          "period": "2025-Q1",
+          "value": 32862,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 작성자 환산(당시 매출+AMPC)",
+          "source": "dart-2025q1",
+          "publishedAt": "2025-04-25"
+        },
+        {
+          "period": "2025-Q2",
+          "value": 32458,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 작성자 환산(당시 매출+AMPC)",
+          "source": "dart-2025q2",
+          "publishedAt": "2025-07-31"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 30714,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-10-29"
+        },
+        {
+          "period": "2025-Q4",
+          "value": 39385,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 작성자 환산(당시 매출+AMPC)",
+          "source": "dart-2025q4",
+          "publishedAt": "2026-02-02"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 36569,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 작성자 환산(당시 매출+AMPC)",
+          "source": "dart-2026q1",
+          "publishedAt": "2026-04-28"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 38765,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-10-29"
+        },
+        {
+          "period": "2026-Q3",
+          "value": 46856,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-10-29"
+        }
+      ]
+    },
+    {
+      "key": "operatingProfit",
+      "label": "영업이익",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": -2567,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2024q4",
+          "publishedAt": "2025-01-24"
+        },
+        {
+          "period": "2025-Q1",
+          "value": -4341,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2025q1",
+          "publishedAt": "2025-04-25"
+        },
+        {
+          "period": "2025-Q2",
+          "value": -3978,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2025q2",
+          "publishedAt": "2025-07-31"
+        },
+        {
+          "period": "2025-Q3",
+          "value": -5913,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-10-29"
+        },
+        {
+          "period": "2025-Q4",
+          "value": -2992,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2025q4",
+          "publishedAt": "2026-02-02"
+        },
+        {
+          "period": "2026-Q1",
+          "value": -1556,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2026q1",
+          "publishedAt": "2026-04-28"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 2038,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-10-29"
+        },
+        {
+          "period": "2026-Q3",
+          "value": 4078,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-10-29"
+        }
+      ]
+    },
+    {
+      "key": "operatingProfitExAmpc",
+      "label": "AMPC 제외 영업이익(작성자 계산)",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": -2816,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 영업이익−공시 AMPC",
+          "source": "dart-2024q4",
+          "publishedAt": "2025-01-24"
+        },
+        {
+          "period": "2025-Q1",
+          "value": -5435,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 영업이익−공시 AMPC",
+          "source": "dart-2025q1",
+          "publishedAt": "2025-04-25"
+        },
+        {
+          "period": "2025-Q2",
+          "value": -4642,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 영업이익−공시 AMPC",
+          "source": "dart-2025q2",
+          "publishedAt": "2025-07-31"
+        },
+        {
+          "period": "2025-Q3",
+          "value": -6108,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 영업이익−공시 AMPC",
+          "source": "dart-2025q3",
+          "publishedAt": "2025-10-28"
+        },
+        {
+          "period": "2025-Q4",
+          "value": -3790,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 영업이익−공시 AMPC",
+          "source": "dart-2025q4",
+          "publishedAt": "2026-02-02"
+        },
+        {
+          "period": "2026-Q1",
+          "value": -2361,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 영업이익−공시 AMPC",
+          "source": "dart-2026q1",
+          "publishedAt": "2026-04-28"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 961,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 영업이익−공시 AMPC",
+          "source": "dart-q3",
+          "publishedAt": "2026-10-29"
+        },
+        {
+          "period": "2026-Q3",
+          "value": 2853,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 영업이익−공시 AMPC",
+          "source": "dart-q3",
+          "publishedAt": "2026-10-29"
+        }
+      ]
+    },
+    {
+      "key": "operatingCashFlow",
+      "label": "영업현금흐름",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": 3757,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2024a",
+          "publishedAt": "2025-03-11"
+        },
+        {
+          "period": "2025-Q1",
+          "value": 1723,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2025q1",
+          "publishedAt": "2025-04-30"
+        },
+        {
+          "period": "2025-Q2",
+          "value": 5293,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2025h1",
+          "publishedAt": "2025-08-14"
+        },
+        {
+          "period": "2025-Q3",
+          "value": -2414,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2025q3",
+          "publishedAt": "2025-11-14"
+        },
+        {
+          "period": "2025-Q4",
+          "value": 3322,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2025a",
+          "publishedAt": "2026-03-10"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 852,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2026q1",
+          "publishedAt": "2026-05-15"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 242,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2026h1",
+          "publishedAt": "2026-08-14"
+        },
+        {
+          "period": "2026-Q3",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "3분기 분기보고서 제출 전(11월 중순 예정)"
+        }
+      ]
+    },
+    {
+      "key": "capex",
+      "label": "투자지출(유·무형자산 취득)",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": 22709,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2024a",
+          "publishedAt": "2025-03-11"
+        },
+        {
+          "period": "2025-Q1",
+          "value": 9035,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2025q1",
+          "publishedAt": "2025-04-30"
+        },
+        {
+          "period": "2025-Q2",
+          "value": 10019,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2025h1",
+          "publishedAt": "2025-08-14"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 5543,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2025q3",
+          "publishedAt": "2025-11-14"
+        },
+        {
+          "period": "2025-Q4",
+          "value": 6695,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2025a",
+          "publishedAt": "2026-03-10"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 6003,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2026q1",
+          "publishedAt": "2026-05-15"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 5438,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2026h1",
+          "publishedAt": "2026-08-14"
+        },
+        {
+          "period": "2026-Q3",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "3분기 분기보고서 제출 전(11월 중순 예정)"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "date": "2026-11-03",
+      "claim": "2026Q4: AMPC·일회성 제외 영업이익 흑자 및 분기 영업현금흐름 양수",
+      "status": "판단 보류",
+      "evidence": "2026-11-03 새로 설정. 이번 분기 성과로 소급 채점하지 않는다.",
+      "sources": []
+    }
+  ],
+  "changes": [
+    {
+      "date": "2026-11-03",
+      "claim": "첫 분석: 이전 가정 없음 → 본업 흑자 검증 대기",
+      "to": "판단 보류",
+      "evidence": "보상금·충당금 금액 미공시. 증권사 순효과 추정 2,500~4,000억원을 빼면 AMPC 제외 본업 이익은 약 −1,150~+350억원.",
+      "sources": [
+        "dart-q3",
+        "sk-review",
+        "im-review"
+      ],
+      "kind": "판단"
+    }
+  ],
+  "promises": [
+    {
+      "date": "2026-11-03",
+      "claim": "SPE LFP 라인 12월 SBB 완제품 인도 시작 (발언일 2026-10-29)",
+      "status": "판단 보류",
+      "evidence": "검증 시점 미도래. 4분기 실적에서 인도 여부 확인.",
+      "sources": [
+        "call-thelec"
+      ],
+      "due": "2026-12-31"
+    },
+    {
+      "date": "2026-11-03",
+      "claim": "연말까지 ESS 수주 10월 누계(60GWh 이상) 초과 (발언일 2026-10-29)",
+      "status": "판단 보류",
+      "evidence": "수주 GWh는 판가·인도 조건 확인 전 매출로 환산하지 않음.",
+      "sources": [
+        "call-thelec"
+      ],
+      "due": "2026-12-31"
+    },
+    {
+      "date": "2026-11-03",
+      "claim": "LFP 2개 라인 추가 전환, 2027년 상반기 단계 가동 (발언일 2026-10-29)",
+      "status": "판단 보류",
+      "evidence": "검증 시점 미도래.",
+      "sources": [
+        "call-thelec"
+      ],
+      "due": "2027-06-30"
+    },
+    {
+      "date": "2026-11-03",
+      "claim": "휴머노이드용 전고체 2027년 하반기 상용화 목표 (발언일 2026-10-29)",
+      "status": "판단 보류",
+      "evidence": "샘플 공급과 양산 매출을 구분해 확인.",
+      "sources": [
+        "call-thelec"
+      ],
+      "due": "2027-12-31"
+    },
+    {
+      "date": "2026-11-03",
+      "claim": "시너지셀즈 ESS용 LFP 양산 2028년 하반기~2029년 초 (발언일 2026-10-29)",
+      "status": "판단 보류",
+      "evidence": "검증 시점 미도래.",
+      "sources": [
+        "call-thelec"
+      ],
+      "due": "2029-03-31"
+    }
+  ],
+  "calculator": {
+    "period": "2027년 연간",
+    "label": "ESS 판매량·마진 민감도",
+    "assumptions": "ESS 판매량·판가·마진·기타 사업 합산 이익·배수는 작성자 가정이다. 30GWh는 증권사가 제시한 2027년 미국 ESS 생산능력을 가져온 값이다. AMPC는 판매량에 따라 움직이지 않는다. 순차입금만 2026년 6월 말 반기보고서 잔액이며 8월 지분 매각 대금을 반영하지 않는다. 남은 삼성디스플레이 지분 등 비영업 자산과 세금·희석은 반영하지 않는다.",
+    "variables": [
+      {
+        "key": "volume",
+        "label": "ESS 판매량",
+        "unit": "GWh/년",
+        "min": 5,
+        "max": 120,
+        "step": 5,
+        "default": 30
+      },
+      {
+        "key": "margin",
+        "label": "ESS 영업이익률",
+        "unit": "%",
+        "min": -10,
+        "max": 25,
+        "step": 0.5,
+        "default": 10
+      }
+    ],
+    "price": 1500,
+    "priceLabel": "ESS 판가",
+    "priceUnit": "억원/GWh",
+    "priceNote": "작성자 가정 · 약 105달러/kWh(1,430원/달러) · 셀·시스템 혼합",
+    "baseProfit": 3000,
+    "baseProfitLabel": "기타 사업 합산 이익",
+    "baseProfitNote": "작성자 가정 · 전자재료·소형·EV·AMPC 합산",
+    "multiple": 20,
+    "netDebt": 106054,
+    "marketCap": 400107,
+    "marketCapSource": "quote",
+    "netDebtSource": "rpt-2026h1",
+    "netDebtAsOf": "2026-06-30"
+  },
+  "initialReview": true
+}

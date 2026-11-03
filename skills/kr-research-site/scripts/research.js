@@ -103,6 +103,7 @@ function loadResearch(entry, {root, safety, asOfDate}) {
   }
   const c = d.calculator;
   check(c && c.period && c.label && c.assumptions && c.variables?.length === 2, 'calculator assumptions required');
+  ['priceLabel','priceUnit','priceNote','baseProfitLabel','baseProfitNote'].forEach(k=>check(c[k] === undefined || (typeof c[k] === 'string' && c[k].length > 0), `invalid calculator ${k}`));
   c.variables.forEach(v => check(v.key && v.label && v.unit && [v.min,v.max,v.step,v.default].every(number) && v.min < v.max && v.step > 0 && v.default >= v.min && v.default <= v.max, 'invalid calculator range'));
   check(c.variables[0].key === 'volume' && c.variables[1].key === 'margin', 'calculator supports volume and margin');
   check(['price','baseProfit','multiple','netDebt'].every(k => number(c[k])) && c.price > 0 && c.multiple > 0, 'invalid fixed calculator assumptions');
@@ -161,11 +162,12 @@ const {calculate} = require('./scenario');
 function calculator(d) {
   const c=d.calculator, result=calculate(c,...c.variables.map(v=>v.default));
   return `<section class="scenario" id="scenario-calculator" data-calculator><h2>가정 조절 계산기</h2><p>${e(c.label)} · ${e(c.period)}</p><p class="scenario-warning"><strong>설명용 민감도 · 정식 이익 전망이나 목표가가 아닙니다.</strong><br>${e(c.assumptions)}</p><details><summary>고정 가정과 근거 보기</summary>${table(['고정 항목','값','근거·한계'],[
-    ['혼합 판가',`${fmt(c.price)}억원/천 톤`,'작성자 가정 · LFP/삼원계 가격과 구성비 미반영'],
-    ['기타 합산 이익',`${fmt(c.baseProfit)}억원`,'작성자 가정 · 음극재·기초소재·공통비용'],
+    // Label overrides let non-cathode companies reuse the calculator; defaults keep the first example unchanged.
+    [c.priceLabel||'혼합 판가',`${fmt(c.price)}${c.priceUnit||'억원/천 톤'}`,c.priceNote||'작성자 가정 · LFP/삼원계 가격과 구성비 미반영'],
+    [c.baseProfitLabel||'기타 합산 이익',`${fmt(c.baseProfit)}억원`,c.baseProfitNote||'작성자 가정 · 음극재·기초소재·공통비용'],
     ['EV/영업이익',`${fmt(c.multiple)}배`,'작성자 선택 배수 · 시장 적정 배수로 검증되지 않음'],
     ['순차입금',`${fmt(c.netDebt)}억원`,c.netDebtSource ? sourceLinks(d,[c.netDebtSource])+' · '+e(c.netDebtAsOf)+' 시점; 미래 잔액 아님' : '작성자 차감 가정 · 실측값 아님']
-  ],'민감도의 고정 가정')}</details><form>${c.variables.map(v=>`<label>${e(v.label)} (${e(v.unit)})<input name="${e(v.key)}" type="number" min="${v.min}" max="${v.max}" step="${v.step}" value="${v.default}" required><small>범위 ${fmt(v.min)}–${fmt(v.max)} · 간격 ${fmt(v.step)}</small></label>`).join('')}<button type="reset">기본 가정으로 복원</button></form><output aria-live="polite">${calculationText(result)}</output><details class="scenario-valuation"><summary>같은 가정으로 계산한 가치 보기</summary><p data-valuation-output>${valuationText(result)}</p><p>기업가치 = 영업이익 × 배수<br>지분가치 = 기업가치 − 순차입금</p><p>세금·감가상각·성장투자·희석을 충분히 반영하지 않은 조건부 계산입니다.</p></details><p class="src-note">영업이익 = 출하량 × 혼합 판가 × 영업이익률 ÷ 100 + 기타 합산 이익</p><p class="src-note">${c.marketCap===null ? '시가총액 미검증: 가격 역산 보류' : `가격 관측: 시가총액 ${fmt(c.marketCap)}억원 · ${sourceLinks(d,[c.marketCapSource])}`}</p><script type="application/json" data-calculator-config>${JSON.stringify(c).replace(/</g,'\\u003c')}</script></section>`;
+  ],'민감도의 고정 가정')}</details><form>${c.variables.map(v=>`<label>${e(v.label)} (${e(v.unit)})<input name="${e(v.key)}" type="number" min="${v.min}" max="${v.max}" step="${v.step}" value="${v.default}" required><small>범위 ${fmt(v.min)}–${fmt(v.max)} · 간격 ${fmt(v.step)}</small></label>`).join('')}<button type="reset">기본 가정으로 복원</button></form><output aria-live="polite">${calculationText(result)}</output><details class="scenario-valuation"><summary>같은 가정으로 계산한 가치 보기</summary><p data-valuation-output>${valuationText(result)}</p><p>기업가치 = 영업이익 × 배수<br>지분가치 = 기업가치 − 순차입금</p><p>세금·감가상각·성장투자·희석을 충분히 반영하지 않은 조건부 계산입니다.</p></details><p class="src-note">영업이익 = ${e(c.variables[0].label)} × ${e(c.priceLabel||'혼합 판가')} × ${e(c.variables[1].label)} ÷ 100 + ${e(c.baseProfitLabel||'기타 합산 이익')}</p><p class="src-note">${c.marketCap===null ? '시가총액 미검증: 가격 역산 보류' : `가격 관측: 시가총액 ${fmt(c.marketCap)}억원 · ${sourceLinks(d,[c.marketCapSource])}`}</p><script type="application/json" data-calculator-config>${JSON.stringify(c).replace(/</g,'\\u003c')}</script></section>`;
 }
 function calculationText(r) { return `설명용 연간 영업이익 ${fmt(r.profit)}억원${r.profit<=0?' · 적자로 배수 가치평가 적용 불가':''}`; }
 function valuationText(r) { return r.profit<=0 ? '적자로 배수 가치평가 적용 불가' : `가정 배수 적용 기업가치 ${fmt(r.enterpriseValue)}억원 · 순차입금 차감 후 지분가치 ${fmt(r.equityValue)}억원${r.requiredProfit===null?'':` · 같은 조건의 가격 역산 이익 ${fmt(r.requiredProfit)}억원`}`; }

@@ -27,6 +27,58 @@
       ]
     },
     {
+      "memo": "analysis-example/kr/삼성SDI/memo.md",
+      "slug": "kr/samsung-sdi-2026-q3",
+      "company": "삼성SDI",
+      "ticker": "006400",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/006400",
+      "analysisData": "analysis-example/kr/삼성SDI/analysis-data.json",
+      "headline": "삼성SDI 3분기: 컨센서스 두 배, 본업 흑자는 검증 대기",
+      "summary": "영업이익 4,078억원에서 AMPC와 미공개 보상금·충당금을 분리하고, 다음 분기 본업 흑자와 현금 전환을 점검한다.",
+      "datePublished": "2026-11-03",
+      "dateModified": "2026-11-03",
+      "sectors": [
+        "배터리"
+      ],
+      "coverArt": false,
+      "tags": [
+        "삼성SDI",
+        "006400",
+        "실적리뷰",
+        "ESS"
+      ]
+    },
+    {
+      "memo": "analysis-example/kr/LG에너지솔루션/memo.md",
+      "slug": "kr/lg-energy-solution-2026-q3",
+      "company": "LG에너지솔루션",
+      "ticker": "373220",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/373220",
+      "analysisData": "analysis-example/kr/LG에너지솔루션/analysis-data.json",
+      "headline": "LG에너지솔루션 3분기: 보조금 빼도 흑자, 보상금과 순손실이 남았다",
+      "summary": "보조금 제외 영업이익 3,391억원에 섞인 보상금과 9,872억원 영업외손실을 분리하고, 다음 분기 본업 흑자를 점검한다.",
+      "datePublished": "2026-11-03",
+      "dateModified": "2026-11-03",
+      "sectors": [
+        "배터리"
+      ],
+      "coverArt": false,
+      "tags": [
+        "LG에너지솔루션",
+        "373220",
+        "실적리뷰",
+        "ESS"
+      ]
+    },
+    {
       "memo": "analysis-example/us/Alphabet/memo.md",
       "slug": "us/alphabet-2026-q3",
       "company": "알파벳",

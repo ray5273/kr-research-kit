@@ -57,6 +57,11 @@ assert(widgets(load(noMarket)).includes('비교 불가'));
 assert(html.includes('검증시점 미도래'));
 assert(html.includes('34,390억원') && html.includes('2026-06-30'));
 assert(html.includes('같은 가정으로 계산한 가치 보기'));
+assert(html.includes('억원/천 톤'),'cathode labels stay the default');
+// Cell makers relabel the fixed price/profit assumptions without changing the formula.
+const relabeled=structuredClone(input);Object.assign(relabeled.calculator,{priceLabel:'ESS 판가',priceUnit:'억원/GWh',baseProfitLabel:'기타 사업 합산 이익'});
+const relabeledHtml=widgets(load(relabeled));assert(relabeledHtml.includes('억원/GWh'));assert(relabeledHtml.includes('ESS 판가') && !relabeledHtml.includes('억원/천 톤'));
+reject(d=>{d.calculator.priceUnit='';},/priceUnit/);
 const later=structuredClone(input);later.initialReview=false;assert(!widgets(load(later)).includes('첫 가설 등록 · 다음 실적에서'));
 assert.equal(calculate(input.calculator,100,5).equityValue,11610);
 assert.equal(calculate(input.calculator,100,5).requiredProfit,8999.75);

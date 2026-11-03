@@ -21,7 +21,7 @@
 - 비교표는 날짜·상태·출처와 긴 원인 설명을 숫자 셀 밖으로 모은다. 작성자 예상이 모두 null이면 작성자 열·차이를 생략하고 사전 추정 없음으로 한 번만 알린다. 일부라도 실제 사전 예상이 있으면 작성자 열과 차이를 유지한다. 결측 숫자는 0이나 사후 추정으로 채우지 않는다.
 - quarters는 리뷰 분기까지 연속 8개다. series는 key/label/unit와 같은 8개 points를 갖는다. point에는 period/value/kind(actual 또는 estimate)/basis와 공개일·출처 또는 결측 이유를 기록한다. 비교표와 같은 key의 마지막 차트 값은 동일해야 한다. 누적 현금흐름은 원문 차감과 기준 대조를 마친 뒤 분기값으로 넣는다. 가공값이면 산식과 원본 출처를 별도 증거에 보존한다.
 - checks/promises는 date/claim/status/evidence/sources를 가진다. 상태는 충족·미충족·판단 보류다. changes는 같은 증거 구조와 to(판단), 선택 `kind`(`판단` 기본값 또는 `자료`)를 가진다. 판단을 바꾸지 않은 원문 대조·수치 보강은 `자료`로 기록하며 기업 페이지의 `자료 갱신 기록`으로 분리된다. 여러 리뷰의 변경 이력은 날짜·조건으로 중복 제거한다. source id는 기업 내에서도 같은 원문에만 재사용한다.
-- calculator는 period/label/assumptions와 두 variables(volume, margin)를 갖는다. 각 변수는 label/unit/min/max/step/default를 가진다. 고정값은 price(억원/천 톤), baseProfit(억원), multiple(EV/영업이익), netDebt(억원)다. marketCap은 검증된 시총 또는 null이며 검증값에는 marketCapSource를 기록한다. 모든 가정의 대상 기간과 실측 여부를 메모에도 설명한다. 이익=물량×판가×마진/100+기타이익, 기업가치=이익×배수, 지분가치=기업가치−순차입금이다. 현재 가격 요구 이익=(시총+순차입금)/배수다. 적자 시 배수 가치를 숨긴다.
+- calculator는 period/label/assumptions와 두 variables(volume, margin)를 갖는다. 각 변수는 label/unit/min/max/step/default를 가진다. 고정값은 price(억원/천 톤), baseProfit(억원), multiple(EV/영업이익), netDebt(억원)다. marketCap은 검증된 시총 또는 null이며 검증값에는 marketCapSource를 기록한다. 모든 가정의 대상 기간과 실측 여부를 메모에도 설명한다. 이익=물량×판가×마진/100+기타이익, 기업가치=이익×배수, 지분가치=기업가치−순차입금이다. 현재 가격 요구 이익=(시총+순차입금)/배수다. 적자 시 배수 가치를 숨긴다. 양극재가 아닌 기업은 선택 문자열 `priceLabel`·`priceUnit`·`priceNote`·`baseProfitLabel`·`baseProfitNote`로 고정 가정의 이름과 단위를 바꾼다(예: ESS 판가 `억원/GWh`). 생략하면 양극재 기본 문구를 쓴다.
 
 ## 갱신과 검증
 
