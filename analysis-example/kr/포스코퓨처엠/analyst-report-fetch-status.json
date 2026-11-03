@@ -1,0 +1,59 @@
+{
+  "company": "포스코퓨처엠",
+  "ticker": "003670",
+  "discoveredAt": "2026-11-02",
+  "fetchedAt": "2026-11-02",
+  "indexPath": "/Users/sanghyeok/workspace/stock-analysis-skill/.tmp/analyst-report-cache/index/003670/2026-11-02-manual-fallback.json",
+  "reports": [
+    {
+      "reportId": "naver-96922",
+      "broker": "DS투자증권",
+      "analyst": null,
+      "publishedDate": "2026-10-21",
+      "title": "LFP 전환 라인 투어: 만반의 준비",
+      "rating": "BUY",
+      "ratingRaw": "매수",
+      "targetPrice": 290000,
+      "currency": "KRW",
+      "sourceSite": "naver",
+      "landingUrl": "https://m.stock.naver.com/investment/research/company/96922",
+      "pdfUrl": "https://stock.pstatic.net/stock-research/company/66/20261021_company_501980000.pdf",
+      "textPath": null,
+      "pages": 0,
+      "textLength": 0,
+      "extractionOk": false,
+      "error": "download failed: getaddrinfo ENOTFOUND stock.pstatic.net"
+    },
+    {
+      "reportId": "naver-95055",
+      "broker": "SK증권",
+      "analyst": null,
+      "publishedDate": "2026-08-05",
+      "title": "음극재로 양극재를 판다",
+      "rating": "BUY",
+      "ratingRaw": "매수",
+      "targetPrice": 300000,
+      "currency": "KRW",
+      "sourceSite": "naver",
+      "landingUrl": "https://m.stock.naver.com/investment/research/company/95055",
+      "pdfUrl": "https://stock.pstatic.net/stock-research/company/64/20260805_company_346742000.pdf",
+      "textPath": null,
+      "pages": 0,
+      "textLength": 0,
+      "extractionOk": false,
+      "error": "download failed: getaddrinfo ENOTFOUND stock.pstatic.net"
+    }
+  ],
+  "meta": {
+    "attempted": 2,
+    "downloaded": 0,
+    "extracted": 0,
+    "skippedAuth": 0,
+    "failed": 2,
+    "fromCache": 0,
+    "warnings": [
+      "naver-96922: download failed: getaddrinfo ENOTFOUND stock.pstatic.net",
+      "naver-95055: download failed: getaddrinfo ENOTFOUND stock.pstatic.net"
+    ]
+  }
+}

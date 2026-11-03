@@ -5,7 +5,7 @@ const fs = require("fs");
 const os = require("os");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { buildSite, collectCitations, extractAnswer } = require("./build-site");
+const { buildSite, collectCitations, extractAnswer, renderBlocks } = require("./build-site");
 const { changedUrls, sameUrls } = require("./indexnow-ping");
 
 const PNG = Buffer.from(
@@ -179,7 +179,7 @@ assert(article.indexOf('id="answer"') < article.indexOf('data-share="kakao"'), "
 assert(article.includes("th,td{text-align:left;"));
 assert(article.includes("<ul><li>플랫폼 수익성<ul><li>별풍선 단가</li></ul></li><li>비용 통제와 내부 파일</li></ul>"));
 assert(article.includes("<ol><li>트래픽 둔화 &amp; 규제</li><li>경쟁 심화</li></ol>"));
-assert(article.includes('1분기 분기보고서<sup class="cite"><a href="#src-1"'));
+assert(article.includes('1분기 분기보고서\u2060<sup class="cite"><a href="#src-1"'));
 assert(article.includes('<li id="src-1"><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=1" rel="noopener">SOOP 1분기 분기보고서 (2026-05-15)</a></li>'));
 assert(article.includes('<li id="src-2"><a href="https://example.com/soop-ir"'));
 assert(article.includes('<h2 id="updates">업데이트 내역</h2>'));
@@ -361,6 +361,9 @@ const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]
 assert.deepStrictEqual(locs.sort(), [
   "https://research.example.com/",
   "https://research.example.com/about/",
+  "https://research.example.com/companies/kr/067160/",
+  "https://research.example.com/companies/us/acme/",
+  "https://research.example.com/earnings/",
   "https://research.example.com/kr/",
   "https://research.example.com/kr/soop-2026-06/",
   "https://research.example.com/privacy/",
@@ -532,5 +535,64 @@ assert(sameUrls(current, JSON.parse(JSON.stringify(current))));
 assert(!sameUrls(current, previous));
 assert(!sameUrls(current, null));
 
+// Earnings routes and data share the existing opt-in/privacy guards.
+const researchData=JSON.parse(fs.readFileSync(path.join(__dirname,'../../../analysis-example/kr/포스코퓨처엠/analysis-data.json'),'utf8'));
+researchData.companyId='kr/067160';
+const researchPath='analysis-example/kr/SOOP/analysis-data.json';
+write('analysis-example/kr/Research/memo.md','# Research\n\n- 기준일: 2026-11-02\n\n## Summary\n\n**판단 보류**\n\n검증 중이다.\n');
+git('add','analysis-example/kr/Research/memo.md');
+const researchEntry={...soop,memo:'analysis-example/kr/Research/memo.md',ticker:'067160',companyId:'kr/067160',articleType:'earnings-review',period:'2026-Q3',analysisData:researchPath,dateModified:researchData.verifiedAt};
+write(researchPath,JSON.stringify(researchData));
+assert.throws(()=>build({published:{articles:[researchEntry]}}),/not tracked/);
+git('add',researchPath);
+build({published:{articles:[researchEntry]}});
+assert(read('kr/soop-2026-06/index.html').includes('id="earnings-comparison"'));
+assert(read('kr/soop-2026-06/index.html').includes('href="/companies/kr/067160/"'));
+assert(read('companies/kr/067160/index.html').includes('판단 변경 이력'));
+assert(read('earnings/index.html').includes('<h2 class="period-head">2026-Q3</h2>'));
+assert(!fs.existsSync(path.join(outDir,'watchlist'))&&!fs.existsSync(path.join(outDir,'research-index.json')));
+write(researchPath,JSON.stringify({...researchData,rationale:'holdings.json'}));
+assert.throws(()=>build({published:{articles:[researchEntry]}}),/private holdings/);
+for(const slug of ['companies/kr/067160','earnings']) assert.throws(()=>build({published:{articles:[{...soop,slug}]}}),/Reserved/);
+
 fs.rmSync(root, { recursive: true, force: true });
+// Long broker commentary preserves sources/content and remains readable without JS.
+const reportCards = renderBlocks(`| 작성일 | 증권사·원문 | 당시 의견·목표가 | 핵심 의견 |
+| --- | --- | --- | --- |
+| 2026-11-03 | [A](https://a.example/report) | BUY / 200,000원 | 첫 번째 의견 |
+| 2026-11-03 | B | HOLD / 150,000원 | 두 번째 의견 |
+| 2026-10-21 | C | BUY / 290,000원 | 이전 의견 <script> |`, {});
+assert.equal((reportCards.match(/class="report-note"/g) || []).length, 3);
+assert(reportCards.indexOf('두 번째 의견') < reportCards.indexOf('<details'));
+assert(reportCards.indexOf('이전 의견') > reportCards.indexOf('<details'));
+assert(reportCards.includes('href="https://a.example/report"'));
+assert(reportCards.includes('&lt;script&gt;') && !reportCards.includes('<script>'));
+assert(!reportCards.includes('<table>'));
+assert(renderBlocks('| 지표 | 실제 |\n| --- | --- |\n| 이익 | 821억원 |', {}).includes('<table>'));
+const qaCards = renderBlocks(`### Q1. 보상금은 반복되나?
+
+**회사 답변 요약:** 조건은 비공개다. [근거](https://a.example/call)
+
+**분석:** 반복 이익과 구분한다.
+
+### Q2. 투자 일정은?
+
+**회사 답변:** <script>는 원문이 아니다.
+
+\`\`\`
+### 내부 코드 제목
+\`\`\`
+
+**다음 확인:** 다음 분기 현금 지출.
+
+### 일반 제목
+
+**분석:** 카드 밖의 문단.`, {});
+assert.equal((qaCards.match(/class="qa-card"/g) || []).length, 2);
+assert.equal((qaCards.match(/class="qa-answer"/g) || []).length, 2);
+assert.equal((qaCards.match(/class="qa-followup"/g) || []).length, 2);
+assert(qaCards.includes('class="qa-number">Q1</span>') && qaCards.includes('class="qa-number">Q2</span>'));
+assert(qaCards.includes('href="https://a.example/call"'));
+assert(qaCards.includes('&lt;script&gt;') && !qaCards.includes('<script>'));
+assert(qaCards.includes('</article>\n<h3>일반 제목</h3>\n<p><strong>분석:</strong> 카드 밖의 문단.</p>'));
 console.log("build-site tests passed");

@@ -102,6 +102,8 @@ When `kr-stock-update` appends an Update Log block (`### YYYY-MM-DD — ...`) or
 
 ## Public article editing rules
 
+- Omit entirely empty chart series and research-progress placeholders such as “자료 확인 중” from public articles. Keep missing values in research data and retain limitations that materially affect the conclusion in the prose or source notes.
+
 - Write for readers of the published page. Omit local file names, JSON inputs/results, Python scripts, CSV zone files, reproduction commands and internal research-pipeline status from prose. Keep these in repository research artifacts; retain disclosed facts, assumptions, source dates and material verification limits.
 - Do not display “원본 리서치 메모 보기 (Markdown)” or other implementation/source-file controls in article headers.
 - Evidence links must not read as body text. Put them right after the sentence or in the table cell they support (`...유지했다. [하나증권 브리핑](url)`), never as a separate paragraph of their own. The builder shows these, parenthetical links and any standalone link as the number only and keeps the label in the source list; a link keeps its label only when the sentence needs the name (`[Fortune](url)은 ...`).
@@ -113,6 +115,8 @@ When `kr-stock-update` appends an Update Log block (`### YYYY-MM-DD — ...`) or
 - Numbered topic/checkpoint titles must use actual Markdown headings (`### 1. ...`), not standalone bold paragraphs (`**1. ...**`). This applies to closing checklists as well as the main analysis; verify that each title renders as a heading with the shared separator and spacing.
 
 - Avoid dry runs of unconnected numeric paragraphs. When an argument mixes expenditure, guidance and derived values, use a compact table that labels period and fact/forecast/calculation, then explain their connection in prose. Put attributed management commentary in a visually distinct block labeled “회사 설명 · 실적 콜 요약” with its source. Summaries/paraphrases must be labeled as such, never presented as verbatim quotation; use quotation marks only for verified exact wording (and label translations). Distinguish company commentary from the author's interpretation through structure, not by coloring every sentence.
+
+- Apply [financial readability](../kr-stock-analysis/references/financial-readability.md) throughout the article, especially reverse valuation, scenario math, cash-flow derivations and broker revisions. Show the key result first, compact assumptions/comparisons next, and each necessary formula on its own line. Keep long caveats outside tables and explain the implication without repeating every value. A layout-only edit freezes facts, source dates and judgment.
 
 - Apply editorial structure across every public article: compare broker targets/ratings in tables (retain unknowns and source limitations), separate company/broker/report summaries from author interpretation, and use tables for repeated financial periods, forecasts and schedules when they aid comparison. Keep causal reasoning as prose and avoid duplicating the entire table in text. Do not invent per-row source attribution when the original only supplies collective sources.
 - Public tables use consistent left alignment for headers and cells, overriding Markdown alignment hints. Keep text legible and horizontal scrolling inside the table on narrow screens.
@@ -141,3 +145,23 @@ When the user publishes notes as records of their time, preserve original prices
 List pages sort by the latest original research date (the maximum of 기준일, 최근 업데이트일 and dated Update Log headings), then original 기준일 and slug. Site publication/editing dates do not change that order. Keep the original 기준일 visible and label a later research update separately. For a bulk archive publication, remove old featured ranks so home recommendations also show the latest research; retain optional ranking support for deliberate future curation. Feeds and sitemap modification dates still reflect actual site edits.
 
 Retain source bibliographic entries even when the original supplies no URL. Link numbered citations to those entries without inventing external URLs; an explicit DART receipt identifier may link to that exact filing. Preserve chart data and images, encode spaces in Markdown image paths, and verify every embedded image reaches the build.
+
+## Earnings research tools
+
+Optional `articleType`, `period`, `companyId` and `analysisData` extend existing opt-in entries without changing legacy requirements. Follow [the public earnings data contract](references/earnings-data.md) and [the common analysis standard](../kr-stock-analysis/references/earnings-review.md). The build emits `/earnings/` and company histories; assumptions and missing evidence must remain visible.
+
+Keep numeric comparisons in compact tables and place lengthy broker opinions in full-width report cards. Use the Markdown columns `작성일 | 증권사·원문 | 당시 의견·목표가 | 핵심 의견` to invoke the shared renderer: the first two reports are visible and older reports use a native, keyboard-accessible disclosure. Order reports newest first; preserve dates, ratings, targets, explanations and source links. Move lengthy exceptions below numeric tables as notes. See [broker opinion presentation](references/earnings-data.md#증권사-의견-표시) and the [POSCO Future M example](../../analysis-example/kr/포스코퓨처엠/memo.md).
+
+Earnings reviews must include conference-call Q&A, following [the shared sourcing and quotation standard](../kr-stock-analysis/references/earnings-call-qa.md). Use consecutive `### Q1. …`, `### Q2. …` subheadings to invoke shared Q&A cards. Follow each with `**회사 답변 요약:**` (or `**회사 답변:**` for a verified quotation), then `**분석:**` or `**다음 확인:**`. Show a numbered badge, a distinct answer surface and a separated follow-up, with source links and explicit summary/quotation labels. Keep cards expanded and readable in a single column on mobile. Preserve unanswered questions and connect new management targets to follow-up checks; do not display long Q&A in narrow table cells.
+
+## Earnings layout and review fixes
+
+- Place comparison, charts, calculator and management checks beside the corresponding argument. Avoid an uninterrupted tools block before the narrative or a second copy of the same comparison table. The builder places supported earnings sections contextually; unmatched tools retain a fallback section.
+- On phones, show the earnings comparison as metric cards with explicit labels; show long management checks as cards. Preserve desktop numeric comparison and accessible source links.
+- When a model uses unverified price/mix/profit/multiple inputs, lead with sensitivity and put conditional valuation behind an expandable section. A dated disclosed debt balance remains a historical balance, not the future forecast. Keep company answers separate from source comparisons and author caution.
+- First-analysis checks should say when the new hypothesis will be verified. A future management target is “검증시점 미도래”, not a failed promise.
+- Static previews retain local link copy but remove live comment forms, count controls and analytics settings when the corresponding scripts/APIs are excluded. Run `npm run test:preview` with the site tests.
+
+## Shared preview address
+
+Use `npm run deploy:preview` for review deployments from any working branch or PR. It builds the isolated static preview and always deploys to Pages branch `preview`, maintaining **https://preview.kr-research-site.pages.dev/** as the shared review address. Do not substitute the Git/PR branch in `--branch`; the last completed preview deployment replaces the shared preview. Per-deployment hash URLs are for historical comparisons. Preserve production `main`, canonical URLs, noindex and the preview exclusions for ads/analytics/Worker APIs. See [preview operations](../../site/preview/README.md).

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 2,
+  "date": "2026-11-03",
+  "classification": "answer-now",
+  "thesisDelta": "unchanged",
+  "eventKeys": [
+    "dart-primary-recheck-20261102800270",
+    "earnings-call-qa-2026-q3-20261102",
+    "pre-earnings-consensus-20261030"
+  ],
+  "sources": [
+    {
+      "label": "DART 연결 잠정실적",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261102800270",
+      "publishedAt": "2026-11-02",
+      "checkedAt": "2026-11-03"
+    },
+    {
+      "label": "하나증권 2차전지 리서치 콜 정리",
+      "url": "https://yeouidonews.com/go/482307",
+      "publishedAt": "2026-11-02",
+      "checkedAt": "2026-11-03"
+    },
+    {
+      "label": "유진투자증권 산업분석실 콜 정리",
+      "url": "https://tele.wiki/t/post/440312910",
+      "publishedAt": "2026-11-02",
+      "checkedAt": "2026-11-03"
+    },
+    {
+      "label": "회사 시세 위젯 · 2026-11-03 14:32 장중",
+      "url": "https://ir.gsifn.io/poscochemical/ir_current.html?koreng=1",
+      "publishedAt": "2026-11-03",
+      "checkedAt": "2026-11-03"
+    },
+    {
+      "label": "FnGuide CompanyWise · 10/30 과거 컨센서스",
+      "url": "https://comp.wisereport.co.kr/company/c1050001.aspx?cmp_cd=003670",
+      "publishedAt": "2026-10-30",
+      "dataAsOf": "2026-10-30",
+      "checkedAt": "2026-11-03"
+    }
+  ],
+  "followUpResolutions": [
+    "DART 이번 실적 원문 대조 완료",
+    "발표 전 시장 예상 복원: 매출·영업이익·지배주주 순이익; 전날 집계로 가장하지 않고 10/30 관측 명시"
+  ],
+  "priceAsOf": "2026-11-03 15:30 KST",
+  "priceVerifiedAt": "2026-11-03",
+  "priceMovePct": -3.0787448194197764,
+  "chartsRegenerated": false,
+  "quarterlySeriesUpdated": true,
+  "valuationRecomputed": true,
+  "valuationUnchanged": false,
+  "note": "기존 11/2 사건 Q&A 보완. 원 기준일과 최초 가치 역산을 보존하고 장중 관측·계산기를 별도 갱신. 원고에는 주가 차트가 없으며 8분기 실적 차트의 기초 실적은 동일. 작성자 기본 가정과 판단 유지. 가독성 개선: 6월 말 IR 순차입금 34,390억원으로 민감도 기준 수정; LFP/삼원계 혼합 효과 미검증을 명시. 11/3 15:30 시세 재확인. 분기 실적 차트는 그대로이며 주가 차트는 원고에 없음.",
+  "price": 163700,
+  "marketCap": 145605,
+  "requiredOperatingProfit": 8999.75
+}

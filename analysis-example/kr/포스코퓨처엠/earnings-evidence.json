@@ -1,0 +1,371 @@
+{
+  "schemaVersion": 1,
+  "company": {
+    "name": "포스코퓨처엠",
+    "market": "kr",
+    "ticker": "003670"
+  },
+  "asOf": "2026-11-02",
+  "verifiedAt": "2026-11-03",
+  "period": "2026Q3",
+  "accountingBasis": "K-IFRS 연결",
+  "unit": "억원",
+  "quarterBasis": "standalone quarter",
+  "marketSnapshot": {
+    "asOf": "2026-11-02T15:30:00+09:00",
+    "priceKRW": 168900,
+    "marketCapEokKRW": 150230,
+    "listedSharesThousands": 88946,
+    "sourceUrl": "https://ir.gsifn.io/poscochemical/ir_current.html?koreng=1",
+    "sourceRole": "company_linked_market_data_widget",
+    "verifiedAt": "2026-11-03",
+    "note": "회사 재무정보의 주가정보 위젯. 표시 시총을 사용하며 천주 단위 주식수 반올림값으로 정확 주식수 역산 금지. 현 시가총액은 확인됐으나 적용 배수·순차입금·사업 조건은 작성자 가정 또는 추가 검증 대상."
+  },
+  "verificationStatus": "q3_primary_verified",
+  "limitations": [
+    "2026-11-03 DART 연결 잠정실적 본문 직접 확인 완료. 반기보고서와 3Q IR 첨부는 이번 확인 범위에서 제외.",
+    "2024Q4~2026Q2 IR 반올림 시계열 중 2025Q3·2026Q2는 이번 DART 비교 분기 원문 수치로 대체.",
+    "영업현금흐름·투자지출·출하량의 같은 기준 8분기 시계열 미확보. null은 0이 아님.",
+    "시장 예상은 10/30 FnGuide 과거 시계열에서 복원. 원자료 확인은 11/3, 순이익은 지배주주 기준."
+  ],
+  "sources": [
+    {
+      "id": "dart-q3",
+      "title": "연결재무제표기준영업(잠정)실적(공정공시)",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261102800270",
+      "publishedAt": "2026-11-02",
+      "role": "primary",
+      "access": "read",
+      "period": "2026-07-01/2026-09-30",
+      "originalUnit": "백만원",
+      "status": "잠정",
+      "verifiedAt": "2026-11-03",
+      "documentNumber": "11637289",
+      "rawPath": "sources/dart-20261102800270.html.gz",
+      "textPath": "sources/dart-20261102800270.txt"
+    },
+    {
+      "id": "dart-h1",
+      "title": "2026년 반기보고서",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814000996",
+      "publishedAt": "2026-08-14",
+      "role": "primary",
+      "access": "failed",
+      "period": "2026-01-01/2026-06-30"
+    },
+    {
+      "id": "ir-list",
+      "title": "회사 IR 자료실",
+      "url": "https://www.poscofuturem.com/ir/reference.do",
+      "publishedAt": null,
+      "role": "primary",
+      "access": "read",
+      "note": "2026.3Q 실적발표 제목 확인, 첨부 미확보"
+    },
+    {
+      "id": "ir-q2",
+      "title": "회사 작성 2026년 2분기 실적발표 (IRGO 배포본)",
+      "url": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/S3Z25AQ9NDURNK_TD8AG6VQJF97FZY78J202673017483.pdf",
+      "publishedAt": "2026-07-30",
+      "role": "company_ir_redistribution",
+      "access": "read",
+      "pages": [
+        2,
+        9,
+        11
+      ],
+      "originalUnit": "억원",
+      "status": "잠정"
+    },
+    {
+      "id": "asiae-q3",
+      "title": "포스코퓨처엠 3분기 영업익 821억…전년比 23.2%↑",
+      "url": "https://www.asiae.co.kr/article/IT/2026110210514617533",
+      "publishedAt": "2026-11-02T10:51:00+09:00",
+      "role": "secondary_disclosure_quote",
+      "access": "read"
+    },
+    {
+      "id": "dartbrief-q3",
+      "title": "공시 접수번호 20261102800270 인용",
+      "url": "https://dartbrief.com/disclosures/20261102800270",
+      "publishedAt": "2026-11-02",
+      "role": "secondary_disclosure_quote",
+      "access": "read"
+    },
+    {
+      "id": "herald-q3",
+      "title": "포스코퓨처엠, 3분기 영업익 821억원…양극재 회복에 전년보다 23.2%↑",
+      "url": "https://biz.heraldcorp.com/article/10922633",
+      "publishedAt": "2026-11-02T11:34:32+09:00",
+      "role": "secondary_management_quote",
+      "access": "read"
+    },
+    {
+      "id": "yna-consensus",
+      "title": "포스코퓨처엠 3분기 영업이익 821억원…작년 동기 대비 23%↑",
+      "url": "https://www.yna.co.kr/amp/view/AKR20261102057100527",
+      "publishedAt": "2026-11-02T10:18:00+09:00",
+      "role": "secondary_consensus_quote",
+      "access": "read"
+    },
+    {
+      "id": "newspim-consensus",
+      "title": "포스코퓨처엠, 3분기 영업익 821억원…양극재 회복에 23% 증가",
+      "url": "https://web3.newspim.com/news/view/20261102001113",
+      "publishedAt": "2026-11-02T14:27:00+09:00",
+      "role": "secondary_consensus_quote",
+      "access": "read"
+    }
+  ],
+  "actual": {
+    "revenue": 8347.71,
+    "operatingProfit": 821.44,
+    "netIncome": 464.28,
+    "operatingMarginPct": 9.840303508387333,
+    "status": "provisional_primary_verified",
+    "sourceIds": [
+      "dart-q3"
+    ],
+    "parentNetIncome": 424.21
+  },
+  "cumulative": {
+    "period": "2026-01-01/2026-09-30",
+    "revenue": 22717.43,
+    "operatingProfit": 1265.32,
+    "sourceIds": [
+      "dart-q3"
+    ],
+    "status": "provisional_primary_verified"
+  },
+  "authorPriorEstimate": {
+    "value": null,
+    "status": "사전 추정 없음"
+  },
+  "consensusReferences": [
+    {
+      "provider": "연합인포맥스",
+      "metric": "operatingProfit",
+      "value": 148,
+      "period": "2026Q3",
+      "snapshotAt": null,
+      "quotedAfterRelease": true,
+      "sourceId": "yna-consensus"
+    },
+    {
+      "provider": "FnGuide",
+      "metric": "operatingProfit",
+      "value": 194,
+      "period": "2026Q3",
+      "snapshotAt": null,
+      "quotedAfterRelease": true,
+      "sourceId": "newspim-consensus"
+    }
+  ],
+  "quarters": [
+    {
+      "period": "2024Q4",
+      "revenue": 7232,
+      "operatingProfit": -413,
+      "netIncome": -2759,
+      "operatingCashFlow": null,
+      "capex": null,
+      "shipments": null,
+      "kind": "actual",
+      "sourceId": "ir-q2",
+      "sourcePage": 11
+    },
+    {
+      "period": "2025Q1",
+      "revenue": 8454,
+      "operatingProfit": 171,
+      "netIncome": 489,
+      "operatingCashFlow": null,
+      "capex": null,
+      "shipments": null,
+      "kind": "actual",
+      "sourceId": "ir-q2",
+      "sourcePage": 11
+    },
+    {
+      "period": "2025Q2",
+      "revenue": 6609,
+      "operatingProfit": 8,
+      "netIncome": -355,
+      "operatingCashFlow": null,
+      "capex": null,
+      "shipments": null,
+      "kind": "actual",
+      "sourceId": "ir-q2",
+      "sourcePage": 11
+    },
+    {
+      "period": "2025Q3",
+      "revenue": 8747.98,
+      "operatingProfit": 666.7,
+      "netIncome": 464.49,
+      "operatingCashFlow": null,
+      "capex": null,
+      "shipments": null,
+      "kind": "actual_provisional",
+      "sourceId": "dart-q3",
+      "verificationStatus": "primary_verified"
+    },
+    {
+      "period": "2025Q4",
+      "revenue": 5576,
+      "operatingProfit": -518,
+      "netIncome": -232,
+      "operatingCashFlow": null,
+      "capex": null,
+      "shipments": null,
+      "kind": "actual",
+      "sourceId": "ir-q2",
+      "sourcePage": 11
+    },
+    {
+      "period": "2026Q1",
+      "revenue": 7575,
+      "operatingProfit": 177,
+      "netIncome": 63,
+      "operatingCashFlow": null,
+      "capex": null,
+      "shipments": null,
+      "kind": "actual",
+      "sourceId": "ir-q2",
+      "sourcePage": 11
+    },
+    {
+      "period": "2026Q2",
+      "revenue": 6794.57,
+      "operatingProfit": 266.89,
+      "netIncome": 246.55,
+      "operatingCashFlow": null,
+      "capex": null,
+      "shipments": null,
+      "kind": "actual_provisional",
+      "sourceId": "dart-q3",
+      "verificationStatus": "primary_verified"
+    },
+    {
+      "period": "2026Q3",
+      "revenue": 8347.71,
+      "operatingProfit": 821.44,
+      "netIncome": 464.28,
+      "operatingCashFlow": null,
+      "capex": null,
+      "shipments": null,
+      "kind": "actual_provisional",
+      "sourceId": "dart-q3",
+      "verificationStatus": "primary_verified"
+    }
+  ],
+  "segments": [
+    {
+      "name": "양극재",
+      "revenue": 4323,
+      "operatingProfit": null,
+      "period": "2026Q3",
+      "sourceId": "herald-q3",
+      "verificationStatus": "pending_primary"
+    },
+    {
+      "name": "음극재",
+      "revenue": 273,
+      "operatingProfit": null,
+      "period": "2026Q3",
+      "sourceId": "herald-q3",
+      "verificationStatus": "pending_primary"
+    },
+    {
+      "name": "에너지소재",
+      "revenue": 4596,
+      "operatingProfit": 518,
+      "period": "2026Q3",
+      "sourceId": "herald-q3",
+      "verificationStatus": "pending_primary",
+      "note": "양극재와 음극재의 합계, 중복 합산 금지"
+    },
+    {
+      "name": "기초소재",
+      "revenue": 3752,
+      "operatingProfit": 303,
+      "period": "2026Q3",
+      "sourceId": "herald-q3",
+      "verificationStatus": "pending_primary"
+    }
+  ],
+  "profitDrivers": [
+    {
+      "driver": "양극재 판매량 및 판가 회복",
+      "amount": null,
+      "sourceId": "herald-q3",
+      "role": "reported_management_explanation"
+    },
+    {
+      "driver": "고객 계약 미이행 보상금 반영",
+      "amount": null,
+      "sourceId": "herald-q3",
+      "role": "reported_management_explanation"
+    },
+    {
+      "driver": "음극재 재고평가손실",
+      "amount": null,
+      "sourceId": "herald-q3",
+      "role": "reported_management_explanation"
+    },
+    {
+      "driver": "기초소재 화성제품 가격·라임 물량",
+      "amount": null,
+      "sourceId": "herald-q3",
+      "role": "reported_management_explanation"
+    },
+    {
+      "driver": "정량 분해 불가한 차이",
+      "amount": null,
+      "role": "unresolved",
+      "note": "금액 미확보. 차이를 0이나 임의 잔차로 채우지 않음"
+    }
+  ],
+  "managementCommitments": [
+    {
+      "statedAt": "2026-07-30",
+      "promise": "베트남 인조흑연 2027년 하반기 시운전",
+      "due": "2027H2",
+      "status": "판단 보류",
+      "sourceId": "ir-q2",
+      "sourcePage": 9,
+      "note": "2026Q3 원문에서 일정 변경 재검증 필요"
+    },
+    {
+      "statedAt": "2026-07-30",
+      "promise": "새만금 구형흑연 2027년 상반기 시운전",
+      "due": "2027H1",
+      "status": "판단 보류",
+      "sourceId": "ir-q2",
+      "sourcePage": 9,
+      "note": "계약총액을 확정 매출로 사용하지 않음"
+    }
+  ],
+  "verificationHistory": [
+    {
+      "date": "2026-11-02",
+      "status": "공시 인용 보도 대조"
+    },
+    {
+      "date": "2026-11-03",
+      "status": "연결 잠정실적 DART 본문 직접 확인"
+    }
+  ],
+  "preEarningsConsensus": {
+    "evidencePath": "pre-earnings-consensus-2026-q3.json",
+    "asOf": "2026-10-30",
+    "recoveredAt": "2026-11-03",
+    "values": {
+      "revenue": 7720.24,
+      "operatingProfit": 194.06,
+      "parentNetIncome": 84.6
+    },
+    "incomeScope": "owners-of-parent"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "companyId": "kr/003670",
+  "period": "2026-Q3",
+  "callDate": "2026-11-02",
+  "verifiedAt": "2026-11-03",
+  "officialTranscriptVerified": false,
+  "presentation": "Questions and answers paraphrased; only labeled short excerpts are verbatim broker-summary text, not verified company transcript",
+  "sources": [
+    {
+      "id": "call-hana",
+      "url": "https://yeouidonews.com/go/482307",
+      "originalUrl": "https://t.me/ITforYouFromHana/11032",
+      "author": "하나증권 2차전지 리서치",
+      "publishedAt": "2026-11-02",
+      "publishedTime": "11:56",
+      "type": "broker-call-summary-repost",
+      "locator": "번호 1~10 질의응답 항목"
+    },
+    {
+      "id": "call-eugene",
+      "url": "https://tele.wiki/t/post/440312910",
+      "author": "유진투자증권 산업분석실",
+      "publishedAt": "2026-11-02",
+      "publishedTime": "15:53",
+      "type": "broker-call-summary-repost",
+      "locator": "[Q&A] 질문 제목",
+      "originalChannel": "eugene2team"
+    }
+  ],
+  "topicSourceMap": {
+    "compensation": [
+      "call-eugene"
+    ],
+    "lfp-cost": [
+      "call-hana"
+    ],
+    "capacity": [
+      "call-eugene"
+    ],
+    "vietnam-graphite": [
+      "call-hana",
+      "call-eugene"
+    ],
+    "capex": [
+      "call-eugene"
+    ],
+    "sales-guidance": [
+      "call-eugene"
+    ],
+    "solid-state": [
+      "call-hana"
+    ],
+    "sodium-timeline": [
+      "call-hana",
+      "call-eugene"
+    ]
+  },
+  "cautions": [
+    "회사 공식 속기록 아님; 미러 원본을 독립 근거로 중복 집계하지 않음",
+    "생산능력·판매량·계약 물량·샘플 수요를 구분",
+    "소듐 일정은 셀 출하·시장 진입·설치 단계가 서로 다름",
+    "원문 전체 및 전화·이메일 연락처는 복제하지 않음"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "companyId": "kr/003670",
+  "period": "2026-Q3",
+  "releasedAt": "2026-11-02",
+  "targetCutoff": "2026-11-01",
+  "selectedSnapshotAt": "2026-10-30",
+  "recoveredAt": "2026-11-03",
+  "selection": "발표 전날까지의 원자료에서 확인한 최신 과거 관측점. 현재 추정치 표를 소급하지 않고 날짜·분기가 명시된 과거 시계열을 사용. 발표직전(E) 표와 교차 확인.",
+  "provider": "FnGuide CompanyWise",
+  "aggregation": "최근 3개월 증권사 추정치 평균 (제공자 정의); 지표별 기여 증권사 수 미제공",
+  "sourcePage": "https://comp.wisereport.co.kr/company/c1050001.aspx?cmp_cd=003670",
+  "incomeDefinition": "IFRS 연결 순이익은 지배주주 기준. 총 당기순이익과 교체 비교 금지.",
+  "metrics": [
+    {
+      "key": "revenue",
+      "accountCode": "121000",
+      "snapshotDate": "2026-10-30",
+      "period": "2026-Q3",
+      "unit": "억원",
+      "basis": "K-IFRS 연결 · 분기",
+      "value": 7720.24,
+      "rawValue": 7720.2352941176005,
+      "actual": 8347.71,
+      "delta": 627.47,
+      "deltaPct": 8.13,
+      "locator": "chartData.TRD_DT=2026/10/30, YYMM=202609, CNS_FY0; tableData 발표직전(E) 교차 확인",
+      "sourceUrl": "https://comp.wisereport.co.kr/company/ajax/c1050001_data.aspx?flag=5&cmp_cd=003670&finGubun=IFRSL&frq=1&sDT=20261030&acc_cd=121000&chartType=image",
+      "rawSha256": "dc0cf00f0e6f2989b3bfcd5c5dc50dd76f7ada8f54cfd68392672ce340542fd9"
+    },
+    {
+      "key": "operatingProfit",
+      "accountCode": "121500",
+      "snapshotDate": "2026-10-30",
+      "period": "2026-Q3",
+      "unit": "억원",
+      "basis": "K-IFRS 연결 · 분기",
+      "value": 194.06,
+      "rawValue": 194.05882352940003,
+      "actual": 821.44,
+      "delta": 627.38,
+      "deltaPct": 323.29,
+      "locator": "chartData.TRD_DT=2026/10/30, YYMM=202609, CNS_FY0; tableData 발표직전(E) 교차 확인",
+      "sourceUrl": "https://comp.wisereport.co.kr/company/ajax/c1050001_data.aspx?flag=5&cmp_cd=003670&finGubun=IFRSL&frq=1&sDT=20261030&acc_cd=121500&chartType=image",
+      "rawSha256": "80f38514b55b2186163373d652196932b9331b5b7d54e203480984aea4add414"
+    },
+    {
+      "key": "parentNetIncome",
+      "accountCode": "122700",
+      "snapshotDate": "2026-10-30",
+      "period": "2026-Q3",
+      "unit": "억원",
+      "basis": "K-IFRS 연결 · 분기",
+      "value": 84.6,
+      "rawValue": 84.60000000000001,
+      "actual": 424.21,
+      "delta": 339.61,
+      "deltaPct": 401.43,
+      "locator": "chartData.TRD_DT=2026/10/30, YYMM=202609, CNS_FY0; tableData 발표직전(E) 교차 확인",
+      "sourceUrl": "https://comp.wisereport.co.kr/company/ajax/c1050001_data.aspx?flag=5&cmp_cd=003670&finGubun=IFRSL&frq=1&sDT=20261030&acc_cd=122700&chartType=image",
+      "rawSha256": "48c3998700fde3bf42fdef71682e58deceb5ec079b80bfc222da020601496bf2"
+    }
+  ],
+  "alternateEvidence": [
+    {
+      "source": "LS증권 2026-10-21 p1",
+      "url": "https://consensus.hankyung.com/analysis/downpdf?report_idx=653171",
+      "metric": "2026Q3 영업이익 컨센서스",
+      "value": 200,
+      "unit": "억원",
+      "use": "발표 전 관측 참고; 10/30 값과 평균내지 않음"
+    },
+    {
+      "source": "발표 후 리포트·기사의 예상치 인용",
+      "use": "별도 집계 시점·표본으로 분리. 11/3 작성 리포트를 발표 전 문서로 소급하지 않음"
+    },
+    {
+      "source": "피플로 컨센서스 7720/194/27",
+      "url": "https://pflow.keywordegg.com/domestic/003670/earnings",
+      "use": "정의·시점이 명시된 원 제공자 시계열 우선. 순이익27은 원자료84.6과 달라 미채택."
+    }
+  ]
+}

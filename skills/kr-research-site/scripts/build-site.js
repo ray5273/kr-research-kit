@@ -5,6 +5,7 @@
 // pages, sitemap.xml, feed.xml, robots.txt, llms.txt, llms-full.txt, urls.json
 // and — only when adsense.client is configured — ads.txt and ad slots.
 
+const research = require("./research");
 const {related, neighbors} = require("./discovery");
 const {shareCard, coverCard} = require("./share-card");
 const crypto = require("crypto");
@@ -234,6 +235,14 @@ function markCitationLinks(markdown) {
 
 // Keep the label of links inside a sentence and add a numbered footnote marker;
 // numbering follows first appearance in the body, then the remaining Sources entries.
+// A footnote label must say what the document is: publisher or broker plus a date.
+// "11월 원문" or a bare broker name cannot be told apart once the list is long.
+const LABEL_DATE_RX = /\d{4}[-./]\d{1,2}|\d{1,2}[/.]\d{1,2}|\d{1,2}월(?:\s*\d{1,2}일)?|\d{8,}/;
+function isVagueSourceLabel(label) {
+  const text = String(label || "").trim();
+  return !LABEL_DATE_RX.test(text) || text.replace(LABEL_DATE_RX, "").replace(/[\s·—()-]/g, "").length < 4;
+}
+
 function collectCitations(bodyMarkdown, sourceLines) {
   const sources = [];
   const byUrl = new Map();
@@ -317,7 +326,8 @@ function renderInline(text, ctx) {
   value = value.replace(/\[(red|blue|brown):\s*([^\]]+)]/g, (_match, color, inner) => `<span class="${TONE_CLASS[color]}">${inner.trim()}</span>`);
   value = value.replace(/\*\*([^*]+?)\*\*/g, "<strong>$1</strong>");
   value = value.replace(/&lt;br\s*\/?&gt;/gi, "<br>");
-  value = value.replace(/⟦cite:(\d+)⟧/g, (_match, n) => `<sup class="cite"><a href="#src-${n}" aria-label="출처 ${n}">[${n}]</a></sup>`);
+  value = value.replace(/\s+(?=⟦cite:)/g, "\u2060");
+  value = value.replace(/⟦cite:(\d+)⟧/g, (_match, n) => `\u2060<sup class="cite"><a href="#src-${n}" aria-label="출처 ${n}">[${n}]</a></sup>`);
   value = value.replace(/⟦code:(\d+)⟧/g, (_match, index) => `<code>${escapeHtml(codes[Number(index)])}</code>`);
   return value;
 }
@@ -341,6 +351,12 @@ function numericColumns(table) {
 }
 
 function renderTable(table, ctx) {
+  // Report opinions need the article's full reading width, rather than a narrow cell.
+  if (table.headers.join('|') === '작성일|증권사·원문|당시 의견·목표가|핵심 의견') {
+    const cards = table.rows.map(([date, broker, rating, opinion]) => `<article class="report-note"><header><strong>${renderInline(broker, ctx)}</strong><time datetime="${escapeHtml(date)}">${renderInline(date, ctx)}</time></header><p class="report-rating">${renderInline(rating, ctx)}</p><p>${renderInline(opinion, ctx)}</p></article>`);
+    const previous = cards.length > 2 ? `<details class="report-archive"><summary>이전 리포트 ${cards.length - 2}건 <span>의견 펼쳐 보기</span></summary><div class="report-notes">${cards.slice(2).join('\n')}</div></details>` : '';
+    return `<div class="report-notes">${cards.slice(0, 2).join('\n')}</div>${previous}`;
+  }
   // Markdown alignment hints are ignored: text columns stay left, numeric columns align right.
   const numeric = numericColumns(table);
   const cls = column => (numeric[column] ? ' class="num"' : "");
@@ -406,6 +422,20 @@ function renderBlocks(markdown, ctx) {
     }
     const heading = line.match(/^(#{1,6})\s+(.+?)\s*#*\s*$/);
     if (heading) {
+      const question = heading[1] === '###' && heading[2].match(/^Q([1-9]\d*)[.)]\s+(.+)$/);
+      if (question) {
+        const body = [];
+        let fenced = false;
+        i += 1;
+        while (i < lines.length) {
+          if (!fenced && /^#{1,3}\s+/.test(lines[i])) break;
+          if (/^\s*```/.test(lines[i])) fenced = !fenced;
+          body.push(lines[i]);
+          i += 1;
+        }
+        html.push(`<article class="qa-card"><header><h3><span class="qa-number">Q${question[1]}</span><span>${renderInline(question[2], ctx)}</span></h3></header><div class="qa-content">${renderBlocks(body.join('\n'), {...ctx, qaCard:true})}</div></article>`);
+        continue;
+      }
       const level = Math.min(6, Math.max(3, heading[1].length));
       html.push(`<h${level}>${renderInline(heading[2], ctx)}</h${level}>`);
       i += 1;
@@ -460,6 +490,13 @@ function renderBlocks(markdown, ctx) {
       i += 1;
     }
     const text = paragraph.join(" ");
+    const answer = ctx.qaCard && text.match(/^\*\*(회사 답변 요약|회사 답변|분석|다음 확인):\*\*\s*(.+)$/);
+    if (answer) {
+      const company = answer[1].startsWith('회사 답변');
+      const label = answer[1] === '회사 답변 요약' ? '회사 답변 · 요약' : answer[1];
+      html.push(`<div class="${company ? 'qa-answer' : 'qa-followup'}"><p class="qa-label">${label}</p><p>${renderInline(answer[2], ctx)}</p></div>`);
+      continue;
+    }
     html.push(`<p${SOURCE_NOTE_RX.test(text) ? ' class="src-note"' : ""}>${renderInline(text, ctx)}</p>`);
   }
   return html.join("\n");
@@ -593,6 +630,7 @@ function loadArticle(entry, options) {
   const metadata = researchMetadata(markdown);
   const asOfDate = (metadata["기준일"] || "").match(/\d{4}-\d{2}-\d{2}/)?.[0];
   assert(asOfDate, `Memo has no YYYY-MM-DD 기준일 and cannot be published: ${entry.memo}`);
+  const researchData = research.loadResearch(entry, {root, safety, asOfDate});
   const updatedMeta = (metadata["최근 업데이트일"] || "").match(/\d{4}-\d{2}-\d{2}/)?.[0];
   const researchDate = [asOfDate, updatedMeta, ...updateDates(markdown)].filter(Boolean).sort().at(-1);
   const dateModified = [researchDate, entry.datePublished, entry.dateModified].filter(Boolean).sort().at(-1);
@@ -630,6 +668,9 @@ function loadArticle(entry, options) {
     .flatMap(section => section.body.split(/\r?\n/))
     .filter(line => line.trim());
   const cited = collectCitations(parts.join("\n"), sourceLines);
+  // Legacy memos predate the label rule; only structured research pages are held to it.
+  const vague = entry.analysisData ? cited.sources.filter(source => source.url && isVagueSourceLabel(source.label)) : [];
+  if (vague.length) console.warn(`[sources] ${entry.memo}: ${vague.length} footnote label(s) lack a publisher+date — add them to ## Sources: ${vague.slice(0, 5).map(source => `"${source.label}"`).join(", ")}`);
   const citedSections = parseSections(cited.body);
 
   const answerSection = citedSections.find(section => section.heading === ANSWER_HEADING);
@@ -649,6 +690,8 @@ function loadArticle(entry, options) {
   const bodyChars = citedSections.reduce((sum, section) => sum + plainText(section.body).length, 0);
   return {
     entry,
+    companyId: research.identity({...entry, market, ticker}),
+    research: researchData,
     slug: entry.slug,
     url: `${config.baseUrl}/${entry.slug}/`,
     memoPath,
@@ -710,7 +753,7 @@ function adSlot(config, name) {
 
 function navHtml(site, section) {
   const current = key => (key === section ? ' aria-current="page"' : "");
-  const links = [];
+  const links = [`<a href="/earnings/"${current("earnings")}>실적 리뷰</a>`];
   for (const market of site.markets) links.push(`<a href="/${market}/"${current(market)}>${escapeHtml(MARKET_SHORT[market] || MARKET_LABELS[market] || market)}</a>`);
   if (site.pages.some(page => page.slug === "about")) links.push(`<a href="/about/"${current("about")}>소개</a>`);
   links.push(`<a href="/search/"${current("search")}>검색</a>`);
@@ -828,15 +871,25 @@ function renderArticle(article, site, outDir, safety) {
   const { config } = site;
   const resolveImage = createImageResolver(article, outDir, safety, config);
   const ctx = { resolveImage, baseUrl: config.baseUrl };
-  const bodySections = article.sections.filter(section => section.heading !== UPDATES_HEADING);
+  const bodySections = article.sections.filter(section => section.heading !== UPDATES_HEADING).map(section => article.research && section.heading === "한눈에 보는 결론" ? {...section,heading:"이번 실적의 판단 기준"} : section);
   const midIndex = bodySections.length >= 4 ? Math.floor(bodySections.length / 2) : -1;
-  const bodyHtml = [];
+  const bodyHtml = [], bodyToc=[];
+  const parts=research.widgetParts(article.research), remaining=new Set(Object.keys(parts));
+  const take=(key,embedded=false)=>{if(!remaining.has(key))return '';remaining.delete(key);return `<div class="research-widgets">${embedded?parts[key].replace(/<h2>[^<]*<\/h2>/,''):parts[key]}</div>`;};
   bodySections.forEach((section, index) => {
     if (index === midIndex) bodyHtml.push(adSlot(config, "midArticle"));
-    bodyHtml.push(`<h2 id="s-${index + 1}">${renderInline(section.heading, ctx)}</h2>`, renderBlocks(section.body, ctx));
+    bodyToc.push([`s-${index+1}`,plainText(section.heading)]);
+    bodyHtml.push(`<h2 id="s-${index + 1}">${renderInline(section.heading, ctx)}</h2>`);
+    if(/발표 전 기대/.test(section.heading)) bodyHtml.push(take('comparison',true));
+    bodyHtml.push(renderBlocks(section.body, ctx));
+    if(/실적 차이의 원인/.test(section.heading)) {const charts=take('charts');if(charts){bodyHtml.push(charts);bodyToc.push(['quarterly-metrics','8분기 핵심 지표']);}}
+    if(/다음 해 이익/.test(section.heading)) {const calculator=take('calculator');if(calculator){bodyHtml.push(calculator);bodyToc.push(['scenario-calculator','가정 조절 계산기']);}}
+    if(/경영진 약속/.test(section.heading)) bodyHtml.push(take('promises',true));
+    if(/다음 분기 검증/.test(section.heading)) bodyHtml.push(take('checks',true));
     if (index === 0) bodyHtml.push(adSlot(config, "afterSummary"));
   });
   if (!bodySections.length) bodyHtml.push(adSlot(config, "afterSummary"));
+  for(const key of [...remaining]) {bodyHtml.push(take(key));if(key==='comparison')bodyToc.push(['earnings-comparison','실적 비교표']);if(key==='charts')bodyToc.push(['quarterly-metrics','8분기 핵심 지표']);if(key==='calculator')bodyToc.push(['scenario-calculator','가정 조절 계산기']);}
   article.cardImage = coverCard(article, outDir);
 
   const updates = article.sections.find(section => section.heading === UPDATES_HEADING);
@@ -849,14 +902,14 @@ function renderArticle(article, site, outDir, safety) {
     : "";
   const tocItems = [
     ["answer", "핵심 답변"],
-    ...bodySections.map((section, index) => [`s-${index + 1}`, plainText(section.heading)]),
+    ...bodyToc,
     ...(updates ? [["updates", UPDATES_HEADING]] : []),
     ...(article.sources.length ? [["sources", SOURCES_HEADING]] : []),
   ];
   const shareImage = article.shareImage || (article.shareImage = shareCard(article, config, outDir));
   const content = fill(site.templates.article, {
     toc: `<nav class="toc" aria-label="목차">${tocItems.map(([id, label], index) => `<a href="#${id}"${index === 0 ? ' class="on"' : ""}>${escapeHtml(truncate(label, 24))}</a>`).join("")}</nav>`,
-    tocMobile: tocItems.length > 2 ? `<details class="toc-mobile"><summary>목차 (${tocItems.length})</summary><ol>${tocItems.map(([id, label]) => `<li><a href="#${id}">${escapeHtml(label)}</a></li>`).join("")}</ol></details>` : "",
+    tocMobile: tocItems.length > 2 ? `<details class="toc-mobile"><summary><span class="toc-icon" aria-hidden="true">☷</span><span class="toc-title">이 글의 목차<small data-toc-current>원하는 부분으로 바로 이동</small></span><span class="toc-count">${tocItems.length}</span><span class="toc-chevron" aria-hidden="true"></span></summary><nav aria-label="모바일 목차"><ol>${tocItems.map(([id, label],index) => `<li><a href="#${id}"${index===0?' class="on" aria-current="location"':''}><span class="toc-number" aria-hidden="true">${String(index+1).padStart(2,'0')}</span><span>${escapeHtml(label)}</span></a></li>`).join("")}</ol></nav></details>` : "",
     crumbs: `<a href="/">홈</a><span aria-hidden="true">/</span><a href="/${article.market}/">${escapeHtml(MARKET_LABELS[article.market] || article.market)}</a>`,
     keyLinks: keyLinksHtml(bodySections),
     dates: `<p class="dates"><span><b>자료 기준일</b><time datetime="${article.asOfDate}">${article.asOfDate}</time></span>${article.researchDate !== article.asOfDate ? `<span><b>자료 업데이트</b><time datetime="${article.researchDate}">${article.researchDate}</time></span>` : ""}</p>`,
@@ -871,9 +924,11 @@ function renderArticle(article, site, outDir, safety) {
     more: moreHtml(article, site),
     answerLead: renderInline(article.answerLead, ctx),
     answerBody: article.answerBody ? renderBlocks(article.answerBody, ctx) : "",
+    nextCheck: research.nextCheck(article.research),
     asOfDate: article.asOfDate,
     dateModified: article.dateModified,
     legend,
+    research: "",
     body: bodyHtml.filter(Boolean).join("\n"),
     updates: updatesHtml,
     sources: sourcesHtml,
@@ -889,6 +944,7 @@ function renderArticle(article, site, outDir, safety) {
     ogType: "article",
     image: shareImage,
     head: [
+      `<script src="/scenario.js" defer></script><script src="/research-client.js" defer></script>`,
       `<script src="/engagement.js" defer></script>`,
       ...(config.kakao?.javascriptKey || process.env.KAKAO_JAVASCRIPT_KEY ? [`<script defer src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.4/kakao.min.js" crossorigin="anonymous"></script>`] : []),
       `<meta property="article:published_time" content="${isoKst(article.datePublished)}">`,
@@ -913,7 +969,14 @@ function tagHref(tag) {
 
 // Highlights the section being read and keeps it visible inside a long TOC;
 // the page works without it.
-const TOC_SCRIPT = `<script>(()=>{const t=document.querySelector(".toc"),l=[...document.querySelectorAll(".toc a")];document.querySelectorAll(".toc-mobile a").forEach(a=>a.addEventListener("click",()=>a.closest("details").open=false));if(!l.length||!("IntersectionObserver"in window))return;const m=new Map(l.map(a=>[decodeURIComponent(a.hash.slice(1)),a]));const o=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting){const a=m.get(e.target.id);if(!a)continue;l.forEach(x=>{x.classList.remove("on");x.removeAttribute("aria-current")});a.classList.add("on");a.setAttribute("aria-current","location");if(a.offsetTop<t.scrollTop||a.offsetTop+a.offsetHeight>t.scrollTop+t.clientHeight)t.scrollTop=a.offsetTop-t.clientHeight/2}},{rootMargin:"-10% 0px -75% 0px"});m.forEach((a,id)=>{const e=document.getElementById(id);if(e)o.observe(e)})})();</script>`;
+const TOC_SCRIPT = `<script>(()=>{
+const desktop=document.querySelector('.toc'), links=[...document.querySelectorAll('.toc a,.toc-mobile a')], current=document.querySelector('[data-toc-current]');
+document.querySelectorAll('.toc-mobile a').forEach(a=>a.addEventListener('click',()=>{a.closest('details').open=false;const target=document.getElementById(decodeURIComponent(a.hash.slice(1)));if(target){target.setAttribute('tabindex','-1');target.focus({preventScroll:true})}}));
+if(!links.length||!('IntersectionObserver' in window))return;
+const groups=new Map();links.forEach(a=>{const id=decodeURIComponent(a.hash.slice(1));groups.set(id,[...(groups.get(id)||[]),a])});
+const observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting){const active=groups.get(entry.target.id);if(!active)continue;links.forEach(a=>{a.classList.remove('on');a.removeAttribute('aria-current')});active.forEach(a=>{a.classList.add('on');a.setAttribute('aria-current','location')});if(current)current.textContent=active[0].textContent.trim();const a=active.find(a=>a.closest('.toc'));if(a&&desktop&&(a.offsetTop<desktop.scrollTop||a.offsetTop+a.offsetHeight>desktop.scrollTop+desktop.clientHeight))desktop.scrollTop=a.offsetTop-desktop.clientHeight/2}},{rootMargin:'-140px 0px -50% 0px'});
+groups.forEach((_a,id)=>{const target=document.getElementById(id);if(target)observer.observe(target)})
+})();</script>`;
 
 // Executive-summary shortcuts point at sections the article already has and add
 // no text of their own, so they cannot introduce an opinion the memo lacks.
@@ -936,7 +999,7 @@ function chipsHtml(article, { exchange = false } = {}) {
   const market = MARKET_SHORT[article.market] || MARKET_LABELS[article.market] || article.market;
   const ticker = [exchange ? article.exchange : "", article.ticker].filter(Boolean).join(" · ");
   return [
-    article.company ? `<span class="co">${escapeHtml(article.company)}</span>` : "",
+    article.company ? (exchange && research.companyHref(article) ? `<a class="co" href="${research.companyHref(article)}">${escapeHtml(article.company)}</a>` : `<span class="co">${escapeHtml(article.company)}</span>`) : "",
     `<span class="mk">${escapeHtml(market)}</span>`,
     article.archive ? '<span class="arc">기록 글</span>' : "",
     ticker ? `<span class="tk">${escapeHtml(ticker)}</span>` : "",
@@ -968,7 +1031,7 @@ function rowHtml(article, rank) {
   const tags = [
     `<span class="mk">${escapeHtml(market)}</span>`,
     ...article.sectors.slice(0, 1).map(sector => `<span>${escapeHtml(sector)}</span>`),
-    article.archive ? "<span>기록 글</span>" : "",
+    article.archive ? '<span title="자료 기준일 당시 수치·판단 보존">기록 글</span>' : "",
     article.stance ? `<span class="badge ${article.stance[0]}">${article.stance[1]}</span>` : "",
   ].filter(Boolean).join("");
   const updated = article.researchDate !== article.asOfDate ? `<span>자료 업데이트 ${article.researchDate}</span>` : "";
@@ -1170,13 +1233,13 @@ function buildSite(options) {
   const slugs = new Set();
   const articles = published.articles.map(entry => {
     assert(!slugs.has(entry.slug), `Duplicate slug in published.json: ${entry.slug}`);
-    assert(!/^(admin|api|search|share)(\/|$)/.test(entry.slug), `Reserved application slug: ${entry.slug}`);
+    assert(!/^(admin|api|search|share|earnings|companies)(\/|$)/.test(entry.slug), `Reserved application slug: ${entry.slug}`);
     slugs.add(entry.slug);
     return loadArticle(entry, { root, safety, config });
   }).map((article, order) => Object.assign(article, { order })).sort((a, b) => b.researchDate.localeCompare(a.researchDate) || b.asOfDate.localeCompare(a.asOfDate) || a.slug.localeCompare(b.slug));
 
   const pages = loadPages(options.pagesDir, safety);
-  assert(pages.every(page => !/^(admin|api|search|share)(\/|$)/.test(page.slug)), "Reserved application page slug");
+  assert(pages.every(page => !/^(admin|api|search|share|earnings|companies)(\/|$)/.test(page.slug)), "Reserved application page slug");
   const markets = [...new Set(articles.map(article => article.market))].sort((a, b) => Object.keys(MARKET_LABELS).indexOf(a) - Object.keys(MARKET_LABELS).indexOf(b));
   const templates = Object.fromEntries(["layout", "article", "index"].map(name => [name, fs.readFileSync(path.join(TEMPLATE_DIR, `${name}.html`), "utf8")]));
   const site = { config, templates, pages, markets, articles, buildYear: options.buildYear || new Date().getFullYear() };
@@ -1243,6 +1306,22 @@ function buildSite(options) {
     robots: "noindex",
     content: `<div class="narrow page"><h1>페이지를 찾을 수 없습니다</h1><p>주소가 바뀌었거나 삭제된 글일 수 있습니다.</p><p><a href="/">홈으로 가기</a> · <a href="/search/">리서치 검색</a></p></div>`,
   }));
+
+  const companyPages = research.companyPages(articles);
+  for (const page of companyPages) {
+    const html = renderLayout(site, {title:`${page.name} 리서치 이력 | ${config.siteName}`, description:`${page.name} 실적과 판단 변경 이력`, canonical:`${config.baseUrl}${page.url}`, content:page.content});
+    writeFile(path.join(outDir, page.url, "index.html"), html);
+    record(`${config.baseUrl}${page.url}`,page.updatedAt,html);
+  }
+  const earnings = articles.filter(a=>a.entry.articleType === 'earnings-review');
+  const periods = [...new Set(earnings.map(a=>a.entry.period || ''))].sort().reverse();
+  const verdictChip = a => a.research?.verdict ? `<p class="verdict-line"><span class="verdict">${escapeHtml(a.research.verdict)}</span>${a.research.nextCheck ? ` 다음 확인 ${escapeHtml(a.research.nextCheck.expected)}` : ''}</p>` : '';
+  const earningsList = periods.map(period=>`<section class="period-group"><h2 class="period-head">${escapeHtml(period || '분기 미지정')}</h2>${earnings.filter(a=>(a.entry.period || '')===period).map(a=>rowHtml(a)+verdictChip(a)).join('')}</section>`).join('');
+  const archiveLegend = earnings.some(a=>a.archive) ? '<p class="src-note">기록 글: 자료 기준일 당시의 수치와 판단을 그대로 보존한 글입니다. 이후 변동은 반영하지 않습니다.</p>' : '';
+  const earningsHtml = renderLayout(site, {title:`실적 리뷰 | ${config.siteName}`, description:'발표 전 기대, 실제 결과, 추정 변경과 다음 분기 검증', canonical:`${config.baseUrl}/earnings/`,section:'earnings',content:`<div class="wrap"><header class="list-head"><h1>실적 리뷰</h1><p>발표 전 기대 → 실제 결과 → 추정 변경 → 다음 분기 검증</p>${archiveLegend}</header><div class="list">${earnings.length?earningsList:'<p>등록된 실적 리뷰가 없습니다.</p>'}</div></div>`});
+  writeFile(path.join(outDir,'earnings/index.html'),earningsHtml);
+  record(`${config.baseUrl}/earnings/`,latest,earningsHtml);
+  for(const name of ['scenario.js','research-client.js']) writeFile(path.join(outDir,name),fs.readFileSync(path.join(__dirname,name),'utf8'));
 
   writeFile(path.join(outDir, "sitemap.xml"), sitemapXml(urlEntries.filter(entry => entry.inSitemap)));
   const searchIndex = articles.map(a=>({slug:a.slug,headline:a.headline,company:a.company,ticker:a.ticker,market:a.market,sectors:a.sectors,tags:a.tags,summary:a.summary,datePublished:a.datePublished,order:a.order,asOfDate:a.asOfDate,researchDate:a.researchDate,readMinutes:a.readMinutes,archive:a.archive,image:a.cardImage}));

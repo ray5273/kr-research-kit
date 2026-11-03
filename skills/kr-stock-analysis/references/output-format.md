@@ -141,6 +141,8 @@ Keep it compact:
 
 ## Post-Earnings Note
 
+Include `## 컨퍼런스콜 Q&A` following [the Q&A standard](earnings-call-qa.md). Place it near the management outlook and use question-level subheadings with attributed answers and follow-up checks. If no public Q&A is available, state that briefly; do not invent dialogue.
+
 Use:
 
 1. What happened

@@ -1,6 +1,32 @@
 {
   "articles": [
     {
+      "memo": "analysis-example/kr/포스코퓨처엠/memo.md",
+      "slug": "kr/posco-future-m-2026-q3",
+      "company": "포스코퓨처엠",
+      "ticker": "003670",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/003670",
+      "analysisData": "analysis-example/kr/포스코퓨처엠/analysis-data.json",
+      "headline": "포스코퓨처엠 3분기: 이익 회복, 반복성과 현금은 검증 대기",
+      "summary": "영업이익 회복에 포함된 보상금과 재고평가 영향을 분리하고, 다음 분기 반복 이익과 현금 전환을 점검한다.",
+      "datePublished": "2026-11-02",
+      "dateModified": "2026-11-03",
+      "sectors": [
+        "배터리 소재"
+      ],
+      "coverArt": false,
+      "tags": [
+        "포스코퓨처엠",
+        "003670",
+        "실적리뷰",
+        "양극재"
+      ]
+    },
+    {
       "memo": "analysis-example/us/Alphabet/memo.md",
       "slug": "us/alphabet-2026-q3",
       "company": "알파벳",
@@ -39,7 +65,10 @@
         "인터넷 플랫폼",
         "클라우드"
       ],
-      "summary": "클라우드 성장과 AI 투자 부담을 함께 놓고, 실적 발표 후 주가 하락과 가치평가를 살펴본다."
+      "summary": "클라우드 성장과 AI 투자 부담을 함께 놓고, 실적 발표 후 주가 하락과 가치평가를 살펴본다.",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "us/googl"
     },
     {
       "memo": "analysis-example/kr/네이버/memo.md",
@@ -329,7 +358,10 @@
       "archive": true,
       "datePublished": "2026-11-01",
       "dateModified": "2026-11-01",
-      "issue": "줄어든 관세를 할인과 EV 믹스가 지웠다"
+      "issue": "줄어든 관세를 할인과 EV 믹스가 지웠다",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/000270"
     },
     {
       "memo": "analysis-example/kr/기아/memo.md",

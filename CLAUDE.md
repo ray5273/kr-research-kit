@@ -180,7 +180,7 @@ node scripts/harness.js --mode guard
 | `chart` | fetch-kr-chart.js → chart-basics.js (OHLCV fetch + PNG charts in one step) |
 | `dart` | normalize → extract → verify → build-reference (full DART browser export pipeline) |
 | `backlog` | validate `order-backlog-data.json` → render the order-backlog PNG and chart summary |
-| `gate` | 9 structural quality checks on a finished memo (required sections, 기준일, chart PNGs, DART Recheck, valuation metrics, source dates) |
+| `gate` | Structural quality checks on a finished memo (required sections — post-earnings notes use the earnings-review topics —, 기준일, chart PNGs, DART Recheck, valuation metrics, source dates, 한줄요약, and the source trail: every cited URL in `## Sources`, dated labels, re-post marking, caveat density, ≥100% ratio headlines) |
 | `blog` | discover-bloggers.js → fetch-blog-posts.js → summarize-insights.js (Naver blogger discovery + insights digest) |
 | `analyst` | discover-reports.js → fetch-reports.js → summarize-reports.js (Hankyung/Naver analyst-report chain) |
 | `foreign` | fetch-analyst-coverage.js → summarize-analyst-views.js (foreign-IB coverage from Korean news → Street / Alternative Views block) |

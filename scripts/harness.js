@@ -25,6 +25,23 @@ const REQUIRED_SECTIONS = [
   "Follow-up Research Prompts",
 ];
 
+// Topic → heading pattern; wording of the heading is the author's.
+const EARNINGS_REQUIRED_SECTIONS = [
+  ["Summary", /^Summary$/],
+  ["발표 전 기대와 결과", /발표 전|컨센서스|시장 예상/],
+  ["실적 차이의 원인 분해", /원인|브리지/],
+  ["컨퍼런스콜 Q&A", /컨퍼런스콜|Q&A|콜/],
+  ["다음 해 이익과 가치의 수정", /추정|이익과 가치|수정/],
+  ["이익의 질과 현금 전환", /현금/],
+  ["경영진 약속", /약속|가이던스/],
+  ["현재 가격이 요구하는 실적", /가격|역산/],
+  ["Street / Alternative Views", /^Street/],
+  ["DART Recheck", /^DART Recheck$/],
+  ["다음 분기 검증", /다음 분기|판단 변경 조건/],
+  ["Update Log", /^Update Log$/],
+  ["Sources", /^Sources$/],
+];
+
 const VALUATION_KEYWORDS = [
   "price",
   "market cap",
@@ -32,6 +49,9 @@ const VALUATION_KEYWORDS = [
   "ev/ebitda",
   "pbr",
 ];
+
+// The price-implied check in a post-earnings note: observed price, size, debt and the stated multiple.
+const EARNINGS_VALUATION_KEYWORDS = ["주가", "시가총액", "순차입금", "배수"];
 
 // ---------------------------------------------------------------------------
 // CLI
@@ -813,19 +833,26 @@ function runGate(opts) {
   const lines = memo.split(/\r?\n/);
 
   const checks = [];
+  // Post-earnings notes follow references/earnings-review.md, not the full-memo template.
+  const isEarnings = /^[-*]?\s*유형[:：]\s*post-earnings/m.test(memo.split(/^## /m)[0]);
+  const valuationHeading = isEarnings ? /^## .*(가격|역산)/ : /^## Current Valuation Snapshot/;
+  const valuationKeywords = isEarnings ? EARNINGS_VALUATION_KEYWORDS : VALUATION_KEYWORDS;
 
   // --- Check 1: Required sections ---
   {
     const headings = lines
       .filter((l) => /^## /.test(l))
       .map((l) => l.replace(/^## /, "").trim());
-    const missing = REQUIRED_SECTIONS.filter((s) => !headings.includes(s));
+    const missing = isEarnings
+      ? EARNINGS_REQUIRED_SECTIONS.filter(([, rx]) => !headings.some((h) => rx.test(h))).map(([name]) => name)
+      : REQUIRED_SECTIONS.filter((s) => !headings.includes(s));
+    const required = isEarnings ? EARNINGS_REQUIRED_SECTIONS.length : REQUIRED_SECTIONS.length;
     checks.push({
       id: "required-sections",
       severity: "error",
       passed: missing.length === 0,
       message: missing.length === 0
-        ? `All ${REQUIRED_SECTIONS.length} required sections present`
+        ? `All ${required} required ${isEarnings ? "post-earnings " : ""}sections present`
         : `Missing sections: ${missing.join(", ")}`,
       details: { missing },
     });
@@ -1011,7 +1038,7 @@ function runGate(opts) {
 
   // --- Check 9: Valuation required metrics ---
   {
-    const valIdx = lines.findIndex((l) => /^## Current Valuation Snapshot/.test(l));
+    const valIdx = lines.findIndex((l) => valuationHeading.test(l));
     let valText = "";
     if (valIdx >= 0) {
       for (let k = valIdx + 1; k < lines.length; k++) {
@@ -1019,7 +1046,7 @@ function runGate(opts) {
         valText += lines[k].toLowerCase() + "\n";
       }
     }
-    const missing = VALUATION_KEYWORDS.filter((kw) => !valText.includes(kw));
+    const missing = valuationKeywords.filter((kw) => !valText.includes(kw));
     checks.push({
       id: "valuation-metrics",
       severity: "warn",
@@ -1033,7 +1060,7 @@ function runGate(opts) {
 
   // --- Check 10: Source date annotations ---
   {
-    const valIdx = lines.findIndex((l) => /^## Current Valuation Snapshot/.test(l));
+    const valIdx = lines.findIndex((l) => valuationHeading.test(l));
     let dateCount = 0;
     if (valIdx >= 0) {
       const dateRe = /\d{4}-\d{2}-\d{2}/g;
@@ -1075,6 +1102,78 @@ function runGate(opts) {
           : tooLong
             ? `한줄요약 is ${oneLiner.length} chars (max 50)`
             : `한줄요약: ${oneLiner}`,
+    });
+  }
+
+  // --- Checks: source trail (labels readers can tell apart, nothing cited off-list) ---
+  {
+    const baseDate = memo.match(/기준일\**[：:]\s*[`*]*(\d{4})[-/](\d{2})[-/](\d{2})/);
+    // Required from this date on; older memos stay valid as dated records.
+    const isNew = !baseDate || baseDate.slice(1).join("-") >= "2026-11-02";
+    const sourcesIdx = lines.findIndex((l) => /^## Sources\s*$/.test(l));
+    const sourcesEnd = sourcesIdx < 0 ? -1 : lines.findIndex((l, i) => i > sourcesIdx && /^## /.test(l));
+    const sourceLines = sourcesIdx < 0 ? [] : lines.slice(sourcesIdx + 1, sourcesEnd < 0 ? undefined : sourcesEnd);
+    const bodyText = sourcesIdx < 0 ? memo : lines.slice(0, sourcesIdx).join("\n") + "\n" + (sourcesEnd < 0 ? "" : lines.slice(sourcesEnd).join("\n"));
+    const urlsIn = (text) => new Set([...text.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)].map((m) => m[1]));
+    const listed = urlsIn(sourceLines.join("\n"));
+    const missing = [...urlsIn(bodyText)].filter((u) => !listed.has(u));
+    checks.push({
+      id: "sources-coverage",
+      severity: isNew ? "error" : "warn",
+      passed: missing.length === 0,
+      message: missing.length === 0
+        ? `All ${urlsIn(bodyText).size} cited URLs are listed in ## Sources`
+        : `${missing.length} cited URL(s) missing from ## Sources: ${missing.slice(0, 3).join(", ")}`,
+      details: { missing },
+    });
+
+    // A label must name the document and its date, e.g. "대신증권 2026-11-03 실적 리뷰 PDF".
+    const dateRx = /\d{4}[-./]\d{1,2}|\d{1,2}월\s*\d{1,2}일|\d{8,}/;
+    const entries = sourceLines.flatMap((l) => [...l.matchAll(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g)].map((m) => ({ label: m[1], url: m[2] })));
+    const undated = entries.filter((e) => !dateRx.test(e.label));
+    checks.push({
+      id: "source-labels",
+      severity: isNew ? "error" : "warn",
+      passed: undated.length === 0,
+      message: undated.length === 0
+        ? `${entries.length} Sources labels carry publisher + date`
+        : `${undated.length} Sources label(s) lack a date: ${undated.slice(0, 3).map((e) => `"${e.label}"`).join(", ")}`,
+      details: { undated },
+    });
+
+    // Short links and chat re-posts can rot or be edited; say so in the label.
+    const repostRx = /(?:^|\.)(?:tele\.wiki|t\.me|bit\.ly|han\.gl|me2\.do|naver\.me|vo\.la)$|yeouidonews\.com$/;
+    const unmarked = entries.filter((e) => { try { return repostRx.test(new URL(e.url).hostname) && !/재게시|단축/.test(e.label); } catch { return false; } });
+    checks.push({
+      id: "source-reposts",
+      severity: "warn",
+      passed: unmarked.length === 0,
+      message: unmarked.length === 0
+        ? "Short-link / re-post sources are labelled as such"
+        : `${unmarked.length} short-link or re-post source(s) not marked 재게시/단축: ${unmarked.slice(0, 3).map((e) => e.url).join(", ")}`,
+    });
+
+    // Generic caveats belong in one reading guide, not in every section.
+    // The 읽는 법 block is where shared caveats belong, so it is not counted.
+    const prose = bodyText.replace(/^## 이 글을 읽는 법\n[\s\S]*?(?=^## )/m, "").replace(/^\|.*$/gm, "").replace(/\]\([^)]*\)/g, "]");
+    const caveats = (prose.match(/않는다|아니다/g) || []).length;
+    const per1k = caveats / Math.max(1, prose.replace(/\s/g, "").length) * 1000;
+    checks.push({
+      id: "caveat-density",
+      severity: "warn",
+      passed: per1k <= 3,
+      message: `${caveats} '않는다/아니다' (${per1k.toFixed(1)} per 1,000 chars; max 3) — move shared caveats to one 읽는 법 block`,
+    });
+
+    // A ≥100% beat on a small base reads as a headline; lead with the amount.
+    const boldPct = [...memo.matchAll(/\*\*([^*]+)\*\*/g)].map((m) => m[1]).filter((t) => [...t.matchAll(/(\d[\d,]*(?:\.\d+)?)\s*%/g)].some((m) => Number(m[1].replace(/,/g, "")) >= 100) && !/[억조만]원|\$|달러/.test(t));
+    checks.push({
+      id: "ratio-headline",
+      severity: "warn",
+      passed: boldPct.length === 0,
+      message: boldPct.length === 0
+        ? "No bold ≥100% ratio without an amount"
+        : `Bold ≥100% ratio without an amount (state the 억원 difference first): "${boldPct[0].slice(0, 60)}"`,
     });
   }
 

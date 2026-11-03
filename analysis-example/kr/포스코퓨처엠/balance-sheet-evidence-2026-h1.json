@@ -1,0 +1,32 @@
+{
+  "verifiedAt": "2026-11-03",
+  "sourceUrl": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/S3Z25AQ9NDURNK_TD8AG6VQJF97FZY78J202673017483.pdf",
+  "publishedAt": "2026-07-30",
+  "basis": "연결 K-IFRS · 분기 말 잔액 · 회사 IR 잠정",
+  "unit": "억원",
+  "locator": "PDF 5쪽 연결 재무현황",
+  "sha256": "60f45ddbe005216bb695d573f097cee562a59c92528b0c3610e4283e10020aee",
+  "balances": {
+    "2026-03-31": {
+      "cash": 6751,
+      "receivables": 7014,
+      "inventory": 6511,
+      "borrowings": 41052,
+      "netDebt": 34301,
+      "netWorkingCapital": 11964
+    },
+    "2026-06-30": {
+      "cash": 6367,
+      "receivables": 5734,
+      "inventory": 7426,
+      "borrowings": 40757,
+      "netDebt": 34390,
+      "netWorkingCapital": 10659
+    }
+  },
+  "limits": [
+    "잔액 변화는 영업현금흐름이 아님",
+    "OCF 및 유형·무형자산 취득 원문 미확보; FCF 산출 안 함",
+    "순차입금은 2027년 전망이 아님"
+  ]
+}

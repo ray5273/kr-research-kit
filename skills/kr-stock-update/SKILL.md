@@ -17,6 +17,7 @@ Use this skill when the user already has a Korean stock memo and wants follow-up
 - Deduplicate against the memo's existing `Update Log` dates and source URLs when possible.
 - Update the existing memo file instead of creating a separate report by default.
 - Preserve the original `기준일` and maintain a separate `최근 업데이트일`.
+- For earnings-event updates, investigate and include conference-call Q&A using [the shared Q&A standard](../kr-stock-analysis/references/earnings-call-qa.md). Add material management answers and new verification conditions to the existing memo, with the original event date and an idempotent dated log; distinguish verified quotations from third-party summaries.
 - Default to `Hybrid` + `Gated`: normally update only `## Update Log`; refresh selected upstream memo sections only when the thesis delta is material.
 - If the memo does not exist yet, use `kr-stock-plan`, `kr-stock-dart-analysis`, and `kr-stock-analysis` as needed to create the initial report.
 
@@ -101,6 +102,7 @@ If you cannot fetch a live price, say so explicitly in the update block and mark
 - Append dated updates under `## Update Log`. If the same date already exists, replace that dated block instead of duplicating it.
 - Recognize existing dated blocks headed as `### YYYY-MM-DD`, `### YYYY-MM-DD Update`, backticked dates, bullet dates, or numbered dated headings.
 - Cite every material factual claim in the dated update block.
+- For post-earnings notes, write each dated block for readers as three bullets — `**바뀐 것:**`, `**판단:**` (kept or changed, and why), `**근거:**` (links) — keep only the final value when an intraday observation was superseded the same day, and keep process notes (reordering, readability passes) out of the log. See `kr-stock-analysis/references/earnings-review.md`.
 - Use exact dates for disclosures, results, investor events, and news.
 - Separate verified facts from inference.
 - Append trade-flow updates as `Trade Flow Inference` with the confidence grade. Do not rewrite original customer or revenue-mix sections as confirmed unless DART/IR/company disclosures explicitly confirm them.

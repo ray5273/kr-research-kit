@@ -7,6 +7,7 @@ const http = require("http");
 const path = require("path");
 
 const TYPES = {
+  ".js": "application/javascript; charset=utf-8",
   ".html": "text/html; charset=utf-8",
   ".xml": "application/xml; charset=utf-8",
   ".txt": "text/plain; charset=utf-8",

@@ -123,6 +123,16 @@ After Phase B returns, complete the conditional order-backlog pass, then run `kr
 
 If a Phase B subagent returns a gap (e.g. Naver returned 0 specialist hits, foreign IB had no recent coverage, an analyst PDF was auth-walled), record the gap in the memo's `Decision-Changing Issues` or `Follow-up Research Prompts` section rather than retrying the whole channel.
 
+## Earnings reviews
+
+For finished public memos, apply [financial readability](references/financial-readability.md) across the entire article: lead with the result, separate assumptions and formulas, compare repeated values in compact tables, and keep causal interpretation in short coherent paragraphs. Formatting edits preserve the existing facts, dates, source roles and judgment.
+
+For every new post-earnings note, apply the five analysis requirements in [실적 리뷰 공통 작성 기준](references/earnings-review.md): variance attribution, next-year earnings and valuation revision, cash conversion, management commitments, and reverse valuation. Preserve missing-data limits and prior expectations as recorded at the time. Existing historical articles retain their original format.
+
+Conference-call Q&A is required for post-earnings reviews. Follow [the earnings-call Q&A standard](references/earnings-call-qa.md): verify and attribute questions and answers, distinguish official transcripts from broker/media summaries, quote only permitted short excerpts, and connect material answers to the next verification conditions. Include a concise availability statement when no public Q&A exists.
+
+Recover pre-release market expectations using [the consensus sourcing standard](references/earnings-consensus.md) before declaring them unavailable. Check dated broker reports, original-provider historical snapshots and public Telegram evidence. Preserve the real snapshot date and the difference between total and parent-attributable net income; never fabricate a prior author estimate.
+
 ## Bundled Scripts
 
 - Use `scripts/peer-valuation.js` when the user provides peer metrics and you need a consistent markdown comparison table.

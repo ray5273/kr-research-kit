@@ -1,0 +1,722 @@
+{
+  "version": 1,
+  "companyId": "kr/003670",
+  "period": "2026-Q3",
+  "verifiedAt": "2026-11-03",
+  "releasedAt": "2026-11-02",
+  "basis": "연결 K-IFRS · 분기",
+  "unit": "억원",
+  "stance": "회복의 반복성과 현금 전환 검증 전 판단 보류",
+  "rationale": "연결 잠정 영업이익은 회복했지만 보상금·재고평가와 현금흐름을 분리하지 못했다.",
+  "verdict": "판단 보류",
+  "nextCheck": {
+    "event": "2026Q4 잠정실적",
+    "expected": "2027-01",
+    "conditions": [
+      "보상금 제외 연결 영업이익 흑자",
+      "분기 영업현금흐름 양수",
+      "양극재 출하·가동률의 실제 개선"
+    ]
+  },
+  "limitations": [
+    "2026Q3 실적과 공시에 함께 실린 전분기·전년동기 수치는 DART 연결 잠정실적 원문으로 확인했다. 나머지 과거 분기는 회사 작성 2026-07-30 IR을 사용했다. 사업별 설명은 회사 설명을 인용한 보도 기준이다.",
+    "영업현금흐름·투자지출·출하량의 같은 기준 8분기 자료는 비워 두었다. 빈 값은 0이 아니다.",
+    "시장 예상은 FnGuide 10/30 과거 시계열과 발표직전(E) 표로 복원했다. 발표 전날인 11/1을 넘기지 않는 마지막 관측점이며 11/1 당일 집계본은 아니다. 최근 3개월 증권사 추정치 평균이고 지표별 기여 증권사 수는 공개되지 않는다. 순이익은 지배주주 기준이며 원자료 확인일은 11/3이다.",
+    "재무상태 기준점은 2026년 6월 말 회사 IR 잔액이다. 3분기 말 현금흐름·부채로 대체하지 않는다. 계산기는 제품별 혼합 효과 미반영 민감도다."
+  ],
+  "sources": [
+    {
+      "id": "dart-q3",
+      "label": "DART 연결 잠정실적 · 원문 확인",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261102800270",
+      "publishedAt": "2026-11-02",
+      "role": "primary",
+      "access": "read",
+      "verifiedAt": "2026-11-03"
+    },
+    {
+      "id": "dart-h1",
+      "label": "2026년 반기보고서",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814000996",
+      "publishedAt": "2026-08-14",
+      "role": "primary",
+      "access": "failed"
+    },
+    {
+      "id": "ir-q2",
+      "label": "회사 작성 2026년 2분기 실적발표 (IRGO 배포본)",
+      "url": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/S3Z25AQ9NDURNK_TD8AG6VQJF97FZY78J202673017483.pdf",
+      "publishedAt": "2026-07-30",
+      "role": "company_ir_redistribution",
+      "access": "read"
+    },
+    {
+      "id": "asiae-q3",
+      "label": "포스코퓨처엠 3분기 영업익 821억…전년比 23.2%↑",
+      "url": "https://www.asiae.co.kr/article/IT/2026110210514617533",
+      "publishedAt": "2026-11-02",
+      "role": "secondary_disclosure_quote",
+      "access": "read"
+    },
+    {
+      "id": "dartbrief-q3",
+      "label": "공시 접수번호 20261102800270 인용",
+      "url": "https://dartbrief.com/disclosures/20261102800270",
+      "publishedAt": "2026-11-02",
+      "role": "secondary_disclosure_quote",
+      "access": "read"
+    },
+    {
+      "id": "herald-q3",
+      "label": "포스코퓨처엠, 3분기 영업익 821억원…양극재 회복에 전년보다 23.2%↑",
+      "url": "https://biz.heraldcorp.com/article/10922633",
+      "publishedAt": "2026-11-02",
+      "role": "secondary_management_quote",
+      "access": "read"
+    },
+    {
+      "id": "yna-consensus",
+      "label": "포스코퓨처엠 3분기 영업이익 821억원…작년 동기 대비 23%↑",
+      "url": "https://www.yna.co.kr/amp/view/AKR20261102057100527",
+      "publishedAt": "2026-11-02",
+      "role": "secondary_consensus_quote",
+      "access": "read"
+    },
+    {
+      "id": "newspim-consensus",
+      "label": "포스코퓨처엠, 3분기 영업익 821억원…양극재 회복에 23% 증가",
+      "url": "https://web3.newspim.com/news/view/20261102001113",
+      "publishedAt": "2026-11-02",
+      "role": "secondary_consensus_quote",
+      "access": "read"
+    },
+    {
+      "id": "quote",
+      "label": "회사 연결 시세 위젯 · 2026-11-02 15:30",
+      "url": "https://ir.gsifn.io/poscochemical/ir_current.html?koreng=1",
+      "publishedAt": "2026-11-02",
+      "role": "company_linked_market_data",
+      "access": "read"
+    },
+    {
+      "id": "call-hana",
+      "label": "하나증권 2차전지 리서치 · 11/2 실적 콜 Q&A 정리 (재게시본)",
+      "url": "https://yeouidonews.com/go/482307",
+      "publishedAt": "2026-11-02",
+      "role": "secondary_call_summary",
+      "access": "read",
+      "verifiedAt": "2026-11-03"
+    },
+    {
+      "id": "call-eugene",
+      "label": "유진투자증권 산업분석실 · 11/2 실적 콜 Q&A 정리 (재게시본)",
+      "url": "https://tele.wiki/t/post/440312910",
+      "publishedAt": "2026-11-02",
+      "role": "secondary_call_summary",
+      "access": "read",
+      "verifiedAt": "2026-11-03"
+    },
+    {
+      "id": "quote-update",
+      "label": "회사 연결 시세 · 2026-11-03 15:30",
+      "url": "https://ir.gsifn.io/poscochemical/ir_current.html?koreng=1",
+      "publishedAt": "2026-11-03",
+      "role": "company_linked_market_data",
+      "access": "read",
+      "verifiedAt": "2026-11-03",
+      "retrievedAt": "2026-11-03"
+    },
+    {
+      "id": "consensus-20261030",
+      "label": "FnGuide CompanyWise · 10/30 과거 컨센서스",
+      "url": "https://comp.wisereport.co.kr/company/c1050001.aspx?cmp_cd=003670",
+      "publishedAt": "2026-10-30",
+      "dataAsOf": "2026-10-30",
+      "retrievedAt": "2026-11-03",
+      "role": "historical_consensus",
+      "access": "read",
+      "verifiedAt": "2026-11-03",
+      "note": "공개일은 과거 시계열의 데이터 기준일을 기록. 원자료 확인은 11/3. 발표직전(E) 표와 10/30 CNS_FY0를 대조."
+    }
+  ],
+  "comparison": [
+    {
+      "key": "revenue",
+      "label": "매출액",
+      "market": {
+        "role": "market",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 7720.24,
+        "publishedAt": "2026-10-30",
+        "source": "consensus-20261030",
+        "status": "추정"
+      },
+      "author": {
+        "role": "author",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": null,
+        "reason": "사전 추정 없음"
+      },
+      "actual": {
+        "role": "actual",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 8347.71,
+        "publishedAt": "2026-11-02",
+        "source": "dart-q3",
+        "status": "잠정"
+      },
+      "cause": "판매량·가격·제품 구성의 금액별 기여는 확인되지 않았다."
+    },
+    {
+      "key": "operatingProfit",
+      "label": "영업이익",
+      "market": {
+        "role": "market",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 194.06,
+        "publishedAt": "2026-10-30",
+        "source": "consensus-20261030",
+        "status": "추정"
+      },
+      "author": {
+        "role": "author",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": null,
+        "reason": "사전 추정 없음"
+      },
+      "actual": {
+        "role": "actual",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 821.44,
+        "publishedAt": "2026-11-02",
+        "source": "dart-q3",
+        "status": "잠정"
+      },
+      "cause": "고객 보상금과 재고평가 영향을 분리해야 반복 이익을 판단할 수 있다."
+    },
+    {
+      "key": "parentNetIncome",
+      "label": "지배주주 순이익",
+      "market": {
+        "role": "market",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 84.6,
+        "publishedAt": "2026-10-30",
+        "source": "consensus-20261030",
+        "status": "추정",
+        "incomeScope": "parent"
+      },
+      "author": {
+        "role": "author",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": null,
+        "reason": "사전 추정 없음"
+      },
+      "actual": {
+        "role": "actual",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 424.21,
+        "publishedAt": "2026-11-02",
+        "source": "dart-q3",
+        "status": "잠정",
+        "incomeScope": "parent"
+      },
+      "cause": "FnGuide 순이익 예상은 지배주주 기준이다. 실제 424.21억원과 비교하며 전체 당기순이익 464.28억원과 구분한다.",
+      "incomeScope": "parent"
+    }
+  ],
+  "quarters": [
+    {
+      "period": "2024-Q4"
+    },
+    {
+      "period": "2025-Q1"
+    },
+    {
+      "period": "2025-Q2"
+    },
+    {
+      "period": "2025-Q3"
+    },
+    {
+      "period": "2025-Q4"
+    },
+    {
+      "period": "2026-Q1"
+    },
+    {
+      "period": "2026-Q2"
+    },
+    {
+      "period": "2026-Q3"
+    }
+  ],
+  "series": [
+    {
+      "key": "revenue",
+      "label": "매출액",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": 7232,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "ir-q2",
+          "publishedAt": "2026-07-30"
+        },
+        {
+          "period": "2025-Q1",
+          "value": 8454,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "ir-q2",
+          "publishedAt": "2026-07-30"
+        },
+        {
+          "period": "2025-Q2",
+          "value": 6609,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "ir-q2",
+          "publishedAt": "2026-07-30"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 8747.98,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-02"
+        },
+        {
+          "period": "2025-Q4",
+          "value": 5576,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "ir-q2",
+          "publishedAt": "2026-07-30"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 7575,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "ir-q2",
+          "publishedAt": "2026-07-30"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 6794.57,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-02"
+        },
+        {
+          "period": "2026-Q3",
+          "value": 8347.71,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "key": "operatingProfit",
+      "label": "영업이익",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": -413,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "ir-q2",
+          "publishedAt": "2026-07-30"
+        },
+        {
+          "period": "2025-Q1",
+          "value": 171,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "ir-q2",
+          "publishedAt": "2026-07-30"
+        },
+        {
+          "period": "2025-Q2",
+          "value": 8,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "ir-q2",
+          "publishedAt": "2026-07-30"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 666.7,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-02"
+        },
+        {
+          "period": "2025-Q4",
+          "value": -518,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "ir-q2",
+          "publishedAt": "2026-07-30"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 177,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "ir-q2",
+          "publishedAt": "2026-07-30"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 266.89,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-02"
+        },
+        {
+          "period": "2026-Q3",
+          "value": 821.44,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "key": "shipments",
+      "label": "배터리소재 출하량",
+      "unit": "천 톤",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2025-Q1",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2025-Q2",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2025-Q3",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2025-Q4",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2026-Q1",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2026-Q2",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2026-Q3",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        }
+      ]
+    },
+    {
+      "key": "operatingCashFlow",
+      "label": "영업현금흐름",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2025-Q1",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2025-Q2",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2025-Q3",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2025-Q4",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2026-Q1",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2026-Q2",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2026-Q3",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        }
+      ]
+    },
+    {
+      "key": "capex",
+      "label": "투자지출",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2025-Q1",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2025-Q2",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2025-Q3",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2025-Q4",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2026-Q1",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2026-Q2",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        },
+        {
+          "period": "2026-Q3",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "같은 기준의 원문 시계열 미확보"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "date": "2026-11-02",
+      "claim": "2026Q4: 보상금 제외 영업이익 흑자 및 분기 영업현금흐름 양수",
+      "status": "판단 보류",
+      "evidence": "2026-11-02 새로 설정. 이번 분기 성과로 소급 채점하지 않으며 다음 실적·분기보고서에서 확인.",
+      "sources": []
+    }
+  ],
+  "changes": [
+    {
+      "date": "2026-11-02",
+      "claim": "첫 분석: 이전 가정 없음 → 반복 이익·현금 전환 검증 대기",
+      "to": "판단 보류",
+      "evidence": "보상금 반영·재고평가손실 보도. 반복 이익과 현금 전환은 아직 확인하지 못했다.",
+      "sources": [
+        "herald-q3"
+      ],
+      "kind": "판단"
+    },
+    {
+      "date": "2026-11-03",
+      "claim": "DART 원문 확인: 이번 실적 일치·비교 분기 정밀 수치 반영",
+      "to": "회복의 반복성과 현금 전환 검증 전 판단 보류",
+      "evidence": "3Q 매출·영업이익·순이익은 기존 값과 일치. YoY 영업이익 차이는154.74억원, QoQ는554.55억원으로 보정. 반복성과 현금 전환 판단은 유지.",
+      "sources": [
+        "dart-q3"
+      ],
+      "kind": "자료"
+    }
+  ],
+  "promises": [
+    {
+      "date": "2026-11-02",
+      "claim": "베트남 인조흑연 2027년 하반기 시운전 (발언일 2026-07-30)",
+      "status": "판단 보류",
+      "evidence": "검증 시점 미도래. 다음 발표에서 일정 변경 여부 확인.",
+      "sources": [
+        "ir-q2"
+      ],
+      "due": "2027-12-31"
+    },
+    {
+      "date": "2026-11-02",
+      "claim": "새만금 구형흑연 2027년 상반기 시운전 (발언일 2026-07-30)",
+      "status": "판단 보류",
+      "evidence": "검증 시점 미도래. 계약총액을 확정 매출로 사용하지 않음",
+      "sources": [
+        "ir-q2"
+      ],
+      "due": "2027-06-30"
+    },
+    {
+      "date": "2026-11-02",
+      "claim": "2027년 양극재 판매 10만 톤 이상·LFP 절반 이상",
+      "status": "판단 보류",
+      "evidence": "회사 전망 전달값. 연말 실적에서 출하·구성 대조.",
+      "sources": [
+        "call-eugene"
+      ],
+      "due": "2027-12-31"
+    },
+    {
+      "date": "2026-11-02",
+      "claim": "2027년 투자 약 0.5조원 계획",
+      "status": "판단 보류",
+      "evidence": "LFP 추가 투자 시 증가 가능. 실제 현금 지출 대조.",
+      "sources": [
+        "call-eugene"
+      ],
+      "due": "2027-12-31"
+    },
+    {
+      "date": "2026-11-02",
+      "claim": "베트남 인조흑연 2027년 하반기 양산 목표",
+      "status": "판단 보류",
+      "evidence": "시운전과 양산 구분. 일정·고객 인증 확인.",
+      "sources": [
+        "call-eugene"
+      ],
+      "due": "2027-12-31"
+    }
+  ],
+  "calculator": {
+    "period": "2027년 연간",
+    "label": "양극재 출하량·마진 민감도",
+    "assumptions": "출하량・혼합 판가・마진・기타 합산 이익・ 배수는 작성자 가정이다. LFP/삼원계의 판매 구성과 개별 판가를 반영하지 않는다. 순차입금만 2026년 6월 말 회사 IR 잔액이며 2027년 말 예측이 아니다. 희석과 세금은 반영하지 않는다.",
+    "variables": [
+      {
+        "key": "volume",
+        "label": "양극재 출하량",
+        "unit": "천 톤/년",
+        "min": 20,
+        "max": 200,
+        "step": 5,
+        "default": 100
+      },
+      {
+        "key": "margin",
+        "label": "양극재 영업이익률",
+        "unit": "%",
+        "min": -10,
+        "max": 20,
+        "step": 0.5,
+        "default": 5
+      }
+    ],
+    "price": 300,
+    "baseProfit": 800,
+    "multiple": 20,
+    "netDebt": 34390,
+    "marketCap": 145605,
+    "marketCapSource": "quote-update",
+    "netDebtSource": "ir-q2",
+    "netDebtAsOf": "2026-06-30"
+  },
+  "initialReview": true
+}

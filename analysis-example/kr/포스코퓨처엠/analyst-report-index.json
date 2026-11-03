@@ -1,0 +1,10 @@
+{
+  "company": "포스코퓨처엠", "ticker": "003670", "discoveredAt": "2026-11-02",
+  "lookbackDays": 365, "windowStart": "2025-11-02", "windowEnd": "2026-11-02",
+  "source": "naver", "fallbackUsed": true,
+  "reports": [
+    {"reportId":"naver-96922", "broker":"DS투자증권", "analyst":null, "publishedDate":"2026-10-21", "title":"LFP 전환 라인 투어: 만반의 준비", "rating":"BUY", "ratingRaw":"매수", "targetPrice":290000, "currency":"KRW", "pdfUrl":"https://stock.pstatic.net/stock-research/company/66/20261021_company_501980000.pdf", "landingUrl":"https://m.stock.naver.com/investment/research/company/96922", "sourceSite":"naver", "requiresAuth":false},
+    {"reportId":"naver-95055", "broker":"SK증권", "analyst":null, "publishedDate":"2026-08-05", "title":"음극재로 양극재를 판다", "rating":"BUY", "ratingRaw":"매수", "targetPrice":300000, "currency":"KRW", "pdfUrl":"https://stock.pstatic.net/stock-research/company/64/20260805_company_346742000.pdf", "landingUrl":"https://m.stock.naver.com/investment/research/company/95055", "sourceSite":"naver", "requiresAuth":false}
+  ],
+  "meta": {"queriesRun":2,"pagesScraped":2,"counts":{"total":2,"withPdf":2,"requiresAuth":0},"warnings":["자동 discover 실행은 gstack 서버 시작 시간초과로 실패. web 도구로 네이버 원문 상세 페이지 및 PDF 링크를 직접 확인한 부분 표본이다. 전체 365일 커버리지 또는 시장 컨센서스를 대표하지 않는다."],"fallbackReason":"gstack startup timeout; manual web verification"}
+}
