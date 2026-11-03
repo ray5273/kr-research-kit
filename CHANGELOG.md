@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.23] - 2026-11-03
+
+### Commits
+
+- Color the five rating badges by level ([a4900dc](https://github.com/ray5273/kr-research-kit/commit/a4900dc3acfaf03584ab8a42d7d33e950351c1a6))
+- Mark new and updated research and rank popular posts ([f911d9c](https://github.com/ray5273/kr-research-kit/commit/f911d9c2b5be9f5c3f5d68172306a1cad6721c6a))
+- Show a labelled sample ranking in the static preview ([f7210ad](https://github.com/ray5273/kr-research-kit/commit/f7210ad721bb5c4d081ee49cfd84a5d69cb93876))
+
 ## [0.4.22] - 2026-11-03
 
 ### Commits
