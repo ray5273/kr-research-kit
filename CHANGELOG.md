@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.24] - 2026-11-03
+
+### Commits
+
+- Give earnings reviews their own strip on the home page ([2b1eb7b](https://github.com/ray5273/kr-research-kit/commit/2b1eb7b4b95bea1e15c959605241bafd2d1d9ddf))
+- Move earnings reviews into the strip on market pages too ([00713a7](https://github.com/ray5273/kr-research-kit/commit/00713a7b5a0913d5b32aa7429a81c3b43795329f))
+
 ## [0.4.23] - 2026-11-03
 
 ### Commits
