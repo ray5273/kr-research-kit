@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.20] - 2026-11-03
+
+### Commits
+
+- Add earnings research pages and the POSCO Future M Q3 2026 review ([b5939a6](https://github.com/ray5273/kr-research-kit/commit/b5939a60dc7f84e11852fe8349f18884660d2797))
+
 ## [0.4.19] - 2026-11-02
 
 ### Commits
