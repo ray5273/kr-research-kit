@@ -62,6 +62,7 @@ assert(html.includes('억원/천 톤'),'cathode labels stay the default');
 const relabeled=structuredClone(input);Object.assign(relabeled.calculator,{priceLabel:'ESS 판가',priceUnit:'억원/GWh',baseProfitLabel:'기타 사업 합산 이익'});
 const relabeledHtml=widgets(load(relabeled));assert(relabeledHtml.includes('억원/GWh'));assert(relabeledHtml.includes('ESS 판가') && !relabeledHtml.includes('억원/천 톤'));
 reject(d=>{d.calculator.priceUnit='';},/priceUnit/);
+reject(d=>{d.basis='IFRS 개별';},/basis\/unit/);
 // The level is computed from the five axes, never typed by hand.
 reject(d=>{d.verdict='매수';},/computed rating level/);
 reject(d=>{d.rating.axes[0].score=3;},/−2…\+2/);

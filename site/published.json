@@ -79,6 +79,32 @@
       ]
     },
     {
+      "memo": "analysis-example/kr/대한항공-2026Q3/memo.md",
+      "slug": "kr/korean-air-2026-q3",
+      "company": "대한항공",
+      "ticker": "003490",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/003490",
+      "analysisData": "analysis-example/kr/대한항공-2026Q3/analysis-data.json",
+      "headline": "대한항공 3분기: 성과급 빼면 본업은 좋았고 순이익은 환율 덕",
+      "summary": "별도 영업이익 4,212억원에 섞인 성과급 충당금과 1조원대 외화환산이익을 분리하고, 연결 기준 12개월·24개월 목표가로 판단 레벨을 정한다.",
+      "datePublished": "2026-11-03",
+      "dateModified": "2026-11-03",
+      "sectors": [
+        "항공"
+      ],
+      "coverArt": false,
+      "tags": [
+        "대한항공",
+        "003490",
+        "실적리뷰",
+        "항공"
+      ]
+    },
+    {
       "memo": "analysis-example/us/Alphabet/memo.md",
       "slug": "us/alphabet-2026-q3",
       "company": "알파벳",

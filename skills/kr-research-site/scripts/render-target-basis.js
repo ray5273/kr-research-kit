@@ -24,7 +24,7 @@ L.push(`| 주식 수 | ${n(t.shares.value)}주 | ${src(t.shares.source)} |`,'');
 L.push(`기준 ${m.base}배 계산 과정 (억원):`,'');
 L.push(`| 기간 | 이익 × ${m.base}배 | − 순차입금 |${adj.length?' ± 조정 |':''} = 주주 몫 | ÷ 주식 수 = 목표가 |`,`| --- | ---: | ---: |${adj.length?' ---: |':''} ---: | ---: |`);
 list.forEach(h=>{
-  const ev=h.operatingProfit*m.base, eq=ev-t.netDebt.value+adjSum;
+  const ev=Math.round(h.operatingProfit*m.base), eq=ev-t.netDebt.value+adjSum;
   L.push(`| ${h.months}개월 | ${n(ev)} | −${n(t.netDebt.value)} |${adj.length?` ${signed(adjSum)} |`:''} ${signed(eq)} | ${eq>0?`**${n(h.prices.base)}원**`:'음수 → 목표가 없음'} |`);
 });
 L.push('');
@@ -34,7 +34,7 @@ L.push('');
 L.push('추천 구간 (기준 목표가 상승여력):','');
 L.push('| +30% 이상 | +10~30% | −10~+10% | −30~−10% | −30% 미만 |','| --- | --- | --- | --- | --- |','| 강한 매수 | 매수 | 중립 | 매도 | 강한 매도 |','');
 L.push(`- **판단 레벨 연결:** ${list[0].months}개월 추천 = 가격·밸류에이션 축 점수, 2배 가중`);
-L.push(`- **배수 선택:** 작성자 선택. 기준 ${m.base}배는 사이트 계산기와 같은 값, 보수·낙관은 민감도. 업종 평균·과거 밴드로 검증 안 됨`);
+L.push(`- **배수 선택:** ${t.multipleNote}`);
 L.push('- **한계 1:** 배수가 결과를 거의 결정한다');
 L.push(`- **한계 2:** ${list.length>1?'모든 기간에 ':''}6월 말 순차입금을 그대로 쓴다`);
 L.push('- **한계 3:** 미래 이익 기준 가치를 할인하지 않는다');

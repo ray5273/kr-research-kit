@@ -28,7 +28,8 @@ function loadResearch(entry, {root, safety, asOfDate}) {
   if(d.initialReview !== undefined) check(typeof d.initialReview === 'boolean', 'initialReview must be boolean');
   check(d.version === 1 && d.companyId === identity(entry) && d.period === entry.period, 'version/company/period mismatch');
   check(date(d.verifiedAt) && d.verifiedAt <= (entry.dateModified || asOfDate), 'invalid verification date');
-  check(d.basis === '연결 K-IFRS · 분기' && typeof d.unit === 'string', 'basis/unit required');
+  // Some issuers (e.g. 대한항공) publish only standalone preliminary results; the page prints the basis so readers see which.
+  check(['연결 K-IFRS · 분기','별도 K-IFRS · 분기'].includes(d.basis) && typeof d.unit === 'string', 'basis/unit required');
   check(typeof d.stance === 'string' && typeof d.rationale === 'string', 'stance/rationale required');
   if(d.verdict !== undefined) check(typeof d.verdict === 'string' && d.verdict.length > 0 && d.verdict.length <= 10, 'verdict must be a short label (≤10 chars)');
   if(d.nextCheck !== undefined) {
