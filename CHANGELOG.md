@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.21] - 2026-11-03
+
+### Commits
+
+- Add Samsung SDI and LG Energy Solution Q3 2026 earnings reviews ([a28222f](https://github.com/ray5273/kr-research-kit/commit/a28222f9857a9f3659ea2ab4864d574d4ea2fb0b))
+- Add a five-level rating with valuation-driven horizon targets ([c95d136](https://github.com/ray5273/kr-research-kit/commit/c95d136456e90c8b76e6fca2d8d5ea629aee42a6))
+- Write the target-price basis into each earnings memo ([fe8d12d](https://github.com/ray5273/kr-research-kit/commit/fe8d12dd3e03396d9a1a47f7e43e2ec9900bfeb2))
+- Restyle the site menu and shrink inline source links ([5cb8937](https://github.com/ray5273/kr-research-kit/commit/5cb8937b5ac10f4a771645090e7acb8e753f64af))
+- Give the desktop header a search pill and a dropdown menu ([592e9ac](https://github.com/ray5273/kr-research-kit/commit/592e9acf591ec60425e986a8a63b29f79f795196))
+- Replace run-on rule and threshold prose with tables and chips ([f619663](https://github.com/ray5273/kr-research-kit/commit/f6196635c304ad62dc667b50efee9cf578b7fa67))
+
 ## [0.4.20] - 2026-11-03
 
 ### Commits
