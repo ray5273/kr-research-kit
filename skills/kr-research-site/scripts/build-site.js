@@ -760,6 +760,18 @@ function navHtml(site, section) {
   return links.join("");
 }
 
+// The phone menu: research sections as tiles, site pages as a quiet row underneath.
+const MENU_NOTES = { earnings: "분기 실적 판단", kr: "KRX 상장사", us: "미국 상장사", sector: "산업 리포트", global: "글로벌 기업", cn: "중국 기업" };
+function menuHtml(site, section) {
+  const current = key => (key === section ? ' aria-current="page"' : "");
+  const tile = (key, href, label) => `<a href="${href}"${current(key)}><b>${escapeHtml(label)}</b><small>${MENU_NOTES[key] || ""}</small></a>`;
+  const tiles = [tile("earnings", "/earnings/", "실적 리뷰"), ...site.markets.map(market => tile(market, `/${market}/`, MARKET_SHORT[market] || MARKET_LABELS[market] || market))];
+  const extras = [];
+  if (site.pages.some(page => page.slug === "about")) extras.push(`<a href="/about/"${current("about")}>소개</a>`);
+  extras.push(`<a href="/search/"${current("search")}>검색</a>`, `<a href="/feed.xml">RSS</a>`);
+  return `<p class="menu-label">리서치</p><div class="menu-tiles">${tiles.join("")}</div><div class="menu-extra">${extras.join("")}</div>`;
+}
+
 function footerHtml(site) {
   return site.pages.map(page => `<a href="/${page.slug}/">${escapeHtml(page.title)}</a>`).join("") + `<a href="/feed.xml">RSS</a>`;
 }
@@ -796,6 +808,7 @@ function renderLayout(site, page) {
     head: [verificationMeta(config), adHead(config), page.head || ""].filter(Boolean).join("\n"),
     jsonLd: (page.jsonLd || []).map(jsonLdScript).join("\n"),
     nav: navHtml(site, page.section),
+    menu: menuHtml(site, page.section),
     content: page.content,
     footerLinks: footerHtml(site),
     year: String(site.buildYear),

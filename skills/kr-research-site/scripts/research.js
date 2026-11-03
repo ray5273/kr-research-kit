@@ -168,7 +168,7 @@ function table(headers, rows, caption) {
   return `<div class="table-scroll" tabindex="0" role="region" aria-label="${e(caption)}"><table role="table"><caption>${e(caption)}</caption><thead role="rowgroup"><tr role="row">${headers.map(h=>`<th scope="col">${e(h)}</th>`).join('')}</tr></thead><tbody role="rowgroup">${rows.map(row=>`<tr role="row">${row.map((v,i)=>i ? `<td role="cell" data-label="${e(headers[i])}">${v}</td>` : `<th scope="row">${v}</th>`).join('')}</tr>`).join('')}</tbody></table></div>`;
 }
 function sourceLinks(d, ids, compact = false) {
-  return (ids || []).map(id => { const s=d.sources.find(s=>s.id===id); return `<a href="${e(s.url)}" aria-label="${e(s.label)} (${e(s.publishedAt)})">${compact ? '출처' : `${e(s.label)} <span class="nowrap">(${e(s.publishedAt)})</span>`}</a>`; }).join(' · ');
+  return (ids || []).map(id => { const s=d.sources.find(s=>s.id===id); return `<a href="${e(s.url)}"${compact?' class="src-mini"':''} aria-label="${e(s.label)} (${e(s.publishedAt)})">${compact ? '출처' : `${e(s.label)} <span class="nowrap">(${e(s.publishedAt)})</span>`}</a>`; }).join(' · ');
 }
 function valueHtml(o,d) {
   return o.value === null ? e(o.reason) : fmt(o.value);

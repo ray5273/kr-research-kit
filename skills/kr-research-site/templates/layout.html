@@ -56,16 +56,37 @@ header.site .wrap{height:56px;display:flex;align-items:center;gap:16px}
 .brand b{font-size:var(--fs-lg);font-weight:700;line-height:1;letter-spacing:-.03em}
 .brand b i{font-style:normal;color:var(--accent)}
 .brand span{font-size:var(--fs-sm);color:var(--muted)}
-.nav-wide{display:flex;gap:24px;font-size:var(--fs-md);color:var(--ink-2)}
-.nav-wide a:hover,.nav-menu a:hover{color:var(--accent-text)}
-.nav-wide a[aria-current],.nav-menu a[aria-current]{color:var(--ink);font-weight:600;box-shadow:inset 0 -2px var(--accent)}
+.nav-wide{display:flex;gap:4px;font-size:var(--fs-md);color:var(--ink-2)}
+.nav-wide a{padding:6px 10px;border-radius:999px;transition:background .15s,color .15s}
+.nav-wide a:hover{background:var(--surface);color:var(--ink)}
+.nav-wide a[aria-current]{color:var(--accent-text);font-weight:600;background:var(--accent-soft)}
 .nav-search,.nav-menu{display:none}
 .nav-search,.nav-menu summary{min-height:44px;align-items:center;padding:0 8px;font-size:var(--fs-md);color:var(--ink-2);cursor:pointer}
-.nav-menu summary{display:flex;list-style:none}
+.nav-menu summary{display:flex;gap:8px;list-style:none;-webkit-tap-highlight-color:transparent}
 .nav-menu summary::-webkit-details-marker{display:none}
-.nav-menu nav{position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--line);padding:4px 20px 12px}
-.nav-menu nav a{display:flex;align-items:center;min-height:44px;border-bottom:1px solid var(--line)}
-.nav-menu nav a:last-child{border-bottom:0}
+.burger{position:relative;width:18px;height:12px;display:inline-block}
+.burger i{position:absolute;left:0;right:0;height:2px;border-radius:2px;background:currentColor;transition:transform .2s,opacity .2s,top .2s}
+.burger i:nth-child(1){top:0}.burger i:nth-child(2){top:5px}.burger i:nth-child(3){top:10px}
+.nav-menu[open] .burger i:nth-child(1){top:5px;transform:rotate(45deg)}
+.nav-menu[open] .burger i:nth-child(2){opacity:0}
+.nav-menu[open] .burger i:nth-child(3){top:5px;transform:rotate(-45deg)}
+.nav-menu[open] summary{color:var(--ink)}
+.nav-menu[open] summary::before{content:"";position:fixed;inset:56px 0 0;background:rgba(10,12,14,.38);cursor:default;animation:menu-fade .18s ease-out}
+.nav-menu nav{position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--line);border-radius:0 0 18px 18px;box-shadow:0 18px 40px rgba(0,0,0,.14);padding:16px 20px 18px;animation:menu-drop .2s ease-out}
+.menu-label{margin:0 0 10px;font-size:var(--fs-xs);font-weight:600;letter-spacing:.04em;color:var(--muted)}
+.menu-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.menu-tiles a{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:12px;background:var(--surface);border:1px solid transparent;transition:border-color .15s}
+.menu-tiles a b{font-size:var(--fs-md);font-weight:600;color:var(--ink)}
+.menu-tiles a small{font-size:var(--fs-xs);color:var(--muted)}
+.menu-tiles a:active,.menu-tiles a:hover{border-color:var(--line)}
+.menu-tiles a[aria-current]{background:var(--accent-soft);border-color:var(--accent)}
+.menu-tiles a[aria-current] b{color:var(--accent-text)}
+.menu-extra{display:flex;gap:6px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.menu-extra a{padding:8px 14px;border-radius:999px;border:1px solid var(--line);font-size:var(--fs-sm);color:var(--ink-2)}
+.menu-extra a[aria-current]{border-color:var(--accent);color:var(--accent-text)}
+@keyframes menu-drop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes menu-fade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.nav-menu nav,.nav-menu[open] summary::before{animation:none}.burger i{transition:none}}
 footer.site{border-top:1px solid var(--line);padding:24px 0 40px;font-size:var(--fs-sm);color:var(--muted);margin-top:24px}
 footer.site p{margin:0 0 8px}
 footer.site a{margin-right:12px}
@@ -203,6 +224,8 @@ footer.site a:hover{color:var(--ink)}
 .tone-pos{color:var(--pos);font-weight:600}.tone-neg{color:var(--neg);font-weight:600}.tone-spec{color:var(--spec);font-weight:600}
 sup.cite{white-space:nowrap}
 .src-note{font-size:var(--fs-sm);color:var(--muted)}
+a.src-mini{font-size:var(--fs-xs);color:var(--muted);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;white-space:nowrap}
+a.src-mini:hover{color:var(--accent-text)}
 sup.cite a{color:var(--accent-text);font-size:var(--fs-xs);display:inline;padding:2px 3px;margin:0 0 0 2px;text-decoration:underline;text-underline-offset:3px}
 .sources li{scroll-margin-top:72px;margin-bottom:12px}
 .sources li:target{background:var(--accent-soft);outline:2px solid var(--accent);border-radius:var(--radius)}
@@ -409,7 +432,7 @@ tbody th[scope="row"]{vertical-align:top}
 </head>
 <body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
-<header class="site"><div class="wrap"><a class="brand" href="/"><b>{{siteName}}<i>.</i></b><span>{{tagline}}</span></a><nav class="nav-wide" aria-label="주요 메뉴">{{nav}}</nav><a class="nav-search" href="/search/">검색</a><details class="nav-menu"><summary>메뉴</summary><nav aria-label="전체 메뉴">{{nav}}</nav></details></div></header>
+<header class="site"><div class="wrap"><a class="brand" href="/"><b>{{siteName}}<i>.</i></b><span>{{tagline}}</span></a><nav class="nav-wide" aria-label="주요 메뉴">{{nav}}</nav><a class="nav-search" href="/search/">검색</a><details class="nav-menu"><summary aria-label="메뉴"><span class="burger" aria-hidden="true"><i></i><i></i><i></i></span><span class="menu-word">메뉴</span></summary><nav aria-label="전체 메뉴">{{menu}}</nav></details></div></header>
 <main id="main">
 {{content}}
 </main>
