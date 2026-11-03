@@ -47,6 +47,23 @@ export async function aggregate(db, now = Date.now()) {
   ];
   await db.batch(statements);
 }
+// Public ranking from consented views: last 7 KST days and all retained days (≤1 year).
+// A post needs `min` views to rank, so a handful of visits never produces a leaderboard.
+export async function popular(db, articles, now = Date.now(), min = 10, limit = 5) {
+  const today = kstDay(now);
+  const sql =
+    "SELECT path,SUM(views) views FROM daily WHERE dimension='article' AND day>=? AND day<=? GROUP BY path ORDER BY views DESC,path";
+  const rank = (rows) =>
+    rows
+      .filter((row) => articles.has(row.path) && row.views >= min)
+      .slice(0, limit)
+      .map(({ path }) => ({ path }));
+  const [week, all_] = await Promise.all([
+    all(db, sql, kstDay(now - 6 * DAY), today),
+    all(db, sql, "0000-00-00", today),
+  ]);
+  return { week: rank(week), all: rank(all_) };
+}
 export async function report(db, manifest, days, path, now = Date.now()) {
   const today = kstDay(now),
     start = kstDay(now - (days - 1) * DAY);

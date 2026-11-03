@@ -567,6 +567,19 @@ function updateDates(markdown) {
   return [...section.body.matchAll(/^#{3,6}\s+(\d{4}-\d{2}-\d{2})/gm)].map(match => match[1]);
 }
 
+// Newest Update Log entry (the last one on the newest date) and its 판단 change, for the home "최근 업데이트" list.
+function latestUpdate(markdown) {
+  const section = parseSections(markdown).find(item => normalizeHeading(item.heading) === "update log");
+  const heads = section ? [...section.body.matchAll(/^#{3,6}\s+(\d{4}-\d{2}-\d{2})\s*(?:[—-]\s*)?(.*)$/gm)] : [];
+  if (!heads.length) return null;
+  const i = heads.reduce((best, head, k) => head[1] >= heads[best][1] ? k : best, 0);
+  const body = section.body.slice(heads[i].index, heads[i + 1]?.index);
+  const verdict = body.match(/\*\*판단:\*\*\s*([^.\n]*)/)?.[1] || "";
+  const [from, to] = verdict.split("→").map(text => text.trim());
+  const known = ["강한 매수", "매수", "중립", "매도", "강한 매도", "판단 보류"];
+  return { date: heads[i][1], title: heads[i][2].trim() || "업데이트", change: known.includes(from) && known.includes(to) ? { from, to } : null };
+}
+
 function faqFromMarkdown(markdown) {
   const lines = markdown.split(/\r?\n/);
   const faq = [];
@@ -708,6 +721,7 @@ function loadArticle(entry, options) {
     tags: (entry.tags && entry.tags.length ? entry.tags : [company, ticker]).filter(Boolean),
     asOfDate,
     researchDate,
+    latestUpdate: researchDate !== asOfDate ? latestUpdate(markdown) : null,
     datePublished,
     dateModified,
     issue,
@@ -1035,7 +1049,12 @@ function countsHtml(article, tag) {
 }
 
 function cardHtml(article, { summary = false } = {}) {
-  return `<a class="card" href="/${article.slug}/"><div class="img">${imageHtml(article)}${asOfTag(article)}</div><div class="in"><div class="chips">${chipsHtml(article)}</div><h3>${escapeHtml(article.headline)}</h3>${summary ? `<p>${escapeHtml(article.summary)}</p>` : ""}<div class="sub asof-text">${asOfTag(article)}</div>${countsHtml(article, "div")}</div></a>`;
+  return `<a class="card" href="/${article.slug}/"${freshAttrs(article)}><div class="img">${imageHtml(article)}${asOfTag(article)}</div><div class="in"><div class="chips">${chipsHtml(article)}</div><h3>${escapeHtml(article.headline)}</h3>${summary ? `<p>${escapeHtml(article.summary)}</p>` : ""}<div class="sub asof-text">${asOfTag(article)}</div>${countsHtml(article, "div")}</div></a>`;
+}
+
+// Read by freshness.js, which adds NEW/업데이트 badges against the reader's own date, so a quiet week of no builds never leaves stale badges.
+function freshAttrs(article) {
+  return ` data-asof="${article.asOfDate}" data-research="${article.researchDate}"`;
 }
 
 function rowHtml(article, rank) {
@@ -1047,7 +1066,7 @@ function rowHtml(article, rank) {
     article.stance ? `<span class="badge ${article.stance[0]}">${article.stance[1]}</span>` : "",
   ].filter(Boolean).join("");
   const updated = article.researchDate !== article.asOfDate ? `<span>자료 업데이트 ${article.researchDate}</span>` : "";
-  return `<a class="row" href="/${article.slug}/"><div class="row-id">${rank ? `<span class="rank">${rank}</span>` : ""}<span class="co">${escapeHtml(article.company)}</span>${article.ticker ? `<span class="tk">${escapeHtml(article.ticker)}</span>` : ""}<span class="row-tags">${tags}</span></div><div class="row-main"><h3>${escapeHtml(article.headline)}</h3><p>${escapeHtml(article.summary)}</p></div><div class="row-meta"><span><b>기준일 ${article.asOfDate}</b></span>${updated}<span>${article.readMinutes}분</span>${countsHtml(article, "span")}</div>${imageHtml(article)}</a>`;
+  return `<a class="row" href="/${article.slug}/"${freshAttrs(article)}><div class="row-id">${rank ? `<span class="rank">${rank}</span>` : ""}<span class="co">${escapeHtml(article.company)}</span>${article.ticker ? `<span class="tk">${escapeHtml(article.ticker)}</span>` : ""}<span class="row-tags">${tags}</span></div><div class="row-main"><h3>${escapeHtml(article.headline)}</h3><p>${escapeHtml(article.summary)}</p></div><div class="row-meta"><span><b>기준일 ${article.asOfDate}</b></span>${updated}<span>${article.readMinutes}분</span>${countsHtml(article, "span")}</div>${imageHtml(article)}</a>`;
 }
 
 function moreHtml(article, site) {
@@ -1080,11 +1099,29 @@ function popularArticles(articles) {
   return [...ranked, ...rest];
 }
 
+// Newest research updates (not site edits), with the 판단 change in the level colors.
+function updatesHtml(articles) {
+  const picks = articles.filter(article => article.latestUpdate).sort((a, b) => b.latestUpdate.date.localeCompare(a.latestUpdate.date) || a.order - b.order).slice(0, 3);
+  if (!picks.length) return "";
+  const item = article => {
+    const { date, title, change } = article.latestUpdate;
+    const verdict = change ? `<span class="upd-change">${research.verdictBadge(change.from)}<span aria-label="에서">→</span>${research.verdictBadge(change.to)}</span>` : "";
+    return `<li><a href="/${article.slug}/"><time datetime="${date}">${date.slice(5).replace("-", "/")}</time><span class="co">${escapeHtml(article.company)}</span><span class="upd-title">${escapeHtml(title)}</span></a>${verdict}</li>`;
+  };
+  return `<section class="updates" aria-labelledby="upd-head"><h2 class="sec-head" id="upd-head">최근 업데이트</h2><ol>${picks.map(item).join("")}</ol></section>`;
+}
+
+// Filled by popular.js from consented visit counts; stays hidden until a list has three ranked posts.
+function hotHtml(articles) {
+  const data = Object.fromEntries(articles.map(article => [`/${article.slug}/`, { c: article.company, h: article.headline }]));
+  return `<section class="hot" id="hot" hidden aria-labelledby="hot-head"><div class="hot-bar"><h2 class="sec-head" id="hot-head">인기 리서치</h2><div class="seg"><button type="button" data-hot="week" aria-pressed="true">이번 주</button><button type="button" data-hot="all" aria-pressed="false">전체</button></div></div><ol class="hot-list"></ol><p class="sub">분석 수집에 동의한 방문 기준 · 전체는 최근 1년</p><script type="application/json" id="hot-data">${JSON.stringify(data).replace(/</g, "\\u003c")}</script></section>`;
+}
+
 function heroHtml(site, articles) {
   const picks = featuredArticles(articles);
   if (!picks.length) return "";
   const [first, ...rest] = picks;
-  return `<section class="intro"><h1>${escapeHtml(site.config.description || site.config.siteName)}</h1></section><section class="rec" aria-labelledby="rec-head"><h2 class="sec-head" id="rec-head">지금 읽을 만한 리서치</h2><div class="grid${rest.length ? "" : " one"}">${cardHtml(first, { summary: true })}${rest.length ? `<div class="stack">${rest.map(article => cardHtml(article)).join("")}</div>` : ""}</div></section>`;
+  return `<section class="intro"><h1>${escapeHtml(site.config.description || site.config.siteName)}</h1></section><section class="rec" aria-labelledby="rec-head"><h2 class="sec-head" id="rec-head">지금 읽을 만한 리서치</h2><div class="grid${rest.length ? "" : " one"}">${cardHtml(first, { summary: true })}${rest.length ? `<div class="stack">${rest.map(article => cardHtml(article)).join("")}</div>` : ""}</div></section>${hotHtml(articles)}${updatesHtml(articles)}`;
 }
 
 // Plain links to the existing market pages, so filtering needs no JavaScript.
@@ -1333,6 +1370,7 @@ function buildSite(options) {
   const earningsHtml = renderLayout(site, {title:`실적 리뷰 | ${config.siteName}`, description:'발표 전 기대, 실제 결과, 추정 변경과 다음 분기 검증', canonical:`${config.baseUrl}/earnings/`,section:'earnings',content:`<div class="wrap"><header class="list-head"><h1>실적 리뷰</h1><p>발표 전 기대 → 실제 결과 → 추정 변경 → 다음 분기 검증</p>${archiveLegend}</header><div class="list">${earnings.length?earningsList:'<p>등록된 실적 리뷰가 없습니다.</p>'}</div></div>`});
   writeFile(path.join(outDir,'earnings/index.html'),earningsHtml);
   record(`${config.baseUrl}/earnings/`,latest,earningsHtml);
+  for(const name of ['freshness.js','popular.js']) writeFile(path.join(outDir,name),fs.readFileSync(path.join(__dirname,"../../../site",name),"utf8"));
   for(const name of ['scenario.js','research-client.js']) writeFile(path.join(outDir,name),fs.readFileSync(path.join(__dirname,name),'utf8'));
 
   writeFile(path.join(outDir, "sitemap.xml"), sitemapXml(urlEntries.filter(entry => entry.inSitemap)));

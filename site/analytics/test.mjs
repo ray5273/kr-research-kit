@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import { execFileSync } from "node:child_process";
 import { Miniflare, convertV4MiniflareOptions } from "miniflare";
-import { aggregate, report } from "./store.mjs";
+import { aggregate, report, popular } from "./store.mjs";
 import { DAY, kstDay, dayStart, insights } from "./core.mjs";
 import {
   authorize,
@@ -365,6 +365,11 @@ try {
     80,
     "late cumulative metric uses max",
   );
+  const known = new Map([[path, "글"]]);
+  assert.deepEqual(await popular(db, known, now + 1000), { week: [], all: [] }, "below the view floor nothing ranks");
+  assert.deepEqual(await popular(db, known, now + 1000, 1), { week: [{ path }], all: [{ path }] });
+  assert.deepEqual(await popular(db, new Map(), now + 1000, 1), { week: [], all: [] }, "unpublished paths never rank");
+  assert.deepEqual((await popular(db, known, now + 30 * DAY, 1)).week, [], "the weekly list ages out");
   assert.equal(kstDay(Date.parse("2026-10-31T15:00:00Z")), "2026-11-01");
   assert.equal(kstDay(Date.parse("2026-10-31T14:59:59Z")), "2026-10-31");
   // Store events on both sides of KST midnight, rather than testing only date helpers.

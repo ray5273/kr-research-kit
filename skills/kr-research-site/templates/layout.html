@@ -118,6 +118,29 @@ footer.site a:hover{color:var(--ink)}
 .intro p{margin:0;color:var(--muted);font-size:var(--fs-md)}
 .sec-head{font-size:var(--fs-md);font-weight:700;line-height:1.4;margin:0 0 16px;padding-top:8px;border-top:2px solid var(--rule)}
 .rec{margin-bottom:32px}
+.fresh{display:inline-block;white-space:nowrap;font-size:var(--fs-xs);font-weight:700;line-height:1.5;border-radius:var(--radius);padding:0 6px}
+.fresh.new{color:#fff;background:var(--accent)}
+.fresh.upd{color:var(--accent-text);box-shadow:inset 0 0 0 1px var(--accent)}
+.fresh.hot-rank{color:var(--pos);background:var(--pos-bg)}
+.card .chips .fresh{margin-right:4px}
+.updates,.hot{margin-bottom:32px}
+.updates ol,.hot-list{list-style:none;margin:0;padding:0}
+.updates li,.hot-list li{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;padding:12px 0;border-top:1px solid var(--line)}
+.updates li:first-child,.hot-list li:first-child{border-top:0;padding-top:0}
+.updates a,.hot-list a{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;flex:1 1 240px;min-width:0;color:var(--ink);text-decoration:none}
+.updates time{font-size:var(--fs-xs);font-weight:700;color:var(--accent-text);font-variant-numeric:tabular-nums}
+.updates .co,.hot-list .co{font-weight:700}
+.upd-title,.hot-list .hl{color:var(--ink-2);font-size:var(--fs-md)}
+.updates a:hover .upd-title,.hot-list a:hover .hl{text-decoration:underline}
+.upd-change{display:inline-flex;align-items:center;gap:4px;color:var(--muted);font-size:var(--fs-xs)}
+.hot-bar{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.hot-bar .sec-head{flex:1}
+.hot-bar .seg button{min-height:44px;padding:0;border:0;background:none;color:var(--muted);font:inherit;cursor:pointer}
+.hot-bar .seg button[aria-pressed=true]{color:var(--ink);font-weight:700;box-shadow:inset 0 -2px var(--accent)}
+.hot-bar .seg button:disabled{opacity:.4;cursor:default}
+.hot-list .rank{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:var(--radius);background:var(--accent);color:#fff;font-size:var(--fs-xs);font-weight:700}
+.hot-list li:nth-child(n+4) .rank{background:var(--surface);color:var(--ink)}
+.hot .sub{margin:8px 0 0;font-size:var(--fs-xs);color:var(--muted)}
 .grid{display:grid;grid-template-columns:1.25fr 1fr;gap:24px}
 .grid.one{grid-template-columns:1fr}
 .grid>.card img,.grid>.card .ph{aspect-ratio:2/1}
@@ -475,5 +498,7 @@ tbody th[scope="row"]{vertical-align:top}
 <footer class="site"><div class="wrap"><p>{{footerLinks}}<button type="button" data-stats-settings>통계 설정</button></p><p>© {{year}} {{author}} · {{siteName}} · {{tagline}} · 공개 자료 기반 개인 리서치이며 투자 권유가 아닙니다.</p></div></footer>
 <script src="/analytics.js" defer></script>
 <script src="/card-counts.js" defer></script>
+<script src="/freshness.js" defer></script>
+<script src="/popular.js" defer></script>
 </body>
 </html>

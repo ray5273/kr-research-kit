@@ -16,7 +16,7 @@ import commentsHTML from "./comments.html";
 import commentsJS from "./comments.client.js";
 import loginHTML from "./login.html";
 import { sanitizeEvent, uuid } from "./core.mjs";
-import { aggregate, report } from "./store.mjs";
+import { aggregate, report, popular } from "./store.mjs";
 const paths = new Set(manifest.paths),
   articles = new Map(manifest.articles.map((a) => [a.path, a.title]));
 const headers = {
@@ -280,6 +280,11 @@ export default {
     try {
       if (["/api/article-meta", "/api/article-counts", "/api/shares", "/api/comments"].includes(url.pathname))
         return await engagement(request, env, articles, { ctx, baseUrl: manifest.baseUrl });
+      if (url.pathname === "/api/popular") {
+        if (request.method !== "GET") return json({ error: "method" }, 405);
+        const ranking = env.DB ? await popular(env.DB, articles) : { week: [], all: [] };
+        return Response.json(ranking, { headers: { ...headers, "Cache-Control": "public, max-age=600" } });
+      }
       if (url.pathname === "/api/analytics/events")
         return await collect(request, env);
       // Static .html assets redirect, and verifiers check these exact addresses.

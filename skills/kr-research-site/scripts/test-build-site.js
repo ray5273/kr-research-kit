@@ -258,8 +258,8 @@ assert(acmeDisplay.includes('<span class="badge neg">부정</span>'));
 assert(acmeDisplay.includes("<h1>Acme 짧은 제목</h1>"));
 assert(acmeDisplay.includes('<div class="v down">-4.0%</div>') && acmeDisplay.includes("12.3<small>달러</small>"));
 const featuredHome = read("index.html");
-assert(featuredHome.includes('<div class="grid"><a class="card" href="/us/acme-2026-05/">'), "featured article leads the recommended grid");
-assert(/class="panel popular"><a class="row" href="\/us\/acme-2026-05\/"><div class="row-id"><span class="rank">1<\/span>/.test(featuredHome));
+assert(featuredHome.includes('<div class="grid"><a class="card" href="/us/acme-2026-05/" data-asof='), "featured article leads the recommended grid");
+assert(/class="panel popular"><a class="row" href="\/us\/acme-2026-05\/"[^>]*><div class="row-id"><span class="rank">1<\/span>/.test(featuredHome));
 assert.throws(() => build({ published: { articles: [{ ...soop, stance: "매수" }] } }), /Invalid stance/);
 build();
 
@@ -351,6 +351,9 @@ assert(read("index.html").includes('src="/card-counts.js"'));
   fs.rmSync(coverDir, { recursive: true, force: true });
 }
 assert(read("card-counts.js").includes("/api/article-counts"));
+assert(read("popular.js").includes("/api/popular") && read("freshness.js").includes("[data-asof]"));
+assert(/<a class="row" href="\/kr\/soop-2026-06\/" data-asof="\d{4}-\d{2}-\d{2}" data-research="\d{4}-\d{2}-\d{2}">/.test(read("index.html")), "rows carry freshness dates");
+assert(read("index.html").includes('<section class="hot" id="hot" hidden'), "popular box ships hidden");
 assert(read("index.html").includes('data-counts="/kr/soop-2026-06/" hidden'));
 assert(!fs.existsSync(path.join(outDir, "admin")));
 
