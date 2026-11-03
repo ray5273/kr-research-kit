@@ -6,6 +6,7 @@ export function previewHtml(html) {
   html=html.replace(/ · <span data-share-count[^>]*>[\s\S]*?<\/span> · <a[^>]*data-comment-count[^>]*>[\s\S]*?<\/a>/g,'');
   html=html.replace(/<div class="share-buttons"[^>]*>[\s\S]*?<\/div>/g,'<div class="share-buttons"><button type="button" data-preview-copy>프리뷰 링크 복사</button></div>');
   html=html.replace(/<p class="sub">공유 횟수는 사이트 공유 기능[\s\S]*?<\/p>/g,'');
+  html=html.replace('분석 수집에 동의한 방문 기준 · 전체는 최근 1년','프리뷰 예시 순위 · 실제 조회수가 아닙니다. 운영 사이트는 분석 수집에 동의한 방문 기준');
   html=html.replace(/<button type="button" data-stats-settings>통계 설정<\/button>/g,'');
   html=html.replace('<main id="main">','<main id="main"><p class="wrap sub" style="padding-top:12px">미리보기 · 기업 이력·계산기를 확인할 수 있습니다. 댓글·공유 집계는 제공하지 않습니다.</p>');
   return html.replace('</body>','<script src="/preview-client.js" defer></script></body>');

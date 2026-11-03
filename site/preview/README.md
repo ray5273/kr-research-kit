@@ -15,3 +15,5 @@ npm run deploy:preview
 `deploy:preview`는 현재 체크아웃의 내용을 정적 빌드해 고정 별칭으로 배포한다. PR 자동 배포 트리거를 새로 만드는 명령은 아니다. 운영 배포 대상 `main`과 공개 canonical은 유지하며, 프리뷰는 계속 noindex다.
 
 프리뷰의 공유 영역은 현재 프리뷰 URL을 복사하는 로컬 기능만 제공한다. 댓글 입력 폼·미작동 집계·통계 설정은 제거한다. `npm run test:preview`가 실제 빌드 HTML과 복사 동작을 확인한다.
+
+인기 리서치 상자는 D1이 없으므로 `prepare.mjs`가 만든 고정 예시 순위(`/api/popular` → `api/popular.json`)로 표시하고, 안내 문구를 "프리뷰 예시 순위 · 실제 조회수가 아닙니다"로 바꾼다.

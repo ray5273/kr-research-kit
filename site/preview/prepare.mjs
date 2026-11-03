@@ -18,5 +18,10 @@ for (const file of fs.readdirSync(outDir,{recursive:true}).filter(file=>file.end
  const html=previewHtml(fs.readFileSync(target,'utf8'));
  fs.writeFileSync(target,html);
 }
+// No D1 here: serve a fixed sample ranking so the popular box can be reviewed (labelled as a sample by previewHtml).
+const published=JSON.parse(fs.readFileSync(path.join(root,'site/published.json'),'utf8')).articles.map(a=>({path:`/${a.slug}/`,earnings:a.articleType==='earnings-review'}));
+fs.mkdirSync(path.join(outDir,'api'),{recursive:true});
+fs.writeFileSync(path.join(outDir,'api/popular.json'),JSON.stringify({week:published.filter(a=>a.earnings).slice(0,5).map(({path})=>({path})),all:published.filter(a=>!a.earnings).slice(0,5).map(({path})=>({path}))}));
+fs.writeFileSync(path.join(outDir,'_redirects'),'/api/popular /api/popular.json 200\n');
 fs.copyFileSync(path.join(root,'site/preview/preview-client.js'),path.join(outDir,'preview-client.js'));
 console.log(`Static preview ready: ${outDir}`);

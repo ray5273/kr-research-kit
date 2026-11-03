@@ -16,6 +16,8 @@ assert(!html.includes('data-comment-count'));
 assert(!html.includes('<button type="button" data-stats-settings>'));
 assert(!html.includes('<script src="/engagement.js"'));
 assert(html.includes('data-preview-copy'));
+const home=previewHtml(fs.readFileSync(out+'/index.html','utf8'));
+assert(home.includes('id="hot"') && home.includes('프리뷰 예시 순위') && !home.includes('분석 수집에 동의한 방문 기준 · 전체는'), 'preview labels the sample ranking');
 assert(html.includes('noindex,nofollow'));
 assert(html.includes('/preview-client.js'));
 assert.equal((html.match(/<caption>실적 비교표<\/caption>/g)||[]).length,1);
