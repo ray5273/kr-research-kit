@@ -6,9 +6,9 @@
   "releasedAt": "2026-10-29",
   "basis": "연결 K-IFRS · 분기",
   "unit": "억원",
-  "stance": "보상금·충당금을 걷어낸 본업 흑자 확인 전 판단 보류",
-  "rationale": "영업이익 4,078억원은 AMPC 1,225억원과 미공개 일회성 순효과(증권사 추정 2,500~4,000억원)를 포함한다. 둘을 빼면 본업 이익은 손익분기점 근처다.",
-  "verdict": "판단 보류",
+  "stance": "본업 흑자 미확인, 12개월 목표가 대비 가격 부담으로 중립",
+  "rationale": "AMPC·일회성 제외 본업 이익은 0을 걸치고, 12개월 기준 목표가 360,500원은 현재가보다 27.4% 낮다. 24개월(2028년 이익) 기준으로는 664,400원이다.",
+  "verdict": "중립",
   "nextCheck": {
     "event": "2026Q4 잠정실적",
     "expected": "2027-01",
@@ -191,6 +191,48 @@
       "url": "https://www.mt.co.kr/industry/2026/08/21/2026082116202684047",
       "publishedAt": "2026-08-21",
       "role": "secondary_disclosure_quote",
+      "access": "read"
+    },
+    {
+      "id": "consensus-annual",
+      "label": "WiseReport 연간 컨센서스 · 2027년 영업이익 (11/03 확인)",
+      "url": "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=006400",
+      "publishedAt": "2026-11-03",
+      "role": "consensus",
+      "access": "read",
+      "retrievedAt": "2026-11-03",
+      "verifiedAt": "2026-11-03"
+    },
+    {
+      "id": "daishin-review",
+      "label": "대신증권 2026-10-30 실적 리뷰 PDF",
+      "url": "https://stock.pstatic.net/stock-research/company/15/20261030_company_245302000.pdf",
+      "publishedAt": "2026-10-30",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "eugene-review",
+      "label": "유진투자증권 2026-10-30 실적 리뷰 PDF",
+      "url": "https://stock.pstatic.net/stock-research/company/63/20261030_company_10062000.pdf",
+      "publishedAt": "2026-10-30",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "mirae-review",
+      "label": "미래에셋증권 2026-10-30 실적 리뷰 PDF",
+      "url": "https://stock.pstatic.net/stock-research/company/56/20261030_company_613799000.pdf",
+      "publishedAt": "2026-10-30",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "shares-h1",
+      "label": "DART 2026 반기보고서 주식의 총수 (보통주 80,585,530주)",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003578",
+      "publishedAt": "2026-08-14",
+      "role": "primary",
       "access": "read"
     }
   ],
@@ -692,8 +734,8 @@
   "changes": [
     {
       "date": "2026-11-03",
-      "claim": "첫 분석: 이전 가정 없음 → 본업 흑자 검증 대기",
-      "to": "판단 보류",
+      "claim": "첫 분석: 이전 가정 없음 → 5개 축 채점 중립",
+      "to": "중립",
       "evidence": "보상금·충당금 금액 미공시. 증권사 순효과 추정 2,500~4,000억원을 빼면 AMPC 제외 본업 이익은 약 −1,150~+350억원.",
       "sources": [
         "dart-q3",
@@ -793,5 +835,112 @@
     "netDebtSource": "rpt-2026h1",
     "netDebtAsOf": "2026-06-30"
   },
-  "initialReview": true
+  "initialReview": true,
+  "rating": {
+    "axes": [
+      {
+        "key": "coreProfit",
+        "actual": "AMPC·일회성 제외 영업이익 −1,147~+353억원 (일회성 순효과 증권사 추정 2,500~4,000억원)",
+        "score": 0,
+        "sources": [
+          "dart-q3",
+          "sk-review",
+          "im-review"
+        ]
+      },
+      {
+        "key": "direction",
+        "actual": "AMPC 제외 영업이익 2025Q3 −6,108 → 2026Q2 961 → 2026Q3 −1,147~+353억원. 전년 대비 개선, 전분기 대비 악화 또는 비슷 (2분기 일회성은 미확인)",
+        "score": 0,
+        "sources": [
+          "dart-q3"
+        ]
+      },
+      {
+        "key": "cash",
+        "actual": "2026Q2 영업현금흐름 242억원, 투자지출 5,438억원 → 잉여현금흐름 −5,196억원. 3분기는 미공시",
+        "score": 0,
+        "sources": [
+          "rpt-2026h1"
+        ]
+      },
+      {
+        "key": "outlook",
+        "actual": "발표 후 10건 모두 매수. 대신(75만원)·유진(70만원) 목표가 상향, 미래에셋 2027·2028년 영업이익 전망 2배. 회사는 4분기 흑자 기조만 언급하고 2027년 수치는 미제시",
+        "score": 1,
+        "sources": [
+          "daishin-review",
+          "eugene-review",
+          "mirae-review",
+          "call-thelec"
+        ]
+      },
+      {
+        "key": "price",
+        "actual": "12개월 기준 목표가 360,500원(2027년 컨센서스 15,253억원 × 20배) vs 현재가 496,500원 → −27.4%. 24개월 기준 664,400원(+33.8%)",
+        "score": -1,
+        "sources": [
+          "quote",
+          "consensus-annual",
+          "rpt-2026h1",
+          "daishin-review"
+        ]
+      }
+    ]
+  },
+  "targets": {
+    "price": {
+      "value": 496500,
+      "source": "quote"
+    },
+    "shares": {
+      "value": 80585530,
+      "source": "shares-h1"
+    },
+    "netDebt": {
+      "value": 61554,
+      "source": "rpt-2026h1",
+      "note": "6월 말 106,054억원에서 8월 지분 매각 대금 44,500억원 차감 · 작성자 조건값"
+    },
+    "adjustments": [
+      {
+        "label": "삼성디스플레이 잔여 지분 10.22%(대신증권 평가)",
+        "value": 47000,
+        "source": "daishin-review"
+      }
+    ],
+    "multiples": {
+      "bear": 15,
+      "base": 20,
+      "bull": 30
+    },
+    "multipleNote": "작성자 선택. 기준 20배는 계산기와 같고, 보수 15배·낙관 30배는 민감도다. 시장 적정 배수로 검증되지 않았다",
+    "horizons": [
+      {
+        "months": 12,
+        "year": 2027,
+        "operatingProfit": 15253,
+        "source": "consensus-annual"
+      },
+      {
+        "months": 24,
+        "year": 2028,
+        "operatingProfit": 27497,
+        "source": "consensus-annual"
+      }
+    ],
+    "brokers": {
+      "count": 10,
+      "min": 667000,
+      "median": 800000,
+      "max": 1000000,
+      "sources": [
+        "mirae-review",
+        "daishin-review",
+        "eugene-review",
+        "sk-review",
+        "im-review"
+      ]
+    }
+  }
 }

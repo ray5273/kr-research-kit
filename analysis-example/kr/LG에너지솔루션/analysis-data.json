@@ -6,9 +6,9 @@
   "releasedAt": "2026-10-08",
   "basis": "연결 K-IFRS · 분기",
   "unit": "억원",
-  "stance": "보상금 제외 본업 흑자와 순이익 회복 확인 전 판단 보류",
-  "rationale": "보조금 제외 영업이익 3,391억원에 미공개 보상금(증권사 추정 3,000~4,000억원)이 들어 있고, 영업외손실 9,872억원으로 당기순이익은 −2,969억원이다.",
-  "verdict": "판단 보류",
+  "stance": "12개월 목표가가 현재가를 크게 밑돌아 매도, 24개월 기준으로는 매수 구간",
+  "rationale": "본업 이익은 보상금을 빼면 0을 걸치고 현금 전환도 미확인이다. 12개월 기준 목표가 186,700원은 현재가보다 45.2% 낮고, 2028년 이익을 쓰는 24개월 목표가 383,800원만 현재가를 넘는다.",
+  "verdict": "매도",
   "nextCheck": {
     "event": "2026Q4 잠정실적",
     "expected": "2027-01",
@@ -200,6 +200,32 @@
       "url": "https://stock.pstatic.net/stock-research/company/63/20261012_company_180635000.pdf",
       "publishedAt": "2026-10-12",
       "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "consensus-annual",
+      "label": "WiseReport 연간 컨센서스 · 2027년 영업이익 (11/03 확인)",
+      "url": "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=373220",
+      "publishedAt": "2026-11-03",
+      "role": "consensus",
+      "access": "read",
+      "retrievedAt": "2026-11-03",
+      "verifiedAt": "2026-11-03"
+    },
+    {
+      "id": "samsung-review",
+      "label": "삼성증권 2026-10-15 잠정실적 리뷰 PDF",
+      "url": "https://stock.pstatic.net/stock-research/company/78/20261015_company_20356000.pdf",
+      "publishedAt": "2026-10-15",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "shares-h1",
+      "label": "DART 2026 반기보고서 주식의 총수 (보통주 234,000,000주)",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260813000255",
+      "publishedAt": "2026-08-13",
+      "role": "primary",
       "access": "read"
     }
   ],
@@ -699,8 +725,8 @@
   "changes": [
     {
       "date": "2026-11-03",
-      "claim": "첫 분석: 이전 가정 없음 → 본업 흑자·순이익 회복 검증 대기",
-      "to": "판단 보류",
+      "claim": "첫 분석: 이전 가정 없음 → 5개 축·12개월 목표가 기준 매도",
+      "to": "매도",
       "evidence": "보조금 제외 3,391억원에서 증권사 보상금 추정 3,000~4,000억원을 빼면 약 −600~+400억원. 당기순이익 −2,969억원.",
       "sources": [
         "dart-q3",
@@ -801,5 +827,109 @@
     "netDebtSource": "rpt-2026h1",
     "netDebtAsOf": "2026-06-30"
   },
-  "initialReview": true
+  "initialReview": true,
+  "rating": {
+    "axes": [
+      {
+        "key": "coreProfit",
+        "actual": "보조금 제외 3,391억원 − 보상금 추정 3,000~4,000억원 = −609~+391억원",
+        "score": 0,
+        "sources": [
+          "dart-q3",
+          "shinhan-review",
+          "eugene-review"
+        ]
+      },
+      {
+        "key": "direction",
+        "actual": "보조금 제외 영업이익 2025Q3 2,358 → 2026Q2 −1,277 → 2026Q3 −609~+391억원. 전분기 대비 개선, 전년 대비 악화 (2025Q3 일회성 여부 미확인)",
+        "score": 0,
+        "sources": [
+          "dart-q3",
+          "dart-2026q2"
+        ]
+      },
+      {
+        "key": "cash",
+        "actual": "2026Q2 영업현금흐름 254억원, 투자지출 16,465억원 → 잉여현금흐름 −16,211억원. 1분기 영업현금흐름 −3,163억원. 3분기는 미공시",
+        "score": 0,
+        "sources": [
+          "rpt-2026h1"
+        ]
+      },
+      {
+        "key": "outlook",
+        "actual": "잠정실적 후 6건 모두 매수. 삼성(46→50만원)·유진(+13%) 목표가 상향, 삼성 2027년 영업이익 4.13조원(+228%). 회사는 4분기 수익성 일부 둔화를 예고하고 2027년 수치는 미제시",
+        "score": 1,
+        "sources": [
+          "samsung-review",
+          "eugene-review",
+          "call-thelec"
+        ]
+      },
+      {
+        "key": "price",
+        "actual": "12개월 기준 목표가 186,700원(2027년 컨센서스 36,794억원 × 20배, 비지배지분 차감) vs 현재가 341,000원 → −45.2%. 24개월 기준 383,800원(+12.6%)",
+        "score": -2,
+        "sources": [
+          "quote",
+          "consensus-annual",
+          "rpt-2026h1"
+        ]
+      }
+    ]
+  },
+  "targets": {
+    "price": {
+      "value": 341000,
+      "source": "quote"
+    },
+    "shares": {
+      "value": 234000000,
+      "source": "shares-h1"
+    },
+    "netDebt": {
+      "value": 219531,
+      "source": "rpt-2026h1",
+      "note": "2026년 6월 말 잔액"
+    },
+    "adjustments": [
+      {
+        "label": "비지배지분(6월 말 장부가)",
+        "value": -79445,
+        "source": "rpt-2026h1"
+      }
+    ],
+    "multiples": {
+      "bear": 15,
+      "base": 20,
+      "bull": 30
+    },
+    "multipleNote": "작성자 선택. 기준 20배는 계산기와 같고, 보수 15배·낙관 30배는 민감도다. 시장 적정 배수로 검증되지 않았다",
+    "horizons": [
+      {
+        "months": 12,
+        "year": 2027,
+        "operatingProfit": 36794,
+        "source": "consensus-annual"
+      },
+      {
+        "months": 24,
+        "year": 2028,
+        "operatingProfit": 59854,
+        "source": "consensus-annual"
+      }
+    ],
+    "brokers": {
+      "count": 6,
+      "min": 480000,
+      "median": 515000,
+      "max": 560000,
+      "sources": [
+        "samsung-review",
+        "eugene-review",
+        "shinhan-review"
+      ]
+    }
+  }
 }

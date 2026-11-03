@@ -36,6 +36,15 @@ function loadResearch(entry, {root, safety, asOfDate}) {
     check(n && typeof n.event === 'string' && n.event && Array.isArray(n.conditions) && n.conditions.length && n.conditions.every(c=>typeof c === 'string' && c), 'nextCheck needs event and conditions');
     check(/^\d{4}-\d{2}$/.test(n.expected || '') && n.expected >= d.verifiedAt.slice(0,7), 'nextCheck.expected must be a future YYYY-MM');
   }
+  if(d.rating !== undefined) {
+    const axes=d.rating?.axes;
+    check(Array.isArray(axes) && axes.length === RATING_AXES.length && axes.every((a,i)=>a && a.key === RATING_AXES[i].key), 'rating needs the five fixed axes in order');
+    axes.forEach(a=>{check(typeof a.actual === 'string' && a.actual.length > 0, 'rating axis needs the actual observation');
+      check(a.score === null ? typeof a.reason === 'string' && a.reason.length > 0 : Number.isInteger(a.score) && a.score >= -2 && a.score <= 2, 'rating score must be −2…+2 or null with a reason');});
+    check(axes.at(-1).score !== null, 'rating price axis must be scored: valuation is mandatory');
+    if(d.targets !== undefined) check(axes.at(-1).score === horizonTargets(d.targets)[0].score, 'price axis must follow the first-horizon target upside');
+    check(d.verdict === ratingLevel(axes).label, 'verdict must equal the computed rating level');
+  }
   check(Array.isArray(d.sources) && d.sources.length > 0, 'sources required');
   const sources = new Map();
   d.sources.forEach(s => {
@@ -102,6 +111,14 @@ function loadResearch(entry, {root, safety, asOfDate}) {
     });
   }
   const c = d.calculator;
+  if(d.targets !== undefined) {
+    const t=d.targets, ok=v=>v && number(v.value) && sources.has(v.source);
+    check(ok(t.price) && t.price.value>0 && ok(t.shares) && t.shares.value>0 && ok(t.netDebt), 'targets need sourced price, shares and net debt');
+    check(t.multiples && ['bear','base','bull'].every(k=>number(t.multiples[k]) && t.multiples[k]>0) && t.multiples.bear<=t.multiples.base && t.multiples.base<=t.multiples.bull && typeof t.multipleNote === 'string' && t.multipleNote, 'targets need ordered bear/base/bull multiples and a rationale');
+    check(Array.isArray(t.horizons) && t.horizons.length && t.horizons.every((h,i)=>Number.isInteger(h.months) && h.months>0 && (!i || h.months>t.horizons[i-1].months) && /^\d{4}$/.test(String(h.year)) && number(h.operatingProfit) && sources.has(h.source)), 'targets need increasing horizons with sourced profit');
+    (t.adjustments||[]).forEach(a=>check(a.label && number(a.value) && sources.has(a.source), 'target adjustments need label, value and source'));
+    if(t.brokers) check(number(t.brokers.min) && number(t.brokers.median) && number(t.brokers.max) && t.brokers.min<=t.brokers.median && t.brokers.median<=t.brokers.max && Number.isInteger(t.brokers.count) && (t.brokers.sources||[]).every(id=>sources.has(id)), 'broker target range invalid');
+  }
   check(c && c.period && c.label && c.assumptions && c.variables?.length === 2, 'calculator assumptions required');
   ['priceLabel','priceUnit','priceNote','baseProfitLabel','baseProfitNote'].forEach(k=>check(c[k] === undefined || (typeof c[k] === 'string' && c[k].length > 0), `invalid calculator ${k}`));
   c.variables.forEach(v => check(v.key && v.label && v.unit && [v.min,v.max,v.step,v.default].every(number) && v.min < v.max && v.step > 0 && v.default >= v.min && v.default <= v.max, 'invalid calculator range'));
@@ -110,6 +127,42 @@ function loadResearch(entry, {root, safety, asOfDate}) {
   if(c.netDebtSource) check(sources.has(c.netDebtSource) && date(c.netDebtAsOf) && c.netDebtAsOf <= sources.get(c.netDebtSource).publishedAt, 'net debt provenance required');
   check(c.marketCap === null || (number(c.marketCap) && c.marketCap > 0 && sources.has(c.marketCapSource)), 'market cap source required');
   return d;
+}
+// Five fixed axes keep the buy/sell level reproducible: each is scored −2…+2 against the same wording for every company.
+const RATING_AXES=[
+  {key:'coreProfit',label:'본업 이익',criteria:{2:'일회성·보조금 제외 영업이익이 최악 가정에서도 흑자, 이익률 5% 이상',1:'최악 가정에서도 흑자',0:'추정 범위가 0을 걸침',[-1]:'최선 가정에서도 적자',[-2]:'최선 가정에서도 적자이고 전분기보다 확대'}},
+  {key:'direction',label:'이익 방향',criteria:{2:'일회성 제외 기준 전분기·전년 대비 모두 개선',1:'한쪽 개선, 다른 쪽 비슷',0:'엇갈리거나 비슷',[-1]:'한쪽 악화, 다른 쪽 비슷',[-2]:'전분기·전년 대비 모두 악화'}},
+  {key:'cash',label:'현금 전환',criteria:{2:'최근 2개 분기 잉여현금흐름 모두 양수',1:'최근 분기 잉여현금흐름 양수',0:'영업현금흐름 양수, 잉여현금흐름 음수',[-1]:'최근 분기 영업현금흐름 음수',[-2]:'최근 2개 분기 영업현금흐름 모두 음수'}},
+  {key:'outlook',label:'전망 변화',criteria:{2:'발표 후 증권사 전망 대부분 상향, 회사 전망도 개선',1:'발표 후 증권사 전망 대부분 상향',0:'상향·하향이 엇갈림',[-1]:'발표 후 증권사 전망 대부분 하향',[-2]:'대부분 하향, 회사 전망도 악화'}},
+  {key:'price',label:'가격·밸류에이션 (2배 가중)',criteria:{2:'12개월 기준 목표가 대비 상승여력 +30% 이상',1:'+10% 이상 +30% 미만',0:'−10% 이상 +10% 미만',[-1]:'−30% 이상 −10% 미만',[-2]:'−30% 미만 또는 목표 시점 지분가치 음수'}}
+];
+const RATING_LEVELS=['강한 매수','매수','중립','매도','강한 매도'];
+// Valuation is mandatory and weighted double: a stock is never rated above 중립 while its price demands more than consensus.
+const RATING_WEIGHT={price:2};
+function ratingLevel(axes) {
+  const judged=axes.filter(a=>a.score!==null), price=axes.find(a=>a.key==='price');
+  if(judged.length<3 || !price || price.score===null) return {label:'판단 보류',average:null,judged:judged.length,capped:false};
+  const weight=a=>RATING_WEIGHT[a.key]||1;
+  const average=judged.reduce((sum,a)=>sum+a.score*weight(a),0)/judged.reduce((sum,a)=>sum+weight(a),0);
+  const raw=average>=1.2?'강한 매수':average>=0.5?'매수':average>-0.5?'중립':average>-1.2?'매도':'강한 매도';
+  const label=price.score<0 && ['강한 매수','매수'].includes(raw) ? '중립' : price.score<1 && raw==='강한 매수' ? '매수' : raw;
+  return {label,average,judged:judged.length,capped:label!==raw};
+}
+// Horizon targets: consensus operating profit × an explicit EV/OP multiple, bridged to equity per share.
+const UPSIDE_BANDS=[[0.3,2,'강한 매수'],[0.1,1,'매수'],[-0.1,0,'중립'],[-0.3,-1,'매도']];
+function upsideLevel(upside) {
+  if(upside===null) return {score:-2,label:'강한 매도'};
+  const band=UPSIDE_BANDS.find(([min])=>upside>=min);
+  return band ? {score:band[1],label:band[2]} : {score:-2,label:'강한 매도'};
+}
+function horizonTargets(t) {
+  const adjust=(t.adjustments||[]).reduce((sum,a)=>sum+a.value,0);
+  return t.horizons.map(h=>{
+    const at=m=>{const equity=h.operatingProfit*m-t.netDebt.value+adjust;return equity>0?Math.round(equity*1e8/t.shares.value/100)*100:null;};
+    const prices={bear:at(t.multiples.bear),base:at(t.multiples.base),bull:at(t.multiples.bull)};
+    const upside=prices.base===null?null:prices.base/t.price.value-1;
+    return {...h,prices,upside,...upsideLevel(upside)};
+  });
 }
 function table(headers, rows, caption) {
   return `<div class="table-scroll" tabindex="0" role="region" aria-label="${e(caption)}"><table role="table"><caption>${e(caption)}</caption><thead role="rowgroup"><tr role="row">${headers.map(h=>`<th scope="col">${e(h)}</th>`).join('')}</tr></thead><tbody role="rowgroup">${rows.map(row=>`<tr role="row">${row.map((v,i)=>i ? `<td role="cell" data-label="${e(headers[i])}">${v}</td>` : `<th scope="row">${v}</th>`).join('')}</tr>`).join('')}</tbody></table></div>`;
@@ -174,11 +227,38 @@ function valuationText(r) { return r.profit<=0 ? '적자로 배수 가치평가 
 function widgetParts(d) {
   if(!d) return {};
   return {
+    rating:rating(d),
     comparison:`<details class="src-note"><summary>자료 기준과 확인 범위 · ${e(d.verifiedAt)}</summary><ul>${(d.limitations || []).map(item=>`<li>${e(item)}</li>`).join('')}</ul></details>${comparison(d)}`,
     checks:records(d,'checks','지난 판단 점검표'),
     charts:`<section id="quarterly-metrics"><h2>최근 8분기 핵심 지표</h2><p class="src-note">실제와 추정은 구분하며, 빈 값은 0이 아닙니다. 누적 현금흐름을 분기 손익과 직접 비교하지 않습니다.</p>${d.series.map(s=>chart(d,s)).join('')}</section>`,
     calculator:calculator(d),promises:records(d,'promises','경영진 약속 추적')
   };
+}
+const signed=n=>n>0?`+${n}`:n<0?`−${-n}`:'0';
+function ratingSummary(d) {
+  const r=ratingLevel(d.rating.axes);
+  return r.average===null ? `판정 가능한 축 ${r.judged}/5 · 판단 보류` : `판정 축 ${r.judged}/5 · 가중 평균 ${r.average>=0?'+':'−'}${Math.abs(r.average).toFixed(2)}${r.capped?' · 가격 부담으로 상한 적용':''}`;
+}
+function rating(d) {
+  if(!d?.rating) return '';
+  const r=ratingLevel(d.rating.axes);
+  const scale=`<ol class="rating-scale" aria-label="판단 레벨 5단계">${RATING_LEVELS.map(l=>`<li${l===r.label?' class="on" aria-current="true"':''}>${e(l)}</li>`).join('')}</ol>`;
+  const rows=d.rating.axes.map((a,i)=>[e(RATING_AXES[i].label),a.score===null?'—':`<strong>${signed(a.score)}</strong>`,a.score===null?'판정 불가':e(RATING_AXES[i].criteria[a.score]),`${e(a.actual)}${a.score===null?` <small>${e(a.reason)}</small>`:''}${a.sources?.length?' '+sourceLinks(d,a.sources,true):''}`]);
+  const rule=table(['축','+2','+1','0','−1','−2'],RATING_AXES.map(a=>[e(a.label),...[2,1,0,-1,-2].map(n=>e(a.criteria[n]))]),'전체 채점 기준');
+  return `<section class="rating" id="rating"><h2>판단 레벨 · ${e(r.label)}</h2>${scale}<p class="src-note">${e(ratingSummary(d))}. 가격·밸류에이션 축은 2배 가중합니다. 가중 평균 +1.2 이상 강한 매수, +0.5 이상 매수, −0.5 초과 +0.5 미만 중립, −1.2 초과 −0.5 이하 매도, −1.2 이하 강한 매도. 가격 점수가 음수면 매수 이상을 줄 수 없고, 강한 매수는 가격 점수 +1 이상이어야 합니다. 가격·밸류에이션을 판정할 수 없거나 판정 축이 3개 미만이면 판단 보류입니다.</p>${table(['축','점수','적용 기준','실제'],rows,'축별 기준과 실제')}${targets(d)}<details><summary>전체 채점 기준 보기</summary>${rule}</details><p class="scenario-warning">작성자의 기준일 판단이며 투자 권유가 아닙니다. 가격과 실적이 바뀌면 다음 리뷰에서 다시 채점합니다.</p></section>`;
+}
+const won=v=>v===null?'가치 음수':`${fmt(v)}원`, pct=v=>v===null?'—':`${v>=0?'+':'−'}${Math.abs(v*100).toFixed(1)}%`;
+function targets(d) {
+  const t=d.targets; if(!t) return '';
+  const list=horizonTargets(t), m=t.multiples;
+  const rows=list.map(h=>[`${h.months}개월`,`<strong>${won(h.prices.base)}</strong>`,pct(h.upside),`<span class="verdict">${e(h.label)}</span>`,`${won(h.prices.bear)} ~ ${won(h.prices.bull)}`,`${h.year}년 영업이익 ${fmt(h.operatingProfit)}억원 ${sourceLinks(d,[h.source],true)}`]);
+  const bridge=[`순차입금 −${fmt(t.netDebt.value)}억원 ${sourceLinks(d,[t.netDebt.source],true)}${t.netDebt.note?` (${e(t.netDebt.note)})`:''}`,...(t.adjustments||[]).map(a=>`${e(a.label)} ${a.value>=0?'+':'−'}${fmt(Math.abs(a.value))}억원 ${sourceLinks(d,[a.source],true)}`),`주식 수 ${fmt(t.shares.value)}주 ${sourceLinks(d,[t.shares.source],true)}`];
+  const brokers=t.brokers?`<p class="src-note">비교: 증권사 목표가 ${t.brokers.count}건 ${fmt(t.brokers.min)}~${fmt(t.brokers.max)}원, 중앙값 ${fmt(t.brokers.median)}원(${pct(t.brokers.median/t.price.value-1)}) ${sourceLinks(d,t.brokers.sources||[],true)}</p>`:'';
+  return `<h3 id="targets">기간별 목표가와 추천</h3><p class="src-note">현재가 ${fmt(t.price.value)}원 ${sourceLinks(d,[t.price.source],true)} 기준. 목표가 = (해당 연도 영업이익 컨센서스 × EV/영업이익 배수 − 순차입금 ± 조정) ÷ 주식 수. 배수: 보수 ${fmt(m.bear)}배 · 기준 ${fmt(m.base)}배 · 낙관 ${fmt(m.bull)}배 — ${e(t.multipleNote)}</p>${table(['기간','기준 목표가','상승여력','추천','보수~낙관','기준 이익(컨센서스)'],rows,'기간별 목표가')}<p class="src-note">추천은 기준 목표가의 상승여력으로 정합니다: +30% 이상 강한 매수, +10% 이상 매수, −10% 이상 중립, −30% 이상 매도, 그 미만 강한 매도. 가격 부담 축 점수는 첫 기간(${list[0].months}개월) 추천을 따릅니다. 가치 다리: ${bridge.join(' · ')}</p>${brokers}`;
+}
+function ratingLine(d) {
+  if(!d?.rating) return '';
+  return `<p class="rating-line"><span class="verdict">${e(d.verdict)}</span> <a href="#rating">${e(ratingSummary(d))} · 축별 근거</a></p>`;
 }
 function nextCheck(d) {
   const n=d?.nextCheck;
@@ -203,7 +283,7 @@ function companyPages(articles) {
     const links=items=>`<ul>${items.map(a=>`<li><a href="/${e(a.slug)}/">${e(a.title)}</a> · <span class="nowrap">자료 ${e(a.researchDate)}</span> · <span class="nowrap">편집 ${e(a.updatedAt)}</span></li>`).join('')}</ul>`;
     const reviews=posts.filter(p=>p.period), others=posts.filter(p=>!p.period);
     return {id,name:first.company,url:`/companies/${id}/`,updatedAt:posts.map(p=>p.updatedAt).sort().at(-1),posts,
-      content:`<div class="narrow page company-page"><header><p class="sub">기업별 리서치 이력 · ${e(first.ticker)}</p><h1>${e(first.company)}</h1><p>마지막 검증일: ${d?e(d.verifiedAt):'구조화된 검증 기록 없음'}</p></header><div class="body"><h2>현재 판단과 근거</h2><p>${d && first.research ? `${d.verdict?`<span class="verdict">${e(d.verdict)}</span> `:''}${e(d.stance)} · ${e(d.rationale)}` : '가장 최근 관련 글을 확인하세요. 이전 구조화된 판단을 현재 판단으로 자동 승계하지 않습니다.'}</p>${d && first.research ? nextCheck(d) : ''}${opSeries ? chart(d,opSeries) : ''}<h2>분기별 실적 리뷰</h2>${reviews.length ? links(reviews) : '<p>등록된 실적 리뷰가 없습니다.</p>'}${history}${updates}${others.length ? `<h2>관련 글</h2>${links(others)}` : ''}</div></div>`};
+      content:`<div class="narrow page company-page"><header><p class="sub">기업별 리서치 이력 · ${e(first.ticker)}</p><h1>${e(first.company)}</h1><p>마지막 검증일: ${d?e(d.verifiedAt):'구조화된 검증 기록 없음'}</p></header><div class="body"><h2>현재 판단과 근거</h2><p>${d && first.research ? `${d.verdict?`<span class="verdict">${e(d.verdict)}</span> `:''}${e(d.stance)} · ${e(d.rationale)}` : '가장 최근 관련 글을 확인하세요. 이전 구조화된 판단을 현재 판단으로 자동 승계하지 않습니다.'}</p>${d && first.research ? rating(d).replace('<h2>','<h3>').replace('</h2>','</h3>')+nextCheck(d) : ''}${opSeries ? chart(d,opSeries) : ''}<h2>분기별 실적 리뷰</h2>${reviews.length ? links(reviews) : '<p>등록된 실적 리뷰가 없습니다.</p>'}${history}${updates}${others.length ? `<h2>관련 글</h2>${links(others)}` : ''}</div></div>`};
   });
 }
-module.exports={identity,companyHref,loadResearch,widgets,nextCheck,companyPages,calculate,calculationText,valuationText,widgetParts,e};
+module.exports={identity,companyHref,loadResearch,widgets,nextCheck,ratingLine,ratingLevel,horizonTargets,RATING_AXES,companyPages,calculate,calculationText,valuationText,widgetParts,e};

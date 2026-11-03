@@ -6,9 +6,9 @@
   "releasedAt": "2026-11-02",
   "basis": "연결 K-IFRS · 분기",
   "unit": "억원",
-  "stance": "회복의 반복성과 현금 전환 검증 전 판단 보류",
-  "rationale": "연결 잠정 영업이익은 회복했지만 보상금·재고평가와 현금흐름을 분리하지 못했다.",
-  "verdict": "판단 보류",
+  "stance": "이익 회복보다 가격이 요구하는 이익이 훨씬 커 매도",
+  "rationale": "현재 가격은 2027년 컨센서스로 계산한 12개월 목표가를 크게 웃돈다. 발표 후 증권사 전망은 하향 쪽이고, 보상금 금액을 몰라 본업 이익과 방향은 판정하지 못했다.",
+  "verdict": "매도",
   "nextCheck": {
     "event": "2026Q4 잠정실적",
     "expected": "2027-01",
@@ -137,6 +137,49 @@
       "access": "read",
       "verifiedAt": "2026-11-03",
       "note": "공개일은 과거 시계열의 데이터 기준일을 기록. 원자료 확인은 11/3. 발표직전(E) 표와 10/30 CNS_FY0를 대조."
+    },
+    {
+      "id": "consensus-annual",
+      "label": "WiseReport 연간 컨센서스 · 2027년 영업이익 (11/03 확인)",
+      "url": "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=003670",
+      "publishedAt": "2026-11-03",
+      "role": "consensus",
+      "access": "read",
+      "retrievedAt": "2026-11-03",
+      "verifiedAt": "2026-11-03"
+    },
+    {
+      "id": "dart-h1-amend",
+      "label": "DART 2026 반기보고서 기재정정 2026-09-02",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260902000346",
+      "publishedAt": "2026-09-02",
+      "role": "primary",
+      "access": "read",
+      "verifiedAt": "2026-11-03"
+    },
+    {
+      "id": "daishin-review",
+      "label": "대신증권 2026-11-03 실적 리뷰 PDF",
+      "url": "https://consensus.hankyung.com/analysis/downpdf?report_idx=653667",
+      "publishedAt": "2026-11-03",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "yuanta-review",
+      "label": "유안타증권 2026-11-03 실적 리뷰 PDF",
+      "url": "https://consensus.hankyung.com/analysis/downpdf?report_idx=653694",
+      "publishedAt": "2026-11-03",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "shares-h1",
+      "label": "DART 2026 반기보고서 정정 주식의 총수 (보통주 88,946,220주)",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260902000346",
+      "publishedAt": "2026-09-02",
+      "role": "primary",
+      "access": "read"
     }
   ],
   "comparison": [
@@ -631,6 +674,18 @@
         "dart-q3"
       ],
       "kind": "자료"
+    },
+    {
+      "date": "2026-11-03",
+      "claim": "5단계 판단 레벨 도입: 판단 보류 → 매도",
+      "to": "매도",
+      "evidence": "판정 가능한 3개 축(현금 +1, 전망 −1, 가격 −2·2배 가중)의 가중 평균 −1.00. 12개월 기준 지분가치 음수, 24개월 기준 목표가 22,800원.",
+      "sources": [
+        "dart-h1-amend",
+        "daishin-review",
+        "consensus-annual"
+      ],
+      "kind": "판단"
     }
   ],
   "promises": [
@@ -718,5 +773,100 @@
     "netDebtSource": "ir-q2",
     "netDebtAsOf": "2026-06-30"
   },
-  "initialReview": true
+  "initialReview": true,
+  "rating": {
+    "axes": [
+      {
+        "key": "coreProfit",
+        "actual": "연결 영업이익 821.44억원. 보상금·재고평가 금액 미공시",
+        "score": null,
+        "reason": "보상금 금액의 회사 공시와 증권사 수치 추정이 없어 범위를 만들 수 없음",
+        "sources": [
+          "dart-q3"
+        ]
+      },
+      {
+        "key": "direction",
+        "actual": "영업이익 2025Q3 666.70 → 2026Q2 266.89 → 2026Q3 821.44억원 (보상금 포함)",
+        "score": null,
+        "reason": "일회성 제외 기준값이 없음",
+        "sources": [
+          "dart-q3"
+        ]
+      },
+      {
+        "key": "cash",
+        "actual": "2026Q2 영업현금흐름 2,434억원, 유형자산 취득 1,775억원 → 잉여현금흐름 +659억원 (무형자산 취득 미포함). 1분기 영업현금흐름 −544억원",
+        "score": 1,
+        "sources": [
+          "dart-h1-amend"
+        ]
+      },
+      {
+        "key": "outlook",
+        "actual": "발표 후 2건: 대신 목표가 23만→20만원·2028년 EBITDA 5,764→4,355억원 하향, 유안타 2027년 영업이익 360억원. 회사는 2027년 판매 10만 톤 이상 전망",
+        "score": -1,
+        "sources": [
+          "daishin-review",
+          "yuanta-review",
+          "call-eugene"
+        ]
+      },
+      {
+        "key": "price",
+        "actual": "12개월 기준 지분가치 음수(2027년 컨센서스 1,718억원 × 20배 < 순차입금 34,390억원) · 낙관 30배 19,300원. 24개월 기준 22,800원 vs 현재가 163,700원 → −86.1%",
+        "score": -2,
+        "sources": [
+          "quote-update",
+          "consensus-annual",
+          "ir-q2"
+        ]
+      }
+    ]
+  },
+  "targets": {
+    "price": {
+      "value": 163700,
+      "source": "quote-update"
+    },
+    "shares": {
+      "value": 88946220,
+      "source": "shares-h1"
+    },
+    "netDebt": {
+      "value": 34390,
+      "source": "ir-q2",
+      "note": "2026년 6월 말 회사 IR"
+    },
+    "multiples": {
+      "bear": 15,
+      "base": 20,
+      "bull": 30
+    },
+    "multipleNote": "작성자 선택. 기준 20배는 계산기와 같고, 보수 15배·낙관 30배는 민감도다. 시장 적정 배수로 검증되지 않았다",
+    "horizons": [
+      {
+        "months": 12,
+        "year": 2027,
+        "operatingProfit": 1718,
+        "source": "consensus-annual"
+      },
+      {
+        "months": 24,
+        "year": 2028,
+        "operatingProfit": 2732,
+        "source": "consensus-annual"
+      }
+    ],
+    "brokers": {
+      "count": 2,
+      "min": 200000,
+      "median": 213000,
+      "max": 226000,
+      "sources": [
+        "daishin-review",
+        "yuanta-review"
+      ]
+    }
+  }
 }

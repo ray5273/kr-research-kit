@@ -886,10 +886,10 @@ function renderArticle(article, site, outDir, safety) {
     if(/다음 해 이익/.test(section.heading)) {const calculator=take('calculator');if(calculator){bodyHtml.push(calculator);bodyToc.push(['scenario-calculator','가정 조절 계산기']);}}
     if(/경영진 약속/.test(section.heading)) bodyHtml.push(take('promises',true));
     if(/다음 분기 검증/.test(section.heading)) bodyHtml.push(take('checks',true));
-    if (index === 0) bodyHtml.push(adSlot(config, "afterSummary"));
+    if (index === 0) {const level=take('rating');if(level){bodyHtml.push(level);bodyToc.push(['rating','판단 레벨']);}bodyHtml.push(adSlot(config, "afterSummary"));}
   });
   if (!bodySections.length) bodyHtml.push(adSlot(config, "afterSummary"));
-  for(const key of [...remaining]) {bodyHtml.push(take(key));if(key==='comparison')bodyToc.push(['earnings-comparison','실적 비교표']);if(key==='charts')bodyToc.push(['quarterly-metrics','8분기 핵심 지표']);if(key==='calculator')bodyToc.push(['scenario-calculator','가정 조절 계산기']);}
+  for(const key of [...remaining]) {bodyHtml.push(take(key));if(key==='rating')bodyToc.push(['rating','판단 레벨']);if(key==='comparison')bodyToc.push(['earnings-comparison','실적 비교표']);if(key==='charts')bodyToc.push(['quarterly-metrics','8분기 핵심 지표']);if(key==='calculator')bodyToc.push(['scenario-calculator','가정 조절 계산기']);}
   article.cardImage = coverCard(article, outDir);
 
   const updates = article.sections.find(section => section.heading === UPDATES_HEADING);
@@ -924,6 +924,7 @@ function renderArticle(article, site, outDir, safety) {
     more: moreHtml(article, site),
     answerLead: renderInline(article.answerLead, ctx),
     answerBody: article.answerBody ? renderBlocks(article.answerBody, ctx) : "",
+    ratingLine: research.ratingLine(article.research),
     nextCheck: research.nextCheck(article.research),
     asOfDate: article.asOfDate,
     dateModified: article.dateModified,
