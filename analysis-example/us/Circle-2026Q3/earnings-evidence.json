@@ -2,7 +2,7 @@
   "company": "Circle Internet Group",
   "ticker": "CRCL",
   "period": "2026-Q3",
-  "verifiedAt": "2026-11-04",
+  "verifiedAt": "2026-11-05",
   "basis": "Consolidated US GAAP, unaudited",
   "inputPdfSha256": "b52d2efa236f869123c3934423b7ad20206f43fa3369c06b303a1bc948ab2cad",
   "pages": 14,
@@ -15,7 +15,15 @@
     "netIncomeContinuing": 226.012,
     "adjustedEBITDANewDefinition": 316.662,
     "priorAdjustedEBITDANewDefinition": 171.476,
-    "q2AdjustedEBITDA": 143.478
+    "q2AdjustedEBITDA": 143.478,
+    "arcPresaleTotal": 242,
+    "arcPresaleRecognizedShare": 0.75,
+    "reserveReturnRatePct": 3.54,
+    "q2NetReserveMarginPct": 38.5,
+    "q3NetReserveMarginPct": 37.8,
+    "exArcOtherRevenue": 25,
+    "adjustedOpex": 139,
+    "nineMonthAdjustedOpex": 421
   },
   "userEstimates": {
     "status": "unverified provider, observation time and accounting basis",
@@ -25,8 +33,47 @@
   },
   "livestream": {
     "url": "https://www.youtube.com/watch?v=kpT3K5xpUzU",
-    "contentVerified": false,
-    "reason": "Safari video page and description verified. Captions unavailable; expanded description has no transcript. Full spoken remarks and Q&A remain unverified."
+    "contentVerified": true,
+    "reason": "Prepared remarks and Q&A verified from the Benzinga transcript on 2026-11-05."
   },
-  "calculationLimit": "Subtracts ARC recognized revenue only; keeps associated expenses and taxes unchanged; not company-reported normalized results."
+  "calculationLimit": "Subtracts ARC recognized revenue only; keeps associated expenses and taxes unchanged; not company-reported normalized results.",
+  "presentation": {
+    "title": "Q3 2026 Earnings Presentation",
+    "pages": 28,
+    "sha256": "c4e66ce5b002b1add783d7b3781b76fcbb9d332ef8217e7bba67cdcba2380ce6",
+    "url": "https://seekingalpha.com/article/4962142-circle-internet-group-inc-2026-q3-results-earnings-call-presentation",
+    "embeddedSlides": [
+      7,
+      11,
+      15,
+      16,
+      17,
+      18
+    ]
+  },
+  "transcript": {
+    "url": "https://www.benzinga.com/news/26/11/62865573/circle-internet-group-q3-2026-earnings-call-transcript",
+    "reviewed": "2026-11-05",
+    "note": "Automated transcript supplied by the user as pasted text; 'Arc' appears as 'ARK'. Figures cross-checked to the presentation."
+  },
+  "q4ImpliedFromGuidance": {
+    "basis": "author back-calculation",
+    "assumptions": "FY ex-ARC RLDC margin 39% ±0.5pt; Q4 reserve income flat at 658; Q4 ex-ARC other revenue 30-50; adj opex high end 585",
+    "exArcRldcMarginPct": [
+      31.7,
+      35.8
+    ],
+    "exArcRldc": [
+      218,
+      253
+    ],
+    "adjustedOpex": [
+      149,
+      164
+    ],
+    "adjustedEbitdaApprox": [
+      55,
+      105
+    ]
+  }
 }

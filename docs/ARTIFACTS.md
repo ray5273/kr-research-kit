@@ -530,7 +530,7 @@ LG전자 DART 분석
 
 ## US — single-stock research (28)
 
-### Circle-2026Q3 — 2026-11-04
+### Circle-2026Q3 — 2026-11-05
 
 서클 2026년 3분기 실적: ARC 판매를 빼면 이익은 줄었다
 
