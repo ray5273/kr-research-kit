@@ -536,6 +536,24 @@ LG전자 DART 분석
 
 [memo](../analysis-example/us/Circle-2026Q3/memo.md)
 
+### Circle-OpenUSD — 2026-11-05
+
+서클(Circle) · OpenUSD 투자 메모
+
+[memo](../analysis-example/us/Circle-OpenUSD/memo.md) · [naver-post](../analysis-example/us/Circle-OpenUSD/naver-post.md) · [naver-publish.json](../analysis-example/us/Circle-OpenUSD/naver-publish.json) · [article](../analysis-example/us/Circle-OpenUSD/article.md)
+
+### Circle-Rate-USDC — 2026-11-05
+
+서클(CRCL) 금리·USDC 유통량·이자수익
+
+[memo](../analysis-example/us/Circle-Rate-USDC/memo.md) · [article](../analysis-example/us/Circle-Rate-USDC/article.md)
+
+### Circle-USDC — 2026-11-05
+
+서클(Circle) USDC
+
+[memo](../analysis-example/us/Circle-USDC/memo.md) · [article](../analysis-example/us/Circle-USDC/article.md)
+
 ### Alphabet — 2026-11-01
 
 알파벳(구글) 2026년 3분기 실적 리뷰 — 단기 반응과 장기 논리
@@ -548,35 +566,17 @@ Everpure: NAND가 비싸졌는데 주가는 왜 올랐나
 
 [memo](../analysis-example/us/Everpure/memo.md) · [sec-analysis](../analysis-example/us/Everpure/sec-analysis.md) · [sec-reference](../analysis-example/us/Everpure/sec-reference.md) · [naver-post](../analysis-example/us/Everpure/naver-post.md) · [naver-publish.json](../analysis-example/us/Everpure/naver-publish.json) · [article](../analysis-example/us/Everpure/article.md) · [memo.voice](../analysis-example/us/Everpure/memo.voice.md)
 
-### Circle-Rate-USDC — 2026-09-14
-
-서클(CRCL) 금리·USDC 유통량·이자수익
-
-[memo](../analysis-example/us/Circle-Rate-USDC/memo.md) · [article](../analysis-example/us/Circle-Rate-USDC/article.md)
-
 ### SPY — 2026-08-25
 
 SPY 사상최고가(ATH) 정기매수 백테스트
 
 [memo](../analysis-example/us/SPY/memo.md) · [memo.json](../analysis-example/us/SPY/memo.json) · [article](../analysis-example/us/SPY/article.md)
 
-### Circle-USDC — 2026-08-24
-
-서클(Circle) USDC
-
-[memo](../analysis-example/us/Circle-USDC/memo.md) · [article](../analysis-example/us/Circle-USDC/article.md)
-
 ### Tesla — 2026-07-24
 
 Tesla, Inc. 투자 분석 메모
 
 [memo](../analysis-example/us/Tesla/memo.md) · [sec-analysis](../analysis-example/us/Tesla/sec-analysis.md) · [sec-reference](../analysis-example/us/Tesla/sec-reference.md) · [article](../analysis-example/us/Tesla/article.md) · [fsd-capex-analysis](../analysis-example/us/Tesla/fsd-capex-analysis.md)
-
-### Circle-OpenUSD — 2026-06-30
-
-서클(Circle) · OpenUSD 투자 메모
-
-[memo](../analysis-example/us/Circle-OpenUSD/memo.md) · [naver-post](../analysis-example/us/Circle-OpenUSD/naver-post.md) · [naver-publish.json](../analysis-example/us/Circle-OpenUSD/naver-publish.json) · [article](../analysis-example/us/Circle-OpenUSD/article.md)
 
 ## US — market-wide and strategy backtests (29)
 
