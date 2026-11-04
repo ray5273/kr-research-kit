@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.27] - 2026-11-04
+
+### Commits
+
+- Keep Circle Q3 review on its preview branch only ([b21c7d8](https://github.com/ray5273/kr-research-kit/commit/b21c7d865a00f07efd76873318b9707a2421552a))
+
 ## [0.4.26] - 2026-11-04
 
 ### Commits
