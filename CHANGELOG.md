@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.25] - 2026-11-04
+
+### Commits
+
+- Publish Circle Q3 2026 earnings review with ARC revenue bridge ([8c26f88](https://github.com/ray5273/kr-research-kit/commit/8c26f88b61193cadb510f005a66bc603612e9b13))
+
 ## [0.4.24] - 2026-11-03
 
 ### Commits
