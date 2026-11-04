@@ -87,6 +87,11 @@ assert.equal(h12.prices.base,11000);assert.equal(h12.label,'매수');assert.equa
 assert.equal(h24.prices.base,null,'negative equity has no target');assert.equal(h24.label,'강한 매도');
 reject(d=>{d.rating.axes[4].score=-1;d.verdict='매도';},/first-horizon target/);
 reject(d=>{d.targets.multiples.bear=40;},/ordered/);
+// EV/EBITDA basis adds depreciation before the multiple: (600 + 400) × 20 − 1000 = 19,000억원 → 19,000원.
+const [e12]=horizonTargets({...t,basis:'EV/EBITDA',horizons:[{...t.horizons[0],depreciation:400,depreciationSource:'quote'}]});
+assert.equal(e12.earnings,1000);assert.equal(e12.prices.base,19000);
+reject(d=>{d.targets.basis='EV/EBITDA';},/sourced depreciation/);
+reject(d=>{d.targets.basis='P/E';},/basis must be/);
 assert(html.includes('기간별 목표가와 추천') && html.includes('가치 음수'));
 assert(html.includes('class="rating-scale"') && html.includes('<li class="v-sell on" aria-current="true"><b>매도</b><small>−0.5~−1.2</small></li>') && !/가중 평균 +1.2 이상 강한 매수/.test(html) && html.includes('판정 불가'));
 assert(ratingLine(input).includes('href="#rating"'));

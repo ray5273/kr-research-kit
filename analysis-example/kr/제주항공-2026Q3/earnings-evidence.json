@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "company": {
+    "name": "제주항공",
+    "market": "kr",
+    "ticker": "089590"
+  },
+  "asOf": "2026-11-04",
+  "verifiedAt": "2026-11-04",
+  "period": "2026Q3",
+  "accountingBasis": "K-IFRS 별도(손익·현금흐름) / 연결(가치 계산)",
+  "unit": "억원",
+  "quarter2024Q4": {
+    "method": "2024 사업보고서 별도 연간 − 2024 3분기보고서 별도 9개월 누적 (OpenDART fnlttSinglAcntAll OFS)",
+    "annual": {
+      "매출액": 18562.76,
+      "영업이익": 601.52,
+      "당기순이익": 18.96
+    },
+    "nineMonths": {
+      "매출액": 14273.07,
+      "영업이익": 1051.23,
+      "당기순이익": 648.16
+    },
+    "quarter": {
+      "매출액": 4290,
+      "영업이익": -450,
+      "당기순이익": -629
+    }
+  },
+  "cashFlowDerivation": {
+    "method": "OpenDART fnlttSinglAcntAll(OFS) 각 보고서의 당기 누적값을 직전 누적값과 차감. 4분기=연간−9개월. 투자지출=유형자산의 취득+무형자산의 취득.",
+    "rows": [
+      {
+        "period": "2024-Q4",
+        "report": "2024-11011",
+        "rcept_no": "20250318001006",
+        "cumulative": {
+          "ocf": 1360,
+          "capex": 1180
+        },
+        "note": "연간 − 9개월 누적",
+        "operatingCashFlow": 421,
+        "capex": 680,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ]
+      },
+      {
+        "period": "2025-Q1",
+        "report": "2025-11013",
+        "rcept_no": "20250515002642",
+        "cumulative": {
+          "ocf": -523,
+          "capex": 216
+        },
+        "note": "1분기 누적 그대로",
+        "operatingCashFlow": -523,
+        "capex": 216,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ]
+      },
+      {
+        "period": "2025-Q2",
+        "report": "2025-11012",
+        "rcept_no": "20250814002639",
+        "cumulative": {
+          "ocf": -1215,
+          "capex": 813
+        },
+        "note": "누적 − 직전 누적",
+        "operatingCashFlow": -692,
+        "capex": 597,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ]
+      },
+      {
+        "period": "2025-Q3",
+        "report": "2025-11014",
+        "rcept_no": "20251114002624",
+        "cumulative": {
+          "ocf": -669,
+          "capex": 1770
+        },
+        "note": "누적 − 직전 누적",
+        "operatingCashFlow": 546,
+        "capex": 957,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ]
+      },
+      {
+        "period": "2025-Q4",
+        "report": "2025-11011",
+        "rcept_no": "20260318001439",
+        "cumulative": {
+          "ocf": 69,
+          "capex": 2689
+        },
+        "note": "연간 − 9개월 누적",
+        "operatingCashFlow": 738,
+        "capex": 919,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ]
+      },
+      {
+        "period": "2026-Q1",
+        "report": "2026-11013",
+        "rcept_no": "20260515002947",
+        "cumulative": {
+          "ocf": 1842,
+          "capex": 2355
+        },
+        "note": "1분기 누적 그대로",
+        "operatingCashFlow": 1842,
+        "capex": 2355,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ]
+      },
+      {
+        "period": "2026-Q2",
+        "report": "2026-11012",
+        "rcept_no": "20260814003505",
+        "cumulative": {
+          "ocf": 1405,
+          "capex": 2451
+        },
+        "note": "누적 − 직전 누적",
+        "operatingCashFlow": -437,
+        "capex": 96,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ]
+      }
+    ]
+  },
+  "netDebt": {
+    "asOf": "2026-06-30",
+    "basis": "연결",
+    "report": "20260814003505",
+    "items": {
+      "차입금": 4548,
+      "유동성리스부채": 2185,
+      "장기리스부채": 6672,
+      "현금및현금성자산": -1911,
+      "단기금융자산": -17
+    },
+    "value": 11477,
+    "notIncluded": {
+      "매각예정자산(B737-800NG 3대)": 1436,
+      "신종자본차입(2026-09, 채무상환 900억원·운영 100억원)": 1000
+    },
+    "brokerYearEnd2026": {
+      "신한투자증권": 11177,
+      "iM증권": 11330,
+      "한화투자증권": 14570
+    }
+  },
+  "depreciation": {
+    "source": "iM증권 2026-11-04 표4 EBITDA·영업이익",
+    "rows": {
+      "2027E": {
+        "EBITDA": 2850,
+        "영업이익": 1410,
+        "차이": 1440
+      },
+      "2028E": {
+        "EBITDA": 2750,
+        "영업이익": 1320,
+        "차이": 1430
+      }
+    },
+    "note": "같은 표의 (B) 감가상각비 행은 (A)+(B)=EBITDA가 맞지 않아 쓰지 않았다."
+  },
+  "oneOffEstimates": "외화 정비충당부채 환입: 한화투자증권 약 400억원, 하나·신한·iM은 금액 없이 언급. 회사 미공개. 영업외: 외화환산이익·항공기 처분이익(IR 2쪽). 신한 2026년 추정 외화환산이익 1,506억원·자산처분이익 566억원.",
+  "preliminaryDisclosures": "각 분기 별도 잠정실적 원문(OpenDART document.xml)에서 매출·영업이익·세전이익·당기순이익을 읽었다. 2025Q4 별도는 2026Q1 잠정공시의 전기 열(연간 잠정공시는 연결만 제출). 이번 분기 원문은 sources/에 보존."
+}

@@ -117,6 +117,8 @@ function loadResearch(entry, {root, safety, asOfDate}) {
     check(ok(t.price) && t.price.value>0 && ok(t.shares) && t.shares.value>0 && ok(t.netDebt), 'targets need sourced price, shares and net debt');
     check(t.multiples && ['bear','base','bull'].every(k=>number(t.multiples[k]) && t.multiples[k]>0) && t.multiples.bear<=t.multiples.base && t.multiples.base<=t.multiples.bull && typeof t.multipleNote === 'string' && t.multipleNote, 'targets need ordered bear/base/bull multiples and a rationale');
     check(Array.isArray(t.horizons) && t.horizons.length && t.horizons.every((h,i)=>Number.isInteger(h.months) && h.months>0 && (!i || h.months>t.horizons[i-1].months) && /^\d{4}$/.test(String(h.year)) && number(h.operatingProfit) && sources.has(h.source)), 'targets need increasing horizons with sourced profit');
+    check(t.basis === undefined || t.basis === 'EV/EBITDA', 'targets basis must be omitted (EV/영업이익) or EV/EBITDA');
+    if(t.basis === 'EV/EBITDA') check(t.horizons.every(h=>number(h.depreciation) && h.depreciation>=0 && sources.has(h.depreciationSource)), 'EV/EBITDA targets need sourced depreciation per horizon');
     (t.adjustments||[]).forEach(a=>check(a.label && number(a.value) && sources.has(a.source), 'target adjustments need label, value and source'));
     if(t.brokers) check(number(t.brokers.min) && number(t.brokers.median) && number(t.brokers.max) && t.brokers.min<=t.brokers.median && t.brokers.median<=t.brokers.max && Number.isInteger(t.brokers.count) && (t.brokers.sources||[]).every(id=>sources.has(id)), 'broker target range invalid');
   }
@@ -153,6 +155,7 @@ function ratingLevel(axes) {
   return {label,average,judged:judged.length,capped:label!==raw};
 }
 // Horizon targets: consensus operating profit × an explicit EV/OP multiple, bridged to equity per share.
+// basis 'EV/EBITDA' adds each horizon's depreciation before the multiple, so heavy-D&A companies are not undervalued by a fixed EBITDA÷OP ratio.
 const UPSIDE_BANDS=[[0.3,2,'강한 매수'],[0.1,1,'매수'],[-0.1,0,'중립'],[-0.3,-1,'매도']];
 function upsideLevel(upside) {
   if(upside===null) return {score:-2,label:'강한 매도'};
@@ -162,10 +165,11 @@ function upsideLevel(upside) {
 function horizonTargets(t) {
   const adjust=(t.adjustments||[]).reduce((sum,a)=>sum+a.value,0);
   return t.horizons.map(h=>{
-    const at=m=>{const equity=h.operatingProfit*m-t.netDebt.value+adjust;return equity>0?Math.round(equity*1e8/t.shares.value/100)*100:null;};
+    const earnings=h.operatingProfit+(t.basis==='EV/EBITDA'?h.depreciation:0);
+    const at=m=>{const equity=earnings*m-t.netDebt.value+adjust;return equity>0?Math.round(equity*1e8/t.shares.value/100)*100:null;};
     const prices={bear:at(t.multiples.bear),base:at(t.multiples.base),bull:at(t.multiples.bull)};
     const upside=prices.base===null?null:prices.base/t.price.value-1;
-    return {...h,prices,upside,...upsideLevel(upside)};
+    return {...h,earnings,prices,upside,...upsideLevel(upside)};
   });
 }
 function table(headers, rows, caption) {
@@ -260,12 +264,12 @@ function rating(d) {
 const won=v=>v===null?'가치 음수':`${fmt(v)}원`, pct=v=>v===null?'—':`${v>=0?'+':'−'}${Math.abs(v*100).toFixed(1)}%`;
 function targets(d) {
   const t=d.targets; if(!t) return '';
-  const list=horizonTargets(t), m=t.multiples;
-  const rows=list.map(h=>[`${h.months}개월`,`<strong>${won(h.prices.base)}</strong>`,pct(h.upside),verdictBadge(h.label),`${won(h.prices.bear)} ~ ${won(h.prices.bull)}`,`${h.year}년 영업이익 ${fmt(h.operatingProfit)}억원 ${sourceLinks(d,[h.source],true)}`]);
+  const list=horizonTargets(t), m=t.multiples, ebitda=t.basis==='EV/EBITDA';
+  const rows=list.map(h=>[`${h.months}개월`,`<strong>${won(h.prices.base)}</strong>`,pct(h.upside),verdictBadge(h.label),`${won(h.prices.bear)} ~ ${won(h.prices.bull)}`,`${h.year}년 영업이익 ${fmt(h.operatingProfit)}억원 ${sourceLinks(d,[h.source],true)}${ebitda?` + 감가상각 ${fmt(h.depreciation)}억원 ${sourceLinks(d,[h.depreciationSource],true)}`:''}`]);
   const bridge=[['순차입금',`−${fmt(t.netDebt.value)}억원`,`${e(t.netDebt.note||'')} ${sourceLinks(d,[t.netDebt.source],true)}`],...(t.adjustments||[]).map(a=>[e(a.label),`${a.value>=0?'+':'−'}${fmt(Math.abs(a.value))}억원`,sourceLinks(d,[a.source],true)]),['주식 수',`${fmt(t.shares.value)}주`,sourceLinks(d,[t.shares.source],true)]];
-  const head=[['현재가',`${fmt(t.price.value)}원 ${sourceLinks(d,[t.price.source],true)}`],['배수 · EV/영업이익',`기준 ${fmt(m.base)}배 <small>보수 ${fmt(m.bear)} · 낙관 ${fmt(m.bull)}</small>`]];
+  const head=[['현재가',`${fmt(t.price.value)}원 ${sourceLinks(d,[t.price.source],true)}`],[`배수 · ${ebitda?'EV/EBITDA':'EV/영업이익'}`,`기준 ${fmt(m.base)}배 <small>보수 ${fmt(m.bear)} · 낙관 ${fmt(m.bull)}</small>`]];
   if(t.brokers) head.push(['증권사 목표가 중앙값',`${fmt(t.brokers.median)}원 <small>${t.brokers.count}건 · ${fmt(t.brokers.min)} ~ ${fmt(t.brokers.max)}</small>`]);
-  return `<h3 id="targets">기간별 목표가와 추천</h3>${stats(head)}<p class="formula">목표가 = (영업이익 컨센서스 × 배수 − 순차입금 ± 조정) ÷ 주식 수</p><p class="src-note">배수: ${e(t.multipleNote)}</p>${table(['기간','기준 목표가','상승여력','추천','보수~낙관','기준 이익(컨센서스)'],rows,'기간별 목표가')}<p class="mini-head">추천 구간 · 기준 목표가 상승여력 <small>${list[0].months}개월 추천 = 가격·밸류에이션 점수</small></p>${scaleHtml(UPSIDE_TEXT,list[0].label,'상승여력별 추천 구간')}${table(['가치 다리','값','기준'],bridge,'목표가 가치 다리')}`;
+  return `<h3 id="targets">기간별 목표가와 추천</h3>${stats(head)}<p class="formula">목표가 = (${ebitda?'(영업이익 컨센서스 + 감가상각)':'영업이익 컨센서스'} × 배수 − 순차입금 ± 조정) ÷ 주식 수</p><p class="src-note">배수: ${e(t.multipleNote)}</p>${table(['기간','기준 목표가','상승여력','추천','보수~낙관','기준 이익(컨센서스)'],rows,'기간별 목표가')}<p class="mini-head">추천 구간 · 기준 목표가 상승여력 <small>${list[0].months}개월 추천 = 가격·밸류에이션 점수</small></p>${scaleHtml(UPSIDE_TEXT,list[0].label,'상승여력별 추천 구간')}${table(['가치 다리','값','기준'],bridge,'목표가 가치 다리')}`;
 }
 function ratingLine(d) {
   if(!d?.rating) return '';

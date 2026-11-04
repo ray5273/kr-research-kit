@@ -50,6 +50,33 @@
       ]
     },
     {
+      "memo": "analysis-example/kr/제주항공-2026Q3/memo.md",
+      "slug": "kr/jeju-air-2026-q3",
+      "company": "제주항공",
+      "ticker": "089590",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/089590",
+      "analysisData": "analysis-example/kr/제주항공-2026Q3/analysis-data.json",
+      "headline": "제주항공 3분기: 흑자 전환, 영업이익 549억원 중 약 400억원은 환율",
+      "summary": "별도 영업이익에 섞인 정비충당부채 환입과 순이익의 외화환산·항공기 처분이익을 분리하고, 리스 포함 순차입금과 EV/EBITDA로 12개월·24개월 목표가와 판단 레벨을 정한다.",
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "sectors": [
+        "항공"
+      ],
+      "coverArt": false,
+      "tags": [
+        "제주항공",
+        "089590",
+        "실적리뷰",
+        "항공",
+        "2026년3분기"
+      ]
+    },
+    {
       "memo": "analysis-example/kr/포스코퓨처엠/memo.md",
       "slug": "kr/posco-future-m-2026-q3",
       "company": "포스코퓨처엠",

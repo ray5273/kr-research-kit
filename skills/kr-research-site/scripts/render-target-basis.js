@@ -9,22 +9,25 @@ const n=v=>v.toLocaleString('ko-KR',{maximumFractionDigits:2}), signed=v=>`${v>=
 const pct=v=>`${v>=0?'+':'−'}${Math.abs(v*100).toFixed(1)}%`;
 const src=id=>{const s=d.sources.find(x=>x.id===id);return `[${s.label}](${s.url})`;};
 const adj=(t.adjustments||[]), adjSum=adj.reduce((a,b)=>a+b.value,0);
-const list=r.horizonTargets(t), m=t.multiples;
+const list=r.horizonTargets(t), m=t.multiples, ebitda=t.basis==='EV/EBITDA', basis=ebitda?'EV/EBITDA':'EV/영업이익';
 const w=v=>v===null?'가치 음수':`${n(v)}원`;
 const L=['## 목표가 계산 기준',''];
 L.push(`- **현재가:** ${n(t.price.value)}원 (기준일 종가) ${src(t.price.source)}`);
-L.push(`- **배수:** EV/영업이익 기준 ${m.base}배 · 보수 ${m.bear}배 · 낙관 ${m.bull}배`);
+L.push(`- **배수:** ${basis} 기준 ${m.base}배 · 보수 ${m.bear}배 · 낙관 ${m.bull}배`);
 L.push('- **증권사 목표가:** 비교용, 계산에 쓰지 않음','');
-L.push('```','목표가 = (해당 연도 영업이익 컨센서스 × EV/영업이익 배수 − 순차입금 ± 조정) ÷ 주식 수','```','');
+L.push('```',`목표가 = (${ebitda?'(해당 연도 영업이익 컨센서스 + 감가상각)':'해당 연도 영업이익 컨센서스'} × ${basis} 배수 − 순차입금 ± 조정) ÷ 주식 수`,'```','');
 L.push('| 입력값 | 값 | 출처·기준 |','| --- | ---: | --- |');
-list.forEach(h=>L.push(`| ${h.months}개월 목표 이익 (${h.year}년 영업이익 컨센서스) | ${n(h.operatingProfit)}억원 | ${src(h.source)} |`));
+list.forEach(h=>{
+  L.push(`| ${h.months}개월 목표 이익 (${h.year}년 영업이익 컨센서스) | ${n(h.operatingProfit)}억원 | ${src(h.source)} |`);
+  if(ebitda) L.push(`| ${h.months}개월 감가상각 (${h.year}년) | ${n(h.depreciation)}억원 | ${src(h.depreciationSource)} |`);
+});
 L.push(`| 순차입금 | ${n(t.netDebt.value)}억원 | ${t.netDebt.note?t.netDebt.note+' · ':''}${src(t.netDebt.source)} |`);
 adj.forEach(a=>L.push(`| ${a.label} | ${signed(a.value)}억원 | ${src(a.source)} |`));
 L.push(`| 주식 수 | ${n(t.shares.value)}주 | ${src(t.shares.source)} |`,'');
 L.push(`기준 ${m.base}배 계산 과정 (억원):`,'');
-L.push(`| 기간 | 이익 × ${m.base}배 | − 순차입금 |${adj.length?' ± 조정 |':''} = 주주 몫 | ÷ 주식 수 = 목표가 |`,`| --- | ---: | ---: |${adj.length?' ---: |':''} ---: | ---: |`);
+L.push(`| 기간 | ${ebitda?'(이익 + 감가상각)':'이익'} × ${m.base}배 | − 순차입금 |${adj.length?' ± 조정 |':''} = 주주 몫 | ÷ 주식 수 = 목표가 |`,`| --- | ---: | ---: |${adj.length?' ---: |':''} ---: | ---: |`);
 list.forEach(h=>{
-  const ev=Math.round(h.operatingProfit*m.base), eq=ev-t.netDebt.value+adjSum;
+  const ev=Math.round(h.earnings*m.base), eq=ev-t.netDebt.value+adjSum;
   L.push(`| ${h.months}개월 | ${n(ev)} | −${n(t.netDebt.value)} |${adj.length?` ${signed(adjSum)} |`:''} ${signed(eq)} | ${eq>0?`**${n(h.prices.base)}원**`:'음수 → 목표가 없음'} |`);
 });
 L.push('');
