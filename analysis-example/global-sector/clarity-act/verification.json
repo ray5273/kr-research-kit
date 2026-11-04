@@ -42,11 +42,11 @@
   },
   "deployment": {
     "command": "npm run deploy:preview",
-    "status": "deployed",
+    "status": "content updated locally; readability preview upload pending",
     "exitCode": 0,
     "target": "https://preview.kr-research-site.pages.dev/sector/clarity-act-2026-11-05/",
     "deploymentUrl": "https://317e894e.kr-research-site.pages.dev",
-    "liveArticleAndNoindexVerified": true,
+    "liveArticleAndNoindexVerified": false,
     "liveChecks": {
       "url": "https://preview.kr-research-site.pages.dev/sector/clarity-act-2026-11-05/",
       "httpStatus": 200,
@@ -60,5 +60,13 @@
     "buildPreservedAt": "site-dist/",
     "productionDeployed": false,
     "mainPushed": false
+  },
+  "editorialReview": {
+    "skill": "kr-article-readability",
+    "mode": "source-and-renderer",
+    "numericTokenOrderPreserved": true,
+    "sourceURLSetPreserved": true,
+    "sourceLabelsDated": true,
+    "actualBrowserScreenshotsVerified": false
   }
 }

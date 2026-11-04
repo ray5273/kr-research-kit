@@ -46,7 +46,9 @@ Requires `kr-naver-blog-publish` installed next to this skill: the renderer reus
 
    A run stops after a login page or two failures in a row, and reports how many are left. Open each new image and reject logos, brand marks or legible text, then redo it with a better description: `coverSubject` on the manifest entry, or `subject` in the dictionary. Commit the `.jpg`. `npm run test:site` fails on a published article with no picture and on an unknown `coverSector`, which also stops the Cloudflare build. To ship with the text cover (for example Gemini logged out and no matching sector), set `"coverArt": false` on the entry and remove it once art is committed; it also turns off the sector fallback. When too many cards in a sector look alike, make own art for the newer articles.
 
-3. **Build and check.**
+3. **Review readability, then build and check.**
+
+   For every new or edited article, apply [kr-article-readability](../kr-article-readability/SKILL.md). Inspect emphasis, tone colors, paragraph/section rhythm, mobile tables and source labels; save an exact-content review record. Run `npm run check:readability` before deployment. Official `deploy:preview`, `deploy:site` and `deploy:pages` npm commands enforce this with predeploy lifecycle hooks. Existing legacy snapshots remain explicitly unreviewed and stop exempting an article as soon as its content/metadata changes.
 
    ```bash
    node skills/kr-research-site/scripts/build-site.js --out site-dist
@@ -85,7 +87,7 @@ When `kr-stock-update` appends an Update Log block (`### YYYY-MM-DD — ...`) or
    - Project (Worker) name: `kr-research-site` (must equal `name` in `wrangler.jsonc`)
    - Build command: `npm ci && npm run check:site`
    - Deploy command: `npm run deploy:site` (validates analytics settings, applies remote D1 migrations, deploys Worker)
-   - Advanced settings → Build variables: `NODE_VERSION` = `22`; Build watch paths: `site/*`, `analysis-example/*`, `skills/kr-research-site/*`, `skills/kr-naver-blog-publish/scripts/*`, `wrangler.jsonc`, `package*.json`
+   - Advanced settings → Build variables: `NODE_VERSION` = `22`; Build watch paths: `site/*`, `analysis-example/*`, `skills/kr-research-site/*`, `skills/kr-article-readability/*`, `skills/kr-naver-blog-publish/scripts/*`, `wrangler.jsonc`, `package*.json`
    - Let Cloudflare create the build API token automatically. No GitHub secrets are needed.
 3. Register the site in Google Search Console (URL-prefix property), 네이버 서치어드바이저 and Bing Webmaster. A `pages.dev` site has no DNS of its own, so use the HTML meta-tag method: put each token in `verification.google` / `.naver` / `.bing`, push, then verify and submit `/sitemap.xml`.
 4. Generate an IndexNow key and set `indexNow.key`.

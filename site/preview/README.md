@@ -2,7 +2,10 @@
 
 기업 이력·계산기 등 정적 기능을 운영 Worker와 분리해 검토한다. 광고와 방문 통계·댓글·공유 집계 클라이언트를 빼고 모든 응답·HTML에 noindex를 지정한다. 관리자·API·D1을 배포하지 않는다. canonical은 기존 발행 주소를 유지한다.
 
+새 글·수정 글은 [가독성 검토 스킬](../../skills/kr-article-readability/SKILL.md)로 검토하고 기록한다. `npm run deploy:preview`는 `predeploy:preview`에서 `check:readability`를 먼저 실행하며, 검토 기록이 없거나 내용이 바뀌면 업로드 전에 중단한다. 운영 사이트·Pages 배포 명령에도 같은 검사가 적용된다.
+
 ```sh
+npm run check:readability
 npm run deploy:preview
 ```
 
