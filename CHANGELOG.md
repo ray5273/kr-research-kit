@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.28] - 2026-11-04
+
+### Commits
+
+- Revert "Keep Circle Q3 review on its preview branch only" ([da58855](https://github.com/ray5273/kr-research-kit/commit/da58855727f13519047084c0037de245e7165fb0))
+- Add Circle Q3 call transcript and deck to the earnings review ([1545f13](https://github.com/ray5273/kr-research-kit/commit/1545f13897c6505ad2168b02c0e17dca194ea029))
+- Explain the Proof of Stake transition in the Circle Q3 review ([cd6c774](https://github.com/ray5273/kr-research-kit/commit/cd6c774e6f210ea5995cc3600b173f81674380c9))
+- Explain RLDC margin in the Circle Q3 review ([0959053](https://github.com/ray5273/kr-research-kit/commit/095905396b476223f387c6bdb0e484e0d6160885))
+- Update the three Circle reports with Q3 2026 results ([34d8d21](https://github.com/ray5273/kr-research-kit/commit/34d8d219b1b0fc7067b0172a37d551445bfcba30))
+
 ## [0.4.27] - 2026-11-04
 
 ### Commits
