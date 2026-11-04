@@ -42,11 +42,21 @@
   },
   "deployment": {
     "command": "npm run deploy:preview",
-    "status": "upload failed",
-    "exitCode": 1,
-    "reason": "Unable to resolve Cloudflare's API hostname (api.cloudflare.com or dash.cloudflare.com). whoami also failed at DNS, so authentication freshness could not be tested or repaired.",
+    "status": "deployed",
+    "exitCode": 0,
     "target": "https://preview.kr-research-site.pages.dev/sector/clarity-act-2026-11-05/",
-    "liveArticleAndNoindexVerified": false,
+    "deploymentUrl": "https://317e894e.kr-research-site.pages.dev",
+    "liveArticleAndNoindexVerified": true,
+    "liveChecks": {
+      "url": "https://preview.kr-research-site.pages.dev/sector/clarity-act-2026-11-05/",
+      "httpStatus": 200,
+      "xRobotsTag": "noindex, nofollow",
+      "htmlNoindex": true,
+      "robotsDisallowAll": true,
+      "articleTitleVerified": true,
+      "latestBillLinkPresent": true
+    },
+    "dnsRemediation": "System lookup returned ENOTFOUND. A process-local Node DNS fallback to Cloudflare public DNS restored resolution; whoami confirmed existing OAuth login. No OS DNS or TLS settings changed.",
     "buildPreservedAt": "site-dist/",
     "productionDeployed": false,
     "mainPushed": false
