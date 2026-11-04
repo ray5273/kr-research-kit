@@ -2,7 +2,7 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (433 files).
+Complete index of every artifact under `analysis-example/` (434 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
@@ -522,7 +522,13 @@ LG전자 DART 분석
 
 - [Korean Analyst Report Watch - daily - 2026-07-05](../analysis-example/kr-reports/report-watch-daily-2026-07-05.md) — 2026-07-05 · [json](../analysis-example/kr-reports/report-watch-daily-2026-07-05.json)
 
-## US — single-stock research (27)
+## US — single-stock research (28)
+
+### Circle-2026Q3 — 2026-11-04
+
+서클 2026년 3분기 실적: ARC 판매를 빼면 이익은 줄었다
+
+[memo](../analysis-example/us/Circle-2026Q3/memo.md)
 
 ### Alphabet — 2026-11-01
 
