@@ -2,7 +2,7 @@
   "verifiedOn": "2026-11-05",
   "branch": "feat/clarity-act-2026-11-05",
   "researchDate": "2026-11-05",
-  "bodyCharactersExcludingLinkURLs": 7154,
+  "bodyCharactersExcludingLinkURLs": 7533,
   "checks": {
     "npm run test:site": "passed",
     "npm run check:site": "passed (site build, analytics, engagement, Pages proxy tests)",
@@ -16,7 +16,9 @@
     ],
     "localXRobotsTag": "noindex, nofollow",
     "localRobotsDisallow": "/",
-    "previewLiveAPIsAndAnalytics": "excluded"
+    "previewLiveAPIsAndAnalytics": "excluded",
+    "npm run test:readability": "passed, including real npm lifecycle refusal before upload",
+    "npm run check:readability": "passed: 1 reviewed article, 73 legacy unreviewed articles scanned"
   },
   "sourceCoverage": {
     "PDFReports": [
@@ -42,11 +44,11 @@
   },
   "deployment": {
     "command": "npm run deploy:preview",
-    "status": "content updated locally; readability preview upload pending",
+    "status": "deployed after readability review",
     "exitCode": 0,
     "target": "https://preview.kr-research-site.pages.dev/sector/clarity-act-2026-11-05/",
-    "deploymentUrl": "https://317e894e.kr-research-site.pages.dev",
-    "liveArticleAndNoindexVerified": false,
+    "deploymentUrl": "https://a032f682.kr-research-site.pages.dev",
+    "liveArticleAndNoindexVerified": true,
     "liveChecks": {
       "url": "https://preview.kr-research-site.pages.dev/sector/clarity-act-2026-11-05/",
       "httpStatus": 200,
@@ -59,7 +61,8 @@
     "dnsRemediation": "System lookup returned ENOTFOUND. A process-local Node DNS fallback to Cloudflare public DNS restored resolution; whoami confirmed existing OAuth login. No OS DNS or TLS settings changed.",
     "buildPreservedAt": "site-dist/",
     "productionDeployed": false,
-    "mainPushed": false
+    "mainPushed": false,
+    "reviewedHTMLMatchesLive": true
   },
   "editorialReview": {
     "skill": "kr-article-readability",
@@ -67,6 +70,11 @@
     "numericTokenOrderPreserved": true,
     "sourceURLSetPreserved": true,
     "sourceLabelsDated": true,
-    "actualBrowserScreenshotsVerified": false
+    "actualBrowserScreenshotsVerified": false,
+    "paragraphWarningsBefore": 30,
+    "paragraphWarningsAfter": 0,
+    "maxParagraphCharsBefore": 233,
+    "maxParagraphCharsAfter": 134,
+    "toneMarkers": 4
   }
 }
