@@ -1,0 +1,54 @@
+{
+  "verifiedOn": "2026-11-05",
+  "branch": "feat/clarity-act-2026-11-05",
+  "researchDate": "2026-11-05",
+  "bodyCharactersExcludingLinkURLs": 7154,
+  "checks": {
+    "npm run test:site": "passed",
+    "npm run check:site": "passed (site build, analytics, engagement, Pages proxy tests)",
+    "npm run test:preview": "passed",
+    "git diff --check": "passed",
+    "renderedSourceURLs": 22,
+    "missingSourceURLs": [],
+    "tables": 3,
+    "localNoindexMeta": [
+      "noindex,nofollow"
+    ],
+    "localXRobotsTag": "noindex, nofollow",
+    "localRobotsDisallow": "/",
+    "previewLiveAPIsAndAnalytics": "excluded"
+  },
+  "sourceCoverage": {
+    "PDFReports": [
+      "삼성증권 2026-03-09",
+      "하나증권 2026-09-21"
+    ],
+    "officialWebReport": "KB증권 2026-09-16 공식 공개 범위",
+    "officialDistribution": "유진투자증권 2026-09-17 배포문",
+    "unavailablePriorityPDFs": [
+      "메리츠증권",
+      "대신증권"
+    ],
+    "commentary": "메르 본인 오렌지보드 게시본 확인",
+    "latestBill": "루미스 의원실 EHF26724 원문 확인",
+    "earnings": [
+      "Circle 2026-11-04 Q3 PDF",
+      "Coinbase 2026-10-29 Q3 공식 발표"
+    ]
+  },
+  "visualQA": {
+    "status": "not completed",
+    "reason": "CUA: No browser is available. Playwright system Chrome SIGABRT; cached Chromium launch did not complete. Desktop/mobile screenshots unavailable. HTML structure, fragments, source links, image files and noindex checked statically."
+  },
+  "deployment": {
+    "command": "npm run deploy:preview",
+    "status": "upload failed",
+    "exitCode": 1,
+    "reason": "Unable to resolve Cloudflare's API hostname (api.cloudflare.com or dash.cloudflare.com). whoami also failed at DNS, so authentication freshness could not be tested or repaired.",
+    "target": "https://preview.kr-research-site.pages.dev/sector/clarity-act-2026-11-05/",
+    "liveArticleAndNoindexVerified": false,
+    "buildPreservedAt": "site-dist/",
+    "productionDeployed": false,
+    "mainPushed": false
+  }
+}

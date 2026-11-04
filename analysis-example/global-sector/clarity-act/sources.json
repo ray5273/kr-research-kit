@@ -1,0 +1,228 @@
+{
+  "asOf": "2026-11-05",
+  "sources": [
+    {
+      "id": "S01",
+      "url": "https://www.dailypress.senate.gov/tuesday-september-15-2026/",
+      "publishedOrUpdated": "2026-09-15",
+      "role": "primary-legislative",
+      "verification": "49-50은 진행 동의의 토론종결 표결. 60표 필요. Tillis 재고 동의 확인.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S02",
+      "url": "https://www.govinfo.gov/content/pkg/BILLS-119hr3633rs/html/BILLS-119hr3633rs.htm",
+      "publishedOrUpdated": "2026-06-01",
+      "role": "primary-bill",
+      "verification": "RS 상원 보고본. 삭제된 하원 문구와 새 문구 혼동 금지.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S03",
+      "url": "https://www.lummis.senate.gov/wp-content/uploads/EHF26724.pdf",
+      "publishedOrUpdated": "2026-09-14",
+      "role": "primary-draft",
+      "verification": "CRS IF13313가 링크한 EHF26724, 635쪽 대체수정안. 현행법 아님.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S04",
+      "url": "https://www.congress.gov/bill/119th-congress/house-bill/3633/all-actions",
+      "publishedOrUpdated": null,
+      "role": "primary-legislative",
+      "verification": "웹 추출본 캐시가 오래돼 최근 상태의 단독 근거로 사용하지 않음. 하원 표결 연혁 확인.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S05",
+      "url": "https://www.banking.senate.gov/newsroom/majority/chairman-scott-senate-banking-committee-advance-clarity-act-in-historic-bipartisan-vote",
+      "publishedOrUpdated": "2026-05-14",
+      "role": "primary-legislative",
+      "verification": "위원회 15-9 표결. 본회의 통과와 구분.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S06",
+      "url": "https://www.everycrsreport.com/files/2026-09-15_IF13313_0eb6339f4eb82ee9078e417c4a3cbae3c5fa1907.html",
+      "publishedOrUpdated": "2026-09-15",
+      "role": "CRS-republication",
+      "verification": "IF13313 저작기관은 CRS, 호스트는 민간 미러. 원문 초안 링크를 따라 의원실 PDF 별도 확인.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S07",
+      "url": "https://www.alsobrooks.senate.gov/news/press-releases/alsobrooks-votes-no-on-clarity-act/",
+      "publishedOrUpdated": "2026-09-15",
+      "role": "primary-stakeholder",
+      "verification": "5월 위원회 찬성, 9월 절차 반대. 윤리 조항에 대한 의원 설명.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S08",
+      "url": "https://www.govinfo.gov/content/pkg/PLAW-119publ27/html/PLAW-119publ27.htm",
+      "publishedOrUpdated": "2025-07-18",
+      "role": "primary-law",
+      "verification": "Public Law 119-27. 제4조 이자 제한, 제20조 시행 산식. 시행의무별 경과기간 일반화 금지.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S09",
+      "url": "https://www.sec.gov/about/divisions-offices/division-trading-markets/innovation-exemption",
+      "publishedOrUpdated": "2026-10-26",
+      "role": "primary-regulator",
+      "verification": "9/17 명령, 10/20 안내, 10/26 최근 검토 표시. 명단 등재가 승인·요건 충족 보증 아님.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S10",
+      "url": "https://www.cftc.gov/PressRoom/PressReleases/9307-26",
+      "publishedOrUpdated": "2026-10-05",
+      "role": "primary-regulator",
+      "verification": "9307-26, ANPRM 의견수렴. 최종 규칙 아님.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S11",
+      "url": "https://bankingjournal.aba.com/2026/09/aba-banking-groups-warn-revised-clarity-act-fails-to-protect-community-banks/",
+      "publishedOrUpdated": "2026-09-14",
+      "role": "primary-bank-advocacy",
+      "verification": "ABA 및 은행단체 주장. 예금 이탈은 위험 주장으로 표시, 실측 사실로 서술하지 않음.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S12",
+      "url": "https://www.banking.senate.gov/newsroom/minority/warren-remarks-ahead-of-clarity-act-procedural-vote-on-senate-floor",
+      "publishedOrUpdated": "2026-09-15",
+      "role": "primary-political-view",
+      "verification": "Warren 이해상충·집행 예외 비판. 중립적인 판정으로 표현하지 않음.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S13",
+      "url": "https://www.banking.senate.gov/newsroom/majority/scott-statement-on-clarity-act-vote",
+      "publishedOrUpdated": "2026-09-15",
+      "role": "primary-political-view",
+      "verification": "Scott 행정기관 규칙 정비 촉구. 입법 완료 근거 아님.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S14",
+      "url": "https://www.samsungpop.com/common.do?cmd=down&contentType=application%2Fpdf&fileName=2020%2F2026030910161320K_02_02.pdf&inlineYn=Y&saveKey=research.pdf",
+      "publishedOrUpdated": "2026-03-09",
+      "role": "sell-side-original-pdf",
+      "verification": "홍진현, 스테이블코인: 정책과 기술이 만드는 금융 변화. 5~9쪽. 9월 표결 전 관점으로 한정.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S15",
+      "url": "https://t.me/s/SmallCap?before=9063",
+      "publishedOrUpdated": "2026-09-17",
+      "role": "sell-side-official-distribution",
+      "verification": "김세희 No CLARITY, Still Clarity. 공식 코스닥벤처팀 채널의 작성자 배포문. 전체 PDF 확보와는 구별.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S16",
+      "url": "https://www.hanaw.com/main/research/research/download.cmd?attachFileSeq=1&bbsCd=1264&bbsId=&bbsSeq=1288831&dbType=",
+      "publishedOrUpdated": "2026-09-21",
+      "role": "sell-side-original-pdf",
+      "verification": "이준호, 클래리티 법안 지연에도 견조, 명확한 방향성. 9쪽 PDF 중 1~2쪽. 2027년 상반기는 당시 전망.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S17",
+      "url": "https://kbthink.com/securities-view.html?docId=20260916134455940K",
+      "publishedOrUpdated": "2026-09-16",
+      "role": "sell-side-official-web",
+      "verification": "김지원, CLARITY Act 부결 이후: 연말 입법과 규칙 정비에 주목. 공식 웹 공개 범위만 이용, 숨겨진 부분은 추정하지 않음.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S18",
+      "url": "https://orangeboard.co.kr/%40ranto28/posts/47612",
+      "publishedOrUpdated": "2026-09-16",
+      "role": "author-original-commentary",
+      "verification": "메르 @ranto28 본인 게시본. 정치적 해석만 인용. 정당별 집계와 현재 상태는 공식 의사기록 우선.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S19",
+      "url": "https://www.circle.com/pt-br/blog/circle-president-to-congress-protect-the-u-s-dollars-lead",
+      "publishedOrUpdated": "2026-09-02",
+      "role": "company-policy",
+      "verification": "Heath Tarbert 의견. 회사 이해관계가 있는 정책 입장으로 표시.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S20",
+      "url": "https://s206.q4cdn.com/265218871/files/doc_earnings/2026/q3/earnings-result/3Q26-Earnings-Release.pdf",
+      "publishedOrUpdated": "2026-11-04",
+      "role": "company-earnings-original-pdf",
+      "verification": "Q3 2026, 14쪽. 평균 USDC 73.3bn, 준비금수익 658m, ARC presale 182m. 1~4쪽.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S21",
+      "url": "https://investor.coinbase.com/news/news-details/2026/Coinbase-Q3-2026-Earnings-Show-All-time-high-Coinbase-One-Subscribers-and-Prediction-Markets-Surpassing-200-Million-in-Annualized-Revenue/",
+      "publishedOrUpdated": "2026-10-29",
+      "role": "company-earnings",
+      "verification": "Q3 2026 공식 실적. 평균 USDC 22bn, S&S/순매출 49%, NI 719m vs adjusted NI 78m.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    },
+    {
+      "id": "S22",
+      "url": "https://www.coinbase.com/public-policy/advocacy/united-states",
+      "publishedOrUpdated": null,
+      "role": "company-policy-index",
+      "verification": "날짜별 의견서 목록. 2026-08-31 portfolio/cross margining 의견 등. 로비 희망을 법안 내용으로 대체하지 않음.",
+      "accessedOn": "2026-11-05",
+      "method": "web tool 원문 또는 공식 공개 본문 확인"
+    }
+  ],
+  "unavailable": [
+    {
+      "institution": "메리츠증권",
+      "title": "다시 시동이 걸리는 CLARITY ACT 입법",
+      "date": "2026-04-14",
+      "discoveryUrl": "https://t.me/s/Meritz_strategy?before=6060",
+      "reportLink": "https://tinyurl.com/3r9z7ath",
+      "status": "공식 배포 공지 발견, 단축링크 원문 접근 불가. 내용 미인용."
+    },
+    {
+      "institution": "대신증권",
+      "date": "2026-09-17",
+      "title": "불확실한 디지털자산 규제, 지연과 방향성은 구분",
+      "discoveryUrl": "https://stockreport.kr/reports/stock/16813",
+      "reportLink": "https://stock.pstatic.net/stock-research/company/15/20260917_company_98899000.pdf",
+      "status": "링크 발견, web 도구 application/octet-stream 추출 불가, 로컬 DNS 실패. AI 요약을 원문 대체로 사용하지 않음."
+    }
+  ],
+  "boundaries": [
+    "검색 결과 요약으로 법안 성립을 단정하지 않음",
+    "두 증권사의 PDF와 KB 공식 공개 본문을 비교. 유진은 공식 배포문으로 보완. 전체 PDF 3건 비교 완료로 표현하지 않음",
+    "주가·목표가·밸류에이션 미사용",
+    "전망은 작성자의 조건부 추론, 확률·확정 일정 아님",
+    "미국 현지 사건 날짜 사용. 자료 수집일은 한국 2026-11-05"
+  ]
+}

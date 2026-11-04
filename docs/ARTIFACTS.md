@@ -2,7 +2,7 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (433 files).
+Complete index of every artifact under `analysis-example/` (434 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
@@ -628,7 +628,7 @@ Tesla, Inc. 투자 분석 메모
 - [미국 연도별 Top 500 Minervini·퀄리티·실적 성장 — 무료 부분표본 (월간)](../analysis-example/us-market/strategies/us-minervini-quality-earnings-annual-free-partial/monthly-annual-ranked-price-quality-growth-hysteresis-free-partial-2025-12-31.md) — 2025-12-31 · [json](../analysis-example/us-market/strategies/us-minervini-quality-earnings-annual-free-partial/monthly-annual-ranked-price-quality-growth-hysteresis-free-partial-2025-12-31.json)
 - [미국 연도별 Top 500 Minervini·퀄리티·실적 성장 — 무료 부분표본 (주간)](../analysis-example/us-market/strategies/us-minervini-quality-earnings-annual-free-partial/weekly-annual-ranked-price-quality-growth-hysteresis-free-partial-2025-12-31.md) — 2025-12-31 · [json](../analysis-example/us-market/strategies/us-minervini-quality-earnings-annual-free-partial/weekly-annual-ranked-price-quality-growth-hysteresis-free-partial-2025-12-31.json)
 
-## Global — sector research (5)
+## Global — sector research (6)
 
 - [LFP 양극재 3편 | 미국 ESS는 왜 양극재 선택지가 좁은가 | 2026-07-27](../analysis-example/global-sector/naver-post-us-lfp-cathode-choice-constraints.md) — 2026-07-27
 - [미국 ESS: LFP 양극재 선택지는 왜 좁은가](../analysis-example/global-sector/us-lfp-cathode-choice-constraints.article.md) — 2026-07-27
@@ -638,6 +638,10 @@ Tesla, Inc. 투자 분석 메모
 
 - [바이오 AI 신약개발: 분자 설계 다음에는 임상 효능이 남는다](../analysis-example/global-sector/bio-ai-drug-discovery/article.md) — 2026-09-20
 - [바이오 AI 신약개발](../analysis-example/global-sector/bio-ai-drug-discovery/memo.md) — 2026-09-20
+
+### clarity-act
+
+- [CLARITY Act: 멈춘 입법, 먼저 움직이는 가상자산 금융](../analysis-example/global-sector/clarity-act/memo.md) — 2026-11-05
 
 ## Global — fact-checks and cross-market notes (2)
 
