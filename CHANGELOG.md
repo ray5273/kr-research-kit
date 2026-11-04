@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.26] - 2026-11-04
+
+### Commits
+
+- Add kr-earnings-review: the earnings review playbook and input collector ([47f0da2](https://github.com/ray5273/kr-research-kit/commit/47f0da27fd1ad31e8dca88a22e9cfb10c1d24408))
+- Add the Jeju Air 2026Q3 earnings review and an EV/EBITDA target basis ([9f71dcf](https://github.com/ray5273/kr-research-kit/commit/9f71dcfca4cb0d234fe487ce484e7fdc5543d10a))
+
 ## [0.4.25] - 2026-11-04
 
 ### Commits
