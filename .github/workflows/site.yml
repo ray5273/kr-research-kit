@@ -11,6 +11,7 @@ on:
       - 'site/**'
       - 'analysis-example/**'
       - 'skills/kr-research-site/**'
+      - 'skills/kr-article-readability/**'
       - 'skills/kr-naver-blog-publish/scripts/**'
       - '.github/workflows/site.yml'
       - 'wrangler.jsonc'

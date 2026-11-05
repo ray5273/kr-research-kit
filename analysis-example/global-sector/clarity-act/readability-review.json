@@ -1,0 +1,290 @@
+{
+  "reviewedOn": "2026-11-05",
+  "mode": "source-and-renderer",
+  "before": {
+    "paragraphs": 31,
+    "maxParagraphChars": 233,
+    "longParagraphs": 30,
+    "colors": 0,
+    "coloredRatio": 0,
+    "findings": [
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 9,
+        "message": "218 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 11,
+        "message": "174 characters / 3 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 13,
+        "message": "206 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 28,
+        "message": "156 characters / 3 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 30,
+        "message": "174 characters / 3 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 34,
+        "message": "215 characters / 3 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 36,
+        "message": "196 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 38,
+        "message": "184 characters / 3 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 40,
+        "message": "212 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 42,
+        "message": "206 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 46,
+        "message": "181 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 48,
+        "message": "180 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 50,
+        "message": "192 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 52,
+        "message": "205 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 54,
+        "message": "193 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 56,
+        "message": "174 characters / 3 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 67,
+        "message": "212 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 69,
+        "message": "205 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 71,
+        "message": "169 characters / 3 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 75,
+        "message": "176 characters / 3 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 77,
+        "message": "233 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 79,
+        "message": "202 characters / 3 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 81,
+        "message": "194 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 83,
+        "message": "197 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 87,
+        "message": "110 characters / 3 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 95,
+        "message": "190 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 97,
+        "message": "196 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 99,
+        "message": "162 characters / 3 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 101,
+        "message": "168 characters / 3 sentences; review the change of point"
+      },
+      {
+        "rule": "paragraph-rhythm",
+        "severity": "warn",
+        "line": 105,
+        "message": "200 characters / 4 sentences; review the change of point"
+      },
+      {
+        "rule": "scan-hierarchy",
+        "severity": "warn",
+        "line": 1,
+        "message": "Long article has no selective bold, tone emphasis or callout"
+      }
+    ]
+  },
+  "after": {
+    "paragraphs": 66,
+    "maxParagraphChars": 134,
+    "longParagraphs": 0,
+    "colors": 4,
+    "coloredRatio": 0.0232,
+    "findings": []
+  },
+  "styles": {
+    "contrasts": [
+      {
+        "mode": "light",
+        "tone": "pos",
+        "background": "bg",
+        "ratio": 5.24
+      },
+      {
+        "mode": "light",
+        "tone": "pos",
+        "background": "surface",
+        "ratio": 4.85
+      },
+      {
+        "mode": "light",
+        "tone": "neg",
+        "background": "bg",
+        "ratio": 5.51
+      },
+      {
+        "mode": "light",
+        "tone": "neg",
+        "background": "surface",
+        "ratio": 5.09
+      },
+      {
+        "mode": "light",
+        "tone": "spec",
+        "background": "bg",
+        "ratio": 5.41
+      },
+      {
+        "mode": "light",
+        "tone": "spec",
+        "background": "surface",
+        "ratio": 5
+      },
+      {
+        "mode": "dark",
+        "tone": "pos",
+        "background": "bg",
+        "ratio": 6.76
+      },
+      {
+        "mode": "dark",
+        "tone": "pos",
+        "background": "surface",
+        "ratio": 6.1
+      },
+      {
+        "mode": "dark",
+        "tone": "neg",
+        "background": "bg",
+        "ratio": 7.19
+      },
+      {
+        "mode": "dark",
+        "tone": "neg",
+        "background": "surface",
+        "ratio": 6.49
+      },
+      {
+        "mode": "dark",
+        "tone": "spec",
+        "background": "bg",
+        "ratio": 8.6
+      },
+      {
+        "mode": "dark",
+        "tone": "spec",
+        "background": "surface",
+        "ratio": 7.76
+      }
+    ],
+    "blocking": []
+  },
+  "preservation": {
+    "numericTokenOrder": true,
+    "sourceURLSet": true,
+    "researchDate": true
+  },
+  "visualLimit": "No real desktop/mobile screenshot: CUA browser inventory empty, Chrome screenshot unavailable. Generated HTML/CSS and semantic content inspected."
+}

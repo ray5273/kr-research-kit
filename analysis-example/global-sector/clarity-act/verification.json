@@ -1,0 +1,80 @@
+{
+  "verifiedOn": "2026-11-05",
+  "branch": "feat/clarity-act-2026-11-05",
+  "researchDate": "2026-11-05",
+  "bodyCharactersExcludingLinkURLs": 7533,
+  "checks": {
+    "npm run test:site": "passed",
+    "npm run check:site": "passed (site build, analytics, engagement, Pages proxy tests)",
+    "npm run test:preview": "passed",
+    "git diff --check": "passed",
+    "renderedSourceURLs": 22,
+    "missingSourceURLs": [],
+    "tables": 3,
+    "localNoindexMeta": [
+      "noindex,nofollow"
+    ],
+    "localXRobotsTag": "noindex, nofollow",
+    "localRobotsDisallow": "/",
+    "previewLiveAPIsAndAnalytics": "excluded",
+    "npm run test:readability": "passed, including real npm lifecycle refusal before upload",
+    "npm run check:readability": "passed: 1 reviewed article, 73 legacy unreviewed articles scanned"
+  },
+  "sourceCoverage": {
+    "PDFReports": [
+      "삼성증권 2026-03-09",
+      "하나증권 2026-09-21"
+    ],
+    "officialWebReport": "KB증권 2026-09-16 공식 공개 범위",
+    "officialDistribution": "유진투자증권 2026-09-17 배포문",
+    "unavailablePriorityPDFs": [
+      "메리츠증권",
+      "대신증권"
+    ],
+    "commentary": "메르 본인 오렌지보드 게시본 확인",
+    "latestBill": "루미스 의원실 EHF26724 원문 확인",
+    "earnings": [
+      "Circle 2026-11-04 Q3 PDF",
+      "Coinbase 2026-10-29 Q3 공식 발표"
+    ]
+  },
+  "visualQA": {
+    "status": "not completed",
+    "reason": "CUA: No browser is available. Playwright system Chrome SIGABRT; cached Chromium launch did not complete. Desktop/mobile screenshots unavailable. HTML structure, fragments, source links, image files and noindex checked statically."
+  },
+  "deployment": {
+    "command": "npm run deploy:preview",
+    "status": "deployed after readability review",
+    "exitCode": 0,
+    "target": "https://preview.kr-research-site.pages.dev/sector/clarity-act-2026-11-05/",
+    "deploymentUrl": "https://a032f682.kr-research-site.pages.dev",
+    "liveArticleAndNoindexVerified": true,
+    "liveChecks": {
+      "url": "https://preview.kr-research-site.pages.dev/sector/clarity-act-2026-11-05/",
+      "httpStatus": 200,
+      "xRobotsTag": "noindex, nofollow",
+      "htmlNoindex": true,
+      "robotsDisallowAll": true,
+      "articleTitleVerified": true,
+      "latestBillLinkPresent": true
+    },
+    "dnsRemediation": "System lookup returned ENOTFOUND. A process-local Node DNS fallback to Cloudflare public DNS restored resolution; whoami confirmed existing OAuth login. No OS DNS or TLS settings changed.",
+    "buildPreservedAt": "site-dist/",
+    "productionDeployed": false,
+    "mainPushed": false,
+    "reviewedHTMLMatchesLive": true
+  },
+  "editorialReview": {
+    "skill": "kr-article-readability",
+    "mode": "source-and-renderer",
+    "numericTokenOrderPreserved": true,
+    "sourceURLSetPreserved": true,
+    "sourceLabelsDated": true,
+    "actualBrowserScreenshotsVerified": false,
+    "paragraphWarningsBefore": 30,
+    "paragraphWarningsAfter": 0,
+    "maxParagraphCharsBefore": 233,
+    "maxParagraphCharsAfter": 134,
+    "toneMarkers": 4
+  }
+}

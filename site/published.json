@@ -1,6 +1,29 @@
 {
   "articles": [
     {
+      "memo": "analysis-example/global-sector/clarity-act/memo.md",
+      "slug": "sector/clarity-act-2026-11-05",
+      "company": "CLARITY Act",
+      "market": "sector",
+      "headline": "CLARITY Act: 멈춘 입법, 먼저 움직이는 가상자산 금융",
+      "summary": "상원 절차표결 이후의 입법 상태, 스테이블코인 보상 논쟁과 Circle·Coinbase 영향을 비교하고 연말~2027년의 조건을 살핀다.",
+      "issue": "미국 가상자산 시장구조법과 스테이블코인",
+      "datePublished": "2026-11-05",
+      "dateModified": "2026-11-05",
+      "sectors": [
+        "가상자산·핀테크"
+      ],
+      "coverSector": "crypto-fintech",
+      "tags": [
+        "CLARITY Act",
+        "GENIUS Act",
+        "스테이블코인",
+        "Circle",
+        "Coinbase",
+        "미국 규제"
+      ]
+    },
+    {
       "memo": "analysis-example/us/Circle-2026Q3/memo.md",
       "slug": "us/circle-2026-q3",
       "company": "서클",
