@@ -109,6 +109,12 @@
       "reviewedOn": "2026-11-05",
       "mode": "source-and-renderer",
       "notes": "Reviewed six-wave structure, chart/time basis, attribution and update tables. Removed one adjacent duplicate conclusion and separated its paragraph; numeric tokens and source URL set preserved. Short 3-sentence fact/inference blocks retained to preserve attribution. Generated table/tone markup and CSS inspected; actual mobile/desktop visual QA unavailable."
+    },
+    "sector/ai-infra-buildout-2026-11": {
+      "hash": "ed76fa7ad86e1206bbeb933bf61fde6bd22f81f28f7cd23423359bd17089830f",
+      "reviewedOn": "2026-11-05",
+      "mode": "source-and-renderer",
+      "notes": "Reviewed six-row before/after plan timetable, primary-source periods and units, commentary attribution, short paragraphs and shared table scroll styles. Browser visual checks remain unavailable. Exact article matches user-approved preview."
     }
   }
 }

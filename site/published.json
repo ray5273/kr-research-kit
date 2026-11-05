@@ -1,6 +1,31 @@
 {
   "articles": [
     {
+      "memo": "research/ai-infra-buildout/2026-11-05.md",
+      "slug": "sector/ai-infra-buildout-2026-11",
+      "company": "AI 데이터센터",
+      "ticker": "",
+      "market": "sector",
+      "headline": "AI 데이터센터 투자: 계획과 실제 인도 사이",
+      "summary": "빅테크 투자 계획·현금흐름과 한국 공급망의 장기계약·신규수주를 회사 발표로 점검한다.",
+      "issue": "투자 계획과 실제 인도·현금흐름 점검",
+      "datePublished": "2026-11-05",
+      "dateModified": "2026-11-05",
+      "sectors": [
+        "클라우드·데이터센터",
+        "반도체",
+        "전력기기"
+      ],
+      "coverSector": "cloud-datacenter",
+      "tags": [
+        "AI 인프라",
+        "데이터센터",
+        "설비투자",
+        "메모리",
+        "전력기기"
+      ]
+    },
+    {
       "memo": "analysis-example/global-sector/clarity-act/memo.md",
       "slug": "sector/clarity-act-2026-11-05",
       "company": "CLARITY Act",
