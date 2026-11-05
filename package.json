@@ -8,12 +8,17 @@
     "build:site": "node skills/kr-research-site/scripts/build-site.js --out site-dist --production",
     "test:site": "node skills/kr-research-site/scripts/generate-covers.js --check && node skills/kr-research-site/scripts/test-build-site.js && node skills/kr-research-site/scripts/test-discovery.js && node skills/kr-research-site/scripts/test-search-client.js && node skills/kr-research-site/scripts/test-research.js && node skills/kr-research-site/scripts/test-research-client.js",
     "test:analytics": "node site/analytics/test-deploy.mjs && node site/analytics/test-tracker.mjs && node site/analytics/test-admin.mjs && node site/analytics/test.mjs && node site/analytics/test-engagement.mjs && node site/analytics/test-engagement-client.mjs",
-    "check:site": "npm run test:site && npm run build:site && npm run test:analytics && npm run test:pages",
+    "check:site": "npm run test:readability && npm run check:readability && npm run test:site && npm run build:site && npm run test:analytics && npm run test:pages",
     "deploy:site": "node site/analytics/deploy.mjs",
     "test:pages": "node site/analytics/test-pages-proxy.mjs",
     "deploy:pages": "node site/pages-proxy/prepare.mjs && wrangler pages deploy --cwd site/pages-proxy --project-name kr-research-site --branch main",
     "deploy:preview": "node site/preview/prepare.mjs && wrangler pages deploy --cwd site/preview --project-name kr-research-site --branch preview",
-    "test:preview": "node site/preview/test-preview.mjs"
+    "test:preview": "node site/preview/test-preview.mjs",
+    "check:readability": "node skills/kr-article-readability/scripts/review.js --report .tmp/article-readability.json",
+    "test:readability": "node skills/kr-article-readability/scripts/test-review.js",
+    "predeploy:preview": "npm run check:readability",
+    "predeploy:site": "npm run check:readability",
+    "predeploy:pages": "npm run check:readability"
   },
   "dependencies": {
     "@napi-rs/canvas": "1.1.0"
