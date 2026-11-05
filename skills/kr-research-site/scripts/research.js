@@ -8,6 +8,13 @@ const quarter = v => /^\d{4}-Q[1-4]$/.test(v || '');
 const quarterIndex = v => Number(v.slice(0,4))*4 + Number(v.at(-1));
 const number = v => typeof v === 'number' && Number.isFinite(v);
 const fmt = v => number(v) ? v.toLocaleString('ko-KR', {maximumFractionDigits:2}) : '확인 불가';
+// Each currency fixes the allowed bases, the amount unit and how per-share prices round. KRW is the default, so existing files need no new field.
+const CURRENCIES={
+  KRW:{bases:['연결 K-IFRS · 분기','별도 K-IFRS · 분기'],unit:null,amount:'억원',scale:1e8,step:100,price:v=>`${fmt(v)}원`},
+  USD:{bases:['연결 US GAAP · 분기'],unit:'백만 달러',amount:'백만 달러',scale:1e6,step:0.1,price:v=>`$${v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}`}
+};
+const currency=d=>CURRENCIES[d?.currency||'KRW'];
+const priceText=(d,v)=>v===null?'가치 음수':currency(d).price(v);
 function identity(entry) {
   if (entry.companyId !== undefined) {
     check(/^[a-z]+\/[a-z0-9][a-z0-9.-]*$/.test(entry.companyId), 'invalid companyId');
@@ -29,7 +36,9 @@ function loadResearch(entry, {root, safety, asOfDate}) {
   check(d.version === 1 && d.companyId === identity(entry) && d.period === entry.period, 'version/company/period mismatch');
   check(date(d.verifiedAt) && d.verifiedAt <= (entry.dateModified || asOfDate), 'invalid verification date');
   // Some issuers (e.g. 대한항공) publish only standalone preliminary results; the page prints the basis so readers see which.
-  check(['연결 K-IFRS · 분기','별도 K-IFRS · 분기'].includes(d.basis) && typeof d.unit === 'string', 'basis/unit required');
+  check(d.currency === undefined || Object.hasOwn(CURRENCIES,d.currency), 'currency must be KRW or USD');
+  const money=currency(d);
+  check(money.bases.includes(d.basis) && typeof d.unit === 'string' && (money.unit === null || d.unit === money.unit), 'basis/unit required');
   check(typeof d.stance === 'string' && typeof d.rationale === 'string', 'stance/rationale required');
   if(d.verdict !== undefined) check(typeof d.verdict === 'string' && d.verdict.length > 0 && d.verdict.length <= 10, 'verdict must be a short label (≤10 chars)');
   if(d.nextCheck !== undefined) {
@@ -43,7 +52,6 @@ function loadResearch(entry, {root, safety, asOfDate}) {
     axes.forEach(a=>{check(typeof a.actual === 'string' && a.actual.length > 0, 'rating axis needs the actual observation');
       check(a.score === null ? typeof a.reason === 'string' && a.reason.length > 0 : Number.isInteger(a.score) && a.score >= -2 && a.score <= 2, 'rating score must be −2…+2 or null with a reason');});
     check(axes.at(-1).score !== null, 'rating price axis must be scored: valuation is mandatory');
-    if(d.targets !== undefined) check(axes.at(-1).score === horizonTargets(d.targets)[0].score, 'price axis must follow the first-horizon target upside');
     check(d.verdict === ratingLevel(axes).label, 'verdict must equal the computed rating level');
   }
   check(Array.isArray(d.sources) && d.sources.length > 0, 'sources required');
@@ -113,17 +121,23 @@ function loadResearch(entry, {root, safety, asOfDate}) {
   }
   const c = d.calculator;
   if(d.targets !== undefined) {
-    const t=d.targets, ok=v=>v && number(v.value) && sources.has(v.source);
-    check(ok(t.price) && t.price.value>0 && ok(t.shares) && t.shares.value>0 && ok(t.netDebt), 'targets need sourced price, shares and net debt');
+    const t=d.targets, ok=v=>v && number(v.value) && sources.has(v.source), pe=t.basis==='P/E';
+    check(t.basis === undefined || ['EV/EBITDA','P/E'].includes(t.basis), 'targets basis must be omitted (EV/영업이익), EV/EBITDA or P/E');
+    // P/E prices each share straight from EPS, so it needs neither net debt nor a share count.
+    check(ok(t.price) && t.price.value>0 && (pe || (ok(t.shares) && t.shares.value>0 && ok(t.netDebt))), 'targets need sourced price, shares and net debt');
     check(t.multiples && ['bear','base','bull'].every(k=>number(t.multiples[k]) && t.multiples[k]>0) && t.multiples.bear<=t.multiples.base && t.multiples.base<=t.multiples.bull && typeof t.multipleNote === 'string' && t.multipleNote, 'targets need ordered bear/base/bull multiples and a rationale');
-    check(Array.isArray(t.horizons) && t.horizons.length && t.horizons.every((h,i)=>Number.isInteger(h.months) && h.months>0 && (!i || h.months>t.horizons[i-1].months) && /^\d{4}$/.test(String(h.year)) && number(h.operatingProfit) && sources.has(h.source)), 'targets need increasing horizons with sourced profit');
-    check(t.basis === undefined || t.basis === 'EV/EBITDA', 'targets basis must be omitted (EV/영업이익) or EV/EBITDA');
+    check(Array.isArray(t.horizons) && t.horizons.length && t.horizons.every((h,i)=>Number.isInteger(h.months) && h.months>0 && (!i || h.months>t.horizons[i-1].months) && /^\d{4}$/.test(String(h.year)) && number(pe?h.eps:h.operatingProfit) && sources.has(h.source)), `targets need increasing horizons with sourced ${pe?'EPS':'profit'}`);
+    if(pe) check(!t.adjustments?.length, 'P/E targets take no equity adjustments');
     if(t.basis === 'EV/EBITDA') check(t.horizons.every(h=>number(h.depreciation) && h.depreciation>=0 && sources.has(h.depreciationSource)), 'EV/EBITDA targets need sourced depreciation per horizon');
     (t.adjustments||[]).forEach(a=>check(a.label && number(a.value) && sources.has(a.source), 'target adjustments need label, value and source'));
     if(t.brokers) check(number(t.brokers.min) && number(t.brokers.median) && number(t.brokers.max) && t.brokers.min<=t.brokers.median && t.brokers.median<=t.brokers.max && Number.isInteger(t.brokers.count) && (t.brokers.sources||[]).every(id=>sources.has(id)), 'broker target range invalid');
+    // Scored only after the targets themselves are valid, so a bad input reports its own error.
+    if(d.rating) check(d.rating.axes.at(-1).score === horizonTargets(t,d.currency)[0].score, 'price axis must follow the first-horizon target upside');
   }
   check(c && c.period && c.label && c.assumptions && c.variables?.length === 2, 'calculator assumptions required');
   ['priceLabel','priceUnit','priceNote','baseProfitLabel','baseProfitNote'].forEach(k=>check(c[k] === undefined || (typeof c[k] === 'string' && c[k].length > 0), `invalid calculator ${k}`));
+  // The unlabelled defaults describe a Korean cathode maker in 억원; any other currency must name its own assumptions.
+  if(d.currency && d.currency !== 'KRW') check(['priceLabel','priceUnit','priceNote','baseProfitLabel','baseProfitNote'].every(k=>c[k]), 'non-KRW calculator needs its own price and base-profit labels');
   c.variables.forEach(v => check(v.key && v.label && v.unit && [v.min,v.max,v.step,v.default].every(number) && v.min < v.max && v.step > 0 && v.default >= v.min && v.default <= v.max, 'invalid calculator range'));
   check(c.variables[0].key === 'volume' && c.variables[1].key === 'margin', 'calculator supports volume and margin');
   check(['price','baseProfit','multiple','netDebt'].every(k => number(c[k])) && c.price > 0 && c.multiple > 0, 'invalid fixed calculator assumptions');
@@ -162,11 +176,19 @@ function upsideLevel(upside) {
   const band=UPSIDE_BANDS.find(([min])=>upside>=min);
   return band ? {score:band[1],label:band[2]} : {score:-2,label:'강한 매도'};
 }
-function horizonTargets(t) {
-  const adjust=(t.adjustments||[]).reduce((sum,a)=>sum+a.value,0);
+// basis 'P/E' multiplies consensus EPS directly (U.S. consensus publishes EPS, not operating profit).
+function horizonTargets(t, code='KRW') {
+  const adjust=(t.adjustments||[]).reduce((sum,a)=>sum+a.value,0), {scale,step}=CURRENCIES[code||'KRW'];
+  const round=v=>Number((Math.round(v/step)*step).toFixed(2));
   return t.horizons.map(h=>{
+    if(t.basis==='P/E') {
+      const at=m=>h.eps>0?round(h.eps*m):null;
+      const prices={bear:at(t.multiples.bear),base:at(t.multiples.base),bull:at(t.multiples.bull)};
+      const upside=prices.base===null?null:prices.base/t.price.value-1;
+      return {...h,earnings:h.eps,prices,upside,...upsideLevel(upside)};
+    }
     const earnings=h.operatingProfit+(t.basis==='EV/EBITDA'?h.depreciation:0);
-    const at=m=>{const equity=earnings*m-t.netDebt.value+adjust;return equity>0?Math.round(equity*1e8/t.shares.value/100)*100:null;};
+    const at=m=>{const equity=earnings*m-t.netDebt.value+adjust;return equity>0?round(equity*scale/t.shares.value):null;};
     const prices={bear:at(t.multiples.bear),base:at(t.multiples.base),bull:at(t.multiples.bull)};
     const upside=prices.base===null?null:prices.base/t.price.value-1;
     return {...h,earnings,prices,upside,...upsideLevel(upside)};
@@ -218,7 +240,7 @@ function comparison(d) {
   }
   const authorReasons = [...new Set(d.comparison.map(r=>r.author.reason).filter(Boolean))];
   const authorNote = hasAuthor ? '' : `<p class="src-note">작성자 예상 · ${e(authorReasons.join(' · '))}. 비교는 시장 예상 기준입니다.</p>`;
-  return `<section id="earnings-comparison"><h2>발표 전 기대와 실제 결과</h2><p>${e(d.period)} · ${e(d.basis)} · ${e(d.unit)}. 차이는 실제 − 예상(억원 차이 먼저), 비율의 분모는 예상의 절댓값입니다. 비율이 100%를 넘으면 낮은 기저를 함께 표시합니다.</p>${authorNote}${table(headers,rows,'실적 비교표')}<ul class="comparison-provenance">${provenance.join('')}</ul><details class="src-note"><summary>차이의 원인과 비교 기준</summary><ul>${d.comparison.map(r=>`<li><strong>${e(r.label)}</strong> · ${e(r.cause)}</li>`).join('')}</ul></details></section>`;
+  return `<section id="earnings-comparison"><h2>발표 전 기대와 실제 결과</h2><p>${e(d.period)} · ${e(d.basis)} · ${e(d.unit)}. 차이는 실제 − 예상(${e(d.unit)} 차이 먼저), 비율의 분모는 예상의 절댓값입니다. 비율이 100%를 넘으면 낮은 기저를 함께 표시합니다.</p>${authorNote}${table(headers,rows,'실적 비교표')}<ul class="comparison-provenance">${provenance.join('')}</ul><details class="src-note"><summary>차이의 원인과 비교 기준</summary><ul>${d.comparison.map(r=>`<li><strong>${e(r.label)}</strong> · ${e(r.cause)}</li>`).join('')}</ul></details></section>`;
 }
 function records(d, key, title) {
   const items=d[key];
@@ -239,17 +261,17 @@ function chart(d,s) {
 }
 const {calculate} = require('./scenario');
 function calculator(d) {
-  const c=d.calculator, result=calculate(c,...c.variables.map(v=>v.default));
+  const c=d.calculator, result=calculate(c,...c.variables.map(v=>v.default)), unit=currency(d).amount;
   return `<section class="scenario" id="scenario-calculator" data-calculator><h2>가정 조절 계산기</h2><p>${e(c.label)} · ${e(c.period)}</p><p class="scenario-warning"><strong>설명용 민감도 · 정식 이익 전망이나 목표가가 아닙니다.</strong><br>${e(c.assumptions)}</p><details><summary>고정 가정과 근거 보기</summary>${table(['고정 항목','값','근거·한계'],[
     // Label overrides let non-cathode companies reuse the calculator; defaults keep the first example unchanged.
     [c.priceLabel||'혼합 판가',`${fmt(c.price)}${c.priceUnit||'억원/천 톤'}`,c.priceNote||'작성자 가정 · LFP/삼원계 가격과 구성비 미반영'],
-    [c.baseProfitLabel||'기타 합산 이익',`${fmt(c.baseProfit)}억원`,c.baseProfitNote||'작성자 가정 · 음극재·기초소재·공통비용'],
+    [c.baseProfitLabel||'기타 합산 이익',`${fmt(c.baseProfit)}${unit}`,c.baseProfitNote||'작성자 가정 · 음극재·기초소재·공통비용'],
     ['EV/영업이익',`${fmt(c.multiple)}배`,'작성자 선택 배수 · 시장 적정 배수로 검증되지 않음'],
-    ['순차입금',`${fmt(c.netDebt)}억원`,c.netDebtSource ? sourceLinks(d,[c.netDebtSource])+' · '+e(c.netDebtAsOf)+' 시점; 미래 잔액 아님' : '작성자 차감 가정 · 실측값 아님']
-  ],'민감도의 고정 가정')}</details><form>${c.variables.map(v=>`<label>${e(v.label)} (${e(v.unit)})<input name="${e(v.key)}" type="number" min="${v.min}" max="${v.max}" step="${v.step}" value="${v.default}" required><small>범위 ${fmt(v.min)}–${fmt(v.max)} · 간격 ${fmt(v.step)}</small></label>`).join('')}<button type="reset">기본 가정으로 복원</button></form><output aria-live="polite">${calculationText(result)}</output><details class="scenario-valuation"><summary>같은 가정으로 계산한 가치 보기</summary><p data-valuation-output>${valuationText(result)}</p><p>기업가치 = 영업이익 × 배수<br>지분가치 = 기업가치 − 순차입금</p><p>세금·감가상각·성장투자·희석을 충분히 반영하지 않은 조건부 계산입니다.</p></details><p class="src-note">영업이익 = ${e(c.variables[0].label)} × ${e(c.priceLabel||'혼합 판가')} × ${e(c.variables[1].label)} ÷ 100 + ${e(c.baseProfitLabel||'기타 합산 이익')}</p><p class="src-note">${c.marketCap===null ? '시가총액 미검증: 가격 역산 보류' : `가격 관측: 시가총액 ${fmt(c.marketCap)}억원 · ${sourceLinks(d,[c.marketCapSource])}`}</p><script type="application/json" data-calculator-config>${JSON.stringify(c).replace(/</g,'\\u003c')}</script></section>`;
+    ['순차입금',`${fmt(c.netDebt)}${unit}`,c.netDebtSource ? sourceLinks(d,[c.netDebtSource])+' · '+e(c.netDebtAsOf)+' 시점; 미래 잔액 아님' : '작성자 차감 가정 · 실측값 아님']
+  ],'민감도의 고정 가정')}</details><form>${c.variables.map(v=>`<label>${e(v.label)} (${e(v.unit)})<input name="${e(v.key)}" type="number" min="${v.min}" max="${v.max}" step="${v.step}" value="${v.default}" required><small>범위 ${fmt(v.min)}–${fmt(v.max)} · 간격 ${fmt(v.step)}</small></label>`).join('')}<button type="reset">기본 가정으로 복원</button></form><output aria-live="polite">${calculationText(result,unit)}</output><details class="scenario-valuation"><summary>같은 가정으로 계산한 가치 보기</summary><p data-valuation-output>${valuationText(result,unit)}</p><p>기업가치 = 영업이익 × 배수<br>지분가치 = 기업가치 − 순차입금</p><p>세금·감가상각·성장투자·희석을 충분히 반영하지 않은 조건부 계산입니다.</p></details><p class="src-note">영업이익 = ${e(c.variables[0].label)} × ${e(c.priceLabel||'혼합 판가')} × ${e(c.variables[1].label)} ÷ 100 + ${e(c.baseProfitLabel||'기타 합산 이익')}</p><p class="src-note">${c.marketCap===null ? '시가총액 미검증: 가격 역산 보류' : `가격 관측: 시가총액 ${fmt(c.marketCap)}${unit} · ${sourceLinks(d,[c.marketCapSource])}`}</p><script type="application/json" data-calculator-config>${JSON.stringify({...c,amountUnit:unit}).replace(/</g,'\\u003c')}</script></section>`;
 }
-function calculationText(r) { return `설명용 연간 영업이익 ${fmt(r.profit)}억원${r.profit<=0?' · 적자로 배수 가치평가 적용 불가':''}`; }
-function valuationText(r) { return r.profit<=0 ? '적자로 배수 가치평가 적용 불가' : `가정 배수 적용 기업가치 ${fmt(r.enterpriseValue)}억원 · 순차입금 차감 후 지분가치 ${fmt(r.equityValue)}억원${r.requiredProfit===null?'':` · 같은 조건의 가격 역산 이익 ${fmt(r.requiredProfit)}억원`}`; }
+function calculationText(r, unit='억원') { return `설명용 연간 영업이익 ${fmt(r.profit)}${unit}${r.profit<=0?' · 적자로 배수 가치평가 적용 불가':''}`; }
+function valuationText(r, unit='억원') { return r.profit<=0 ? '적자로 배수 가치평가 적용 불가' : `가정 배수 적용 기업가치 ${fmt(r.enterpriseValue)}${unit} · 순차입금 차감 후 지분가치 ${fmt(r.equityValue)}${unit}${r.requiredProfit===null?'':` · 같은 조건의 가격 역산 이익 ${fmt(r.requiredProfit)}${unit}`}`; }
 function widgetParts(d) {
   if(!d) return {};
   return {
@@ -279,15 +301,18 @@ function rating(d) {
   const rules=['가격·밸류에이션 점수는 2배로 반영','가격 점수가 음수면 최고 중립 · 강한 매수는 가격 +1 이상','가격 판정 불가 또는 판정 축 3개 미만이면 판단 보류'];
   return `<section class="rating" id="rating"><h2>판단 레벨 · ${e(r.label)}</h2>${scaleHtml(LEVEL_BANDS,r.label,'판단 레벨 5단계와 가중 평균 구간')}${stats([['판정 축',`${r.judged}/5`],['가중 평균',avg],['가격 상한',r.capped?'적용':'없음']])}<ul class="rule-list">${rules.map(x=>`<li>${x}</li>`).join('')}</ul>${table(['축','점수','적용 기준','실제'],rows,'축별 기준과 실제')}${targets(d)}<details><summary>전체 채점 기준 보기</summary>${rule}</details><p class="scenario-warning">작성자의 기준일 판단이며 투자 권유가 아닙니다. 가격과 실적이 바뀌면 다음 리뷰에서 다시 채점합니다.</p></section>`;
 }
-const won=v=>v===null?'가치 음수':`${fmt(v)}원`, pct=v=>v===null?'—':`${v>=0?'+':'−'}${Math.abs(v*100).toFixed(1)}%`;
+const pct=v=>v===null?'—':`${v>=0?'+':'−'}${Math.abs(v*100).toFixed(1)}%`;
+const TARGET_FORMULA={'P/E':'목표가 = 해당 연도 EPS 컨센서스 × P/E 배수','EV/EBITDA':'목표가 = ((영업이익 컨센서스 + 감가상각) × 배수 − 순차입금 ± 조정) ÷ 주식 수'};
 function targets(d) {
   const t=d.targets; if(!t) return '';
-  const list=horizonTargets(t), m=t.multiples, ebitda=t.basis==='EV/EBITDA';
-  const rows=list.map(h=>[`${h.months}개월`,`<strong>${won(h.prices.base)}</strong>`,pct(h.upside),verdictBadge(h.label),`${won(h.prices.bear)} ~ ${won(h.prices.bull)}`,`${h.year}년 영업이익 ${fmt(h.operatingProfit)}억원 ${sourceLinks(d,[h.source],true)}${ebitda?` + 감가상각 ${fmt(h.depreciation)}억원 ${sourceLinks(d,[h.depreciationSource],true)}`:''}`]);
-  const bridge=[['순차입금',`−${fmt(t.netDebt.value)}억원`,`${e(t.netDebt.note||'')} ${sourceLinks(d,[t.netDebt.source],true)}`],...(t.adjustments||[]).map(a=>[e(a.label),`${a.value>=0?'+':'−'}${fmt(Math.abs(a.value))}억원`,sourceLinks(d,[a.source],true)]),['주식 수',`${fmt(t.shares.value)}주`,sourceLinks(d,[t.shares.source],true)]];
-  const head=[['현재가',`${fmt(t.price.value)}원 ${sourceLinks(d,[t.price.source],true)}`],[`배수 · ${ebitda?'EV/EBITDA':'EV/영업이익'}`,`기준 ${fmt(m.base)}배 <small>보수 ${fmt(m.bear)} · 낙관 ${fmt(m.bull)}</small>`]];
-  if(t.brokers) head.push(['증권사 목표가 중앙값',`${fmt(t.brokers.median)}원 <small>${t.brokers.count}건 · ${fmt(t.brokers.min)} ~ ${fmt(t.brokers.max)}</small>`]);
-  return `<h3 id="targets">기간별 목표가와 추천</h3>${stats(head)}<p class="formula">목표가 = (${ebitda?'(영업이익 컨센서스 + 감가상각)':'영업이익 컨센서스'} × 배수 − 순차입금 ± 조정) ÷ 주식 수</p><p class="src-note">배수: ${e(t.multipleNote)}</p>${table(['기간','기준 목표가','상승여력','추천','보수~낙관','기준 이익(컨센서스)'],rows,'기간별 목표가')}<p class="mini-head">추천 구간 · 기준 목표가 상승여력 <small>${list[0].months}개월 추천 = 가격·밸류에이션 점수</small></p>${scaleHtml(UPSIDE_TEXT,list[0].label,'상승여력별 추천 구간')}${table(['가치 다리','값','기준'],bridge,'목표가 가치 다리')}`;
+  const list=horizonTargets(t,d.currency), m=t.multiples, ebitda=t.basis==='EV/EBITDA', pe=t.basis==='P/E', unit=currency(d).amount, won=v=>priceText(d,v);
+  const earningsCell=h=>pe ? `${h.year}년 EPS ${won(h.eps)} ${sourceLinks(d,[h.source],true)}` : `${h.year}년 영업이익 ${fmt(h.operatingProfit)}${unit} ${sourceLinks(d,[h.source],true)}${ebitda?` + 감가상각 ${fmt(h.depreciation)}${unit} ${sourceLinks(d,[h.depreciationSource],true)}`:''}`;
+  const rows=list.map(h=>[`${h.months}개월`,`<strong>${won(h.prices.base)}</strong>`,pct(h.upside),verdictBadge(h.label),`${won(h.prices.bear)} ~ ${won(h.prices.bull)}`,earningsCell(h)]);
+  const bridge=pe ? [] : [['순차입금',`−${fmt(t.netDebt.value)}${unit}`,`${e(t.netDebt.note||'')} ${sourceLinks(d,[t.netDebt.source],true)}`],...(t.adjustments||[]).map(a=>[e(a.label),`${a.value>=0?'+':'−'}${fmt(Math.abs(a.value))}${unit}`,sourceLinks(d,[a.source],true)]),['주식 수',`${fmt(t.shares.value)}주`,sourceLinks(d,[t.shares.source],true)]];
+  const head=[['현재가',`${won(t.price.value)} ${sourceLinks(d,[t.price.source],true)}`],[`배수 · ${t.basis||'EV/영업이익'}`,`기준 ${fmt(m.base)}배 <small>보수 ${fmt(m.bear)} · 낙관 ${fmt(m.bull)}</small>`]];
+  if(t.brokers) head.push(['증권사 목표가 중앙값',`${won(t.brokers.median)} <small>${t.brokers.count}건 · ${d.currency==='USD'?`${won(t.brokers.min)} ~ ${won(t.brokers.max)}`:`${fmt(t.brokers.min)} ~ ${fmt(t.brokers.max)}`}</small>`]);
+  const formula=TARGET_FORMULA[t.basis]||'목표가 = (영업이익 컨센서스 × 배수 − 순차입금 ± 조정) ÷ 주식 수';
+  return `<h3 id="targets">기간별 목표가와 추천</h3>${stats(head)}<p class="formula">${formula}</p><p class="src-note">배수: ${e(t.multipleNote)}</p>${table(['기간','기준 목표가','상승여력','추천','보수~낙관',pe?'기준 EPS(컨센서스)':'기준 이익(컨센서스)'],rows,'기간별 목표가')}<p class="mini-head">추천 구간 · 기준 목표가 상승여력 <small>${list[0].months}개월 추천 = 가격·밸류에이션 점수</small></p>${scaleHtml(UPSIDE_TEXT,list[0].label,'상승여력별 추천 구간')}${bridge.length?table(['가치 다리','값','기준'],bridge,'목표가 가치 다리'):''}`;
 }
 function ratingLine(d) {
   if(!d?.rating) return '';
@@ -319,4 +344,4 @@ function companyPages(articles) {
       content:`<div class="narrow page company-page"><header><p class="sub">기업별 리서치 이력 · ${e(first.ticker)}</p><h1>${e(first.company)}</h1><p>마지막 검증일: ${d?e(d.verifiedAt):'구조화된 검증 기록 없음'}</p></header><div class="body"><h2>현재 판단과 근거</h2><p>${d && first.research ? `${d.verdict?`${verdictBadge(d.verdict)} `:''}${e(d.stance)} · ${e(d.rationale)}` : '가장 최근 관련 글을 확인하세요. 이전 구조화된 판단을 현재 판단으로 자동 승계하지 않습니다.'}</p>${d && first.research ? rating(d).replace('<h2>','<h3>').replace('</h2>','</h3>')+nextCheck(d) : ''}${opSeries ? chart(d,opSeries) : ''}<h2>분기별 실적 리뷰</h2>${reviews.length ? links(reviews) : '<p>등록된 실적 리뷰가 없습니다.</p>'}${history}${updates}${others.length ? `<h2>관련 글</h2>${links(others)}` : ''}</div></div>`};
   });
 }
-module.exports={verdictBadge,comparisonDigest,identity,companyHref,loadResearch,widgets,nextCheck,ratingLine,ratingLevel,horizonTargets,RATING_AXES,companyPages,calculate,calculationText,valuationText,widgetParts,e};
+module.exports={verdictBadge,priceText,comparisonDigest,identity,companyHref,loadResearch,widgets,nextCheck,ratingLine,ratingLevel,horizonTargets,RATING_AXES,companyPages,calculate,calculationText,valuationText,widgetParts,e};

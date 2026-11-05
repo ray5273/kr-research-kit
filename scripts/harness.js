@@ -36,7 +36,8 @@ const EARNINGS_REQUIRED_SECTIONS = [
   ["경영진 약속", /약속|가이던스/],
   ["현재 가격이 요구하는 실적", /가격|역산/],
   ["Street / Alternative Views", /^Street/],
-  ["DART Recheck", /^DART Recheck$/],
+  // U.S. reviews recheck SEC filings under the same rules.
+  ["DART Recheck", /^(DART|SEC) Recheck$/],
   ["다음 분기 검증", /다음 분기|판단 변경 조건/],
   ["Update Log", /^Update Log$/],
   ["Sources", /^Sources$/],
@@ -981,10 +982,10 @@ function runGate(opts) {
 
   // --- Check 7: DART Recheck table exists (WARN) ---
   {
-    const hasSection = lines.some((l) => /^## DART Recheck/.test(l));
+    const hasSection = lines.some((l) => /^## (DART|SEC) Recheck/.test(l));
     let hasTable = false;
     if (hasSection) {
-      const idx = lines.findIndex((l) => /^## DART Recheck/.test(l));
+      const idx = lines.findIndex((l) => /^## (DART|SEC) Recheck/.test(l));
       for (let k = idx + 1; k < Math.min(idx + 50, lines.length); k++) {
         if (/^## /.test(lines[k])) break;
         if (/^\|.+\|/.test(lines[k])) {
@@ -1005,7 +1006,7 @@ function runGate(opts) {
 
   // --- Check 8: DART Recheck minimum claims ---
   {
-    const idx = lines.findIndex((l) => /^## DART Recheck/.test(l));
+    const idx = lines.findIndex((l) => /^## (DART|SEC) Recheck/.test(l));
     let claimCount = 0;
     if (idx >= 0) {
       let inTable = false;

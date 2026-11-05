@@ -33,6 +33,7 @@ bash ./scripts/install-skill.sh kr-foreign-analyst
 bash ./scripts/install-skill.sh kr-market-sentiment
 bash ./scripts/install-skill.sh kr-chatgpt-review
 bash ./scripts/install-skill.sh kr-research-site
+bash ./scripts/install-skill.sh us-earnings-review
 ```
 
 **Install all skills (Codex):**
@@ -59,6 +60,7 @@ bash ./scripts/install-claude-skill.sh kr-foreign-analyst
 bash ./scripts/install-claude-skill.sh kr-market-sentiment
 bash ./scripts/install-claude-skill.sh kr-chatgpt-review
 bash ./scripts/install-claude-skill.sh kr-research-site
+bash ./scripts/install-claude-skill.sh us-earnings-review
 ```
 
 **Install all skills (Claude Code):**
@@ -151,6 +153,7 @@ All scripts accept JSON via `--input` and output Markdown or PNG. They use only 
 | `chatgpt-review.js` | kr-chatgpt-review: build a fixed-format adversarial review prompt from a memo (0 판정 · 1 논리 비약 · 2 숫자 · 3 반대 논리 · 4 확신도 · 5 반증 데이터 · 6 우선 수정), paste it into the logged-in chatgpt.com web app through the vendored gstack `browse` binary on a dedicated profile (`~/.gstack/kr-chatgpt-review/`), wait for the reply, and save `chatgpt-feedback.md/.json`. No API key or Codex tokens. Refuses private-directory paths and holdings/ledger/voice-profile content |
 | `build-site.js` | kr-research-site: build the canonical static site from opt-in memos in `site/published.json` + `site/pages/*.md` → article pages (core answer box, real tables, numbered footnotes, update log), market/tag lists, `sitemap.xml`, Atom `feed.xml`, `robots.txt`, `llms.txt`, `llms-full.txt`, `urls.json`, JSON-LD Article/BreadcrumbList/FAQPage. AdSense head script, 3 section-boundary slots and `ads.txt` only when `adsense.client` is set. Refuses untracked files, private-dir paths, holdings/ledger content, and memos without 기준일. Reuses `kr-naver-blog-publish` parsers |
 | `serve-site.js` | kr-research-site: local static preview server for `site-dist/` |
+| `collect-us-earnings-inputs.js` | us-earnings-review: SEC 8-K Item 2.02 보도자료(EX-99 유형으로 탐색), XBRL 8분기 손익·현금흐름(누적 차감, EPS는 차감 안 함), 재무상태표 행, 주식 수 후보, Yahoo 컨센서스(EPS 추세 날짜 근사)·목표가 변경·종가를 모으고 R1~R6 준비도 사전 점검을 쓴다. `snapshot` 서브커맨드는 발표 전 컨센서스를 날짜별로 저장. `SEC_USER_AGENT` env/.env |
 | `indexnow-ping.js` | kr-research-site: diff `urls.json` against the previously deployed snapshot and POST new/changed/removed URLs to IndexNow (api.indexnow.org, Naver) |
 
 Input JSON schemas are documented in `references/script-inputs.md` with sample files under `examples/<market>/`.
@@ -224,6 +227,7 @@ The quality gate is available on demand via `node scripts/harness.js --mode gate
 - **kr-research-site**: install `kr-naver-blog-publish` first (shared parsers). The site is the canonical home (canonical URL, ads); Naver gets `--mode teaser` summaries linking back. Only `site/published.json` entries are built and the repo is PUBLIC — never list memos that mention holdings, and never put private-dir content under `site/`. `site-dist/` is a build output (gitignored). Cloudflare Workers Builds (GitHub integration) builds it and deploys it as a static-assets Worker via root `wrangler.jsonc` (Worker name `kr-research-site` must equal `wrangler.jsonc` name). The public address is `https://kr-research-site.pages.dev`, a Pages proxy to that Worker; the old `workers.dev` address is disabled (`workers_dev: false`) and returns 404; `.github/workflows/site.yml` only waits for the live `urls.json` to match the pushed build and pings IndexNow (skipped while `indexNow.key` is empty).
 - **Site comments**: pre-moderated; only the operator replies. `/admin/comments/` handles status tabs (pending/approved/hidden/spam/trash), bulk actions, replies, banned words and author blocks; the transition table lives in `site/analytics/engagement.mjs`. Optional Worker Secrets `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` enable new-comment alerts (`site/analytics/notify.mjs`), which are skipped when unset. Details in `site/analytics/OPERATIONS.md`.
 - **kr-earnings-review**: 실적 리뷰 요청은 `skills/kr-earnings-review/SKILL.md` 절차를 그대로 따른다 (`collect-earnings-inputs.js` 수집 → 준비도 게이트 → 파일 작성 → `published.json` → 검증·프리뷰 → 브랜치 커밋). 필수 입력(R1~R6)이 하나라도 없으면 `.tmp/earnings/<ticker>-<period>/REVIEW-NEEDED.md`를 쓰고 발행·배포 없이 사용자 검토를 받는다. 세션 시작 시 남은 `REVIEW-NEEDED.md`를 확인한다.
+- **us-earnings-review**: 미국 상장사 실적 리뷰는 `skills/us-earnings-review/SKILL.md`를 따른다 (`collect-us-earnings-inputs.js` → 같은 R1~R6 게이트 → `currency: "USD"`·`연결 US GAAP · 분기`·`백만 달러` analysis-data.json, 목표가는 EPS 컨센서스 × P/E 기본). 자료 부족 시 `.tmp/earnings/us-<TICKER>-<period>/REVIEW-NEEDED.md`로 검토 대기. 미국 무료 자료원은 과거 컨센서스를 보관하지 않으므로 발표 전 주에 `snapshot`을 로컬에서 돌려 둔다.
 - **Regression extensibility**: `--mode regression` iterates a `ROUTED_STEPS` registry at the top of `scripts/harness.js` and runs every routed leg with artifact + section assertions. When `kr-stock-plan` gains a new routed skill, add a one-line entry to `ROUTED_STEPS` (`{ name, run, requires, cleanCache, artifacts, assert }`) and the regression mode picks it up automatically. A full (non-dry) regression needs network access + `pypdf`; `validate-skills.sh` only runs `--dry-run` so CI stays offline.
 
 ## gstack

@@ -1230,10 +1230,10 @@ function earningsStripHtml(articles) {
   const target = article => {
     const t = article.research?.targets;
     if (!t) return `<span class="er-target er-hl">${escapeHtml(article.headline)}</span>`;
-    const h = research.horizonTargets(t)[0];
+    const h = research.horizonTargets(t, article.research.currency)[0];
     if (h.prices.base === null) return `<span class="er-target">${h.months}개월 목표 <b>가치 음수</b></span>`;
     const pct = `${h.upside >= 0 ? "+" : "−"}${Math.abs(h.upside * 100).toFixed(1)}%`;
-    return `<span class="er-target">${h.months}개월 ${h.prices.base.toLocaleString("ko-KR")}원 <b class="${h.upside >= 0 ? "up" : "down"}">${pct}</b></span>`;
+    return `<span class="er-target">${h.months}개월 ${research.priceText(article.research, h.prices.base)} <b class="${h.upside >= 0 ? "up" : "down"}">${pct}</b></span>`;
   };
   const item = article => `<li><a href="/${article.slug}/"><span class="er-co"><span class="co">${escapeHtml(article.company)}</span>${article.ticker ? `<span class="tk">${escapeHtml(article.ticker)}</span>` : ""}</span>${article.research?.verdict ? research.verdictBadge(article.research.verdict) : "<span></span>"}${target(article)}</a></li>`;
   return `<section class="er" aria-labelledby="er-head"><h2 class="sec-head" id="er-head">이번 분기 실적 리뷰 <small>${escapeHtml(period)}</small></h2><ul class="er-list">${picks.map(item).join("")}</ul><a class="er-all" href="/earnings/">전체 실적 리뷰 →</a></section>`;
