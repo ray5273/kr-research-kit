@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.29] - 2026-11-05
+
+### Commits
+
+- Add kr-earnings-review: the earnings review playbook and input collector ([ff7966c](https://github.com/ray5273/kr-research-kit/commit/ff7966c0fc13151442202ce99ddddd9fa5737dba))
+- Add CLARITY Act research and preview site entry ([7f6c58d](https://github.com/ray5273/kr-research-kit/commit/7f6c58d8c6a085517af007ab80b05132654aa01d))
+- Record successful CLARITY preview deployment and live noindex checks ([63937e8](https://github.com/ray5273/kr-research-kit/commit/63937e8a06320164e0d5708b42018e4867fad34a))
+- Document process-local DNS recovery for preview deployments ([87f7ea9](https://github.com/ray5273/kr-research-kit/commit/87f7ea98497d1dae352421f77a5ec20665d58f8f))
+- Add article readability review skill and mandatory predeploy checks ([06b3569](https://github.com/ray5273/kr-research-kit/commit/06b356991ae39e8006c3b0ad39b49266e0d81e86))
+- Verify readability preview deployment and matching live article ([1ececb6](https://github.com/ray5273/kr-research-kit/commit/1ececb60cd5cc5c11a45e2a7805cca1afd70e050))
+- Merge CLARITY Act research and mandatory readability review into main ([ce48393](https://github.com/ray5273/kr-research-kit/commit/ce48393c93736071db4525c4a022eb66ff3f0140))
+- Publish verified AI datacenter investment review and plan timetable (#16) ([961d562](https://github.com/ray5273/kr-research-kit/commit/961d562e37f412ba4a4b7893a33b82b845f6ad85))
+- Copy a formatted summary for the Naver blog from article pages ([d3d0526](https://github.com/ray5273/kr-research-kit/commit/d3d05261011b6cadbea2b5ec506d13ff1240a50b))
+- Merge remote-tracking branch 'origin/main' into feat/site-copy-digest ([0a76b38](https://github.com/ray5273/kr-research-kit/commit/0a76b387cca78a38d45f456787cffd4f9cc48c57))
+- Add us-earnings-review: rated U.S. earnings reviews on the site ([ef62567](https://github.com/ray5273/kr-research-kit/commit/ef6256795044e6932056b6fdb15e8a7d0517f251))
+
 ## [0.4.28] - 2026-11-04
 
 ### Commits
