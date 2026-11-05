@@ -161,6 +161,28 @@ assert(article.indexOf('aria-label="연관글"')<article.indexOf('aria-label="�
 assert(article.indexOf('id="comments"')<article.indexOf('aria-label="연관글"'));
 assert(/<a href="#comments" class="comment-jump" id="comment-jump" hidden>/.test(article));
 assert.equal((article.match(/data-share="kakao"/g)||[]).length,2);
+{ // "요약+링크 복사" ships one digest: answer + key table + canonical link, without footnote residue.
+  assert.equal((article.match(/id="share-digest"/g)||[]).length,1);
+  assert.equal((article.match(/data-share="copy">요약\+링크 복사</g)||[]).length,2);
+  const digest=JSON.parse(/<script type="application\/json" id="share-digest">([\s\S]*?)<\/script>/.exec(article)[1]);
+  for (const value of [digest.text, digest.html]) {
+    assert(value.includes("https://research.example.com/kr/soop-2026-06/"));
+    assert(value.includes("순현금이 하방을 받치고, 트래픽 회복이 상방을 연다"));
+    assert(value.includes("기준일 2026-06-21"));
+    assert(value.includes("■ 투자 판단의 핵심 축") && value.includes("트래픽이 회복되는가?"), "the first body table is the key table");
+    assert(value.includes("원문에서 이어집니다") && value.includes("매수·매도 권유가 아닙니다"));
+    assert(!/⟦|\[red:|\[blue:|SOOP-chart\.png|class="cite"|#src-/.test(value), "no footnotes, color markers or images");
+  }
+  assert(digest.text.startsWith("SOOP 투자 메모\n기준일 2026-06-21\n\n■ 핵심 요약\n"));
+  assert(digest.text.includes("▸ 트래픽이 회복되는가? — 월간 시청자 수가 2개 분기 연속 늘면 긍정으로 본다."), "plain rows read without a grid");
+  assert(!digest.text.includes(" | "));
+  assert(!/<[a-z]/i.test(digest.text), "plain text carries no markup");
+  assert(digest.html.includes('근거는 1분기 분기보고서다.') && !digest.html.includes('dart.fss.or.kr'), 'cited links stay in the article footnotes');
+  assert(digest.html.includes('<a href="https://research.example.com/kr/soop-2026-06/">'));
+  assert(digest.html.includes('<table style="border-collapse:collapse">') && digest.html.includes('<td style="border:1px solid #ccc;padding:4px 8px">'));
+  assert(digest.html.includes("<strong>8만원</strong>"));
+  assert(!/class=/.test(digest.html), "pasted HTML relies on inline styles only");
+}
 assert(article.includes('<p class="lead">순현금이 하방을 받치고, 트래픽 회복이 상방을 연다</p>'));
 assert(article.includes("자료 기준일 2026-06-21 · 최근 편집 2026-07-02"));
 assert(article.includes('<span class="tone-pos">배당수익률 4%가 하방을 받친다.</span>'));
@@ -527,6 +549,21 @@ assert(!read("us/acme-2026-05/index.html").includes('href=""'));
 const cited = collectCitations("본문 [A](https://a.example/x)와 [B](https://b.example/y), 다시 [A2](https://a.example/x).", ["- [A 전체 이름](https://a.example/x)", "- [C](https://c.example/z)"]);
 assert.strictEqual(cited.body, "본문 A⟦cite:1⟧와 B⟦cite:2⟧, 다시 A2⟦cite:1⟧.");
 assert.deepStrictEqual(cited.sources.map(source => source.label), ["A 전체 이름", "B", "C"]);
+{ // Wide tables keep every column but fewer rows; one layout per table.
+  const { shareDigest } = require("./build-site");
+  const wide = "| 날짜 | " + Array.from({length: 9}, (_, i) => `열${i + 1}`).join(" | ") + " |\n|" + " --- |".repeat(10) + "\n" + Array.from({length: 11}, (_, r) => `| 2026-0${r % 9 + 1} | ` + Array.from({length: 9}, (_, i) => `값${r}-${i}`).join(" | ") + " |").join("\n");
+  const base = { headline: "제목", asOfDate: "2026-01-01", answerLead: "결론.", answerBody: "", url: "https://x.test/a/", research: null };
+  const digest = shareDigest({ ...base, sections: [{ heading: "표", body: wide }] }, { baseUrl: "https://x.test" });
+  assert.equal((digest.html.match(/<tr>/g) || []).length, 4, "3 rows + header");
+  assert.equal((digest.html.match(/<th /g) || []).length, 10, "no column is dropped");
+  assert(digest.text.includes("· 열9: 값2-8") && digest.text.includes("… 원문에서 전체 표 (11행)"));
+  const mixed = shareDigest({ ...base, sections: [{ heading: "표", body: "| 항목 | A | B |\n| --- | --- | --- |\n| 짧음 | 1 | 2 |\n| 김 | " + "가".repeat(70) + " | 3 |" }] }, { baseUrl: "https://x.test" });
+  assert(mixed.text.includes("▸ 짧음\n   · A: 1\n   · B: 2"), "a long row moves the whole table to blocks");
+}
+// A first sentence cut inside a tone marker or bold span never leaks "[brown:" or "**" into the lead.
+assert.deepStrictEqual(extractAnswer("[brown: 판단을 유지한다. 양방향 사실이 들어왔다.]\n\n다음."), { lead: "[brown: 판단을 유지한다.]", answer: "[brown: 양방향 사실이 들어왔다.]", rest: "다음." });
+assert.deepStrictEqual(extractAnswer("**병목은 연료다. 제조도 병목이다.**"), { lead: "병목은 연료다. 제조도 병목이다.", answer: "", rest: "" });
+assert.deepStrictEqual(extractAnswer("**병목은 연료다. 제조도 병목이다.\n\n다만 다르다.**"), { lead: "병목은 연료다.", answer: "**제조도 병목이다.**", rest: "다만 다르다.**" });
 assert.deepStrictEqual(extractAnswer("**판단: 매력적이다.** 106,800원은 하단보다 낮다.\n\n| a | b |\n| --- | --- |\n| 1 | 2 |"), { lead: "판단: 매력적이다.", answer: "106,800원은 하단보다 낮다.", rest: "| a | b |\n| --- | --- |\n| 1 | 2 |" });
 
 const previous = { urls: [{ loc: "https://x/a/", sha256: "1" }, { loc: "https://x/b/", sha256: "2" }, { loc: "https://x/gone/", sha256: "3" }] };
@@ -550,6 +587,14 @@ assert.throws(()=>build({published:{articles:[researchEntry]}}),/not tracked/);
 git('add',researchPath);
 build({published:{articles:[researchEntry]}});
 assert(read('kr/soop-2026-06/index.html').includes('id="earnings-comparison"'));
+{ // Earnings reviews copy the expectation-vs-actual table, capped at eight rows.
+  const digest=JSON.parse(/id="share-digest">([\s\S]*?)<\/script>/.exec(read('kr/soop-2026-06/index.html'))[1]);
+  assert(digest.text.includes('■ 발표 전 기대와 실제 결과') && new RegExp(`▸ ${researchData.comparison[0].label}(: 시장 예상 |\n   · 시장 예상: )`).test(digest.text));
+  const rows=researchData.comparison.length, columns=researchData.comparison.some(r=>typeof r.author?.value==='number')?6:4;
+  const limit=Math.max(3,Math.min(8,Math.floor(30/(columns-1))));
+  assert.equal((digest.html.match(/<tr>/g)||[]).length, Math.min(rows,limit)+1);
+  assert.equal(digest.text.includes('원문에서 전체 표'), rows>limit);
+}
 assert(read('kr/soop-2026-06/index.html').includes('href="/companies/kr/067160/"'));
 assert(read('companies/kr/067160/index.html').includes('판단 변경 이력'));
 assert(read('earnings/index.html').includes('<h2 class="period-head">2026-Q3</h2>'));

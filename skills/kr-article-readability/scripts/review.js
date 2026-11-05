@@ -18,6 +18,7 @@ function audit(markdown) {
     const sentenceText = visible(raw.replace(/\[[^\]]+\]\([^)]*\)/g, ''));
     const sentences = sentenceText.split(/(?<=[.!?。])\s+(?=[가-힣A-Z0-9])/u).length;
     paragraphs.push({line:start, chars:text.length, sentences});
+    if ((raw.match(/\*\*/g)||[]).length % 2) add('broken-bold','error',start,'Unbalanced ** in this paragraph; close bold before the blank line');
     if (text.length > 350) add('long-paragraph','error',start,`${text.length} visible characters (limit 350)`);
     else if (text.length > 200 || sentences > 2) add('paragraph-rhythm','warn',start,`${text.length} characters / ${sentences} sentences; review the change of point`);
     block = [];
@@ -45,6 +46,31 @@ function audit(markdown) {
     if (/^\|/.test(line) && line.split('|').some(cell=>visible(cell).length>180)) add('dense-table-cell','warn',i+1,'Table cell exceeds 180 visible characters; move reasoning below the table');
   });
   return {paragraphs:paragraphs.length, maxParagraphChars:Math.max(0,...paragraphs.map(p=>p.chars)), longParagraphs:paragraphs.filter(p=>p.chars>200||p.sentences>2).length, colors:colors.length,coloredRatio:Number((coloredChars/Math.max(1,colorDenominator)).toFixed(4)),findings};
+}
+// "요약+링크 복사" pastes the core answer and one key table into the Naver blog, so a new
+// article must open its lead section with a real conclusion and carry at least one table.
+const DIGEST_MIN_ANSWER = 60;
+function digestAudit(markdown, entry = {}) {
+  const parserPath=path.join(__dirname,'../../kr-naver-blog-publish/scripts/memo-to-post.js');
+  if (!fs.existsSync(parserPath)) return [];
+  const {EXCLUDED_SECTIONS,normalizeHeading,parseSections,stripLeadingMetadataLines}=require(parserPath);
+  const findings=[], add=(rule,message)=>findings.push({rule,severity:'error',line:1,message});
+  const sections=parseSections(markdown).filter(section=>{const key=normalizeHeading(section.heading);return !EXCLUDED_SECTIONS.has(key)&&key!=='sources';});
+  // Same lead-section choice as the site builder.
+  const lead=sections.find(section=>normalizeHeading(section.heading)==='summary')||sections.find(section=>normalizeHeading(section.heading)==='decision frame')||sections[0];
+  if (!lead) {add('digest-lead','No publishable ## section to take the core answer from');return findings;}
+  const blocks=stripLeadingMetadataLines(lead.body).split(/\n\s*\n/).map(block=>block.trim()).filter(Boolean);
+  const isProse=block=>block && !/^\s*(?:[-*+]\s|\d+\.\s|\||!\[|#|>|```)/.test(block);
+  const first=blocks[0]||'';
+  if (!isProse(first)) add('digest-lead',`"## ${lead.heading}" must open with a conclusion sentence, not a table, list or image`);
+  else if (/^(?:작성\s*)?(?:기준일|작성일|자료\s*기준)\s*[:：]/.test(visible(first))) add('digest-lead',`"## ${lead.heading}" opens with metadata ("${visible(first).slice(0,30)}"); start with the conclusion`);
+  else {
+    const answer=[first,...(/^\*\*[^*]+\*\*$/.test(first)&&isProse(blocks[1])?[blocks[1]]:[])].map(visible).join(' ');
+    if (answer.length<DIGEST_MIN_ANSWER) add('digest-short-answer',`Core answer is ${answer.length} visible characters (minimum ${DIGEST_MIN_ANSWER}): state the conclusion and its main reason`);
+  }
+  const hasTable=sections.some(section=>section.body.split(/\r?\n/).some((line,i,lines)=>/^\s*\|/.test(line)&&/^\s*\|?\s*:?-{3,}/.test(lines[i+1]||'')));
+  if (!hasTable && !entry.analysisData) add('digest-key-table','No markdown table: add one key-figures table for the copied summary');
+  return findings;
 }
 function publicMarkdown(root, markdown) {
   const parserPath=path.join(root,'skills/kr-naver-blog-publish/scripts/memo-to-post.js');
@@ -87,12 +113,17 @@ function styleAudit(root) {
   }
   return {contrasts,blocking:failures};
 }
+function articleAudit(root, entry) {
+  const markdown=publicMarkdown(root,readWithin(root,entry.article||entry.memo)), result=audit(markdown);
+  result.findings.push(...digestAudit(markdown,entry));
+  return result;
+}
 function gate(root) {
   const entries=JSON.parse(fs.readFileSync(path.join(root,'site/published.json'),'utf8')).articles;
   const recordPath=path.join(root,'site/readability-reviews.json');
   const records=fs.existsSync(recordPath)?JSON.parse(fs.readFileSync(recordPath,'utf8')):{reviews:{},legacy:{}};
   const articles=entries.map(entry=> {
-    const contentHash=fingerprint(root,entry), result=audit(publicMarkdown(root,readWithin(root,entry.article||entry.memo)));
+    const contentHash=fingerprint(root,entry), result=articleAudit(root,entry);
     const review=records.reviews?.[entry.slug];
     const valid=review?.hash===contentHash && ['source-and-renderer','browser'].includes(review.mode) && /^\d{4}-\d{2}-\d{2}$/.test(review.reviewedOn||'') && Boolean(review.notes?.trim());
     const legacy=!valid && records.legacy?.[entry.slug]===contentHash;
@@ -108,13 +139,13 @@ function main(args) {
   const value=flag=>{const i=args.indexOf(flag);return i<0?undefined:args[i+1];};
   const root=path.resolve(value('--root')||process.cwd());
   let result;
-  if (value('--memo')) {result=audit(publicMarkdown(root,readWithin(root,value('--memo'))));console.log(JSON.stringify(result,null,2));process.exitCode=result.findings.some(f=>f.severity==='error')?1:0;return;}
+  if (value('--memo')) {const markdown=publicMarkdown(root,readWithin(root,value('--memo')));result=audit(markdown);result.findings.push(...digestAudit(markdown));console.log(JSON.stringify(result,null,2));process.exitCode=result.findings.some(f=>f.severity==='error')?1:0;return;}
   if (value('--record')) {
     const slug=value('--record'),mode=value('--mode'),notes=value('--notes');
     if (!['source-and-renderer','browser'].includes(mode)||!notes?.trim()) throw Error('Recording requires --mode source-and-renderer|browser and truthful --notes');
     const entry=JSON.parse(fs.readFileSync(path.join(root,'site/published.json'),'utf8')).articles.find(e=>e.slug===slug);
     if (!entry) throw Error(`Unknown published slug: ${slug}`);
-    const auditResult=audit(publicMarkdown(root,readWithin(root,entry.article||entry.memo)));
+    const auditResult=articleAudit(root,entry);
     if (auditResult.findings.some(f=>f.severity==='error')) throw Error('Resolve serious readability findings before recording');
     const recordPath=path.join(root,'site/readability-reviews.json');
     const records=fs.existsSync(recordPath)?JSON.parse(fs.readFileSync(recordPath,'utf8')):{version:1,legacy:{},reviews:{}};
@@ -130,5 +161,5 @@ function main(args) {
   if (result.summary.legacyUnreviewed) console.log('Legacy articles were scanned but remain unreviewed; their existing findings are debt, not passes. See the JSON report.');
   process.exitCode=result.passed?0:1;
 }
-module.exports={audit,visible,fingerprint,publicMarkdown,styleAudit,gate};
+module.exports={audit,digestAudit,visible,fingerprint,publicMarkdown,styleAudit,gate};
 if(require.main===module) {try{main(process.argv.slice(2));}catch(e){console.error(e.message);process.exitCode=1;}}

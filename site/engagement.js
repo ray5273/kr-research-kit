@@ -52,14 +52,39 @@
       } catch {}
     }
   }
+  // Article pages carry a build-time digest (answer + key table + link) so a
+  // paste into the Naver blog editor keeps formatting; other pages copy the URL.
+  let digest = null;
+  try {
+    digest = JSON.parse(document.querySelector("#share-digest")?.textContent || "null");
+  } catch {}
+  const copied = digest
+    ? "요약과 링크를 복사했습니다. 네이버 블로그에 붙여넣어 보세요."
+    : "링크를 복사했습니다.";
   async function copy() {
+    const text = digest?.text || data.url;
+    if (digest && navigator.clipboard?.write && window.ClipboardItem) {
+      const blob = (value, type) => new Blob([value], { type });
+      try {
+        await navigator.clipboard.write([
+          new window.ClipboardItem({
+            "text/html": blob(digest.html, "text/html"),
+            "text/plain": blob(digest.text, "text/plain"),
+          }),
+        ]);
+        return;
+      } catch (error) {
+        // Some browsers refuse text/html; the plain digest still works.
+        if (!navigator.clipboard.writeText) throw error;
+      }
+    }
     if (navigator.clipboard?.writeText) {
-      await navigator.clipboard.writeText(data.url);
+      await navigator.clipboard.writeText(text);
       return;
     }
     const previous = document.activeElement,
       field = document.createElement("textarea");
-    field.value = data.url;
+    field.value = text;
     field.style.cssText = "position:fixed;left:0;top:0;opacity:0";
     document.body.append(field);
     field.focus();
@@ -71,7 +96,7 @@
       field.remove();
       previous?.focus();
     }
-    if (!ok) throw Error("링크 복사에 실패했습니다. 주소창에서 복사해 주세요.");
+    if (!ok) throw Error("복사에 실패했습니다. 주소창에서 링크를 복사해 주세요.");
   }
   for (const group of groups) {
     group.addEventListener("click", async (event) => {
@@ -85,7 +110,7 @@
         if (channel === "copy") {
           await copy();
           void count("copy");
-          status.textContent = "링크를 복사했습니다.";
+          status.textContent = copied;
         } else if (channel === "native") {
           if (navigator.share) {
             await navigator.share({
@@ -98,13 +123,14 @@
           } else {
             await copy();
             void count("copy");
-            status.textContent =
-              "링크를 복사했습니다. 원하는 곳에 붙여넣어 주세요.";
+            status.textContent = digest
+              ? copied
+              : "링크를 복사했습니다. 원하는 곳에 붙여넣어 주세요.";
           }
         } else {
           if (!data.kakaoKey || !window.Kakao?.init)
             throw Error(
-              "카카오톡 공유를 준비하지 못했습니다. 링크 복사를 이용해 주세요.",
+              "카카오톡 공유를 준비하지 못했습니다. 요약+링크 복사를 이용해 주세요.",
             );
           // SDK 2.x exposes Share only after init().
           if (!Kakao.isInitialized()) Kakao.init(data.kakaoKey);
@@ -137,7 +163,7 @@
           error.name === "AbortError"
             ? "공유를 취소했습니다."
             : error.message ||
-              "공유하지 못했습니다. 링크 복사를 이용해 주세요.";
+              "공유하지 못했습니다. 요약+링크 복사를 이용해 주세요.";
       } finally {
         button.disabled = false;
       }

@@ -39,6 +39,8 @@ async function fixture({
   observer,
   commentRows,
   scrollY = 0,
+  digest,
+  write,
 } = {}) {
   const group = new Element(),
     shareStatus = new Element(),
@@ -75,6 +77,10 @@ async function fixture({
     ].map((s) => [s, new Element()]),
   );
   nodes["#comment-form"] = form;
+  if (digest) {
+    nodes["#share-digest"] = new Element();
+    nodes["#share-digest"].textContent = JSON.stringify(digest);
+  }
   const calls = [],
     kakao = [];
   let failed = fetchFail;
@@ -86,7 +92,7 @@ async function fixture({
     body: new Element(),
   };
   const navigator = {
-    clipboard: { writeText: copy },
+    clipboard: { writeText: copy, ...(write ? { write } : {}) },
     ...(share ? { share } : {}),
   };
   let initialized = kakaoInitialized;
@@ -135,6 +141,13 @@ async function fixture({
   const windowListeners = {};
   const win = {
     Kakao: sdk,
+    ...(write
+      ? {
+          ClipboardItem: function (items) {
+            this.items = items;
+          },
+        }
+      : {}),
     scrollY,
     ...(observer
       ? {
@@ -153,6 +166,7 @@ async function fixture({
     URL,
     fetch,
     Kakao: sdk,
+    Blob,
     window: win,
   });
   await flush();
@@ -220,6 +234,86 @@ f = await fixture({
 await f.click("copy");
 assert.equal(f.calls.filter((c) => c.url === "/api/shares").length, 0);
 assert.match(f.shareStatus.textContent, /실패/);
+// Article pages copy the build-time digest: HTML for the Naver editor plus plain text.
+{
+  const digest = {
+    text: "제목\n기준일 2026-06-21\n원문 전체 보기: https://site.test/us/test/",
+    html: '<p><strong>제목</strong></p><a href="https://site.test/us/test/">원문</a>',
+  };
+  let items = null;
+  let plain = "";
+  f = await fixture({
+    digest,
+    write: async (value) => {
+      items = value;
+    },
+    copy: async (value) => {
+      plain = value;
+    },
+  });
+  await f.click("copy");
+  assert.equal(items.length, 1);
+  assert.deepEqual(Object.keys(items[0].items).sort(), ["text/html", "text/plain"]);
+  assert.equal(await items[0].items["text/html"].text(), digest.html);
+  assert.equal(items[0].items["text/html"].type, "text/html");
+  assert.equal(await items[0].items["text/plain"].text(), digest.text);
+  assert.equal(plain, "", "rich copy does not fall through to writeText");
+  assert.match(f.shareStatus.textContent, /요약과 링크를 복사했습니다/);
+  assert.equal(
+    f.calls.filter((c) => c.url === "/api/shares")[0].payload.channel,
+    "copy",
+  );
+  // No ClipboardItem: the plain digest still goes out through writeText.
+  f = await fixture({
+    digest,
+    copy: async (value) => {
+      plain = value;
+    },
+  });
+  await f.click("copy");
+  assert.equal(plain, digest.text);
+  await f.click("native");
+  assert.match(f.shareStatus.textContent, /요약과 링크를 복사했습니다/);
+  // A refused rich write falls back to the plain digest.
+  plain = "";
+  f = await fixture({
+    digest,
+    write: async () => {
+      throw Error("denied");
+    },
+    copy: async (value) => {
+      plain = value;
+    },
+  });
+  await f.click("copy");
+  assert.equal(plain, digest.text);
+  assert.equal(f.calls.filter((c) => c.url === "/api/shares").length, 1);
+  // Both clipboard paths failing is reported and not counted.
+  f = await fixture({
+    digest,
+    write: async () => {
+      throw Error("denied");
+    },
+    copy: async () => {
+      throw Error("복사 실패");
+    },
+  });
+  await f.click("copy");
+  assert.match(f.shareStatus.textContent, /실패/);
+  assert.equal(f.calls.filter((c) => c.url === "/api/shares").length, 0);
+  // Pages without a digest keep copying only the URL.
+  f = await fixture({
+    write: async () => {
+      throw Error("must not use rich copy without a digest");
+    },
+    copy: async (value) => {
+      plain = value;
+    },
+  });
+  await f.click("copy");
+  assert.equal(plain, "https://site.test/us/test/");
+  assert.equal(f.shareStatus.textContent, "링크를 복사했습니다.");
+}
 f = await fixture();
 assert.equal(f.sdk.Share, undefined, "official SDK has no Share before init");
 await f.click("kakao");
@@ -337,5 +431,5 @@ f = await fixture({
   }
 }
 console.log(
-  "Reader client tests passed: share success/cancel/failure/fallback, canonical URL, Kakao feed, outage-independent sharing, retry dedup, text-only comments and replies, jump button and moderation notice.",
+  "Reader client tests passed: share success/cancel/failure/fallback, rich digest copy with plain/URL fallbacks, canonical URL, Kakao feed, outage-independent sharing, retry dedup, text-only comments and replies, jump button and moderation notice.",
 );

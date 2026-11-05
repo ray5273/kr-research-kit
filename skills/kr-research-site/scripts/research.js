@@ -181,13 +181,31 @@ function sourceLinks(d, ids, compact = false) {
 function valueHtml(o,d) {
   return o.value === null ? e(o.reason) : fmt(o.value);
 }
-function delta(actual, expected) {
-  if (!number(actual.value) || !number(expected.value)) return '비교 불가';
-  const v = actual.value - expected.value;
-  if (!expected.value) return `${v>0?'+':''}${fmt(v)} <small>예상 0: 비율 없음</small>`;
+// [difference, note]; the note is the ratio, or why there is none.
+function deltaParts(actual, expected) {
+  if (!number(actual.value) || !number(expected.value)) return ['비교 불가',''];
+  const v = actual.value - expected.value, main = `${v>0?'+':''}${fmt(v)}`;
+  if (!expected.value) return [main,'예상 0: 비율 없음'];
   const pct = v/Math.abs(expected.value)*100;
   // A ratio over 100% says more about a small base than about the beat itself.
-  return `${v>0?'+':''}${fmt(v)} <small>${pct>0?'+':''}${fmt(pct)}%${Math.abs(pct) >= 100 ? ' · 낮은 기저' : ''}</small>`;
+  return [main,`${pct>0?'+':''}${fmt(pct)}%${Math.abs(pct) >= 100 ? ' · 낮은 기저' : ''}`];
+}
+function delta(actual, expected) {
+  const [main, note] = deltaParts(actual, expected);
+  return note ? `${main} <small>${e(note)}</small>` : main;
+}
+// The comparison table as plain cells, for the copied share digest.
+function comparisonDigest(d) {
+  if (!d || !Array.isArray(d.comparison) || !d.comparison.length) return null;
+  const hasAuthor = d.comparison.some(r=>number(r.author?.value));
+  const text = o => o.value === null ? String(o.reason || '') : fmt(o.value);
+  const gap = (a, x) => { const [main, note] = deltaParts(a, x); return note ? `${main} (${note})` : main; };
+  return {
+    title: '발표 전 기대와 실제 결과',
+    note: [d.period, d.basis, d.unit].filter(Boolean).join(' · '),
+    headers: hasAuthor ? ['지표','시장 예상','작성자 예상','실제','시장 대비','작성자 대비'] : ['지표','시장 예상','실제','시장 대비'],
+    rows: d.comparison.map(r=>hasAuthor ? [r.label,text(r.market),text(r.author),text(r.actual),gap(r.actual,r.market),gap(r.actual,r.author)] : [r.label,text(r.market),text(r.actual),gap(r.actual,r.market)]),
+  };
 }
 function comparison(d) {
   const hasAuthor = d.comparison.some(r=>number(r.author.value));
@@ -301,4 +319,4 @@ function companyPages(articles) {
       content:`<div class="narrow page company-page"><header><p class="sub">기업별 리서치 이력 · ${e(first.ticker)}</p><h1>${e(first.company)}</h1><p>마지막 검증일: ${d?e(d.verifiedAt):'구조화된 검증 기록 없음'}</p></header><div class="body"><h2>현재 판단과 근거</h2><p>${d && first.research ? `${d.verdict?`${verdictBadge(d.verdict)} `:''}${e(d.stance)} · ${e(d.rationale)}` : '가장 최근 관련 글을 확인하세요. 이전 구조화된 판단을 현재 판단으로 자동 승계하지 않습니다.'}</p>${d && first.research ? rating(d).replace('<h2>','<h3>').replace('</h2>','</h3>')+nextCheck(d) : ''}${opSeries ? chart(d,opSeries) : ''}<h2>분기별 실적 리뷰</h2>${reviews.length ? links(reviews) : '<p>등록된 실적 리뷰가 없습니다.</p>'}${history}${updates}${others.length ? `<h2>관련 글</h2>${links(others)}` : ''}</div></div>`};
   });
 }
-module.exports={verdictBadge,identity,companyHref,loadResearch,widgets,nextCheck,ratingLine,ratingLevel,horizonTargets,RATING_AXES,companyPages,calculate,calculationText,valuationText,widgetParts,e};
+module.exports={verdictBadge,comparisonDigest,identity,companyHref,loadResearch,widgets,nextCheck,ratingLine,ratingLevel,horizonTargets,RATING_AXES,companyPages,calculate,calculationText,valuationText,widgetParts,e};

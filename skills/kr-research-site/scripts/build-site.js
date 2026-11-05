@@ -554,8 +554,17 @@ function extractAnswer(body) {
     consumed = 1;
   } else if (isProse(first)) {
     const sentence = first.split(/(?<=[.!?。다])\s/)[0];
-    lead = sentence;
+    // A sentence cut inside **bold** or a [tone: …] marker closes it in the lead and reopens it in the answer.
+    const open = [];
+    if ((sentence.match(/\*\*/g) || []).length % 2) open.push({ at: sentence.lastIndexOf("**"), start: "**", end: "**" });
+    const tone = /\[(red|blue|brown):\s*[^\]]*$/.exec(sentence);
+    if (tone) open.push({ at: tone.index, start: `[${tone[1]}: `, end: "]" });
+    open.sort((a, b) => b.at - a.at);
+    lead = sentence + open.map(span => span.end).join("");
+    lead = lead.match(/^\*\*([^*]+)\*\*$/)?.[1] || lead;
     answer = first.slice(sentence.length).trim();
+    if (answer) answer = [...open].reverse().map(span => span.start).join("") + answer;
+    if ((answer.match(/\*\*/g) || []).length % 2) answer += "**";
     consumed = 1;
   }
   return { lead, answer, rest: blocks.slice(consumed).join("\n\n").trim() };
@@ -666,7 +675,8 @@ function loadArticle(entry, options) {
   assert(answer.lead, `Could not derive a core answer from the memo's lead section: ${entry.memo}`);
   const issue = (entry.issue || deriveIssue(`**${answer.lead}**`)).replace(/[.。]+$/, "");
 
-  const parts = [`## ${ANSWER_HEADING}`, "", `**${answer.lead}**`, "", answer.answer];
+  // The lead is re-wrapped in bold, so inner bold would end the wrapper early on the second pass.
+  const parts = [`## ${ANSWER_HEADING}`, "", `**${answer.lead.replace(/\*\*/g, "")}**`, "", answer.answer];
   sections.forEach((section, index) => {
     const key = normalizeHeading(section.heading);
     let body = index === leadIndex ? answer.rest : section.body;
@@ -940,10 +950,11 @@ function renderArticle(article, site, outDir, safety) {
     dates: `<p class="dates"><span><b>자료 기준일</b><time datetime="${article.asOfDate}">${article.asOfDate}</time></span>${article.researchDate !== article.asOfDate ? `<span><b>자료 업데이트</b><time datetime="${article.researchDate}">${article.researchDate}</time></span>` : ""}</p>`,
     tocScript: TOC_SCRIPT,
     sharing: sharingHtml(article, config),
+    shareDigest: shareDigestScript(article, config),
     comments: commentsHtml(),
     chips: chipsHtml(article, { exchange: true }),
     headline: escapeHtml(article.headline),
-    metaLine: `${escapeHtml(config.author?.name || config.siteName)} · 사이트 발행 <time datetime="${article.datePublished}">${article.datePublished}</time> · 최근 편집 <time datetime="${article.dateModified}">${article.dateModified}</time> · ${article.readMinutes}분 · <span data-share-count title="사이트 공유 기능 이용 횟수이며 링크 복사를 포함합니다">공유 —</span> · <a href="#comments" data-comment-count>댓글 —</a>`,
+    metaLine: `${escapeHtml(config.author?.name || config.siteName)} · 사이트 발행 <time datetime="${article.datePublished}">${article.datePublished}</time> · 최근 편집 <time datetime="${article.dateModified}">${article.dateModified}</time> · ${article.readMinutes}분 · <span data-share-count title="사이트 공유 기능 이용 횟수이며 요약+링크 복사를 포함합니다">공유 —</span> · <a href="#comments" data-comment-count>댓글 —</a>`,
     archiveNotice: article.archive ? '<p class="archive-note">기록 글 · 자료 기준일과 원문에 기록된 업데이트의 수치·판단을 보존했습니다. 이후 변동은 반영하지 않았습니다.</p>' : "",
     quote: article.quote.length ? `<div class="quote">${article.quote.map(cell => `<div><div class="k">${escapeHtml(cell.label)}</div><div class="v${cell.tone ? ` ${cell.tone}` : ""}">${escapeHtml(cell.value)}${cell.unit ? `<small>${escapeHtml(cell.unit)}</small>` : ""}</div></div>`).join("")}</div>` : "",
     more: moreHtml(article, site),
@@ -1082,8 +1093,96 @@ function moreHtml(article, site) {
 }
 function sharingHtml(article, config) {
  return `<div class="sharing" data-url="${escapeHtml(article.url)}" data-title="${escapeHtml(article.headline)}" data-summary="${escapeHtml(article.summary)}" data-image="${escapeHtml(article.shareImage)}" data-kakao-key="${escapeHtml(config.kakao?.javascriptKey || process.env.KAKAO_JAVASCRIPT_KEY || "")}">
- <div class="share-buttons" role="group" aria-label="글 공유"><button type="button" data-share="kakao">카카오톡</button><button type="button" data-share="native">공유하기</button><button type="button" data-share="copy">링크 복사</button></div><p class="sub" role="status" aria-live="polite"></p></div>`;
+ <div class="share-buttons" role="group" aria-label="글 공유"><button type="button" data-share="kakao">카카오톡</button><button type="button" data-share="native">공유하기</button><button type="button" data-share="copy">요약+링크 복사</button></div><p class="sub" role="status" aria-live="polite"></p></div>`;
 }
+// ---------- share digest ----------
+// "요약+링크 복사" puts the answer, one key table and the canonical link on the
+// clipboard as HTML (for the Naver blog editor) and plain text. Inline styles only:
+// pasted markup keeps no site CSS.
+// Wide tables keep fewer rows (about 30 data cells, never under 3 rows) so the paste stays a
+// summary; columns are never dropped because the key figure can sit in any of them.
+const DIGEST_MAX_ROWS = 8;
+const DIGEST_CELL_BUDGET = 30;
+const DIGEST_CELL = 'style="border:1px solid #ccc;padding:4px 8px"';
+
+function digestInline(text, baseUrl) {
+  const html = renderInline(markdownVisibleText(text).replace(/⟦cite:\d+⟧/g, ""), { baseUrl });
+  return html.replace(/<a href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g, (_match, href, label) =>
+    href.startsWith("#") ? label : `<a href="${href.startsWith("/") ? baseUrl + href : href}">${label}</a>`);
+}
+
+// Answer lines as [plain, html]; images, tables and blank lines are left to the table section.
+function digestLines(markdown, baseUrl) {
+  return String(markdown || "").split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(line => line && !line.startsWith("|") && !/^!\[[^\]]*]\([^)]*\)$/.test(line))
+    .map(line => {
+      const bullet = /^(?:[-*+]|\d+\.)\s+/.test(line), body = line.replace(/^(?:[-*+]|\d+\.)\s+/, "");
+      return [`${bullet ? "• " : ""}${plainText(body)}`, `${bullet ? "• " : ""}${digestInline(body, baseUrl)}`];
+    })
+    .filter(([plain]) => plain.replace(/^• /, ""));
+}
+
+// Earnings reviews lead with the expectation-vs-actual table; other notes use their first table.
+function digestTable(article) {
+  const comparison = research.comparisonDigest(article.research);
+  if (comparison) return { ...comparison, plain: true };
+  const sections = [{ heading: "핵심 답변", body: article.answerBody || "" }, ...article.sections.filter(section => section.heading !== UPDATES_HEADING)];
+  for (const section of sections) {
+    const lines = section.body.split(/\r?\n/);
+    for (let i = 0; i < lines.length; i += 1) {
+      const table = parseMarkdownTableBlock(lines, i);
+      if (table) return { title: plainText(section.heading), note: "", headers: table.headers, rows: table.rows };
+    }
+  }
+  return null;
+}
+
+// Plain text has no grid, so each row reads as one line ("▸ 매출액: 시장 예상 5,230 · 실제 4,896")
+// or, when the cells are long, as the row label with one indented line per column.
+const DIGEST_LINE_MAX = 60;
+function digestPlainRows(headers, rows) {
+  const parsed = rows.map(([label, ...cells]) => [label, cells.map((value, i) => [headers[i + 1], String(value || "").trim()]).filter(([, value]) => value && !/^[-–—]$/.test(value))]);
+  const pair = headers.length === 2;
+  const inline = cells => pair ? cells[0]?.[1] || "" : cells.map(([header, value]) => `${header} ${value}`).join(" · ");
+  // One layout per table: every row fits on a line, or every row gets its own block.
+  const short = parsed.every(([label, cells]) => label.length + inline(cells).length <= DIGEST_LINE_MAX);
+  if (short) return parsed.map(([label, cells]) => cells.length ? `▸ ${label}${pair ? " — " : ": "}${inline(cells)}` : `▸ ${label}`).join("\n");
+  return parsed.map(([label, cells]) => [`▸ ${label}`, ...cells.map(([header, value]) => pair ? `   ${value}` : `   · ${header}: ${value}`)].join("\n")).join("\n\n");
+}
+
+function shareDigest(article, config) {
+  const baseUrl = config.baseUrl;
+  const lead = plainText(article.answerLead);
+  const answer = digestLines(article.answerBody, baseUrl);
+  const table = digestTable(article);
+  const text = [article.headline, `기준일 ${article.asOfDate}`, "", "■ 핵심 요약", lead, ...answer.map(([plain]) => plain)];
+  const html = [`<p><strong>${escapeHtml(article.headline)}</strong></p>`, `<p>기준일 ${article.asOfDate}</p>`, "<p><strong>■ 핵심 요약</strong></p>", `<p><strong>${digestInline(article.answerLead, baseUrl)}</strong></p>`, ...answer.map(([, line]) => `<p>${line}</p>`)];
+  if (table) {
+    const headers = table.headers;
+    const limit = Math.max(3, Math.min(DIGEST_MAX_ROWS, Math.floor(DIGEST_CELL_BUDGET / Math.max(1, headers.length - 1))));
+    const rows = table.rows.slice(0, limit);
+    const cell = value => table.plain ? escapeHtml(value) : digestInline(value, baseUrl);
+    const flat = value => table.plain ? String(value) : plainText(value);
+    text.push("", `■ ${table.title}`, ...(table.note ? [table.note] : []), digestPlainRows(headers.map(flat), rows.map(row => row.map(flat))));
+    html.push(`<p><strong>■ ${escapeHtml(table.title)}</strong></p>`, ...(table.note ? [`<p>${escapeHtml(table.note)}</p>`] : []),
+      `<table style="border-collapse:collapse"><thead><tr>${headers.map(h => `<th ${DIGEST_CELL}>${cell(h)}</th>`).join("")}</tr></thead><tbody>${rows.map(row => `<tr>${row.map(v => `<td ${DIGEST_CELL}>${cell(v)}</td>`).join("")}</tr>`).join("")}</tbody></table>`);
+    if (table.rows.length > rows.length) {
+      text.push(`… 원문에서 전체 표 (${table.rows.length}행)`);
+      html.push(`<p>… 원문에서 전체 표 (${table.rows.length}행)</p>`);
+    }
+  }
+  const more = "▶ 밸류에이션·리스크·차트·이후 업데이트는 원문에서 이어집니다.";
+  const notice = "※ 공개 자료 기반 개인 리서치이며 매수·매도 권유가 아닙니다.";
+  text.push("", more, `원문 전체 보기: ${article.url}`, "", notice);
+  html.push(`<p>${more}</p>`, `<p><strong>원문 전체 보기: <a href="${escapeHtml(article.url)}">${escapeHtml(article.url)}</a></strong></p>`, `<p>${notice}</p>`);
+  return { text: text.join("\n"), html: html.join("") };
+}
+
+function shareDigestScript(article, config) {
+  return `<script type="application/json" id="share-digest">${JSON.stringify(shareDigest(article, config)).replace(/</g, "\\u003c")}</script>`;
+}
+
 function commentsHtml() {
  return `<section class="comments more" id="comments" aria-labelledby="comments-title"><h2 id="comments-title">댓글</h2><p class="sub">관리자 승인 후 공개됩니다. 삭제 요청은 <a href="/contact/">문의</a>로 보내 주세요. <a href="/privacy/">개인정보 안내</a></p>
  <form id="comment-form"><label>닉네임<input name="nickname" maxlength="30" required autocomplete="off"></label><label>댓글<textarea name="body" maxlength="2000" rows="5" required></textarea></label><div class="spam-trap" aria-hidden="true"><label>웹사이트<input name="website" tabindex="-1" autocomplete="off"></label></div><button type="submit">댓글 등록</button><p role="status" aria-live="polite" id="comment-status"></p></form>
@@ -1467,6 +1566,7 @@ if (require.main === module) {
 
 module.exports = {
   buildSite,
+  shareDigest,
   canonicalUrlFor,
   collectCitations,
   extractAnswer,
