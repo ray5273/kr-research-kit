@@ -777,17 +777,17 @@ function adSlot(config, name) {
 
 function navHtml(site, section) {
   const current = key => (key === section ? ' aria-current="page"' : "");
-  const links = [`<a href="/earnings/"${current("earnings")}>실적 리뷰</a>`];
+  const links = [`<a href="/earnings/"${current("earnings")}>실적 리뷰</a>`, `<a href="/strategies/"${current("strategies")}>포트폴리오 전략</a>`];
   for (const market of site.markets) links.push(`<a href="/${market}/"${current(market)}>${escapeHtml(MARKET_SHORT[market] || MARKET_LABELS[market] || market)}</a>`);
   return links.join("");
 }
 
 // The phone menu: research sections as tiles, site pages as a quiet row underneath.
-const MENU_NOTES = { earnings: "분기 실적 판단", kr: "KRX 상장사", us: "미국 상장사", sector: "산업 리포트", global: "글로벌 기업", cn: "중국 기업" };
+const MENU_NOTES = { strategies: "한국·미국 투자 전략", earnings: "분기 실적 판단", kr: "KRX 상장사", us: "미국 상장사", sector: "산업 리포트", global: "글로벌 기업", cn: "중국 기업" };
 function menuHtml(site, section) {
   const current = key => (key === section ? ' aria-current="page"' : "");
   const tile = (key, href, label) => `<a href="${href}"${current(key)}><b>${escapeHtml(label)}</b><small>${MENU_NOTES[key] || ""}</small></a>`;
-  const tiles = [tile("earnings", "/earnings/", "실적 리뷰"), ...site.markets.map(market => tile(market, `/${market}/`, MARKET_SHORT[market] || MARKET_LABELS[market] || market))];
+  const tiles = [tile("earnings", "/earnings/", "실적 리뷰"), tile("strategies", "/strategies/", "포트폴리오 전략"), ...site.markets.map(market => tile(market, `/${market}/`, MARKET_SHORT[market] || MARKET_LABELS[market] || market))];
   const extras = [];
   if (site.pages.some(page => page.slug === "about")) extras.push(`<a href="/about/"${current("about")}>소개</a>`);
   extras.push(`<a href="/search/"${current("search")}>검색</a>`, `<a href="/feed.xml">RSS</a>`);
@@ -888,8 +888,11 @@ function articleJsonLd(article, site, image) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "홈", item: `${config.baseUrl}/` },
-      { "@type": "ListItem", position: 2, name: MARKET_LABELS[article.market] || article.market, item: `${config.baseUrl}/${article.market}/` },
-      { "@type": "ListItem", position: 3, name: article.title, item: article.url },
+      ...(isStrategy(article) ? [
+        { "@type": "ListItem", position: 2, name: "포트폴리오 전략", item: `${config.baseUrl}/strategies/` },
+        { "@type": "ListItem", position: 3, name: MARKET_SHORT[article.market] || article.market, item: `${config.baseUrl}/strategies/${article.market}/` },
+      ] : [{ "@type": "ListItem", position: 2, name: MARKET_LABELS[article.market] || article.market, item: `${config.baseUrl}/${article.market}/` }]),
+      { "@type": "ListItem", position: isStrategy(article) ? 4 : 3, name: article.title, item: article.url },
     ],
   }];
   if (article.faq.length) {
@@ -945,7 +948,9 @@ function renderArticle(article, site, outDir, safety) {
   const content = fill(site.templates.article, {
     toc: `<nav class="toc" aria-label="목차">${tocItems.map(([id, label], index) => `<a href="#${id}"${index === 0 ? ' class="on"' : ""}>${escapeHtml(truncate(label, 24))}</a>`).join("")}</nav>`,
     tocMobile: tocItems.length > 2 ? `<details class="toc-mobile"><summary><span class="toc-icon" aria-hidden="true">☷</span><span class="toc-title">이 글의 목차<small data-toc-current>원하는 부분으로 바로 이동</small></span><span class="toc-count">${tocItems.length}</span><span class="toc-chevron" aria-hidden="true"></span></summary><nav aria-label="모바일 목차"><ol>${tocItems.map(([id, label],index) => `<li><a href="#${id}"${index===0?' class="on" aria-current="location"':''}><span class="toc-number" aria-hidden="true">${String(index+1).padStart(2,'0')}</span><span>${escapeHtml(label)}</span></a></li>`).join("")}</ol></nav></details>` : "",
-    crumbs: `<a href="/">홈</a><span aria-hidden="true">/</span><a href="/${article.market}/">${escapeHtml(MARKET_LABELS[article.market] || article.market)}</a>`,
+    crumbs: isStrategy(article)
+      ? `<a href="/">홈</a><span aria-hidden="true">/</span><a href="/strategies/">포트폴리오 전략</a><span aria-hidden="true">/</span><a href="/strategies/${article.market}/">${escapeHtml(MARKET_SHORT[article.market] || article.market)}</a>`
+      : `<a href="/">홈</a><span aria-hidden="true">/</span><a href="/${article.market}/">${escapeHtml(MARKET_LABELS[article.market] || article.market)}</a>`,
     keyLinks: keyLinksHtml(bodySections),
     dates: `<p class="dates"><span><b>자료 기준일</b><time datetime="${article.asOfDate}">${article.asOfDate}</time></span>${article.researchDate !== article.asOfDate ? `<span><b>자료 업데이트</b><time datetime="${article.researchDate}">${article.researchDate}</time></span>` : ""}</p>`,
     tocScript: TOC_SCRIPT,
@@ -988,7 +993,7 @@ function renderArticle(article, site, outDir, safety) {
       `<meta property="article:modified_time" content="${isoKst(article.dateModified)}">`,
     ].join("\n"),
     jsonLd: articleJsonLd(article, site, shareImage),
-    section: article.market,
+    section: isStrategy(article) ? "strategies" : article.market,
     content,
   });
   writeFile(path.join(outDir, article.slug, "index.html"), html);
@@ -1034,6 +1039,7 @@ function keyLinksHtml(sections) {
 
 // Earnings reviews carry a rating and quarter-bound targets, so lists keep them apart from long-lived research.
 const isEarnings = article => article.entry?.articleType === "earnings-review";
+const isStrategy = article => article.entry?.articleType === "portfolio-strategy";
 
 function chipsHtml(article, { exchange = false } = {}) {
   const market = MARKET_SHORT[article.market] || MARKET_LABELS[article.market] || article.market;
@@ -1043,6 +1049,7 @@ function chipsHtml(article, { exchange = false } = {}) {
     `<span class="mk">${escapeHtml(market)}</span>`,
     article.archive ? '<span class="arc">기록 글</span>' : "",
     isEarnings(article) ? '<span class="type-chip">실적 리뷰</span>' : "",
+    isStrategy(article) ? '<span class="type-chip">포트폴리오 전략</span>' : "",
     ticker ? `<span class="tk">${escapeHtml(ticker)}</span>` : "",
     article.stance ? `<span class="badge ${article.stance[0]}">${article.stance[1]}</span>` : "",
   ].filter(Boolean).join("");
@@ -1079,6 +1086,7 @@ function rowHtml(article, rank, { typeChip = true } = {}) {
     ...article.sectors.slice(0, 1).map(sector => `<span>${escapeHtml(sector)}</span>`),
     article.archive ? '<span title="자료 기준일 당시 수치·판단 보존">기록 글</span>' : "",
     typeChip && isEarnings(article) ? '<span class="type-chip">실적 리뷰</span>' : "",
+    isStrategy(article) ? '<span class="type-chip">포트폴리오 전략</span>' : "",
     article.stance ? `<span class="badge ${article.stance[0]}">${article.stance[1]}</span>` : "",
   ].filter(Boolean).join("");
   const updated = article.researchDate !== article.asOfDate ? `<span>자료 업데이트 ${article.researchDate}</span>` : "";
@@ -1252,13 +1260,21 @@ function filterHtml(site, current) {
   const link = (href, label, count, active) => `<a href="${href}"${active ? ' aria-current="page"' : ""}>${escapeHtml(label)} <span>${count}</span></a>`;
   return `<nav class="filter" aria-label="시장별 보기">${[
     link("/", "전체", research_.length, !current),
-    ...site.markets.map(market => link(`/${market}/`, MARKET_SHORT[market] || market, research_.filter(article => article.market === market).length, market === current)),
+    link("/strategies/", "포트폴리오 전략", research_.filter(isStrategy).length, current === "strategies"),
+    ...site.markets.map(market => link(`/${market}/`, MARKET_SHORT[market] || market, research_.filter(article => article.market === market && !isStrategy(article)).length, market === current)),
   ].join("")}</nav>`;
 }
 
-function renderList(site, { heading, intro, articles, canonical, robots, home = false, market }) {
-  // Home and market pages list research only; their quarter's earnings reviews get the strip instead. Tag pages keep both.
-  const research_ = home || market ? articles.filter(article => !isEarnings(article)) : articles;
+// Separate country URLs keep strategy filters usable without JavaScript.
+function strategyFilterHtml(site, country) {
+  const strategies = site.articles.filter(isStrategy);
+  const link = (market, label) => `<a href="/strategies/${market ? market + "/" : ""}"${market === (country || "") ? ' aria-current="page"' : ""}>${label} <span>${strategies.filter(a => !market || a.market === market).length}</span></a>`;
+  return `<nav class="filter" aria-label="전략 국가별 보기">${link("", "전체")}${link("kr", "한국")}${link("us", "미국")}</nav>`;
+}
+
+function renderList(site, { heading, intro, articles, canonical, robots, home = false, market, strategies = false, country }) {
+  // Home retains strategies; country research lists exclude them. Tag pages retain every type.
+  const research_ = home || market ? articles.filter(article => !isEarnings(article) && (!market || !isStrategy(article))) : articles;
   const rows = list => list.map(article => rowHtml(article)).join("\n") || `<p class="empty">아직 공개된 글이 없습니다.</p>`;
   const list = home
     ? [
@@ -1268,7 +1284,7 @@ function renderList(site, { heading, intro, articles, canonical, robots, home = 
       `<div class="panel latest">${rows(research_)}</div>`,
       `<div class="panel popular">${popularArticles(research_).map((article, index) => rowHtml(article, index + 1)).join("\n")}</div>`,
     ].join("\n")
-    : `${market ? `<div class="list-bar">${filterHtml(site, market)}</div>${earningsStripHtml(articles)}${articles.some(isEarnings) ? `<h2 class="sec-head">리서치</h2>` : ""}` : ""}${rows(research_)}`;
+    : `${strategies ? `<div class="list-bar">${strategyFilterHtml(site, country)}</div>` : ""}${market ? `<div class="list-bar">${filterHtml(site, market)}</div>${earningsStripHtml(articles)}${articles.some(isEarnings) ? `<h2 class="sec-head">리서치</h2>` : ""}` : ""}${rows(research_)}`;
   const content = fill(site.templates.index, {
     hero: home ? heroHtml(site, articles) : `<header class="list-head"><h1>${escapeHtml(heading)}</h1><p>${escapeHtml(intro)}</p></header>`,
     list,
@@ -1278,7 +1294,7 @@ function renderList(site, { heading, intro, articles, canonical, robots, home = 
     description: intro,
     canonical,
     robots,
-    section: market,
+    section: strategies ? "strategies" : market,
     content,
     jsonLd: [{ "@context": "https://schema.org", "@type": "CollectionPage", name: heading, url: canonical, inLanguage: "ko-KR" }],
   });
@@ -1407,13 +1423,13 @@ function buildSite(options) {
   const slugs = new Set();
   const articles = published.articles.map(entry => {
     assert(!slugs.has(entry.slug), `Duplicate slug in published.json: ${entry.slug}`);
-    assert(!/^(admin|api|search|share|earnings|companies)(\/|$)/.test(entry.slug), `Reserved application slug: ${entry.slug}`);
+    assert(!/^(admin|api|search|share|earnings|companies|strategies)(\/|$)/.test(entry.slug), `Reserved application slug: ${entry.slug}`);
     slugs.add(entry.slug);
     return loadArticle(entry, { root, safety, config });
   }).map((article, order) => Object.assign(article, { order })).sort((a, b) => b.researchDate.localeCompare(a.researchDate) || b.asOfDate.localeCompare(a.asOfDate) || a.slug.localeCompare(b.slug));
 
   const pages = loadPages(options.pagesDir, safety);
-  assert(pages.every(page => !/^(admin|api|search|share|earnings|companies)(\/|$)/.test(page.slug)), "Reserved application page slug");
+  assert(pages.every(page => !/^(admin|api|search|share|earnings|companies|strategies)(\/|$)/.test(page.slug)), "Reserved application page slug");
   const markets = [...new Set(articles.map(article => article.market))].sort((a, b) => Object.keys(MARKET_LABELS).indexOf(a) - Object.keys(MARKET_LABELS).indexOf(b));
   const templates = Object.fromEntries(["layout", "article", "index"].map(name => [name, fs.readFileSync(path.join(TEMPLATE_DIR, `${name}.html`), "utf8")]));
   const site = { config, templates, pages, markets, articles, buildYear: options.buildYear || new Date().getFullYear() };
@@ -1455,6 +1471,17 @@ function buildSite(options) {
     const html = renderList(site, { heading: label, intro: `${label} 리서치 글 목록 (자료 기준일·자료 업데이트 최신순)`, articles: articles.filter(article => article.market === market), canonical: `${config.baseUrl}/${market}/`, market });
     writeFile(path.join(outDir, market, "index.html"), html);
     record(`${config.baseUrl}/${market}/`, articles.filter(article => article.market === market).map(article => article.dateModified).sort().at(-1), html);
+  }
+  for (const country of ["", "kr", "us"]) {
+    const path_ = `/strategies/${country ? country + "/" : ""}`;
+    const strategies = articles.filter(a => isStrategy(a) && (!country || a.market === country));
+    const html = renderList(site, {
+      heading: country ? `포트폴리오 전략 · ${MARKET_SHORT[country]}` : "포트폴리오 전략",
+      intro: "투자 규칙과 백테스트를 살펴보는 포트폴리오 전략 (자료 기준일·자료 업데이트 최신순)",
+      articles: strategies, canonical: `${config.baseUrl}${path_}`, strategies: true, country,
+    });
+    writeFile(path.join(outDir, path_, "index.html"), html);
+    record(`${config.baseUrl}${path_}`, strategies.map(a => a.dateModified).sort().at(-1) || latest, html);
   }
   const tags = new Map();
   for (const article of articles) for (const tag of article.tags) tags.set(tagDir(tag), [...(tags.get(tagDir(tag)) || []), article]);
@@ -1499,7 +1526,7 @@ function buildSite(options) {
   for(const name of ['scenario.js','research-client.js']) writeFile(path.join(outDir,name),fs.readFileSync(path.join(__dirname,name),'utf8'));
 
   writeFile(path.join(outDir, "sitemap.xml"), sitemapXml(urlEntries.filter(entry => entry.inSitemap)));
-  const searchIndex = articles.map(a=>({slug:a.slug,headline:a.headline,company:a.company,ticker:a.ticker,market:a.market,sectors:a.sectors,tags:a.tags,summary:a.summary,datePublished:a.datePublished,order:a.order,asOfDate:a.asOfDate,researchDate:a.researchDate,readMinutes:a.readMinutes,archive:a.archive,image:a.cardImage}));
+  const searchIndex = articles.map(a=>({slug:a.slug,headline:a.headline,company:a.company,ticker:a.ticker,market:a.market,articleType:a.entry.articleType || "research",sectors:a.sectors,tags:a.tags,summary:a.summary,datePublished:a.datePublished,order:a.order,asOfDate:a.asOfDate,researchDate:a.researchDate,readMinutes:a.readMinutes,archive:a.archive,image:a.cardImage}));
   writeFile(path.join(outDir,"search-index.json"),JSON.stringify(searchIndex));
   for(const name of ["discovery.js","search.js"]) writeFile(path.join(outDir,name),fs.readFileSync(path.join(__dirname,name),"utf8"));
   writeFile(path.join(outDir,"engagement.js"),fs.readFileSync(path.join(__dirname,"../../../site/engagement.js"),"utf8"));

@@ -153,7 +153,7 @@ assert(article.includes('<meta property="og:image:alt"'));
 assert(article.includes('<meta property="og:title" content="SOOP 투자 메모">'));
 const searchIndex=JSON.parse(read('search-index.json'));
 assert.equal(searchIndex.length,2);
-assert.deepEqual(Object.keys(searchIndex[0]).sort(), ['slug','headline','company','ticker','market','sectors','tags','summary','datePublished','order','asOfDate','researchDate','readMinutes','archive','image'].sort());
+assert.deepEqual(Object.keys(searchIndex[0]).sort(), ['slug','headline','company','ticker','market','articleType','sectors','tags','summary','datePublished','order','asOfDate','researchDate','readMinutes','archive','image'].sort());
 assert(!read('search-index.json').includes('INTERNAL'));
 assert(read('search/index.html').includes('content="noindex,follow"'));
 assert(!read('sitemap.xml').includes('/search/'));
@@ -392,6 +392,9 @@ assert.deepStrictEqual(locs.sort(), [
   "https://research.example.com/kr/",
   "https://research.example.com/kr/soop-2026-06/",
   "https://research.example.com/privacy/",
+  "https://research.example.com/strategies/",
+  "https://research.example.com/strategies/kr/",
+  "https://research.example.com/strategies/us/",
   "https://research.example.com/us/",
   "https://research.example.com/us/acme-2026-05/",
 ]);
@@ -610,6 +613,61 @@ assert(!fs.existsSync(path.join(outDir,'watchlist'))&&!fs.existsSync(path.join(o
 write(researchPath,JSON.stringify({...researchData,rationale:'holdings.json'}));
 assert.throws(()=>build({published:{articles:[researchEntry]}}),/private holdings/);
 for(const slug of ['companies/kr/067160','earnings']) assert.throws(()=>build({published:{articles:[{...soop,slug}]}}),/Reserved/);
+
+write(soop.memo, originalMemo);
+// Strategy navigation is independent of canonical article paths and country research.
+const strategies = [
+  {...soop, slug:'kr/strategy-a', articleType:'portfolio-strategy', archive:true},
+  {...acme, market:'kr', slug:'kr/strategy-b', articleType:'portfolio-strategy'},
+  {...acme, market:'us', slug:'us/strategy-c', articleType:'portfolio-strategy'},
+];
+build({published:{articles:[soop, acme, ...strategies]}});
+const rowSlugs = html => [...html.matchAll(/<a class="row" href="\/([^" ]+)\/"/g)].map(m=>m[1]);
+assert.deepEqual(rowSlugs(read('strategies/index.html')), strategies.map(a=>a.slug));
+assert.deepEqual(rowSlugs(read('strategies/kr/index.html')), strategies.slice(0,2).map(a=>a.slug));
+assert.deepEqual(rowSlugs(read('strategies/us/index.html')), ['us/strategy-c']);
+assert.deepEqual(rowSlugs(read('kr/index.html')), [soop.slug]);
+assert.deepEqual(rowSlugs(read('us/index.html')), [acme.slug]);
+for (const [country, count] of [['',3],['kr',2],['us',1]]) {
+  const href = `/strategies/${country ? country+'/' : ''}`;
+  const html = read(href.slice(1)+'index.html');
+  assert(html.includes(`href="${href}" aria-current="page">${country === 'kr' ? '한국' : country === 'us' ? '미국' : '전체'} <span>${count}</span>`));
+  assert(html.includes('<a href="/strategies/" aria-current="page">포트폴리오 전략</a>'));
+  assert(read('sitemap.xml').includes(baseConfig.baseUrl+href));
+  assert(JSON.parse(read('urls.json')).urls.some(u=>u.loc === baseConfig.baseUrl+href));
+  assert(JSON.parse(read('analytics-manifest.json')).paths.includes(href));
+}
+const homeFilter = read('index.html').match(/<nav class="filter"[^>]*>([\s\S]*?)<\/nav>/)[1];
+for (const fragment of ['전체 <span>5</span>','포트폴리오 전략 <span>3</span>','한국 <span>1</span>','미국 <span>1</span>']) assert(homeFilter.includes(fragment));
+for (const a of strategies) {
+  const html = read(a.slug+'/index.html');
+  assert(html.includes(`<link rel="canonical" href="${baseConfig.baseUrl}/${a.slug}/">`));
+  assert(html.includes(`href="/strategies/${a.market}/"`));
+  const crumbs = jsonLd(html).flat().find(x=>x['@type'] === 'BreadcrumbList').itemListElement;
+  assert.deepEqual(crumbs.map(x=>x.position), [1,2,3,4]);
+  assert.equal(crumbs[1].item, baseConfig.baseUrl+'/strategies/');
+  assert.equal(crumbs[2].item, `${baseConfig.baseUrl}/strategies/${a.market}/`);
+  assert.equal(crumbs[3].item, baseConfig.baseUrl+'/'+a.slug+'/');
+  assert(read('feed.xml').includes(baseConfig.baseUrl+'/'+a.slug+'/'));
+  assert(rowSlugs(read('index.html')).includes(a.slug));
+  const indexed = JSON.parse(read('search-index.json')).find(x=>x.slug === a.slug);
+  assert.equal(indexed.articleType, 'portfolio-strategy');
+}
+assert(read('kr/strategy-a/index.html').includes('기록 글'));
+assert(rowSlugs(read('tags/SOOP/index.html')).includes('kr/strategy-a'));
+assert(read('strategies/index.html').includes('<span class="mk">한국</span>'));
+assert(read('strategies/index.html').includes('<span class="type-chip">포트폴리오 전략</span>'));
+build({published:{articles:[soop,acme]}});
+for (const suffix of ['', 'kr/', 'us/']) {
+  assert(read('strategies/'+suffix+'index.html').includes('아직 공개된 글이 없습니다.'));
+  assert(read('strategies/'+suffix+'index.html').includes('전체 <span>0</span>'));
+}
+for (const slug of ['strategies','strategies/kr','strategies/us/forbidden']) assert.throws(()=>build({published:{articles:[{...soop,slug}]}}),/Reserved/);
+write('site/pages/strategies.md', '# 전략\n\n예약된 경로');
+git('add','site/pages/strategies.md');
+assert.throws(()=>build(),/Reserved application page/);
+fs.unlinkSync(path.join(root,'site/pages/strategies.md'));
+assert.throws(()=>build({published:{articles:[{...soop,articleType:'portfolio-strategy',market:'cn'}]}}), /market must be kr or us/);
 
 fs.rmSync(root, { recursive: true, force: true });
 // Long broker commentary preserves sources/content and remains readable without JS.

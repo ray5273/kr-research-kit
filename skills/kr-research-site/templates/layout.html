@@ -57,7 +57,7 @@ header.site .wrap{height:56px;display:flex;align-items:center;gap:16px}
 .brand b i{font-style:normal;color:var(--accent)}
 .brand span{font-size:var(--fs-sm);color:var(--muted)}
 .nav-wide{display:flex;gap:4px;font-size:var(--fs-md);color:var(--ink-2)}
-.nav-wide a{padding:6px 10px;border-radius:999px;transition:background .15s,color .15s}
+.nav-wide a{white-space:nowrap;padding:6px 10px;border-radius:999px;transition:background .15s,color .15s}
 .nav-wide a:hover{background:var(--surface);color:var(--ink)}
 .nav-wide a[aria-current]{color:var(--accent-text);font-weight:600;background:var(--accent-soft)}
 .nav-search{display:none}
@@ -344,6 +344,9 @@ tbody tr:hover td{background:var(--surface)}
 .page a{color:var(--accent-text);text-decoration:underline;text-underline-offset:3px}
 
 @media (min-width:1240px){.toc{display:block}.toc-mobile{display:none}}
+/* Make room for the strategy label before switching to the full menu. */
+@media (max-width:1200px){.brand span,.nav-find span{display:none}.nav-find{padding:0 10px}}
+@media (max-width:1000px){.nav-wide{display:none}.nav-search{display:flex}.nav-find{display:none}}
 @media (max-width:960px){
   .brand span,.nav-find span{display:none}.nav-find{padding:0 10px}
   .row{grid-template-columns:minmax(0,1fr) 168px;grid-template-areas:"id img" "main img" "meta img";gap:4px 24px}

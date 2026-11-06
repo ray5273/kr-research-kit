@@ -168,3 +168,9 @@ Earnings reviews must include conference-call Q&A, following [the shared sourcin
 ## Shared preview address
 
 Use `npm run deploy:preview` for review deployments from any working branch or PR. It builds the isolated static preview and always deploys to Pages branch `preview`, maintaining **https://preview.kr-research-site.pages.dev/** as the shared review address. Do not substitute the Git/PR branch in `--branch`; the last completed preview deployment replaces the shared preview. Per-deployment hash URLs are for historical comparisons. Preserve production `main`, canonical URLs, noindex and the preview exclusions for ads/analytics/Worker APIs. See [preview operations](../../site/preview/README.md).
+
+## Portfolio strategy classification
+
+Use `articleType: "portfolio-strategy"` for portfolio rules, systematic strategy backtests and recurring strategy reviews. Keep `market` as `kr` or `us`; never move a published slug or canonical URL to change classification. Desktop and mobile navigation place 포트폴리오 전략 immediately after 실적 리뷰. `/strategies/`, `/strategies/kr/` and `/strategies/us/` are reserved public collection paths with native 전체·한국·미국 links, counts, research-date ordering and an empty state.
+
+Strategy posts stay in home, search, tags and feeds, but are excluded from country research lists. Home's 전체 count includes strategies and excludes earnings reviews; country filter counts exclude both, and the strategy count matches its collection. List and search rows show both country and strategy type; the public search index includes `articleType`. Strategy articles activate the strategy menu and show 홈 → 포트폴리오 전략 → 국가, followed by the article in BreadcrumbList. Include all three collection URLs in sitemap, urls.json and the public analytics path manifest. Preserve original prose, dates and archive labels when reclassifying existing posts.

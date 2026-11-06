@@ -25,7 +25,8 @@ function identity(entry) {
 }
 const companyHref = article => article.companyId ? `/companies/${article.companyId}/` : null;
 function loadResearch(entry, {root, safety, asOfDate}) {
-  check(entry.articleType === undefined || ['earnings-review','research','update'].includes(entry.articleType), 'invalid articleType');
+  check(entry.articleType === undefined || ['earnings-review','research','update','portfolio-strategy'].includes(entry.articleType), 'invalid articleType');
+  check(entry.articleType !== 'portfolio-strategy' || ['kr','us'].includes(entry.market), 'portfolio-strategy market must be kr or us');
   check(entry.period === undefined || quarter(entry.period), 'invalid period');
   if (entry.analysisData === undefined) return null;
   check(typeof entry.analysisData === 'string', 'analysisData must be a file path');

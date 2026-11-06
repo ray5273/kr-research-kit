@@ -58,6 +58,8 @@ const context = {
           headline: "네이버 AI 팩토리",
           company: "네이버",
           ticker: "035420",
+          market: "kr",
+          articleType: "portfolio-strategy",
           sectors: ["클라우드"],
           tags: [],
           summary: "공개 요약",
@@ -93,6 +95,9 @@ const flush = async () => {
   await flush();
   assert.match(nodes["#search-status"].textContent, /1개의/);
   assert.equal(nodes["#search-results"].children[0].href, "/kr/naver/");
+  const tags = nodes["#search-results"].children[0].children[0].children[2].children;
+  assert(tags.some(n => n.textContent === "한국"));
+  assert(tags.some(n => n.textContent === "포트폴리오 전략"));
   nodes["#search-q"].value = "없는말";
   nodes["#search-form"].listeners.submit({ preventDefault() {} });
   assert.equal(context.location.searchParams.get("q"), "없는말");

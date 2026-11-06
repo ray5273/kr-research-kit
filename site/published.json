@@ -469,7 +469,8 @@
       "archive": true,
       "datePublished": "2026-11-01",
       "dateModified": "2026-11-01",
-      "issue": "급락장에서 살아남은 금융·방어주"
+      "issue": "급락장에서 살아남은 금융·방어주",
+      "articleType": "portfolio-strategy"
     },
     {
       "memo": "analysis-example/kr/KRX-월간전략/memo.md",
@@ -862,7 +863,8 @@
       "archive": true,
       "datePublished": "2026-11-01",
       "dateModified": "2026-11-01",
-      "issue": "사상최고가를 피하는 것이 유리했을까"
+      "issue": "사상최고가를 피하는 것이 유리했을까",
+      "articleType": "portfolio-strategy"
     },
     {
       "memo": "analysis-example/us/Tesla/memo.md",
@@ -1109,7 +1111,8 @@
       "archive": true,
       "datePublished": "2026-11-01",
       "dateModified": "2026-11-01",
-      "issue": "월간보다 나았을까"
+      "issue": "월간보다 나았을까",
+      "articleType": "portfolio-strategy"
     },
     {
       "memo": "analysis-example/kr/한진칼/fullmemo.md",

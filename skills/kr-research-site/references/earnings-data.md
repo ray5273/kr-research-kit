@@ -4,7 +4,7 @@
 
 | 필드 | 형식 | 역할 |
 | --- | --- | --- |
-| articleType | earnings-review / research / update | 실적 리뷰 목록은 earnings-review만 선택 |
+| articleType | earnings-review / research / update / portfolio-strategy | 실적 리뷰 목록은 earnings-review만 선택 |
 | period | YYYY-Q1~Q4 | 리뷰 대상 분기 |
 | companyId | market/lowercase-ticker | 기업 이력의 안정적인 키. market·ticker와 일치해야 함 |
 | analysisData | 저장소 상대 JSON 경로 | 공개 검증 데이터. 추적 파일·저장소 내부 경로·비공개 내용 검사를 메모와 동일 적용 |

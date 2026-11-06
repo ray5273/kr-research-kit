@@ -29,6 +29,8 @@
       id.append(part("span", "co", a.company));
       if (a.ticker) id.append(part("span", "tk", a.ticker));
       tags.append(part("span", "mk", MARKETS[a.market] || a.market));
+      const type = { "portfolio-strategy": "포트폴리오 전략", "earnings-review": "실적 리뷰" }[a.articleType];
+      if (type) tags.append(part("span", "type-chip", type));
       for (const sector of a.sectors.slice(0, 1))
         tags.append(part("span", "", sector));
       if (a.archive) tags.append(part("span", "", "기록 글"));
