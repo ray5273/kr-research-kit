@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.33] - 2026-11-06
+
+### Commits
+
+- Add a square Naver blog thumbnail with a save button on article pages ([8e3570e](https://github.com/ray5273/kr-research-kit/commit/8e3570ecaa4b7ab855a69a2dde6a6d56c823e262))
+
 ## [0.4.32] - 2026-11-06
 
 ### Commits
