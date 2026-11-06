@@ -1,0 +1,966 @@
+{
+  "version": 1,
+  "companyId": "kr/066970",
+  "period": "2026-Q3",
+  "verifiedAt": "2026-11-06",
+  "releasedAt": "2026-11-05",
+  "basis": "연결 K-IFRS · 분기",
+  "unit": "억원",
+  "stance": "본업은 흑자이고 주가가 12개월 목표가 근처까지 내려와 중립",
+  "rationale": "일회성 646억원을 빼면 영업이익 381억원으로 흑자이고 2분기 영업현금흐름도 양수다. 발표 후 증권사 6곳 중 4곳이 목표가를 내렸고 2027년 추정은 모두 컨센서스보다 낮다. 12개월 목표가 69,000원은 11월 6일 종가 74,900원보다 7.9% 낮다.",
+  "verdict": "중립",
+  "nextCheck": {
+    "event": "2026Q4 잠정실적",
+    "expected": "2027-02",
+    "conditions": [
+      "재고자산 평가손실이 3분기 426억원보다 줄어드는지",
+      "일회성 제외 영업이익 흑자 유지와 LFP 출하 3천~4천 톤",
+      "2027년 영업이익 컨센서스가 증권사 신규 추정(1,215~2,043억원) 쪽으로 내려오는지"
+    ]
+  },
+  "limitations": [
+    "실적은 DART 연결 잠정실적 원문 기준이다. 과거 분기는 각 분기를 담은 가장 최근 잠정실적 공시의 열에서 읽었다(2025Q4 순이익은 감사 후 수정치).",
+    "재고자산 평가손실 426억원·환율 손실 220억원은 회사 설명을 인용한 보도와 증권사 보고서 기준이다. 회사 보도자료·IR 자료 원문은 확보하지 못했다(신영은 423억원으로 표기).",
+    "시장 예상은 FnGuide 10/30 연결 관측점이다. 발표 후 보고서의 컨센서스 인용은 −291억원(대신, 1개월 기준)과 21억원(삼성·키움·신영, FnGuide)으로 갈린다.",
+    "3분기 현금흐름은 분기보고서 제출 전이라 비워 두었다. 순차입금·주식 수는 2026년 6월 말 기준이며 교환사채 4,484억원·신주인수권부사채 135억원의 전환·교환은 반영하지 않았다.",
+    "목표가는 2027·2028년 WiseReport 컨센서스를 쓴다. 발표 후 증권사 6곳의 2027년 영업이익 추정(1,215~2,043억원)은 모두 그보다 낮다."
+  ],
+  "sources": [
+    {
+      "id": "dart-q3",
+      "label": "DART 엘앤에프 연결 잠정실적 2026-11-05 · 원문 확인",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261105800489",
+      "publishedAt": "2026-11-05",
+      "role": "primary",
+      "access": "read",
+      "verifiedAt": "2026-11-06"
+    },
+    {
+      "id": "dart-q2",
+      "label": "DART 엘앤에프 연결 잠정실적 2026-08-06",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260806800304",
+      "publishedAt": "2026-08-06",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "dart-q1",
+      "label": "DART 엘앤에프 연결 잠정실적 2026-04-30",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430800556",
+      "publishedAt": "2026-04-30",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "dart-q4",
+      "label": "DART 엘앤에프 연결 잠정실적 기재정정 2026-02-03",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260203800248",
+      "publishedAt": "2026-02-03",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2026h1",
+      "label": "DART 엘앤에프 2026 반기보고서 2026-08-14",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814000995",
+      "publishedAt": "2026-08-14",
+      "role": "primary",
+      "access": "read",
+      "verifiedAt": "2026-11-06"
+    },
+    {
+      "id": "shares-h1",
+      "label": "DART 2026 반기보고서 주식의 총수 (유통 보통주 39,444,649주)",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814000995",
+      "publishedAt": "2026-08-14",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2026q1",
+      "label": "DART 엘앤에프 2026 1분기보고서 2026-05-15",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515000918",
+      "publishedAt": "2026-05-15",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2025fy",
+      "label": "DART 엘앤에프 2025 사업보고서 기재정정 2026-08-14",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814000818",
+      "publishedAt": "2026-08-14",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2025q3",
+      "label": "DART 엘앤에프 2025 3분기보고서 2025-11-14",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251114000795",
+      "publishedAt": "2025-11-14",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2025h1",
+      "label": "DART 엘앤에프 2025 반기보고서 2025-08-14",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250814002485",
+      "publishedAt": "2025-08-14",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2025q1",
+      "label": "DART 엘앤에프 2025 1분기보고서 2025-05-15",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250515002365",
+      "publishedAt": "2025-05-15",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2024fy",
+      "label": "DART 엘앤에프 2024 사업보고서 2025-03-11",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250311001260",
+      "publishedAt": "2025-03-11",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "dart-lges",
+      "label": "DART 엘앤에프 단일판매·공급계약 (LG에너지솔루션 LFP 2028~2031) 2026-11-03",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261103800128",
+      "publishedAt": "2026-11-03",
+      "role": "primary",
+      "access": "read",
+      "verifiedAt": "2026-11-06"
+    },
+    {
+      "id": "consensus-20261030",
+      "label": "FnGuide CompanyWise 연결 컨센서스 시계열 · 10/30 관측 (11/06 확인)",
+      "url": "https://comp.wisereport.co.kr/company/c1050001.aspx?cmp_cd=066970",
+      "publishedAt": "2026-10-30",
+      "role": "historical_consensus",
+      "access": "read",
+      "dataAsOf": "2026-10-30",
+      "retrievedAt": "2026-11-06",
+      "verifiedAt": "2026-11-06",
+      "note": "발표(11/5 오후) 전 마지막 주간 관측점. 발표직전(E) 표(영업이익 20.9억원)와 대조. 순이익은 지배주주 기준."
+    },
+    {
+      "id": "consensus-annual",
+      "label": "WiseReport 연간 컨센서스(연결) · 2027·2028년 영업이익 (11/06 확인)",
+      "url": "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=066970",
+      "publishedAt": "2026-11-06",
+      "role": "consensus",
+      "access": "read",
+      "retrievedAt": "2026-11-06",
+      "verifiedAt": "2026-11-06"
+    },
+    {
+      "id": "quote",
+      "label": "네이버 증권 시세 · 2026-11-06 KRX 종가 74,900원 (전일 85,700원 대비 −12.6%)",
+      "url": "https://m.stock.naver.com/domestic/stock/066970/price",
+      "publishedAt": "2026-11-06",
+      "role": "market_data",
+      "access": "read",
+      "retrievedAt": "2026-11-06",
+      "verifiedAt": "2026-11-06",
+      "note": "15:30 정규장 종가(NXT 미포함, 실시간 시세 REGULAR_MARKET 15:30 확인). 11/5 KRX 종가 85,700원(증권사 6곳 사용), 네이버 일별 종가 84,300원은 NXT 시간외 포함."
+    },
+    {
+      "id": "hana-preview",
+      "label": "하나증권 2026-10-23 실적 프리뷰 PDF",
+      "url": "https://stock.pstatic.net/stock-research/company/57/20261023_company_219326000.pdf",
+      "publishedAt": "2026-10-23",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "ds-review",
+      "label": "DS투자증권 2026-11-06 실적 리뷰 (최태용)",
+      "url": "https://www.ds-sec.co.kr/bbs/board.php?bo_table=sub03_02&wr_id=3791",
+      "publishedAt": "2026-11-06",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "daishin-review",
+      "label": "대신증권 2026-11-06 실적 리뷰 PDF (김귀연)",
+      "url": "https://consensus.hankyung.com/analysis/downpdf?report_idx=653829",
+      "publishedAt": "2026-11-06",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "samsung-review",
+      "label": "삼성증권 2026-11-06 3Q26 review PDF (조현렬)",
+      "url": "https://www.samsungpop.com/common.do?cmd=down&contentType=application/pdf&inlineYn=Y&saveKey=research.pdf&fileName=2010/2026102714264498K_02_07.pdf",
+      "publishedAt": "2026-11-06",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "kiwoom-review",
+      "label": "키움증권 2026-11-06 실적 리뷰 PDF (권준수)",
+      "url": "https://stock.pstatic.net/stock-research/company/39/20261106_company_457196000.pdf",
+      "publishedAt": "2026-11-06",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "shinyoung-review",
+      "label": "신영증권 2026-11-06 3Q26 Review PDF (박진수)",
+      "url": "https://www.shinyoung.com/files/20261106/563d92b7c554a.pdf",
+      "publishedAt": "2026-11-06",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "shinhan-review",
+      "label": "신한투자증권 2026-11-06 일회성에 가려진 본업 체력 PDF (이진명)",
+      "url": "https://stock.pstatic.net/stock-research/company/21/20261106_company_153058000.pdf",
+      "publishedAt": "2026-11-06",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "mirae-call",
+      "label": "미래에셋증권 김철중 텔레그램 엘앤에프 3Q26 컨콜 요약 재게시 (채널 게시물, 2026-11-06 확인)",
+      "url": "https://t.me/cjdbj",
+      "publishedAt": "2026-11-06",
+      "role": "secondary_management_quote",
+      "access": "read",
+      "note": "사용자가 전달한 채널 게시물 본문. 개별 게시물 링크 없음."
+    },
+    {
+      "id": "asiae-q3",
+      "label": "아시아경제 2026-11-05 엘앤에프 3분기 영업손실 265억원 (회사 설명 인용)",
+      "url": "https://view.asiae.co.kr/article/2026110517384092851",
+      "publishedAt": "2026-11-05",
+      "role": "secondary_management_quote",
+      "access": "read"
+    }
+  ],
+  "comparison": [
+    {
+      "key": "revenue",
+      "label": "매출액",
+      "market": {
+        "role": "market",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 9446.47,
+        "publishedAt": "2026-10-30",
+        "source": "consensus-20261030",
+        "status": "추정"
+      },
+      "author": {
+        "role": "author",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": null,
+        "reason": "사전 추정 없음"
+      },
+      "actual": {
+        "role": "actual",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 8744.03,
+        "publishedAt": "2026-11-05",
+        "source": "dart-q3",
+        "status": "잠정"
+      },
+      "cause": "환율 하락(2분기 1,502원 → 3분기 1,421원)과 미드니켈 출하 −32%, 일부 물량의 4분기 이연. 원화 판가 상승은 2%대에 그쳤다."
+    },
+    {
+      "key": "operatingProfit",
+      "label": "영업이익",
+      "market": {
+        "role": "market",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 20.93,
+        "publishedAt": "2026-10-30",
+        "source": "consensus-20261030",
+        "status": "추정"
+      },
+      "author": {
+        "role": "author",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": null,
+        "reason": "사전 추정 없음"
+      },
+      "actual": {
+        "role": "actual",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": -265,
+        "publishedAt": "2026-11-05",
+        "source": "dart-q3",
+        "status": "잠정"
+      },
+      "cause": "재고자산 평가손실 426억원과 환율 손실 220억원(회사 설명, 증권사 5곳 동일 인용). 둘을 빼면 381억원."
+    },
+    {
+      "key": "parentNetIncome",
+      "label": "지배주주 순이익",
+      "market": {
+        "role": "market",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": -323.87,
+        "publishedAt": "2026-10-30",
+        "source": "consensus-20261030",
+        "status": "추정",
+        "incomeScope": "parent"
+      },
+      "author": {
+        "role": "author",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": null,
+        "reason": "사전 추정 없음",
+        "incomeScope": "parent"
+      },
+      "actual": {
+        "role": "actual",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": -341.08,
+        "publishedAt": "2026-11-05",
+        "source": "dart-q3",
+        "status": "잠정",
+        "incomeScope": "parent"
+      },
+      "cause": "FnGuide 순이익 예상은 지배주주 기준이다. 전체 당기순이익 −327.13억원과 구분한다.",
+      "incomeScope": "parent"
+    }
+  ],
+  "quarters": [
+    {
+      "period": "2024-Q4"
+    },
+    {
+      "period": "2025-Q1"
+    },
+    {
+      "period": "2025-Q2"
+    },
+    {
+      "period": "2025-Q3"
+    },
+    {
+      "period": "2025-Q4"
+    },
+    {
+      "period": "2026-Q1"
+    },
+    {
+      "period": "2026-Q2"
+    },
+    {
+      "period": "2026-Q3"
+    }
+  ],
+  "series": [
+    {
+      "key": "revenue",
+      "label": "매출액",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": 3653.5,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q4",
+          "publishedAt": "2026-02-03"
+        },
+        {
+          "period": "2025-Q1",
+          "value": 3647.82,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q1",
+          "publishedAt": "2026-04-30"
+        },
+        {
+          "period": "2025-Q2",
+          "value": 5200.76,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q2",
+          "publishedAt": "2026-08-06"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 6522.96,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        },
+        {
+          "period": "2025-Q4",
+          "value": 6177.85,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q1",
+          "publishedAt": "2026-04-30"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 7396.27,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q2",
+          "publishedAt": "2026-08-06"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 8850.44,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        },
+        {
+          "period": "2026-Q3",
+          "value": 8744.03,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        }
+      ]
+    },
+    {
+      "key": "operatingProfit",
+      "label": "영업이익",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": -1982.25,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q4",
+          "publishedAt": "2026-02-03"
+        },
+        {
+          "period": "2025-Q1",
+          "value": -1402.53,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q1",
+          "publishedAt": "2026-04-30"
+        },
+        {
+          "period": "2025-Q2",
+          "value": -1211.88,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q2",
+          "publishedAt": "2026-08-06"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 221.22,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        },
+        {
+          "period": "2025-Q4",
+          "value": 824.69,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q1",
+          "publishedAt": "2026-04-30"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 1172.61,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q2",
+          "publishedAt": "2026-08-06"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 208.29,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        },
+        {
+          "period": "2026-Q3",
+          "value": -265,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        }
+      ]
+    },
+    {
+      "key": "netIncome",
+      "label": "당기순이익",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": -1176.67,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q4",
+          "publishedAt": "2026-02-03"
+        },
+        {
+          "period": "2025-Q1",
+          "value": -1112.35,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q1",
+          "publishedAt": "2026-04-30"
+        },
+        {
+          "period": "2025-Q2",
+          "value": -1125.82,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q2",
+          "publishedAt": "2026-08-06"
+        },
+        {
+          "period": "2025-Q3",
+          "value": -1183.13,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        },
+        {
+          "period": "2025-Q4",
+          "value": -1925.71,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q1",
+          "publishedAt": "2026-04-30"
+        },
+        {
+          "period": "2026-Q1",
+          "value": -653.06,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q2",
+          "publishedAt": "2026-08-06"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 529.24,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        },
+        {
+          "period": "2026-Q3",
+          "value": -327.13,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        }
+      ]
+    },
+    {
+      "key": "operatingCashFlow",
+      "label": "영업현금흐름",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": 639,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2024fy",
+          "publishedAt": "2025-03-11"
+        },
+        {
+          "period": "2025-Q1",
+          "value": -188,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2025q1",
+          "publishedAt": "2025-05-15"
+        },
+        {
+          "period": "2025-Q2",
+          "value": -522,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2025h1",
+          "publishedAt": "2025-08-14"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 624,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2025q3",
+          "publishedAt": "2025-11-14"
+        },
+        {
+          "period": "2025-Q4",
+          "value": -206,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2025fy",
+          "publishedAt": "2026-08-14"
+        },
+        {
+          "period": "2026-Q1",
+          "value": -480,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2026q1",
+          "publishedAt": "2026-05-15"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 702,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2026h1",
+          "publishedAt": "2026-08-14"
+        },
+        {
+          "period": "2026-Q3",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "2026년 3분기보고서(11월 중순 예정) 미제출"
+        }
+      ]
+    },
+    {
+      "key": "capex",
+      "label": "투자지출",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": 268,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2024fy",
+          "publishedAt": "2025-03-11"
+        },
+        {
+          "period": "2025-Q1",
+          "value": 112,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2025q1",
+          "publishedAt": "2025-05-15"
+        },
+        {
+          "period": "2025-Q2",
+          "value": 92,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2025h1",
+          "publishedAt": "2025-08-14"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 542,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2025q3",
+          "publishedAt": "2025-11-14"
+        },
+        {
+          "period": "2025-Q4",
+          "value": 648,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2025fy",
+          "publishedAt": "2026-08-14"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 580,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2026q1",
+          "publishedAt": "2026-05-15"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 522,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2026h1",
+          "publishedAt": "2026-08-14"
+        },
+        {
+          "period": "2026-Q3",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "2026년 3분기보고서(11월 중순 예정) 미제출"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "date": "2026-11-06",
+      "claim": "2026Q4: 재고평가손실 축소, 일회성 제외 영업이익 흑자, 분기 영업현금흐름 양수",
+      "status": "판단 보류",
+      "evidence": "2026-11-06 새로 설정. 이번 분기 성과로 소급 채점하지 않으며 4분기 잠정실적·연간 사업보고서에서 확인.",
+      "sources": []
+    }
+  ],
+  "changes": [
+    {
+      "date": "2026-11-06",
+      "claim": "첫 분석: 이전 가정 없음 → 중립",
+      "to": "중립",
+      "kind": "판단",
+      "evidence": "판정 축 5개 가중 평균 +0.17. 본업 +1·현금 +1, 전망 −1, 가격 0(2배). 11/6 종가 74,900원 기준 12개월 목표가 69,000원(−7.9%), 24개월 111,200원(+48.5%).",
+      "sources": [
+        "dart-q3",
+        "rpt-2026h1",
+        "consensus-annual",
+        "ds-review",
+        "samsung-review"
+      ]
+    }
+  ],
+  "promises": [
+    {
+      "date": "2026-11-06",
+      "claim": "4분기 울트라 하이니켈 단독 공급 지속, NCM 출하 전분기 대비 5~9% 증가·판가 −3% (11/5 실적 콜)",
+      "status": "판단 보류",
+      "evidence": "대신증권(약 6% 이상)·미래에셋 김철중(5~9%) 콜 정리 전언. 4분기 잠정실적 출하량으로 대조.",
+      "sources": [
+        "daishin-review",
+        "mirae-call"
+      ],
+      "due": "2027-02-28"
+    },
+    {
+      "date": "2026-11-06",
+      "claim": "4분기 재고평가손실은 3분기보다 축소, 2027년 상반기 이후 기존 원재료 재고로 인한 손익 변동성 대부분 해소, 이후 고객사 도급 방식 조달 (11/5 실적 콜)",
+      "status": "판단 보류",
+      "evidence": "대신·미래에셋 콜 정리 전언. 분기별 재고평가손익 규모로 대조.",
+      "sources": [
+        "daishin-review",
+        "mirae-call"
+      ],
+      "due": "2027-09-30"
+    },
+    {
+      "date": "2026-11-06",
+      "claim": "2027년 영업이익 120~140% 성장, 순이익 흑자전환 가능성 높음. NCM 출하 10% 이상 성장, 46파이 비중 최대 40%, 가동률 NCM 약 70%·LFP 약 90% (11/5 실적 콜, 세부 사업계획은 12월 공유)",
+      "status": "판단 보류",
+      "evidence": "미래에셋 김철중 콜 정리 전언. 2026년 영업이익이 4분기 키움·신한 추정(약 −340억원)대로 약 776억원이면 약 1,710~1,860억원 [계산]. 2027년 연간 잠정실적으로 대조.",
+      "sources": [
+        "mirae-call"
+      ],
+      "due": "2028-02-28"
+    },
+    {
+      "date": "2026-11-06",
+      "claim": "LFP 출하 2026년 약 3천~4천 톤 → 2027년 약 4만 톤 (11/5 실적 콜)",
+      "status": "판단 보류",
+      "evidence": "DS는 LFP 출하 가이던스 하향(2027년 4만 톤)으로 해석. 연간 실적에서 대조.",
+      "sources": [
+        "daishin-review",
+        "ds-review"
+      ],
+      "due": "2027-12-31"
+    },
+    {
+      "date": "2026-11-06",
+      "claim": "2028년 하반기까지 LFP 생산능력 6만 톤 추가, 총 12만 톤. 재원은 자회사 L&F 플러스 직접 조달 기본 (11/5 실적 콜)",
+      "status": "판단 보류",
+      "evidence": "정책금융·차입·재무적 투자자 유치를 검토. 증설 공시·자금조달 공시로 대조.",
+      "sources": [
+        "daishin-review"
+      ],
+      "due": "2028-12-31"
+    },
+    {
+      "date": "2026-11-06",
+      "claim": "LG에너지솔루션 LFP 양극재 2028~2031년 공급, 계약금액 1조 350억원 (USD 7.74억, 최소 확정물량 기준)",
+      "status": "판단 보류",
+      "evidence": "판가는 원재료 가격 연동, 선급금 없음. 계약총액을 확정 매출로 쓰지 않음. 이행 내역은 정기보고서에 기재 예정.",
+      "sources": [
+        "dart-lges"
+      ],
+      "due": "2031-12-31"
+    }
+  ],
+  "calculator": {
+    "period": "2027년 연간(연결)",
+    "label": "양극재 출하량·마진 민감도",
+    "assumptions": "출하량 146천 톤·혼합 판가 31천원/kg·영업이익률 4.6%는 DS투자증권 2027년 추정(NCM+LFP)을 옮긴 기본값이며, 이 조합의 영업이익(약 2,082억원)이 WiseReport 2027년 컨센서스 2,081억원과 거의 같다. 배수 20배는 작성자 선택이다. 순차입금은 2026년 6월 말 연결 잔액이며 2027년 말 예측이 아니다. NCM·LFP 구성 차이, 희석·세금은 반영하지 않는다.",
+    "variables": [
+      {
+        "key": "volume",
+        "label": "양극재 출하량(NCM+LFP)",
+        "unit": "천 톤/년",
+        "min": 60,
+        "max": 240,
+        "step": 2,
+        "default": 146
+      },
+      {
+        "key": "margin",
+        "label": "영업이익률",
+        "unit": "%",
+        "min": -10,
+        "max": 15,
+        "step": 0.1,
+        "default": 4.6
+      }
+    ],
+    "price": 310,
+    "priceNote": "DS투자증권 2027년 혼합 판가 31천원/kg",
+    "baseProfit": 0,
+    "baseProfitNote": "기타 이익 가정 없음",
+    "multiple": 20,
+    "netDebt": 14383,
+    "marketCap": 29544,
+    "marketCapSource": "quote",
+    "netDebtSource": "rpt-2026h1",
+    "netDebtAsOf": "2026-06-30"
+  },
+  "initialReview": true,
+  "rating": {
+    "axes": [
+      {
+        "key": "coreProfit",
+        "actual": "영업이익 −265억원 + 재고평가손실 426억원 + 환율 손실 220억원 = 381억원(이익률 4.4%). 환율 손실을 반복으로 봐도 161억원 흑자",
+        "score": 1,
+        "sources": [
+          "dart-q3",
+          "ds-review",
+          "samsung-review"
+        ]
+      },
+      {
+        "key": "direction",
+        "actual": "일회성 제외 381억원은 2분기와 같은 수준(DS). 전년 3Q25 221억원은 일회성 내역을 확인하지 못해 비슷한 것으로 처리",
+        "score": 0,
+        "sources": [
+          "ds-review",
+          "dart-q3"
+        ]
+      },
+      {
+        "key": "cash",
+        "actual": "2026Q2 영업현금흐름 702억원 − 투자지출 522억원 = +180억원. 1분기는 −480억원 − 580억원",
+        "score": 1,
+        "sources": [
+          "rpt-2026h1",
+          "rpt-2026q1"
+        ]
+      },
+      {
+        "key": "outlook",
+        "actual": "발표 후 6곳: 목표가 하향 4곳(DS 35만→30만, 대신 31만→15만, 삼성 13만→12.5만, 신한 −14%→12만), 유지 2곳(키움 16만, 신영 17만). 2027년 영업이익 추정 1,215~2,043억원으로 컨센서스 2,081억원보다 모두 낮음. 회사는 4분기 출하 증가·2027년 최대 출하 전망",
+        "score": -1,
+        "sources": [
+          "ds-review",
+          "daishin-review",
+          "samsung-review",
+          "kiwoom-review",
+          "shinyoung-review",
+          "shinhan-review"
+        ]
+      },
+      {
+        "key": "price",
+        "actual": "12개월 목표가 69,000원(2027년 컨센서스 2,081억원 × 20배 − 순차입금 14,383억원 − 비지배지분 34억원) vs 현재가 74,900원(11/6 종가) → −7.9%",
+        "score": 0,
+        "sources": [
+          "quote",
+          "consensus-annual",
+          "rpt-2026h1"
+        ]
+      }
+    ]
+  },
+  "targets": {
+    "price": {
+      "value": 74900,
+      "source": "quote"
+    },
+    "shares": {
+      "value": 39444649,
+      "source": "shares-h1"
+    },
+    "netDebt": {
+      "value": 14383,
+      "source": "rpt-2026h1",
+      "note": "2026년 6월 말 연결 · 단기차입금 7,356 + 유동성장기차입금 1,709 + 교환사채 4,484 + 신주인수권부사채 135 + 장기차입금·사채 4,305 − 현금 3,606억원 (리스부채 별도 표시 없음)"
+    },
+    "adjustments": [
+      {
+        "label": "비지배지분",
+        "value": -34,
+        "source": "rpt-2026h1"
+      }
+    ],
+    "multiples": {
+      "bear": 15,
+      "base": 20,
+      "bull": 30
+    },
+    "multipleNote": "작성자 선택 · 포스코퓨처엠 리뷰와 같은 양극재 공통 EV/영업이익 15·20·30배. 현재가는 2027년 컨센서스 기준 약 21배 · 증권사 목표 배수(EV/EBITDA 21~45배)는 쓰지 않음",
+    "horizons": [
+      {
+        "months": 12,
+        "year": 2027,
+        "operatingProfit": 2081,
+        "source": "consensus-annual"
+      },
+      {
+        "months": 24,
+        "year": 2028,
+        "operatingProfit": 2913,
+        "source": "consensus-annual"
+      }
+    ],
+    "brokers": {
+      "count": 6,
+      "min": 120000,
+      "median": 155000,
+      "max": 300000,
+      "sources": [
+        "ds-review",
+        "daishin-review",
+        "samsung-review",
+        "kiwoom-review",
+        "shinyoung-review",
+        "shinhan-review"
+      ]
+    }
+  }
+}

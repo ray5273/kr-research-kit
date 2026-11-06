@@ -151,6 +151,33 @@
       ]
     },
     {
+      "memo": "analysis-example/kr/엘앤에프-2026Q3/memo.md",
+      "slug": "kr/lnf-2026-q3",
+      "company": "엘앤에프",
+      "ticker": "066970",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/066970",
+      "analysisData": "analysis-example/kr/엘앤에프-2026Q3/analysis-data.json",
+      "headline": "엘앤에프 3분기: 일회성 빼면 흑자, 주가는 목표가 근처",
+      "summary": "재고평가손실 426억원과 환율 손실 220억원을 빼면 영업이익 381억원으로 2분기와 같다. 발표 후 증권사 6곳의 2027년 추정은 모두 컨센서스보다 낮고 12개월 목표가는 11월 6일 종가보다 7.9% 낮다.",
+      "datePublished": "2026-11-06",
+      "dateModified": "2026-11-06",
+      "sectors": [
+        "2차전지"
+      ],
+      "coverArt": false,
+      "tags": [
+        "엘앤에프",
+        "066970",
+        "실적리뷰",
+        "양극재",
+        "LFP"
+      ]
+    },
+    {
       "memo": "analysis-example/kr/삼성SDI/memo.md",
       "slug": "kr/samsung-sdi-2026-q3",
       "company": "삼성SDI",

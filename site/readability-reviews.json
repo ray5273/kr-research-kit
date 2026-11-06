@@ -135,6 +135,12 @@
       "reviewedOn": "2026-11-06",
       "mode": "source-and-renderer",
       "notes": "Reclassification only: read the complete monthly factor strategy article, inspected the shared list/article renderer and table/source CSS. Conclusion separates maximum CAGR from executable risk limits; common-rules, factor comparison and overlay tables preserve periods, costs, units and survivorship-bias caveats. The line-93 warning (159 characters/three sentences) describes one dated signal, its constituents and exposure, so it is retained. Existing internal-ledger source labels are preserved without inventing URLs. No prose, numbers, source URLs or research dates changed. Browser execution remains unavailable; visual/mobile/keyboard checks are not claimed."
+    },
+    "kr/lnf-2026-q3": {
+      "hash": "6b691e8ce4541366290ca1c3cfe450e1e4d8d30a820fdfb2e821aa7bbcfaeea0",
+      "reviewedOn": "2026-11-06",
+      "mode": "source-and-renderer",
+      "notes": "Added 미래에셋증권 김철중 Telegram call summary (labelled 재게시) to the call Q&A, promises table, sources and data promises; split new long paragraphs. Facts from the summary attributed as 전언; derived figures marked [계산]. Remaining paragraph-rhythm warnings reviewed. Browser visual check not performed."
     }
   }
 }
