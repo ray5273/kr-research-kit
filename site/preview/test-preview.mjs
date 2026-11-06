@@ -16,6 +16,7 @@ assert(!html.includes('data-comment-count'));
 assert(!html.includes('<button type="button" data-stats-settings>'));
 assert(!html.includes('<script src="/engagement.js"'));
 assert(html.includes('data-preview-copy'));
+assert(html.includes('data-preview-digest') && html.includes('data-preview-thumbnail'), 'preview keeps the API-free Naver copy controls');
 const home=previewHtml(fs.readFileSync(out+'/index.html','utf8'));
 assert(home.includes('id="hot"') && home.includes('프리뷰 예시 순위') && !home.includes('분석 수집에 동의한 방문 기준 · 전체는'), 'preview labels the sample ranking');
 assert(html.includes('noindex,nofollow'));
@@ -25,9 +26,9 @@ assert(html.indexOf('실적 차이의 원인 분해</h2>')<html.indexOf('id="qua
 assert(html.indexOf('Q1.')<html.indexOf('id="scenario-calculator"'));
 const status={},button={addEventListener:(event,fn)=>button.click=fn,closest:()=>({querySelector:()=>status})};
 let copied;
-vm.runInNewContext(fs.readFileSync(new URL('./preview-client.js',import.meta.url),'utf8'),{document:{querySelectorAll:()=>[button]},navigator:{clipboard:{writeText:async value=>{copied=value;}}},location:{href:'https://preview.kr-research-site.pages.dev/kr/test/'}});
+vm.runInNewContext(fs.readFileSync(new URL('./preview-client.js',import.meta.url),'utf8'),{document:{querySelectorAll:selector=>selector==='[data-preview-copy]'?[button]:[],querySelector:()=>null},navigator:{clipboard:{writeText:async value=>{copied=value;}}},location:{href:'https://preview.kr-research-site.pages.dev/kr/test/'}});
 await button.click();assert.equal(copied,'https://preview.kr-research-site.pages.dev/kr/test/');assert.match(status.textContent,/복사했습니다/);
 console.log('preview controls, local copy and integrated research layout tests passed');
 
-vm.runInNewContext(fs.readFileSync(new URL('./preview-client.js',import.meta.url),'utf8'),{document:{querySelectorAll:()=>[button]},navigator:{},location:{href:'https://preview.kr-research-site.pages.dev/'}});
+vm.runInNewContext(fs.readFileSync(new URL('./preview-client.js',import.meta.url),'utf8'),{document:{querySelectorAll:selector=>selector==='[data-preview-copy]'?[button]:[],querySelector:()=>null},navigator:{},location:{href:'https://preview.kr-research-site.pages.dev/'}});
 await button.click();assert.match(status.textContent,/주소창/);

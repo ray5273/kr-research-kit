@@ -270,11 +270,105 @@ async function renderArtShare({ artPath, file, subject, headline, asOfDate, site
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, canvas.toBuffer("image/jpeg", 88));
 }
+// Naver blog thumbnail: search and feed crop to a square and show it small, so the
+// company name leads at full width and the art fills what the text leaves.
+function naverCard(article, config, outDir) {
+  const label = article.ticker || article.sectors?.[0] || "";
+  const { name, artPath, art } = artFor(article);
+  const data = [article.company, label, article.headline, article.asOfDate, config.siteName];
+  const hash = crypto
+    .createHash("sha256")
+    .update(JSON.stringify(data))
+    .update(fs.readFileSync(font))
+    .update(fs.readFileSync(__filename))
+    .update(art || "")
+    .digest("hex")
+    .slice(0, 16);
+  const relative = `/naver/${name}-${hash}.${art ? "jpg" : "png"}`,
+    file = path.join(outDir, relative);
+  if (!fs.existsSync(file)) {
+    renderArt({
+      kind: "naver",
+      artPath,
+      file,
+      company: article.company,
+      label: label !== article.company ? label : "",
+      headline: article.headline,
+      asOfDate: article.asOfDate,
+      siteName: config.siteName,
+    });
+  }
+  return config.baseUrl + relative;
+}
+async function renderNaver({ artPath, file, company, label, headline, asOfDate, siteName }) {
+  if (!GlobalFonts.registerFromPath(font, "Research Korean"))
+    throw Error("Korean share font unavailable");
+  const size = 1080,
+    canvas = createCanvas(size, size),
+    ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(0, 0, size, size);
+  ctx.fillStyle = "#ea5a0c";
+  ctx.fillRect(72, 72, 72, 12);
+  ctx.fillRect(0, size - 24, size, 24);
+  let y = 112;
+  const name = block(ctx, company, {
+    x: 72,
+    y,
+    width: 936,
+    size: 128,
+    maxLines: 2,
+    color: "#1d1d1f",
+    weight: 800,
+  });
+  y += name.lines * name.size * 1.3;
+  if (label) {
+    block(ctx, label, { x: 76, y: y + 4, width: 936, size: 40, maxLines: 1, color: "#6e6e73" });
+    y += 64;
+  }
+  const title = block(ctx, headline, {
+    x: 72,
+    y: y + 28,
+    width: 936,
+    size: artPath ? 56 : 72,
+    maxLines: artPath ? 3 : 4,
+    color: "#1d1d1f",
+    weight: 700,
+  });
+  y += 28 + title.lines * title.size * 1.3;
+  const footer = size - 108;
+  if (artPath) {
+    // Art is white-backed: fit it into the space between title and footer.
+    const image = await loadImage(artPath),
+      boxTop = y + 24,
+      boxHeight = footer - 24 - boxTop,
+      scale = Math.min(1000 / image.width, boxHeight / image.height),
+      width = image.width * scale,
+      height = image.height * scale;
+    if (boxHeight > 120) ctx.drawImage(image, (size - width) / 2, boxTop + (boxHeight - height) / 2, width, height);
+  }
+  block(ctx, siteName, { x: 72, y: footer, width: 480, size: 36, maxLines: 1, color: "#1d1d1f", weight: 700 });
+  block(ctx, ".", {
+    x: 72 + ctx.measureText(siteName).width,
+    y: footer,
+    width: 60,
+    size: 36,
+    maxLines: 1,
+    color: "#ea5a0c",
+    weight: 700,
+  });
+  ctx.font = `500 32px "Research Korean"`;
+  const date = `기준일 ${asOfDate}`;
+  block(ctx, date, { x: size - 72 - ctx.measureText(date).width, y: footer + 4, width: 480, size: 32, maxLines: 1, color: "#6e6e73" });
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, artPath ? canvas.toBuffer("image/jpeg", 90) : canvas.toBuffer("image/png"));
+}
 if (require.main === module) {
   const job = JSON.parse(process.argv[2]);
-  (job.kind === "share" ? renderArtShare(job) : renderArtCover(job)).catch((error) => {
+  const render = { share: renderArtShare, naver: renderNaver }[job.kind] || renderArtCover;
+  render(job).catch((error) => {
     console.error(error);
     process.exit(1);
   });
 }
-module.exports = { shareCard, coverCard, wrap };
+module.exports = { shareCard, coverCard, naverCard, wrap };

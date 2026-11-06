@@ -60,6 +60,7 @@ async function fixture({
     summary: "공개 요약",
     image: "https://site.test/share/card.png",
     kakaoKey: "test-key",
+    naverImage: "https://site.test/naver/test-0123456789abcdef.jpg",
   };
   group.nodes = { "[role=status]": shareStatus };
   const nodes = Object.fromEntries(
@@ -82,13 +83,18 @@ async function fixture({
     nodes["#share-digest"].textContent = JSON.stringify(digest);
   }
   const calls = [],
-    kakao = [];
+    kakao = [],
+    created = [];
   let failed = fetchFail;
   const document = {
     querySelector: (s) => nodes[s],
     querySelectorAll: (s) =>
       s === ".sharing" ? [group] : nodes[s] ? [nodes[s]] : [],
-    createElement: () => new Element(),
+    createElement: () => {
+      const e = new Element();
+      e.click = () => created.push(e);
+      return e;
+    },
     body: new Element(),
   };
   const navigator = {
@@ -120,6 +126,7 @@ async function fixture({
     if (failed) throw Error("offline");
     return {
       ok: true,
+      blob: async () => new Blob(["jpg"], { type: "image/jpeg" }),
       json: async () =>
         url.startsWith("/api/article-meta")
           ? { shares: 7, comments: 1 }
@@ -167,11 +174,13 @@ async function fixture({
     fetch,
     Kakao: sdk,
     Blob,
+    setTimeout,
     window: win,
   });
   await flush();
   return {
     calls,
+    created,
     win,
     windowListeners,
     kakao,
@@ -430,6 +439,16 @@ f = await fixture({
     assert.equal(down.known.textContent, "");
   }
 }
+// "썸네일 저장" downloads the square Naver card without counting a share.
+{
+  const f = await fixture();
+  const before = f.calls.length;
+  await f.click("thumbnail");
+  assert.deepEqual(f.calls.slice(before).map((c) => c.url), ["https://site.test/naver/test-0123456789abcdef.jpg"]);
+  assert.equal(f.created.at(-1).download, "test-0123456789abcdef.jpg");
+  assert.match(f.created.at(-1).href, /^blob:/);
+  assert.match(f.shareStatus.textContent, /대표 이미지/);
+}
 console.log(
-  "Reader client tests passed: share success/cancel/failure/fallback, rich digest copy with plain/URL fallbacks, canonical URL, Kakao feed, outage-independent sharing, retry dedup, text-only comments and replies, jump button and moderation notice.",
+  "Reader client tests passed: share success/cancel/failure/fallback, rich digest copy with plain/URL fallbacks, thumbnail download, canonical URL, Kakao feed, outage-independent sharing, retry dedup, text-only comments and replies, jump button and moderation notice.",
 );

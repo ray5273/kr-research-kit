@@ -98,6 +98,19 @@
     }
     if (!ok) throw Error("복사에 실패했습니다. 주소창에서 링크를 복사해 주세요.");
   }
+  // Same-origin fetch + blob link: a plain <a download> to the absolute URL is
+  // ignored when the page is served from another host (preview, custom domain).
+  async function saveThumbnail() {
+    const r = await fetch(data.naverImage);
+    if (!r.ok) throw Error("썸네일을 불러오지 못했습니다. 다시 시도해 주세요.");
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(await r.blob());
+    link.download = new URL(data.naverImage).pathname.split("/").pop();
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+  }
   for (const group of groups) {
     group.addEventListener("click", async (event) => {
       const button = event.target.closest("[data-share]");
@@ -107,7 +120,11 @@
       button.disabled = true;
       try {
         const channel = button.dataset.share;
-        if (channel === "copy") {
+        if (channel === "thumbnail") {
+          await saveThumbnail();
+          status.textContent =
+            "썸네일을 저장했습니다. 블로그 에디터에 올리고 대표 이미지로 지정해 주세요.";
+        } else if (channel === "copy") {
           await copy();
           void count("copy");
           status.textContent = copied;

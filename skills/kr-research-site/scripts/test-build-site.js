@@ -148,6 +148,16 @@ const shareUrl = /<meta property="og:image" content="([^"]+)">/.exec(article)[1]
 assert.match(shareUrl, /^https:\/\/research\.example\.com\/share\/kr-soop-2026-06-[a-f0-9]{16}\.png$/);
 const shareBytes = fs.readFileSync(path.join(outDir,new URL(shareUrl).pathname));
 assert.equal(shareBytes.readUInt32BE(16),1200);assert.equal(shareBytes.readUInt32BE(20),630);
+{ // Naver blog thumbnail: a square card the button downloads. A pasted <img> is not
+  // offered as the Naver 대표 이미지, so the digest stays text and tables.
+  const naverUrl=/data-naver-image="([^"]+)"/.exec(article)[1];
+  assert.match(naverUrl,/^https:\/\/research\.example\.com\/naver\/kr-soop-2026-06-[a-f0-9]{16}\.png$/);
+  const naverBytes=fs.readFileSync(path.join(outDir,new URL(naverUrl).pathname));
+  assert.equal(naverBytes.readUInt32BE(16),1080);assert.equal(naverBytes.readUInt32BE(20),1080);
+  assert.equal((article.match(/data-share="thumbnail">썸네일 저장</g)||[]).length,2);
+  const digest=JSON.parse(/id="share-digest">([\s\S]*?)<\/script>/.exec(article)[1]);
+  assert(!digest.html.includes("<img") && !digest.text.includes("/naver/"),"the digest carries no image");
+}
 assert(article.includes('<meta property="og:image:width" content="1200">'));
 assert(article.includes('<meta property="og:image:alt"'));
 assert(article.includes('<meta property="og:title" content="SOOP 투자 메모">'));

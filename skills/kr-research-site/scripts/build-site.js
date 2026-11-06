@@ -7,7 +7,7 @@
 
 const research = require("./research");
 const {related, neighbors} = require("./discovery");
-const {shareCard, coverCard} = require("./share-card");
+const {shareCard, coverCard, naverCard} = require("./share-card");
 const crypto = require("crypto");
 const fs = require("fs");
 const os = require("os");
@@ -945,6 +945,7 @@ function renderArticle(article, site, outDir, safety) {
     ...(article.sources.length ? [["sources", SOURCES_HEADING]] : []),
   ];
   const shareImage = article.shareImage || (article.shareImage = shareCard(article, config, outDir));
+  article.naverImage ||= naverCard(article, config, outDir);
   const content = fill(site.templates.article, {
     toc: `<nav class="toc" aria-label="목차">${tocItems.map(([id, label], index) => `<a href="#${id}"${index === 0 ? ' class="on"' : ""}>${escapeHtml(truncate(label, 24))}</a>`).join("")}</nav>`,
     tocMobile: tocItems.length > 2 ? `<details class="toc-mobile"><summary><span class="toc-icon" aria-hidden="true">☷</span><span class="toc-title">이 글의 목차<small data-toc-current>원하는 부분으로 바로 이동</small></span><span class="toc-count">${tocItems.length}</span><span class="toc-chevron" aria-hidden="true"></span></summary><nav aria-label="모바일 목차"><ol>${tocItems.map(([id, label],index) => `<li><a href="#${id}"${index===0?' class="on" aria-current="location"':''}><span class="toc-number" aria-hidden="true">${String(index+1).padStart(2,'0')}</span><span>${escapeHtml(label)}</span></a></li>`).join("")}</ol></nav></details>` : "",
@@ -1100,8 +1101,8 @@ function moreHtml(article, site) {
     (previous || next ? `<nav class="more" aria-label="이어서 읽기"><h2>이어서 읽기</h2><div class="pair">${link(previous,"이전 글")}${link(next,"다음 글")}</div></nav>` : "");
 }
 function sharingHtml(article, config) {
- return `<div class="sharing" data-url="${escapeHtml(article.url)}" data-title="${escapeHtml(article.headline)}" data-summary="${escapeHtml(article.summary)}" data-image="${escapeHtml(article.shareImage)}" data-kakao-key="${escapeHtml(config.kakao?.javascriptKey || process.env.KAKAO_JAVASCRIPT_KEY || "")}">
- <div class="share-buttons" role="group" aria-label="글 공유"><button type="button" data-share="kakao">카카오톡</button><button type="button" data-share="native">공유하기</button><button type="button" data-share="copy">요약+링크 복사</button></div><p class="sub" role="status" aria-live="polite"></p></div>`;
+ return `<div class="sharing" data-url="${escapeHtml(article.url)}" data-title="${escapeHtml(article.headline)}" data-summary="${escapeHtml(article.summary)}" data-image="${escapeHtml(article.shareImage)}" data-naver-image="${escapeHtml(article.naverImage || "")}" data-kakao-key="${escapeHtml(config.kakao?.javascriptKey || process.env.KAKAO_JAVASCRIPT_KEY || "")}">
+ <div class="share-buttons" role="group" aria-label="글 공유"><button type="button" data-share="kakao">카카오톡</button><button type="button" data-share="native">공유하기</button><button type="button" data-share="copy">요약+링크 복사</button>${article.naverImage ? '<button type="button" data-share="thumbnail">썸네일 저장</button>' : ""}</div><p class="sub" role="status" aria-live="polite"></p></div>`;
 }
 // ---------- share digest ----------
 // "요약+링크 복사" puts the answer, one key table and the canonical link on the
