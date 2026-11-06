@@ -2,13 +2,19 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (436 files).
+Complete index of every artifact under `analysis-example/` (437 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
 For strategy methodology and performance comparison, see [CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md](CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md).
 
-## KR — Korean single-stock research (214)
+## KR — Korean single-stock research (215)
+
+### 엘앤에프-2026Q3 — 2026-11-06
+
+엘앤에프 2026년 3분기 실적 리뷰
+
+[memo](../analysis-example/kr/엘앤에프-2026Q3/memo.md)
 
 ### 제주항공-2026Q3 — 2026-11-04
 

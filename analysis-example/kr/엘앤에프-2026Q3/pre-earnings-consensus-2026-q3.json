@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "companyId": "kr/066970",
+  "period": "2026-Q3",
+  "releasedAt": "2026-11-05",
+  "targetCutoff": "2026-11-04",
+  "selectedSnapshotAt": "2026-10-30",
+  "recoveredAt": "2026-11-06",
+  "selection": "발표(11/5 오후 공시) 전 마지막 주간 관측점. 현재 추정치 표를 소급하지 않고 날짜·분기가 명시된 과거 시계열을 사용. 발표직전(E) 표(매출 9,446.5억원·영업이익 20.9억원)와 교차 확인.",
+  "provider": "FnGuide CompanyWise",
+  "aggregation": "최근 3개월 증권사 추정치 평균 (제공자 정의); 지표별 기여 증권사 수 미제공",
+  "sourcePage": "https://comp.wisereport.co.kr/company/c1050001.aspx?cmp_cd=066970",
+  "incomeDefinition": "IFRS 연결 순이익은 지배주주 기준. 총 당기순이익과 교체 비교 금지.",
+  "brokerQuotedConsensus": [
+    {
+      "broker": "대신증권",
+      "operatingProfit": -291,
+      "note": "1개월 기준 컨센서스, \"부합\"으로 평가",
+      "source": "daishin-review"
+    },
+    {
+      "broker": "삼성증권·키움증권·신영증권",
+      "operatingProfit": 21,
+      "note": "FnGuide, \"하회\"로 평가",
+      "source": "samsung-review"
+    },
+    {
+      "broker": "하나증권 프리뷰 (10/23)",
+      "operatingProfit": -304,
+      "note": "작성 증권사 자체 추정",
+      "source": "hana-preview"
+    }
+  ],
+  "metrics": [
+    {
+      "key": "revenue",
+      "accountCode": "121000",
+      "snapshotDate": "2026-10-30",
+      "period": "2026-Q3",
+      "unit": "억원",
+      "basis": "K-IFRS 연결 · 분기",
+      "value": 9446.47,
+      "rawValue": 9446.4666666667,
+      "actual": 8744.03,
+      "delta": -702.44,
+      "deltaPct": -7.44,
+      "locator": "chartData.TRD_DT=2026/10/30, YYMM=202609, CNS_FY0; tableData 발표직전(E) 교차 확인",
+      "sourceUrl": "https://comp.wisereport.co.kr/company/ajax/c1050001_data.aspx?flag=5&cmp_cd=066970&finGubun=IFRSL&frq=1&sDT=20261030&acc_cd=121000",
+      "rawSha256": "a94051a842a118904544d6f056ff18598a65716f3c9c83439f727a7e5c96c51e"
+    },
+    {
+      "key": "operatingProfit",
+      "accountCode": "121500",
+      "snapshotDate": "2026-10-30",
+      "period": "2026-Q3",
+      "unit": "억원",
+      "basis": "K-IFRS 연결 · 분기",
+      "value": 20.93,
+      "rawValue": 20.933333333300002,
+      "actual": -265,
+      "delta": -285.93,
+      "deltaPct": -1366.13,
+      "locator": "chartData.TRD_DT=2026/10/30, YYMM=202609, CNS_FY0; tableData 발표직전(E) 교차 확인",
+      "sourceUrl": "https://comp.wisereport.co.kr/company/ajax/c1050001_data.aspx?flag=5&cmp_cd=066970&finGubun=IFRSL&frq=1&sDT=20261030&acc_cd=121500",
+      "rawSha256": "dd847371edc7d0ff6919312d23510796d124c857be43983ef7a9345ede9dbcfc"
+    },
+    {
+      "key": "parentNetIncome",
+      "accountCode": "122700",
+      "snapshotDate": "2026-10-30",
+      "period": "2026-Q3",
+      "unit": "억원",
+      "basis": "K-IFRS 연결 · 분기",
+      "value": -323.87,
+      "rawValue": -323.875,
+      "actual": -341.08,
+      "delta": -17.21,
+      "deltaPct": -5.31,
+      "locator": "chartData.TRD_DT=2026/10/30, YYMM=202609, CNS_FY0; tableData 발표직전(E) 교차 확인",
+      "sourceUrl": "https://comp.wisereport.co.kr/company/ajax/c1050001_data.aspx?flag=5&cmp_cd=066970&finGubun=IFRSL&frq=1&sDT=20261030&acc_cd=122700",
+      "rawSha256": "9465b275e05d5599c702a464270915513ff02db25c7a698201cf5af7ac848660"
+    }
+  ]
+}

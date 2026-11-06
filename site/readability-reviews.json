@@ -115,6 +115,12 @@
       "reviewedOn": "2026-11-05",
       "mode": "source-and-renderer",
       "notes": "Reviewed six-row before/after plan timetable, primary-source periods and units, commentary attribution, short paragraphs and shared table scroll styles. Browser visual checks remain unavailable. Exact article matches user-approved preview."
+    },
+    "kr/lnf-2026-q3": {
+      "hash": "ddd02ad8e907b7b5c92cdc9f6cfaebbf2a7bdc968e413b8e7e941743a82edea9",
+      "reviewedOn": "2026-11-06",
+      "mode": "source-and-renderer",
+      "notes": "Split 3 long paragraphs (Summary 가격 부담, Q3 LFP 증설 재원, Street 신한 미확보), marked market-pricing inference as brown speculation and two downside phrases blue; numbers/URLs verified unchanged. Static HTML check: tone classes render, 28 tables in overflow containers. 390px/1440px and dark-mode visual checks not performed in a browser."
     }
   }
 }
