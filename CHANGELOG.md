@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.32] - 2026-11-06
+
+### Commits
+
+- Add 엘앤에프 2026Q3 earnings review ([d3babe1](https://github.com/ray5273/kr-research-kit/commit/d3babe1a5604fe475a452f51f8d5578f0af6682a))
+- Add 에코프로비엠 2026Q3 earnings review ([0712f02](https://github.com/ray5273/kr-research-kit/commit/0712f0266738b91453f87ba87068b8ed2ddf9b4d))
+- Refresh 2026Q3 review price to 2026-11-06 intraday ([ab3b488](https://github.com/ray5273/kr-research-kit/commit/ab3b488da6cbc1a03f2fe6aa72519400a26147fd))
+- Refresh 2026Q3 review price to 2026-11-06 intraday ([1644b88](https://github.com/ray5273/kr-research-kit/commit/1644b8804734897160bd931d53d9ad771b289621))
+- Add 신한투자증권 report to 엘앤에프 2026Q3 review ([e91843a](https://github.com/ray5273/kr-research-kit/commit/e91843a078f3974b36cf4c3713e7c5fbef70f11a))
+- Set 2026Q3 review price to 2026-11-06 KRX close ([1ad71ef](https://github.com/ray5273/kr-research-kit/commit/1ad71ef8dbedb6f9ba2a859d8b3428a4f5659faa))
+- Set 2026Q3 review price to 2026-11-06 KRX close ([af76cf1](https://github.com/ray5273/kr-research-kit/commit/af76cf100d188b7c03afc72715db1929342baaac))
+- Add 미래에셋 call summary to 엘앤에프-2026Q3 review ([4867dc7](https://github.com/ray5273/kr-research-kit/commit/4867dc73fa93fe9f7e5c5ffe8852971e54c9d830))
+- Add 미래에셋 call summary to 에코프로비엠-2026Q3 review ([e0187ae](https://github.com/ray5273/kr-research-kit/commit/e0187ae1ff51a1a79d0dfc92beeaddd542e9d00d))
+- Merge branch 'feat/lnf-2026q3-earnings' into release/cathode-q3 ([09e8f16](https://github.com/ray5273/kr-research-kit/commit/09e8f1629a60cfccc36d761a877d909863480ee9))
+- Merge branch 'feat/ecoprobm-2026q3-earnings' into release/cathode-q3 ([83917f0](https://github.com/ray5273/kr-research-kit/commit/83917f07b2b65568cc65a912b7600ffc4bb61998))
+
 ## [0.4.31] - 2026-11-06
 
 ### Commits
