@@ -19,6 +19,12 @@
       "source": "daishin-review"
     },
     {
+      "broker": "신한투자증권",
+      "operatingProfit": -291,
+      "note": "1개월 기준 컨센서스, \"부합\"으로 평가",
+      "source": "shinhan-review"
+    },
+    {
       "broker": "삼성증권·키움증권·신영증권",
       "operatingProfit": 21,
       "note": "FnGuide, \"하회\"로 평가",
