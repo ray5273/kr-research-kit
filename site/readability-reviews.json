@@ -117,10 +117,10 @@
       "notes": "Reviewed six-row before/after plan timetable, primary-source periods and units, commentary attribution, short paragraphs and shared table scroll styles. Browser visual checks remain unavailable. Exact article matches user-approved preview."
     },
     "kr/lnf-2026-q3": {
-      "hash": "e477a9ba429d60c20b00871b36f6f52c6dd189b47c9f1e4533ae3f1c2338e9d9",
+      "hash": "1b874a56c368f3ce117f9d2676ff28b04c4a52dec7a1276a1e528ad45c654fdc",
       "reviewedOn": "2026-11-06",
       "mode": "source-and-renderer",
-      "notes": "Added 신한투자증권 2026-11-06 report (TP 120,000, 2027 OP 1,715억): broker counts 5→6, medians, estimate and opinion tables, sources. Intraday price refresh kept. Remaining paragraph-rhythm warnings in unchanged sections. Browser visual check not performed."
+      "notes": "Price set to 2026-11-06 KRX regular-session close 74,900원 (replacing intraday): summary, tables, price-condition section, target basis, update log recomputed. Remaining paragraph-rhythm warnings in unchanged sections. Browser visual check not performed."
     }
   }
 }
