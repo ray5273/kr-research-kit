@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.30] - 2026-11-06
+
+### Commits
+
+- Separate portfolio strategies from country research navigation ([11f4cc9](https://github.com/ray5273/kr-research-kit/commit/11f4cc9c00eb6303937190d210935e79ed6cd380))
+- Record scoped readability reviews for reclassified strategies ([d4f24c8](https://github.com/ray5273/kr-research-kit/commit/d4f24c8eeca1c7b75f02f13d2e3118644ec967c7))
+
 ## [0.4.29] - 2026-11-05
 
 ### Commits
