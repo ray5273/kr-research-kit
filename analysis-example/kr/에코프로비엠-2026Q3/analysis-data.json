@@ -1,0 +1,960 @@
+{
+  "version": 1,
+  "companyId": "kr/247540",
+  "period": "2026-Q3",
+  "verifiedAt": "2026-11-06",
+  "releasedAt": "2026-11-05",
+  "basis": "연결 K-IFRS · 분기",
+  "unit": "억원",
+  "stance": "이익과 현금이 모두 약하고 가격은 2028년 컨센서스로도 설명되지 않아 강한 매도",
+  "rationale": "영업이익 120억원은 흑자지만 전분기·전년보다 줄었고 영업현금흐름은 두 분기 연속 음수다. 발표 후 증권사 4곳의 2027년 영업이익 추정은 900~1,170억원으로 컨센서스 1,464억원보다 낮다. 유상증자 대금을 반영해도 12개월 목표가는 10,100원이다.",
+  "verdict": "강한 매도",
+  "nextCheck": {
+    "event": "2026Q4 잠정실적",
+    "expected": "2027-02",
+    "conditions": [
+      "헝가리 중단 비용(DS 추정 70~80억원)을 반영하고도 영업이익 흑자인지",
+      "3분기보고서·4분기 영업현금흐름이 양수로 돌아서는지",
+      "글로벌 OEM 공급계약·LFP 5만 톤 투자가 공시로 확정되는지"
+    ]
+  },
+  "limitations": [
+    "2024년 10월 발행 영구채 3,360억원(자본 분류)은 순차입금에 넣지 않았다. 회사는 2년 콜 2,440억원을 조기 상환했다고 밝혔다(미래에셋 콜 정리 전언, DART 공시 미확인). 영구채 전액을 빼면 12개월 목표가는 약 6,900원이다 [계산].",
+    "실적은 DART 연결 잠정실적 원문 기준이다. 과거 분기는 각 분기를 담은 가장 최근 잠정실적 공시의 열에서 읽었다(2025Q4는 감사 후 수정치).",
+    "잠정실적 공시에 지배주주 순이익이 없어 시장 예상(지배주주 기준)과 비교하지 못했다.",
+    "헝가리 중단 비용·재고충당금 환입 금액은 DS투자증권 추정이다. 회사 자료 원문과 실적 콜 원문은 확보하지 못했다.",
+    "순차입금은 2026년 6월 말 연결 잔액에 10월 23일 유상증자 납입 8,861억원만 더했다. 발행 비용과 7~10월 영업·투자 현금흐름은 반영하지 않았다.",
+    "3분기 현금흐름은 분기보고서 제출 전이라 비워 두었다."
+  ],
+  "sources": [
+    {
+      "id": "dart-q3",
+      "label": "DART 에코프로비엠 연결 잠정실적 2026-11-05 · 원문 확인",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261105900114",
+      "publishedAt": "2026-11-05",
+      "role": "primary",
+      "access": "read",
+      "verifiedAt": "2026-11-06"
+    },
+    {
+      "id": "dart-q2",
+      "label": "DART 에코프로비엠 연결 잠정실적 2026-07-31",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260731900486",
+      "publishedAt": "2026-07-31",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "dart-q1",
+      "label": "DART 에코프로비엠 연결 잠정실적 2026-04-29",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429900124",
+      "publishedAt": "2026-04-29",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "dart-q4",
+      "label": "DART 에코프로비엠 연결 잠정실적 2026-02-05",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260205900270",
+      "publishedAt": "2026-02-05",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2026h1",
+      "label": "DART 에코프로비엠 2026 반기보고서 2026-08-14",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814002535",
+      "publishedAt": "2026-08-14",
+      "role": "primary",
+      "access": "read",
+      "verifiedAt": "2026-11-06"
+    },
+    {
+      "id": "rpt-2026q1",
+      "label": "DART 에코프로비엠 2026 1분기보고서 2026-05-15",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515001109",
+      "publishedAt": "2026-05-15",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2025fy",
+      "label": "DART 에코프로비엠 2025 사업보고서 2026-03-18",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318001622",
+      "publishedAt": "2026-03-18",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2025q3",
+      "label": "DART 에코프로비엠 2025 3분기보고서 2025-11-14",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251114000765",
+      "publishedAt": "2025-11-14",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2025h1",
+      "label": "DART 에코프로비엠 2025 반기보고서 2025-08-14",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250814001299",
+      "publishedAt": "2025-08-14",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2025q1",
+      "label": "DART 에코프로비엠 2025 1분기보고서 2025-05-14",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250514000385",
+      "publishedAt": "2025-05-14",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2024fy",
+      "label": "DART 에코프로비엠 2024 사업보고서 2025-03-25",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250325000761",
+      "publishedAt": "2025-03-25",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rights-result",
+      "label": "DART 에코프로비엠 증권 발행결과(유상증자 9,900,990주·8,861억원 납입) 2026-10-23",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261023900714",
+      "publishedAt": "2026-10-23",
+      "role": "primary",
+      "access": "read",
+      "verifiedAt": "2026-11-06"
+    },
+    {
+      "id": "cb-put",
+      "label": "DART 에코프로비엠 전환사채 만기전 취득(5회차 140억원 조기상환) 2026-10-26",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261026900398",
+      "publishedAt": "2026-10-26",
+      "role": "primary",
+      "access": "read",
+      "verifiedAt": "2026-11-06"
+    },
+    {
+      "id": "consensus-20261030",
+      "label": "FnGuide CompanyWise 연결 컨센서스 시계열 · 10/30 관측 (11/06 확인)",
+      "url": "https://comp.wisereport.co.kr/company/c1050001.aspx?cmp_cd=247540",
+      "publishedAt": "2026-10-30",
+      "role": "historical_consensus",
+      "access": "read",
+      "dataAsOf": "2026-10-30",
+      "retrievedAt": "2026-11-06",
+      "verifiedAt": "2026-11-06",
+      "note": "발표(11/5 장 전 공시) 전 마지막 주간 관측점. 순이익은 지배주주 기준."
+    },
+    {
+      "id": "consensus-annual",
+      "label": "WiseReport 연간 컨센서스(연결) · 2027·2028년 영업이익 (11/06 확인)",
+      "url": "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=247540",
+      "publishedAt": "2026-11-06",
+      "role": "consensus",
+      "access": "read",
+      "retrievedAt": "2026-11-06",
+      "verifiedAt": "2026-11-06"
+    },
+    {
+      "id": "quote",
+      "label": "네이버 증권 시세 · 2026-11-06 KRX 종가 83,100원 (전일 89,700원 대비 −7.4%)",
+      "url": "https://m.stock.naver.com/domestic/stock/247540/price",
+      "publishedAt": "2026-11-06",
+      "role": "market_data",
+      "access": "read",
+      "retrievedAt": "2026-11-06",
+      "verifiedAt": "2026-11-06",
+      "note": "15:30 정규장 종가(NXT 미포함, 실시간 시세 REGULAR_MARKET 15:30 확인). 11/5 KRX 종가 89,700원(IBK 사용), 네이버 일별 종가 90,300원은 NXT 시간외 포함."
+    },
+    {
+      "id": "ds-review",
+      "label": "DS투자증권 2026-11-06 실적 리뷰 (최태용)",
+      "url": "https://www.ds-sec.co.kr/bbs/board.php?bo_table=sub03_02&wr_id=3792",
+      "publishedAt": "2026-11-06",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "eugene-review",
+      "label": "유진투자증권 2026-11-06 실적 리뷰 PDF (한병화)",
+      "url": "https://consensus.hankyung.com/analysis/downpdf?report_idx=653819",
+      "publishedAt": "2026-11-06",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "ibk-review",
+      "label": "IBK투자증권 2026-11-06 실적 리뷰 PDF",
+      "url": "https://stock.pstatic.net/stock-research/company/40/20261106_company_747817000.pdf",
+      "publishedAt": "2026-11-06",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "shinyoung-review",
+      "label": "신영증권 2026-11-06 3Q26 Review PDF (박진수)",
+      "url": "https://www.shinyoung.com/files/20261106/19002416aaf90.pdf",
+      "publishedAt": "2026-11-06",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "mirae-call",
+      "label": "미래에셋증권 김철중 텔레그램 에코프로비엠 3Q26 컨콜 요약 재게시 (채널 게시물, 2026-11-06 확인)",
+      "url": "https://t.me/cjdbj",
+      "publishedAt": "2026-11-06",
+      "role": "secondary_management_quote",
+      "access": "read",
+      "note": "사용자가 전달한 채널 게시물 본문. 개별 게시물 링크 없음."
+    }
+  ],
+  "comparison": [
+    {
+      "key": "revenue",
+      "label": "매출액",
+      "market": {
+        "role": "market",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 6010.08,
+        "publishedAt": "2026-10-30",
+        "source": "consensus-20261030",
+        "status": "추정"
+      },
+      "author": {
+        "role": "author",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": null,
+        "reason": "사전 추정 없음"
+      },
+      "actual": {
+        "role": "actual",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 5579.15,
+        "publishedAt": "2026-11-05",
+        "source": "dart-q3",
+        "status": "잠정"
+      },
+      "cause": "EV용 매출 2,561억원(전분기 대비 −34%)을 ESS 1,236억원(+173%)과 전동공구·데이터센터용 1,697억원(+16%)이 대부분 메웠다(IBK·신영). 출하량은 2분기 1.5만 톤에서 1.4만 톤으로 줄었다(IBK)."
+    },
+    {
+      "key": "operatingProfit",
+      "label": "영업이익",
+      "market": {
+        "role": "market",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 155.17,
+        "publishedAt": "2026-10-30",
+        "source": "consensus-20261030",
+        "status": "추정"
+      },
+      "author": {
+        "role": "author",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": null,
+        "reason": "사전 추정 없음"
+      },
+      "actual": {
+        "role": "actual",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 120.18,
+        "publishedAt": "2026-11-05",
+        "source": "dart-q3",
+        "status": "잠정"
+      },
+      "cause": "9월 헝가리 공장 가동 중단에 따른 고정비 부담과 환율 하락. DS는 중단 비용 30~40억원을 재고충당금 환입 약 40억원·개발비 자산화가 상쇄한 것으로 추정한다."
+    },
+    {
+      "key": "parentNetIncome",
+      "label": "지배주주 순이익",
+      "market": {
+        "role": "market",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": -73.25,
+        "publishedAt": "2026-10-30",
+        "source": "consensus-20261030",
+        "status": "추정",
+        "incomeScope": "parent"
+      },
+      "author": {
+        "role": "author",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": null,
+        "reason": "사전 추정 없음",
+        "incomeScope": "parent"
+      },
+      "actual": {
+        "role": "actual",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": null,
+        "reason": "잠정실적 공시의 지배기업 소유주지분 순이익 칸이 \"-\"로 비어 있음. 전체 당기순이익은 −17.89억원",
+        "incomeScope": "parent"
+      },
+      "cause": "FnGuide 순이익 예상은 지배주주 기준이다. 전체 당기순이익 −17.89억원과 섞어 비교하지 않는다.",
+      "incomeScope": "parent"
+    }
+  ],
+  "quarters": [
+    {
+      "period": "2024-Q4"
+    },
+    {
+      "period": "2025-Q1"
+    },
+    {
+      "period": "2025-Q2"
+    },
+    {
+      "period": "2025-Q3"
+    },
+    {
+      "period": "2025-Q4"
+    },
+    {
+      "period": "2026-Q1"
+    },
+    {
+      "period": "2026-Q2"
+    },
+    {
+      "period": "2026-Q3"
+    }
+  ],
+  "series": [
+    {
+      "key": "revenue",
+      "label": "매출액",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": 4649.25,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q4",
+          "publishedAt": "2026-02-05"
+        },
+        {
+          "period": "2025-Q1",
+          "value": 6297.89,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q1",
+          "publishedAt": "2026-04-29"
+        },
+        {
+          "period": "2025-Q2",
+          "value": 7797.17,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q2",
+          "publishedAt": "2026-07-31"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 6250.6,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        },
+        {
+          "period": "2025-Q4",
+          "value": 4970.11,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q1",
+          "publishedAt": "2026-04-29"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 6053.61,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q2",
+          "publishedAt": "2026-07-31"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 5767.12,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        },
+        {
+          "period": "2026-Q3",
+          "value": 5579.15,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        }
+      ]
+    },
+    {
+      "key": "operatingProfit",
+      "label": "영업이익",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": -34.56,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q4",
+          "publishedAt": "2026-02-05"
+        },
+        {
+          "period": "2025-Q1",
+          "value": 22.7,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q1",
+          "publishedAt": "2026-04-29"
+        },
+        {
+          "period": "2025-Q2",
+          "value": 490.01,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q2",
+          "publishedAt": "2026-07-31"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 504.81,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        },
+        {
+          "period": "2025-Q4",
+          "value": 415.58,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q1",
+          "publishedAt": "2026-04-29"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 209.42,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q2",
+          "publishedAt": "2026-07-31"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 180.11,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        },
+        {
+          "period": "2026-Q3",
+          "value": 120.18,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        }
+      ]
+    },
+    {
+      "key": "netIncome",
+      "label": "당기순이익",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": -109.64,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q4",
+          "publishedAt": "2026-02-05"
+        },
+        {
+          "period": "2025-Q1",
+          "value": -99.69,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q1",
+          "publishedAt": "2026-04-29"
+        },
+        {
+          "period": "2025-Q2",
+          "value": 342.65,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q2",
+          "publishedAt": "2026-07-31"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 490.71,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        },
+        {
+          "period": "2025-Q4",
+          "value": 182.21,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q1",
+          "publishedAt": "2026-04-29"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 121.56,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q2",
+          "publishedAt": "2026-07-31"
+        },
+        {
+          "period": "2026-Q2",
+          "value": -4.55,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        },
+        {
+          "period": "2026-Q3",
+          "value": -17.89,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-11-05"
+        }
+      ]
+    },
+    {
+      "key": "operatingCashFlow",
+      "label": "영업현금흐름",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": 1681,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2024fy",
+          "publishedAt": "2025-03-25"
+        },
+        {
+          "period": "2025-Q1",
+          "value": -853,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2025q1",
+          "publishedAt": "2025-05-14"
+        },
+        {
+          "period": "2025-Q2",
+          "value": -1749,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2025h1",
+          "publishedAt": "2025-08-14"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 635,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2025q3",
+          "publishedAt": "2025-11-14"
+        },
+        {
+          "period": "2025-Q4",
+          "value": 4114,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2025fy",
+          "publishedAt": "2026-03-18"
+        },
+        {
+          "period": "2026-Q1",
+          "value": -889,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2026q1",
+          "publishedAt": "2026-05-15"
+        },
+        {
+          "period": "2026-Q2",
+          "value": -721,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2026h1",
+          "publishedAt": "2026-08-14"
+        },
+        {
+          "period": "2026-Q3",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "2026년 3분기보고서(11월 중순 예정) 미제출"
+        }
+      ]
+    },
+    {
+      "key": "capex",
+      "label": "투자지출",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": 2115,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2024fy",
+          "publishedAt": "2025-03-25"
+        },
+        {
+          "period": "2025-Q1",
+          "value": 1542,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2025q1",
+          "publishedAt": "2025-05-14"
+        },
+        {
+          "period": "2025-Q2",
+          "value": 304,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2025h1",
+          "publishedAt": "2025-08-14"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 910,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2025q3",
+          "publishedAt": "2025-11-14"
+        },
+        {
+          "period": "2025-Q4",
+          "value": 1626,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2025fy",
+          "publishedAt": "2026-03-18"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 1119,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2026q1",
+          "publishedAt": "2026-05-15"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 700,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "rpt-2026h1",
+          "publishedAt": "2026-08-14"
+        },
+        {
+          "period": "2026-Q3",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "2026년 3분기보고서(11월 중순 예정) 미제출"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "date": "2026-11-06",
+      "claim": "2026Q4: 헝가리 비용 반영 후 영업이익 흑자, 분기 영업현금흐름 양수 전환",
+      "status": "판단 보류",
+      "evidence": "2026-11-06 새로 설정. 이번 분기 성과로 소급 채점하지 않으며 4분기 잠정실적·연간 사업보고서에서 확인.",
+      "sources": []
+    }
+  ],
+  "changes": [
+    {
+      "date": "2026-11-06",
+      "claim": "첫 분석: 이전 가정 없음 → 강한 매도",
+      "to": "강한 매도",
+      "kind": "판단",
+      "evidence": "판정 축 5개 가중 평균 −1.33. 본업 +1, 방향 −2, 현금 −2, 전망 −1, 가격 −2(2배). 11/6 종가 83,100원 기준 12개월 목표가 10,100원(−87.8%), 24개월 31,400원(−62.2%).",
+      "sources": [
+        "dart-q3",
+        "rpt-2026h1",
+        "rights-result",
+        "consensus-annual",
+        "ds-review"
+      ]
+    }
+  ],
+  "promises": [
+    {
+      "date": "2026-11-06",
+      "claim": "헝가리 공장 10월 말 재가동, 4분기부터 2개 라인 양산 본격화, 2027년 헝가리 공급 약 3만 톤",
+      "status": "판단 보류",
+      "evidence": "IBK·유진·신영 보고서 전언. 4분기·2027년 실적에서 헝가리 비용과 출하로 대조.",
+      "sources": [
+        "ibk-review",
+        "eugene-review",
+        "mirae-call"
+      ],
+      "due": "2027-12-31"
+    },
+    {
+      "date": "2026-11-06",
+      "claim": "인도네시아 니켈 제련소(BNSI) 2027년 상반기 순차 가동, 2027년 가동률 50%·영업이익률 10% 수준",
+      "status": "판단 보류",
+      "evidence": "유진은 회사 가이던스로, DS는 목표로 옮겼다. 연결 편입 시점은 DS 기준 2027년 하반기.",
+      "sources": [
+        "eugene-review",
+        "ds-review"
+      ],
+      "due": "2027-12-31"
+    },
+    {
+      "date": "2026-11-06",
+      "claim": "최대 5만 톤 규모 LFP 양극재 신규 라인 투자 (현재 4천 톤 파일럿)",
+      "status": "판단 보류",
+      "evidence": "유진은 신설 발표로, IBK는 검토로, DS는 규모·시점 미확정으로 적었다. 투자 공시로 대조.",
+      "sources": [
+        "eugene-review",
+        "ibk-review",
+        "ds-review"
+      ],
+      "due": "2027-12-31"
+    },
+    {
+      "date": "2026-11-06",
+      "claim": "글로벌 OEM과 수조원대 공급 계약 최종 마무리 단계",
+      "status": "판단 보류",
+      "evidence": "DS 전언(신영은 \"앞두고 있는 것으로 추정\"). 단일판매·공급계약 공시로 대조하며 계약총액을 확정 매출로 쓰지 않는다.",
+      "sources": [
+        "ds-review",
+        "shinyoung-review"
+      ],
+      "due": "2027-06-30"
+    },
+    {
+      "date": "2026-11-06",
+      "claim": "4분기 헝가리 가동 중단·재가동 관련 일회성 비용은 3분기보다 확대 (11/5 실적 콜)",
+      "status": "판단 보류",
+      "evidence": "미래에셋 김철중 콜 정리 전언. 금액은 밝히지 않음. 4분기 잠정실적으로 대조.",
+      "sources": [
+        "mirae-call"
+      ],
+      "due": "2027-02-28"
+    },
+    {
+      "date": "2026-11-06",
+      "claim": "비중국 셀사와 하이니켈 양극재 최대 9억 달러 LOI, 2028년 공급 개시(헝가리·한국 생산), 연내 장기 공급 계약 전환 목표 (11/5 실적 콜)",
+      "status": "판단 보류",
+      "evidence": "미래에셋 콜 정리 전언. LOI는 구속력 있는 계약이 아니며 금액을 매출로 쓰지 않는다. 공급계약 공시로 대조.",
+      "sources": [
+        "mirae-call"
+      ],
+      "due": "2026-12-31"
+    },
+    {
+      "date": "2026-11-06",
+      "claim": "BNSI 제련소: 유상증자 자금 중 약 7천억원을 11월부터 순차 집행, 풀가동 시 연매출 약 17억 달러·영업이익률 두 자릿수 (11/5 실적 콜)",
+      "status": "판단 보류",
+      "evidence": "미래에셋 콜 정리 전언. 2027년 가동률 50~60%. 출자·투자 공시와 연결 실적으로 대조.",
+      "sources": [
+        "mirae-call"
+      ],
+      "due": "2028-12-31"
+    },
+    {
+      "date": "2026-11-06",
+      "claim": "2027년 출하량 2026년 대비 두 자릿수 이상 성장 목표 (11/5 실적 콜)",
+      "status": "판단 보류",
+      "evidence": "미래에셋 콜 정리 전언. DS 2027년 출하 추정은 7만 톤(+17%). 2027년 연간 실적으로 대조.",
+      "sources": [
+        "mirae-call",
+        "ds-review"
+      ],
+      "due": "2028-02-28"
+    }
+  ],
+  "calculator": {
+    "period": "2027년 연간(연결)",
+    "label": "양극재 출하량·마진 민감도",
+    "assumptions": "출하량 70천 톤·영업이익률 3.3%는 DS투자증권 2027년 추정이고, 판가 38.8천원/kg는 DS 2027년 매출 2조 7,160억원을 출하량으로 나눈 값이다(양극재 본업만, BNSI·LFP 미반영). 이 조합의 영업이익은 약 896억원으로 WiseReport 2027년 컨센서스 1,464억원보다 낮다. 배수 20배는 작성자 선택이다. 순차입금 칸은 6월 말 연결 순차입금 24,290억원에서 유상증자 납입 8,861억원을 빼고 비지배지분 3,013억원을 더한 값이며 2027년 말 예측이 아니다.",
+    "variables": [
+      {
+        "key": "volume",
+        "label": "양극재 출하량",
+        "unit": "천 톤/년",
+        "min": 40,
+        "max": 140,
+        "step": 1,
+        "default": 70
+      },
+      {
+        "key": "margin",
+        "label": "영업이익률",
+        "unit": "%",
+        "min": -10,
+        "max": 15,
+        "step": 0.1,
+        "default": 3.3
+      }
+    ],
+    "price": 388,
+    "priceNote": "DS투자증권 2027년 매출 ÷ 출하량 (38.8천원/kg)",
+    "baseProfit": 0,
+    "baseProfitNote": "제련소·LFP 이익 가정 없음",
+    "multiple": 20,
+    "netDebt": 18442,
+    "marketCap": 89520,
+    "marketCapSource": "quote",
+    "netDebtSource": "rights-result",
+    "netDebtAsOf": "2026-10-23"
+  },
+  "initialReview": true,
+  "rating": {
+    "axes": [
+      {
+        "key": "coreProfit",
+        "actual": "영업이익 120억원(이익률 2.2%). DS 추정 일회성(헝가리 비용 30~40억원 vs 재고충당금 환입 약 40억원)을 어느 쪽으로 빼도 80~160억원 흑자",
+        "score": 1,
+        "sources": [
+          "dart-q3",
+          "ds-review"
+        ]
+      },
+      {
+        "key": "direction",
+        "actual": "영업이익 2025Q3 504.81억원 → 2026Q2 180.11억원 → 2026Q3 120.18억원. 일회성은 DS 추정상 서로 상쇄돼 조정 후에도 전분기·전년 모두 감소",
+        "score": -2,
+        "sources": [
+          "dart-q3",
+          "ds-review"
+        ]
+      },
+      {
+        "key": "cash",
+        "actual": "영업현금흐름 2026Q1 −889억원, Q2 −721억원으로 두 분기 연속 음수(투자지출 1,119·700억원). 3분기는 분기보고서 전",
+        "score": -2,
+        "sources": [
+          "rpt-2026h1",
+          "rpt-2026q1"
+        ]
+      },
+      {
+        "key": "outlook",
+        "actual": "발표 후 4곳: 목표가 하향 3곳(DS 25만→16만, 유진 20만→18만, IBK 11.5만→10만), 유지 1곳(신영 17만). DS 2027년 영업이익 1,710억→910억원(−47%). 4곳 2027년 추정 900~1,170억원으로 컨센서스 1,464억원보다 모두 낮음",
+        "score": -1,
+        "sources": [
+          "ds-review",
+          "eugene-review",
+          "ibk-review",
+          "shinyoung-review"
+        ]
+      },
+      {
+        "key": "price",
+        "actual": "12개월 목표가 10,100원(2027년 컨센서스 1,464억원 × 20배 − 순차입금 24,290억원 + 유상증자 8,861억원 − 비지배지분 3,013억원) vs 현재가 83,100원(11/6 종가) → −87.8%",
+        "score": -2,
+        "sources": [
+          "quote",
+          "consensus-annual",
+          "rpt-2026h1",
+          "rights-result"
+        ]
+      }
+    ]
+  },
+  "targets": {
+    "price": {
+      "value": 83100,
+      "source": "quote"
+    },
+    "shares": {
+      "value": 107725581,
+      "source": "rights-result",
+      "note": "6월 말 유통 보통주 97,824,591주 + 유상증자 신주 9,900,990주 (11/5 상장)"
+    },
+    "netDebt": {
+      "value": 24290,
+      "source": "rpt-2026h1",
+      "note": "2026년 6월 말 연결 · 단기차입금 10,813 + 유동성장기차입금 6,383 + 장기차입금 11,706 + 리스부채 59 − 현금 4,671억원"
+    },
+    "adjustments": [
+      {
+        "label": "유상증자 납입 (2026-10-23)",
+        "value": 8861,
+        "source": "rights-result"
+      },
+      {
+        "label": "비지배지분",
+        "value": -3013,
+        "source": "rpt-2026h1"
+      }
+    ],
+    "multiples": {
+      "bear": 15,
+      "base": 20,
+      "bull": 30
+    },
+    "multipleNote": "작성자 선택 · 포스코퓨처엠·엘앤에프 리뷰와 같은 양극재 공통 EV/영업이익 15·20·30배. 현재가는 2027년 컨센서스 기준 약 74배 · 증권사 목표 배수(EV/EBITDA 45~81배, P/E 84배)는 쓰지 않음",
+    "horizons": [
+      {
+        "months": 12,
+        "year": 2027,
+        "operatingProfit": 1464,
+        "source": "consensus-annual"
+      },
+      {
+        "months": 24,
+        "year": 2028,
+        "operatingProfit": 2616,
+        "source": "consensus-annual"
+      }
+    ],
+    "brokers": {
+      "count": 4,
+      "min": 100000,
+      "median": 165000,
+      "max": 180000,
+      "sources": [
+        "ds-review",
+        "eugene-review",
+        "ibk-review",
+        "shinyoung-review"
+      ]
+    }
+  }
+}

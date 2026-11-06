@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 1,
+  "company": {
+    "name": "에코프로비엠",
+    "market": "kr",
+    "ticker": "247540"
+  },
+  "asOf": "2026-11-06",
+  "verifiedAt": "2026-11-06",
+  "period": "2026Q3",
+  "accountingBasis": "K-IFRS 연결",
+  "unit": "억원",
+  "prelimLocations": {
+    "2024-Q4": {
+      "source": "dart-q4",
+      "column": "2025Q4 공시 전년동기 열",
+      "millionKRW": {
+        "매출액": 464925,
+        "영업이익": -3456,
+        "당기순이익": -10964
+      }
+    },
+    "2025-Q1": {
+      "source": "dart-q1",
+      "column": "2026Q1 공시 전년동기 열",
+      "millionKRW": {
+        "매출액": 629789,
+        "영업이익": 2270,
+        "당기순이익": -9969
+      }
+    },
+    "2025-Q2": {
+      "source": "dart-q2",
+      "column": "2026Q2 공시 전년동기 열",
+      "millionKRW": {
+        "매출액": 779717,
+        "영업이익": 49001,
+        "당기순이익": 34265
+      }
+    },
+    "2025-Q3": {
+      "source": "dart-q3",
+      "column": "2026Q3 공시 전년동기 열",
+      "millionKRW": {
+        "매출액": 625060,
+        "영업이익": 50481,
+        "당기순이익": 49071
+      }
+    },
+    "2025-Q4": {
+      "source": "dart-q1",
+      "column": "2026Q1 공시 전기 열 (감사 후 수정 반영)",
+      "millionKRW": {
+        "매출액": 497011,
+        "영업이익": 41558,
+        "당기순이익": 18221
+      }
+    },
+    "2026-Q1": {
+      "source": "dart-q2",
+      "column": "2026Q2 공시 전기 열",
+      "millionKRW": {
+        "매출액": 605361,
+        "영업이익": 20942,
+        "당기순이익": 12156
+      }
+    },
+    "2026-Q2": {
+      "source": "dart-q3",
+      "column": "2026Q3 공시 전기 열",
+      "millionKRW": {
+        "매출액": 576712,
+        "영업이익": 18011,
+        "당기순이익": -455
+      }
+    },
+    "2026-Q3": {
+      "source": "dart-q3",
+      "column": "2026Q3 공시 당기 열",
+      "millionKRW": {
+        "매출액": 557915,
+        "영업이익": 12018,
+        "당기순이익": -1789
+      }
+    }
+  },
+  "prelimQ3Extra": {
+    "세전이익": -23985,
+    "지배주주순이익": null,
+    "note": "백만원. 지배기업 소유주지분 순이익 칸은 \"-\""
+  },
+  "cashFlowDerivation": {
+    "method": "OpenDART fnlttSinglAcntAll(CFS) 각 보고서 누적값을 직전 누적값과 차감. 4분기=연간−9개월. 투자지출=유형자산의 취득+무형자산의 취득.",
+    "rows": [
+      {
+        "period": "2024-Q4",
+        "report": "2024-11011",
+        "rcept_no": "20250325000761",
+        "cumulative": {
+          "ocf": 6701,
+          "capex": 10305
+        },
+        "operatingCashFlow": 1681,
+        "capex": 2115,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "연간 − 9개월 누적"
+      },
+      {
+        "period": "2025-Q1",
+        "report": "2025-11013",
+        "rcept_no": "20250514000385",
+        "cumulative": {
+          "ocf": -853,
+          "capex": 1542
+        },
+        "operatingCashFlow": -853,
+        "capex": 1542,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "1분기 누적 그대로"
+      },
+      {
+        "period": "2025-Q2",
+        "report": "2025-11012",
+        "rcept_no": "20250814001299",
+        "cumulative": {
+          "ocf": -2602,
+          "capex": 1846
+        },
+        "operatingCashFlow": -1749,
+        "capex": 304,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "누적 − 직전 누적"
+      },
+      {
+        "period": "2025-Q3",
+        "report": "2025-11014",
+        "rcept_no": "20251114000765",
+        "cumulative": {
+          "ocf": -1967,
+          "capex": 2756
+        },
+        "operatingCashFlow": 635,
+        "capex": 910,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "누적 − 직전 누적"
+      },
+      {
+        "period": "2025-Q4",
+        "report": "2025-11011",
+        "rcept_no": "20260318001622",
+        "cumulative": {
+          "ocf": 2147,
+          "capex": 4382
+        },
+        "operatingCashFlow": 4114,
+        "capex": 1626,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "연간 − 9개월 누적"
+      },
+      {
+        "period": "2026-Q1",
+        "report": "2026-11013",
+        "rcept_no": "20260515001109",
+        "cumulative": {
+          "ocf": -889,
+          "capex": 1119
+        },
+        "operatingCashFlow": -889,
+        "capex": 1119,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "1분기 누적 그대로"
+      },
+      {
+        "period": "2026-Q2",
+        "report": "2026-11012",
+        "rcept_no": "20260814002535",
+        "cumulative": {
+          "ocf": -1610,
+          "capex": 1819
+        },
+        "operatingCashFlow": -721,
+        "capex": 700,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "누적 − 직전 누적"
+      }
+    ]
+  },
+  "netDebt": {
+    "asOf": "2026-06-30",
+    "source": "rpt-2026h1",
+    "rows": {
+      "단기차입금": 10813,
+      "유동성장기차입금": 6383,
+      "장기차입금": 11706,
+      "리스부채": 59,
+      "현금및현금성자산": -4671
+    },
+    "total": 24290,
+    "afterJune": {
+      "유상증자납입": {
+        "date": "2026-10-23",
+        "amount": 8861.39,
+        "source": "rights-result"
+      },
+      "전환사채조기상환": {
+        "date": "2026-10-26",
+        "face": 140,
+        "paid": 149.32,
+        "source": "cb-put",
+        "note": "차입금·현금이 같이 줄어 순차입금 영향 약 +9억원, 반영 안 함"
+      }
+    },
+    "proForma": 15429,
+    "note": "재무상태표에 사채 계정이 따로 없어 전환사채(잔액 4,200억원)는 차입금 계정에 포함된 것으로 처리. 기타금융부채 1,181억원 제외.",
+    "nonControllingInterest": 3013
+  },
+  "shares": {
+    "asOfJune": {
+      "issued": 97830434,
+      "treasury": 5843,
+      "outstanding": 97824591,
+      "source": "rpt-2026h1"
+    },
+    "rightsIssue": {
+      "newShares": 9900990,
+      "price": 89500,
+      "listed": "2026-11-05",
+      "source": "rights-result"
+    },
+    "outstanding": 107725581,
+    "note": "DS 표기 107,731천주와 근접"
+  },
+  "prices": {
+    "note": "KRX 정규장 종가 = 다음 거래일 네이버 종가 − 전일 대비. 네이버 일별 종가는 NXT 체결 포함.",
+    "krxClose": {
+      "2026-10-30": 90900,
+      "2026-11-02": 92100,
+      "2026-11-03": 87600,
+      "2026-11-04": 97200,
+      "2026-11-05": 89700,
+      "2026-11-06": 83100
+    },
+    "naverIntegratedClose": {
+      "2026-10-30": 89800,
+      "2026-11-02": 92500,
+      "2026-11-03": 88600,
+      "2026-11-04": 97300,
+      "2026-11-05": 90300
+    }
+  },
+  "brokerEstimates2027OP": {
+    "DS": 910,
+    "유진": 1140,
+    "IBK": 1170,
+    "신영": 900,
+    "median": 1025
+  }
+}

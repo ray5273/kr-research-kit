@@ -141,6 +141,12 @@
       "reviewedOn": "2026-11-06",
       "mode": "source-and-renderer",
       "notes": "Added 미래에셋증권 김철중 Telegram call summary (labelled 재게시) to the call Q&A, promises table, sources and data promises; split new long paragraphs. Facts from the summary attributed as 전언; derived figures marked [계산]. Remaining paragraph-rhythm warnings reviewed. Browser visual check not performed."
+    },
+    "kr/ecopro-bm-2026-q3": {
+      "hash": "a70e4ab4e5f25dc324c17044520b913dadac1c943823d3214988ab99f40cedfb",
+      "reviewedOn": "2026-11-06",
+      "mode": "source-and-renderer",
+      "notes": "Added 미래에셋증권 김철중 Telegram call summary (labelled 재게시) to the call Q&A, promises table, sources and data promises; split new long paragraphs. Facts from the summary attributed as 전언; derived figures marked [계산]. Remaining paragraph-rhythm warnings reviewed. Browser visual check not performed."
     }
   }
 }

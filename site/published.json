@@ -151,6 +151,33 @@
       ]
     },
     {
+      "memo": "analysis-example/kr/에코프로비엠-2026Q3/memo.md",
+      "slug": "kr/ecopro-bm-2026-q3",
+      "company": "에코프로비엠",
+      "ticker": "247540",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/247540",
+      "analysisData": "analysis-example/kr/에코프로비엠-2026Q3/analysis-data.json",
+      "headline": "에코프로비엠 3분기: 흑자는 지켰지만 이익·현금 모두 후퇴",
+      "summary": "영업이익 120억원은 전분기·전년보다 줄었고 영업현금흐름은 두 분기 연속 음수다. 유상증자 대금을 반영해도 현재 가격은 2028년 컨센서스 이익으로 설명되지 않는다.",
+      "datePublished": "2026-11-06",
+      "dateModified": "2026-11-06",
+      "sectors": [
+        "2차전지"
+      ],
+      "coverArt": false,
+      "tags": [
+        "에코프로비엠",
+        "247540",
+        "실적리뷰",
+        "양극재",
+        "유상증자"
+      ]
+    },
+    {
       "memo": "analysis-example/kr/엘앤에프-2026Q3/memo.md",
       "slug": "kr/lnf-2026-q3",
       "company": "엘앤에프",
