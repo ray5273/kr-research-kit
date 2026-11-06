@@ -18,7 +18,6 @@
     "kr/hd-hyundai": "f64fbfd050b55fdadd8a965ebaf1427afbdc840e0e46b86c93ee79ced59e701b",
     "kr/hd-hyundai-electric": "57518775f3210ae787b2f35f3a735d26255bd22f52d55a5f8a4d6027e550756a",
     "kr/hmm": "1c7bb727f096216d04f300bd4adc8a00d3efde64d1ca83c8c1970bc76c7ef533",
-    "kr/krx-52-week-high-2026-08": "81ffb2ded5dc27523834413671453fa0cc87d3e9d6aeeaf211c53057d24989fa",
     "kr/krx-monthly-factor": "f6bdbc0378887ccfbba64812a82b204eb6675d9101d8034c9f7889c7c81a3594",
     "kr/kt-and-g": "6f153dc445871582a126fdd6ef96c48a8e0e7f97335a0fad45606876e721ad46",
     "kr/lg-cns": "3e221eb45ee36bf6f9368947ba595f76e1c23a6c7c9b85ba9a3c9d1cd0f28360",
@@ -45,7 +44,6 @@
     "kr/hyosung-heavy-industries": "6f093ef684e5cf439768f736ab54e85bcc0e18fbf07410b24952abb4b3f3accf",
     "sector/copper": "54b37fe453c40598620d74db23b984e77d00edd5f7767ac153e576eadba06304",
     "sector/japan-transformer-competitors": "c66d3fffff6858ba943263daebb27c8db315b90a0d6a5719592d4face217cb3e",
-    "us/spy-ath-investing": "86aefd627f9e39c84178c4a273dcc98ff4a615b6e93ed37a7801ddd3bcff8434",
     "us/tesla": "45355fa58bb21a0d0d13afd078a38a8ee4ec920f873828afb69b98219da37bfc",
     "sector/800vdc-power-infrastructure": "57d0ff2692c7566ad175e5a66602c3786b5054a5aacba4cebb0f0541bb8b5a88",
     "sector/optical-ai-datacenter": "74d440cb18680205b8b3beab02edb99f559043f6ffcf55f0bb5ecee7099d879b",
@@ -64,7 +62,6 @@
     "kr/hanwha-solutions-qcells": "d0ae591d724b08cbb4b8e541566fbae9f9ccde7a25d03e30419ff78b64f4a2b3",
     "kr/doosan-enerbility-smr": "65e14dd4b65e4576f58e7663f20a821a3eb96d14d427881d3d34a2dbec16cc83",
     "sector/ai-infrastructure-bottlenecks": "9c5363bb9a5edcf15e3588e89bf5c8bd34d37b5a2af975a08e6bdc2cc2fe0bdd",
-    "kr/weekly-trend-following": "7d8bcc5373fc9cabd7d0dccadaeda70fefed8dddf77244c5be8766997de0cb0e",
     "kr/hanjin-kal-followup-2026-06": "3ecae5e75e751365ff4cf91c07f6d71900ea209eeb7c1b13077a07de2a3f841f",
     "us/tesla-fsd-capex-2026-q2": "b7a132036a8c5ff9b570d098630d670b0beb2854066e97095ccfffa76ebbb844",
     "kr/solus-foil-proxy-2026-04": "87ac5ac54d7f17398e3c701db3324738075b3fe760d365b35fba1b80539bd802",
@@ -115,6 +112,24 @@
       "reviewedOn": "2026-11-05",
       "mode": "source-and-renderer",
       "notes": "Reviewed six-row before/after plan timetable, primary-source periods and units, commentary attribution, short paragraphs and shared table scroll styles. Browser visual checks remain unavailable. Exact article matches user-approved preview."
+    },
+    "kr/krx-52-week-high-2026-08": {
+      "hash": "dce0cf00234c8a373b035d258fb4181cc633c4c66ccb88a3604977280dcee77f",
+      "reviewedOn": "2026-11-06",
+      "mode": "source-and-renderer",
+      "notes": "Taxonomy-only change. Read the full editorial article: conclusion and counterpoint are distinct, 47 paragraphs (maximum 168 characters), seven correctly scoped tone markers, rules/performance/portfolio tables with periods and cost caveats, and source labels retained. Inspected shared renderer/CSS: tone legend and contrast, table-container overflow, source anchors, archive/date labels. No article prose, numbers, dates or URLs changed. Browser launch unavailable; mobile/desktop screenshots and keyboard layout remain unverified."
+    },
+    "us/spy-ath-investing": {
+      "hash": "7af616ab23f78883a1006aae57f47fc822d1ebcb463a40bd533eb17e189ac0f5",
+      "reviewedOn": "2026-11-06",
+      "mode": "source-and-renderer",
+      "notes": "Taxonomy-only change. Read the full editorial article: comparison conclusion precedes backtest assumptions, compact result tables retain USD/XIRR/MDD units, periods and costs; official/Yahoo/FRED source labels retained. The line-13 three-sentence warning is a single connected robustness argument (165 characters) and is retained. Shared renderer/CSS inspected for table scrolling, date/archive labels and source anchors. Preserve existing prose and historical figures. Browser launch unavailable; visual line breaks and keyboard layout remain unverified."
+    },
+    "kr/weekly-trend-following": {
+      "hash": "91c871d56a01ef65e256f0bb3ea5f63a06cc57eb65684939bd475a936e1aecd7",
+      "reviewedOn": "2026-11-06",
+      "mode": "source-and-renderer",
+      "notes": "Taxonomy-only change. Read the full editorial article: conclusion and execution-cost caveat are explicit, rule and weekly/monthly tables separate assumptions and periods, five tone markers distinguish outcomes/caution, actual numbered subheadings separate regime and volatility rules, and survivorship-bias caveat remains visible. Source labels are archival internal-ledger labels without invented URLs. Shared renderer/CSS inspected for legend/contrast and horizontal table containment. Preserve body, dates and archive label. Browser launch unavailable; visual and keyboard checks remain unverified."
     }
   }
 }
