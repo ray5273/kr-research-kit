@@ -117,10 +117,10 @@
       "notes": "Reviewed six-row before/after plan timetable, primary-source periods and units, commentary attribution, short paragraphs and shared table scroll styles. Browser visual checks remain unavailable. Exact article matches user-approved preview."
     },
     "kr/ecopro-bm-2026-q3": {
-      "hash": "c7b7baa2cb4503ad588174f8988f274a8a35ce404cb14e4b961eb989975a9878",
+      "hash": "773b4fdcf99557dc7989130740667a28378ef71c79e9a81487826d617d4cec99",
       "reviewedOn": "2026-11-06",
       "mode": "source-and-renderer",
-      "notes": "Written with one point per paragraph; seven 3-sentence paragraphs (max 160 chars) kept as connected reasoning. Broker-estimated one-offs and inference marked (brown speculation, blue downside). Static HTML check: tone classes render, no raw markers, 28 tables in overflow containers. 390px/1440px and dark-mode visual checks not performed in a browser."
+      "notes": "Price refresh to 2026-11-06 intraday 83,500원: summary, axis/period tables, price-condition section, target basis and update log edited; numbers recomputed from analysis-data.json. Remaining paragraph-rhythm warnings are in unchanged sections. Browser visual check not performed."
     }
   }
 }
