@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.31] - 2026-11-06
+
+### Commits
+
+- Move monthly KRX factor research into portfolio strategies ([30661e3](https://github.com/ray5273/kr-research-kit/commit/30661e325a6d28a4c5dfbf2a31f97574a4982a7f))
+
 ## [0.4.30] - 2026-11-06
 
 ### Commits
