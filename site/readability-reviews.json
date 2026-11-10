@@ -149,10 +149,10 @@
       "notes": "Added 미래에셋증권 김철중 Telegram call summary (labelled 재게시) to the call Q&A, promises table, sources and data promises; split new long paragraphs. Facts from the summary attributed as 전언; derived figures marked [계산]. Remaining paragraph-rhythm warnings reviewed. Browser visual check not performed."
     },
     "kr/jin-air-2026-q3": {
-      "hash": "1c40941a25898fb0a95dbdc6361e785214c9ac701c9318ba370369871afc8f6f",
+      "hash": "efa1d66c34fcf3cbf3cb3054835dc538b7e624f54fa0dc20f79be24f0d4dc82e",
       "reviewedOn": "2026-11-10",
-      "mode": "browser",
-      "notes": "Split 5-sentence paragraphs (영업외손익, 합병 분석, 본업 범위, 부채) by point; added 5 short red/blue/brown markers (beat/no debt positive, thin margin and reversible FX gain negative, FX-gain attribution as inference). Kept summary caveat inside the answer box. Numbers, URLs, wording verified identical mechanically. gstack browse at 390x844 and 1440x900: no horizontal overflow, markers rendered, no raw markup. Remaining: 9 short 3-sentence paragraphs kept (single point each); dark mode not checked."
+      "mode": "source-and-renderer",
+      "notes": "Recheck pass: corrected level-change thresholds against research.js (550억→중립, −130억→매도), filled 2025Q3/Q4 lease repayment, provisions 1,915 consistency. Table-cell text edits only; prior 390/1440px browser review layout unchanged, not re-inspected."
     }
   }
 }
