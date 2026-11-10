@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.34] - 2026-11-10
+
+### Commits
+
+- Add Jin Air 2026Q3 earnings review ([ed225b5](https://github.com/ray5273/kr-research-kit/commit/ed225b5d7a53adf7bae73aad438586c963e9cb39))
+- Fix Jin Air 2026Q3 level-change thresholds and lease repayment rows ([97a3ff6](https://github.com/ray5273/kr-research-kit/commit/97a3ff6e1e2af7cfb5ef4ba8a93c07d434d7219b))
+
 ## [0.4.33] - 2026-11-06
 
 ### Commits
