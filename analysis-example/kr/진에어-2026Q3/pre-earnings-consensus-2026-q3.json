@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "companyId": "kr/272450",
+  "period": "2026-Q3",
+  "releasedAt": "2026-11-06",
+  "targetCutoff": "2026-11-05",
+  "selectedSnapshotAt": "2026-10-30",
+  "recoveredAt": "2026-11-10",
+  "selection": "발표 전날까지의 과거 주간 시계열 중 마지막 관측점. 발표직전(E) 표와 다름(영업이익 −1.9억원·순이익 255.2억원) → 날짜 있는 주간 값을 사용.",
+  "provider": "FnGuide CompanyWise",
+  "aggregation": "최근 3개월 증권사 추정치 평균 (제공자 정의); 지표별 기여 증권사 수 미제공",
+  "incomeDefinition": "IFRS 별도 당기순이익(지배·비지배 구분 없음).",
+  "consolidatedSameDay": null,
+  "consolidatedNote": "진에어는 종속회사가 없어 FnGuide 연결(IFRSL) 시계열이 비어 있다.",
+  "brokerQuoted": {
+    "유진투자증권 2026-10-30": {
+      "operatingProfit": -16
+    }
+  },
+  "metrics": [
+    {
+      "key": "revenue",
+      "accountCode": "121000",
+      "snapshotDate": "2026-10-30",
+      "period": "2026-Q3",
+      "unit": "억원",
+      "basis": "별도 K-IFRS · 분기",
+      "value": 4150,
+      "rawValue": 4149.5714285714,
+      "preReleaseTable": "4,182.4",
+      "actual": 4131,
+      "delta": -19,
+      "locator": "chartData.TRD_DT=2026/10/30, CNS_FY0 (2026/09(E))",
+      "sourceUrl": "https://comp.wisereport.co.kr/company/ajax/c1050001_data.aspx?flag=5&cmp_cd=272450&finGubun=IFRSS&frq=1&sDT=20261110&acc_cd=121000",
+      "rawSha256": "9e32879ab46cf8b32b51b575ce45d6b2c04f1e4c2f8f66c56400abc9d2868ea4"
+    },
+    {
+      "key": "operatingProfit",
+      "accountCode": "121500",
+      "snapshotDate": "2026-10-30",
+      "period": "2026-Q3",
+      "unit": "억원",
+      "basis": "별도 K-IFRS · 분기",
+      "value": -25,
+      "rawValue": -24.7142857143,
+      "preReleaseTable": "-1.9",
+      "actual": 78,
+      "delta": 103,
+      "locator": "chartData.TRD_DT=2026/10/30, CNS_FY0 (2026/09(E))",
+      "sourceUrl": "https://comp.wisereport.co.kr/company/ajax/c1050001_data.aspx?flag=5&cmp_cd=272450&finGubun=IFRSS&frq=1&sDT=20261110&acc_cd=121500",
+      "rawSha256": "f3b4ed1f58cbf8c3e84ccccdbedea7117ce5130fdbff9944112da16145f27b99"
+    },
+    {
+      "key": "netIncome",
+      "accountCode": "122700",
+      "snapshotDate": "2026-10-30",
+      "period": "2026-Q3",
+      "unit": "억원",
+      "basis": "별도 K-IFRS · 분기",
+      "value": 130,
+      "rawValue": 130.25,
+      "preReleaseTable": "255.2",
+      "actual": 312,
+      "delta": 182,
+      "locator": "chartData.TRD_DT=2026/10/30, CNS_FY0 (2026/09(E))",
+      "sourceUrl": "https://comp.wisereport.co.kr/company/ajax/c1050001_data.aspx?flag=5&cmp_cd=272450&finGubun=IFRSS&frq=1&sDT=20261110&acc_cd=122700",
+      "rawSha256": "cce857a85285256706f96d86b2b6eae1bbdde50fe26cd5ec252305ab43091eda"
+    }
+  ]
+}

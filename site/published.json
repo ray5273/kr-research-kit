@@ -125,6 +125,33 @@
       ]
     },
     {
+      "memo": "analysis-example/kr/진에어-2026Q3/memo.md",
+      "slug": "kr/jin-air-2026-q3",
+      "company": "진에어",
+      "ticker": "272450",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/272450",
+      "analysisData": "analysis-example/kr/진에어-2026Q3/analysis-data.json",
+      "headline": "진에어 3분기: 적자 예상 깨고 78억원 흑자, 부채 거의 없어 단독 기준 목표가 8,200원",
+      "summary": "별도 영업이익 78억원과 순이익 312억원에 섞였을 환율 효과를 범위로 나누고, 리스만 남은 순차입금과 EV/EBITDA로 12개월·24개월 목표가를 계산한다. 2027년 3월 합병 신주와 발표 후 리뷰 부재를 한계로 둔다.",
+      "datePublished": "2026-11-10",
+      "dateModified": "2026-11-10",
+      "sectors": [
+        "항공"
+      ],
+      "coverArt": false,
+      "tags": [
+        "진에어",
+        "272450",
+        "실적리뷰",
+        "항공",
+        "2026년3분기"
+      ]
+    },
+    {
       "memo": "analysis-example/kr/포스코퓨처엠/memo.md",
       "slug": "kr/posco-future-m-2026-q3",
       "company": "포스코퓨처엠",
