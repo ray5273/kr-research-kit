@@ -287,6 +287,118 @@
       ]
     },
     {
+      "memo": "analysis-example/kr/한화에어로스페이스-2026Q3/memo.md",
+      "slug": "kr/hanwha-aerospace-2026-q3",
+      "company": "한화에어로스페이스",
+      "ticker": "012450",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/012450",
+      "analysisData": "analysis-example/kr/한화에어로스페이스-2026Q3/analysis-data.json",
+      "headline": "한화에어로스페이스 3분기: 지상방산 이익률 1.7%, 주가는 피어보다 싸다",
+      "summary": "연결 영업이익 4,520억원이 예상의 39%에 그친 원인을 지상방산·한화오션·항공우주로 나누고, 일회성 비용과 환손실, 폴란드 인도 가이던스를 정리한다. 미국·유럽 방산 평균 P/E로 12개월·24개월 목표가를 계산한다.",
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "sectors": [
+        "방산·우주항공"
+      ],
+      "coverArt": false,
+      "tags": [
+        "한화에어로스페이스",
+        "012450",
+        "실적리뷰",
+        "방산",
+        "K9",
+        "2026년3분기"
+      ]
+    },
+    {
+      "memo": "analysis-example/kr/한국항공우주-2026Q3/memo.md",
+      "slug": "kr/kai-2026-q3",
+      "company": "한국항공우주",
+      "ticker": "047810",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/047810",
+      "analysisData": "analysis-example/kr/한국항공우주-2026Q3/analysis-data.json",
+      "headline": "한국항공우주 3분기: KF-21 양산 시작, 일회성 빼면 영업이익 394억원",
+      "summary": "영업이익 794억원에서 환율 예정원가 재조정 이익과 충당금을 분리하고, 외환손실·이자비용과 네 분기 연속 음수인 영업현금흐름을 정리한다. 미국·유럽 방산 평균 P/E로 12개월·24개월 목표가를 계산한다.",
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "sectors": [
+        "방산·우주항공"
+      ],
+      "coverArt": false,
+      "tags": [
+        "한국항공우주",
+        "047810",
+        "실적리뷰",
+        "방산",
+        "KF-21",
+        "2026년3분기"
+      ]
+    },
+    {
+      "memo": "analysis-example/kr/LIG디펜스앤에어로스페이스-2026Q3/memo.md",
+      "slug": "kr/lig-dna-2026-q3",
+      "company": "LIG디펜스앤에어로스페이스",
+      "ticker": "079550",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/079550",
+      "analysisData": "analysis-example/kr/LIG디펜스앤에어로스페이스-2026Q3/analysis-data.json",
+      "headline": "LIG디펜스앤에어로스페이스 3분기: 이익 35% 미달, 입찰 제한 결정이 먼저다",
+      "summary": "영업이익 676억원이 예상을 밑돈 원인과 세전손실을 정리하고, 정부·공공기관 입찰참가자격 2년 제한 공시와 무의결권 우선주 유상증자를 짚는다. 미국·유럽 방산 평균 P/E로 12개월·24개월 목표가를 계산한다.",
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "sectors": [
+        "방산·우주항공"
+      ],
+      "coverArt": false,
+      "tags": [
+        "LIG디펜스앤에어로스페이스",
+        "079550",
+        "실적리뷰",
+        "방산",
+        "천궁",
+        "2026년3분기"
+      ]
+    },
+    {
+      "memo": "analysis-example/kr/한화시스템-2026Q3/memo.md",
+      "slug": "kr/hanwha-systems-2026-q3",
+      "company": "한화시스템",
+      "ticker": "272210",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/272210",
+      "analysisData": "analysis-example/kr/한화시스템-2026Q3/analysis-data.json",
+      "headline": "한화시스템 3분기: 필리조선소 빼니 영업이익률 11.9%, 주가는 앞서 있다",
+      "summary": "필리조선소 중단영업 분류로 컨센서스 비교가 왜곡된 점을 정리하고, 같은 기준 추정과 비교한 본업 이익, 한화오션 지분 매각과 차입금 변화를 짚는다. 미국·유럽 방산 평균 P/E로 12개월·24개월 목표가를 계산한다.",
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "sectors": [
+        "방산·우주항공"
+      ],
+      "coverArt": false,
+      "tags": [
+        "한화시스템",
+        "272210",
+        "실적리뷰",
+        "방산",
+        "레이더",
+        "2026년3분기"
+      ]
+    },
+    {
       "memo": "analysis-example/kr/포스코퓨처엠/memo.md",
       "slug": "kr/posco-future-m-2026-q3",
       "company": "포스코퓨처엠",

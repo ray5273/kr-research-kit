@@ -2,13 +2,13 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (444 files).
+Complete index of every artifact under `analysis-example/` (448 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
 For strategy methodology and performance comparison, see [CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md](CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md).
 
-## KR — Korean single-stock research (222)
+## KR — Korean single-stock research (226)
 
 ### HD현대-2026Q3 — 2026-11-11
 
@@ -22,6 +22,12 @@ HD현대중공업 2026년 3분기 실적 리뷰
 
 [memo](../analysis-example/kr/HD현대중공업-2026Q3/memo.md)
 
+### LIG디펜스앤에어로스페이스-2026Q3 — 2026-11-11
+
+LIG디펜스앤에어로스페이스 2026년 3분기 실적 리뷰
+
+[memo](../analysis-example/kr/LIG디펜스앤에어로스페이스-2026Q3/memo.md)
+
 ### S-Oil-2026Q3 — 2026-11-11
 
 S-Oil 2026년 3분기 실적 리뷰
@@ -33,6 +39,24 @@ S-Oil 2026년 3분기 실적 리뷰
 삼성중공업 2026년 3분기 실적 리뷰
 
 [memo](../analysis-example/kr/삼성중공업-2026Q3/memo.md)
+
+### 한국항공우주-2026Q3 — 2026-11-11
+
+한국항공우주 2026년 3분기 실적 리뷰
+
+[memo](../analysis-example/kr/한국항공우주-2026Q3/memo.md)
+
+### 한화시스템-2026Q3 — 2026-11-11
+
+한화시스템 2026년 3분기 실적 리뷰
+
+[memo](../analysis-example/kr/한화시스템-2026Q3/memo.md)
+
+### 한화에어로스페이스-2026Q3 — 2026-11-11
+
+한화에어로스페이스 2026년 3분기 실적 리뷰
+
+[memo](../analysis-example/kr/한화에어로스페이스-2026Q3/memo.md)
 
 ### 한화오션-2026Q3 — 2026-11-11
 

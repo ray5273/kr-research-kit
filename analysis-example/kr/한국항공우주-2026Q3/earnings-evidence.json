@@ -1,0 +1,309 @@
+{
+  "schemaVersion": 1,
+  "company": {
+    "name": "한국항공우주",
+    "market": "kr",
+    "ticker": "047810"
+  },
+  "asOf": "2026-11-11",
+  "verifiedAt": "2026-11-11",
+  "period": "2026Q3",
+  "accountingBasis": "K-IFRS 연결",
+  "unit": "억원",
+  "quarterSource": {
+    "2024-Q4": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260205800530",
+      "revenue": 10948,
+      "operatingProfit": 421,
+      "pretax": 60,
+      "netIncome": 118
+    },
+    "2025-Q1": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260507800545",
+      "revenue": 6993,
+      "operatingProfit": 468,
+      "pretax": 357,
+      "netIncome": 301
+    },
+    "2025-Q2": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260729800654",
+      "revenue": 8283,
+      "operatingProfit": 852,
+      "pretax": 691,
+      "netIncome": 564
+    },
+    "2025-Q3": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261103800631",
+      "revenue": 7021,
+      "operatingProfit": 602,
+      "pretax": 453,
+      "netIncome": 388
+    },
+    "2025-Q4": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260507800545",
+      "revenue": 14667,
+      "operatingProfit": 770,
+      "pretax": 523,
+      "netIncome": 606
+    },
+    "2026-Q1": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260729800654",
+      "revenue": 10927,
+      "operatingProfit": 671,
+      "pretax": 530,
+      "netIncome": 420
+    },
+    "2026-Q2": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261103800631",
+      "revenue": 11679,
+      "operatingProfit": 484,
+      "pretax": 248,
+      "netIncome": 359
+    },
+    "2026-Q3": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261103800631",
+      "revenue": 10643,
+      "operatingProfit": 794,
+      "pretax": 218,
+      "netIncome": 204
+    }
+  },
+  "cashFlowDerivation": {
+    "method": "OpenDART fnlttSinglAcntAll(CFS) 각 보고서의 당기 누적값을 직전 누적값과 차감. 4분기=연간−9개월. 투자지출=유형자산의 취득+무형자산의 취득.",
+    "rows": [
+      {
+        "period": "2024-Q4",
+        "report": "2024-11011",
+        "rcept_no": "20250318001067",
+        "cumulative": {
+          "ocf": -7282,
+          "capex": 2473
+        },
+        "operatingCashFlow": -2093,
+        "capex": 679,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "연간 − 9개월 누적"
+      },
+      {
+        "period": "2025-Q1",
+        "report": "2025-11013",
+        "rcept_no": "20250515002580",
+        "cumulative": {
+          "ocf": 1612,
+          "capex": 425
+        },
+        "operatingCashFlow": 1612,
+        "capex": 425,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "1분기 누적 그대로"
+      },
+      {
+        "period": "2025-Q2",
+        "report": "2025-11012",
+        "rcept_no": "20250814004141",
+        "cumulative": {
+          "ocf": -6073,
+          "capex": 1114
+        },
+        "operatingCashFlow": -7685,
+        "capex": 689,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "누적 − 직전 누적"
+      },
+      {
+        "period": "2025-Q3",
+        "report": "2025-11014",
+        "rcept_no": "20251114002303",
+        "cumulative": {
+          "ocf": -7419,
+          "capex": 1559
+        },
+        "operatingCashFlow": -1346,
+        "capex": 445,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "누적 − 직전 누적"
+      },
+      {
+        "period": "2025-Q4",
+        "report": "2025-11011",
+        "rcept_no": "20260318001461",
+        "cumulative": {
+          "ocf": -9033,
+          "capex": 1898
+        },
+        "operatingCashFlow": -1614,
+        "capex": 339,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "연간 − 9개월 누적"
+      },
+      {
+        "period": "2026-Q1",
+        "report": "2026-11013",
+        "rcept_no": "20260515001698",
+        "cumulative": {
+          "ocf": -770,
+          "capex": 411
+        },
+        "operatingCashFlow": -770,
+        "capex": 411,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "1분기 누적 그대로"
+      },
+      {
+        "period": "2026-Q2",
+        "report": "2026-11012",
+        "rcept_no": "20260814003309",
+        "cumulative": {
+          "ocf": -3800,
+          "capex": 3220
+        },
+        "operatingCashFlow": -3030,
+        "capex": 2809,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "누적 − 직전 누적"
+      }
+    ]
+  },
+  "segments3Q26": {
+    "source": "대신증권 2026-11-04",
+    "unit": "억원",
+    "국내사업 매출": 4937,
+    "수출사업 매출": 2914
+  },
+  "oneOffs": {
+    "예정원가 재조정 이익(환율)": 400,
+    "영업이익 일회성 이익 제외": 394,
+    "일회성 비용": {
+      "이라크 대손충당금": 120,
+      "하자보수 충당금": 110,
+      "G280 손실충당금": 70
+    },
+    "source": "대신·신한 Q&A 전언"
+  },
+  "nonOperating": {
+    "외환손실": -399,
+    "순이자비용": -241,
+    "hedge": "파생상품 헤지 없음",
+    "source": "신한 Q&A 전언"
+  },
+  "netDebt": {
+    "asOf": "2026-06-30",
+    "report": "20260814003309",
+    "items": {
+      "단기사채": 2542,
+      "단기차입금": 7328,
+      "유동성장기차입금": 201,
+      "사채": 19131,
+      "장기차입금": 598,
+      "현금및현금성자산": -1636,
+      "유동 당기손익-공정가치 금융상품": -700
+    },
+    "notIncluded": {
+      "유동 계약부채": 19870,
+      "기타금융부채(유동·비유동)": 6201
+    }
+  },
+  "eps": {
+    "source": "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=047810",
+    "retrievedAt": "2026-11-11",
+    "scope": "지배주주",
+    "2027E": 4119,
+    "2028E": 5503,
+    "operatingProfit": {
+      "2027E": 5693,
+      "2028E": 7320
+    }
+  },
+  "peerMultiples": {
+    "source": "https://stock.pstatic.net/stock-research/company/21/20261030_company_252134000.pdf",
+    "table": "방산업체 Global Peer Valuation 요약 비교 (Bloomberg, 신한투자증권)",
+    "pe2027": {
+      "Raytheon": 24.5,
+      "Lockheed Martin": 16.9,
+      "Northrop Grumman": 17.2,
+      "General Dynamics": 18.5,
+      "Safran": 24.4,
+      "BAE Systems": 20.4,
+      "Thales": 18.9,
+      "Rheinmetall": 20.6,
+      "Leonardo": 16.9,
+      "미국·유럽 평균[계산]": 19.8,
+      "전체 평균": 22.7,
+      "한국 평균": 23.5
+    }
+  },
+  "brokerTargets": {
+    "DS투자증권": {
+      "date": "2026-11-04",
+      "target": 186000,
+      "change": "유지"
+    },
+    "키움증권": {
+      "date": "2026-11-04",
+      "target": 185000,
+      "change": "하향"
+    },
+    "유안타증권": {
+      "date": "2026-11-04",
+      "target": 182000,
+      "change": "유지"
+    },
+    "대신증권": {
+      "date": "2026-11-04",
+      "target": 173000,
+      "change": "하향 (−7.0%)"
+    },
+    "미래에셋증권": {
+      "date": "2026-11-04",
+      "target": 173000,
+      "change": "하향 (10/01 186,000원에서)"
+    },
+    "한화투자증권": {
+      "date": "2026-11-04",
+      "target": 150000,
+      "change": "상향"
+    },
+    "SK증권": {
+      "date": "2026-11-04",
+      "target": 150000,
+      "change": "하향"
+    },
+    "유진투자증권": {
+      "date": "2026-11-04",
+      "target": 146000,
+      "change": "유지"
+    },
+    "신한투자증권": {
+      "date": "2026-11-04",
+      "target": 140000,
+      "change": "유지"
+    },
+    "iM증권": {
+      "date": "2026-11-04",
+      "target": 135000,
+      "change": "하향"
+    }
+  },
+  "preliminaryDisclosures": "각 분기 연결 잠정실적 원문(OpenDART document.xml). 이번 분기 원문은 sources/에 보존."
+}

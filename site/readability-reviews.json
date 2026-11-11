@@ -183,6 +183,30 @@
       "reviewedOn": "2026-11-11",
       "mode": "source-and-renderer",
       "notes": "Paragraphs ≤154 visible chars; remaining 3–4-sentence warnings are short source-attribution paragraphs kept beside claims. Tone colors on short phrases only; numbers/URLs unchanged. Static HTML check: every table wrapped for horizontal scroll, no undefined/NaN. Real 390px/1440px browser rendering not inspected."
+    },
+    "kr/hanwha-aerospace-2026-q3": {
+      "hash": "198535398fc22a8071fa25cd8a6d1d46ac688d2c57286d090604c4804ca4eedc",
+      "reviewedOn": "2026-11-11",
+      "mode": "source-and-renderer",
+      "notes": "Source review: paragraph-rhythm warnings only (all <200 chars); split Summary lead where topic changed; colors limited to short phrases with legend; broker quotes and numbers checked against PDFs/DART. Static HTML inspected from local build; 390px/1440px and dark-mode visual checks not performed in a browser."
+    },
+    "kr/kai-2026-q3": {
+      "hash": "6c73a8363c79d873ce64d51a1c60501aa865678aa0c26a8d947532091bf67181",
+      "reviewedOn": "2026-11-11",
+      "mode": "source-and-renderer",
+      "notes": "Source review: paragraph-rhythm warnings only (all <200 chars); split Summary lead where topic changed; colors limited to short phrases with legend; broker quotes and numbers checked against PDFs/DART. Static HTML inspected from local build; 390px/1440px and dark-mode visual checks not performed in a browser."
+    },
+    "kr/lig-dna-2026-q3": {
+      "hash": "e9a5240fd854741cce97b66ea9eec5fc5ec6e9098e8e0bf7fb993f374aeed99c",
+      "reviewedOn": "2026-11-11",
+      "mode": "source-and-renderer",
+      "notes": "Source review: paragraph-rhythm warnings only (all <200 chars); colors limited to short phrases with legend; broker quotes and numbers checked against PDFs/DART; fixed nested-bracket Sources labels. Static HTML inspected from local build; 390px/1440px and dark-mode visual checks not performed in a browser."
+    },
+    "kr/hanwha-systems-2026-q3": {
+      "hash": "b9b32a2e54d8127988de56529d5263bc19a97d448f7d473e34fe934bf57647a9",
+      "reviewedOn": "2026-11-11",
+      "mode": "source-and-renderer",
+      "notes": "Source review: paragraph-rhythm warnings only (all <200 chars); split Summary lead where topic changed; colors limited to short phrases with legend; broker quotes and numbers checked against PDFs/DART. Static HTML inspected from local build; 390px/1440px and dark-mode visual checks not performed in a browser."
     }
   }
 }
