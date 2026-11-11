@@ -22,7 +22,7 @@
     }
   },
   "indexNow": {
-    "key": "",
+    "key": "7e431da7b5bb0bc38f4ba33614ed637e",
     "endpoints": [
       "https://api.indexnow.org/indexnow",
       "https://searchadvisor.naver.com/indexnow"
