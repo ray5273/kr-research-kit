@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.35] - 2026-11-11
+
+### Commits
+
+- Add 2026Q3 earnings reviews for Hanwha Ocean, Samsung Heavy and HD Hyundai Heavy ([cfc5011](https://github.com/ray5273/kr-research-kit/commit/cfc5011972f71994a3b1c361aece7499f3ff4e32))
+- Add 2026Q3 earnings reviews for S-Oil and HD Hyundai ([6ae1c74](https://github.com/ray5273/kr-research-kit/commit/6ae1c744f5166ee716eb59831492cfd7d6ce95be))
+- Add 2026Q3 earnings reviews for four defense companies ([146cb84](https://github.com/ray5273/kr-research-kit/commit/146cb843a042277b47c6f8b534368000adea95cf))
+
 ## [0.4.34] - 2026-11-10
 
 ### Commits
