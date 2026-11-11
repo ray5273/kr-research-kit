@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.36] - 2026-11-11
+
+### Commits
+
+- Turn on IndexNow pings for the research site ([30b7b14](https://github.com/ray5273/kr-research-kit/commit/30b7b141760b4f65affad28bd15ccbf618dda789))
+
 ## [0.4.35] - 2026-11-11
 
 ### Commits
