@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 1,
+  "company": {
+    "name": "HD현대",
+    "market": "kr",
+    "ticker": "267250"
+  },
+  "asOf": "2026-11-11",
+  "verifiedAt": "2026-11-11",
+  "period": "2026Q3",
+  "accountingBasis": "K-IFRS 연결",
+  "unit": "억원",
+  "quarterSource": {
+    "2024-Q4": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260212800546",
+      "revenue": 170972,
+      "operatingProfit": 8782,
+      "pretax": 9525,
+      "netIncome": 2027
+    },
+    "2025-Q1": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260513800488",
+      "revenue": 170869,
+      "operatingProfit": 12864,
+      "pretax": 10642,
+      "netIncome": 2192
+    },
+    "2025-Q2": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260731800765",
+      "revenue": 172111,
+      "operatingProfit": 11389,
+      "pretax": 5875,
+      "netIncome": 1212
+    },
+    "2025-Q3": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261028800319",
+      "revenue": 182243,
+      "operatingProfit": 17024,
+      "pretax": 13788,
+      "netIncome": 1746
+    },
+    "2025-Q4": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260212800546",
+      "revenue": 187371,
+      "operatingProfit": 19719,
+      "pretax": 17661,
+      "netIncome": 4477
+    },
+    "2026-Q1": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260513800488",
+      "revenue": 196019,
+      "operatingProfit": 28348,
+      "pretax": 28284,
+      "netIncome": 7812
+    },
+    "2026-Q2": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260731800765",
+      "revenue": 224094,
+      "operatingProfit": 41246,
+      "pretax": 44334,
+      "netIncome": 13311
+    },
+    "2026-Q3": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261028800319",
+      "revenue": 220800,
+      "operatingProfit": 29197,
+      "pretax": 20823,
+      "netIncome": 5564
+    }
+  },
+  "cashFlowDerivation": {
+    "method": "OpenDART fnlttSinglAcntAll(CFS) 각 보고서의 당기 누적값을 직전 누적값과 차감. 4분기=연간−9개월. 투자지출=유형자산의 취득+무형자산의 취득.",
+    "rows": [
+      {
+        "period": "2024-Q4",
+        "report": "2024-11011",
+        "rcept_no": "20250319001012",
+        "cumulative": {
+          "ocf": 75115,
+          "capex": 18688
+        },
+        "operatingCashFlow": 28971,
+        "capex": 5247,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "연간 − 9개월 누적"
+      },
+      {
+        "period": "2025-Q1",
+        "report": "2025-11013",
+        "rcept_no": "20250515002785",
+        "cumulative": {
+          "ocf": 27286,
+          "capex": 5849
+        },
+        "operatingCashFlow": 27286,
+        "capex": 5849,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "1분기 누적 그대로"
+      },
+      {
+        "period": "2025-Q2",
+        "report": "2025-11012",
+        "rcept_no": "20250814003383",
+        "cumulative": {
+          "ocf": 44282,
+          "capex": 9911
+        },
+        "operatingCashFlow": 16996,
+        "capex": 4062,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "누적 − 직전 누적"
+      },
+      {
+        "period": "2025-Q3",
+        "report": "2025-11014",
+        "rcept_no": "20251114002262",
+        "cumulative": {
+          "ocf": 71529,
+          "capex": 15026
+        },
+        "operatingCashFlow": 27247,
+        "capex": 5115,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "누적 − 직전 누적"
+      },
+      {
+        "period": "2025-Q4",
+        "report": "2025-11011",
+        "rcept_no": "20260320000872",
+        "cumulative": {
+          "ocf": 73849,
+          "capex": 22889
+        },
+        "operatingCashFlow": 2320,
+        "capex": 7863,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "연간 − 9개월 누적"
+      },
+      {
+        "period": "2026-Q1",
+        "report": "2026-11013",
+        "rcept_no": "20260515002071",
+        "cumulative": {
+          "ocf": 23816,
+          "capex": 4779
+        },
+        "operatingCashFlow": 23816,
+        "capex": 4779,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "1분기 누적 그대로"
+      },
+      {
+        "period": "2026-Q2",
+        "report": "2026-11012",
+        "rcept_no": "20260814003420",
+        "cumulative": {
+          "ocf": 59555,
+          "capex": 11312
+        },
+        "operatingCashFlow": 35739,
+        "capex": 6533,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "누적 − 직전 누적"
+      }
+    ]
+  },
+  "netDebt": {
+    "asOf": "2026-06-30",
+    "basis": "연결",
+    "report": "20260814003420",
+    "items": {
+      "기타금융부채(유동)": 73297,
+      "기타금융부채(비유동)": 93320,
+      "리스부채(유동)": 4552,
+      "리스부채(비유동)": 15468,
+      "현금및현금성자산": -139529,
+      "기타금융자산(유동)": -28388,
+      "기타금융자산(비유동)": -2541
+    },
+    "value": 16179,
+    "notIncluded": {
+      "비지배지분": 226341,
+      "계약부채(유동+비유동)": 172089,
+      "파생상품부채(유동+비유동)": 41126
+    },
+    "collectorNote": "balance.json은 차입금 계정을 찾지 못했다(연결 재무상태표가 차입금을 기타금융부채로 표시). 기타금융부채 전액을 차입성 부채로 합산."
+  },
+  "nav": {
+    "source": "대신증권 2026-10-29 표 1 SOTP",
+    "unit": "십억원",
+    "영업가치(로열티·임대료)": 2138,
+    "지분가치 합계": 19745,
+    "별도 순차입금": 2262,
+    "NAV": 19621,
+    "주당 NAV": 277650,
+    "목표 할인율": 25,
+    "stakes": {
+      "HD현대오일뱅크": 73.9,
+      "HD현대마린솔루션": 55.3,
+      "HD한국조선해양": 35.1,
+      "HD현대일렉트릭": 35.4,
+      "HD현대사이트솔루션": 100.0,
+      "HD현대로보틱스": 81.8
+    },
+    "discountHistory": {
+      "period": "2020~2026 (대신 그림 1)",
+      "avg": 53.9,
+      "min": 36.9,
+      "max": 74.2
+    },
+    "impliedPE": {
+      "bear": {
+        "discount": 74.2,
+        "price": 71634,
+        "pe": 1.9
+      },
+      "base": {
+        "discount": 53.9,
+        "price": 127997,
+        "pe": 3.4
+      },
+      "bull": {
+        "discount": 36.9,
+        "price": 175197,
+        "pe": 4.7
+      }
+    }
+  },
+  "subsidiaries3Q26": {
+    "source": "대신증권 2026-10-29",
+    "unit": "억원",
+    "HD현대오일뱅크": {
+      "매출": 100437,
+      "영업이익": 9009
+    },
+    "HD한국조선해양": {
+      "매출": 82862,
+      "영업이익": 14472
+    },
+    "HD현대사이트솔루션": {
+      "매출": 21756,
+      "영업이익": 2002
+    },
+    "HD현대일렉트릭": {
+      "매출": 11799,
+      "영업이익": 2845
+    },
+    "HD현대마린솔루션": {
+      "매출": 6501,
+      "영업이익": 957
+    },
+    "HD현대로보틱스": {
+      "영업이익": 13
+    }
+  },
+  "exchangeableBond": {
+    "rcept": "20261027000277",
+    "amount": 588667443000,
+    "coupon": 0.0,
+    "maturity": "2031-11-26",
+    "exchangePrice": 247000,
+    "target": "HD현대마린솔루션 보통주",
+    "use": "채무상환자금",
+    "put": "2029-11-26부터 3개월마다"
+  },
+  "dividend": {
+    "rcept": "20261027800433",
+    "dps": 1300,
+    "yield": 0.92,
+    "total": 91868959000,
+    "recordDate": "2026-11-11",
+    "payDate": "2026-12-03"
+  },
+  "brokerTargets": {
+    "대신증권": {
+      "date": "2026-10-29",
+      "target": 210000,
+      "prior": 290000
+    },
+    "미래에셋증권": {
+      "date": "2026-10-29",
+      "target": 210000,
+      "prior": 280000
+    }
+  },
+  "daishinEstimateChange": {
+    "unit": "십억원",
+    "2026F": {
+      "영업이익": [
+        13648,
+        12979
+      ],
+      "지배순이익": [
+        6830,
+        3629
+      ],
+      "EPS": [
+        86459,
+        45937
+      ]
+    },
+    "2027F": {
+      "영업이익": [
+        11184,
+        12964
+      ],
+      "지배순이익": [
+        4211,
+        3313
+      ],
+      "EPS": [
+        53310,
+        41938
+      ]
+    }
+  },
+  "eps": {
+    "source": "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=267250",
+    "retrievedAt": "2026-11-11",
+    "scope": "지배주주",
+    "2026E": 39713,
+    "2027E": 37516,
+    "2028E": 41201,
+    "operatingProfit": {
+      "2026E": 129427,
+      "2027E": 125376,
+      "2028E": 133801
+    }
+  },
+  "oneOffEstimates": "회사 금액 비공개. 재고평가 이익 약 +800억원(대신 전언).",
+  "preliminaryDisclosures": "각 분기 연결 잠정실적 원문(OpenDART document.xml). 이번 분기 원문은 sources/에 보존."
+}

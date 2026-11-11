@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "companyId": "kr/010950",
+  "period": "2026-Q3",
+  "releasedAt": "2026-11-02",
+  "targetCutoff": "2026-11-01",
+  "selectedSnapshotAt": "2026-10-30",
+  "recoveredAt": "2026-11-11",
+  "selection": "발표 전날까지의 주간 시계열 중 마지막 관측점(10/30). 발표직전(E) 표와 같다.",
+  "provider": "FnGuide CompanyWise",
+  "aggregation": "최근 3개월 증권사 추정치 평균 (제공자 정의); 지표별 기여 증권사 수 미제공",
+  "incomeDefinition": "IFRS 연결 당기순이익(지배·비지배 합계).",
+  "metrics": [
+    {
+      "key": "revenue",
+      "accountCode": "121000",
+      "snapshotDate": "2026-10-30",
+      "period": "2026-Q3",
+      "unit": "억원",
+      "basis": "연결 K-IFRS · 분기",
+      "value": 114412,
+      "rawValue": 114411.53846153851,
+      "preReleaseTable": "114,411.5",
+      "actual": 119687,
+      "delta": 5275,
+      "locator": "chartData.TRD_DT=2026/10/30, CNS_FY0 (2026/09(E))",
+      "sourceUrl": "https://comp.wisereport.co.kr/company/ajax/c1050001_data.aspx?flag=5&cmp_cd=010950&finGubun=IFRSL&frq=1&sDT=20261111&acc_cd=121000",
+      "rawSha256": "7ee1a6c902c68d5c99f364a9370ae1a1ef31ce86ea6bb02398f0092cdeb7eb7f"
+    },
+    {
+      "key": "operatingProfit",
+      "accountCode": "121500",
+      "snapshotDate": "2026-10-30",
+      "period": "2026-Q3",
+      "unit": "억원",
+      "basis": "연결 K-IFRS · 분기",
+      "value": 11910,
+      "rawValue": 11909.8461538462,
+      "preReleaseTable": "11,909.8",
+      "actual": 14067,
+      "delta": 2157,
+      "locator": "chartData.TRD_DT=2026/10/30, CNS_FY0 (2026/09(E))",
+      "sourceUrl": "https://comp.wisereport.co.kr/company/ajax/c1050001_data.aspx?flag=5&cmp_cd=010950&finGubun=IFRSL&frq=1&sDT=20261111&acc_cd=121500",
+      "rawSha256": "a34e0053ec27b2d8d70e71048c2fd228110fa328eb7872dd3dc07032d114d987"
+    },
+    {
+      "key": "netIncome",
+      "accountCode": "122700",
+      "snapshotDate": "2026-10-30",
+      "period": "2026-Q3",
+      "unit": "억원",
+      "basis": "연결 K-IFRS · 분기",
+      "value": 8749,
+      "rawValue": 8748.625,
+      "preReleaseTable": "8,748.6",
+      "actual": 14356,
+      "delta": 5607,
+      "locator": "chartData.TRD_DT=2026/10/30, CNS_FY0 (2026/09(E))",
+      "sourceUrl": "https://comp.wisereport.co.kr/company/ajax/c1050001_data.aspx?flag=5&cmp_cd=010950&finGubun=IFRSL&frq=1&sDT=20261111&acc_cd=122700",
+      "rawSha256": "0d8281bc2beae362ce0a667db98ddad566a18620712d04052066af112c1c8730"
+    }
+  ]
+}

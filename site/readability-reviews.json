@@ -153,6 +153,36 @@
       "reviewedOn": "2026-11-10",
       "mode": "source-and-renderer",
       "notes": "Recheck pass: corrected level-change thresholds against research.js (550억→중립, −130억→매도), filled 2025Q3/Q4 lease repayment, provisions 1,915 consistency. Table-cell text edits only; prior 390/1440px browser review layout unchanged, not re-inspected."
+    },
+    "kr/hanwha-ocean-2026-q3": {
+      "hash": "6510980c6271eb09510589ede67cc5b0368ce38d712cfd0d75ea341deb05b487",
+      "reviewedOn": "2026-11-11",
+      "mode": "source-and-renderer",
+      "notes": "Paragraphs ≤154 visible chars; remaining 3–4-sentence warnings are short source-attribution paragraphs kept beside claims. Tone colors on short phrases only; numbers/URLs unchanged. Static HTML check: every table wrapped for horizontal scroll, no undefined/NaN. Real 390px/1440px browser rendering not inspected."
+    },
+    "kr/samsung-heavy-2026-q3": {
+      "hash": "8d329f481cc7d37b55d22cb9979d4132f7e2449364eeb13bf860e71590e10e2e",
+      "reviewedOn": "2026-11-11",
+      "mode": "source-and-renderer",
+      "notes": "Paragraphs ≤154 visible chars; remaining 3–4-sentence warnings are short source-attribution paragraphs kept beside claims. Tone colors on short phrases only; numbers/URLs unchanged. Static HTML check: every table wrapped for horizontal scroll, no undefined/NaN. Real 390px/1440px browser rendering not inspected."
+    },
+    "kr/hd-hyundai-heavy-2026-q3": {
+      "hash": "90afa6d0cea796a3d7e222a9a0a4ab6e294b4f339a48b9833f223031f9a7bf2f",
+      "reviewedOn": "2026-11-11",
+      "mode": "source-and-renderer",
+      "notes": "Paragraphs ≤154 visible chars; remaining 3–4-sentence warnings are short source-attribution paragraphs kept beside claims. Tone colors on short phrases only; numbers/URLs unchanged. Static HTML check: every table wrapped for horizontal scroll, no undefined/NaN. Real 390px/1440px browser rendering not inspected."
+    },
+    "kr/s-oil-2026-q3": {
+      "hash": "f2346edb6b5bc6bf765ee91bb13452a5e5f61192e9f22bfe44bb80624063a5b8",
+      "reviewedOn": "2026-11-11",
+      "mode": "source-and-renderer",
+      "notes": "Paragraphs ≤154 visible chars; remaining 3–4-sentence warnings are short source-attribution paragraphs kept beside claims. Tone colors on short phrases only; numbers/URLs unchanged. Static HTML check: every table wrapped for horizontal scroll, no undefined/NaN. Real 390px/1440px browser rendering not inspected."
+    },
+    "kr/hd-hyundai-2026-q3": {
+      "hash": "fbbee919203a7697bcb557d0b4938f1fae4e7db556941c4bed306b95da30f00e",
+      "reviewedOn": "2026-11-11",
+      "mode": "source-and-renderer",
+      "notes": "Paragraphs ≤154 visible chars; remaining 3–4-sentence warnings are short source-attribution paragraphs kept beside claims. Tone colors on short phrases only; numbers/URLs unchanged. Static HTML check: every table wrapped for horizontal scroll, no undefined/NaN. Real 390px/1440px browser rendering not inspected."
     }
   }
 }

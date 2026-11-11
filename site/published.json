@@ -233,6 +233,60 @@
       ]
     },
     {
+      "memo": "analysis-example/kr/S-Oil-2026Q3/memo.md",
+      "slug": "kr/s-oil-2026-q3",
+      "company": "S-Oil",
+      "ticker": "010950",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/010950",
+      "analysisData": "analysis-example/kr/S-Oil-2026Q3/analysis-data.json",
+      "headline": "S-Oil 3분기: 윤활기유·래깅으로 영업이익 18% 상회, 현금은 아직 재고에 묶였다",
+      "summary": "분기 최대 영업이익 1조 4,067억원을 윤활기유·정유 래깅·환율로 나누고, 상반기 음수였던 영업현금흐름과 발표 후 4곳의 엇갈린 추정 변경을 정리한다. 이익이 났던 해의 P/E로 12개월·24개월 목표가를 계산한다.",
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "sectors": [
+        "정유·가스"
+      ],
+      "coverArt": false,
+      "tags": [
+        "S-Oil",
+        "010950",
+        "실적리뷰",
+        "정유",
+        "2026년3분기"
+      ]
+    },
+    {
+      "memo": "analysis-example/kr/HD현대-2026Q3/memo.md",
+      "slug": "kr/hd-hyundai-2026-q3",
+      "company": "HD현대",
+      "ticker": "267250",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/267250",
+      "analysisData": "analysis-example/kr/HD현대-2026Q3/analysis-data.json",
+      "headline": "HD현대 3분기: 오일뱅크 이익 반토막, 주가는 과거 평균 NAV 할인율 근처",
+      "summary": "연결 영업이익 2조 9,197억원의 컨센서스 하회를 자회사별로 나누고, 지배주주 순이익과 비지배지분 몫, 교환사채·분기배당을 정리한다. 대신증권 NAV와 과거 할인율을 P/E로 환산해 12개월·24개월 목표가를 계산한다.",
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "sectors": [
+        "지주사"
+      ],
+      "coverArt": false,
+      "tags": [
+        "HD현대",
+        "267250",
+        "실적리뷰",
+        "지주사",
+        "2026년3분기"
+      ]
+    },
+    {
       "memo": "analysis-example/kr/포스코퓨처엠/memo.md",
       "slug": "kr/posco-future-m-2026-q3",
       "company": "포스코퓨처엠",

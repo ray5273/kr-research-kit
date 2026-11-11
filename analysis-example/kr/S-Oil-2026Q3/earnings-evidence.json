@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 1,
+  "company": {
+    "name": "S-Oil",
+    "market": "kr",
+    "ticker": "010950"
+  },
+  "asOf": "2026-11-11",
+  "verifiedAt": "2026-11-11",
+  "period": "2026Q3",
+  "accountingBasis": "K-IFRS 연결",
+  "unit": "억원",
+  "quarterSource": {
+    "2024-Q4": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260126800097",
+      "revenue": 89171,
+      "operatingProfit": 2224,
+      "pretax": -2464,
+      "netIncome": -1317
+    },
+    "2025-Q1": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260511800112",
+      "revenue": 89905,
+      "operatingProfit": -215,
+      "pretax": -674,
+      "netIncome": -446
+    },
+    "2025-Q2": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260803800274",
+      "revenue": 80485,
+      "operatingProfit": -3440,
+      "pretax": -1063,
+      "netIncome": -668
+    },
+    "2025-Q3": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261102800404",
+      "revenue": 84154,
+      "operatingProfit": 2292,
+      "pretax": 815,
+      "netIncome": 632
+    },
+    "2025-Q4": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260511800112",
+      "revenue": 87926,
+      "operatingProfit": 3719,
+      "pretax": 2654,
+      "netIncome": 2251
+    },
+    "2026-Q1": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260511800112",
+      "revenue": 89427,
+      "operatingProfit": 12311,
+      "pretax": 9914,
+      "netIncome": 7210
+    },
+    "2026-Q2": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260803800274",
+      "revenue": 113435,
+      "operatingProfit": 9650,
+      "pretax": 7055,
+      "netIncome": 5146
+    },
+    "2026-Q3": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261102800404",
+      "revenue": 119687,
+      "operatingProfit": 14067,
+      "pretax": 19717,
+      "netIncome": 14356
+    }
+  },
+  "cashFlowDerivation": {
+    "method": "OpenDART fnlttSinglAcntAll(CFS) 각 보고서의 당기 누적값을 직전 누적값과 차감. 4분기=연간−9개월. 투자지출=유형자산의 취득+무형자산의 취득.",
+    "rows": [
+      {
+        "period": "2024-Q4",
+        "report": "2024-11011",
+        "rcept_no": "20250319000503",
+        "cumulative": {
+          "ocf": 14676,
+          "capex": 30693
+        },
+        "operatingCashFlow": 14569,
+        "capex": 14412,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "연간 − 9개월 누적"
+      },
+      {
+        "period": "2025-Q1",
+        "report": "2025-11013",
+        "rcept_no": "20250515000913",
+        "cumulative": {
+          "ocf": 7924,
+          "capex": 6078
+        },
+        "operatingCashFlow": 7924,
+        "capex": 6078,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "1분기 누적 그대로"
+      },
+      {
+        "period": "2025-Q2",
+        "report": "2025-11012",
+        "rcept_no": "20250814001011",
+        "cumulative": {
+          "ocf": 11940,
+          "capex": 17452
+        },
+        "operatingCashFlow": 4016,
+        "capex": 11374,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "누적 − 직전 누적"
+      },
+      {
+        "period": "2025-Q3",
+        "report": "2025-11014",
+        "rcept_no": "20251114000744",
+        "cumulative": {
+          "ocf": 20847,
+          "capex": 26645
+        },
+        "operatingCashFlow": 8907,
+        "capex": 9193,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "누적 − 직전 누적"
+      },
+      {
+        "period": "2025-Q4",
+        "report": "2025-11011",
+        "rcept_no": "20260320000559",
+        "cumulative": {
+          "ocf": 39423,
+          "capex": 39086
+        },
+        "operatingCashFlow": 18576,
+        "capex": 12441,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "연간 − 9개월 누적"
+      },
+      {
+        "period": "2026-Q1",
+        "report": "2026-11013",
+        "rcept_no": "20260515000478",
+        "cumulative": {
+          "ocf": -5239,
+          "capex": 4378
+        },
+        "operatingCashFlow": -5239,
+        "capex": 4378,
+        "capexAccounts": [
+          "유형자산의 취득"
+        ],
+        "note": "1분기 누적 그대로"
+      },
+      {
+        "period": "2026-Q2",
+        "report": "2026-11012",
+        "rcept_no": "20260814000827",
+        "cumulative": {
+          "ocf": -5670,
+          "capex": 10549
+        },
+        "operatingCashFlow": -431,
+        "capex": 6171,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "누적 − 직전 누적"
+      }
+    ]
+  },
+  "netDebt": {
+    "asOf": "2026-06-30",
+    "basis": "연결",
+    "report": "20260814000827",
+    "items": {
+      "차입금(유동)": 35676,
+      "차입금(비유동)": 55142,
+      "현금및현금성자산": -15502
+    },
+    "value": 75316,
+    "notIncluded": {
+      "파생상품부채": 553,
+      "파생상품자산(유동+비유동)": 1330,
+      "기타금융자산(유동+비유동)": 1066
+    }
+  },
+  "restatement2025Q4": {
+    "original": {
+      "rcept": "20260126800097",
+      "operatingProfit": 4245,
+      "pretax": 3179,
+      "netIncome": 2650
+    },
+    "revised": {
+      "rcept": "20260511800112",
+      "operatingProfit": 3719,
+      "pretax": 2654,
+      "netIncome": 2251
+    }
+  },
+  "segments3Q26": {
+    "source": "미래에셋증권·하나증권 2026-11-03 (회사 IR 기준)",
+    "unit": "억원",
+    "정유": {
+      "영업이익": 6904,
+      "래깅 이익": "2,680(미래)~약 3,000(하나)",
+      "환율 효과": "약 −3,000(하나)"
+    },
+    "윤활기유": {
+      "영업이익": 7427,
+      "이익률": 48.1
+    },
+    "석유화학": {
+      "영업이익": -264
+    }
+  },
+  "historicalPE": {
+    "source": "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=010950",
+    "2021": 7.25,
+    "2022": 4.62,
+    "2023": 8.55,
+    "2025": 54.69,
+    "roe": {
+      "2021": 21.76,
+      "2022": 27.2,
+      "2023": 10.83,
+      "2027E": 21.3,
+      "2028E": 15.72
+    }
+  },
+  "brokerTargets": {
+    "하나증권": {
+      "date": "2026-11-03",
+      "target": 180000,
+      "prior": 220000
+    },
+    "유진투자증권": {
+      "date": "2026-11-03",
+      "target": 180000,
+      "prior": 180000
+    },
+    "iM증권": {
+      "date": "2026-11-03",
+      "target": 170000,
+      "prior": 170000
+    },
+    "미래에셋증권": {
+      "date": "2026-11-03",
+      "target": 156000,
+      "prior": 150000
+    }
+  },
+  "eps": {
+    "source": "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=010950",
+    "retrievedAt": "2026-11-11",
+    "2026E": 30518,
+    "2027E": 24204,
+    "2028E": 20404,
+    "operatingProfit": {
+      "2026E": 48440,
+      "2027E": 38393,
+      "2028E": 32444
+    }
+  },
+  "oneOffEstimates": "회사 금액 비공개. 래깅 이익 2,680억원(미래)~약 3,000억원(하나), 재고관련손실 약 200억원(하나)~294억원(iM).",
+  "preliminaryDisclosures": "각 분기 연결 잠정실적 원문(OpenDART document.xml). 이번 분기 원문은 sources/에 보존."
+}
