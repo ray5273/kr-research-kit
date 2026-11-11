@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.37] - 2026-11-11
+
+### Commits
+
+- Put the Kakao share key in the site config ([0073216](https://github.com/ray5273/kr-research-kit/commit/0073216a1a30651459610fb51decd4eb8560b3a8))
+
 ## [0.4.36] - 2026-11-11
 
 ### Commits
