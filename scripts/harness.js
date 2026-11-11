@@ -1070,12 +1070,13 @@ function runGate(opts) {
       for (let k = idx + 1; idx >= 0 && k < lines.length && !/^## /.test(lines[k]); k++) text += lines[k] + "\n";
       const fmt = (v) => v.toLocaleString("ko-KR");
       const t = data.targets;
+      // P/E targets have no EV bridge: the section lists EPS and prices, not net debt or shares.
+      const pe = t.basis === "P/E";
       const needed = [
         "목표가 =",
-        fmt(t.netDebt.value),
-        fmt(t.shares.value),
+        ...(pe ? [] : [fmt(t.netDebt.value), fmt(t.shares.value)]),
         `${t.multiples.base}배`,
-        ...horizonTargets(t).flatMap((h) => [fmt(h.operatingProfit), h.prices.base === null ? "음수" : fmt(h.prices.base)]),
+        ...horizonTargets(t).flatMap((h) => [fmt(pe ? h.eps : h.operatingProfit), h.prices.base === null ? "음수" : fmt(h.prices.base)]),
       ];
       const missing = idx < 0 ? ["## 목표가 계산 기준"] : needed.filter((s) => !text.includes(s));
       checks.push({

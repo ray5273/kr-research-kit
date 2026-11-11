@@ -1,0 +1,300 @@
+{
+  "schemaVersion": 1,
+  "company": {
+    "name": "한화오션",
+    "market": "kr",
+    "ticker": "042660"
+  },
+  "asOf": "2026-11-11",
+  "verifiedAt": "2026-11-11",
+  "period": "2026Q3",
+  "accountingBasis": "K-IFRS 연결",
+  "unit": "억원",
+  "quarterSource": {
+    "2024-Q4": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260213801819",
+      "revenue": 32532,
+      "operatingProfit": 1690,
+      "pretax": 2252,
+      "netIncome": 5794
+    },
+    "2025-Q1": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260427800352",
+      "revenue": 31431,
+      "operatingProfit": 2586,
+      "pretax": 2172,
+      "netIncome": 2157
+    },
+    "2025-Q2": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260727800227",
+      "revenue": 32941,
+      "operatingProfit": 3717,
+      "pretax": 1507,
+      "netIncome": 1485
+    },
+    "2025-Q3": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261027800240",
+      "revenue": 30234,
+      "operatingProfit": 2898,
+      "pretax": 2726,
+      "netIncome": 2694
+    },
+    "2025-Q4": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260213801819",
+      "revenue": 33229,
+      "operatingProfit": 2475,
+      "pretax": 2019,
+      "netIncome": 6123
+    },
+    "2026-Q1": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260427800352",
+      "revenue": 32099,
+      "operatingProfit": 4411,
+      "pretax": 5064,
+      "netIncome": 5000
+    },
+    "2026-Q2": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260727800227",
+      "revenue": 54432,
+      "operatingProfit": 7361,
+      "pretax": 6686,
+      "netIncome": 6926
+    },
+    "2026-Q3": {
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261027800240",
+      "revenue": 34139,
+      "operatingProfit": 4857,
+      "pretax": 1117,
+      "netIncome": 1451
+    }
+  },
+  "cashFlowDerivation": {
+    "method": "OpenDART fnlttSinglAcntAll(CFS) 각 보고서의 당기 누적값을 직전 누적값과 차감. 4분기=연간−9개월. 투자지출=유형자산의 취득+무형자산의 취득.",
+    "rows": [
+      {
+        "period": "2024-Q4",
+        "report": "2024-11011",
+        "rcept_no": "20250314001630",
+        "cumulative": {
+          "ocf": -29046,
+          "capex": 3793
+        },
+        "operatingCashFlow": -2547,
+        "capex": 1245,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "연간 − 9개월 누적"
+      },
+      {
+        "period": "2025-Q1",
+        "report": "2025-11013",
+        "rcept_no": "20250513000657",
+        "cumulative": {
+          "ocf": 2224,
+          "capex": 954
+        },
+        "operatingCashFlow": 2224,
+        "capex": 954,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "1분기 누적 그대로"
+      },
+      {
+        "period": "2025-Q2",
+        "report": "2025-11012",
+        "rcept_no": "20250812000676",
+        "cumulative": {
+          "ocf": 8479,
+          "capex": 1620
+        },
+        "operatingCashFlow": 6255,
+        "capex": 666,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "누적 − 직전 누적"
+      },
+      {
+        "period": "2025-Q3",
+        "report": "2025-11014",
+        "rcept_no": "20251112000440",
+        "cumulative": {
+          "ocf": 5077,
+          "capex": 3972
+        },
+        "operatingCashFlow": -3402,
+        "capex": 2352,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "누적 − 직전 누적"
+      },
+      {
+        "period": "2025-Q4",
+        "report": "2025-11011",
+        "rcept_no": "20260317000644",
+        "cumulative": {
+          "ocf": 13147,
+          "capex": 7166
+        },
+        "operatingCashFlow": 8070,
+        "capex": 3194,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "연간 − 9개월 누적"
+      },
+      {
+        "period": "2026-Q1",
+        "report": "2026-11013",
+        "rcept_no": "20260513000552",
+        "cumulative": {
+          "ocf": 2220,
+          "capex": 1075
+        },
+        "operatingCashFlow": 2220,
+        "capex": 1075,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "1분기 누적 그대로"
+      },
+      {
+        "period": "2026-Q2",
+        "report": "2026-11012",
+        "rcept_no": "20260812000829",
+        "cumulative": {
+          "ocf": 10402,
+          "capex": 3059
+        },
+        "operatingCashFlow": 8182,
+        "capex": 1984,
+        "capexAccounts": [
+          "무형자산의 취득",
+          "유형자산의 취득"
+        ],
+        "note": "누적 − 직전 누적"
+      }
+    ]
+  },
+  "netDebt": {
+    "asOf": "2026-06-30",
+    "basis": "연결",
+    "report": "20260812000829",
+    "items": {
+      "차입금 및 사채(유동)": 33874,
+      "장기차입금 및 사채": 26501,
+      "유동리스부채": 408,
+      "비유동리스부채": 1092,
+      "현금및현금성자산": -14462
+    },
+    "value": 47413,
+    "notIncluded": {
+      "계약부채": 37480,
+      "계약자산": 58998,
+      "장기기타금융자산": 2588,
+      "기타금융자산(유동)": 255
+    }
+  },
+  "segments3Q26": {
+    "source": "신한투자증권 2026-10-28 (회사 IR 기준)",
+    "unit": "십억원",
+    "상선": {
+      "매출": 2715,
+      "영업이익": 472,
+      "이익률": 17.4
+    },
+    "특수선": {
+      "매출": 363,
+      "영업이익": -71,
+      "이익률": -19.4
+    },
+    "EPU": {
+      "매출": 528,
+      "영업이익": 91,
+      "이익률": 17.3
+    },
+    "기타": {
+      "매출": -192,
+      "영업이익": -7
+    }
+  },
+  "brokerTargets": {
+    "신한투자증권": {
+      "date": "2026-10-28",
+      "target": 90000,
+      "prior": 130000
+    },
+    "하나증권": {
+      "date": "2026-10-28",
+      "target": 100000,
+      "prior": 175000
+    },
+    "대신증권": {
+      "date": "2026-11-03",
+      "target": 102000,
+      "prior": 139000
+    },
+    "DS투자증권": {
+      "date": "2026-10-28",
+      "target": 100000,
+      "prior": 145000
+    },
+    "유진투자증권": {
+      "date": "2026-10-28",
+      "target": 90000,
+      "prior": 137000
+    },
+    "iM증권": {
+      "date": "2026-10-28",
+      "target": 98000,
+      "prior": 134000
+    },
+    "IBK투자증권": {
+      "date": "2026-10-28",
+      "target": 90000,
+      "prior": 120000
+    },
+    "SK증권": {
+      "date": "2026-10-28",
+      "target": 90000,
+      "prior": 110000
+    },
+    "미래에셋증권": {
+      "date": "2026-10-28",
+      "target": 90000,
+      "prior": 128000
+    }
+  },
+  "brokerMultiples": {
+    "대신 2026-11-03": "28F EPS 7,247원 × P/E 14.1배(글로벌 조선소 피어 12.8배 + 10% 할증)",
+    "신한 2026-10-28": "27·28F 평균 EPS 5,677원 × P/E 16.1배(2007년 조선 4사 평균 16.9배 − 5%)",
+    "SK 2026-10-28": "28F EPS 6,663원 × P/E 13배",
+    "하나 2026-10-28": "28F BPS × P/B 2.5배",
+    "iM 2026-10-28": "27F BPS 28,108원 × P/B 3.5배",
+    "유진 2026-10-28": "28F BPS 35,174원 × P/B 2.7배",
+    "유안타 2026-10-30 (삼성중공업)": "목표 P/E 10배"
+  },
+  "eps": {
+    "source": "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=042660",
+    "retrievedAt": "2026-11-11",
+    "2026E": 5382,
+    "2027E": 5568,
+    "2028E": 6587,
+    "operatingProfit": {
+      "2026E": 21025,
+      "2027E": 21871,
+      "2028E": 25423
+    }
+  },
+  "oneOffEstimates": "회사 금액 비공개. 특수선 영업손실 706억원(공사손실충당부채 포함), 해양 영업이익 914억원(FPSO 체인지오더 포함), 영업외손실 3,740억원(외환손익 포함).",
+  "preliminaryDisclosures": "각 분기 연결 잠정실적 원문(OpenDART document.xml). 이번 분기 원문은 sources/에 보존."
+}

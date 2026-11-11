@@ -152,6 +152,87 @@
       ]
     },
     {
+      "memo": "analysis-example/kr/한화오션-2026Q3/memo.md",
+      "slug": "kr/hanwha-ocean-2026-q3",
+      "company": "한화오션",
+      "ticker": "042660",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/042660",
+      "analysisData": "analysis-example/kr/한화오션-2026Q3/analysis-data.json",
+      "headline": "한화오션 3분기: 상선 마진 17%는 지켰지만 특수선 실망, 주가는 2027년 이익의 8.6배",
+      "summary": "영업이익 4,857억원의 컨센서스 하회를 조업일수·환율·특수선 충당부채로 나누고, 영업외손실 3,740억원과 발표 후 9곳의 목표가 하향을 정리한다. 글로벌 조선소 평균 P/E로 12개월·24개월 목표가를 계산한다.",
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "sectors": [
+        "조선"
+      ],
+      "coverArt": false,
+      "tags": [
+        "한화오션",
+        "042660",
+        "실적리뷰",
+        "조선",
+        "2026년3분기"
+      ]
+    },
+    {
+      "memo": "analysis-example/kr/삼성중공업-2026Q3/memo.md",
+      "slug": "kr/samsung-heavy-2026-q3",
+      "company": "삼성중공업",
+      "ticker": "010140",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/010140",
+      "analysisData": "analysis-example/kr/삼성중공업-2026Q3/analysis-data.json",
+      "headline": "삼성중공업 3분기: 일회성 없이 영업이익 3,384억원, 순이익은 선물환 정리로 예상보다 1,600억원 많아",
+      "summary": "영업이익 3,384억원이 전분기·전년 대비 모두 늘어난 이유를 고선가 수주분 비중과 100% 환헤지로 나누고, 러시아 선물환 청산 이익 약 2,800억원을 순이익에서 분리한다. 글로벌 조선소 평균 P/E로 12개월·24개월 목표가를 계산한다.",
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "sectors": [
+        "조선"
+      ],
+      "coverArt": false,
+      "tags": [
+        "삼성중공업",
+        "010140",
+        "실적리뷰",
+        "조선",
+        "2026년3분기"
+      ]
+    },
+    {
+      "memo": "analysis-example/kr/HD현대중공업-2026Q3/memo.md",
+      "slug": "kr/hd-hyundai-heavy-2026-q3",
+      "company": "HD현대중공업",
+      "ticker": "329180",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/329180",
+      "analysisData": "analysis-example/kr/HD현대중공업-2026Q3/analysis-data.json",
+      "headline": "HD현대중공업 3분기: 환율·휴가·임단협에 영업이익 8% 하회, 주가는 2027년 이익의 7.9배",
+      "summary": "영업이익 8,992억원의 컨센서스 하회를 환율·조업일수·임단협 비용으로 나누고, 내역 없는 영업외손실 4,243억원과 발표 후 8곳의 목표가 하향을 정리한다. 글로벌 조선사 평균 P/E로 12개월·24개월 목표가를 계산한다.",
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "sectors": [
+        "조선"
+      ],
+      "coverArt": false,
+      "tags": [
+        "HD현대중공업",
+        "329180",
+        "실적리뷰",
+        "조선",
+        "2026년3분기"
+      ]
+    },
+    {
       "memo": "analysis-example/kr/포스코퓨처엠/memo.md",
       "slug": "kr/posco-future-m-2026-q3",
       "company": "포스코퓨처엠",

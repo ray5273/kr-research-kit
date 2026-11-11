@@ -1,0 +1,957 @@
+{
+  "version": 1,
+  "companyId": "kr/329180",
+  "period": "2026-Q3",
+  "verifiedAt": "2026-11-11",
+  "releasedAt": "2026-10-28",
+  "basis": "연결 K-IFRS · 분기",
+  "unit": "억원",
+  "stance": "환율·조업일수·임단협 비용으로 전분기보다 이익이 줄고 증권사 목표가도 내려갔지만, 순현금이 4.9조원이고 12개월 상승여력이 62%라 매수",
+  "rationale": "연결 영업이익 8,992억원(이익률 15.6%)은 컨센서스 9,792억원을 8% 밑돌았다. 증권사들은 환율 하락·조업일수 감소·임단협 비용 선반영을 원인으로 들며 일회성을 빼면 이익 체력은 견조하다고 봤다. 순이익은 영업외손실 4,243억원으로 3,543억원에 그쳤다. 발표 후 8곳 중 7곳이 업종 배수 하락과 환율 가정 변경으로 목표가를 낮췄다. 주가는 2027년 EPS 컨센서스 대비 P/E 7.9배이며, 글로벌 조선소 평균 12.8배를 적용한 12개월 목표가는 427,500원이다.",
+  "verdict": "매수",
+  "nextCheck": {
+    "event": "2026Q4 잠정실적",
+    "expected": "2027-01",
+    "conditions": [
+      "3분기 분기보고서(11월 중순)에서 영업외손실 4,243억원의 내역 확인",
+      "임단협 잔여 비용(약 25%) 반영 뒤 4분기 영업이익률 15% 안팎 유지",
+      "육상 발전용 엔진·FDC 신규 수주 공시"
+    ]
+  },
+  "limitations": [
+    "실적은 연결 잠정치다. 회사는 같은 날 별도 잠정실적(영업이익 8,917억원)도 냈고, 이 글은 연결을 쓴다. 과거 분기는 각 연결 잠정공시 원문 값이며 2024Q4·2025Q1·2025Q2·2025Q3는 다음 해 같은 분기 공시의 비교 열에서 읽었다.",
+    "시장 예상은 FnGuide 연결 기준 10/23 주간 관측점(발표직전(E) 표와 같은 값)이다. 기여 증권사 수는 공개되지 않는다.",
+    "사업부 숫자(조선·해양·엔진·함정)와 회사 설명은 발표 후 증권사 보고서(유진·SK·대신 등)의 전언 기준이다. 회사 IR 자료 원문은 확보하지 못했다.",
+    "임단협 비용 선반영 금액은 공개되지 않았다. 영업외손실 4,243억원도 내역이 없다. 본업 이익 하한은 체인지오더 180억원만 뺀 값이며, 임단협 비용을 되돌리면 이익은 더 크다.",
+    "현금흐름은 DART 정기보고서의 연결 누적값을 분기로 차감했다. 3분기는 분기보고서 제출 전이라 비웠다.",
+    "목표가는 P/E 기준이다. 계약부채(선수금) 11.1조원과 파생상품 부채 2.8조원이 커서 EV 계산이 왜곡되기 쉽다. 배수 12.8배는 대신증권이 쓴 글로벌 조선사 피어 평균이며, 증권사들은 2028년 EPS에 배수를 곱하지만 여기서는 12개월에 2027년 EPS를 쓴다.",
+    "순차입금은 재무상태표의 단기금융부채·리스부채에서 현금·단기금융자산을 뺀 값이다. 수집 스크립트의 자동 추출(balance.json)은 단기금융부채 계정을 놓쳐 직접 합산했다.",
+    "가격은 2026-11-10 KRX 종가 264,500원이다. 주식 수는 보통주 104,932,774주(자기주식 제외)다."
+  ],
+  "sources": [
+    {
+      "id": "rpt-2024-Q1",
+      "label": "DART HD현대중공업 2024 1분기보고서 2024-05-16",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240516000877",
+      "publishedAt": "2024-05-16",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2024-Q2",
+      "label": "DART HD현대중공업 2024 반기보고서 2024-08-14",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240814002485",
+      "publishedAt": "2024-08-14",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2024-Q3",
+      "label": "DART HD현대중공업 2024 3분기보고서 2024-11-14",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20241114001816",
+      "publishedAt": "2024-11-14",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2024-Q4",
+      "label": "DART HD현대중공업 2024 사업보고서 2025-03-18",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250318000897",
+      "publishedAt": "2025-03-18",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2025-Q1",
+      "label": "DART HD현대중공업 2025 1분기보고서 2025-05-15",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250515001993",
+      "publishedAt": "2025-05-15",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2025-Q2",
+      "label": "DART HD현대중공업 2025 반기보고서 2025-08-14",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250814002347",
+      "publishedAt": "2025-08-14",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2025-Q3",
+      "label": "DART HD현대중공업 2025 3분기보고서 2025-11-14",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251114001468",
+      "publishedAt": "2025-11-14",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2025-Q4",
+      "label": "DART HD현대중공업 2025 사업보고서 2026-03-20",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320000859",
+      "publishedAt": "2026-03-20",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2026-Q1",
+      "label": "DART HD현대중공업 2026 1분기보고서 2026-05-15",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515001837",
+      "publishedAt": "2026-05-15",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "rpt-2026-Q2",
+      "label": "DART HD현대중공업 2026 반기보고서 2026-08-14",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814002879",
+      "publishedAt": "2026-08-14",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "dart-q3",
+      "label": "DART HD현대중공업 연결 잠정실적 2026-10-28 · 원문 확인",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261028800199",
+      "publishedAt": "2026-10-28",
+      "role": "primary",
+      "access": "read",
+      "verifiedAt": "2026-11-11"
+    },
+    {
+      "id": "dart-2026q2",
+      "label": "DART 연결 잠정실적 2026-07-29 (2026Q2·2025Q2 비교값)",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260729800445",
+      "publishedAt": "2026-07-29",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "dart-2026q1",
+      "label": "DART 연결 잠정실적 2026-05-07 (2026Q1·2025Q1 비교값)",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260507800353",
+      "publishedAt": "2026-05-07",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "dart-2025q4",
+      "label": "DART 연결 잠정실적 2026-02-09 (2025Q4·2024Q4 비교값)",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260209800550",
+      "publishedAt": "2026-02-09",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "dart-orders",
+      "label": "DART 2026-10-19 영업(잠정)실적 (9월 누계 수주 184.85억달러)",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261019800435",
+      "publishedAt": "2026-10-19",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "dart-agm",
+      "label": "DART 2026-11-06 주주총회소집공고 (사내이사 선임)",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261106000113",
+      "publishedAt": "2026-11-06",
+      "role": "primary",
+      "access": "read"
+    },
+    {
+      "id": "consensus-20261023",
+      "label": "FnGuide CompanyWise · 10/23 과거 컨센서스(연결)",
+      "url": "https://comp.wisereport.co.kr/company/c1050001.aspx?cmp_cd=329180",
+      "publishedAt": "2026-10-23",
+      "role": "historical_consensus",
+      "access": "read",
+      "dataAsOf": "2026-10-23",
+      "retrievedAt": "2026-11-11",
+      "verifiedAt": "2026-11-11",
+      "note": "잠정실적(10/28) 전 마지막 주간 관측점. 발표직전(E) 표와 같은 값이다."
+    },
+    {
+      "id": "consensus-annual",
+      "label": "WiseReport 연간 컨센서스(연결) · 2027·2028년 EPS (11/11 확인)",
+      "url": "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=329180",
+      "publishedAt": "2026-11-11",
+      "role": "consensus",
+      "access": "read",
+      "retrievedAt": "2026-11-11",
+      "verifiedAt": "2026-11-11"
+    },
+    {
+      "id": "quote",
+      "label": "네이버 일별 시세 · 2026-11-10 KRX 종가",
+      "url": "https://finance.naver.com/item/sise_day.naver?code=329180",
+      "publishedAt": "2026-11-10",
+      "role": "market_data",
+      "access": "read",
+      "retrievedAt": "2026-11-11",
+      "verifiedAt": "2026-11-11"
+    },
+    {
+      "id": "kiwoom",
+      "label": "키움증권 2026-10-29 3Q26 리뷰 PDF",
+      "url": "https://stock.pstatic.net/stock-research/company/39/20261029_company_793743000.pdf",
+      "publishedAt": "2026-10-29",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "sk",
+      "label": "SK증권 2026-10-29 3Q26 리뷰 PDF",
+      "url": "https://stock.pstatic.net/stock-research/company/64/20261029_company_491442000.pdf",
+      "publishedAt": "2026-10-29",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "eugene",
+      "label": "유진투자증권 2026-10-29 3Q26 리뷰 PDF",
+      "url": "https://stock.pstatic.net/stock-research/company/63/20261029_company_660441000.pdf",
+      "publishedAt": "2026-10-29",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "ds",
+      "label": "DS투자증권 2026-10-29 3Q26 리뷰 PDF",
+      "url": "https://stock.pstatic.net/stock-research/company/66/20261029_company_135382000.pdf",
+      "publishedAt": "2026-10-29",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "mirae",
+      "label": "미래에셋증권 2026-10-29 3Q26 리뷰 PDF (이미지 PDF)",
+      "url": "https://stock.pstatic.net/stock-research/company/56/20261029_company_257067000.pdf",
+      "publishedAt": "2026-10-29",
+      "role": "broker_report",
+      "access": "metadata"
+    },
+    {
+      "id": "ibk",
+      "label": "IBK투자증권 2026-10-29 3Q26 리뷰 PDF",
+      "url": "https://stock.pstatic.net/stock-research/company/40/20261029_company_669504000.pdf",
+      "publishedAt": "2026-10-29",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "daishin",
+      "label": "대신증권 2026-10-29 3Q26 리뷰 PDF",
+      "url": "https://stock.pstatic.net/stock-research/company/15/20261029_company_255938000.pdf",
+      "publishedAt": "2026-10-29",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "im",
+      "label": "iM증권 2026-10-29 3Q26 리뷰 PDF",
+      "url": "https://stock.pstatic.net/stock-research/company/61/20261029_company_188692000.pdf",
+      "publishedAt": "2026-10-29",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "yuanta-shi",
+      "label": "유안타증권 2026-10-30 삼성중공업 리뷰 PDF (목표 P/E 10배, 보수 배수 근거)",
+      "url": "https://stock.pstatic.net/stock-research/company/18/20261030_company_317524000.pdf",
+      "publishedAt": "2026-10-30",
+      "role": "broker_report",
+      "access": "read"
+    },
+    {
+      "id": "shinhan-hwo",
+      "label": "신한투자증권 2026-10-28 한화오션 리뷰 PDF (2007년 조선 4사 평균 P/E 16.9배, 낙관 배수 근거)",
+      "url": "https://stock.pstatic.net/stock-research/company/21/20261028_company_948346000.pdf",
+      "publishedAt": "2026-10-28",
+      "role": "broker_report",
+      "access": "read"
+    }
+  ],
+  "comparison": [
+    {
+      "key": "revenue",
+      "label": "매출액",
+      "market": {
+        "role": "market",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 60185,
+        "publishedAt": "2026-10-23",
+        "source": "consensus-20261023",
+        "status": "추정"
+      },
+      "author": {
+        "role": "author",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": null,
+        "reason": "사전 추정 없음"
+      },
+      "actual": {
+        "role": "actual",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 57536,
+        "publishedAt": "2026-10-28",
+        "source": "dart-q3",
+        "status": "잠정"
+      },
+      "cause": "전분기보다 원/달러 평균 환율이 약 79원 내렸고 휴가·중대재해로 조업일수가 47일로 줄었다(유진·SK 전언). 전년보다는 조선 매출이 44% 늘었다."
+    },
+    {
+      "key": "operatingProfit",
+      "label": "영업이익",
+      "market": {
+        "role": "market",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 9792,
+        "publishedAt": "2026-10-23",
+        "source": "consensus-20261023",
+        "status": "추정"
+      },
+      "author": {
+        "role": "author",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": null,
+        "reason": "사전 추정 없음"
+      },
+      "actual": {
+        "role": "actual",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 8992,
+        "publishedAt": "2026-10-28",
+        "source": "dart-q3",
+        "status": "잠정"
+      },
+      "cause": "환율 하락 약 450억원, 조업일수 감소 약 500억원, 임단협 추가 비용의 약 75% 선반영이 겹쳤다(유진 전언). 해양은 체인지오더 180억원을 포함해 이익률 33.3%를 냈다."
+    },
+    {
+      "key": "netIncome",
+      "label": "당기순이익",
+      "incomeScope": "total",
+      "market": {
+        "role": "market",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 7530,
+        "publishedAt": "2026-10-23",
+        "source": "consensus-20261023",
+        "status": "추정",
+        "incomeScope": "total"
+      },
+      "author": {
+        "role": "author",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": null,
+        "reason": "사전 추정 없음",
+        "incomeScope": "total"
+      },
+      "actual": {
+        "role": "actual",
+        "period": "2026-Q3",
+        "basis": "연결 K-IFRS · 분기",
+        "unit": "억원",
+        "value": 3543,
+        "publishedAt": "2026-10-28",
+        "source": "dart-q3",
+        "status": "잠정",
+        "incomeScope": "total"
+      },
+      "cause": "세전이익 4,749억원이 영업이익보다 4,243억원 적다. 회사·증권사가 영업외손실 내역을 밝히지 않았다. 3분기 분기보고서로 확인한다."
+    }
+  ],
+  "quarters": [
+    {
+      "period": "2024-Q4"
+    },
+    {
+      "period": "2025-Q1"
+    },
+    {
+      "period": "2025-Q2"
+    },
+    {
+      "period": "2025-Q3"
+    },
+    {
+      "period": "2025-Q4"
+    },
+    {
+      "period": "2026-Q1"
+    },
+    {
+      "period": "2026-Q2"
+    },
+    {
+      "period": "2026-Q3"
+    }
+  ],
+  "series": [
+    {
+      "key": "revenue",
+      "label": "매출액",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": 40056,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2025q4",
+          "publishedAt": "2026-02-09"
+        },
+        {
+          "period": "2025-Q1",
+          "value": 38225,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2026q1",
+          "publishedAt": "2026-05-07"
+        },
+        {
+          "period": "2025-Q2",
+          "value": 41471,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2026q2",
+          "publishedAt": "2026-07-29"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 44179,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-10-28"
+        },
+        {
+          "period": "2025-Q4",
+          "value": 51931,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2025q4",
+          "publishedAt": "2026-02-09"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 59163,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2026q1",
+          "publishedAt": "2026-05-07"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 63322,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2026q2",
+          "publishedAt": "2026-07-29"
+        },
+        {
+          "period": "2026-Q3",
+          "value": 57536,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "key": "operatingProfit",
+      "label": "영업이익",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": 2822,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2025q4",
+          "publishedAt": "2026-02-09"
+        },
+        {
+          "period": "2025-Q1",
+          "value": 4337,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2026q1",
+          "publishedAt": "2026-05-07"
+        },
+        {
+          "period": "2025-Q2",
+          "value": 4715,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2026q2",
+          "publishedAt": "2026-07-29"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 5573,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-10-28"
+        },
+        {
+          "period": "2025-Q4",
+          "value": 5750,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2025q4",
+          "publishedAt": "2026-02-09"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 9054,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2026q1",
+          "publishedAt": "2026-05-07"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 10399,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2026q2",
+          "publishedAt": "2026-07-29"
+        },
+        {
+          "period": "2026-Q3",
+          "value": 8992,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "key": "netIncome",
+      "label": "당기순이익",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": 3666,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2025q4",
+          "publishedAt": "2026-02-09"
+        },
+        {
+          "period": "2025-Q1",
+          "value": 2842,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2026q1",
+          "publishedAt": "2026-05-07"
+        },
+        {
+          "period": "2025-Q2",
+          "value": 2109,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2026q2",
+          "publishedAt": "2026-07-29"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 4308,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-10-28"
+        },
+        {
+          "period": "2025-Q4",
+          "value": 4896,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2025q4",
+          "publishedAt": "2026-02-09"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 7738,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2026q1",
+          "publishedAt": "2026-05-07"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 8221,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-2026q2",
+          "publishedAt": "2026-07-29"
+        },
+        {
+          "period": "2026-Q3",
+          "value": 3543,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "source": "dart-q3",
+          "publishedAt": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "key": "operatingCashFlow",
+      "label": "영업현금흐름",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": 14730,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2024-Q4",
+          "publishedAt": "2025-03-18"
+        },
+        {
+          "period": "2025-Q1",
+          "value": 17047,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2025-Q1",
+          "publishedAt": "2025-05-15"
+        },
+        {
+          "period": "2025-Q2",
+          "value": 5014,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2025-Q2",
+          "publishedAt": "2025-08-14"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 15753,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2025-Q3",
+          "publishedAt": "2025-11-14"
+        },
+        {
+          "period": "2025-Q4",
+          "value": -2710,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2025-Q4",
+          "publishedAt": "2026-03-20"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 8834,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2026-Q1",
+          "publishedAt": "2026-05-15"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 18426,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2026-Q2",
+          "publishedAt": "2026-08-14"
+        },
+        {
+          "period": "2026-Q3",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "3분기 분기보고서 제출 전(11월 중순 예정)"
+        }
+      ]
+    },
+    {
+      "key": "capex",
+      "label": "투자지출(유·무형자산 취득)",
+      "unit": "억원",
+      "points": [
+        {
+          "period": "2024-Q4",
+          "value": 1144,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2024-Q4",
+          "publishedAt": "2025-03-18"
+        },
+        {
+          "period": "2025-Q1",
+          "value": 1792,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2025-Q1",
+          "publishedAt": "2025-05-15"
+        },
+        {
+          "period": "2025-Q2",
+          "value": 1107,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2025-Q2",
+          "publishedAt": "2025-08-14"
+        },
+        {
+          "period": "2025-Q3",
+          "value": 1312,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2025-Q3",
+          "publishedAt": "2025-11-14"
+        },
+        {
+          "period": "2025-Q4",
+          "value": 1203,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2025-Q4",
+          "publishedAt": "2026-03-20"
+        },
+        {
+          "period": "2026-Q1",
+          "value": 1259,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2026-Q1",
+          "publishedAt": "2026-05-15"
+        },
+        {
+          "period": "2026-Q2",
+          "value": 1200,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기 · 누적 차감",
+          "source": "rpt-2026-Q2",
+          "publishedAt": "2026-08-14"
+        },
+        {
+          "period": "2026-Q3",
+          "value": null,
+          "kind": "actual",
+          "basis": "연결 K-IFRS · 분기",
+          "reason": "3분기 분기보고서 제출 전(11월 중순 예정)"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "date": "2026-11-11",
+      "claim": "2026Q4: 임단협 잔여 비용 반영 뒤에도 영업이익률 15% 안팎, 영업외손실 축소",
+      "status": "판단 보류",
+      "evidence": "2026-11-11 새로 설정. 이번 분기 성과로 소급 채점하지 않는다.",
+      "sources": []
+    }
+  ],
+  "changes": [
+    {
+      "date": "2026-11-11",
+      "claim": "첫 분석: 이전 가정 없음 → 5개 축·12개월 목표가 기준 매수",
+      "to": "매수",
+      "evidence": "본업 이익 +2, 이익 방향 0, 현금 전환 +2, 전망 변화 −1, 가격·밸류에이션 +2(2배). 가중 평균 +1.17.",
+      "sources": [
+        "dart-q3",
+        "consensus-annual",
+        "eugene",
+        "quote"
+      ],
+      "kind": "판단"
+    }
+  ],
+  "promises": [
+    {
+      "date": "2026-11-11",
+      "claim": "육상 발전용 엔진 생산능력 2028년 1.5GW, 2029년 3GW 계획 (회사 설명, 대신·SK 전언)",
+      "status": "판단 보류",
+      "evidence": "증설 투자 공시와 엔진 부문 매출·수주로 확인.",
+      "sources": [
+        "daishin",
+        "sk"
+      ],
+      "due": "2029-12-31"
+    },
+    {
+      "date": "2026-11-11",
+      "claim": "키윗과 미국 합작 조선소로 군수지원함부터 함정 건조 확대 (회사 설명, 대신·SK 전언)",
+      "status": "판단 보류",
+      "evidence": "합작 법인 설립·수주 공시로 확인.",
+      "sources": [
+        "daishin",
+        "sk"
+      ],
+      "due": "2027-12-31"
+    }
+  ],
+  "calculator": {
+    "period": "2027년 연간(연결)",
+    "label": "매출·영업이익률 민감도",
+    "assumptions": "매출과 영업이익률은 작성자 가정이다. 기본값 26.3조원·17.3%는 WiseReport 2027년 연결 컨센서스(매출 262,740억원, 영업이익 45,465억원)를 옮긴 값이다. 배수 8.8배는 기준 목표가(P/E 12.8배)를 2027년 영업이익과 6월 말 순차입금(순현금)으로 환산한 EV/영업이익이다. 계약부채(선수금)와 파생상품은 순차입금에 넣지 않았다.",
+    "variables": [
+      {
+        "key": "volume",
+        "label": "연결 매출",
+        "unit": "조원",
+        "min": 18,
+        "max": 34,
+        "step": 0.1,
+        "default": 26.3
+      },
+      {
+        "key": "margin",
+        "label": "영업이익률",
+        "unit": "%",
+        "min": 0,
+        "max": 28,
+        "step": 0.1,
+        "default": 17.3
+      }
+    ],
+    "price": 10000,
+    "priceLabel": "단위 환산",
+    "priceUnit": "억원/조원",
+    "priceNote": "매출(조원)을 억원으로 바꾸는 상수",
+    "baseProfit": 0,
+    "baseProfitLabel": "기타 이익",
+    "baseProfitNote": "따로 더하는 이익 없음",
+    "multiple": 8.8,
+    "netDebt": -49151,
+    "marketCap": 277547,
+    "marketCapSource": "quote",
+    "netDebtSource": "rpt-2026-Q2",
+    "netDebtAsOf": "2026-06-30"
+  },
+  "initialReview": true,
+  "rating": {
+    "axes": [
+      {
+        "key": "coreProfit",
+        "score": 2,
+        "sources": [
+          "dart-q3",
+          "eugene",
+          "sk"
+        ],
+        "actual": "연결 영업이익 8,992억원(이익률 15.6%). 임단협 추가 비용의 약 75%를 이번 분기에 선반영(비용)했고 해양 체인지오더 180억원(이익)이 들어갔다. 체인지오더를 빼도 약 8,812억원(15.3%) [계산]"
+      },
+      {
+        "key": "direction",
+        "score": 0,
+        "sources": [
+          "dart-q3",
+          "dart-2026q2"
+        ],
+        "actual": "영업이익 전년 5,573억원 → 8,992억원(+61.3%), 전분기 10,399억원 → 8,992억원(−13.5%). 환율 하락(약 450억원)·조업일수(약 500억원)·임단협 비용으로 전분기보다 줄어 엇갈림"
+      },
+      {
+        "key": "cash",
+        "score": 2,
+        "sources": [
+          "rpt-2026-Q2",
+          "rpt-2026-Q1"
+        ],
+        "actual": "2026Q1 영업현금흐름 8,834억원 − 투자지출 1,259억원, 2026Q2 18,426억원 − 1,200억원. 두 분기 모두 잉여현금흐름 양수. 3분기는 미공시"
+      },
+      {
+        "key": "outlook",
+        "score": -1,
+        "sources": [
+          "kiwoom",
+          "sk",
+          "eugene",
+          "ds",
+          "ibk",
+          "daishin",
+          "im"
+        ],
+        "actual": "발표 후 8곳 중 7곳이 목표가를 21~39% 낮췄다(키움만 720,000원 유지). IBK는 환율 가정을 1,450원에서 1,400원으로 내려 2027~2028년 추정을 낮췄고, DS는 2027년 영업이익을 3.1% 낮췄다. 회사는 엔진 발전 수요와 고선가 물량 비중 확대를 이어간다고 설명했다"
+      },
+      {
+        "key": "price",
+        "score": 2,
+        "sources": [
+          "quote",
+          "consensus-annual",
+          "daishin",
+          "yuanta-shi",
+          "shinhan-hwo"
+        ],
+        "actual": "12개월 기준 목표가 427,500원(2027년 EPS 컨센서스 33,398원 × P/E 12.8배) vs 11/10 종가 264,500원 → +61.6%. 24개월 기준 506,300원(+91.4%)"
+      }
+    ]
+  },
+  "targets": {
+    "basis": "P/E",
+    "price": {
+      "value": 264500,
+      "source": "quote"
+    },
+    "shares": {
+      "value": 104932774,
+      "source": "rpt-2026-Q2"
+    },
+    "netDebt": {
+      "value": -49151,
+      "source": "rpt-2026-Q2",
+      "note": "2026년 6월 말 연결 · 단기금융부채 5,234 + 리스부채 344 − 현금 45,509 − 단기금융자산 9,220억원 = 순현금 · 계약부채·파생상품 미포함 · P/E 계산에는 쓰지 않음"
+    },
+    "multiples": {
+      "bear": 10.0,
+      "base": 12.8,
+      "bull": 16.9
+    },
+    "multipleNote": "대신증권이 쓴 글로벌 조선사 피어 평균 P/E 12.8배를 기준, 유안타증권이 삼성중공업에 쓴 목표 P/E 10배를 보수, 신한투자증권이 인용한 2007년 조선 4사 평균 P/E 16.9배를 낙관으로 둠. 조선 3사 리뷰에 같은 배수 · 12개월은 2027년, 24개월은 2028년 EPS 컨센서스 · 작성자 선택",
+    "horizons": [
+      {
+        "months": 12,
+        "year": 2027,
+        "eps": 33398,
+        "source": "consensus-annual"
+      },
+      {
+        "months": 24,
+        "year": 2028,
+        "eps": 39553,
+        "source": "consensus-annual"
+      }
+    ],
+    "brokers": {
+      "count": 8,
+      "min": 530000,
+      "median": 585000,
+      "max": 720000,
+      "sources": [
+        "kiwoom",
+        "sk",
+        "eugene",
+        "ds",
+        "mirae",
+        "ibk",
+        "daishin",
+        "im"
+      ]
+    }
+  }
+}
