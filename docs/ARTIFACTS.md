@@ -2,13 +2,19 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (448 files).
+Complete index of every artifact under `analysis-example/` (450 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
 For strategy methodology and performance comparison, see [CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md](CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md).
 
-## KR — Korean single-stock research (226)
+## KR — Korean single-stock research (228)
+
+### 고려아연-2026Q3 — 2026-11-19
+
+고려아연 2026년 3분기 실적 리뷰
+
+[memo](../analysis-example/kr/고려아연-2026Q3/memo.md) · [analyst-report-insight](../analysis-example/kr/고려아연-2026Q3/analyst-report-insight.md)
 
 ### HD현대-2026Q3 — 2026-11-11
 

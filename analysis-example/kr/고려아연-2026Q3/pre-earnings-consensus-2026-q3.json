@@ -1,0 +1,114 @@
+{
+  "period": "2026-Q3",
+  "basis": "연결 K-IFRS · 분기",
+  "observedAt": "2026-10-30",
+  "retrievedAt": "2026-11-19",
+  "rawSha256": "c3e2ea802e86978214c5a50d9ea88f433af9cbe9e5bd323624eb630c45f8907c",
+  "metrics": [
+    {
+      "key": "revenue",
+      "label": "매출액",
+      "observationDate": "2026-10-30",
+      "retrievedAt": "2026-11-19",
+      "value": 57396.00000000001,
+      "rawValue": 57396.00000000001,
+      "preRelease": [
+        {
+          "row": "분기실적(A)",
+          "value": "60,861.0"
+        },
+        {
+          "row": "발표직전(E)",
+          "value": "57,396.0"
+        },
+        {
+          "row": "1개월전(E)",
+          "value": "56,714.3"
+        },
+        {
+          "row": "2개월전(E)",
+          "value": "56,864.3"
+        },
+        {
+          "row": "3개월전(E)",
+          "value": "57,807.0"
+        }
+      ],
+      "actual": 60860.97275927,
+      "difference": 3464.972759269993,
+      "url": "https://comp.wisereport.co.kr/company/ajax/c1050001_data.aspx?flag=5&cmp_cd=010130&finGubun=IFRSL&frq=1&sDT=20261119&acc_cd=121000",
+      "rawSha256": "e369799c375f03938c566d0b354da2196414622e4f6292bbc26e933bd67819be",
+      "incomeScope": null
+    },
+    {
+      "key": "operatingProfit",
+      "label": "영업이익",
+      "observationDate": "2026-10-30",
+      "retrievedAt": "2026-11-19",
+      "value": 3650.2857142857,
+      "rawValue": 3650.2857142857,
+      "preRelease": [
+        {
+          "row": "분기실적(A)",
+          "value": "1,416.6"
+        },
+        {
+          "row": "발표직전(E)",
+          "value": "3,650.3"
+        },
+        {
+          "row": "1개월전(E)",
+          "value": "4,468.3"
+        },
+        {
+          "row": "2개월전(E)",
+          "value": "4,628.3"
+        },
+        {
+          "row": "3개월전(E)",
+          "value": "5,523.8"
+        }
+      ],
+      "actual": 1416.54873025,
+      "difference": -2233.7369840357,
+      "url": "https://comp.wisereport.co.kr/company/ajax/c1050001_data.aspx?flag=5&cmp_cd=010130&finGubun=IFRSL&frq=1&sDT=20261119&acc_cd=121500",
+      "rawSha256": "e5a4a1faec4bbd448505adf107f59237716e324beb3bc32c4e1c4c6fa86f35b9",
+      "incomeScope": null
+    },
+    {
+      "key": "parentNetIncome",
+      "label": "지배주주순이익",
+      "observationDate": "2026-10-30",
+      "retrievedAt": "2026-11-19",
+      "value": 2864.0000000000005,
+      "rawValue": 2864.0000000000005,
+      "preRelease": [
+        {
+          "row": "분기실적(A)",
+          "value": "2,287.1"
+        },
+        {
+          "row": "발표직전(E)",
+          "value": "2,864.0"
+        },
+        {
+          "row": "1개월전(E)",
+          "value": "2,786.2"
+        },
+        {
+          "row": "2개월전(E)",
+          "value": "3,179.0"
+        },
+        {
+          "row": "3개월전(E)",
+          "value": "3,417.0"
+        }
+      ],
+      "actual": 1853.48230449,
+      "difference": -1010.5176955100005,
+      "url": "https://comp.wisereport.co.kr/company/ajax/c1050001_data.aspx?flag=5&cmp_cd=010130&finGubun=IFRSL&frq=1&sDT=20261119&acc_cd=122700",
+      "rawSha256": "43ac1964cd2db37fbea20346b25c981c8f694bf2b2a5b5569b51a73c3b753413",
+      "incomeScope": "parent"
+    }
+  ]
+}

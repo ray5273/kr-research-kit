@@ -207,6 +207,12 @@
       "reviewedOn": "2026-11-11",
       "mode": "source-and-renderer",
       "notes": "Source review: paragraph-rhythm warnings only (all <200 chars); split Summary lead where topic changed; colors limited to short phrases with legend; broker quotes and numbers checked against PDFs/DART. Static HTML inspected from local build; 390px/1440px and dark-mode visual checks not performed in a browser."
+    },
+    "kr/korea-zinc-2026-q3": {
+      "hash": "a75015e9901f2ad7de604116015bff8ee5ec8ecd485da9e56280e34157eab818",
+      "reviewedOn": "2026-11-19",
+      "mode": "source-and-renderer",
+      "notes": "Reviewed conclusion, figures, paragraph rhythm, source labels, forecast time separation, broker adjustments and target calculation. No audit findings; renderer uses focusable scroll regions and broker cards. Original generator fixed-date wording corrected to September debt and November 18 price. Visual mobile/desktop/theme inspection remains unverified."
     }
   }
 }

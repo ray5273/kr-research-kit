@@ -1,6 +1,34 @@
 {
   "articles": [
     {
+      "memo": "analysis-example/kr/고려아연-2026Q3/memo.md",
+      "slug": "kr/korea-zinc-2026-q3",
+      "company": "고려아연",
+      "ticker": "010130",
+      "market": "kr",
+      "exchange": "KRX",
+      "articleType": "earnings-review",
+      "period": "2026-Q3",
+      "companyId": "kr/010130",
+      "analysisData": "analysis-example/kr/고려아연-2026Q3/analysis-data.json",
+      "headline": "고려아연 3분기: 회계조정을 빼도 남는 본업 둔화와 현금 유출",
+      "summary": "공식 IR·분기보고서로 회계조정과 본업 둔화를 나누고, 게르마늄 투자 절감·미국 프로젝트 자금·주주환원과 현재 가격을 점검한다.",
+      "datePublished": "2026-11-19",
+      "dateModified": "2026-11-19",
+      "sectors": [
+        "철강·금속"
+      ],
+      "coverArt": false,
+      "tags": [
+        "고려아연",
+        "2026년 3분기",
+        "귀금속",
+        "게르마늄",
+        "크루서블",
+        "현금흐름"
+      ]
+    },
+    {
       "memo": "research/ai-infra-buildout/2026-11-05.md",
       "slug": "sector/ai-infra-buildout-2026-11",
       "company": "AI 데이터센터",
