@@ -213,6 +213,12 @@
       "reviewedOn": "2026-11-19",
       "mode": "source-and-renderer",
       "notes": "Price correction reviewed: 799,000 won cross-checked against company quote, Hankyung and Yahoo. Updated linked market cap, required EBIT and upside; unchanged targets and stance. Correction is transparent in Update Log. Source audit: 49 paragraphs, max141chars, no findings. Regenerated local HTML confirms corrected price and calculations; table-scroll/source anchors and styles inspected. Mobile/desktop/theme browser visual checks remain unverified."
+    },
+    "kr/korea-zinc": {
+      "hash": "0ad5ccbfc8f80d246c5a13d3c81d35d565c11c614355a8bc0787be023af24893",
+      "reviewedOn": "2026-11-19",
+      "mode": "browser",
+      "notes": "Editorial source audit:56 paragraphs,max142characters,no findings. Real Chrome inspected at390px and1440px in light/dark modes: title, summary, header figures and mobile financial table readable; document width fits viewport; sources resolve and citation navigation works. Screenshots stored .tmp/korea-zinc-full/publish-*.png. Original figures, source dates, stance and distinctions between commitment/final loan and application/ruling preserved."
     }
   }
 }

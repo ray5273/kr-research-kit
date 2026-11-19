@@ -1,6 +1,44 @@
 {
   "articles": [
     {
+      "memo": "analysis-example/kr/고려아연/memo.md",
+      "article": "analysis-example/kr/고려아연/article.md",
+      "slug": "kr/korea-zinc",
+      "company": "고려아연",
+      "ticker": "010130",
+      "market": "kr",
+      "exchange": "KRX",
+      "companyId": "kr/010130",
+      "headline": "고려아연 분석, 핵심광물의 기대와 주주에게 남는 현금",
+      "issue": "제련 경쟁력과 미국 투자·보증 및 현금 전환 점검",
+      "datePublished": "2026-11-19",
+      "dateModified": "2026-11-19",
+      "sectors": [
+        "철강·금속"
+      ],
+      "coverSector": "steel-metals",
+      "tags": [
+        "고려아연",
+        "핵심광물",
+        "미국 제련소",
+        "게르마늄",
+        "현금흐름",
+        "지배구조"
+      ],
+      "quote": [
+        {
+          "label": "기준 종가 · 11/18",
+          "value": "799,000",
+          "unit": "원"
+        },
+        {
+          "label": "TTM 단순 FCF",
+          "value": "−1조 6,653",
+          "unit": "억원"
+        }
+      ]
+    },
+    {
       "memo": "analysis-example/kr/고려아연-2026Q3/memo.md",
       "slug": "kr/korea-zinc-2026-q3",
       "company": "고려아연",
