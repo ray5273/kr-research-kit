@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.38] - 2026-11-19
+
+### Commits
+
+- Add Korea Zinc 2026 Q3 earnings review with source-backed valuation ([7429771](https://github.com/ray5273/kr-research-kit/commit/7429771b2243d65542e4a7a52cd18876cae8e371))
+
 ## [0.4.37] - 2026-11-11
 
 ### Commits
