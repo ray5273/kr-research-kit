@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.39] - 2026-11-19
+
+### Commits
+
+- Add full Korea Zinc investment memo and correct prior closing price ([6c23364](https://github.com/ray5273/kr-research-kit/commit/6c23364d3bdc05fd2b6d625e1ad7d07f1da99d5f))
+- Write reader-facing Korea Zinc article from verified memo ([fea816b](https://github.com/ray5273/kr-research-kit/commit/fea816baf1210df58b3d87a08ef67e0db2ae18b6))
+- Publish Korea Zinc editorial article on KR Research ([7a625bb](https://github.com/ray5273/kr-research-kit/commit/7a625bb6df1bf89e0ae1d59af9cd8e31c0a602e6))
+
 ## [0.4.38] - 2026-11-19
 
 ### Commits
