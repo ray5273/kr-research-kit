@@ -2,19 +2,19 @@
 
 # Analysis Artifacts
 
-Complete index of every artifact under `analysis-example/` (464 files).
+Complete index of every artifact under `analysis-example/` (466 files).
 Regenerate with `node scripts/build-artifact-index.js` after adding an example.
 
 For the curated shortlist of audited golden examples, see [EXAMPLES.md](EXAMPLES.md).
 For strategy methodology and performance comparison, see [CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md](CODEX-STRATEGY-METHODOLOGY-PERFORMANCE.md).
 
-## KR — Korean single-stock research (242)
+## KR — Korean single-stock research (244)
 
 ### 고려아연 — 2026-11-19
 
 고려아연 투자 분석 — 제련 기술의 가치와 주주에게 남는 현금
 
-[memo](../analysis-example/kr/고려아연/memo.md) · [data-pack](../analysis-example/kr/고려아연/data-pack.md) · [dart-analysis](../analysis-example/kr/고려아연/dart-analysis.md) · [dart-reference](../analysis-example/kr/고려아연/dart-reference.md) · [analyst-report-insight](../analysis-example/kr/고려아연/analyst-report-insight.md) · [foreign-views](../analysis-example/kr/고려아연/foreign-views.md) · [naver-insights](../analysis-example/kr/고려아연/naver-insights.md) · [chart-analysis](../analysis-example/kr/고려아연/chart-analysis.md) · [dart-note-excerpts](../analysis-example/kr/고려아연/sources/dart-note-excerpts.md) · [research-brief](../analysis-example/kr/고려아연/research-brief.md) · [trend-rules](../analysis-example/kr/고려아연/trend-rules.md) · [trend-rules.json](../analysis-example/kr/고려아연/trend-rules.json) · [valuation-bands](../analysis-example/kr/고려아연/valuation-bands.md) · [valuation-charts](../analysis-example/kr/고려아연/valuation-charts.md) · [verification](../analysis-example/kr/고려아연/verification.md)
+[memo](../analysis-example/kr/고려아연/memo.md) · [data-pack](../analysis-example/kr/고려아연/data-pack.md) · [dart-analysis](../analysis-example/kr/고려아연/dart-analysis.md) · [dart-reference](../analysis-example/kr/고려아연/dart-reference.md) · [analyst-report-insight](../analysis-example/kr/고려아연/analyst-report-insight.md) · [foreign-views](../analysis-example/kr/고려아연/foreign-views.md) · [naver-insights](../analysis-example/kr/고려아연/naver-insights.md) · [chart-analysis](../analysis-example/kr/고려아연/chart-analysis.md) · [article](../analysis-example/kr/고려아연/article.md) · [article-review](../analysis-example/kr/고려아연/article-review.md) · [dart-note-excerpts](../analysis-example/kr/고려아연/sources/dart-note-excerpts.md) · [research-brief](../analysis-example/kr/고려아연/research-brief.md) · [trend-rules](../analysis-example/kr/고려아연/trend-rules.md) · [trend-rules.json](../analysis-example/kr/고려아연/trend-rules.json) · [valuation-bands](../analysis-example/kr/고려아연/valuation-bands.md) · [valuation-charts](../analysis-example/kr/고려아연/valuation-charts.md) · [verification](../analysis-example/kr/고려아연/verification.md)
 
 ### 고려아연-2026Q3 — 2026-11-19
 
