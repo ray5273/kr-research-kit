@@ -120,8 +120,8 @@
     },
     {
       "id": "price",
-      "label": "네이버 2026-11-18 KRX 종가 · 2026-11-19 조회",
-      "url": "https://finance.naver.com/item/sise_day.naver?code=010130",
+      "label": "한국경제 일별시세 2026-11-18 종가 · 회사 시세 교차 확인 2026-11-19",
+      "url": "https://markets.hankyung.com/stock/010130/chart",
       "publishedAt": "2026-11-18",
       "role": "market_data",
       "access": "read",
@@ -824,7 +824,7 @@
     "netDebt": 71410.72149081998,
     "netDebtSource": "q3",
     "netDebtAsOf": "2026-09-30",
-    "marketCap": 163961.58528,
+    "marketCap": 162941.92368,
     "marketCapSource": "price",
     "priceLabel": "매출 단위 환산",
     "priceUnit": "억원/억원",
@@ -876,7 +876,7 @@
       {
         "key": "price",
         "score": -1,
-        "actual": "12개월 기준 목표가 633,900원 · 현재가 대비 -21.2%",
+        "actual": "12개월 기준 목표가 633,900원 · 현재가 대비 -20.7%",
         "sources": [
           "annual",
           "q3",
@@ -887,7 +887,7 @@
   },
   "targets": {
     "price": {
-      "value": 804000,
+      "value": 799000,
       "source": "price"
     },
     "shares": {

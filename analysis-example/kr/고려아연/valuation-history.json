@@ -1,0 +1,35 @@
+{
+  "ticker": "010130.KS",
+  "name": "고려아연",
+  "asOf": "2026-11-19",
+  "historyYears": 5,
+  "source": "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=010130",
+  "basis": "Provider annual year-end observations; not a daily valuation distribution. EV/EBITDA unavailable on captured table.",
+  "series": [
+    {
+      "date": "2021-12-31",
+      "pe": 11.95,
+      "pbr": 1.19
+    },
+    {
+      "date": "2022-12-31",
+      "pe": 18.03,
+      "pbr": 1.26
+    },
+    {
+      "date": "2023-12-31",
+      "pe": 23.24,
+      "pbr": 1.14
+    },
+    {
+      "date": "2024-12-31",
+      "pe": 69.48,
+      "pbr": 2.56
+    },
+    {
+      "date": "2025-12-31",
+      "pe": 34.17,
+      "pbr": 2.5
+    }
+  ]
+}

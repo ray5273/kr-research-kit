@@ -209,10 +209,10 @@
       "notes": "Source review: paragraph-rhythm warnings only (all <200 chars); split Summary lead where topic changed; colors limited to short phrases with legend; broker quotes and numbers checked against PDFs/DART. Static HTML inspected from local build; 390px/1440px and dark-mode visual checks not performed in a browser."
     },
     "kr/korea-zinc-2026-q3": {
-      "hash": "a75015e9901f2ad7de604116015bff8ee5ec8ecd485da9e56280e34157eab818",
+      "hash": "1d4900e99db3dec16d31546cee5e2d2179326979f4664ed1223003c0914645fd",
       "reviewedOn": "2026-11-19",
       "mode": "source-and-renderer",
-      "notes": "Reviewed conclusion, figures, paragraph rhythm, source labels, forecast time separation, broker adjustments and target calculation. No audit findings; renderer uses focusable scroll regions and broker cards. Original generator fixed-date wording corrected to September debt and November 18 price. Visual mobile/desktop/theme inspection remains unverified."
+      "notes": "Price correction reviewed: 799,000 won cross-checked against company quote, Hankyung and Yahoo. Updated linked market cap, required EBIT and upside; unchanged targets and stance. Correction is transparent in Update Log. Source audit: 49 paragraphs, max141chars, no findings. Regenerated local HTML confirms corrected price and calculations; table-scroll/source anchors and styles inspected. Mobile/desktop/theme browser visual checks remain unverified."
     }
   }
 }

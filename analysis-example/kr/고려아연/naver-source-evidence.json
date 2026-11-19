@@ -1,0 +1,52 @@
+{
+  "company": "고려아연",
+  "ticker": "010130",
+  "asOf": "2026-11-19",
+  "discovery": {
+    "queries": 7,
+    "candidates": 37,
+    "qualified": 3
+  },
+  "fetch": {
+    "posts": 8,
+    "errors": []
+  },
+  "posts": [
+    {
+      "blogId": "hoontrinh27",
+      "logNo": "224480941110",
+      "title": "고려아연 주가, 순이익 8,876억인데… ‘이 숫자’는 마이너스였다",
+      "date": "2026-11-17",
+      "url": "https://m.blog.naver.com/hoontrinh27/224480941110",
+      "quote": "이익보다 현금흐름이 더 신경 쓰입니다",
+      "sourceRole": "Independent view"
+    },
+    {
+      "blogId": "blissyoon",
+      "logNo": "224480244669",
+      "title": "고려아연의 경영권 분쟁은 왜 일어났나? 2",
+      "date": "2026-11-18",
+      "url": "https://m.blog.naver.com/blissyoon/224480244669",
+      "quote": "이 실행이 영풍 측과 지분 갈등의 시발점이 되게 된다.",
+      "sourceRole": "Independent view"
+    },
+    {
+      "blogId": "seulo_ol",
+      "logNo": "224478038152",
+      "title": "고려아연 미국 제련소, 230MW 전력 승인이 바꾼 사업 조건",
+      "date": "2026-11-15",
+      "url": "https://m.blog.naver.com/seulo_ol/224478038152",
+      "quote": "사업 추진에는 긍정적이지만, 이를 곧바로 이익 증가나 주가 상승으로 환산할 단계는 아니에요.",
+      "sourceRole": "Independent view"
+    },
+    {
+      "blogId": "seulo_ol",
+      "logNo": "224478791373",
+      "title": "고려아연 주가전망, 금속 매출은 늘었는데 영업이익은 왜 줄었을까",
+      "date": "2026-11-16",
+      "url": "https://m.blog.naver.com/seulo_ol/224478791373",
+      "quote": "기술 경쟁력이 오래 유지돼도 투자비를 언제 회수하는지에 따라 주주의 수익은 달라집니다.",
+      "sourceRole": "Independent view"
+    }
+  ]
+}

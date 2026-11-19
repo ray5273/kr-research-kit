@@ -1,0 +1,103 @@
+.xforms * { font-family: 돋움체;}
+.xforms_title * { font-size: 13pt; padding : 0 0 10 0;}
+
+.xforms table {
+    font-size: 10px;
+    padding:0px;
+    border-collapse:collapse;
+    color: #3D3D3D;
+}
+.xforms td {
+    padding-left:0px;
+    padding-top:0px;
+    border-collapse:collapse;
+    line-height:22px;
+    color: #3D3D3D;
+    /*text-align:right;*/
+    vertical-align:middle;
+    border: 1px solid #7f7f7f;
+}
+
+.xforms span {
+    /*display: inline-block;*/
+    padding-left:3px;
+    padding-right: 1px;
+    line-height:22px;
+    padding-top:0px;
+    padding-bottom:0px;
+    text-align:left;
+    vertical-align:middle;
+    border: 0px solid #DBDBDB;
+}
+
+.xforms.img{
+    border : 0px;
+}
+
+.xforms a:link {
+
+    color: #194866;
+    text-decoration: none;
+}
+.xforms a:active {
+
+    color: #194866;
+    text-decoration: none;
+}
+.xforms a:visited {
+    color: #194866;
+    text-decoration: none;
+}
+
+.xforms A:hover {
+    color:008BE3;
+    text-decoration: none;
+}
+
+.xforms_input{
+    border: 0px solid #DBDBDB;
+    padding-left:3px;
+    padding-right: 1px;
+    height:22px;
+    padding-top:0px;
+    padding-bottom:0px;
+    text-align:left;
+}
+고려아연/소송등의판결ㆍ결정/(2026.11.19)소송등의판결ㆍ결정
+소송 등의 판결ㆍ결정
+1. 사건의 명칭
+신주발행무효의 소에 대한 항소
+사건번호
+2025나208594
+2. 원고ㆍ신청인
+항소인(피고) : 고려아연 주식회사
+피항소인(원고) : 유한회사 와이피씨
+원고 공동소송참가인: 주식회사 엠제이 파트너스
+3. 판결ㆍ결정내용
+[주문]
+1. 원고 공동소송참가인이 이 법원에서 제기한 공동소송참가신청을 각하한다.
+2. 제1심판결을 취소한다.
+3. 원고 승계참가인의 청구를 기각한다.
+4. 원고 승계참가인과 피고 사이에 생긴 소송총비용은 원고 승계참가인이 부담하고, 공동소송참가신청으로 인하여 생긴 소송비용은 원고 공동소송참가인이 부담한다.
+4. 판결ㆍ결정사유
+[공동소송참가신청의 적법 여부에 관한 판단]
+원고 공동소송참가인의 이 사건 공동소송참가신청은 제소기간이 도과된 이후에 제기된 것이어서 부적법하다.
+[참가인의 주장에 대한 판단]
+가. 이 사건 신주발행이 ‘경영상 필요’에 의한 것인지 여부
+이 사건 신주발행은 피고의 경영상 목적을 달성하기 위하여 필요한 범위 안에서 이루어진 것으로 인정되고, 그러한 피고의 경영상 필요 없이 피고 경영진 측의 경영권 방어를 주된 목적으로 한 것이라고 보기는 어렵다.
+나. 이 사건 신주발행이 '외국의 합작법인'에게 이루어진 것인지 여부
+HMG 글로벌은 이 사건 정관 제17조 제2항 제4호, 제17조의2 제2항에서 제3자 배정의 대상으로 정한 ‘외국의 합작법인’에 해당한다고 봄이 타당하므로 이 사건 신주발행에 이 사건 정관을 위반한 위법이 없다.
+[결론]
+원고 공동소송참가인의 이 사건 공동소송참가신청은 부적법하므로 각하하고, 원고 승계참가인의 청구는 이유 없어 기각하여야 한다. 제1심판결은 이와 결론을 달리하여 부당하므로, 피고의 항소를 받아들여 제1심판결을 취소하고 원고 승계참가인의 청구를 기각하며, 원고 공동소송참가인이 이 법원에서 제기한 이 사건 공동소송참가신청은 각하하기로하여, 주문과 같이 판결한다.
+5. 관할법원
+서울고등법원
+6. 판결ㆍ결정일자
+2026-11-13
+7. 확인일자
+2026-11-18
+8. 기타 투자판단과 관련한 중요사항
+- 상기 '2. 원고ㆍ신청인'의 원고 공동소송참가인 인 엠제이파트너스는 2025-09-15 공동소송참가를 신청하였으나, 본 판결에서 해당 신청이 각하되었습니다.
+- 상기 '4. 판결ㆍ결정사유'는 핵심적인 부분만 기재하였습니다.
+- 상기 '7. 확인일자'는 당사가 판결문을  법률대리인으로부터 전달받은 일자입니다.
+※ 관련공시
+2025-07-23 소송등의제기

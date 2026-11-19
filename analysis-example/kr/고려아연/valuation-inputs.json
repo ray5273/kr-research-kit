@@ -1,0 +1,58 @@
+{
+  "asOf": "2026-11-19",
+  "priceDate": "2026-11-18",
+  "priceKRW": 799000,
+  "issuedShares": 20872969,
+  "outstandingShares": 20393232,
+  "reportedMarketCapKRW": 16677502231000,
+  "economicMarketCapKRW": 16294192368000,
+  "netDebtKRW": 6900849452469,
+  "NCIBookKRW": 240222696613,
+  "enterpriseValueKRW": 23435264517082,
+  "TTM": {
+    "parentNetIncomeKRW": 1097768381826,
+    "ebitdaKRW": 2334399728446,
+    "FCFKRW": -1665309666488
+  },
+  "trailingPER": 14.843014826949794,
+  "forward2027PER": 18.522442159827214,
+  "PBR": 1.534342490053099,
+  "TTMEVEBITDA": 10.03909666005777,
+  "forward2027EVEBITDA": 12.592834238088125,
+  "FCFYieldPct": -10.220265164896942,
+  "netDebtTTMEBITDA": 2.9561558667002013,
+  "dividendYield2025Pct": 2.5031289111389237,
+  "forwardParentNI2027KRW": 879700000000.0,
+  "forwardEBITDA2027KRW": 1861000000000.0,
+  "sourceRole": "TTM DART author calculation;2027NI WiseReport;2027EBITDA Hanwha2026-11-06",
+  "debtSensitivity": [
+    {
+      "netDebtKRW": 6900849452469,
+      "shareValueKRW": {
+        "8": 379877.3951533528,
+        "10": 562388.9264300038,
+        "12": 744900.4577066548
+      },
+      "requiredEBITDAat10xKRW": 2343526451708.2
+    },
+    {
+      "netDebtKRW": 9000000000000.0,
+      "shareValueKRW": {
+        "8": 276943.7087454799,
+        "10": 459455.2400221309,
+        "12": 641966.7712987819
+      },
+      "requiredEBITDAat10xKRW": 2553441506461.3
+    },
+    {
+      "netDebtKRW": 12561000000000.0,
+      "shareValueKRW": {
+        "8": 102326.95353963511,
+        "10": 284838.48481628613,
+        "12": 467350.0160929371
+      },
+      "requiredEBITDAat10xKRW": 2909541506461.3
+    }
+  ],
+  "perTrillionAdditionalNetDebtShareLossKRW": 49035.876216187804
+}

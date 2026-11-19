@@ -1,0 +1,82 @@
+{
+  "company": "고려아연",
+  "ticker": "010130",
+  "fetchedAt": "2026-11-19",
+  "queries": [
+    "고려아연 외국계",
+    "고려아연 외국계 리포트",
+    "고려아연 목표주가",
+    "고려아연 모건스탠리 OR 골드만 OR JP모건 OR 노무라 OR 씨티 OR UBS OR HSBC OR 맥쿼리"
+  ],
+  "coverage": [
+    {
+      "broker": "Macquarie",
+      "analyst": "홍광표",
+      "rating": null,
+      "targetPriceKrw": null,
+      "reportDate": "2025-12-17",
+      "reportDateBasis": "articleDate fallback; report publication date not disclosed",
+      "articleDate": "2025-12-17",
+      "articleUrl": "https://www.sentv.co.kr/article/view/sentv202512170174",
+      "press": "서울경제TV",
+      "title": "증권가, 고려아연 美 제련소 프로젝트 긍정적 분석…“공급망 재편 파트너”",
+      "snippet": "고려아연은 미국 정부의 전략자산으로 부상했다",
+      "sourceQueries": [
+        "고려아연 맥쿼리 2025 목표주가",
+        "고려아연 맥쿼리증권 전략자산"
+      ],
+      "corroboratingUrls": [
+        "https://news.bizwatch.co.kr/article/industry/2025/12/17/0036",
+        "https://newsway.co.kr/news/view?ud=2025121715431146658"
+      ],
+      "sourceRole": "foreign-IB view quoted by Korean news; historical",
+      "limitations": [
+        "Original foreign-IB report not obtained",
+        "No rating or target price disclosed",
+        "Not a current 2026-Q3 update",
+        "Similar syndicated articles counted once"
+      ]
+    }
+  ],
+  "meta": {
+    "totalArticlesInspected": 10,
+    "totalCoverageRecords": 1,
+    "fromCache": 0,
+    "errors": [],
+    "generatedBy": "kr-foreign-analyst/fetch-analyst-coverage.js",
+    "automaticCoverageRecords": 0,
+    "manualSupplementRecords": 1,
+    "manualVerification": "Browser returned empty on sentv query URL; web search full indexed article confirmed dated quotation, named broker and analyst; corroborated by Bizwatch and Newsway articles.",
+    "excludedCandidates": [
+      {
+        "url": "https://v.daum.net/v/20260320044744828",
+        "articleDate": "2026-03-20",
+        "reason": "JPMorgan loan arranger; not equity research opinion"
+      },
+      {
+        "url": "https://www.yna.co.kr/amp/view/AKR20260106084451008",
+        "articleDate": "2026-01-06",
+        "reason": "Merrill Lynch and Citi brokerage selling desks; no research recommendation"
+      },
+      {
+        "url": "https://contents.premium.naver.com/owho2h/ucnet/contents/250523004215239wk",
+        "articleDate": "2025-05-23",
+        "reason": "Independent paid summary, outside365daywindow, no qualifying Korean-news research quote or verifiablecurrentTP"
+      },
+      {
+        "url": "https://arod2750.cafe24.com/doc/naver-premium-12ea2e40fe11d4",
+        "articleDate": "2026-11-06",
+        "reason": "Public mirror of premium independent summary; not dated Korean news quotation or original IB report; excluded from acceptedcoverage"
+      },
+      {
+        "url": "https://www.hankyung.com/article/2003052875426",
+        "articleDate": "2003-05-28",
+        "reason": "CLSA historical coverage obsolete forcurrentmemo"
+      },
+      {
+        "url": "https://www.newstomato.com/ReadNews.aspx?no=62385",
+        "reason": "UBS2009 coverage obsolete forcurrentmemo"
+      }
+    ]
+  }
+}

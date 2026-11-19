@@ -1,0 +1,108 @@
+{
+  "ticker": "010130",
+  "symbol": "010130.KS",
+  "name": "고려아연",
+  "latestDate": "2026-11-18",
+  "rsCacheDate": "2026-11-18",
+  "minervini": {
+    "rules": [
+      {
+        "label": "현재가 > SMA50/SMA150/SMA200",
+        "value": false,
+        "detail": "현재가 799000.00 / SMA50 1007320.00 / SMA150 1193560.00 / SMA200 1315180.00"
+      },
+      {
+        "label": "SMA150 > SMA200",
+        "value": false,
+        "detail": "SMA150 1193560.00 / SMA200 1315180.00"
+      },
+      {
+        "label": "SMA50 > SMA150 and SMA200",
+        "value": false,
+        "detail": "SMA50 1007320.00 / SMA150 1193560.00 / SMA200 1315180.00"
+      },
+      {
+        "label": "SMA200이 최근 20거래일 전보다 상승",
+        "value": false,
+        "detail": "현재 SMA200 1315180.00 / 20거래일 전 1362930.00"
+      },
+      {
+        "label": "현재가 >= 52주 저가의 130%",
+        "value": false,
+        "detail": "현재가/52주 저가 100.0%"
+      },
+      {
+        "label": "현재가 >= 52주 고가의 75%",
+        "value": false,
+        "detail": "현재가/52주 고가 37.8%"
+      },
+      {
+        "label": "RS percentile >= 70",
+        "value": false,
+        "detail": "RS percentile 29.7"
+      }
+    ],
+    "status": "fail",
+    "unavailableCount": 0,
+    "failedCount": 7,
+    "passedCount": 0
+  },
+  "leadership": {
+    "components": [
+      {
+        "label": "52주 고가 근접도",
+        "maxPoints": 25,
+        "points": 0,
+        "detail": "현재가/52주 고가 37.8%"
+      },
+      {
+        "label": "최근 신고가 recency",
+        "maxPoints": 25,
+        "points": 5,
+        "detail": "마지막 신고가 이후 179거래일"
+      },
+      {
+        "label": "최근 60거래일 신고가 경신 빈도",
+        "maxPoints": 15,
+        "points": 0,
+        "detail": "0회"
+      },
+      {
+        "label": "통합 KRX RS percentile",
+        "maxPoints": 20,
+        "points": 0,
+        "detail": "RS percentile 29.7"
+      },
+      {
+        "label": "추세/거래량 확인",
+        "maxPoints": 15,
+        "points": 5,
+        "detail": "정배열 no / 거래량 125.2%"
+      }
+    ],
+    "status": "complete",
+    "visiblePoints": 10,
+    "visibleMaxPoints": 100,
+    "score100": 10,
+    "grade": "D",
+    "unavailableCount": 0
+  },
+  "interpretation": "Minervini Trend Template 기준으로는 7개 조건이 미충족이라 아직 엄격한 통과 구간은 아닙니다. 한국형 52주 신고가 리더십 점수는 10/100, 등급 D입니다. 차트 흐름은 bearish continuation 쪽으로 읽히며, RS percentile 29.7 기준 시장 내 상대강도까지 함께 확인됩니다.",
+  "rsUniverse": {
+    "scope": "KOSPI + KOSDAQ integrated",
+    "totalListed": 2590,
+    "includedOrdinaryStocks": 2529,
+    "attemptedSymbols": 2529,
+    "rsEligibleCount": 2472,
+    "failedCount": 5
+  },
+  "rsSources": {
+    "listings": {
+      "reference": "https://global.krx.co.kr/contents/GLB/03/0308/0308010000/GLB0308010000.jsp",
+      "operationalEndpoint": "https://kind.krx.co.kr/corpgeneral/corpList.do?method=download&searchType=13"
+    },
+    "marketPrices": "Yahoo Finance daily chart",
+    "method": "63/126/252거래일 수익률 가중 상대강도 순위; 동일 기준일 통합시장 일반주 표본"
+  },
+  "rsCacheGeneratedAt": "2026-11-19T01:52:35.235Z"
+}

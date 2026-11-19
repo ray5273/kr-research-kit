@@ -1,0 +1,134 @@
+{
+  "asOf": "2026-11-19",
+  "ticker": "010130",
+  "corpCode": "00102858",
+  "financials": {
+    "revenue": {
+      "2025FY": 16587850779912,
+      "2026nineMonths": 18530725789576,
+      "2025nineMonths": 11817962465077,
+      "TTM": 23300614104411,
+      "unit": "KRW",
+      "accountId": "ifrs-full_Revenue",
+      "derivation": "2025FY + 2026nineMonths - 2025nineMonths"
+    },
+    "operatingProfit": {
+      "2025FY": 1231926775791,
+      "2026nineMonths": 1474823194642,
+      "2025nineMonths": 803397600987,
+      "TTM": 1903352369446,
+      "unit": "KRW",
+      "accountId": "dart_OperatingIncomeLoss",
+      "derivation": "2025FY + 2026nineMonths - 2025nineMonths"
+    },
+    "parentNetIncome": {
+      "2025FY": 775018941540,
+      "2026nineMonths": 888546229606,
+      "2025nineMonths": 565796789320,
+      "TTM": 1097768381826,
+      "unit": "KRW",
+      "accountId": "ifrs-full_ProfitLossAttributableToOwnersOfParent",
+      "derivation": "2025FY + 2026nineMonths - 2025nineMonths"
+    },
+    "operatingCashFlow": {
+      "2025FY": -628210721953,
+      "2026nineMonths": -362566648119,
+      "2025nineMonths": -518264494240,
+      "TTM": -472512875832,
+      "unit": "KRW",
+      "accountId": "ifrs-full_CashFlowsFromUsedInOperatingActivities",
+      "derivation": "2025FY + 2026nineMonths - 2025nineMonths"
+    },
+    "ppeCapex": {
+      "2025FY": 889578561811,
+      "2026nineMonths": 843785443480,
+      "2025nineMonths": 595964448946,
+      "TTM": 1137399556345,
+      "unit": "KRW",
+      "accountId": "ifrs-full_PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+      "derivation": "2025FY + 2026nineMonths - 2025nineMonths"
+    },
+    "intangibleCapex": {
+      "2025FY": 53419012740,
+      "2026nineMonths": 30494097381,
+      "2025nineMonths": 28515875810,
+      "TTM": 55397234311,
+      "unit": "KRW",
+      "accountId": "ifrs-full_PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities",
+      "derivation": "2025FY + 2026nineMonths - 2025nineMonths"
+    },
+    "operatingDepreciationAmortization": {
+      "2025FY": 362072052000,
+      "2026nineMonths": 350015471000,
+      "2025nineMonths": 281040164000,
+      "TTM": 431047359000,
+      "unit": "KRW",
+      "basis": "비용의 성격별 분류.2025 감가상각비337897633천원(투자부동산+무형포함)+사용권24174419.2026누적 유형301506663+투자부동산434276+무형25045704+사용권23028828.2025누적254343752+435413+8604818+17656181. 마지막1천원 반올림차이 가능"
+    },
+    "ebitda": {
+      "TTM": 2334399728446,
+      "unit": "KRW",
+      "basis": "작성자계산 EBIT+영업비용 포함 D&A; 공식IR EBITDA와 정의 차이 가능"
+    },
+    "freeCashFlow": {
+      "TTM": -1665309666488,
+      "unit": "KRW",
+      "basis": "단순 OCF−유형+무형취득; 금융상품취득·인수·배당 미차감"
+    }
+  },
+  "balanceAt": "2026-09-30",
+  "parentEquityKRW": 10619657914470,
+  "noncontrollingInterestKRW": 240222696613,
+  "issuedShares": 20872969,
+  "treasuryShares": 479737,
+  "outstandingShares": 20393232,
+  "restrictedProjectDepositsKRW": 2660338964000,
+  "committedPpePurchasesKRW": 1141753107000,
+  "remainingKEMCOCapexKRW": 70000000000,
+  "USProject": {
+    "plannedInvestmentUSD": 7432000000,
+    "ownAdditionalCapitalUSD": 585000000,
+    "JVRaisedCapitalUSD": 1940000000,
+    "plannedLoanUSD": 4698000000,
+    "plannedCHIPSGrantUSD": 210000000,
+    "creditAgreementSignedAtSep30": false,
+    "parentCollateralAndPaymentPerformanceGuaranteesPlanned": true,
+    "completionGuarantyProvided": true,
+    "JVStakeCollateral": true,
+    "JVStakePct": 9.99
+  },
+  "sourceURLs": {
+    "annual": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260813001726",
+    "q3": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116000994",
+    "h1": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003958"
+  },
+  "annualFinancialHistory": {
+    "2025": {
+      "revenue": 16587850779912,
+      "operatingProfit": 1231926775791,
+      "parentNetIncome": 775018941540,
+      "parentEquity": 10752452223922,
+      "operatingCashFlow": -628210721953,
+      "ppeCapex": 889578561811,
+      "intangibleCapex": 53419012740
+    },
+    "2024": {
+      "revenue": 12052918410249,
+      "operatingProfit": 723472208523,
+      "parentNetIncome": 300817351283,
+      "parentEquity": 7143829493655,
+      "operatingCashFlow": 515812554313,
+      "ppeCapex": 1113256029679,
+      "intangibleCapex": 16708803279
+    },
+    "2023": {
+      "revenue": 9704521343024,
+      "operatingProfit": 659935424598,
+      "parentNetIncome": 432370753038,
+      "parentEquity": 9113840856431,
+      "operatingCashFlow": 820863992249,
+      "ppeCapex": 418611480986,
+      "intangibleCapex": 20188654525
+    }
+  }
+}

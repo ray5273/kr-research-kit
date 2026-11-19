@@ -1,0 +1,361 @@
+{
+  "company": "고려아연",
+  "ticker": "010130.KS",
+  "filing": {
+    "title": "기재정정 사업보고서 (2025.12)",
+    "filingDate": "2026-08-13"
+  },
+  "reference": {
+    "asOf": "2026-11-19",
+    "lastCheckedAt": "2026-11-19T01:52:22.371Z",
+    "lastFilingChecked": "2026-11-19"
+  },
+  "coverage": {
+    "tocCount": 24,
+    "parsedCount": 22,
+    "partialCount": 2,
+    "missingCount": 0,
+    "needsReviewCount": 0,
+    "completionRate": 0.9167,
+    "missingSections": [],
+    "partialSections": [
+      "【Z-1. OpenDART 주주 현황 (구조화)】",
+      "【Z-5. OpenDART 임원 현황 (구조화)】"
+    ],
+    "needsReviewSections": []
+  },
+  "verifiedClaims": [
+    {
+      "claim": "은이 본사 매출 절반 가까이 확대됐다",
+      "status": "confirmed",
+      "finding": "2026nine-month standalone48.7%; profitmixnotdisclosed",
+      "sourceUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116000994",
+      "section": "II.2",
+      "checkedAt": "2026-11-19"
+    },
+    {
+      "claim": "이익이 자금부담을 해소했다",
+      "status": "contradicted",
+      "finding": "TTM OCF−472512875832원;FCF−1665309666488",
+      "sourceUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116000994",
+      "section": "III연결CF+2025FYCF",
+      "checkedAt": "2026-11-19"
+    },
+    {
+      "claim": "미국 본사위험이USD585m에한정된다",
+      "status": "contradicted",
+      "finding": "담보·지급보증·이행보증 예정;CompletionGuaranty·주식담보·proxy기제공",
+      "sourceUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116000994",
+      "section": "III연결29·별도28",
+      "checkedAt": "2026-11-19"
+    },
+    {
+      "claim": "미국차입최종계약완료",
+      "status": "partially supported",
+      "finding": "CommitmentLetter존재,CreditAgreementSep30미체결",
+      "sourceUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116000994",
+      "section": "III연결29·별도28",
+      "checkedAt": "2026-11-19"
+    },
+    {
+      "claim": "소각분만큼유통주식추가감소",
+      "status": "contradicted",
+      "finding": "issued20872969 treasury479737 outstanding20393232;treasuryexclusionalreadydone",
+      "sourceUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116000994",
+      "section": "III연결21–22·33",
+      "checkedAt": "2026-11-19"
+    },
+    {
+      "claim": "동박·니켈유의한신규이익",
+      "status": "contradicted",
+      "finding": "KZAMNI−15916441000;KEMCO−25855126000원",
+      "sourceUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116000994",
+      "section": "III연결1",
+      "checkedAt": "2026-11-19"
+    },
+    {
+      "claim": "경영권분쟁종결",
+      "status": "contradicted",
+      "finding": "별개AGMcancellationappeal/HMGissuanceappeal/suspensionapplication",
+      "sourceUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261119800003",
+      "section": "20261113801840;20261119800002;20261119800003",
+      "checkedAt": "2026-11-19"
+    },
+    {
+      "claim": "고객집중도·미국IRR확정가능",
+      "status": "not separately disclosed",
+      "finding": "전체공시점검후미확인",
+      "sourceUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116000994",
+      "section": "II사업·III수익·부문·약정,2025annualsame",
+      "checkedAt": "2026-11-19"
+    }
+  ],
+  "sections": [
+    {
+      "id": "section-001",
+      "title": "I. 회사의 개요",
+      "level": 1,
+      "contentLength": 17666,
+      "tableCount": 250,
+      "numericBlockCount": 625,
+      "preview": "[1. 회사의 개요]\n가. 연결대상 종속회사 개황\n(1) 연결대상 종속회사 현황(요약)\n| (단위 : 사) |\n| 구분 | 연결대상회사수 | 주요종속회사수 |\n| 기초 | 증가 | 감소 | 기말 |\n-\n-\n-\n-\n-\n| 상장 |\n79\n8\n3\n84\n26\n| 비상장 |\n79\n8\n3\n84\n26\n| 합계 |\n| ※상세 현황은 '상세표-1. 연결대상 종속회사 현황(상세)' 참조 |\n(2) 연결대상회사의 변동내용\n| 구 분 | 자회사 | 사 유 |\nArk Energy Generation Services Pt"
+    },
+    {
+      "id": "section-002",
+      "title": "II. 사업의 내용",
+      "level": 1,
+      "contentLength": 82526,
+      "tableCount": 909,
+      "numericBlockCount": 2465,
+      "preview": "[1. 사업의 개요]\n지배회사인 고려아연㈜는 비철금속제련회사로서 아연과 연의 생산 및 판매를 주업종으로 영위하고 있으며, 기타 금, 은, 동, 황산 등은 아연과 연의 제련과정에서 회수하는 유가금속을 부산물의 일종으로 생산하고 있습니다.지배회사인 고려아연㈜의 연결대상 종속회사는 84개사이며, K-IFRS 양적기준(직전사업연도 별도재무제표상 자산총액이 지배회사 별도재무제표상 자산총액의 10% 이상이거나 750억원 이상인 영업부문은 반드시 포함)에 따라, 이 기준에 부합하는 주요종속회사를 사업부문으로 "
+    },
+    {
+      "id": "section-003",
+      "title": "III. 재무에 관한 사항",
+      "level": 1,
+      "contentLength": 5459,
+      "tableCount": 62,
+      "numericBlockCount": 358,
+      "preview": "[1. 요약재무정보]\n가. 연결 요약재무정보\n| (단위 : 백만원) |\n| 구분 | 제52기 (2025년 12월말) | 제51기 (2024년 12월말) | 제50기 (2023년 12월말) |\n| [유동자산] | 12,069,317 | 7,567,074 | 5,571,657 |\n| ㆍ현금및현금성자산 | 3,451,070 | 893,806 | 676,775 |\n| ㆍ매출채권및기타채권 | 1,144,077 | 886,701 | 603,197 |\n| ㆍ재고자산 | 6,220,537 | 3,780,440 "
+    },
+    {
+      "id": "section-004",
+      "title": "I. 지배기업의 소유주에게 귀속되는 자본",
+      "level": 1,
+      "contentLength": 1422,
+      "tableCount": 1,
+      "numericBlockCount": 88,
+      "preview": "10,752,452,223,922\n7,143,829,493,655\n9,113,840,856,431\n(1) 자본금\n115,591,520,000\n104,542,940,000\n104,542,940,000\n(2) 자본잉여금\n4,442,588,745,754\n1,618,963,731,947\n1,621,678,266,999\n(3) 자본조정\n(407,496,803,566)\n(2,092,748,560,307)\n(66,913,304,807)\n(4) 기타포괄손익누계액\n222,594,772,440\n75,735,808,"
+    },
+    {
+      "id": "section-005",
+      "title": "XI. 당기순이익",
+      "level": 1,
+      "contentLength": 166,
+      "tableCount": 0,
+      "numericBlockCount": 9,
+      "preview": "770,249,337,092\n304,669,203,777\n438,487,953,148\n당기순이익의 귀속\n지배주주순이익\n775,018,941,540\n300,817,351,283\n432,370,753,038\n비지배주주순이익\n(4,769,604,448)\n3,851,852,494\n6,117,200,110"
+    },
+    {
+      "id": "section-006",
+      "title": "XII. 법인세비용차감후기타포괄손익",
+      "level": 1,
+      "contentLength": 722,
+      "tableCount": 0,
+      "numericBlockCount": 36,
+      "preview": "116,517,188,807\n175,943,233,588\n(76,272,037,348)\n당기손익으로 재분류되는 세후기타포괄손익의 구성요소\n6,987,948,002\n271,648,050,627\n1,699,639,903\n지분법자본변동\n817,910,674\n(161,299,294)\n42,664,219\n파생상품평가손익\n10,269,484,328\n5,872,959,174\n(24,650,457,925)\n해외사업환산손익\n(4,099,447,000)\n265,936,390,747\n26,307,433,609\n후속적"
+    },
+    {
+      "id": "section-007",
+      "title": "XIV. 주당이익",
+      "level": 1,
+      "contentLength": 154692,
+      "tableCount": 898,
+      "numericBlockCount": 7689,
+      "preview": "기본주당이익 (단위 : 원)\n42,566\n14,949\n21,435\n[2-3. 연결 자본변동표]\n연결 자본변동표\n제 52 기 2025.01.01 부터 2025.12.31 까지\n제 51 기 2024.01.01 부터 2024.12.31 까지\n제 50 기 2023.01.01 부터 2023.12.31 까지\n(단위 : 원)\n| 자본 |\n| 지배기업 소유지분 | 비지배지분 | 자본 합계 |\n| 자본금 | 자본잉여금 | 자본조정 | 기타포괄손익누계액 | 이익잉여금 | 지배기업 소유지분 합계 |\n2023.01.0"
+    },
+    {
+      "id": "section-008",
+      "title": "XI. 법인세비용차감후기타포괄손익",
+      "level": 1,
+      "contentLength": 326,
+      "tableCount": 0,
+      "numericBlockCount": 15,
+      "preview": "85,822,581,605\n(96,471,337,891)\n(74,908,789,612)\n후속적으로 당기손익으로 재분류되지 않는 포괄손익\n85,822,581,605\n(96,471,337,891)\n(74,908,789,612)\n기타포괄손익-공정가치측정금융자산평가손익\n74,325,878,122\n(77,412,234,117)\n(35,321,809,293)\n확정급여제도의 재측정손익(세후기타포괄손익)\n11,496,703,483\n(19,059,103,774)\n(39,586,980,319)\nXII.총포괄이익\n8"
+    },
+    {
+      "id": "section-009",
+      "title": "XIII. 주당이익",
+      "level": 1,
+      "contentLength": 126301,
+      "tableCount": 844,
+      "numericBlockCount": 6194,
+      "preview": "기본주당이익 (단위 : 원)\n42,377\n25,992\n34,115\n[4-3. 자본변동표]\n자본변동표\n제 52 기 2025.01.01 부터 2025.12.31 까지\n제 51 기 2024.01.01 부터 2024.12.31 까지\n제 50 기 2023.01.01 부터 2023.12.31 까지\n(단위 : 원)\n| 자본 |\n| 자본금 | 자본잉여금 | 자본조정 | 기타포괄손익누계액 | 이익잉여금 | 자본 합계 |\n2023.01.01 (기초)\n99,315,790,000\n1,058,186,962,872\n0\n("
+    },
+    {
+      "id": "section-010",
+      "title": "IV. 이사의 경영진단 및 분석의견",
+      "level": 1,
+      "contentLength": 12784,
+      "tableCount": 116,
+      "numericBlockCount": 574,
+      "preview": "[1. 예측정보에 대한 주의사항]\n당사가 동 사업보고서에 기재하는 미래에 발생할 것으로 예측되는 경영활동 및 사건, 현상 등은 당해 공시서류 작성시점의 재무성과 등에 대한 회사의 견해를 반영한 것으로, 동 예측정보는 미래 경영환경과 관련된 다양한 가정에 기초하고 있어, 결과적으로 부정확한 것으로 판명될 수 있고, 예측정보에서 기재한 예상치와 실제 결과 간에 중요한 차이를 초래할 수 있는 위험, 불확실성 등을 포함하고 있습니다.이러한 중요한 차이를 초래할 수 있는 요인에는 환율, 유가, 이자, 경기"
+    },
+    {
+      "id": "section-011",
+      "title": "V. 회계감사인의 감사의견 등",
+      "level": 1,
+      "contentLength": 4762,
+      "tableCount": 55,
+      "numericBlockCount": 203,
+      "preview": "[1. 외부감사에 관한 사항]\n가. 회계감사인의 명칭 및 감사의견\n| 사업연도 | 구분 | 감사인 | 감사의견 | 의견변형사유 | 계속기업 관련중요한 불확실성 | 강조사항 | 핵심감사사항 |\n제52기(당기)\n삼일회계법인\n-\n해당사항 없음\n해당사항 없음\n종속기업투자주식 손상평가,공정가치 수준3으로 분류되는 금융상품의 공정가치 평가\n| 감사보고서 | 적정의견 |\n삼일회계법인\n-\n해당사항 없음\n해당사항 없음\n영업권 등 손상평가,공정가치 수준3으로 분류되는 금융상품의 공정가치 평가\n| 연결감사보고서 | "
+    },
+    {
+      "id": "section-012",
+      "title": "VI. 이사회 등 회사의 기관에 관한 사항",
+      "level": 1,
+      "contentLength": 37039,
+      "tableCount": 213,
+      "numericBlockCount": 1323,
+      "preview": "[1. 이사회에 관한 사항]\n가. 이사회 구성 개요\n보고서 작성기준일 현재 당사의 이사회는 사내이사 3인, 기타비상무이사 3인, 사외이사 13인 총 19인의 이사로 구성되어 있으며, 2025년 5월 8일 이사회 독립성과 자율성 강화를 위해 황덕남 사외이사를 의장으로 선임하였습니다. 이사회는 매분기 정기적으로 개최하고 있으며, 필요시에는 수시로 임시이사회를 개최하여 회사의 중요사항을 의결하고 있습니다. 또한 이사회 내 위원회로는 감사위원회, 사외이사후보추천위원회, 내부거래위원회, 보수위원회, ESG"
+    },
+    {
+      "id": "section-013",
+      "title": "VII. 주주에 관한 사항",
+      "level": 1,
+      "contentLength": 6020,
+      "tableCount": 63,
+      "numericBlockCount": 224,
+      "preview": "[1. 최대주주 및 특수관계인의 주식소유 현황]\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 주, %) |\n| 성 명 | 관 계 | 주식의종류 | 소유주식수 및 지분율 | 비고 |\n| 기 초 | 기 말 |\n| 주식수 | 지분율 | 주식수 | 지분율 |\n(유)와이피씨\n본인\n보통주\n0\n0.00\n5,262,450\n25.21\n최대주주 변경\n장형진\n계열회사 임원\n보통주\n721,798\n3.49\n721,798\n3.46\n-\n김혜경\n기타\n보통주\n126,451\n0.61\n126,451\n0.61\n"
+    },
+    {
+      "id": "section-014",
+      "title": "VIII. 임원 및 직원 등에 관한 사항",
+      "level": 1,
+      "contentLength": 12948,
+      "tableCount": 163,
+      "numericBlockCount": 413,
+      "preview": "[1. 임원 및 직원 등의 현황]\n가. 임원 현황\n| (기준일 : | 2026년 03월 24일 | ) | (단위 : 주) |\n| 성명 | 성별 | 출생년월 | 직위 | 등기임원여부 | 상근여부 | 담당업무 | 주요경력 | 소유주식수 | 최대주주와의관계 | 재직기간 | 임기만료일 |\n| 의결권있는 주식 | 의결권없는 주식 |\n최윤범\n회장\n회장\n- 미 Amherst 대학 수학/영문과 졸업- 미 콜롬비아대학원 로스쿨 졸업(법학박사)- 호주 SMC 대표이사 사장- 고려아연㈜ 대표이사 부회장\n323,056"
+    },
+    {
+      "id": "section-015",
+      "title": "IX. 계열회사 등에 관한 사항",
+      "level": 1,
+      "contentLength": 1861,
+      "tableCount": 51,
+      "numericBlockCount": 91,
+      "preview": "[1. 계열회사의 현황]\n가. 기업집단에 소속된 회사\n당사가 속해 있는 기업집단 영풍은「독점규제 및 공정거래에 관한 법률」상의 상호출자제한 기업집단으로 지정되어 있으며, 2025년말 현재 당사를 포함하여 국내에 29개의 계열회사(상장사 6개사, 비상장사 23개사)와 해외에 81개의 계열회사가 있습니다.\n- 계열회사 현황(요약)\n| (기준일 : | 2025년 12월 31일 | ) | (단위 : 사) |\n| 기업집단의 명칭 | 계열회사의 수 |\n| 상장 | 비상장 | 계 |\n영풍\n6\n104\n110\n|"
+    },
+    {
+      "id": "section-016",
+      "title": "X. 대주주 등과의 거래내용",
+      "level": 1,
+      "contentLength": 3231,
+      "tableCount": 49,
+      "numericBlockCount": 98,
+      "preview": "[1. 대주주 등과의 거래]\n당사는 대주주에 대한 신용공여, 대주주와의 자산양수도 및 영업거래에 해당하는내역이 없습니다.\n[2. 대주주 이외의 이해관계자와의 거래]\n가. 채무보증 내역\n- 연결재무제표 주석 37. 특수관계자와의 거래- 별도재무제표 주석 37. 특수관계자와의 거래참고하시기 바랍니다.\n나. 특수관계자와의 거래 내용\n(1) 특수관계자 내역\n| 구분 | 회사명 |\n| 유의한 영향력을행사하는 회사 | ㈜영풍, YPC Limited |\n| 관계기업 | 서린정보기술㈜, 코리아니켈㈜, KZ TR"
+    },
+    {
+      "id": "section-017",
+      "title": "XI. 그 밖에 투자자 보호를 위하여 필요한 사항",
+      "level": 1,
+      "contentLength": 30172,
+      "tableCount": 95,
+      "numericBlockCount": 1191,
+      "preview": "[1. 공시내용 진행 및 변경사항]\n해당사항 없음\n[2. 우발부채 등에 관한 사항]\n가. 중요한 소송사건\n(1) 소송등의 제기\n| 소제기일 | 사건의 명칭(사건번호) | 소송 당사자 | 소송의 내용 | 진행상황 |\n| 2024.03.06 | 신주발행무효의 소(서울중앙지방법원 2024가합52067) | 원고(탈퇴):\n㈜영풍원고 승계참가인: (유)와이피씨피고: 고려아연\n㈜ | 1. 피고가 2023.9.13.에 한 액면금 5,000원의 보통주식 1,045,430주의 신주 발행을 무효로 한다.2. 소송비"
+    },
+    {
+      "id": "section-018",
+      "title": "XII. 상세표",
+      "level": 1,
+      "contentLength": 16789,
+      "tableCount": 127,
+      "numericBlockCount": 881,
+      "preview": "[1. 연결대상 종속회사 현황(상세)]\n| ☞ 본문 위치로 이동 |\n| (단위 : 백만원) |\n| 상호 | 설립일 | 주소 | 주요사업 | 최근사업연도말자산총액 | 지배관계 근거 | 주요종속회사 여부 |\n케이지트레이딩㈜\n1984.02.10\n서울특별시 종로구 종로 33 그랑서울\n비철금속 수출입업\n282,539\n사실상 지배력 기준 (회계기준서 1110호)\nO\n㈜로보원\n2020.02.10\n부산광역시 해운대구 센텀중앙로 97, 에이동 2801호\n산업용 로봇 제조업\n4,601\n상동\nX\nKZ Trading "
+    },
+    {
+      "id": "section-019",
+      "title": "【 전문가의 확인 】",
+      "level": 1,
+      "contentLength": 312602,
+      "tableCount": 4338,
+      "numericBlockCount": 11329,
+      "preview": "[1. 전문가의 확인]\n해당사항 없음\n[2. 전문가와의 이해관계]\n해당사항 없음\n감사보고서\n6.0\n고려아연주식회사\n정 정 신 고 (보고)\n| 2026년 8월 13일 |\n| 1. 정정대상 공시서류 : | 재무제표 및 내부회계관리제도에 대한 감사보고서 |\n| 2. 정정대상 공시서류의 최초제출일 : | 2026년 03월 13일 |\n| 3. 정정사유 : | 재무제표 재작성에 따른 정정 |\n| 4. 정정사항 |\n| 항 목 | 정 정 전 | 정 정 후 |\n| 독립된 감사인의 감사보고서 감사의견 | (주1) "
+    },
+    {
+      "id": "section-020",
+      "title": "【Z-1. OpenDART 주주 현황 (구조화)】",
+      "level": 1,
+      "contentLength": 61,
+      "tableCount": 0,
+      "numericBlockCount": 1,
+      "preview": "에러: status=101 잘못된 URL입니다. 확인해주세요(/api/majorshareholder.json)"
+    },
+    {
+      "id": "section-021",
+      "title": "【Z-2. OpenDART 배당에 관한 사항 (구조화)】",
+      "level": 1,
+      "contentLength": 716,
+      "tableCount": 17,
+      "numericBlockCount": 25,
+      "preview": "※ 출처: OpenDART alotMatter.json (15건)\n| 구분 | 주식 종류 | 당기 | 전기 | 전전기 |\n| --- | --- | --- | --- | --- |\n| 주당액면가액(원) | - | 5,000 | 5,000 | 5,000 |\n| (연결)당기순이익(백만원) | - | 775,019 | 300,817 | 432,371 |\n| (별도)당기순이익(백만원) | - | 771,572 | 523,039 | 688,151 |\n| (연결)주당순이익(원) | - | 42,566 | 14"
+    },
+    {
+      "id": "section-022",
+      "title": "【Z-3. OpenDART 자기주식 취득 및 처분 현황 (구조화)】",
+      "level": 1,
+      "contentLength": 880,
+      "tableCount": 20,
+      "numericBlockCount": 10,
+      "preview": "※ 출처: OpenDART tesstkAcqsDspsSttus.json (18건)\n| 구분 | 주식종류 | 기초 수량 | 변동 수량 | 기말 수량 | 비고 |\n| --- | --- | --- | --- | --- | --- |\n| 배당가능이익범위 이내 취득 | 보통주 | - | - | - | - |\n| 배당가능이익범위 이내 취득 | 우선주 | - | - | - | - |\n| 배당가능이익범위 이내 취득 | 보통주 | 289,703 | - | 479,737 | - |\n| 배당가능이익범위 이내 취득 |"
+    },
+    {
+      "id": "section-023",
+      "title": "【Z-4. OpenDART 증자 / 감자 현황 (구조화)】",
+      "level": 1,
+      "contentLength": 244,
+      "tableCount": 4,
+      "numericBlockCount": 13,
+      "preview": "※ 출처: OpenDART irdsSttus.json (2건)\n| 결의일 | 발행 형태 | 종류 | 수량 | 액면가액 | 발행가액 |\n| --- | --- | --- | --- | --- | --- |\n| 2023.09.13 | 유상증자(제3자배정) | 보통주 | 1,045,430 | 5,000 | 504,333 |\n| 2025.12.27 | 유상증자(제3자배정) | 보통주 | 2,209,716 | 5,000 | 1,282,319 |"
+    },
+    {
+      "id": "section-024",
+      "title": "【Z-5. OpenDART 임원 현황 (구조화)】",
+      "level": 1,
+      "contentLength": 62,
+      "tableCount": 0,
+      "numericBlockCount": 1,
+      "preview": "에러: status=101 잘못된 URL입니다. 확인해주세요(/api/cpndlhCmpsBoardCo.json)"
+    },
+    {
+      "id": "section-025",
+      "title": "【Z-6. OpenDART 단일회사 전체 재무제표 (구조화)】",
+      "level": 1,
+      "contentLength": 19194,
+      "tableCount": 306,
+      "numericBlockCount": 918,
+      "preview": "※ 출처: OpenDART fnlttSinglAcntAll.json (CFS 연결, 304건)\n| 재무제표 | 계정 | 당기 | 전기 | 전전기 |\n| --- | --- | --- | --- | --- |\n| 재무상태표 | 자산총계 | 20,210,431,697,664 | 14,602,501,706,413 | 11,768,590,335,824 |\n| 재무상태표 | Ⅰ.유동자산 | 12,069,316,661,153 | 7,567,074,179,254 | 5,571,656,932,735 |\n| 재무상"
+    }
+  ],
+  "supplementalFilings": [
+    {
+      "rceptNo": "20260814003958",
+      "filingDate": "2026-08-14",
+      "period": "2026H1",
+      "title": "반기보고서",
+      "sourceUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003958"
+    },
+    {
+      "rceptNo": "20261116000994",
+      "filingDate": "2026-11-16",
+      "period": "2026Q3",
+      "title": "분기보고서",
+      "sourceUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116000994"
+    },
+    {
+      "rceptNo": "20261113801840",
+      "filingDate": "2026-11-13",
+      "period": "2026-11-12판결",
+      "title": "주총결의취소1심",
+      "sourceUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113801840"
+    },
+    {
+      "rceptNo": "20261119800002",
+      "filingDate": "2026-11-19",
+      "period": "2026-11-13판결",
+      "title": "신주발행무효항소심",
+      "sourceUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261119800002"
+    },
+    {
+      "rceptNo": "20261119800003",
+      "filingDate": "2026-11-19",
+      "period": "2026-11-16신청",
+      "title": "직무집행정지가처분신청",
+      "sourceUrl": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261119800003"
+    }
+  ],
+  "latestFilingDate": "2026-11-19",
+  "analysisArtifact": "dart-analysis.md",
+  "financialInputsArtifact": "dart-financial-inputs.json",
+  "coverageNote": "Annual sections full sweep22parsed2partial syntheticunavailableAPIsections; latestQ3notes directlyread; H1board supplement; Nov19 litigation originalsread. Annual sectionindex retained; latestclaims in verifiedClaims refer supplementalFilings."
+}
