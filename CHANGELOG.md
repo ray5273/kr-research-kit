@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.40] - 2026-11-21
+
+### Commits
+
+- Add Google Search Console meta verification to the research site ([f739a74](https://github.com/ray5273/kr-research-kit/commit/f739a74c60e9f4f5ab8d6627f1d22b64a55c8569))
+
 ## [0.4.39] - 2026-11-19
 
 ### Commits
