@@ -1,0 +1,895 @@
+{
+ "updated": "2026-08-14T11:00:00+0200",
+ "call_utc": "2026-08-25 00:09 UTC",
+ "call_kst": "2026-08-25 09:09 KST",
+ "partners": [
+  "WORLD",
+  "PL",
+  "DE",
+  "US",
+  "ES",
+  "FR",
+  "CN",
+  "KR"
+ ],
+ "indicators": [
+  "VALUE_IN_EUROS",
+  "QUANTITY_IN_100KG"
+ ],
+ "months": [
+  "2024-01",
+  "2024-02",
+  "2024-03",
+  "2024-04",
+  "2024-05",
+  "2024-06",
+  "2024-07",
+  "2024-08",
+  "2024-09",
+  "2024-10",
+  "2024-11",
+  "2024-12",
+  "2025-01",
+  "2025-02",
+  "2025-03",
+  "2025-04",
+  "2025-05",
+  "2025-06",
+  "2025-07",
+  "2025-08",
+  "2025-09",
+  "2025-10",
+  "2025-11",
+  "2025-12",
+  "2026-01",
+  "2026-02",
+  "2026-03",
+  "2026-04",
+  "2026-05",
+  "2026-06"
+ ],
+ "latest_world_month": "2026-06",
+ "errors": [],
+ "data": {
+  "2024-01": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 7900274,
+    "QUANTITY_IN_100KG": 6207.97
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 2670376,
+    "QUANTITY_IN_100KG": 2009.89
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 208,
+    "QUANTITY_IN_100KG": 0.03
+   },
+   "US": {
+    "VALUE_IN_EUROS": 4921788,
+    "QUANTITY_IN_100KG": 4005.72
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 306646,
+    "QUANTITY_IN_100KG": 192.3
+   }
+  },
+  "2024-02": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 12048168,
+    "QUANTITY_IN_100KG": 5565.12
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 4062110,
+    "QUANTITY_IN_100KG": 3.14
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 817533,
+    "QUANTITY_IN_100KG": 85.96
+   },
+   "US": {
+    "VALUE_IN_EUROS": 6398150,
+    "QUANTITY_IN_100KG": 5249.79
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 474630,
+    "QUANTITY_IN_100KG": 0.33
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 159,
+    "QUANTITY_IN_100KG": 0.01
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 102023,
+    "QUANTITY_IN_100KG": 77.36
+   }
+  },
+  "2024-03": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 11420084,
+    "QUANTITY_IN_100KG": 4566.62
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 4652616,
+    "QUANTITY_IN_100KG": 3.82
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 749359,
+    "QUANTITY_IN_100KG": 0.6
+   },
+   "US": {
+    "VALUE_IN_EUROS": 5277119,
+    "QUANTITY_IN_100KG": 4350.35
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 469163,
+    "QUANTITY_IN_100KG": 4.36
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 21746,
+    "QUANTITY_IN_100KG": 16.83
+   }
+  },
+  "2024-04": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 13438088,
+    "QUANTITY_IN_100KG": 10871.23
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 4260585,
+    "QUANTITY_IN_100KG": 3480.73
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 1256554,
+    "QUANTITY_IN_100KG": 1015.13
+   },
+   "US": {
+    "VALUE_IN_EUROS": 7544782,
+    "QUANTITY_IN_100KG": 6099.87
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 94572,
+    "QUANTITY_IN_100KG": 62.3
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 480,
+    "QUANTITY_IN_100KG": 0.16
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 7,
+    "QUANTITY_IN_100KG": 0.2
+   }
+  },
+  "2024-05": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 16116227,
+    "QUANTITY_IN_100KG": 12480.44
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 5600303,
+    "QUANTITY_IN_100KG": 4523.15
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 1532965,
+    "QUANTITY_IN_100KG": 1206.98
+   },
+   "US": {
+    "VALUE_IN_EUROS": 7884981,
+    "QUANTITY_IN_100KG": 6036.4
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 885890,
+    "QUANTITY_IN_100KG": 559.74
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 64908,
+    "QUANTITY_IN_100KG": 48.2
+   }
+  },
+  "2024-06": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 15939899,
+    "QUANTITY_IN_100KG": 12024.69
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 10152271,
+    "QUANTITY_IN_100KG": 7740.57
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 1191689,
+    "QUANTITY_IN_100KG": 899.62
+   },
+   "US": {
+    "VALUE_IN_EUROS": 3337822,
+    "QUANTITY_IN_100KG": 2567.28
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 1045313,
+    "QUANTITY_IN_100KG": 657.21
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 73637,
+    "QUANTITY_IN_100KG": 58.16
+   }
+  },
+  "2024-07": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 11898918,
+    "QUANTITY_IN_100KG": 8470.64
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 7896589,
+    "QUANTITY_IN_100KG": 5734.77
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 1743971,
+    "QUANTITY_IN_100KG": 1210.27
+   },
+   "US": {
+    "VALUE_IN_EUROS": 1702677,
+    "QUANTITY_IN_100KG": 1169.4
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 305616,
+    "QUANTITY_IN_100KG": 180.72
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 10393,
+    "QUANTITY_IN_100KG": 7.9
+   }
+  },
+  "2024-08": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 11869920,
+    "QUANTITY_IN_100KG": 9097.49
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 7981337,
+    "QUANTITY_IN_100KG": 6306.78
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 1371167,
+    "QUANTITY_IN_100KG": 1015.15
+   },
+   "US": {
+    "VALUE_IN_EUROS": 2049425,
+    "QUANTITY_IN_100KG": 1486.89
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 397974,
+    "QUANTITY_IN_100KG": 235.89
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 20708,
+    "QUANTITY_IN_100KG": 13.98
+   }
+  },
+  "2024-09": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 13437378,
+    "QUANTITY_IN_100KG": 10746.03
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 9859710,
+    "QUANTITY_IN_100KG": 8032.73
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 2016961,
+    "QUANTITY_IN_100KG": 1615.95
+   },
+   "US": {
+    "VALUE_IN_EUROS": 768131,
+    "QUANTITY_IN_100KG": 620.72
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 656750,
+    "QUANTITY_IN_100KG": 390.35
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 7692,
+    "QUANTITY_IN_100KG": 6.04
+   }
+  },
+  "2024-10": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 19505352,
+    "QUANTITY_IN_100KG": 15535.3
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 14285774,
+    "QUANTITY_IN_100KG": 11445.53
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 1792496,
+    "QUANTITY_IN_100KG": 1424.09
+   },
+   "US": {
+    "VALUE_IN_EUROS": 2258938,
+    "QUANTITY_IN_100KG": 1905.05
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 736683,
+    "QUANTITY_IN_100KG": 423.37
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 65,
+    "QUANTITY_IN_100KG": 0.0
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 275777,
+    "QUANTITY_IN_100KG": 221.24
+   }
+  },
+  "2024-11": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 21477778,
+    "QUANTITY_IN_100KG": 16920.69
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 10985872,
+    "QUANTITY_IN_100KG": 8651.62
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 1986037,
+    "QUANTITY_IN_100KG": 1569.08
+   },
+   "US": {
+    "VALUE_IN_EUROS": 7156351,
+    "QUANTITY_IN_100KG": 5753.31
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 435092,
+    "QUANTITY_IN_100KG": 258.15
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 690400,
+    "QUANTITY_IN_100KG": 520.17
+   }
+  },
+  "2024-12": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 12684029,
+    "QUANTITY_IN_100KG": 9681.08
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 9337234,
+    "QUANTITY_IN_100KG": 7262.65
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 1344000,
+    "QUANTITY_IN_100KG": 1001.89
+   },
+   "US": {
+    "VALUE_IN_EUROS": 1102193,
+    "QUANTITY_IN_100KG": 840.74
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 504934,
+    "QUANTITY_IN_100KG": 300.89
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 279708,
+    "QUANTITY_IN_100KG": 201.28
+   }
+  },
+  "2025-01": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 13794368,
+    "QUANTITY_IN_100KG": 11041.53
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 8653006,
+    "QUANTITY_IN_100KG": 7176.09
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 1046289,
+    "QUANTITY_IN_100KG": 807.31
+   },
+   "US": {
+    "VALUE_IN_EUROS": 3130507,
+    "QUANTITY_IN_100KG": 2446.37
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 773344,
+    "QUANTITY_IN_100KG": 474.49
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 95283,
+    "QUANTITY_IN_100KG": 65.83
+   }
+  },
+  "2025-02": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 13516062,
+    "QUANTITY_IN_100KG": 10691.56
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 8241721,
+    "QUANTITY_IN_100KG": 6876.31
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 109524,
+    "QUANTITY_IN_100KG": 47.94
+   },
+   "US": {
+    "VALUE_IN_EUROS": 2900333,
+    "QUANTITY_IN_100KG": 2209.6
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 1115749,
+    "QUANTITY_IN_100KG": 671.99
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 268,
+    "QUANTITY_IN_100KG": 0.04
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 120929,
+    "QUANTITY_IN_100KG": 80.18
+   }
+  },
+  "2025-03": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 12701789,
+    "QUANTITY_IN_100KG": 10497.4
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 8805296,
+    "QUANTITY_IN_100KG": 7540.25
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 760394,
+    "QUANTITY_IN_100KG": 606.54
+   },
+   "US": {
+    "VALUE_IN_EUROS": 2240086,
+    "QUANTITY_IN_100KG": 1731.54
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 411827,
+    "QUANTITY_IN_100KG": 256.32
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 27886,
+    "QUANTITY_IN_100KG": 18.78
+   }
+  },
+  "2025-04": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 8989493,
+    "QUANTITY_IN_100KG": 7423.01
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 4980633,
+    "QUANTITY_IN_100KG": 4306.78
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 1750791,
+    "QUANTITY_IN_100KG": 1449.16
+   },
+   "US": {
+    "VALUE_IN_EUROS": 1252198,
+    "QUANTITY_IN_100KG": 1017.42
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 836897,
+    "QUANTITY_IN_100KG": 520.25
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 516,
+    "QUANTITY_IN_100KG": 0.06
+   }
+  },
+  "2025-05": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 9424551,
+    "QUANTITY_IN_100KG": 7556.42
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 4786717,
+    "QUANTITY_IN_100KG": 3965.62
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 36893,
+    "QUANTITY_IN_100KG": 25.05
+   },
+   "US": {
+    "VALUE_IN_EUROS": 3742720,
+    "QUANTITY_IN_100KG": 3002.41
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 576371,
+    "QUANTITY_IN_100KG": 354.03
+   }
+  },
+  "2025-06": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 9792911,
+    "QUANTITY_IN_100KG": 8276.34
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 4501205,
+    "QUANTITY_IN_100KG": 4002.24
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 70266,
+    "QUANTITY_IN_100KG": 26.22
+   },
+   "US": {
+    "VALUE_IN_EUROS": 4221411,
+    "QUANTITY_IN_100KG": 3541.51
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 876261,
+    "QUANTITY_IN_100KG": 551.33
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 29,
+    "QUANTITY_IN_100KG": 0.0
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 4908,
+    "QUANTITY_IN_100KG": 3.81
+   }
+  },
+  "2025-07": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 9436535,
+    "QUANTITY_IN_100KG": 7576.73
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 4386840,
+    "QUANTITY_IN_100KG": 3533.87
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 1587,
+    "QUANTITY_IN_100KG": 1.3
+   },
+   "US": {
+    "VALUE_IN_EUROS": 4265447,
+    "QUANTITY_IN_100KG": 3505.87
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 427650,
+    "QUANTITY_IN_100KG": 254.47
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 104,
+    "QUANTITY_IN_100KG": 0.04
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 65513,
+    "QUANTITY_IN_100KG": 50.41
+   }
+  },
+  "2025-08": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 6196674,
+    "QUANTITY_IN_100KG": 4946.64
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 5640707,
+    "QUANTITY_IN_100KG": 4561.32
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 14593,
+    "QUANTITY_IN_100KG": 5.19
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 304925,
+    "QUANTITY_IN_100KG": 189.4
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 703,
+    "QUANTITY_IN_100KG": 0.11
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 2461,
+    "QUANTITY_IN_100KG": 1.7
+   }
+  },
+  "2025-09": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 6850491,
+    "QUANTITY_IN_100KG": 5152.11
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 4567483,
+    "QUANTITY_IN_100KG": 3715.88
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 414,
+    "QUANTITY_IN_100KG": 0.02
+   },
+   "US": {
+    "VALUE_IN_EUROS": 12445,
+    "QUANTITY_IN_100KG": 8.75
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 2171648,
+    "QUANTITY_IN_100KG": 1355.8
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 7493,
+    "QUANTITY_IN_100KG": 5.53
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 2224,
+    "QUANTITY_IN_100KG": 4.89
+   }
+  },
+  "2025-10": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 6826574,
+    "QUANTITY_IN_100KG": 5225.01
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 5224004,
+    "QUANTITY_IN_100KG": 4213.4
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 3216,
+    "QUANTITY_IN_100KG": 1.34
+   },
+   "US": {
+    "VALUE_IN_EUROS": 24580,
+    "QUANTITY_IN_100KG": 21.48
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 1375664,
+    "QUANTITY_IN_100KG": 864.34
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 9785,
+    "QUANTITY_IN_100KG": 7.67
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 2863,
+    "QUANTITY_IN_100KG": 2.4
+   }
+  },
+  "2025-11": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 6904718,
+    "QUANTITY_IN_100KG": 5280.56
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 4545325,
+    "QUANTITY_IN_100KG": 3685.51
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 7381,
+    "QUANTITY_IN_100KG": 2.44
+   },
+   "US": {
+    "VALUE_IN_EUROS": 633755,
+    "QUANTITY_IN_100KG": 507.29
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 1681447,
+    "QUANTITY_IN_100KG": 1059.53
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 52,
+    "QUANTITY_IN_100KG": 0.02
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 12622,
+    "QUANTITY_IN_100KG": 10.62
+   }
+  },
+  "2025-12": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 5271320,
+    "QUANTITY_IN_100KG": 4121.7
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 3728032,
+    "QUANTITY_IN_100KG": 2945.77
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 24585,
+    "QUANTITY_IN_100KG": 9.37
+   },
+   "US": {
+    "VALUE_IN_EUROS": 1323363,
+    "QUANTITY_IN_100KG": 1037.17
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 142372,
+    "QUANTITY_IN_100KG": 90.31
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 23448,
+    "QUANTITY_IN_100KG": 18.77
+   }
+  },
+  "2026-01": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 8654781,
+    "QUANTITY_IN_100KG": 6965.57
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 4760862,
+    "QUANTITY_IN_100KG": 3963.3
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 1082910,
+    "QUANTITY_IN_100KG": 938.34
+   },
+   "US": {
+    "VALUE_IN_EUROS": 1784542,
+    "QUANTITY_IN_100KG": 1410.8
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 994026,
+    "QUANTITY_IN_100KG": 628.83
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 629,
+    "QUANTITY_IN_100KG": 0.16
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 24834,
+    "QUANTITY_IN_100KG": 19.69
+   }
+  },
+  "2026-02": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 8914861,
+    "QUANTITY_IN_100KG": 6643.8
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 8021847,
+    "QUANTITY_IN_100KG": 6082.2
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 5574,
+    "QUANTITY_IN_100KG": 0.51
+   },
+   "US": {
+    "VALUE_IN_EUROS": 58424,
+    "QUANTITY_IN_100KG": 30.44
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 780818,
+    "QUANTITY_IN_100KG": 495.06
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 260,
+    "QUANTITY_IN_100KG": 0.07
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 13199,
+    "QUANTITY_IN_100KG": 10.14
+   }
+  },
+  "2026-03": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 9047776,
+    "QUANTITY_IN_100KG": 6520.12
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 7865569,
+    "QUANTITY_IN_100KG": 5809.86
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 72738,
+    "QUANTITY_IN_100KG": 38.2
+   },
+   "US": {
+    "VALUE_IN_EUROS": 549748,
+    "QUANTITY_IN_100KG": 316.51
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 313262,
+    "QUANTITY_IN_100KG": 195.12
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 864,
+    "QUANTITY_IN_100KG": 0.22
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 377,
+    "QUANTITY_IN_100KG": 0.24
+   }
+  },
+  "2026-04": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 13243141,
+    "QUANTITY_IN_100KG": 8343.92
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 2061953,
+    "QUANTITY_IN_100KG": 1474.36
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 1367459,
+    "QUANTITY_IN_100KG": 931.66
+   },
+   "US": {
+    "VALUE_IN_EUROS": 8359249,
+    "QUANTITY_IN_100KG": 5105.18
+   },
+   "ES": {
+    "VALUE_IN_EUROS": 53,
+    "QUANTITY_IN_100KG": 0.17
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 1404810,
+    "QUANTITY_IN_100KG": 800.31
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 282,
+    "QUANTITY_IN_100KG": 3.29
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 6607,
+    "QUANTITY_IN_100KG": 4.11
+   }
+  },
+  "2026-05": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 13651598,
+    "QUANTITY_IN_100KG": 9292.05
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 4239009,
+    "QUANTITY_IN_100KG": 3031.68
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 572790,
+    "QUANTITY_IN_100KG": 399.91
+   },
+   "US": {
+    "VALUE_IN_EUROS": 7592425,
+    "QUANTITY_IN_100KG": 5114.48
+   },
+   "ES": {
+    "VALUE_IN_EUROS": 356,
+    "QUANTITY_IN_100KG": 1.47
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 1114364,
+    "QUANTITY_IN_100KG": 665.33
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 1058,
+    "QUANTITY_IN_100KG": 0.13
+   },
+   "KR": {
+    "VALUE_IN_EUROS": 7612,
+    "QUANTITY_IN_100KG": 4.7
+   }
+  },
+  "2026-06": {
+   "WORLD": {
+    "VALUE_IN_EUROS": 15531029,
+    "QUANTITY_IN_100KG": 10280.3
+   },
+   "PL": {
+    "VALUE_IN_EUROS": 6085863,
+    "QUANTITY_IN_100KG": 4086.7
+   },
+   "DE": {
+    "VALUE_IN_EUROS": 302853,
+    "QUANTITY_IN_100KG": 199.59
+   },
+   "US": {
+    "VALUE_IN_EUROS": 8466308,
+    "QUANTITY_IN_100KG": 5615.65
+   },
+   "ES": {
+    "VALUE_IN_EUROS": 676,
+    "QUANTITY_IN_100KG": 2.82
+   },
+   "FR": {
+    "VALUE_IN_EUROS": 646622,
+    "QUANTITY_IN_100KG": 360.67
+   },
+   "CN": {
+    "VALUE_IN_EUROS": 2176,
+    "QUANTITY_IN_100KG": 0.22
+   }
+  }
+ }
+}
